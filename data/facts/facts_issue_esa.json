@@ -1,0 +1,22 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "manual",
+  "created_at": "2026-07-21T22:00:00+09:00",
+  "issue_id": "issue_esa",
+  "_note": "TODO(민옥): 파일럿 원본 12개 팩트로 text/tags/critical 교체. 아래는 자리표시자 — fact_01~04만 파일럿 보고서에서 확인된 실제 팩트.",
+  "extractor": {"model": "manual", "temperature": 0, "prompt_ver": "pilot-reuse"},
+  "facts": [
+    {"fact_id": "fact_esa_01", "text": "보증금 500달러가 걸려 있다", "tags": ["condition"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_esa_02", "text": "월 40달러의 반려동물 추가 비용이 있다", "tags": ["condition"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_esa_03", "text": "관련 기간은 6주다", "tags": ["condition"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_esa_04", "text": "룸메이트는 진단된 불안이 있고 치료사가 있다", "tags": ["counter_evidence"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_esa_05", "text": "TODO: 파일럿 원본 팩트로 교체", "tags": ["condition"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_esa_06", "text": "TODO: 파일럿 원본 팩트로 교체", "tags": ["condition"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_esa_07", "text": "TODO: 파일럿 원본 팩트로 교체", "tags": ["exception"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_esa_08", "text": "TODO: 파일럿 원본 팩트로 교체", "tags": ["exception"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_esa_09", "text": "TODO: 파일럿 원본 팩트로 교체", "tags": ["counter_evidence"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_esa_10", "text": "TODO: 파일럿 원본 팩트로 교체", "tags": ["stance_support"], "critical": false, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_esa_11", "text": "TODO: 파일럿 원본 팩트로 교체", "tags": ["stance_support"], "critical": false, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_esa_12", "text": "TODO: 파일럿 원본 팩트로 교체", "tags": ["stance_support"], "critical": false, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}}
+  ]
+}

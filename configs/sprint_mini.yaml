@@ -1,0 +1,13 @@
+# 실험 조건의 단일 소스. 조건을 바꿀 땐 코드가 아니라 이 파일을 복사·수정한다.
+experiment: sprint_mini
+issue_id: issue_esa
+run_id: run001
+seed: 42
+agents: 8                    # 관점 4 x 입장 2 (논문 상수)
+rounds: 3
+debate_model: claude-haiku   # 파일럿 계승. 수요일 통합 때 확정
+debate_temperature: 1.2      # 논문 상수
+judge_model: claude-sonnet   # 확정 사양 (결정 로그 7/21)
+judge_temperature: 0
+judge_n_votes: 3
+ledger_mode: "off"           # off | v0 | v1 | v2 | a1  — off=대조군
