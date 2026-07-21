@@ -1,22 +1,22 @@
 {
   "schema_ver": "0.2",
   "created_by": "manual",
-  "created_at": "2026-07-21T22:00:00+09:00",
+  "created_at": "2026-07-21T23:00:00+09:00",
   "issue_id": "issue_esa",
-  "_note": "TODO(민옥): 파일럿 원본 12개 팩트로 text/tags/critical 교체. 아래는 자리표시자 — fact_01~04만 파일럿 보고서에서 확인된 실제 팩트.",
-  "extractor": {"model": "manual", "temperature": 0, "prompt_ver": "pilot-reuse"},
+  "_note": "스프린트 정본 v1 (7/21 재작성 — 파일럿 원자료 소실로 재작성, 앵커 5종은 파일럿 보고서에서 계승). critical 9개.",
+  "extractor": {"model": "manual", "temperature": 0, "prompt_ver": "sprint-v1"},
   "facts": [
-    {"fact_id": "fact_esa_01", "text": "보증금 500달러가 걸려 있다", "tags": ["condition"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
-    {"fact_id": "fact_esa_02", "text": "월 40달러의 반려동물 추가 비용이 있다", "tags": ["condition"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
-    {"fact_id": "fact_esa_03", "text": "관련 기간은 6주다", "tags": ["condition"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
-    {"fact_id": "fact_esa_04", "text": "룸메이트는 진단된 불안이 있고 치료사가 있다", "tags": ["counter_evidence"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
-    {"fact_id": "fact_esa_05", "text": "TODO: 파일럿 원본 팩트로 교체", "tags": ["condition"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
-    {"fact_id": "fact_esa_06", "text": "TODO: 파일럿 원본 팩트로 교체", "tags": ["condition"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
-    {"fact_id": "fact_esa_07", "text": "TODO: 파일럿 원본 팩트로 교체", "tags": ["exception"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
-    {"fact_id": "fact_esa_08", "text": "TODO: 파일럿 원본 팩트로 교체", "tags": ["exception"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
-    {"fact_id": "fact_esa_09", "text": "TODO: 파일럿 원본 팩트로 교체", "tags": ["counter_evidence"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
-    {"fact_id": "fact_esa_10", "text": "TODO: 파일럿 원본 팩트로 교체", "tags": ["stance_support"], "critical": false, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
-    {"fact_id": "fact_esa_11", "text": "TODO: 파일럿 원본 팩트로 교체", "tags": ["stance_support"], "critical": false, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
-    {"fact_id": "fact_esa_12", "text": "TODO: 파일럿 원본 팩트로 교체", "tags": ["stance_support"], "critical": false, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}}
+    {"fact_id": "fact_esa_01", "text": "임대차 계약에 반려동물 금지 조항이 있다", "tags": ["condition"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_esa_02", "text": "계약 위반 시 보증금 500달러가 몰수된다", "tags": ["condition"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_esa_03", "text": "Jenna가 6주 전 집주인 허락 없이 개를 데려왔다", "tags": ["condition"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_esa_04", "text": "Jenna는 진단된 불안이 있다", "tags": ["counter_evidence"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_esa_05", "text": "Jenna는 치료사에게 ESA 추천서를 받았다고 주장한다", "tags": ["counter_evidence"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_esa_06", "text": "ESA 서류가 집주인에게 제출되지 않은 상태다", "tags": ["exception"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_esa_07", "text": "신고된 반려동물은 월 40달러의 추가 비용이 있다", "tags": ["condition"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_esa_08", "text": "개가 낮에 짖어 이웃 항의가 한 차례 있었다", "tags": ["stance_support"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_esa_09", "text": "화자는 경미한 개털 알레르기가 있다", "tags": ["stance_support"], "critical": false, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_esa_10", "text": "Jenna가 비밀로 해달라고 부탁했다", "tags": ["stance_support"], "critical": false, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_esa_11", "text": "임대차 계약 갱신이 3주 뒤다", "tags": ["condition"], "critical": true, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_esa_12", "text": "ESA는 법적으로 일반 반려동물 금지 조항의 예외가 될 수 있다", "tags": ["exception"], "critical": false, "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}}
   ]
 }

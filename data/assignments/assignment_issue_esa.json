@@ -1,18 +1,18 @@
 {
   "schema_ver": "0.2",
   "created_by": "manual",
-  "created_at": "2026-07-21T22:00:00+09:00",
+  "created_at": "2026-07-21T23:00:00+09:00",
   "issue_id": "issue_esa",
-  "_note": "TODO(민옥): 파일럿의 관점 4종 명칭과 실제 배분으로 교체. seed 42 고정.",
+  "_note": "스프린트 정본 v1. 관점 4 x 입장 2 = 8에이전트, seed 42 고정. 비대칭 배분: 에이전트당 3팩트.",
   "seed": 42,
   "agents": [
-    {"agent_id": "agent_1", "perspective": "관점A(TODO)", "stance": "pro", "assigned_fact_ids": ["fact_esa_01", "fact_esa_05", "fact_esa_09"]},
-    {"agent_id": "agent_2", "perspective": "관점A(TODO)", "stance": "con", "assigned_fact_ids": ["fact_esa_02", "fact_esa_06", "fact_esa_10"]},
-    {"agent_id": "agent_3", "perspective": "관점B(TODO)", "stance": "pro", "assigned_fact_ids": ["fact_esa_03", "fact_esa_07", "fact_esa_11"]},
-    {"agent_id": "agent_4", "perspective": "관점B(TODO)", "stance": "con", "assigned_fact_ids": ["fact_esa_04", "fact_esa_08", "fact_esa_12"]},
-    {"agent_id": "agent_5", "perspective": "관점C(TODO)", "stance": "pro", "assigned_fact_ids": ["fact_esa_01", "fact_esa_06", "fact_esa_11"]},
-    {"agent_id": "agent_6", "perspective": "관점C(TODO)", "stance": "con", "assigned_fact_ids": ["fact_esa_02", "fact_esa_07", "fact_esa_12"]},
-    {"agent_id": "agent_7", "perspective": "관점D(TODO)", "stance": "pro", "assigned_fact_ids": ["fact_esa_03", "fact_esa_08", "fact_esa_10"]},
-    {"agent_id": "agent_8", "perspective": "관점D(TODO)", "stance": "con", "assigned_fact_ids": ["fact_esa_04", "fact_esa_05", "fact_esa_09"]}
+    {"agent_id": "agent_1", "perspective": "계약·재정", "stance": "pro", "assigned_fact_ids": ["fact_esa_01", "fact_esa_02", "fact_esa_11"]},
+    {"agent_id": "agent_2", "perspective": "계약·재정", "stance": "con", "assigned_fact_ids": ["fact_esa_02", "fact_esa_07", "fact_esa_12"]},
+    {"agent_id": "agent_3", "perspective": "건강·복지", "stance": "pro", "assigned_fact_ids": ["fact_esa_04", "fact_esa_06", "fact_esa_09"]},
+    {"agent_id": "agent_4", "perspective": "건강·복지", "stance": "con", "assigned_fact_ids": ["fact_esa_04", "fact_esa_05", "fact_esa_10"]},
+    {"agent_id": "agent_5", "perspective": "공동생활·관계", "stance": "pro", "assigned_fact_ids": ["fact_esa_08", "fact_esa_09", "fact_esa_10"]},
+    {"agent_id": "agent_6", "perspective": "공동생활·관계", "stance": "con", "assigned_fact_ids": ["fact_esa_03", "fact_esa_08", "fact_esa_10"]},
+    {"agent_id": "agent_7", "perspective": "법·규정", "stance": "pro", "assigned_fact_ids": ["fact_esa_01", "fact_esa_03", "fact_esa_06"]},
+    {"agent_id": "agent_8", "perspective": "법·규정", "stance": "con", "assigned_fact_ids": ["fact_esa_05", "fact_esa_11", "fact_esa_12"]}
   ]
 }
