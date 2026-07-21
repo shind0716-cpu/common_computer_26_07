@@ -1,208 +1,292 @@
 """[패키지 A · 신동범 · 마감 수 20시] 채점기(judge) — 순수 함수로 구현.
-
 계약: 입력 debate 로그 + facts 목록 → 출력 paths.judgment(issue, run) (스키마 5번)
 사양(확정): Sonnet 단일, temperature 0, n_votes=3 다수결, votes 원본 보존.
 순수 함수 원칙: 입력→출력만. 대조군에선 사후 오프라인, 실험군에선 루프 안에서 동일 함수 호출.
 
-저자 코드에서 계승한 것:
-- evaluate_fact 프롬프트 원문 (authors_prompts로 원본에서 직접 읽음)
-- 팩트 나열 포맷: "{index}: {text}\\n"
-- JSON 응답 파싱 방식 (```json 껍데기 제거)
+이 파일의 상태: 초안(v0.1). 핵심 순수함수(judge_fact) + CLI 래퍼 + FAR 집계 구현 완료.
+미확정으로 남긴 것(코드가 아니라 결정 대기):
+  - FAR 수식 방향 — 동범.md 열린 질문. 아래 SURVIVING/far() 는 '잠정' 정의이며 노션 확정 시 교체.
+  - judge 프롬프트 문구 — JUDGE_SYSTEM 은 초안. 7/16 파일럿 프롬프트로 맞춰야 함.
+  - far_agent_mean — 에이전트별 FAR 은 assignments 필요 + 수식 확정 필요. 지금은 null.
 
-우리가 추가한 것 (스키마 v0.2 / 7-16 파일럿 교훈):
-- n_votes=3 다수결 + votes[] 원본 보존 — 불일치율이 judge 신뢰도 지표
-- status 5종 매핑. 단, 저자 프롬프트는 mentioned/unmentioned 2종만 판별하므로
-  v0 단계에서는 mentioned/unmentioned만 산출한다.
-  accepted/refuted/ignored 세분화는 v1(상태 추적) 몫 — 스키마는 자리를 미리 갖고 있다.
-- far_by_stage 요약 (System/Agent × 전체/critical 4분할)
+사용:
+  # 실측(API 호출, 키 필요)
+  python -m modules.judge --issue issue_esa --run run001 --config configs/sprint_mini.yaml
+  # 오프라인 스텁(키 없이 뼈대·스키마 검증용, 결정론적)
+  python -m modules.judge --issue issue_esa --run run001 --config configs/sprint_mini.yaml --offline
+막히면: 노션 작업 지시서 #1 패키지 A 항목 아래에 질문."""
+from __future__ import annotations
 
-실행: python -m modules.judge --issue issue_esa --run run001 --config configs/sprint_mini.yaml
-"""
 import argparse
 import json
+import os
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
-import yaml
+from . import paths
 
-from modules import authors_prompts, llm, paths
+SCHEMA_VER = "0.2"
+JUDGE_PROMPT_VER = "judge-v0.1-draft"
 
+# 스키마 5번의 status 5종 (validate.py 와 동일 집합).
+STATUSES = ("unmentioned", "mentioned", "accepted", "refuted", "ignored")
 
-def now() -> str:
-    return datetime.now(timezone.utc).isoformat()
+# 잠정(TODO: FAR 수식 확정) — '살아남음'으로 볼 status. 나머지는 소실로 집계.
+# 동범.md 열린 질문 "FAR 수식 방향(선결)" 확정되면 이 한 줄과 far() 만 교체하면 됨.
+SURVIVING = {"mentioned", "accepted"}
 
+# 다수결 동점 시 우선순위(보수적 = 소실 쪽을 우선 보고). 앞일수록 먼저 채택.
+_TIEBREAK_ORDER = ("unmentioned", "ignored", "refuted", "mentioned", "accepted")
 
-def parse_json_block(text: str):
-    """저자 obtain_json() 계승 — 코드펜스 벗기고 파싱, 실패 시 None."""
-    try:
-        cleaned = text.replace("```json", "").replace("```", "").replace("\\n", "")
-        return json.loads(cleaned)
-    except Exception:  # noqa: BLE001
-        return None
+# config 의 짧은 별칭 → 실제 모델 ID. 이미 전체 ID 면 그대로 통과.
+MODEL_ALIASES = {
+    "claude-sonnet": "claude-sonnet-5",
+    "claude-haiku": "claude-haiku-4-5-20251001",
+}
 
-
-def judge_fact_ids(utterance: str, facts: list[dict], model: str, n_votes: int) -> list[list[str]]:
-    """발화 하나에 어떤 팩트가 표현돼 있는지 n_votes회 독립 판정.
-
-    반환: 표(vote)마다 매칭된 fact_id 목록. 원본 표를 전부 보존한다.
-    순수 함수: 같은 입력이면 같은 프롬프트 — 비결정성은 LLM 몫이고 그걸 votes로 계측한다.
-    """
-    prompt = authors_prompts.load("evaluate_fact")
-    fact_text = ""
-    for index, f in enumerate(facts):
-        fact_text += f"{index}: {f['text']}\n"
-    inputs = prompt.replace("<===facts===>", fact_text)
-    inputs = inputs.replace("<===text===>", utterance)
-
-    votes = []
-    for _ in range(n_votes):
-        resp = llm.obtain_response(inputs, model=model, temperature=0.0)
-        parsed = parse_json_block(resp)
-        matched = []
-        if isinstance(parsed, dict):
-            for idx in parsed.get("matched_fact_ids", []):
-                if isinstance(idx, int) and 0 <= idx < len(facts):
-                    matched.append(facts[idx]["fact_id"])
-        votes.append(sorted(matched))
-    return votes
+JUDGE_SYSTEM = (
+    "너는 멀티에이전트 토론 로그의 사실 보존을 채점하는 판정기다. "
+    "하나의 '팩트'와 한 라운드의 에이전트 발화 원문들을 받는다. "
+    "그 라운드에서 이 팩트가 어떻게 다뤄졌는지 정확히 하나의 상태로 분류하라.\n"
+    "상태 정의:\n"
+    "- unmentioned: 어떤 발화도 이 팩트를 언급/암시하지 않음\n"
+    "- mentioned: 언급되었으나 찬반 판단 없이 중립적으로 다뤄짐\n"
+    "- accepted: 발화가 이 팩트를 사실로 인정/전제함\n"
+    "- refuted: 발화가 이 팩트를 부정/반박함\n"
+    "- ignored: 앞서 제기됐으나 이 라운드 논의에서 무시되고 반영 안 됨\n"
+    "판단은 발화 원문에만 근거하라. 추측 금지.\n"
+    '반드시 아래 JSON 만 출력하라(설명 텍스트 금지): '
+    '{"status": "<위 5종 중 하나>", "agents_mentioning": ["<이 팩트를 언급한 agent_id>"], '
+    '"reason": "<한 문장 근거>"}'
+)
 
 
-def majority(votes: list[list[str]], fact_id: str) -> bool:
-    """다수결: 과반 표에 등장하면 mentioned."""
-    hit = sum(1 for v in votes if fact_id in v)
-    return hit * 2 > len(votes)
-
-
-def load_utterances(issue_id: str, run_id: str) -> dict[int, list[dict]]:
-    """debate 로그에서 라운드별 발화 이벤트만 모은다."""
-    by_round: dict[int, list[dict]] = {}
-    log_path = paths.debate(issue_id, run_id)
-    for line in log_path.read_text(encoding="utf-8").splitlines():
+# ---------------------------------------------------------------------------
+# 입력 로딩 (순수)
+# ---------------------------------------------------------------------------
+def load_utterances(debate_path: Path) -> list[dict]:
+    """debate jsonl 에서 발화 이벤트만 뽑아 stage(=round) 순으로 반환."""
+    out: list[dict] = []
+    for line in debate_path.read_text(encoding="utf-8").splitlines():
         if not line.strip():
             continue
         ev = json.loads(line)
-        if ev.get("event") != "utterance":
-            continue
-        by_round.setdefault(int(ev["round"]), []).append(ev)
-    return by_round
+        if ev.get("event") == "utterance":
+            out.append(ev)
+    return out
 
 
-def far_summary(stages: list[dict], facts: list[dict]) -> dict:
-    """4분할 요약. FAR = 1 − retention.
-    System = 어느 에이전트든 언급했으면 생존 / Agent = 자기 배분 팩트 기준이 아니라
-    '전체 팩트 대비 개인 언급률 평균' — 스키마 v0.2의 far_agent_mean 정의를 따른다."""
-    all_ids = [f["fact_id"] for f in facts]
-    crit_ids = [f["fact_id"] for f in facts if f.get("critical")]
-    out_stages = []
-    for st in stages:
-        mentioned_by = {}  # fact_id -> set(agent)
-        agents = set()
-        for frec in st["facts"]:
-            for a in frec["agents_mentioning"]:
-                agents.add(a)
-                mentioned_by.setdefault(frec["fact_id"], set()).add(a)
-        # 발화는 했지만 아무 팩트도 언급 안 한 에이전트도 분모에 포함해야 한다
-        agents |= set(st.get("_all_agents", []))
+def group_by_stage(utterances: list[dict]) -> dict[int, list[dict]]:
+    """발화를 round(=stage) 별로 묶는다. 키 오름차순."""
+    stages: dict[int, list[dict]] = {}
+    for u in utterances:
+        stages.setdefault(u.get("round"), []).append(u)
+    return dict(sorted(stages.items(), key=lambda kv: kv[0]))
 
-        def system_ret(ids):
-            if not ids:
-                return None
-            alive = sum(1 for fid in ids if mentioned_by.get(fid))
-            return alive / len(ids)
 
-        def agent_ret(ids):
-            if not ids or not agents:
-                return None
-            per = []
-            for a in agents:
-                said = sum(1 for fid in ids if a in mentioned_by.get(fid, set()))
-                per.append(said / len(ids))
-            return sum(per) / len(per)
+# ---------------------------------------------------------------------------
+# 한 표(vote) — 온라인(API) / 오프라인(결정론적 스텁)
+# ---------------------------------------------------------------------------
+def _resolve_model(name: str) -> str:
+    return MODEL_ALIASES.get(name, name)
 
-        sys_all, sys_crit = system_ret(all_ids), system_ret(crit_ids)
-        ag_all, ag_crit = agent_ret(all_ids), agent_ret(crit_ids)
-        out_stages.append({
-            "stage": st["stage"],
-            "far_system": None if sys_all is None else round(1 - sys_all, 4),
-            "far_system_critical": None if sys_crit is None else round(1 - sys_crit, 4),
-            "far_agent_mean": None if ag_all is None else round(1 - ag_all, 4),
-            "far_agent_mean_critical": None if ag_crit is None else round(1 - ag_crit, 4),
-        })
+
+def _user_prompt(fact: dict, stage_utterances: list[dict]) -> str:
+    lines = [
+        f"[팩트] id={fact['fact_id']} critical={fact.get('critical')}",
+        f"내용: {fact['text']}",
+        "",
+        "[이 라운드 발화 원문]",
+    ]
+    for u in stage_utterances:
+        lines.append(f"- ({u.get('agent_id')}) {u.get('response_text', '')}")
+    return "\n".join(lines)
+
+
+def _online_vote(client, model: str, fact: dict, stage_utterances: list[dict]) -> dict:
+    """API 한 번 호출 = 한 표. 실패해도 파이프라인이 죽지 않게 안전 파싱."""
+    resp = client.messages.create(
+        model=model,
+        max_tokens=512,
+        temperature=0,  # 확정 사양
+        system=JUDGE_SYSTEM,
+        messages=[{"role": "user", "content": _user_prompt(fact, stage_utterances)}],
+    )
+    text = "".join(b.text for b in resp.content if getattr(b, "type", None) == "text")
+    return _parse_vote(text, stage_utterances)
+
+
+def _offline_vote(fact: dict, stage_utterances: list[dict]) -> dict:
+    """키 없이 도는 결정론적 스텁 — 뼈대·스키마 검증 전용(모델 판정 아님).
+    규칙: 발화 원문에 fact_id 또는 팩트 텍스트가 나타나면 mentioned, 아니면 unmentioned."""
+    needle = fact["text"].strip()
+    mentioning = []
+    for u in stage_utterances:
+        body = u.get("response_text", "") or ""
+        if fact["fact_id"] in body or (needle and needle in body):
+            mentioning.append(u.get("agent_id"))
+    status = "mentioned" if mentioning else "unmentioned"
+    return {"status": status, "agents_mentioning": mentioning, "reason": "offline-stub(substring)"}
+
+
+def _parse_vote(text: str, stage_utterances: list[dict]) -> dict:
+    """모델 출력 JSON 파싱 + 방어. status 가 5종 밖이면 unmentioned 로 강등."""
+    try:
+        start, end = text.index("{"), text.rindex("}") + 1
+        obj = json.loads(text[start:end])
+    except (ValueError, json.JSONDecodeError):
+        return {"status": "unmentioned", "agents_mentioning": [], "reason": f"parse_fail: {text[:120]}"}
+    status = obj.get("status")
+    if status not in STATUSES:
+        status = "unmentioned"
+    valid_ids = {u.get("agent_id") for u in stage_utterances}
+    mentioning = [a for a in obj.get("agents_mentioning", []) if a in valid_ids]
+    return {"status": status, "agents_mentioning": mentioning, "reason": obj.get("reason", "")}
+
+
+# ---------------------------------------------------------------------------
+# 핵심 순수 함수: judge_fact
+# ---------------------------------------------------------------------------
+def _majority(statuses: list[str]) -> str:
+    counts = Counter(statuses)
+    top = max(counts.values())
+    tied = [s for s, c in counts.items() if c == top]
+    if len(tied) == 1:
+        return tied[0]
+    # 동점 → 보수적 우선순위(소실 쪽 우선)
+    return min(tied, key=lambda s: _TIEBREAK_ORDER.index(s))
+
+
+def judge_fact(stage_utterances: list[dict], fact: dict, *, vote_fn, n_votes: int = 3) -> dict:
+    """한 라운드 발화 + 한 팩트 → 판정 레코드(순수).
+    vote_fn(fact, stage_utterances) -> {status, agents_mentioning, reason} 를 n_votes 회 호출.
+    votes 원본 3표를 그대로 보존(불일치율 = judge 신뢰도 지표, 7/16 파일럿 핵심).
+    반환: {fact_id, status(다수결), votes[], agents_mentioning[](표 합집합)}"""
+    votes = [vote_fn(fact, stage_utterances) for _ in range(n_votes)]
+    status = _majority([v["status"] for v in votes])
+    mentioning = sorted({a for v in votes for a in v["agents_mentioning"]})
     return {
-        "far_by_stage": out_stages,
-        "far_system": out_stages[-1]["far_system"] if out_stages else None,
-        "far_agent_mean": out_stages[-1]["far_agent_mean"] if out_stages else None,
-        "far_critical": out_stages[-1]["far_system_critical"] if out_stages else None,
+        "fact_id": fact["fact_id"],
+        "status": status,
+        "votes": votes,
+        "agents_mentioning": mentioning,
     }
 
 
-def run(issue_id: str, run_id: str, config_path: Path) -> Path:
-    cfg = yaml.safe_load(config_path.read_text(encoding="utf-8"))
-    model = cfg["judge_model"]
+# ---------------------------------------------------------------------------
+# FAR 집계 (잠정 — 수식 확정 시 교체)
+# ---------------------------------------------------------------------------
+def far(fact_records: list[dict], facts_by_id: dict[str, dict], *, critical_only: bool = False) -> float | None:
+    """소실률 = 소실 팩트 수 / 대상 팩트 수. '소실' = status not in SURVIVING.
+    TODO(FAR 수식 미확정): refuted 를 소실로 볼지, unmentioned 만 셀지 등은 노션 확정 대기.
+    현재 잠정: SURVIVING={mentioned,accepted} 외 전부 소실."""
+    rows = fact_records
+    if critical_only:
+        rows = [r for r in rows if facts_by_id.get(r["fact_id"], {}).get("critical")]
+    if not rows:
+        return None
+    lost = sum(1 for r in rows if r["status"] not in SURVIVING)
+    return round(lost / len(rows), 4)
+
+
+# ---------------------------------------------------------------------------
+# 오케스트레이터 + CLI 래퍼
+# ---------------------------------------------------------------------------
+def _load_config(config_path: Path | None) -> dict:
+    cfg = {"judge_model": "claude-sonnet", "judge_temperature": 0, "judge_n_votes": 3}
+    if config_path:
+        import yaml  # requirements.txt
+
+        cfg.update({k: v for k, v in yaml.safe_load(config_path.read_text(encoding="utf-8")).items()
+                    if k in cfg or k.startswith("judge")})
+    return cfg
+
+
+def _make_client():
+    from anthropic import Anthropic  # 지연 import — offline 모드는 SDK 불필요
+
+    try:
+        from dotenv import load_dotenv
+
+        load_dotenv()
+    except ImportError:
+        pass
+    if not os.environ.get("ANTHROPIC_API_KEY"):
+        raise SystemExit("[judge] ANTHROPIC_API_KEY 없음 — .env 설정하거나 --offline 로 실행")
+    return Anthropic()
+
+
+def judge_debate(issue_id: str, run_id: str, cfg: dict, *, offline: bool = False) -> dict:
+    """debate 로그 + facts → judgment(스키마 5번) dict 생성(파일 쓰기는 호출측/CLI)."""
+    facts = json.loads(paths.facts(issue_id).read_text(encoding="utf-8"))["facts"]
+    facts_by_id = {f["fact_id"]: f for f in facts}
+    stages_utt = group_by_stage(load_utterances(paths.debate(issue_id, run_id)))
     n_votes = int(cfg.get("judge_n_votes", 3))
 
-    facts_doc = json.loads(paths.facts(issue_id).read_text(encoding="utf-8"))
-    facts = facts_doc["facts"]
-    by_round = load_utterances(issue_id, run_id)
+    if offline:
+        vote_fn = _offline_vote
+        model_id = "offline-stub"
+    else:
+        client = _make_client()
+        model_id = _resolve_model(cfg.get("judge_model", "claude-sonnet"))
+        vote_fn = lambda fact, utts: _online_vote(client, model_id, fact, utts)  # noqa: E731
 
-    stages = []
-    for r in sorted(by_round):
-        utterances = by_round[r]
-        fact_records = {f["fact_id"]: {"fact_id": f["fact_id"],
-                                       "status": "unmentioned",
-                                       "votes": [],
-                                       "agents_mentioning": []} for f in facts}
-        for ev in utterances:
-            votes = judge_fact_ids(ev["response_text"], facts, model, n_votes)
-            for f in facts:
-                fid = f["fact_id"]
-                rec = fact_records[fid]
-                rec["votes"].append({"agent_id": ev["agent_id"], "votes": votes and [fid in v for v in votes]})
-                if majority(votes, fid):
-                    rec["status"] = "mentioned"
-                    rec["agents_mentioning"].append(ev["agent_id"])
-        stages.append({
-            "stage": r,
-            "facts": list(fact_records.values()),
-            "_all_agents": [ev["agent_id"] for ev in utterances],
+    stages_out, far_by_stage = [], []
+    for stage, utts in stages_utt.items():
+        recs = [judge_fact(utts, f, vote_fn=vote_fn, n_votes=n_votes) for f in facts]
+        stages_out.append({"stage": stage, "facts": recs})
+        far_by_stage.append({
+            "stage": stage,
+            "far_system": far(recs, facts_by_id),
+            "far_critical": far(recs, facts_by_id, critical_only=True),
         })
 
-    summary = far_summary(stages, facts)
-    for st in stages:  # 내부 계산용 필드 제거
-        st.pop("_all_agents", None)
-
-    out = {
-        "schema_ver": "0.2",
+    last = far_by_stage[-1] if far_by_stage else {"far_system": None, "far_critical": None}
+    return {
+        "schema_ver": SCHEMA_VER,
         "created_by": "modules.judge",
-        "created_at": now(),
+        "created_at": datetime.now(timezone.utc).isoformat(),
         "issue_id": issue_id,
         "run_id": run_id,
         "judge": {
-            "model": llm.resolve_model(model),
-            "temperature": 0,
+            "model": model_id,
+            "temperature": int(cfg.get("judge_temperature", 0)),
             "n_votes": n_votes,
             "aggregation": "majority",
-            "prompt_ver": authors_prompts.version_tag(),
+            "prompt_ver": JUDGE_PROMPT_VER,
         },
-        "stage_type": "round",
-        "stages": stages,
-        "summary": summary,
+        "stage_type": "round",  # 실험 트랙. 관찰 트랙(summary_layer)은 별도 실행에서.
+        "stages": stages_out,
+        # recall_probe[](A4, 선택)는 이번 스프린트 범위 밖 — 빈 배열로 자리만 유지.
+        "recall_probe": [],
+        "summary": {
+            "far_by_stage": far_by_stage,
+            "far_system": last["far_system"],
+            "far_agent_mean": None,  # TODO: assignments + FAR 수식 확정 후 산출
+            "far_critical": last["far_critical"],
+        },
     }
-    out_path = paths.judgment(issue_id, run_id)
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"[OK] {out_path.name} — 라운드 {len(stages)}개, summary: {summary['far_by_stage']}")
-    return out_path
 
 
-def main():
-    ap = argparse.ArgumentParser(description="채점기 (DelibTrace evaluate_fact 포팅)")
+def main() -> None:
+    ap = argparse.ArgumentParser(description="채점기(judge) — debate 로그 → judgment")
     ap.add_argument("--issue", required=True)
     ap.add_argument("--run", required=True)
-    ap.add_argument("--config", required=True, type=Path)
+    ap.add_argument("--config", type=Path, default=None)
+    ap.add_argument("--offline", action="store_true", help="API 없이 결정론적 스텁으로 판정")
     args = ap.parse_args()
-    run(args.issue, args.run, args.config)
+
+    cfg = _load_config(args.config)
+    result = judge_debate(args.issue, args.run, cfg, offline=args.offline)
+
+    out_path = paths.judgment(args.issue, args.run)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"[judge] 작성: {out_path}")
+    print(f"[judge] far_system={result['summary']['far_system']} "
+          f"far_critical={result['summary']['far_critical']} (잠정 수식)")
+    print("[judge] 자기검사: python -m modules.validate " + str(out_path))
 
 
 if __name__ == "__main__":
