@@ -1,0 +1,3552 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "modules.judge",
+  "created_at": "2026-07-21T07:49:24.024692+00:00",
+  "issue_id": "issue_esa",
+  "run_id": "dryrun",
+  "judge": {
+    "model": "claude-sonnet-5",
+    "temperature": 0,
+    "n_votes": 3,
+    "aggregation": "majority",
+    "prompt_ver": "delibtrace@afce3595"
+  },
+  "stage_type": "round",
+  "stages": [
+    {
+      "stage": 0,
+      "facts": [
+        {
+          "fact_id": "fact_esa_01",
+          "status": "mentioned",
+          "votes": [
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_02",
+          "status": "mentioned",
+          "votes": [
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_03",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_04",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_05",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_06",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_07",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_08",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_09",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_10",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_11",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_12",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        }
+      ]
+    },
+    {
+      "stage": 1,
+      "facts": [
+        {
+          "fact_id": "fact_esa_01",
+          "status": "mentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            }
+          ],
+          "agents_mentioning": [
+            "agent_4",
+            "agent_5",
+            "agent_7",
+            "agent_8",
+            "agent_3",
+            "agent_6",
+            "agent_1",
+            "agent_2"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_02",
+          "status": "mentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            }
+          ],
+          "agents_mentioning": [
+            "agent_4",
+            "agent_5",
+            "agent_7",
+            "agent_8",
+            "agent_3",
+            "agent_6",
+            "agent_1",
+            "agent_2"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_03",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_04",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_05",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_06",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_07",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_08",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_09",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_10",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_11",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_12",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "facts": [
+        {
+          "fact_id": "fact_esa_01",
+          "status": "mentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            }
+          ],
+          "agents_mentioning": [
+            "agent_4",
+            "agent_5",
+            "agent_7",
+            "agent_8",
+            "agent_3",
+            "agent_6",
+            "agent_1",
+            "agent_2"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_02",
+          "status": "mentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            }
+          ],
+          "agents_mentioning": [
+            "agent_4",
+            "agent_5",
+            "agent_7",
+            "agent_8",
+            "agent_3",
+            "agent_6",
+            "agent_1",
+            "agent_2"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_03",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_04",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_05",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_06",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_07",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_08",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_09",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_10",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_11",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_12",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "facts": [
+        {
+          "fact_id": "fact_esa_01",
+          "status": "mentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            }
+          ],
+          "agents_mentioning": [
+            "agent_4",
+            "agent_5",
+            "agent_7",
+            "agent_8",
+            "agent_3",
+            "agent_6",
+            "agent_1",
+            "agent_2"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_02",
+          "status": "mentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                true,
+                true,
+                true
+              ]
+            }
+          ],
+          "agents_mentioning": [
+            "agent_4",
+            "agent_5",
+            "agent_7",
+            "agent_8",
+            "agent_3",
+            "agent_6",
+            "agent_1",
+            "agent_2"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_03",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_04",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_05",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_06",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_07",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_08",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_09",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_10",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_11",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_12",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "agent_id": "agent_4",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_5",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_7",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_8",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_3",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_6",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_1",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "agent_id": "agent_2",
+              "votes": [
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "agents_mentioning": []
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "far_by_stage": [
+      {
+        "stage": 0,
+        "far_system": 0.8333,
+        "far_system_critical": 0.7778,
+        "far_agent_mean": 0.8333,
+        "far_agent_mean_critical": 0.7778
+      },
+      {
+        "stage": 1,
+        "far_system": 0.8333,
+        "far_system_critical": 0.7778,
+        "far_agent_mean": 0.8333,
+        "far_agent_mean_critical": 0.7778
+      },
+      {
+        "stage": 2,
+        "far_system": 0.8333,
+        "far_system_critical": 0.7778,
+        "far_agent_mean": 0.8333,
+        "far_agent_mean_critical": 0.7778
+      },
+      {
+        "stage": 3,
+        "far_system": 0.8333,
+        "far_system_critical": 0.7778,
+        "far_agent_mean": 0.8333,
+        "far_agent_mean_critical": 0.7778
+      }
+    ],
+    "far_system": 0.8333,
+    "far_agent_mean": 0.8333,
+    "far_critical": 0.7778
+  }
+}
