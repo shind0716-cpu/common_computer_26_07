@@ -1,157 +1,147 @@
-# 파일 계약 스키마 v0.1 (초안)
+*작성: 민옥 측 (7/21). 검토 의견은 본 보드 소통 스레드로. 수정은 이 문서를 고치지 않고 v0.2를 새로 만든다.*
 
-> **상태**: 초안 — 민옥 측 검토 대기. 보드 열린 질문 2번(파일 스키마 5종의 필드 합의) 해소용.
-> **작성**: 2026-07-21, 신동범 측 Claude / 신동범 검토
-> **원칙**: 모듈은 "파일을 읽고 → 일하고 → 파일을 쓴다". 모듈 간 약속은 코드가 아니라 이 형식이다.
-> **수정 규칙**: 이 문서는 고치지 않는다. 변경은 v0.2를 아래에 새로 추가한다.
+# 공통 규칙
 
-전부 **JSONL**(한 줄 = 한 레코드)을 기본으로 한다.
-근거: 대용량 append에 유리하고, 부분 실패 시 줄 단위 복구가 가능하며, git diff가 읽힌다.
-예외는 ①이슈 문서(단일 객체라 JSON).
+- 인코딩 UTF-8, 필드명 snake_case. 단일 객체는 .json, 이벤트 누적은 .jsonl(한 줄 = 이벤트 하나).
+- 모든 파일 공통 필드: `schema_ver`(예: "0.1"), `created_by`(모듈명), `created_at`(ISO8601).
+- id 규칙: `issue_001`, `fact_001_03`(이슈번호_팩트번호), `agent_1`.
+- 재현성 3종 세트: 난수 쓰는 모든 곳에 `seed`, LLM 호출마다 `model`·`temperature`·`prompt_ver`, 프롬프트 원문은 `prompt_hash`로 검증 가능하게 (7/16 파일럿의 해시 검증 방식 계승).
 
----
-
-## 공통 규약
-
-| 항목 | 규칙 |
-|---|---|
-| 인코딩 | UTF-8 |
-| ID 형식 | `{종류}_{이슈ID}_{일련번호}` 예: `f_issue001_007` |
-| 시각 | ISO-8601 UTC (`2026-07-21T06:30:00Z`) |
-| 버전 | 모든 파일 첫 줄(또는 최상위)에 `schema_version` 필수 |
-| 결측 | 빈 문자열 대신 `null` |
-| config 참조 | 모든 산출물에 `config_id` — 시드·온도·프롬프트 버전 박제 (재현성) |
-
----
-
-## 1. 이슈 문서 (`issue.json`)
-
-데이터 로더 출력. **소스가 무엇이든 이 형태로 정규화**한다 (회사 JSON / 논문 데이터셋 / 자체 제작).
+# 1. 이슈 문서 — issue_{id}.json
 
 ```json
 {
-  "schema_version": "0.1",
-  "issue_id": "issue001",
-  "source": {
-    "type": "manual | paper_dataset | company_json",
-    "origin": "출처 식별자 (URL, 파일명, 데이터셋명)",
-    "collected_at": "2026-07-21T06:30:00Z"
-  },
-  "title": "이슈 제목",
-  "body": "원문 전체 (요약하지 않은 원본)",
-  "query": "쟁점 질의 — YES/NO로 답할 수 있는 형태",
-  "domain": "news | ethics",
-  "notes": "수집·정규화 시 특이사항"
+  "schema_ver": "0.1",
+  "created_by": "loader",
+  "created_at": "2026-07-21T10:00:00+09:00",
+  "issue_id": "issue_001",
+  "source": "company_json | paper | synthetic",
+  "source_meta": {"url": "...", "fetched_at": "...", "usage_approved": false},
+  "title": "...",
+  "body": "전문"
 }
 ```
 
-**설계 근거**
-- `body`는 **원문 전량**. 팩트 추출이 잘못되면 여기서 다시 뽑아야 하므로 절대 요약본을 넣지 않는다.
-- `source.type`으로 로더 교체 지점을 명시 — H1 재현은 `paper_dataset`, 기업 시연은 `company_json`.
-- `query`를 YES/NO로 강제하는 이유: 입장 엔트로피(Shannon) 계산이 이산 입장을 전제로 함.
+- `usage_approved`: 회사 JSON 사용 허락 전까지 false. false인 이슈는 내부 개발용으로만.
 
----
-
-## 2. 팩트 목록 (`facts.jsonl`)
-
-팩트 추출기 출력. **본 프로젝트의 핵심 자산.**
+# 2. 팩트 목록 — facts_{issue_id}.json
 
 ```json
-{"schema_version":"0.1","fact_id":"f_issue001_001","issue_id":"issue001","content":"팩트 한 문장 (자립적·검증가능)","tags":["조건"],"stance_support":"YES","is_critical":true,"criticality_reason":"이 팩트를 빼면 판단이 뒤집힌다 — 한 줄 근거","prior_score":0.2,"prior_probe_raw":"프리필 질의 원문 응답","source_span":"원문에서 발췌한 근거 구간","extracted_by":"model_name@version","created_at":"2026-07-21T06:30:00Z"}
+{
+  "schema_ver": "0.1",
+  "created_by": "extractor",
+  "created_at": "...",
+  "issue_id": "issue_001",
+  "extractor": {"model": "...", "temperature": 0, "prompt_ver": "ex-0.1"},
+  "facts": [
+    {
+      "fact_id": "fact_001_01",
+      "text": "원자 팩트 한 문장",
+      "tags": ["condition", "exception", "counter_evidence", "stance_support"],
+      "critical": true,
+      "prior": {"score": 0.0, "probe_model": "...", "probe_prompt_ver": "pr-0.1", "probed_at": "..."}
+    }
+  ]
+}
 ```
 
-| 필드 | 값 | 설명 |
-|---|---|---|
-| `content` | 문자열 | 짧고 자립적이고 검증 가능한 **단일** 사실 명제 |
-| `tags` | 배열 | `조건` `예외` `반대증거` `수치시점` `일반배경` — 복수 가능 |
-| `stance_support` | `YES` `NO` `NEUTRAL` | 이 팩트가 어느 입장을 뒷받침하는가 |
-| `is_critical` | bool | 빼면 쟁점 해석·트레이드오프·판단이 바뀌는가 |
-| `criticality_reason` | 문자열 | **필수** — 근거 없는 라벨은 다음 편집에서 가장 먼저 증발한다 |
-| `prior_score` | 0.0~1.0 | 기사 안 보여주고 프리필 질의 → 모델이 원래 아는 정도 (A3용) |
-| `prior_probe_raw` | 문자열 | 프리필 응답 원문 — 점수만 남기면 재검증 불가 |
-| `source_span` | 문자열 | 원문 어디서 나왔는지 |
+- `tags`는 복수 허용(해당하는 것만). `prior.score`: 0(모델이 전혀 모름)~1(완전히 암) — 프리필 프로브 결과. 프로브 전이면 null.
+- **설계 결정**: 팩트의 라운드별 상태(언급/반박/무시)는 여기 없음 — 이 파일은 정적 원장이고, 상태는 라운드마다 변하는 동적 정보라 5번(판정 결과)에서 관리.
 
-**v0.1에서 결정한 것 (민옥 측 제안 대비 차이 3가지)**
-
-1. **`tags`에 `수치시점`·`일반배경` 추가** — 보드 필드 후보는 `[조건/예외/반대증거/지지입장]` 4종이었으나, 요한 님 설계의 5종을 채택하고 `지지입장`은 별도 필드(`stance_support`)로 분리했다.
-   근거: 지지입장은 성격이 다르다. 나머지는 "팩트의 종류"이고 지지입장은 "어느 편인가"라 한 배열에 섞으면 필터링이 꼬인다.
-2. **`criticality_reason` 필수화** — 보드 후보에 없던 필드.
-   근거: 논문의 criticality 인간 일치도가 0.541로 낮다(사람끼리도 절반밖에 안 맞음). 근거를 안 남기면 나중에 라벨 분쟁을 해소할 방법이 없다. 보드 규약 5번(근거를 함께 남긴다)의 스키마 수준 적용.
-3. **`prior_probe_raw` 추가** — 점수만 저장하면 A3 재분석 시 원본이 없다. 로그 전량 보존 원칙의 연장.
-
-**상태(`status`)는 여기 두지 않는다** — 아래 5번 참조.
-
----
-
-## 3. 배분표 (`assignment.jsonl`)
-
-배분기 출력. 논문의 정보 비대칭 세팅 재현.
+# 3. 배분표 — assignment_{issue_id}.json
 
 ```json
-{"schema_version":"0.1","issue_id":"issue001","agent_id":"a01","perspective":"관점 라벨 (4종 중 1)","initial_stance":"YES","assigned_fact_ids":["f_issue001_001","f_issue001_005"],"config_id":"cfg_20260721_01"}
+{
+  "schema_ver": "0.1",
+  "created_by": "assigner",
+  "created_at": "...",
+  "issue_id": "issue_001",
+  "seed": 42,
+  "agents": [
+    {"agent_id": "agent_1", "perspective": "...", "stance": "pro | con", "assigned_fact_ids": ["fact_001_01", "fact_001_04"]}
+  ]
+}
 ```
 
-**설계 근거**
-- 에이전트 8 = 관점 4 × 입장 2 (논문 상수).
-- `assigned_fact_ids`만 저장하고 팩트 본문은 중복 저장하지 않는다 — 팩트 수정 시 한 곳만 고치면 되도록.
-- **중복도(k)가 여기서 결정된다.** 요한 님이 지적한 미통제 변수(A5 후보) — 한 팩트가 몇 명에게 배분되는가. 이 파일만 교체하면 LLM 호출 없이 k 조작 실험이 가능하다.
+- `seed` 필수 — 같은 시드면 같은 배분. 재현성의 심장.
+- 논문 세팅 기본값: 8에이전트(관점 4 × 입장 2).
 
----
+# 4. 토론 로그 — debate_{issue_id}_{run_id}.jsonl
 
-## 4. 토론 로그 (`debate_log.jsonl`)
-
-토론 엔진 출력. **최우선 산출물** — 토론은 비싸고 분석은 싸다. 로그만 있으면 재실행 없이 분석을 무한 반복할 수 있다(A2·A3가 추가비용 0인 이유).
+한 줄 = 이벤트 하나. 발화와 장부 개입이 같은 타임라인에 쑎인다.
 
 ```json
-{"schema_version":"0.1","issue_id":"issue001","run_id":"run_20260721_vanilla","config_id":"cfg_20260721_01","round":1,"agent_id":"a01","turn_index":3,"role":"assistant","content":"발화 원문 전량","stance_after":"YES","prompt_sent":"실제로 보낸 프롬프트 전문","tokens_in":1200,"tokens_out":340,"latency_ms":2100,"created_at":"2026-07-21T06:31:00Z"}
+{"event": "utterance", "run_id": "run_001", "ledger_mode": "off | v0 | v1 | v2 | a1", "round": 0, "agent_id": "agent_1", "model": "...", "temperature": 1.2, "prompt_ver": "db-0.1", "prompt_hash": "sha256:...", "response_text": "발화 원문", "ts": "..."}
+{"event": "ledger_inject", "run_id": "run_001", "round": 1, "injected_fact_ids": ["fact_001_03"], "reason": "v0_all_missing | v1_ignored_only", "ts": "..."}
+{"event": "gate_check", "run_id": "run_001", "draft_text": "합의문 초안", "missing_fact_ids": ["fact_001_07"], "verdict": "pass | rollback", "rollback_count": 0, "ts": "..."}
 ```
 
-**설계 근거**
-- `content`는 **원문 전량, 절대 잘라내지 않는다.** 이 프로젝트의 주제가 요약으로 인한 손실이다.
-- `prompt_sent` 저장 — 프롬프트가 라운드마다 바뀌므로(Ledger on 시 재주입), 무엇을 보고 답했는지 없으면 사후 분석이 불가능하다.
-- `run_id`에 조건명 포함 (`_vanilla` / `_ledger_v0` / `_a1_pinned`) — 쌍 비교의 기준.
-- 토큰·지연 기록 — 예산 카운터와 비용 리포트의 원천.
+- `ledger_mode`가 실험 조건 스위치. off = 대조군.
+- `prompt_hash`: 재생·재현 시 프롬프트 동일성 검증용 (파일럿 방식 그대로).
+- 응답은 무조건 원문 저장. 요약 금지.
 
----
-
-## 5. 판정 결과 (`verdict.jsonl`)
-
-채점기 출력. **팩트 상태를 여기에 둔다** (팩트 목록이 아니라).
+# 5. 판정 결과 — judgment_{issue_id}_{run_id}.json
 
 ```json
-{"schema_version":"0.1","issue_id":"issue001","run_id":"run_20260721_vanilla","config_id":"cfg_20260721_01","round":1,"fact_id":"f_issue001_001","scope":"agent","agent_id":"a01","status":"언급","evidence_span":"판정 근거가 된 발화 구간","judge_model":"mini@version","judge_confidence":0.9,"created_at":"2026-07-21T06:32:00Z"}
+{
+  "schema_ver": "0.1",
+  "created_by": "judge",
+  "created_at": "...",
+  "issue_id": "issue_001",
+  "run_id": "run_001",
+  "judge": {"model": "sonnet", "temperature": 0, "n_votes": 3, "aggregation": "majority", "prompt_ver": "jd-0.1"},
+  "rounds": [
+    {
+      "round": 0,
+      "facts": [
+        {"fact_id": "fact_001_01", "status": "unmentioned | mentioned | accepted | refuted | ignored", "votes": ["mentioned", "mentioned", "ignored"], "agents_mentioning": ["agent_1"]}
+      ]
+    }
+  ],
+  "recall_probe": [
+    {"agent_id": "agent_1", "recalled_fact_ids": ["fact_001_01"], "extra_lines": 4}
+  ],
+  "summary": {"far_by_round": [0.08, 0.21, 0.33], "far_system": 0.33, "far_agent_mean": 0.51, "far_critical": 0.29}
+}
 ```
 
-| 필드 | 값 |
-|---|---|
-| `scope` | `system`(팀 전체 합집합) 또는 `agent`(개인) — **FAR 4분할의 근거** |
-| `status` | `미언급` `언급` `수용` `반박` `무시` |
-| `evidence_span` | 왜 그렇게 판정했는지의 원문 근거 |
-| `judge_confidence` | judge 자체 신뢰도 — 노이즈 분석용 |
+- `judge`: Sonnet 단일 + n=3 다수결 고정 (결정 로그 확정 사항, 7/16 judge 노이즈 문제 반영). `votes`를 원본 그대로 남겨 다수결 이전 불일치율을 재젬 수 있게 함(judge 신뢰도 지표가 공짜로 나옴).
+- `far_by_round`: 라운드별 분해 필드 — 7/16 파일럿의 두 국면 발견(초반 발화억제/후반 지식붕괴) 검증용. 장부 효과를 국면별로 볼 수 있어야 "재주입은 후반 약, 게이트는 초반 약" 가설 판정 가능.
+- `recall_probe`: A4(사후 회상)용 선택 필드. 없으면 생략 가능.
+- 상태 5종: 미언급/언급/수용/반박/무시 — v1 상태 머신과 1:1 대응.
 
-**설계 근거 (중요)**
+# 모듈 ↔ 파일 매핑 (누가 쓰고 누가 읽나)
 
-- **상태를 팩트 목록이 아니라 판정 결과에 둔 이유**: 상태는 `(run, round, agent)`마다 다르다. 팩트 목록은 조건 불변의 원본이어야 대조군·실험군이 **같은 입력**을 쓸 수 있다. 팩트 파일에 상태를 쓰면 실행이 원본을 오염시킨다.
-- **`반박`과 `무시`를 구분**한 것은 설계 문서 v0.1의 v1 규칙(정당하게 기각된 팩트를 좀비처럼 되살리지 않음)을 스키마가 지탱하기 위함.
-- **`judge_confidence`·`evidence_span` 필수**: 7/16 파일럿에서 judge 노이즈가 효과 크기와 맞먹었다. 사후에 노이즈를 걸러내려면 판정 근거가 남아 있어야 한다.
-
----
-
-## 파생 산출물 (분석 모듈이 계산, 저장 아님)
-
-FAR·엔트로피 등은 파일로 저장하지 않고 `verdict.jsonl`에서 **계산**한다.
-근거: 저장하면 원본과 어긋날 수 있다. 지표 정의가 바뀌어도 로그만 있으면 재계산된다.
-
-- **FAR (4분할)** = 1 − retention. `scope` × `is_critical` 조합으로 4개
-- **retention** = Jaccard(초기 팩트 집합, 라운드 후 생존 집합)
-- **입장 엔트로피** = `−Σ p(θ) log p(θ)`, `debate_log.stance_after`에서 계산
+| 파일 | 쓰는 모듈 | 읽는 모듈 |
+| --- | --- | --- |
+| issue | 로더 | 추출기 |
+| facts | 추출기(+prior 프로브) | 배분기, 채점기, 장부, 분석 |
+| assignment | 배분기 | 토론 엔진, 분석 |
+| debate(.jsonl) | 토론 엔진(+장부·게이트) | 채점기, 분석 |
+| judgment | 채점기 | 장부(실험군 루프), 분석 |
 
 ---
 
-## 열린 항목 (민옥 측 확인 필요)
+# v0.2 (2026-07-21, 리더 확정)
 
-1. `tags` 5종 vs 보드 후보 4종 — 위 차이 1번 수용 가능한지
-2. `criticality_reason` 필수화 — 추출 비용이 오르지만 라벨 분쟁 해소에 필요
-3. `perspective` 4종의 구체적 라벨 — 저자 코드에서 확인 필요
-4. `status` 5종에 `수용` 포함 여부 — 설계 문서는 `미언급→언급→수용/반박/무시`, 보드 필드 후보는 `[미언급/언급/반박/무시]` 4종. **문서 간 불일치**
-5. 관찰 트랙은 이 스키마를 그대로 쓰는가 — 라운드·에이전트가 없어 4·5번 파일이 성립하지 않음 (보드 게시 의견과 연결)
+*v0.1에서 바뀐 것만 기록. 나머지는 v0.1 그대로 유효.*
+
+**변경 1 — `rounds` → `stages` 일반화 (판정 결과 파일).** 관찰 트랙에는 라운드·에이전트 구조가 없다는 지적(동범 측, 7/21) 수용. 판정 결과의 `rounds` 배열을 `stages`로 개명하고 `stage_type` 필드 추가:
+
+```json
+{
+  "stage_type": "round | summary_layer",
+  "stages": [
+    {"stage": 0, "facts": [ ... ]}
+  ],
+  "summary": {"far_by_stage": [0.08, 0.21, 0.33], "far_system": 0.33, "far_agent_mean": null, "far_critical": 0.29}
+}
+```
+
+- 실험 트랙: `stage_type: "round"`, stage = 토론 라운드
+- 관찰 트랙: `stage_type: "summary_layer"`, stage = 요약 계층 깊이 (0 = 원문)
+- `far_agent_mean`은 관찰 트랙에서 **null** (System/Agent 분할 불성립 — 명시적 N/A). `far_system`·`far_critical`·`far_by_stage`는 양 트랙 공통 → 두 트랙 결과를 같은 표에 나란히 배치 가능.
+
+**변경 2 — debate.jsonl의 `round` 필드는 그대로 유지.** 토론 로그는 실험 트랙 전용 파일이므로 일반화 불필요. 관찰 트랙은 debate 파일을 생성하지 않음 (원본 JSON의 요약 계층이 그 역할).
+
+**적용**: 3일 스프린트의 모든 산출물은 v0.2 기준. v0.1로 이미 작성 중인 코드는 판정 결과 부분만 필드명 교체.
