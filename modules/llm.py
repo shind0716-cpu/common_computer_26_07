@@ -6,10 +6,9 @@ config의 모델 별칭(claude-haiku 등)을 실제 모델 ID로 해석하는 �
 import os
 import time
 
-from anthropic import Anthropic
-from dotenv import load_dotenv
-
-load_dotenv()
+# anthropic·dotenv 는 실호출 시점에만 지연 import 한다 — SDK 미설치 컴퓨터에서도
+# (quickstart·오프라인 테스트) 이 모듈과 debate_engine 을 import 할 수 있어야 한다.
+# "API 키 불필요 경로는 끝까지 키·SDK 불필요" (QUICKSTART 약속, judge.py 와 동일 방식).
 
 # config는 사람이 읽기 쉬운 별칭을 쓰고, 실제 ID 해석은 코드가 한다.
 # 모델을 바꿀 땐 configs/*.yaml만 고치면 되도록 유지할 것.
@@ -31,9 +30,17 @@ def resolve_model(name: str) -> str:
     return MODEL_ALIASES.get(name, name)
 
 
-def _get_client() -> Anthropic:
+def _get_client():
     global _client
     if _client is None:
+        from anthropic import Anthropic  # 지연 import — 오프라인 경로는 SDK 불필요
+
+        try:
+            from dotenv import load_dotenv
+
+            load_dotenv()
+        except ImportError:
+            pass
         key = os.environ.get("ANTHROPIC_API_KEY")
         if not key:
             raise RuntimeError(

@@ -174,6 +174,19 @@ def judge_fact(stage_utterances: list[dict], fact: dict, *, vote_fn, n_votes: in
     }
 
 
+def judge_stage(stage_utterances: list[dict], facts: list[dict], *, vote_fn,
+                n_votes: int = 3) -> list[dict]:
+    """[통합용 얇은 진입점 — INTEGRATION_ledger.md 확정 요청 1의 구현 제안]
+    한 라운드 발화 목록(in-memory) + 전체 팩트 목록 → 판정 레코드 목록(순수, 파일 미접근).
+
+    루프 안 실험군(ledger on)은 debate 파일이 생기기 전에 라운드를 채점해야 하므로
+    파일 기반 judge_debate 를 못 쓴다. 이 진입점은 judge_debate 와 **같은 judge_fact 를
+    호출**하므로 대조군/실험군의 측정 잣대 동일성이 코드로 보장된다.
+    ⚠ 제안 상태: 시그니처는 동범 님 확인 대기(패키지 A). 변경 시 debate_engine 결합부도 함께.
+    """
+    return [judge_fact(stage_utterances, f, vote_fn=vote_fn, n_votes=n_votes) for f in facts]
+
+
 # ---------------------------------------------------------------------------
 # FAR 집계 (잠정 — 수식 확정 시 교체)
 # ---------------------------------------------------------------------------
@@ -234,7 +247,7 @@ def judge_debate(issue_id: str, run_id: str, cfg: dict, *, offline: bool = False
 
     stages_out, far_by_stage = [], []
     for stage, utts in stages_utt.items():
-        recs = [judge_fact(utts, f, vote_fn=vote_fn, n_votes=n_votes) for f in facts]
+        recs = judge_stage(utts, facts, vote_fn=vote_fn, n_votes=n_votes)
         stages_out.append({"stage": stage, "facts": recs})
         far_by_stage.append({
             "stage": stage,

@@ -2,7 +2,7 @@
 
 무엇을 하나(전부 API 불필요):
   1) 파일 계약(validate) — 정본 픽스처 4종이 스키마 v0.2를 지키는가
-  2) 단위 테스트 — Ledger v0 순수 함수 17종
+  2) 단위 테스트 — tests/ 전체 자동 발견(ledger·survival·통합, 개수는 실측 출력)
   3) Ledger 점검 — 동범 드라이런 judgment에서 소실 팩트를 뽑고 재주입 블록을 생성
 각 단계를 [n/3]으로 안내하고, 끝에 통과/실패를 한눈에 요약한다.
 
@@ -53,12 +53,16 @@ def main() -> int:
     results.append(("파일 계약 검사", ok))
 
     # --- [2/3] 단위 테스트 ---------------------------------------------------
-    hr("[2/3] 단위 테스트 — Ledger v0 순수 함수 (API 없이 결정론적)")
-    ok, out = _run([PY, "-m", "unittest", "tests.test_ledger"])
+    hr("[2/3] 단위 테스트 — tests/ 전체 자동 발견 (API 없이 결정론적)")
+    ok, out = _run([PY, "-m", "unittest", "discover", "-s", "tests"])
     tail = "\n".join(out.strip().splitlines()[-4:])
     print(tail or "(출력 없음)")
     print("  ->", "통과 [v]" if ok else "실패 [x]")
-    results.append(("단위 테스트 17종", ok))
+    # 개수는 실측 출력에서 읽는다 — 고정 숫자 하드코딩 금지(개수가 늘 때마다 낡는다).
+    import re
+    m = re.search(r"Ran (\d+) tests", out)
+    n_tests = m.group(1) if m else "?"
+    results.append((f"단위 테스트 {n_tests}종", ok))
 
     # --- [3/3] Ledger 점검 ---------------------------------------------------
     hr("[3/3] Ledger 점검 — 드라이런 judgment에서 소실 팩트 추출·재주입")
