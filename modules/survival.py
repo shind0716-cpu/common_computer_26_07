@@ -156,6 +156,238 @@ def report(
 
 
 # ---------------------------------------------------------------------------
+# 팩트 기준 시계 (fact-clock) — 도입 시점 정렬 생존분석 (전역 시계의 보완)
+#   설계·해석 기준 사전 고정: docs/analysis/FACTCLOCK_PREREG.md
+#   기존 P2 함수·시그니처는 불변. 아래는 순수 추가분(API 0 · 파일 안 씀).
+#   위 conditional_attrition 은 전역 stage 축을 모든 팩트가 공유하지만, 여기서는 각 팩트의
+#   '도입(첫 SURVIVING) stage'를 age 0 으로 정렬해 도입 후 경과 나이별 hazard 를 잰다.
+#   채점(judgment) 재사용 → 추가 채점 비용 0. 잣대·입력 계약은 P2 와 동일(SURVIVING·fact_id·status).
+# ---------------------------------------------------------------------------
+def _as_judgment_list(judgments: dict | list) -> list[dict]:
+    """단일 judgment dict 또는 그 리스트를 리스트로 정규화(플루럴 시그니처 지원)."""
+    if isinstance(judgments, dict):
+        return [judgments]
+    return list(judgments)
+
+
+def _surv_flags(
+    judgment: dict,
+    facts_by_id: dict[str, dict] | None,
+    *,
+    critical_only: bool,
+) -> tuple[dict[str, list[bool]], list[str]]:
+    """judgment 를 도입 정렬용 팩트별 생존 불리언 열로 변환.
+
+    반환 (introduced, never):
+      introduced: fact_id -> surv_flags[0..M] (age 0 = 첫 SURVIVING, surv_flags[0]=True).
+      never:      한 번도 SURVIVING 이 아니었던 fact_id 목록(미도입 — 모집단 제외).
+    stage 는 정렬된 위치 인덱스로만 쓴다(절대값 무관). _sorted_stages·_status_map 재사용.
+    """
+    stages = _sorted_stages(judgment)
+    maps = [_status_map(st) for st in stages]
+    all_ids: list[str] = []
+    seen: set[str] = set()
+    for m in maps:
+        for fid in m:
+            if fid not in seen:
+                seen.add(fid)
+                all_ids.append(fid)
+
+    introduced: dict[str, list[bool]] = {}
+    never: list[str] = []
+    for fid in all_ids:
+        if critical_only and not _is_critical(fid, facts_by_id):
+            continue
+        flags_global = [m.get(fid) in SURVIVING for m in maps]
+        intro = next((i for i, b in enumerate(flags_global) if b), None)
+        if intro is None:
+            never.append(fid)
+            continue
+        introduced[fid] = flags_global[intro:]  # age 0..M
+    return introduced, never
+
+
+def _fact_event(surv_flags: list[bool], w: int) -> tuple[str, int, str]:
+    """도입 정렬된 생존 열 → 단일 사건 ('death'|'censored', age, reason). 순수.
+
+    FACTCLOCK_PREREG.md §2 의사코드. surv_flags[0]=True(도입) 전제.
+    reason:
+      fatal_run        — 연속 비생존 런 길이 >= w+1 → 사망(age = 런 시작).
+      terminal_silence — 런 < w+1 이 관측 경계에서 끝남 → 검열(직전 생존 age). **관측창 부족**
+                         으로 재등장 확인 불가라 검열된 것이지 재등장 확인이 아니다(사후 명시,
+                         FACTCLOCK_PREREG.md §7). w=1 사망 감소를 churn 으로만 읽지 않기 위함.
+      survived_to_end  — 관측 끝까지 생존(중간 브릿지 재등장 포함) → 검열(age M).
+    """
+    M = len(surv_flags) - 1
+    t = 1
+    while t <= M:
+        if not surv_flags[t]:
+            run = 0
+            while t + run <= M and not surv_flags[t + run]:
+                run += 1
+            if run >= w + 1:
+                return "death", t, "fatal_run"
+            if t + run - 1 == M:      # 런이 관측 경계에서 끝남 → 미확정 침묵
+                return "censored", t - 1, "terminal_silence"
+            t = t + run               # 브릿지(관용, w>=1): 재등장 지점부터 계속
+        else:
+            t += 1
+    return "censored", M, "survived_to_end"
+
+
+def fact_clock(
+    judgments: dict | list,
+    w: int = 0,
+    *,
+    facts_by_id: dict[str, dict] | None = None,
+    critical_only: bool = False,
+) -> dict:
+    """도입 시점 정렬 생존분석(허용폭 w) — age 별 생명표.
+
+    judgments: 단일 judgment dict 또는 리스트(여러 run 을 age 별로 pool).
+    각 (judgment, fact) 를 도입 정렬해 _fact_event 로 사건 산출 후 age 별 합산.
+    우측 검열(설계 원칙 1): at_risk(t) = event_age >= t 인 팩트 수 → 관측창 < t 인 팩트는
+    분모에서 자동 제외. 미도입 팩트는 모집단에서 빼고 카운트만 보고.
+    반환: {w, population, max_age, life_table[], survival[](KM), n_deaths_total, n_censored_total}.
+    순수 계산 — API 0 · 파일 안 씀.
+    """
+    js = _as_judgment_list(judgments)
+    deaths_at: dict[int, int] = {}
+    censored_at: dict[int, int] = {}
+    censored_reason: dict[str, int] = {"survived_to_end": 0, "terminal_silence": 0}
+    event_ages: list[int] = []
+    n_introduced = 0
+    never_list: list[dict] = []
+    max_m = 0
+
+    for j in js:
+        introduced, never = _surv_flags(j, facts_by_id, critical_only=critical_only)
+        run_id = j.get("run_id")
+        for fid in never:
+            never_list.append({"run_id": run_id, "fact_id": fid})
+        for fid, flags in introduced.items():
+            n_introduced += 1
+            max_m = max(max_m, len(flags) - 1)
+            kind, age, reason = _fact_event(flags, w)
+            event_ages.append(age)
+            if kind == "death":
+                deaths_at[age] = deaths_at.get(age, 0) + 1
+            else:
+                censored_at[age] = censored_at.get(age, 0) + 1
+                censored_reason[reason] = censored_reason.get(reason, 0) + 1
+
+    life_table: list[dict] = []
+    survival: list[dict] = []
+    surv_prob = 1.0
+    for t in range(0, max_m + 1):
+        at_risk = sum(1 for e in event_ages if e >= t)
+        d = deaths_at.get(t, 0)
+        c = censored_at.get(t, 0)
+        if t == 0:
+            haz = 0.0 if at_risk else None       # 도입 정의상 age 0 사망 없음
+        else:
+            haz = round(d / at_risk, 4) if at_risk else None
+            if haz is not None:
+                surv_prob *= (1 - haz)
+        life_table.append({"age": t, "at_risk": at_risk, "deaths": d,
+                           "censored": c, "hazard": haz})
+        survival.append({"age": t, "S": round(surv_prob, 4)})
+
+    return {
+        "w": w,
+        "population": {
+            "n_introduced": n_introduced,
+            "n_never_introduced": len(never_list),
+            "never_introduced": never_list,
+        },
+        "max_age": max_m,
+        "life_table": life_table,
+        "survival": survival,
+        "n_deaths_total": sum(deaths_at.values()),
+        "n_censored_total": sum(censored_at.values()),
+        # 검열 사유 분해: survived_to_end(진짜 생존) vs terminal_silence(관측창 부족).
+        "censored_breakdown": censored_reason,
+    }
+
+
+def w_divergence(
+    judgments: dict | list,
+    *,
+    facts_by_id: dict[str, dict] | None = None,
+    critical_only: bool = False,
+    w_low: int = 0,
+    w_high: int = 1,
+) -> dict:
+    """w_low 에서 사망한 팩트가 w_high 에서 어떻게 갈리는지 분해(FACTCLOCK_PREREG.md §7).
+
+    "w=1 에서 사망이 사라졌다"를 churn 으로만 읽으면 위험하다 — 종말부 침묵(관측창 부족)이
+    섞여 있기 때문. w_low(기본 0) 사망 팩트를 w_high(기본 1) 판정으로 재분류:
+      death_robust            — w_high 에서도 사망(관용폭 무관, 실재 손실).
+      churn_reappearance      — w_high 에서 생존(survived_to_end) = 실제 재등장으로 사망 취소.
+      artifact_terminal_silence — w_high 에서 종말부 침묵 검열 = **관측창 부족 아티팩트**(재등장
+                                  확인 기회가 없어서 검열, churn 아님).
+    반환 {w_low, w_high, counts, detail[]}. 순수 계산.
+    """
+    js = _as_judgment_list(judgments)
+    counts = {"death_robust": 0, "churn_reappearance": 0, "artifact_terminal_silence": 0}
+    detail: list[dict] = []
+    for j in js:
+        introduced, _ = _surv_flags(j, facts_by_id, critical_only=critical_only)
+        for fid, flags in introduced.items():
+            k0, _a0, _r0 = _fact_event(flags, w_low)
+            if k0 != "death":
+                continue
+            k1, _a1, r1 = _fact_event(flags, w_high)
+            if k1 == "death":
+                cls = "death_robust"
+            elif r1 == "terminal_silence":
+                cls = "artifact_terminal_silence"
+            else:
+                cls = "churn_reappearance"
+            counts[cls] += 1
+            detail.append({"run_id": j.get("run_id"), "fact_id": fid, "class": cls})
+    return {"w_low": w_low, "w_high": w_high, "counts": counts, "detail": detail}
+
+
+def _judgment_sha256(judgment: dict) -> str:
+    """감사 필드용 — judgment 의 canonical json 해시(기존 P2 러너 감사 방식 계승)."""
+    import hashlib  # 지연 import(상단 import 블록 무수정)
+
+    blob = json.dumps(judgment, ensure_ascii=False, sort_keys=True).encode("utf-8")
+    return hashlib.sha256(blob).hexdigest()
+
+
+def fact_clock_report(
+    judgments: dict | list,
+    *,
+    facts_by_id: dict[str, dict] | None = None,
+    critical_only: bool = False,
+    ws: tuple[int, ...] = (0, 1),
+) -> dict:
+    """w=0·w=1 병렬 fact-clock + 감사 필드. 두 값을 항상 나란히(설계 원칙 2)."""
+    js = _as_judgment_list(judgments)
+    inputs = [{
+        "issue_id": j.get("issue_id"),
+        "run_id": j.get("run_id"),
+        "sha256": _judgment_sha256(j),
+        "n_stages": len(j.get("stages", [])),
+        "stage_values": [s.get("stage") for s in _sorted_stages(j)],
+    } for j in js]
+    report = {
+        "protocol": "docs/analysis/FACTCLOCK_PREREG.md",
+        "surviving_set": sorted(SURVIVING),
+        "audit": {"n_judgments": len(js), "inputs": inputs},
+        "by_w": {w: fact_clock(js, w, facts_by_id=facts_by_id, critical_only=critical_only)
+                 for w in ws},
+    }
+    # w=0·w=1 을 모두 산출하면 사망 감소의 기전(churn vs 관측창 부족)을 분해해 병기.
+    if 0 in ws and 1 in ws:
+        report["w_divergence"] = w_divergence(
+            js, facts_by_id=facts_by_id, critical_only=critical_only, w_low=0, w_high=1)
+    return report
+
+
+# ---------------------------------------------------------------------------
 # CLI (점검용 — 파일을 쓰지 않는다)
 # ---------------------------------------------------------------------------
 def main() -> None:
