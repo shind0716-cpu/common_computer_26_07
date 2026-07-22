@@ -207,12 +207,16 @@ def _surv_flags(
     return introduced, never
 
 
-def _fact_event(surv_flags: list[bool], w: int) -> tuple[str, int]:
-    """도입 정렬된 생존 열 → 단일 사건 ('death'|'censored', age). 순수.
+def _fact_event(surv_flags: list[bool], w: int) -> tuple[str, int, str]:
+    """도입 정렬된 생존 열 → 단일 사건 ('death'|'censored', age, reason). 순수.
 
     FACTCLOCK_PREREG.md §2 의사코드. surv_flags[0]=True(도입) 전제.
-    치명 = 연속 비생존 런 길이 >= w+1 → 사망(age = 런 시작). 관측 경계에서 끝난 미확정
-    침묵(런 < w+1)은 검열(직전 생존 age). 끝까지 생존하면 검열(age M).
+    reason:
+      fatal_run        — 연속 비생존 런 길이 >= w+1 → 사망(age = 런 시작).
+      terminal_silence — 런 < w+1 이 관측 경계에서 끝남 → 검열(직전 생존 age). **관측창 부족**
+                         으로 재등장 확인 불가라 검열된 것이지 재등장 확인이 아니다(사후 명시,
+                         FACTCLOCK_PREREG.md §7). w=1 사망 감소를 churn 으로만 읽지 않기 위함.
+      survived_to_end  — 관측 끝까지 생존(중간 브릿지 재등장 포함) → 검열(age M).
     """
     M = len(surv_flags) - 1
     t = 1
@@ -222,13 +226,13 @@ def _fact_event(surv_flags: list[bool], w: int) -> tuple[str, int]:
             while t + run <= M and not surv_flags[t + run]:
                 run += 1
             if run >= w + 1:
-                return "death", t
+                return "death", t, "fatal_run"
             if t + run - 1 == M:      # 런이 관측 경계에서 끝남 → 미확정 침묵
-                return "censored", t - 1
+                return "censored", t - 1, "terminal_silence"
             t = t + run               # 브릿지(관용, w>=1): 재등장 지점부터 계속
         else:
             t += 1
-    return "censored", M
+    return "censored", M, "survived_to_end"
 
 
 def fact_clock(
@@ -250,6 +254,7 @@ def fact_clock(
     js = _as_judgment_list(judgments)
     deaths_at: dict[int, int] = {}
     censored_at: dict[int, int] = {}
+    censored_reason: dict[str, int] = {"survived_to_end": 0, "terminal_silence": 0}
     event_ages: list[int] = []
     n_introduced = 0
     never_list: list[dict] = []
@@ -263,10 +268,13 @@ def fact_clock(
         for fid, flags in introduced.items():
             n_introduced += 1
             max_m = max(max_m, len(flags) - 1)
-            kind, age = _fact_event(flags, w)
+            kind, age, reason = _fact_event(flags, w)
             event_ages.append(age)
-            bucket = deaths_at if kind == "death" else censored_at
-            bucket[age] = bucket.get(age, 0) + 1
+            if kind == "death":
+                deaths_at[age] = deaths_at.get(age, 0) + 1
+            else:
+                censored_at[age] = censored_at.get(age, 0) + 1
+                censored_reason[reason] = censored_reason.get(reason, 0) + 1
 
     life_table: list[dict] = []
     survival: list[dict] = []
@@ -297,7 +305,48 @@ def fact_clock(
         "survival": survival,
         "n_deaths_total": sum(deaths_at.values()),
         "n_censored_total": sum(censored_at.values()),
+        # 검열 사유 분해: survived_to_end(진짜 생존) vs terminal_silence(관측창 부족).
+        "censored_breakdown": censored_reason,
     }
+
+
+def w_divergence(
+    judgments: dict | list,
+    *,
+    facts_by_id: dict[str, dict] | None = None,
+    critical_only: bool = False,
+    w_low: int = 0,
+    w_high: int = 1,
+) -> dict:
+    """w_low 에서 사망한 팩트가 w_high 에서 어떻게 갈리는지 분해(FACTCLOCK_PREREG.md §7).
+
+    "w=1 에서 사망이 사라졌다"를 churn 으로만 읽으면 위험하다 — 종말부 침묵(관측창 부족)이
+    섞여 있기 때문. w_low(기본 0) 사망 팩트를 w_high(기본 1) 판정으로 재분류:
+      death_robust            — w_high 에서도 사망(관용폭 무관, 실재 손실).
+      churn_reappearance      — w_high 에서 생존(survived_to_end) = 실제 재등장으로 사망 취소.
+      artifact_terminal_silence — w_high 에서 종말부 침묵 검열 = **관측창 부족 아티팩트**(재등장
+                                  확인 기회가 없어서 검열, churn 아님).
+    반환 {w_low, w_high, counts, detail[]}. 순수 계산.
+    """
+    js = _as_judgment_list(judgments)
+    counts = {"death_robust": 0, "churn_reappearance": 0, "artifact_terminal_silence": 0}
+    detail: list[dict] = []
+    for j in js:
+        introduced, _ = _surv_flags(j, facts_by_id, critical_only=critical_only)
+        for fid, flags in introduced.items():
+            k0, _a0, _r0 = _fact_event(flags, w_low)
+            if k0 != "death":
+                continue
+            k1, _a1, r1 = _fact_event(flags, w_high)
+            if k1 == "death":
+                cls = "death_robust"
+            elif r1 == "terminal_silence":
+                cls = "artifact_terminal_silence"
+            else:
+                cls = "churn_reappearance"
+            counts[cls] += 1
+            detail.append({"run_id": j.get("run_id"), "fact_id": fid, "class": cls})
+    return {"w_low": w_low, "w_high": w_high, "counts": counts, "detail": detail}
 
 
 def _judgment_sha256(judgment: dict) -> str:
@@ -324,13 +373,18 @@ def fact_clock_report(
         "n_stages": len(j.get("stages", [])),
         "stage_values": [s.get("stage") for s in _sorted_stages(j)],
     } for j in js]
-    return {
+    report = {
         "protocol": "docs/analysis/FACTCLOCK_PREREG.md",
         "surviving_set": sorted(SURVIVING),
         "audit": {"n_judgments": len(js), "inputs": inputs},
         "by_w": {w: fact_clock(js, w, facts_by_id=facts_by_id, critical_only=critical_only)
                  for w in ws},
     }
+    # w=0·w=1 을 모두 산출하면 사망 감소의 기전(churn vs 관측창 부족)을 분해해 병기.
+    if 0 in ws and 1 in ws:
+        report["w_divergence"] = w_divergence(
+            js, facts_by_id=facts_by_id, critical_only=critical_only, w_low=0, w_high=1)
+    return report
 
 
 # ---------------------------------------------------------------------------

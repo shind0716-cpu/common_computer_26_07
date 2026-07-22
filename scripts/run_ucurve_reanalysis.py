@@ -142,13 +142,23 @@ def _print_fact_clock(fc_report: dict) -> None:
     for w in sorted(fc_report["by_w"]):
         fc = fc_report["by_w"][w]
         pop = fc["population"]
+        cb = fc.get("censored_breakdown", {})
         print(f"    · w={w}  도입 {pop['n_introduced']}개 · 미도입 {pop['n_never_introduced']}개 "
-              f"· 사망 {fc['n_deaths_total']} · 검열 {fc['n_censored_total']}")
+              f"· 사망 {fc['n_deaths_total']} · 검열 {fc['n_censored_total']}"
+              f" (생존 {cb.get('survived_to_end', 0)} · 종말부침묵 {cb.get('terminal_silence', 0)})")
         for row in fc["life_table"]:
             if row["age"] == 0:
                 continue  # age0 은 도입 기준(사망 없음)
             print(f"        age {row['age']}: hazard={row['hazard']} "
                   f"(at-risk {row['at_risk']} · 사망 {row['deaths']} · 검열 {row['censored']})")
+    wd = fc_report.get("w_divergence")
+    if wd:
+        c = wd["counts"]
+        print(f"    · w{wd['w_low']}→w{wd['w_high']} 사망 감소 분해: "
+              f"실재손실(robust) {c['death_robust']} · "
+              f"재등장취소(churn) {c['churn_reappearance']} · "
+              f"관측창부족검열(terminal-silence) {c['artifact_terminal_silence']}")
+        print("      ⚠ churn 과 관측창부족 검열은 다른 기전 — w=1 사망 감소를 churn 으로만 읽지 말 것.")
 
 
 def main(argv: list[str] | None = None) -> int:

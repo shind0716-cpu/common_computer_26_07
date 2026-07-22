@@ -45,24 +45,29 @@ class TestFactEventFormalization(unittest.TestCase):
 
     def test_w0_immediate_death(self):
         # S - S : w=0 은 첫 비생존 즉시 사망(age1), 재등장 무시.
-        self.assertEqual(survival._fact_event([True, False, True], 0), ("death", 1))
+        self.assertEqual(survival._fact_event([True, False, True], 0), ("death", 1, "fatal_run"))
 
     def test_w1_bridges_single_silence(self):
         # S - S : w=1 은 한 stage 침묵 후 재등장 → 사망 아님, 끝까지 생존 → 검열(age2).
-        self.assertEqual(survival._fact_event([True, False, True], 1), ("censored", 2))
+        self.assertEqual(survival._fact_event([True, False, True], 1),
+                         ("censored", 2, "survived_to_end"))
 
     def test_w1_two_consecutive_is_death(self):
         # S - - S : 연속 2침묵(런 길이 2 = w+1) → w=1 도 사망, age=런 시작(1).
-        self.assertEqual(survival._fact_event([True, False, False, True], 1), ("death", 1))
+        self.assertEqual(survival._fact_event([True, False, False, True], 1),
+                         ("death", 1, "fatal_run"))
 
-    def test_w1_boundary_silence_censored(self):
-        # S S - : 마지막 age 단일 침묵(미확정) → w=1 은 검열(직전 생존 age1).
-        self.assertEqual(survival._fact_event([True, True, False], 1), ("censored", 1))
+    def test_w1_boundary_silence_is_terminal_silence(self):
+        # S S - : 마지막 age 단일 침묵(미확정) → w=1 은 검열(직전 생존 age1), 사유 terminal_silence.
+        # ← 이게 "관측창 부족 검열" 케이스. churn 과 구분되어야 하는 바로 그 기전.
+        self.assertEqual(survival._fact_event([True, True, False], 1),
+                         ("censored", 1, "terminal_silence"))
         # 대비: w=0 은 같은 열에서 사망(age2).
-        self.assertEqual(survival._fact_event([True, True, False], 0), ("death", 2))
+        self.assertEqual(survival._fact_event([True, True, False], 0), ("death", 2, "fatal_run"))
 
     def test_survives_all_censored_at_M(self):
-        self.assertEqual(survival._fact_event([True, True, True], 0), ("censored", 2))
+        self.assertEqual(survival._fact_event([True, True, True], 0),
+                         ("censored", 2, "survived_to_end"))
 
 
 class TestFactClockDryrun2(unittest.TestCase):
@@ -163,6 +168,43 @@ class TestPooling(unittest.TestCase):
         self.assertEqual(rep["audit"]["n_judgments"], 2)
         self.assertEqual(len(rep["audit"]["inputs"]), 2)
         self.assertTrue(all(inp["sha256"] for inp in rep["audit"]["inputs"]))
+
+
+class TestWDivergenceMechanism(unittest.TestCase):
+    """w=1 사망 감소가 churn 인지 관측창 부족(terminal silence)인지 분리 — 리뷰 지적 반영."""
+
+    def test_split_terminal_silence_vs_churn_vs_robust(self):
+        # 세 팩트: 종말부침묵 / 재등장 / 강건사망 — w0 사망이 w1 에서 갈리는 세 갈래.
+        j = _judgment({
+            "term":   ["mentioned", "mentioned", "unmentioned"],    # SS- : w0 death, w1 종말부침묵
+            "churn":  ["mentioned", "unmentioned", "mentioned"],    # S-S : w0 death, w1 재등장 생존
+            "robust": ["mentioned", "unmentioned", "unmentioned"],  # S-- : w0·w1 모두 사망
+        })
+        wd = survival.w_divergence(j)
+        self.assertEqual(wd["counts"], {
+            "death_robust": 1,
+            "churn_reappearance": 1,
+            "artifact_terminal_silence": 1,
+        })
+
+    def test_censored_breakdown_separates_terminal_silence(self):
+        # w=1 검열 사유 분해: term(종말부침묵) 1 · survivor(끝까지생존) 1.
+        j = _judgment({
+            "term":     ["mentioned", "mentioned", "unmentioned"],  # w1 terminal_silence
+            "survivor": ["mentioned", "mentioned", "mentioned"],    # w1 survived_to_end
+        })
+        fc1 = survival.fact_clock(j, w=1)
+        self.assertEqual(fc1["censored_breakdown"]["terminal_silence"], 1)
+        self.assertEqual(fc1["censored_breakdown"]["survived_to_end"], 1)
+        self.assertEqual(fc1["n_deaths_total"], 0)
+
+    def test_report_includes_w_divergence_when_both_w(self):
+        rep = survival.fact_clock_report(
+            _judgment({"term": ["mentioned", "mentioned", "unmentioned"]}))
+        self.assertIn("w_divergence", rep)
+        self.assertEqual(rep["w_divergence"]["counts"]["artifact_terminal_silence"], 1)
+        # churn 아님을 명시적으로 단언(리뷰 지적의 핵심).
+        self.assertEqual(rep["w_divergence"]["counts"]["churn_reappearance"], 0)
 
 
 class TestReportContract(unittest.TestCase):
