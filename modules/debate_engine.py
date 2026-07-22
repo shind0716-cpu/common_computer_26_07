@@ -16,6 +16,16 @@
 - 발화마다 이벤트 jsonl 기록 (원문 전량, 요약 금지)
 - prompt_hash(sha256) — 재현·재생 검증용 (7/16 파일럿 방식)
 
+[2026-07-22 수 밤 통합 · 민옥] Ledger v0 결합 (docs/INTEGRATION_ledger.md 설계도 구현):
+- ledger_mode=v0 이면 라운드 루프 안에서 (A)주입 → 발화 → (C)즉시판정이 한 바퀴로 돈다.
+  (A) r>=2: 직전 라운드 소실 팩트를 others 뒤에 재주입(ledger_inject 이벤트 기록)
+  (C) 라운드 종료 시 judge.judge_stage(in-memory)로 즉시 채점 → 다음 라운드 주입 근거
+- ledger_mode=off 는 기존 동작과 완전 동일(대조군). 정식 judgment 는 두 모드 모두
+  사후 오프라인 judge 로 산출한다(같은 잣대). 루프-내 판정은 주입 결정 전용.
+- 안전장치(INTEGRATION §5): LLM 호출 상한(max_llm_calls) + 라운드별 체크포인트 저장.
+- utterance_fn/judge_vote_fn 파라미터는 테스트 주입용(기본 None = 실호출).
+⚠ 동범 확인 대기 2건: judge_stage 시그니처(judge.py), 재주입 블록의 프롬프트 위치(others 뒤).
+
 실행: python -m modules.debate_engine --issue issue_esa --run run001 --config configs/sprint_mini.yaml
 """
 import argparse
@@ -27,9 +37,13 @@ from pathlib import Path
 
 import yaml
 
-from modules import authors_prompts, llm, paths
+from modules import authors_prompts, ledger, llm, paths
+from modules import judge as judge_mod
 
 DEBATE_ROUNDS = 3  # 논문 상수. config에서 덮어쓸 수 있게 아래에서 읽는다.
+
+# 이번 통합이 아는 ledger_mode. v1/v2/a1 은 사다리 후속 칸 — 스키마엔 있으나 미구현.
+SUPPORTED_LEDGER_MODES = ("off", "v0")
 
 
 def now() -> str:
@@ -72,27 +86,34 @@ def build_edges(structure: str, length: int) -> list[list[int]]:
     raise KeyError(f"알 수 없는 토폴로지: {structure} (full|tree|line)")
 
 
-def initial_utterance(question: str, fact_text: str, answer: str, model: str, temp: float):
-    """저자 obtain_discussion_initial_each() 계승."""
+def initial_utterance(question: str, fact_text: str, answer: str, model: str, temp: float,
+                      respond=None):
+    """저자 obtain_discussion_initial_each() 계승. respond 는 테스트 주입용."""
     prompt = authors_prompts.load("discussion_initial")
     inputs = prompt.replace("<===facts===>", fact_text)
     inputs = inputs.replace("<===answer===>", answer)
     inputs = inputs.replace("<===question===>", question)
-    return inputs, llm.obtain_response(inputs, model=model, temperature=temp)
+    fn = respond or llm.obtain_response
+    return inputs, fn(inputs, model=model, temperature=temp)
 
 
 def continue_utterance(question: str, previous: str, others: str, setting: str,
-                       model: str, temp: float):
-    """저자 discussion_continue() 내부 조립 계승."""
+                       model: str, temp: float, respond=None):
+    """저자 discussion_continue() 내부 조립 계승. respond 는 테스트 주입용."""
     prompt = authors_prompts.load("discussion_continue")
     inputs = prompt.replace("<===others===>", others)
     inputs = inputs.replace("<===previous===>", previous)
     inputs = inputs.replace("<===setting===>", setting)
     inputs = inputs.replace("<===question===>", question)
-    return inputs, llm.obtain_response(inputs, model=model, temperature=temp)
+    fn = respond or llm.obtain_response
+    return inputs, fn(inputs, model=model, temperature=temp)
 
 
-def run(issue_id: str, run_id: str, config_path: Path) -> Path:
+def run(issue_id: str, run_id: str, config_path: Path, *,
+        utterance_fn=None, judge_vote_fn=None) -> Path:
+    """utterance_fn(inputs, model=, temperature=) -> str,
+    judge_vote_fn(fact, stage_utterances) -> {status, agents_mentioning, reason}.
+    둘 다 None(기본)이면 실호출 — 테스트에서만 가짜를 주입한다."""
     cfg = yaml.safe_load(config_path.read_text(encoding="utf-8"))
     model = cfg["debate_model"]
     temp = float(cfg["debate_temperature"])
@@ -101,14 +122,37 @@ def run(issue_id: str, run_id: str, config_path: Path) -> Path:
     ledger_mode = cfg.get("ledger_mode", "off")
     seed = int(cfg["seed"])
 
+    if ledger_mode not in SUPPORTED_LEDGER_MODES:
+        raise KeyError(f"미구현 ledger_mode: {ledger_mode} (지원: {SUPPORTED_LEDGER_MODES} — "
+                       "v1/v2/a1 은 DESIGN 사다리 후속 칸)")
+
     facts_doc = json.loads(paths.facts(issue_id).read_text(encoding="utf-8"))
     assign_doc = json.loads(paths.assignment(issue_id).read_text(encoding="utf-8"))
     issue_doc = json.loads(paths.issue(issue_id).read_text(encoding="utf-8"))
 
     question = issue_doc.get("question") or issue_doc["title"]
-    fact_by_id = {f["fact_id"]: f["text"] for f in facts_doc["facts"]}
+    facts_list = facts_doc["facts"]
+    fact_by_id = {f["fact_id"]: f["text"] for f in facts_list}
+    facts_by_id_full = {f["fact_id"]: f for f in facts_list}
     agents = assign_doc["agents"]
     length = len(agents)
+
+    respond = utterance_fn  # None 이면 initial/continue 가 llm.obtain_response 사용
+
+    # --- ledger v0: 루프-내 judge 준비 (INTEGRATION_ledger.md §2C·§4) ----------
+    n_votes = int(cfg.get("judge_n_votes", 3))
+    if ledger_mode == "v0" and judge_vote_fn is None:
+        client = judge_mod._make_client()  # 키 없으면 여기서 즉시 멈춤(시작 전에)
+        judge_model = judge_mod._resolve_model(cfg.get("judge_model", "claude-sonnet"))
+        judge_vote_fn = lambda fact, utts: judge_mod._online_vote(  # noqa: E731
+            client, judge_model, fact, utts)
+
+    # --- 비용 안전장치: 호출 상한 (INTEGRATION_ledger.md §5) -------------------
+    expected = length * (rounds + 1)                     # 발화: 초기 + 라운드별
+    if ledger_mode == "v0":
+        expected += rounds * len(facts_list) * n_votes   # 루프-내 판정 표
+    max_calls = int(cfg.get("max_llm_calls", expected))
+    n_calls = 0
 
     prompt_ver = authors_prompts.version_tag()
     settings = authors_prompts.load_settings()
@@ -123,6 +167,26 @@ def run(issue_id: str, run_id: str, config_path: Path) -> Path:
         rec = {"event": event, "run_id": run_id, "ts": now(), **fields}
         events.append(rec)
 
+    def flush():
+        """체크포인트: 지금까지의 이벤트를 파일로. 라운드마다 호출(중단 시 유실 최소화)."""
+        with out_path.open("w", encoding="utf-8") as f:
+            for rec in events:
+                f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+
+    def spend():
+        """LLM 호출 1회 계상. 상한 초과 시 체크포인트 저장 후 중단."""
+        nonlocal n_calls
+        n_calls += 1
+        if n_calls > max_calls:
+            flush()
+            raise SystemExit(
+                f"[ABORT] LLM 호출 상한 초과 (호출 {n_calls} > max_llm_calls={max_calls}) — "
+                f"체크포인트 저장됨: {out_path}")
+
+    def counted_vote(fact, utts):
+        spend()
+        return judge_vote_fn(fact, utts)
+
     # --- round 0: initial ---------------------------------------------------
     # 저자는 관점별로 yes/no 2개를 만든다. 우리 배분표는 이미 agent마다 stance가 있으므로
     # stance(pro/con) → answer(yes/no)로 바로 대응시킨다.
@@ -132,7 +196,9 @@ def run(issue_id: str, run_id: str, config_path: Path) -> Path:
         for fid in ag["assigned_fact_ids"]:
             fact_text += f"{fact_by_id[fid]}\n"
         answer = "yes" if ag["stance"] == "pro" else "no"
-        inputs, resp = initial_utterance(question, fact_text, answer, model, temp)
+        spend()
+        inputs, resp = initial_utterance(question, fact_text, answer, model, temp,
+                                         respond=respond)
         current.append(resp)
         emit(
             "utterance",
@@ -154,18 +220,35 @@ def run(issue_id: str, run_id: str, config_path: Path) -> Path:
 
     emit("seating", seed=seed, structure=structure,
          order=[agents[order[i]]["agent_id"] for i in range(length)])
+    flush()  # 체크포인트: 초기 라운드
 
     edges = build_edges(structure, length)
 
+    # 루프-내 판정 누적(주입 결정 전용 — 정식 judgment 는 사후 오프라인 judge 몫).
+    inloop_judgment = {"stages": []} if ledger_mode == "v0" else None
+
     # --- rounds 1..N --------------------------------------------------------
     for r in range(1, rounds + 1):
+        # (A) 주입: 직전 라운드 소실 팩트를 이번 라운드 프롬프트에 전량 재게시.
+        #     r>=2 인 이유: 첫 루프-내 판정이 라운드 1 종료 후에 나오므로.
+        inject_block = ""
+        if ledger_mode == "v0" and r >= 2:
+            inject_ids = ledger.missing_facts(inloop_judgment, r - 1)
+            inject_block = ledger.build_injection_block(inject_ids, facts_by_id_full)
+            if inject_ids:
+                events.append(ledger.make_inject_event(run_id, r, inject_ids))
+
         nxt = []
         for i in range(length):
             others = ""
             for k, j in enumerate(edges[i]):
                 others += f"View {k + 1}: {previous[j]}\n"
+            # (B) 재주입 블록은 others 뒤에 잇는다 — 저자 프롬프트 슬롯 훼손 최소
+            #     (INTEGRATION §3-2 제안, 동범 확인 대기).
+            spend()
             inputs, resp = continue_utterance(
-                question, previous[i] or "", others, setting_text, model, temp
+                question, previous[i] or "", others + inject_block, setting_text,
+                model, temp, respond=respond,
             )
             nxt.append(resp)
             emit(
@@ -178,12 +261,21 @@ def run(issue_id: str, run_id: str, config_path: Path) -> Path:
             )
         previous = nxt
 
-    with out_path.open("w", encoding="utf-8") as f:
-        for rec in events:
-            f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+        # (C) 판정: 이번 라운드를 judge 순수 함수로 즉시 채점 → 다음 라운드 주입 근거.
+        #     judge_debate(사후)와 같은 judge_fact 잣대 — judge.judge_stage 참조.
+        if ledger_mode == "v0":
+            stage_utts = [e for e in events
+                          if e.get("event") == "utterance" and e.get("round") == r]
+            recs = judge_mod.judge_stage(stage_utts, facts_list,
+                                         vote_fn=counted_vote, n_votes=n_votes)
+            inloop_judgment["stages"].append({"stage": r, "facts": recs})
 
+        flush()  # 체크포인트: 라운드별
+
+    n_inject = sum(1 for e in events if e.get("event") == "ledger_inject")
     print(f"[OK] {out_path.name} — 이벤트 {len(events)}건 "
-          f"(에이전트 {length} x 라운드 {rounds}+초기)")
+          f"(에이전트 {length} x 라운드 {rounds}+초기, ledger_mode={ledger_mode}, "
+          f"ledger_inject {n_inject}건, LLM 호출 {n_calls}/{max_calls})")
     return out_path
 
 

@@ -74,3 +74,16 @@ for r in range(1, rounds + 1):
 - 실험군은 라운드마다 judge n_votes=3 × 팩트 12 × 8발화가 추가로 돈다 → 호출량 급증.
 - 통합 루프에 반드시: 호출 횟수 상한 + 체크포인트(라운드별 events 중간 저장) 넣을 것.
 - 목요일 쌍 비교는 **동일 이슈·동일 seed(42)** 로 off/v0 각 1회 — config 두 벌(ledger_mode만 다름)로 실행.
+
+## 6. 통합 실행 기록 (2026-07-22 수 밤, 민옥)
+
+§2 설계도대로 병합 완료 — `debate_engine.run()`에 (A)주입·(B)others 뒤 잇기·(C)라운드별
+즉시판정 반영. `ledger_mode=v0` 지원(off는 기존과 완전 동일, v1/v2/a1은 명시적 거부).
+
+- §3-1은 `judge.judge_stage()` 얇은 진입점으로 구현(**제안** — 동범 확인 대기).
+- §3-2는 others 뒤 잇기로 구현(**제안** — 동범 확인 대기).
+- §5 안전장치 반영: `max_llm_calls` 상한(기본값=예상 호출수 자동 계산) + 라운드별 flush 체크포인트.
+- 루프-내 판정은 **주입 결정 전용** — 정식 judgment는 두 모드 모두 사후 오프라인 judge로
+  산출한다(대조군/실험군 잣대 동일). §3-3(judgment 최종 구조)은 여전히 확정 대기.
+- 검증: `tests/test_integration_ledger.py` 9종(가짜 utterance_fn/judge_vote_fn 주입, API 불필요)
+  포함 전체 42종 통과. run_smoke는 tests/ 자동 발견으로 교체(고정 숫자 제거).
