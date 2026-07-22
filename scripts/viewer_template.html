@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>팩트 생존 뷰어</title>
+<style>
+  .viz-root {
+    color-scheme: light;
+    --surface-1: #fcfcfb; --page: #f9f9f7;
+    --ink-1: #0b0b0b; --ink-2: #52514e; --ink-3: #898781;
+    --grid: #e1e0d9; --baseline: #c3c2b7; --ring: rgba(11,11,11,0.10);
+    --good: #0ca30c; --good-text: #006300;
+    --serious: #ec835a; --critical: #d03b3b;
+    --inject: #2a78d6; --split: #eb6834;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) .viz-root {
+      color-scheme: dark;
+      --surface-1: #1a1a19; --page: #0d0d0d;
+      --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+      --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+      --good: #0ca30c; --good-text: #0ca30c;
+      --serious: #ec835a; --critical: #d03b3b;
+      --inject: #3987e5; --split: #d95926;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+  /* 변수가 정의된 스코프(.viz-root)에서 배경·잉크를 입힌다 — body 에 걸면 다크 전환이 깨진다 */
+  .viz-root { display: flex; flex-direction: column; height: 100vh;
+              background: var(--page); color: var(--ink-1); }
+  header { padding: 14px 18px 10px; border-bottom: 1px solid var(--grid); }
+  header h1 { font-size: 16px; margin: 0 0 2px; }
+  header .sub { font-size: 12px; color: var(--ink-2); }
+  header .sub b { color: var(--ink-1); font-weight: 600; }
+  .legend { display: flex; flex-wrap: wrap; gap: 10px 14px; padding: 8px 18px;
+            font-size: 12px; color: var(--ink-2); border-bottom: 1px solid var(--grid);
+            align-items: center; }
+  .legend .chip { display: inline-flex; align-items: center; gap: 5px; }
+  .sw { width: 14px; height: 14px; border-radius: 4px; display: inline-flex;
+        align-items: center; justify-content: center; font-size: 9px; font-weight: 700; }
+  .filters { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 18px;
+             border-bottom: 1px solid var(--grid); }
+  .filters button { font: inherit; font-size: 12px; padding: 4px 10px; border-radius: 99px;
+                    border: 1px solid var(--baseline); background: var(--surface-1);
+                    color: var(--ink-2); cursor: pointer; }
+  .filters button.on { border-color: var(--ink-1); color: var(--ink-1); font-weight: 600; }
+  main { flex: 1; display: flex; min-height: 0; }
+  .matrix-wrap { flex: 1.4; overflow: auto; padding: 12px 8px 24px 18px; }
+  table { border-collapse: separate; border-spacing: 2px; }
+  th { font-size: 11px; font-weight: 600; color: var(--ink-2); text-align: left;
+       position: sticky; top: 0; background: var(--page); z-index: 2; padding: 2px 6px; }
+  th.stage { text-align: center; cursor: pointer; min-width: 64px; }
+  th.stage .far { display: block; font-weight: 400; color: var(--ink-3); font-size: 10px; }
+  th.stage .inj { display: block; color: var(--inject); font-size: 10px; font-weight: 600; }
+  td.fact { font-size: 12px; color: var(--ink-1); max-width: 340px; padding: 2px 8px 2px 2px;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: default; }
+  td.fact .fid { color: var(--ink-3); font-size: 10px; margin-right: 5px; }
+  td.fact .crit { color: var(--critical); font-weight: 700; margin-right: 3px; }
+  td.cell { width: 64px; height: 30px; border-radius: 4px; text-align: center;
+            font-size: 11px; font-weight: 700; cursor: pointer; position: relative;
+            background: var(--surface-1); border: 1px solid var(--grid); color: var(--ink-3); }
+  td.cell.s-accepted   { background: var(--good); border-color: var(--good); color: #fff; }
+  td.cell.s-mentioned  { background: color-mix(in srgb, var(--good) 20%, var(--surface-1));
+                         border-color: color-mix(in srgb, var(--good) 45%, var(--surface-1));
+                         color: var(--good-text); }
+  td.cell.s-refuted    { background: var(--critical); border-color: var(--critical); color: #fff; }
+  td.cell.s-ignored    { background: color-mix(in srgb, var(--serious) 38%, var(--surface-1));
+                         border-color: var(--serious); color: var(--ink-1); }
+  td.cell.s-absent     { border-style: dotted; }
+  td.cell.injected     { box-shadow: 0 0 0 2px var(--inject); }
+  td.cell .dot { position: absolute; top: 2px; right: 2px; width: 6px; height: 6px;
+                 border-radius: 50%; background: var(--split); }
+  td.cell.sel { outline: 2px solid var(--ink-1); outline-offset: 1px; }
+  tr.hidden { display: none; }
+  aside { flex: 1; min-width: 320px; max-width: 46%; border-left: 1px solid var(--grid);
+          overflow: auto; padding: 14px 18px; background: var(--surface-1); }
+  aside h2 { font-size: 13px; margin: 0 0 6px; }
+  aside .muted { color: var(--ink-3); font-size: 12px; }
+  .statusline { font-size: 12px; margin: 6px 0 10px; color: var(--ink-2); }
+  .utt { border: 1px solid var(--grid); border-radius: 6px; padding: 8px 10px;
+         margin-bottom: 8px; font-size: 12.5px; line-height: 1.5; }
+  .utt .who { font-size: 11px; color: var(--ink-2); margin-bottom: 3px; font-weight: 600; }
+  .utt.hit { border-color: var(--good); }
+  .utt.hit .who::after { content: " · 이 팩트 언급"; color: var(--good-text); }
+  #tip { position: fixed; pointer-events: none; background: var(--ink-1); color: var(--page);
+         font-size: 11px; padding: 5px 8px; border-radius: 5px; max-width: 300px;
+         z-index: 9; display: none; line-height: 1.4; }
+  @media (max-width: 860px) { main { flex-direction: column; } aside { max-width: none;
+    border-left: none; border-top: 1px solid var(--grid); } }
+</style>
+</head>
+<body>
+<div class="viz-root">
+  <header>
+    <h1 id="title"></h1>
+    <div class="sub" id="sub"></div>
+  </header>
+  <div class="legend" id="legend"></div>
+  <div class="filters" id="filters"></div>
+  <main>
+    <div class="matrix-wrap"><table id="matrix"></table></div>
+    <aside id="panel">
+      <h2>셀을 클릭하면 상세가 열립니다</h2>
+      <div class="muted">팩트 × 스테이지 셀 = 그 라운드에서 팩트가 어떻게 다뤄졌는가.
+      열 머리글을 클릭하면 그 라운드 발화 전체를 볼 수 있습니다.
+      파란 테두리 셀 = Ledger가 그 라운드에 재주입한 팩트.</div>
+    </aside>
+  </main>
+  <div id="tip"></div>
+</div>
+<script>
+const VM = /*__DATA__*/null;
+
+const S = {
+  accepted:   {glyph:"인", label:"인정(생존)"},
+  mentioned:  {glyph:"언", label:"언급(생존)"},
+  unmentioned:{glyph:"–", label:"미언급(소실)"},
+  ignored:    {glyph:"무", label:"무시(소실)"},
+  refuted:    {glyph:"반", label:"반박(소실)"},
+  absent:     {glyph:"×", label:"기록 없음(소실 취급)"},
+};
+const el = (t, cls, html) => { const e = document.createElement(t);
+  if (cls) e.className = cls; if (html !== undefined) e.innerHTML = html; return e; };
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c =>
+  ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+// ---------- header ----------
+document.getElementById("title").textContent =
+  `팩트 생존 뷰어 — ${VM.meta.title}`;
+document.getElementById("sub").innerHTML =
+  `run <b>${esc(VM.meta.run_id)}</b> · ledger <b>${esc(VM.meta.ledger_mode)}</b>` +
+  ` · judge <b>${esc(VM.meta.judge.model || "?")}</b>` +
+  ` · 팩트 ${VM.meta.n_facts} (critical ${VM.meta.n_critical})` +
+  ` · stage_type ${esc(VM.meta.stage_type)}`;
+
+// ---------- legend ----------
+const lg = document.getElementById("legend");
+const present = new Set();
+for (const fid in VM.matrix) for (const k in VM.matrix[fid]) present.add(VM.matrix[fid][k].status);
+VM.status_order.filter(s => present.has(s)).forEach(s => {
+  const c = el("span", "chip");
+  const sw = el("span", "sw", S[s].glyph);
+  const probe = el("td", "cell s-" + s); // 색은 CSS와 동일하게
+  c.appendChild(sw); c.appendChild(el("span", "", S[s].label));
+  lg.appendChild(c);
+  // 스와치 색을 셀과 동일하게 복사
+  document.body.appendChild(probe); const cs = getComputedStyle(probe);
+  sw.style.background = cs.backgroundColor; sw.style.color = cs.color;
+  sw.style.border = "1px solid " + cs.borderTopColor; probe.remove();
+});
+if (VM.injects.length) {
+  const c = el("span", "chip");
+  const sw = el("span", "sw"); sw.style.boxShadow = "0 0 0 2px var(--inject) inset";
+  c.appendChild(sw); c.appendChild(el("span", "", "Ledger 재주입"));
+  lg.appendChild(c);
+}
+{ const c = el("span", "chip");
+  const sw = el("span", "sw"); const d = el("span"); d.style.cssText =
+    "width:6px;height:6px;border-radius:50%;background:var(--split)"; sw.appendChild(d);
+  c.appendChild(sw); c.appendChild(el("span", "", "judge 표 불일치(3표 갈림)"));
+  lg.appendChild(c); }
+
+// ---------- filters ----------
+const state = { tags: new Set(), critOnly: false, lostOnly: false };
+const fbar = document.getElementById("filters");
+function addBtn(label, fn) {
+  const b = el("button", "", esc(label));
+  b.onclick = () => { fn(b); render(); };
+  fbar.appendChild(b); return b;
+}
+VM.tag_vocab.forEach(t => addBtn("#" + t, b => {
+  state.tags.has(t) ? state.tags.delete(t) : state.tags.add(t);
+  b.classList.toggle("on");
+}));
+addBtn("critical만", b => { state.critOnly = !state.critOnly; b.classList.toggle("on"); });
+addBtn("최종 소실만", b => { state.lostOnly = !state.lostOnly; b.classList.toggle("on"); });
+
+// ---------- matrix ----------
+const table = document.getElementById("matrix");
+const lastStage = String(VM.stages[VM.stages.length - 1]);
+const injByStage = {}; VM.injects.forEach(i => injByStage[String(i.round)] = i.fact_ids);
+let selected = null;
+
+function farOf(n) {
+  const r = VM.far_by_stage.find(x => String(x.stage) === String(n));
+  return r && r.far_system != null ? "FAR " + r.far_system : "";
+}
+function render() {
+  table.innerHTML = "";
+  const hr = el("tr");
+  hr.appendChild(el("th", "", "팩트"));
+  VM.stages.forEach(n => {
+    const th = el("th", "stage",
+      `R${n}<span class="far">${farOf(n)}</span>` +
+      (injByStage[String(n)] ? `<span class="inj">↺ 재주입 ${injByStage[String(n)].length}</span>` : ""));
+    th.onclick = () => showStage(String(n));
+    hr.appendChild(th);
+  });
+  table.appendChild(hr);
+
+  VM.facts.forEach(f => {
+    const finalCell = VM.matrix[f.fact_id][lastStage] || {};
+    if (state.critOnly && !f.critical) return;
+    if (state.lostOnly && finalCell.surviving) return;
+    if (state.tags.size && ![...state.tags].some(t => f.tags.includes(t))) return;
+
+    const tr = el("tr");
+    const tdf = el("td", "fact",
+      `<span class="fid">${esc(f.fact_id.replace("fact_",""))}</span>` +
+      (f.critical ? `<span class="crit" title="critical">★</span>` : "") + esc(f.text));
+    tdf.title = f.text + "  [" + f.tags.join(", ") + "]";
+    tr.appendChild(tdf);
+
+    VM.stages.forEach(n => {
+      const k = String(n);
+      const cell = VM.matrix[f.fact_id][k] || { status: "absent" };
+      const td = el("td", "cell s-" + cell.status, S[cell.status].glyph);
+      if ((injByStage[k] || []).includes(f.fact_id)) td.classList.add("injected");
+      if (cell.vote_split) td.appendChild(el("span", "dot"));
+      td.onmousemove = e => tip(e,
+        `<b>${esc(f.fact_id)}</b> · R${n}<br>${S[cell.status].label}` +
+        (cell.agents && cell.agents.length ? `<br>언급: ${cell.agents.join(", ")}` : "") +
+        (cell.votes ? `<br>표: ${cell.votes.join(" / ")}` : ""));
+      td.onmouseleave = hideTip;
+      td.onclick = () => showCell(f, k, cell, td);
+      tr.appendChild(td);
+    });
+    table.appendChild(tr);
+  });
+}
+
+// ---------- panel ----------
+const panel = document.getElementById("panel");
+function showCell(f, k, cell, td) {
+  document.querySelectorAll("td.cell.sel").forEach(x => x.classList.remove("sel"));
+  td.classList.add("sel");
+  const utts = VM.utterances[k] || [];
+  const hits = new Set(cell.agents || []);
+  panel.innerHTML =
+    `<h2>${esc(f.fact_id)} · R${k}</h2>` +
+    `<div class="statusline">${S[cell.status].label}` +
+    ((injByStage[k] || []).includes(f.fact_id) ? " · <b>이 라운드에 재주입됨 ↺</b>" : "") +
+    (cell.votes ? ` · 표: ${cell.votes.join(" / ")}` : "") + `</div>` +
+    `<div class="utt" style="border-style:dashed"><div class="who">팩트 원문</div>${esc(f.text)}` +
+    `<div class="muted" style="margin-top:4px">#${f.tags.join(" #")}${f.critical ? " · ★critical" : ""}</div></div>` +
+    `<h2 style="margin-top:14px">R${k} 발화 ${utts.length}건</h2>` +
+    utts.map(u => `<div class="utt${hits.has(u.agent_id) ? " hit" : ""}">` +
+      `<div class="who">${esc(u.agent_id)} · ${esc(u.perspective || "")} · ${esc(u.stance || "")}</div>` +
+      esc(u.text) + `</div>`).join("");
+  panel.scrollTop = 0;
+}
+function showStage(k) {
+  const utts = VM.utterances[k] || [];
+  panel.innerHTML = `<h2>라운드 R${k} 발화 전체 (${utts.length}건)</h2>` +
+    (injByStage[k] ? `<div class="statusline">↺ 이 라운드 재주입: ${injByStage[k].join(", ")}</div>` : "") +
+    utts.map(u => `<div class="utt"><div class="who">${esc(u.agent_id)} · ` +
+      `${esc(u.perspective || "")} · ${esc(u.stance || "")}</div>${esc(u.text)}</div>`).join("");
+  panel.scrollTop = 0;
+}
+
+// ---------- tooltip ----------
+const tipEl = document.getElementById("tip");
+function tip(e, html) { tipEl.innerHTML = html; tipEl.style.display = "block";
+  tipEl.style.left = Math.min(e.clientX + 14, innerWidth - 310) + "px";
+  tipEl.style.top = (e.clientY + 14) + "px"; }
+function hideTip() { tipEl.style.display = "none"; }
+
+render();
+</script>
+</body>
+</html>

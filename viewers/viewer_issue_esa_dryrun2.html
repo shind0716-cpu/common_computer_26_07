@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>팩트 생존 뷰어</title>
+<style>
+  .viz-root {
+    color-scheme: light;
+    --surface-1: #fcfcfb; --page: #f9f9f7;
+    --ink-1: #0b0b0b; --ink-2: #52514e; --ink-3: #898781;
+    --grid: #e1e0d9; --baseline: #c3c2b7; --ring: rgba(11,11,11,0.10);
+    --good: #0ca30c; --good-text: #006300;
+    --serious: #ec835a; --critical: #d03b3b;
+    --inject: #2a78d6; --split: #eb6834;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) .viz-root {
+      color-scheme: dark;
+      --surface-1: #1a1a19; --page: #0d0d0d;
+      --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+      --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+      --good: #0ca30c; --good-text: #0ca30c;
+      --serious: #ec835a; --critical: #d03b3b;
+      --inject: #3987e5; --split: #d95926;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+  /* 변수가 정의된 스코프(.viz-root)에서 배경·잉크를 입힌다 — body 에 걸면 다크 전환이 깨진다 */
+  .viz-root { display: flex; flex-direction: column; height: 100vh;
+              background: var(--page); color: var(--ink-1); }
+  header { padding: 14px 18px 10px; border-bottom: 1px solid var(--grid); }
+  header h1 { font-size: 16px; margin: 0 0 2px; }
+  header .sub { font-size: 12px; color: var(--ink-2); }
+  header .sub b { color: var(--ink-1); font-weight: 600; }
+  .legend { display: flex; flex-wrap: wrap; gap: 10px 14px; padding: 8px 18px;
+            font-size: 12px; color: var(--ink-2); border-bottom: 1px solid var(--grid);
+            align-items: center; }
+  .legend .chip { display: inline-flex; align-items: center; gap: 5px; }
+  .sw { width: 14px; height: 14px; border-radius: 4px; display: inline-flex;
+        align-items: center; justify-content: center; font-size: 9px; font-weight: 700; }
+  .filters { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 18px;
+             border-bottom: 1px solid var(--grid); }
+  .filters button { font: inherit; font-size: 12px; padding: 4px 10px; border-radius: 99px;
+                    border: 1px solid var(--baseline); background: var(--surface-1);
+                    color: var(--ink-2); cursor: pointer; }
+  .filters button.on { border-color: var(--ink-1); color: var(--ink-1); font-weight: 600; }
+  main { flex: 1; display: flex; min-height: 0; }
+  .matrix-wrap { flex: 1.4; overflow: auto; padding: 12px 8px 24px 18px; }
+  table { border-collapse: separate; border-spacing: 2px; }
+  th { font-size: 11px; font-weight: 600; color: var(--ink-2); text-align: left;
+       position: sticky; top: 0; background: var(--page); z-index: 2; padding: 2px 6px; }
+  th.stage { text-align: center; cursor: pointer; min-width: 64px; }
+  th.stage .far { display: block; font-weight: 400; color: var(--ink-3); font-size: 10px; }
+  th.stage .inj { display: block; color: var(--inject); font-size: 10px; font-weight: 600; }
+  td.fact { font-size: 12px; color: var(--ink-1); max-width: 340px; padding: 2px 8px 2px 2px;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: default; }
+  td.fact .fid { color: var(--ink-3); font-size: 10px; margin-right: 5px; }
+  td.fact .crit { color: var(--critical); font-weight: 700; margin-right: 3px; }
+  td.cell { width: 64px; height: 30px; border-radius: 4px; text-align: center;
+            font-size: 11px; font-weight: 700; cursor: pointer; position: relative;
+            background: var(--surface-1); border: 1px solid var(--grid); color: var(--ink-3); }
+  td.cell.s-accepted   { background: var(--good); border-color: var(--good); color: #fff; }
+  td.cell.s-mentioned  { background: color-mix(in srgb, var(--good) 20%, var(--surface-1));
+                         border-color: color-mix(in srgb, var(--good) 45%, var(--surface-1));
+                         color: var(--good-text); }
+  td.cell.s-refuted    { background: var(--critical); border-color: var(--critical); color: #fff; }
+  td.cell.s-ignored    { background: color-mix(in srgb, var(--serious) 38%, var(--surface-1));
+                         border-color: var(--serious); color: var(--ink-1); }
+  td.cell.s-absent     { border-style: dotted; }
+  td.cell.injected     { box-shadow: 0 0 0 2px var(--inject); }
+  td.cell .dot { position: absolute; top: 2px; right: 2px; width: 6px; height: 6px;
+                 border-radius: 50%; background: var(--split); }
+  td.cell.sel { outline: 2px solid var(--ink-1); outline-offset: 1px; }
+  tr.hidden { display: none; }
+  aside { flex: 1; min-width: 320px; max-width: 46%; border-left: 1px solid var(--grid);
+          overflow: auto; padding: 14px 18px; background: var(--surface-1); }
+  aside h2 { font-size: 13px; margin: 0 0 6px; }
+  aside .muted { color: var(--ink-3); font-size: 12px; }
+  .statusline { font-size: 12px; margin: 6px 0 10px; color: var(--ink-2); }
+  .utt { border: 1px solid var(--grid); border-radius: 6px; padding: 8px 10px;
+         margin-bottom: 8px; font-size: 12.5px; line-height: 1.5; }
+  .utt .who { font-size: 11px; color: var(--ink-2); margin-bottom: 3px; font-weight: 600; }
+  .utt.hit { border-color: var(--good); }
+  .utt.hit .who::after { content: " · 이 팩트 언급"; color: var(--good-text); }
+  #tip { position: fixed; pointer-events: none; background: var(--ink-1); color: var(--page);
+         font-size: 11px; padding: 5px 8px; border-radius: 5px; max-width: 300px;
+         z-index: 9; display: none; line-height: 1.4; }
+  @media (max-width: 860px) { main { flex-direction: column; } aside { max-width: none;
+    border-left: none; border-top: 1px solid var(--grid); } }
+</style>
+</head>
+<body>
+<div class="viz-root">
+  <header>
+    <h1 id="title"></h1>
+    <div class="sub" id="sub"></div>
+  </header>
+  <div class="legend" id="legend"></div>
+  <div class="filters" id="filters"></div>
+  <main>
+    <div class="matrix-wrap"><table id="matrix"></table></div>
+    <aside id="panel">
+      <h2>셀을 클릭하면 상세가 열립니다</h2>
+      <div class="muted">팩트 × 스테이지 셀 = 그 라운드에서 팩트가 어떻게 다뤄졌는가.
+      열 머리글을 클릭하면 그 라운드 발화 전체를 볼 수 있습니다.
+      파란 테두리 셀 = Ledger가 그 라운드에 재주입한 팩트.</div>
+    </aside>
+  </main>
+  <div id="tip"></div>
+</div>
+<script>
+const VM = {"meta": {"issue_id": "issue_esa", "run_id": "dryrun2", "title": "룸메이트 ESA 개 무단 반입 신고 딜레마 (스프린트 정본 v1)", "stage_type": "round", "ledger_mode": "off", "judge": {"model": "offline-stub", "temperature": 0, "n_votes": 3, "aggregation": "majority", "prompt_ver": "judge-v0.2-binary"}, "n_facts": 12, "n_critical": 9, "created_at": "2026-07-22T05:47:42.680537+00:00"}, "stages": [0, 1, 2, 3], "facts": [{"fact_id": "fact_esa_01", "text": "임대차 계약에 반려동물 금지 조항이 있다", "tags": ["condition"], "critical": true}, {"fact_id": "fact_esa_02", "text": "계약 위반 시 보증금 500달러가 몰수된다", "tags": ["condition"], "critical": true}, {"fact_id": "fact_esa_03", "text": "Jenna가 6주 전 집주인 허락 없이 개를 데려왔다", "tags": ["condition"], "critical": true}, {"fact_id": "fact_esa_04", "text": "Jenna는 진단된 불안이 있다", "tags": ["counter_evidence"], "critical": true}, {"fact_id": "fact_esa_05", "text": "Jenna는 치료사에게 ESA 추천서를 받았다고 주장한다", "tags": ["counter_evidence"], "critical": true}, {"fact_id": "fact_esa_06", "text": "ESA 서류가 집주인에게 제출되지 않은 상태다", "tags": ["exception"], "critical": true}, {"fact_id": "fact_esa_07", "text": "신고된 반려동물은 월 40달러의 추가 비용이 있다", "tags": ["condition"], "critical": true}, {"fact_id": "fact_esa_08", "text": "개가 낮에 짖어 이웃 항의가 한 차례 있었다", "tags": ["stance_support"], "critical": true}, {"fact_id": "fact_esa_09", "text": "화자는 경미한 개털 알레르기가 있다", "tags": ["stance_support"], "critical": false}, {"fact_id": "fact_esa_10", "text": "Jenna가 비밀로 해달라고 부탁했다", "tags": ["stance_support"], "critical": false}, {"fact_id": "fact_esa_11", "text": "임대차 계약 갱신이 3주 뒤다", "tags": ["condition"], "critical": true}, {"fact_id": "fact_esa_12", "text": "ESA는 법적으로 일반 반려동물 금지 조항의 예외가 될 수 있다", "tags": ["exception"], "critical": false}], "matrix": {"fact_esa_01": {"0": {"status": "mentioned", "surviving": true, "agents": ["agent_1", "agent_7"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "1": {"status": "mentioned", "surviving": true, "agents": ["agent_1", "agent_7"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "2": {"status": "mentioned", "surviving": true, "agents": ["agent_1", "agent_7"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "3": {"status": "mentioned", "surviving": true, "agents": ["agent_1", "agent_7"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}}, "fact_esa_02": {"0": {"status": "mentioned", "surviving": true, "agents": ["agent_1", "agent_2"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "1": {"status": "mentioned", "surviving": true, "agents": ["agent_1", "agent_2"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "2": {"status": "mentioned", "surviving": true, "agents": ["agent_2"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "3": {"status": "mentioned", "surviving": true, "agents": ["agent_2"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}}, "fact_esa_03": {"0": {"status": "mentioned", "surviving": true, "agents": ["agent_6", "agent_7"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "1": {"status": "mentioned", "surviving": true, "agents": ["agent_6", "agent_7"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "2": {"status": "mentioned", "surviving": true, "agents": ["agent_6"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "3": {"status": "mentioned", "surviving": true, "agents": ["agent_6"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}}, "fact_esa_04": {"0": {"status": "mentioned", "surviving": true, "agents": ["agent_3", "agent_4"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "1": {"status": "mentioned", "surviving": true, "agents": ["agent_3", "agent_4"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "2": {"status": "mentioned", "surviving": true, "agents": ["agent_3", "agent_4"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "3": {"status": "mentioned", "surviving": true, "agents": ["agent_3", "agent_4"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}}, "fact_esa_05": {"0": {"status": "mentioned", "surviving": true, "agents": ["agent_4", "agent_8"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "1": {"status": "mentioned", "surviving": true, "agents": ["agent_4", "agent_8"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "2": {"status": "mentioned", "surviving": true, "agents": ["agent_8"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "3": {"status": "mentioned", "surviving": true, "agents": ["agent_8"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}}, "fact_esa_06": {"0": {"status": "mentioned", "surviving": true, "agents": ["agent_3", "agent_7"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "1": {"status": "mentioned", "surviving": true, "agents": ["agent_3"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "2": {"status": "unmentioned", "surviving": false, "agents": [], "votes": ["unmentioned", "unmentioned", "unmentioned"], "vote_split": false}, "3": {"status": "unmentioned", "surviving": false, "agents": [], "votes": ["unmentioned", "unmentioned", "unmentioned"], "vote_split": false}}, "fact_esa_07": {"0": {"status": "mentioned", "surviving": true, "agents": ["agent_2"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "1": {"status": "mentioned", "surviving": true, "agents": ["agent_2"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "2": {"status": "unmentioned", "surviving": false, "agents": [], "votes": ["unmentioned", "unmentioned", "unmentioned"], "vote_split": false}, "3": {"status": "unmentioned", "surviving": false, "agents": [], "votes": ["unmentioned", "unmentioned", "unmentioned"], "vote_split": false}}, "fact_esa_08": {"0": {"status": "mentioned", "surviving": true, "agents": ["agent_5", "agent_6"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "1": {"status": "mentioned", "surviving": true, "agents": ["agent_5", "agent_6"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "2": {"status": "mentioned", "surviving": true, "agents": ["agent_5"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "3": {"status": "mentioned", "surviving": true, "agents": ["agent_5"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}}, "fact_esa_09": {"0": {"status": "mentioned", "surviving": true, "agents": ["agent_3", "agent_5"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "1": {"status": "mentioned", "surviving": true, "agents": ["agent_5"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "2": {"status": "unmentioned", "surviving": false, "agents": [], "votes": ["unmentioned", "unmentioned", "unmentioned"], "vote_split": false}, "3": {"status": "unmentioned", "surviving": false, "agents": [], "votes": ["unmentioned", "unmentioned", "unmentioned"], "vote_split": false}}, "fact_esa_10": {"0": {"status": "mentioned", "surviving": true, "agents": ["agent_4", "agent_5", "agent_6"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "1": {"status": "unmentioned", "surviving": false, "agents": [], "votes": ["unmentioned", "unmentioned", "unmentioned"], "vote_split": false}, "2": {"status": "unmentioned", "surviving": false, "agents": [], "votes": ["unmentioned", "unmentioned", "unmentioned"], "vote_split": false}, "3": {"status": "unmentioned", "surviving": false, "agents": [], "votes": ["unmentioned", "unmentioned", "unmentioned"], "vote_split": false}}, "fact_esa_11": {"0": {"status": "mentioned", "surviving": true, "agents": ["agent_1", "agent_8"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "1": {"status": "mentioned", "surviving": true, "agents": ["agent_8"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "2": {"status": "unmentioned", "surviving": false, "agents": [], "votes": ["unmentioned", "unmentioned", "unmentioned"], "vote_split": false}, "3": {"status": "unmentioned", "surviving": false, "agents": [], "votes": ["unmentioned", "unmentioned", "unmentioned"], "vote_split": false}}, "fact_esa_12": {"0": {"status": "mentioned", "surviving": true, "agents": ["agent_2", "agent_8"], "votes": ["mentioned", "mentioned", "mentioned"], "vote_split": false}, "1": {"status": "unmentioned", "surviving": false, "agents": [], "votes": ["unmentioned", "unmentioned", "unmentioned"], "vote_split": false}, "2": {"status": "unmentioned", "surviving": false, "agents": [], "votes": ["unmentioned", "unmentioned", "unmentioned"], "vote_split": false}, "3": {"status": "unmentioned", "surviving": false, "agents": [], "votes": ["unmentioned", "unmentioned", "unmentioned"], "vote_split": false}}}, "utterances": {"0": [{"agent_id": "agent_1", "stance": "pro", "perspective": "계약·재정", "text": "저는 찬성 입장입니다. 근거: 임대차 계약에 반려동물 금지 조항이 있다 | 계약 위반 시 보증금 500달러가 몰수된다 | 임대차 계약 갱신이 3주 뒤다"}, {"agent_id": "agent_2", "stance": "con", "perspective": "계약·재정", "text": "저는 반대 입장입니다. 근거: 계약 위반 시 보증금 500달러가 몰수된다 | 신고된 반려동물은 월 40달러의 추가 비용이 있다 | ESA는 법적으로 일반 반려동물 금지 조항의 예외가 될 수 있다"}, {"agent_id": "agent_3", "stance": "pro", "perspective": "건강·복지", "text": "저는 찬성 입장입니다. 근거: Jenna는 진단된 불안이 있다 | ESA 서류가 집주인에게 제출되지 않은 상태다 | 화자는 경미한 개털 알레르기가 있다"}, {"agent_id": "agent_4", "stance": "con", "perspective": "건강·복지", "text": "저는 반대 입장입니다. 근거: Jenna는 진단된 불안이 있다 | Jenna는 치료사에게 ESA 추천서를 받았다고 주장한다 | Jenna가 비밀로 해달라고 부탁했다"}, {"agent_id": "agent_5", "stance": "pro", "perspective": "공동생활·관계", "text": "저는 찬성 입장입니다. 근거: 개가 낮에 짖어 이웃 항의가 한 차례 있었다 | 화자는 경미한 개털 알레르기가 있다 | Jenna가 비밀로 해달라고 부탁했다"}, {"agent_id": "agent_6", "stance": "con", "perspective": "공동생활·관계", "text": "저는 반대 입장입니다. 근거: Jenna가 6주 전 집주인 허락 없이 개를 데려왔다 | 개가 낮에 짖어 이웃 항의가 한 차례 있었다 | Jenna가 비밀로 해달라고 부탁했다"}, {"agent_id": "agent_7", "stance": "pro", "perspective": "법·규정", "text": "저는 찬성 입장입니다. 근거: 임대차 계약에 반려동물 금지 조항이 있다 | Jenna가 6주 전 집주인 허락 없이 개를 데려왔다 | ESA 서류가 집주인에게 제출되지 않은 상태다"}, {"agent_id": "agent_8", "stance": "con", "perspective": "법·규정", "text": "저는 반대 입장입니다. 근거: Jenna는 치료사에게 ESA 추천서를 받았다고 주장한다 | 임대차 계약 갱신이 3주 뒤다 | ESA는 법적으로 일반 반려동물 금지 조항의 예외가 될 수 있다"}], "1": [{"agent_id": "agent_4", "stance": "con", "perspective": "건강·복지", "text": "여전히 제 입장을 유지합니다. 근거: Jenna는 진단된 불안이 있다 | Jenna는 치료사에게 ESA 추천서를 받았다고 주장한다"}, {"agent_id": "agent_5", "stance": "pro", "perspective": "공동생활·관계", "text": "여전히 제 입장을 유지합니다. 근거: 개가 낮에 짖어 이웃 항의가 한 차례 있었다 | 화자는 경미한 개털 알레르기가 있다"}, {"agent_id": "agent_7", "stance": "pro", "perspective": "법·규정", "text": "여전히 제 입장을 유지합니다. 근거: 임대차 계약에 반려동물 금지 조항이 있다 | Jenna가 6주 전 집주인 허락 없이 개를 데려왔다"}, {"agent_id": "agent_8", "stance": "con", "perspective": "법·규정", "text": "여전히 제 입장을 유지합니다. 근거: Jenna는 치료사에게 ESA 추천서를 받았다고 주장한다 | 임대차 계약 갱신이 3주 뒤다"}, {"agent_id": "agent_3", "stance": "pro", "perspective": "건강·복지", "text": "여전히 제 입장을 유지합니다. 근거: Jenna는 진단된 불안이 있다 | ESA 서류가 집주인에게 제출되지 않은 상태다"}, {"agent_id": "agent_6", "stance": "con", "perspective": "공동생활·관계", "text": "여전히 제 입장을 유지합니다. 근거: Jenna가 6주 전 집주인 허락 없이 개를 데려왔다 | 개가 낮에 짖어 이웃 항의가 한 차례 있었다"}, {"agent_id": "agent_1", "stance": "pro", "perspective": "계약·재정", "text": "여전히 제 입장을 유지합니다. 근거: 임대차 계약에 반려동물 금지 조항이 있다 | 계약 위반 시 보증금 500달러가 몰수된다"}, {"agent_id": "agent_2", "stance": "con", "perspective": "계약·재정", "text": "여전히 제 입장을 유지합니다. 근거: 계약 위반 시 보증금 500달러가 몰수된다 | 신고된 반려동물은 월 40달러의 추가 비용이 있다"}], "2": [{"agent_id": "agent_4", "stance": "con", "perspective": "건강·복지", "text": "여전히 제 입장을 유지합니다. 근거: Jenna는 진단된 불안이 있다"}, {"agent_id": "agent_5", "stance": "pro", "perspective": "공동생활·관계", "text": "여전히 제 입장을 유지합니다. 근거: 개가 낮에 짖어 이웃 항의가 한 차례 있었다"}, {"agent_id": "agent_7", "stance": "pro", "perspective": "법·규정", "text": "여전히 제 입장을 유지합니다. 근거: 임대차 계약에 반려동물 금지 조항이 있다"}, {"agent_id": "agent_8", "stance": "con", "perspective": "법·규정", "text": "여전히 제 입장을 유지합니다. 근거: Jenna는 치료사에게 ESA 추천서를 받았다고 주장한다"}, {"agent_id": "agent_3", "stance": "pro", "perspective": "건강·복지", "text": "여전히 제 입장을 유지합니다. 근거: Jenna는 진단된 불안이 있다"}, {"agent_id": "agent_6", "stance": "con", "perspective": "공동생활·관계", "text": "여전히 제 입장을 유지합니다. 근거: Jenna가 6주 전 집주인 허락 없이 개를 데려왔다"}, {"agent_id": "agent_1", "stance": "pro", "perspective": "계약·재정", "text": "여전히 제 입장을 유지합니다. 근거: 임대차 계약에 반려동물 금지 조항이 있다"}, {"agent_id": "agent_2", "stance": "con", "perspective": "계약·재정", "text": "여전히 제 입장을 유지합니다. 근거: 계약 위반 시 보증금 500달러가 몰수된다"}], "3": [{"agent_id": "agent_4", "stance": "con", "perspective": "건강·복지", "text": "여전히 제 입장을 유지합니다. 근거: Jenna는 진단된 불안이 있다"}, {"agent_id": "agent_5", "stance": "pro", "perspective": "공동생활·관계", "text": "여전히 제 입장을 유지합니다. 근거: 개가 낮에 짖어 이웃 항의가 한 차례 있었다"}, {"agent_id": "agent_7", "stance": "pro", "perspective": "법·규정", "text": "여전히 제 입장을 유지합니다. 근거: 임대차 계약에 반려동물 금지 조항이 있다"}, {"agent_id": "agent_8", "stance": "con", "perspective": "법·규정", "text": "여전히 제 입장을 유지합니다. 근거: Jenna는 치료사에게 ESA 추천서를 받았다고 주장한다"}, {"agent_id": "agent_3", "stance": "pro", "perspective": "건강·복지", "text": "여전히 제 입장을 유지합니다. 근거: Jenna는 진단된 불안이 있다"}, {"agent_id": "agent_6", "stance": "con", "perspective": "공동생활·관계", "text": "여전히 제 입장을 유지합니다. 근거: Jenna가 6주 전 집주인 허락 없이 개를 데려왔다"}, {"agent_id": "agent_1", "stance": "pro", "perspective": "계약·재정", "text": "여전히 제 입장을 유지합니다. 근거: 임대차 계약에 반려동물 금지 조항이 있다"}, {"agent_id": "agent_2", "stance": "con", "perspective": "계약·재정", "text": "여전히 제 입장을 유지합니다. 근거: 계약 위반 시 보증금 500달러가 몰수된다"}]}, "injects": [], "tag_vocab": ["condition", "counter_evidence", "exception", "stance_support"], "far_by_stage": [{"stage": 0, "far_system": 0.0, "far_critical": 0.0}, {"stage": 1, "far_system": 0.1667, "far_critical": 0.0}, {"stage": 2, "far_system": 0.5, "far_critical": 0.3333}, {"stage": 3, "far_system": 0.5, "far_critical": 0.3333}], "status_order": ["accepted", "mentioned", "unmentioned", "ignored", "refuted", "absent"]};
+
+const S = {
+  accepted:   {glyph:"인", label:"인정(생존)"},
+  mentioned:  {glyph:"언", label:"언급(생존)"},
+  unmentioned:{glyph:"–", label:"미언급(소실)"},
+  ignored:    {glyph:"무", label:"무시(소실)"},
+  refuted:    {glyph:"반", label:"반박(소실)"},
+  absent:     {glyph:"×", label:"기록 없음(소실 취급)"},
+};
+const el = (t, cls, html) => { const e = document.createElement(t);
+  if (cls) e.className = cls; if (html !== undefined) e.innerHTML = html; return e; };
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c =>
+  ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+// ---------- header ----------
+document.getElementById("title").textContent =
+  `팩트 생존 뷰어 — ${VM.meta.title}`;
+document.getElementById("sub").innerHTML =
+  `run <b>${esc(VM.meta.run_id)}</b> · ledger <b>${esc(VM.meta.ledger_mode)}</b>` +
+  ` · judge <b>${esc(VM.meta.judge.model || "?")}</b>` +
+  ` · 팩트 ${VM.meta.n_facts} (critical ${VM.meta.n_critical})` +
+  ` · stage_type ${esc(VM.meta.stage_type)}`;
+
+// ---------- legend ----------
+const lg = document.getElementById("legend");
+const present = new Set();
+for (const fid in VM.matrix) for (const k in VM.matrix[fid]) present.add(VM.matrix[fid][k].status);
+VM.status_order.filter(s => present.has(s)).forEach(s => {
+  const c = el("span", "chip");
+  const sw = el("span", "sw", S[s].glyph);
+  const probe = el("td", "cell s-" + s); // 색은 CSS와 동일하게
+  c.appendChild(sw); c.appendChild(el("span", "", S[s].label));
+  lg.appendChild(c);
+  // 스와치 색을 셀과 동일하게 복사
+  document.body.appendChild(probe); const cs = getComputedStyle(probe);
+  sw.style.background = cs.backgroundColor; sw.style.color = cs.color;
+  sw.style.border = "1px solid " + cs.borderTopColor; probe.remove();
+});
+if (VM.injects.length) {
+  const c = el("span", "chip");
+  const sw = el("span", "sw"); sw.style.boxShadow = "0 0 0 2px var(--inject) inset";
+  c.appendChild(sw); c.appendChild(el("span", "", "Ledger 재주입"));
+  lg.appendChild(c);
+}
+{ const c = el("span", "chip");
+  const sw = el("span", "sw"); const d = el("span"); d.style.cssText =
+    "width:6px;height:6px;border-radius:50%;background:var(--split)"; sw.appendChild(d);
+  c.appendChild(sw); c.appendChild(el("span", "", "judge 표 불일치(3표 갈림)"));
+  lg.appendChild(c); }
+
+// ---------- filters ----------
+const state = { tags: new Set(), critOnly: false, lostOnly: false };
+const fbar = document.getElementById("filters");
+function addBtn(label, fn) {
+  const b = el("button", "", esc(label));
+  b.onclick = () => { fn(b); render(); };
+  fbar.appendChild(b); return b;
+}
+VM.tag_vocab.forEach(t => addBtn("#" + t, b => {
+  state.tags.has(t) ? state.tags.delete(t) : state.tags.add(t);
+  b.classList.toggle("on");
+}));
+addBtn("critical만", b => { state.critOnly = !state.critOnly; b.classList.toggle("on"); });
+addBtn("최종 소실만", b => { state.lostOnly = !state.lostOnly; b.classList.toggle("on"); });
+
+// ---------- matrix ----------
+const table = document.getElementById("matrix");
+const lastStage = String(VM.stages[VM.stages.length - 1]);
+const injByStage = {}; VM.injects.forEach(i => injByStage[String(i.round)] = i.fact_ids);
+let selected = null;
+
+function farOf(n) {
+  const r = VM.far_by_stage.find(x => String(x.stage) === String(n));
+  return r && r.far_system != null ? "FAR " + r.far_system : "";
+}
+function render() {
+  table.innerHTML = "";
+  const hr = el("tr");
+  hr.appendChild(el("th", "", "팩트"));
+  VM.stages.forEach(n => {
+    const th = el("th", "stage",
+      `R${n}<span class="far">${farOf(n)}</span>` +
+      (injByStage[String(n)] ? `<span class="inj">↺ 재주입 ${injByStage[String(n)].length}</span>` : ""));
+    th.onclick = () => showStage(String(n));
+    hr.appendChild(th);
+  });
+  table.appendChild(hr);
+
+  VM.facts.forEach(f => {
+    const finalCell = VM.matrix[f.fact_id][lastStage] || {};
+    if (state.critOnly && !f.critical) return;
+    if (state.lostOnly && finalCell.surviving) return;
+    if (state.tags.size && ![...state.tags].some(t => f.tags.includes(t))) return;
+
+    const tr = el("tr");
+    const tdf = el("td", "fact",
+      `<span class="fid">${esc(f.fact_id.replace("fact_",""))}</span>` +
+      (f.critical ? `<span class="crit" title="critical">★</span>` : "") + esc(f.text));
+    tdf.title = f.text + "  [" + f.tags.join(", ") + "]";
+    tr.appendChild(tdf);
+
+    VM.stages.forEach(n => {
+      const k = String(n);
+      const cell = VM.matrix[f.fact_id][k] || { status: "absent" };
+      const td = el("td", "cell s-" + cell.status, S[cell.status].glyph);
+      if ((injByStage[k] || []).includes(f.fact_id)) td.classList.add("injected");
+      if (cell.vote_split) td.appendChild(el("span", "dot"));
+      td.onmousemove = e => tip(e,
+        `<b>${esc(f.fact_id)}</b> · R${n}<br>${S[cell.status].label}` +
+        (cell.agents && cell.agents.length ? `<br>언급: ${cell.agents.join(", ")}` : "") +
+        (cell.votes ? `<br>표: ${cell.votes.join(" / ")}` : ""));
+      td.onmouseleave = hideTip;
+      td.onclick = () => showCell(f, k, cell, td);
+      tr.appendChild(td);
+    });
+    table.appendChild(tr);
+  });
+}
+
+// ---------- panel ----------
+const panel = document.getElementById("panel");
+function showCell(f, k, cell, td) {
+  document.querySelectorAll("td.cell.sel").forEach(x => x.classList.remove("sel"));
+  td.classList.add("sel");
+  const utts = VM.utterances[k] || [];
+  const hits = new Set(cell.agents || []);
+  panel.innerHTML =
+    `<h2>${esc(f.fact_id)} · R${k}</h2>` +
+    `<div class="statusline">${S[cell.status].label}` +
+    ((injByStage[k] || []).includes(f.fact_id) ? " · <b>이 라운드에 재주입됨 ↺</b>" : "") +
+    (cell.votes ? ` · 표: ${cell.votes.join(" / ")}` : "") + `</div>` +
+    `<div class="utt" style="border-style:dashed"><div class="who">팩트 원문</div>${esc(f.text)}` +
+    `<div class="muted" style="margin-top:4px">#${f.tags.join(" #")}${f.critical ? " · ★critical" : ""}</div></div>` +
+    `<h2 style="margin-top:14px">R${k} 발화 ${utts.length}건</h2>` +
+    utts.map(u => `<div class="utt${hits.has(u.agent_id) ? " hit" : ""}">` +
+      `<div class="who">${esc(u.agent_id)} · ${esc(u.perspective || "")} · ${esc(u.stance || "")}</div>` +
+      esc(u.text) + `</div>`).join("");
+  panel.scrollTop = 0;
+}
+function showStage(k) {
+  const utts = VM.utterances[k] || [];
+  panel.innerHTML = `<h2>라운드 R${k} 발화 전체 (${utts.length}건)</h2>` +
+    (injByStage[k] ? `<div class="statusline">↺ 이 라운드 재주입: ${injByStage[k].join(", ")}</div>` : "") +
+    utts.map(u => `<div class="utt"><div class="who">${esc(u.agent_id)} · ` +
+      `${esc(u.perspective || "")} · ${esc(u.stance || "")}</div>${esc(u.text)}</div>`).join("");
+  panel.scrollTop = 0;
+}
+
+// ---------- tooltip ----------
+const tipEl = document.getElementById("tip");
+function tip(e, html) { tipEl.innerHTML = html; tipEl.style.display = "block";
+  tipEl.style.left = Math.min(e.clientX + 14, innerWidth - 310) + "px";
+  tipEl.style.top = (e.clientY + 14) + "px"; }
+function hideTip() { tipEl.style.display = "none"; }
+
+render();
+</script>
+</body>
+</html>
