@@ -6,7 +6,9 @@
 이 파일의 상태: 초안(v0.1). 핵심 순수함수(judge_fact) + CLI 래퍼 + FAR 집계 구현 완료.
 미확정으로 남긴 것(코드가 아니라 결정 대기):
   - FAR 수식 방향 — 동범.md 열린 질문. 아래 SURVIVING/far() 는 '잠정' 정의이며 노션 확정 시 교체.
-  - judge 프롬프트 문구 — JUDGE_SYSTEM 은 초안. 7/16 파일럿 프롬프트로 맞춰야 함.
+  - judge 프롬프트 — v0.2(7/22)에서 저자 evaluate_fact 규칙 계승한 이진 판정으로 정렬.
+    근거: judgment 구조 확정(보드 결정 로그 7/22)의 "refuted/ignored 는 v1 전까지 0" 문구와
+    코드 일치. accepted/refuted/ignored 세분화는 v1 상태 추적 몫(STATUSES 는 자리 보유).
   - far_agent_mean — 에이전트별 FAR 은 assignments 필요 + 수식 확정 필요. 지금은 null.
 
 사용:
@@ -27,7 +29,7 @@ from pathlib import Path
 from . import paths
 
 SCHEMA_VER = "0.2"
-JUDGE_PROMPT_VER = "judge-v0.1-draft"
+JUDGE_PROMPT_VER = "judge-v0.2-binary"
 
 # 스키마 5번의 status 5종 (validate.py 와 동일 집합).
 STATUSES = ("unmentioned", "mentioned", "accepted", "refuted", "ignored")
@@ -48,16 +50,16 @@ MODEL_ALIASES = {
 JUDGE_SYSTEM = (
     "너는 멀티에이전트 토론 로그의 사실 보존을 채점하는 판정기다. "
     "하나의 '팩트'와 한 라운드의 에이전트 발화 원문들을 받는다. "
-    "그 라운드에서 이 팩트가 어떻게 다뤄졌는지 정확히 하나의 상태로 분류하라.\n"
-    "상태 정의:\n"
-    "- unmentioned: 어떤 발화도 이 팩트를 언급/암시하지 않음\n"
-    "- mentioned: 언급되었으나 찬반 판단 없이 중립적으로 다뤄짐\n"
-    "- accepted: 발화가 이 팩트를 사실로 인정/전제함\n"
-    "- refuted: 발화가 이 팩트를 부정/반박함\n"
-    "- ignored: 앞서 제기됐으나 이 라운드 논의에서 무시되고 반영 안 됨\n"
-    "판단은 발화 원문에만 근거하라. 추측 금지.\n"
+    "그 라운드 발화들에 이 팩트가 표현되어 있는지 이진 판정하라.\n"
+    "판정 규칙 (저자 evaluate_fact 계승):\n"
+    "- 발화가 이 팩트를 명시적 또는 암묵적으로 표현하면 mentioned\n"
+    "- 바꿔 말한 표현(패러프레이즈)도 인정한다\n"
+    "- 부분적으로만 뒷받침되면 인정하지 않는다\n"
+    "- 발화 원문에만 근거하라. 없는 내용을 추정하지 마라. 외부 지식 사용 금지\n"
+    "- 위에 해당하지 않으면 unmentioned\n"
+    "(v0 는 이진 판정만 한다 — accepted/refuted/ignored 세분화는 v1 상태 추적에서)\n"
     '반드시 아래 JSON 만 출력하라(설명 텍스트 금지): '
-    '{"status": "<위 5종 중 하나>", "agents_mentioning": ["<이 팩트를 언급한 agent_id>"], '
+    '{"status": "mentioned 또는 unmentioned", "agents_mentioning": ["<이 팩트를 표현한 agent_id>"], '
     '"reason": "<한 문장 근거>"}'
 )
 
