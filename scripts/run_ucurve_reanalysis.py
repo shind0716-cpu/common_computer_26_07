@@ -54,8 +54,12 @@ def _try_load_facts_by_id(judgment: dict, judgment_path: Path) -> tuple[dict, st
     return {f["fact_id"]: f for f in doc["facts"]}, None
 
 
-def analyze_one(judgment_path: Path, *, critical_only: bool) -> dict:
-    """judgment 하나에 대해 survival.report() 를 호출하고 결과 dict 를 조립(순수)."""
+def analyze_one(judgment_path: Path, *, critical_only: bool, fact_clock: bool = False) -> dict:
+    """judgment 하나에 대해 survival.report() 를 호출하고 결과 dict 를 조립(순수).
+
+    fact_clock=True 면 도입 시점 정렬 생존분석(survival.fact_clock_report, w=0·w=1)을 덧붙인다.
+    기본(False)이면 기존 P2 출력만 — 기본 동작 불변.
+    """
     judgment = _load_judgment(judgment_path)
     facts_by_id, warn = _try_load_facts_by_id(judgment, judgment_path)
 
@@ -71,7 +75,7 @@ def analyze_one(judgment_path: Path, *, critical_only: bool) -> dict:
     stage_values = [s.get("stage") for s in sorted(
         judgment.get("stages", []), key=lambda s: (s.get("stage") is None, s.get("stage")))]
 
-    return {
+    out = {
         "judgment_path": str(judgment_path),
         "issue_id": judgment.get("issue_id"),
         "run_id": judgment.get("run_id"),
@@ -84,6 +88,10 @@ def analyze_one(judgment_path: Path, *, critical_only: bool) -> dict:
         "post_intro_final_loss": rep["post_intro_final_loss"],# 누적(주지표2)
         "warning": warn,
     }
+    if fact_clock:
+        out["fact_clock"] = survival.fact_clock_report(judgment, facts_by_id=facts_by_id,
+                                                       critical_only=critical_only)
+    return out
 
 
 def _print_report(r: dict) -> None:
@@ -122,7 +130,25 @@ def _print_report(r: dict) -> None:
         print(f"\n  [진단 힌트] 실측 FAR 우측 상승폭≈{round(right_arm_rise, 4)} · "
               f"T_late hazard={last_haz} "
               f"→ 판별은 UCURVE_PREREG.md 표에 대조(이 스크립트는 판정하지 않음)")
+
+    if r.get("fact_clock"):
+        _print_fact_clock(r["fact_clock"])
     print()
+
+
+def _print_fact_clock(fc_report: dict) -> None:
+    """도입 시점 정렬 생존분석(fact-clock) — w=0·w=1 생명표를 나란히 stdout 에."""
+    print("\n  [fact-clock] 도입 시점 정렬 생존분석 (기준: FACTCLOCK_PREREG.md)")
+    for w in sorted(fc_report["by_w"]):
+        fc = fc_report["by_w"][w]
+        pop = fc["population"]
+        print(f"    · w={w}  도입 {pop['n_introduced']}개 · 미도입 {pop['n_never_introduced']}개 "
+              f"· 사망 {fc['n_deaths_total']} · 검열 {fc['n_censored_total']}")
+        for row in fc["life_table"]:
+            if row["age"] == 0:
+                continue  # age0 은 도입 기준(사망 없음)
+            print(f"        age {row['age']}: hazard={row['hazard']} "
+                  f"(at-risk {row['at_risk']} · 사망 {row['deaths']} · 검열 {row['censored']})")
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -133,6 +159,8 @@ def main(argv: list[str] | None = None) -> int:
                     help="결과 json 저장 경로(생략 시 각 입력 옆 <stem>.ucurve.json)")
     ap.add_argument("--critical-only", action="store_true",
                     help="critical 팩트만 집계(facts 파일 필요)")
+    ap.add_argument("--fact-clock", action="store_true",
+                    help="도입 시점 정렬 생존분석(fact-clock, w=0·w=1)을 추가 출력")
     args = ap.parse_args(argv)
 
     results = []
@@ -140,7 +168,7 @@ def main(argv: list[str] | None = None) -> int:
         if not jp.exists():
             print(f"[ucurve] (!) 파일 없음 — 건너뜀: {jp}", file=sys.stderr)
             continue
-        r = analyze_one(jp, critical_only=args.critical_only)
+        r = analyze_one(jp, critical_only=args.critical_only, fact_clock=args.fact_clock)
         _print_report(r)
         results.append(r)
 
