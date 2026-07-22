@@ -48,3 +48,18 @@ summary: far_by_stage[], far_system, far_agent_mean(관찰 트랙은 null), far_
 - 드라이런: facts[].votes = [{agent_id, votes:[bool×3]}], summary에 far_system_critical/far_agent_mean_critical
 - judge.py: facts[].votes = [{status, agents_mentioning, reason}×3], summary에 far_critical
 ledger는 stages[].facts[].{fact_id,status} 두 필드만 의존하므로 양쪽 모두에서 동작하나, 수 밤 통합 시 judge 실호출 산출물의 최종 구조를 동범과 확정할 것.
+
+## judgment 구조 확정 (2026-07-22, 민옥/리더 — 동범 승인 7/22 보드)
+7/21 리더 확정 체제(스키마는 리더 측이 확정, 구현상 문제 제기는 보드 패키지 A 항목)에 따라 「⚠ 통합 전 확인 필요」의 구조 드리프트를 확정한다. **근거**: docs/P2_INPUT_CONTRACT.md(요한, 7/22) + 코드 확인 3건(D1·B·C, 보드 7/22 민옥 측 답변) + **담당자 승인(동범, 7/22 보드 회신 — "이의 없음" + 코드 사실 보강)**. 코드 수정 0줄 — 현행 구현을 정본으로 문서화하는 확정이다.
+
+1. **정본 = 현행 judge.py 출력 구조.**
+   - stages[].facts[]: `{fact_id, status, votes[{status, agents_mentioning, reason} × n_votes], agents_mentioning[]}`
+   - summary: `{far_by_stage[], far_system, far_agent_mean, far_critical}`
+   - 구 드라이런(judgment_issue_esa_dryrun.json)은 레거시 강건성 픽스처로 보존(동범 7/22 결정), 현행 구조 정본은 judgment_issue_esa_dryrun2.json — 신규 소비자는 dryrun2를 참조한다.
+2. **stage 키는 모든 stage 레코드에 필수, 정렬 가능한 정수** (P2 질문 A). 실험 트랙 기점 = 0-기반 [0..N], round 0(초기 발화) 포함.
+3. **각 stage의 facts[]는 추적 대상 전 팩트의 완전 스냅샷** (P2 질문 C) — 델타/변경분 기록 금지. "레코드 부재 = 소실"(P2 결정 2)의 전제 조건으로 명문화. 오프라인·루프-내 판정 모두 충족(동범 코드 사실 보강).
+4. **관찰 트랙(stage_type=summary_layer)의 stage 시간 단조성은 loader가 보장** (P2 질문 B) — 전이 지표(P2) 적용 가능 여부는 호출 측 계약이다.
+5. **judge v0 산출 status는 mentioned/unmentioned 2종** (judge-v0.2-binary, 저자 evaluate_fact 규칙 계승) — lost_by_status의 refuted/ignored 칸은 judge v1(5종 상태 실산출) 전까지 구조적으로 0이며, 결과 보고 시 이 주석을 의무로 단다 (P2 질문 E).
+6. **SURVIVING 최종값(P2 질문 D)은 본 확정과 별개 트랙** — 기업 회신 시 「FAR 정의」절과 judge.SURVIVING/far()만 교체한다(기존 강제 유지). 교체 절차는 docs/proposals/FAR_SWAP_PLAN.md 참조.
+
+구현상 문제 제기는 보드 패키지 A 항목 아래로(append-only).
