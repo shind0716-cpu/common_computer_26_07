@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>팩트 생존 뷰어</title>
+<style>
+  .viz-root{
+    color-scheme:light;
+    --surface:#fcfcfb; --page:#f9f9f7; --raise:#ffffff;
+    --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --baseline:#c3c2b7; --border:rgba(11,11,11,.10);
+    --good:#0ca30c; --good-ink:#006300;
+    --warning:#fab219; --serious:#ec835a; --critical:#d03b3b;
+    --accent:#2a78d6;
+  }
+  @media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])) .viz-root{
+    color-scheme:dark;
+    --surface:#1a1a19; --page:#0d0d0d; --raise:#212120;
+    --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --baseline:#383835; --border:rgba(255,255,255,.10);
+    --good:#0ca30c; --good-ink:#0ca30c; --accent:#3987e5;
+  }}
+  :root[data-theme="dark"] .viz-root{
+    color-scheme:dark;
+    --surface:#1a1a19; --page:#0d0d0d; --raise:#212120;
+    --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --baseline:#383835; --border:rgba(255,255,255,.10);
+    --good:#0ca30c; --good-ink:#0ca30c; --accent:#3987e5;
+  }
+  *{box-sizing:border-box}
+  body{margin:0}
+  .viz-root{min-height:100vh;display:flex;flex-direction:column;background:var(--page);color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:14px;line-height:1.5}
+  .bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:16px 22px 12px}
+  h1{font-size:16px;font-weight:640;margin:0;letter-spacing:-.15px}
+  h1 small{color:var(--muted);font-weight:400;font-size:12px;margin-left:8px}
+  select{font:inherit;font-size:13px;padding:7px 12px;border-radius:8px;border:1px solid var(--baseline);
+    background:var(--surface);color:var(--ink);cursor:pointer}
+  select:focus{outline:2px solid var(--accent);outline-offset:1px}
+  .spacer{flex:1}
+  .toggle{font:inherit;font-size:13px;width:34px;height:34px;border-radius:8px;border:1px solid var(--baseline);
+    background:var(--surface);color:var(--ink2);cursor:pointer}
+  .meta{display:flex;gap:8px;flex-wrap:wrap;padding:0 22px 12px}
+  .kv{font-size:12px;color:var(--ink2);background:var(--surface);border:1px solid var(--border);
+    padding:4px 10px;border-radius:7px}
+  .kv b{color:var(--ink);font-weight:640;font-variant-numeric:tabular-nums}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;padding:2px 22px 12px;font-size:12px;color:var(--ink2);align-items:center}
+  .lg{display:inline-flex;align-items:center;gap:6px}
+  .lg .sw{width:13px;height:13px;border-radius:4px;border:1px solid var(--border);display:inline-block}
+  .filters{display:flex;gap:7px;flex-wrap:wrap;padding:0 22px 12px}
+  .filters button{font:inherit;font-size:12px;padding:5px 12px;border-radius:99px;cursor:pointer;
+    border:1px solid var(--baseline);background:var(--surface);color:var(--ink2)}
+  .filters button.on{border-color:var(--ink);color:var(--ink);font-weight:600}
+  main{flex:1;display:flex;min-height:0;gap:14px;padding:0 18px 18px}
+  .matrix-wrap{flex:1.5;overflow:auto;background:var(--surface);border:1px solid var(--border);
+    border-radius:12px;padding:14px 12px 20px 16px}
+  table{border-collapse:separate;border-spacing:4px}
+  th{font-size:11px;font-weight:600;color:var(--muted);text-align:left;position:sticky;top:-14px;
+    background:var(--surface);z-index:2;padding:3px 6px}
+  th.stage{text-align:center;cursor:pointer;min-width:66px;border-radius:8px}
+  th.stage:hover{background:var(--page)}
+  th.stage .far{display:block;font-weight:500;color:var(--ink2);font-size:10.5px;font-variant-numeric:tabular-nums}
+  th.stage .inj{display:block;color:var(--accent);font-size:10px;font-weight:600}
+  td.fact{font-size:12.5px;color:var(--ink);max-width:340px;padding:2px 10px 2px 2px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:default}
+  td.fact .fid{color:var(--muted);font-size:10px;margin-right:6px;font-variant-numeric:tabular-nums}
+  td.fact .crit{color:var(--warning);margin-right:4px}
+  td.cell{width:66px;height:34px;border-radius:8px;text-align:center;font-size:12px;font-weight:600;
+    cursor:pointer;position:relative;background:var(--surface);border:1px solid var(--grid);color:var(--muted)}
+  /* 생존 = 초록 계열, 소실 = 웜/레드 계열. 색은 글리프·레전드 라벨과 함께만 의미를 가진다. */
+  td.cell.s-accepted{background:var(--good);border-color:var(--good);color:#fff}
+  td.cell.s-mentioned{background:color-mix(in srgb,var(--good) 16%,var(--surface));
+    border-color:color-mix(in srgb,var(--good) 40%,var(--surface));color:var(--good-ink)}
+  td.cell.s-unmentioned{background:color-mix(in srgb,var(--serious) 20%,var(--surface));
+    border-color:color-mix(in srgb,var(--serious) 55%,var(--surface));color:var(--ink)}
+  td.cell.s-ignored{background:color-mix(in srgb,var(--warning) 26%,var(--surface));
+    border-color:color-mix(in srgb,var(--warning) 60%,var(--surface));color:var(--ink)}
+  td.cell.s-refuted{background:var(--critical);border-color:var(--critical);color:#fff}
+  td.cell.s-absent{background:var(--surface);border-style:dashed;border-color:var(--baseline)}
+  td.cell.injected{box-shadow:0 0 0 2px var(--surface),0 0 0 3.5px var(--accent)}
+  td.cell .split{position:absolute;top:-5px;right:-3px;width:8px;height:8px;border-radius:50%;
+    background:var(--accent);border:1.5px solid var(--surface)}
+  td.cell.sel{outline:2px solid var(--ink);outline-offset:2px}
+  aside{flex:1;min-width:310px;max-width:42%;overflow:auto;background:var(--surface);
+    border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+  aside h2{font-size:13px;margin:0 0 8px;font-weight:640}
+  aside .muted{color:var(--muted);font-size:12px;line-height:1.65}
+  .statusline{font-size:12px;margin:6px 0 12px;color:var(--ink2)}
+  .traj{display:flex;gap:5px;flex-wrap:wrap;margin:6px 0 14px}
+  .traj span{font-size:11px;padding:3px 8px;border-radius:6px;border:1px solid var(--border);color:var(--ink2)}
+  .utt{border:1px solid var(--grid);border-radius:9px;padding:9px 11px;margin-bottom:8px;
+    font-size:12.5px;line-height:1.55;background:var(--raise)}
+  .utt .who{font-size:11px;color:var(--ink2);margin-bottom:4px;font-weight:600}
+  .utt.hit{border-color:var(--good)}
+  .utt.hit .who::after{content:" · 이 팩트 언급";color:var(--good-ink)}
+  #tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--page);font-size:11px;
+    padding:6px 9px;border-radius:7px;max-width:280px;z-index:9;display:none;line-height:1.45}
+  .empty{padding:40px;text-align:center;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="viz-root">
+  <div class="bar">
+    <h1>팩트 생존 뷰어 <small id="ttl"></small></h1>
+    <select id="runsel"></select>
+    <div class="spacer"></div>
+    <button class="toggle" id="themebtn" title="라이트/다크">◐</button>
+  </div>
+  <div class="meta" id="meta"></div>
+  <div class="legend" id="legend"></div>
+  <div class="filters" id="filters"></div>
+  <main>
+    <div class="matrix-wrap"><table id="matrix"></table></div>
+    <aside id="panel">
+      <h2>셀을 선택하세요</h2>
+      <div class="muted">팩트 × 라운드 셀 = 그 라운드에서 팩트가 어떻게 다뤄졌는가.<br>
+      열 머리글 클릭 = 그 라운드 발화 전체. 파란 링 = Ledger 재주입.</div>
+    </aside>
+  </main>
+  <div id="tip"></div>
+</div>
+<script>
+const S={
+  accepted:   {g:"인", label:"인정 · 생존"},
+  mentioned:  {g:"언", label:"언급 · 생존"},
+  unmentioned:{g:"미", label:"미언급 · 소실"},
+  ignored:    {g:"무", label:"무시 · 소실"},
+  refuted:    {g:"반", label:"반박 · 소실"},
+  absent:     {g:"·",  label:"기록 없음"},
+};
+const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!==undefined)e.innerHTML=h;return e;};
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let VM=null;
+const state={tags:new Set(),critOnly:false,lostOnly:false};
+
+// theme toggle
+document.getElementById("themebtn").onclick=()=>{
+  const r=document.documentElement;
+  const cur=r.getAttribute("data-theme");
+  const next=cur==="dark"?"light":(cur==="light"?"dark":(matchMedia("(prefers-color-scheme:dark)").matches?"light":"dark"));
+  r.setAttribute("data-theme",next);
+};
+
+async function loadRuns(){
+  const {runs}=await (await fetch("/api/runs")).json();
+  const sel=document.getElementById("runsel");sel.innerHTML="";
+  if(!runs.length){sel.appendChild(el("option","","(run 없음)"));return;}
+  runs.forEach(r=>{const o=el("option","",`${esc(r.title)} · ${esc(r.run_id)} · judge ${esc(r.judge||"?")}`);
+    o.value=r.issue_id+"||"+r.run_id;sel.appendChild(o);});
+  sel.onchange=()=>loadVM(...sel.value.split("||"));
+  loadVM(runs[0].issue_id,runs[0].run_id);
+}
+async function loadVM(issue,run){
+  state.tags.clear();state.critOnly=false;state.lostOnly=false;
+  const res=await fetch(`/api/viewmodel/${encodeURIComponent(issue)}/${encodeURIComponent(run)}`);
+  if(!res.ok){const e=await res.json().catch(()=>({}));
+    document.getElementById("matrix").innerHTML=`<tr><td class="empty">${esc(e.detail||res.status)}</td></tr>`;return;}
+  VM=await res.json();renderChrome();render();
+  document.getElementById("panel").innerHTML=`<h2>셀을 선택하세요</h2><div class="muted">run <b>${esc(VM.meta.run_id)}</b> 로드됨.</div>`;
+}
+function renderChrome(){
+  const m=VM.meta;
+  document.getElementById("ttl").textContent="— "+m.title;
+  document.getElementById("meta").innerHTML=
+    [`run <b>${esc(m.run_id)}</b>`,`ledger <b>${esc(m.ledger_mode)}</b>`,
+     `judge <b>${esc((m.judge&&m.judge.model)||"?")}</b>`,
+     `팩트 <b>${m.n_facts}</b> · critical <b>${m.n_critical}</b>`,`stage_type <b>${esc(m.stage_type)}</b>`]
+    .map(t=>`<span class="kv">${t}</span>`).join("");
+  const present=new Set();
+  for(const fid in VM.matrix)for(const k in VM.matrix[fid])present.add(VM.matrix[fid][k].status);
+  const cls={accepted:"s-accepted",mentioned:"s-mentioned",unmentioned:"s-unmentioned",ignored:"s-ignored",refuted:"s-refuted",absent:"s-absent"};
+  document.getElementById("legend").innerHTML=
+    VM.status_order.filter(s=>present.has(s)).map(s=>
+      `<span class="lg"><span class="sw ${cls[s]}"></span>${esc(S[s].label)}</span>`).join("")
+    +(VM.injects.length?`<span class="lg"><span class="sw" style="border:2px solid var(--accent);background:var(--surface)"></span>Ledger 재주입</span>`:"")
+    +`<span class="lg"><span class="sw" style="background:var(--accent);border-radius:50%"></span>judge 표 갈림</span>`;
+  const fb=document.getElementById("filters");fb.innerHTML="";
+  const addBtn=(label,fn)=>{const b=el("button","",esc(label));b.onclick=()=>{fn(b);render();};fb.appendChild(b);};
+  VM.tag_vocab.forEach(t=>addBtn("#"+t,b=>{state.tags.has(t)?state.tags.delete(t):state.tags.add(t);b.classList.toggle("on");}));
+  addBtn("critical만",b=>{state.critOnly=!state.critOnly;b.classList.toggle("on");});
+  addBtn("최종 소실만",b=>{state.lostOnly=!state.lostOnly;b.classList.toggle("on");});
+}
+const injByStage={};
+function farOf(n){const r=VM.far_by_stage.find(x=>String(x.stage)===String(n));return r&&r.far_system!=null?"FAR "+r.far_system:"";}
+function render(){
+  const table=document.getElementById("matrix");table.innerHTML="";
+  Object.keys(injByStage).forEach(k=>delete injByStage[k]);
+  VM.injects.forEach(i=>injByStage[String(i.round)]=i.fact_ids);
+  const lastStage=String(VM.stages[VM.stages.length-1]);
+  const hr=el("tr");hr.appendChild(el("th","","팩트"));
+  VM.stages.forEach(n=>{const th=el("th","stage",`R${n}<span class="far">${farOf(n)}</span>`+
+    (injByStage[String(n)]?`<span class="inj">↺ ${injByStage[String(n)].length}</span>`:""));
+    th.onclick=()=>showStage(String(n));hr.appendChild(th);});
+  table.appendChild(hr);
+  VM.facts.forEach(f=>{
+    const finalCell=VM.matrix[f.fact_id][lastStage]||{};
+    if(state.critOnly&&!f.critical)return;
+    if(state.lostOnly&&finalCell.surviving)return;
+    if(state.tags.size&&![...state.tags].some(t=>f.tags.includes(t)))return;
+    const tr=el("tr");
+    const tdf=el("td","fact",`<span class="fid">${esc(f.fact_id.replace(/^fact_/,""))}</span>`+
+      (f.critical?`<span class="crit" title="critical">★</span>`:"")+esc(f.text));
+    tdf.title=f.text+"  ["+f.tags.join(", ")+"]";tr.appendChild(tdf);
+    VM.stages.forEach(n=>{
+      const k=String(n);const cell=VM.matrix[f.fact_id][k]||{status:"absent"};
+      const td=el("td","cell s-"+cell.status,S[cell.status].g);
+      if((injByStage[k]||[]).includes(f.fact_id))td.classList.add("injected");
+      if(cell.vote_split)td.appendChild(el("span","split"));
+      td.onmousemove=e=>tip(e,`<b>${esc(f.fact_id)}</b> · R${n}<br>${esc(S[cell.status].label)}`+
+        (cell.agents&&cell.agents.length?`<br>언급: ${esc(cell.agents.join(", "))}`:"")+
+        (cell.votes?`<br>표: ${esc(cell.votes.join(" / "))}`:""));
+      td.onmouseleave=hideTip;td.onclick=()=>showCell(f,k,cell,td);
+      tr.appendChild(td);
+    });
+    table.appendChild(tr);
+  });
+}
+function showCell(f,k,cell,td){
+  document.querySelectorAll("td.cell.sel").forEach(x=>x.classList.remove("sel"));td.classList.add("sel");
+  const utts=VM.utterances[k]||[];const hits=new Set(cell.agents||[]);
+  const trajCells=VM.stages.map(n=>{const c=VM.matrix[f.fact_id][String(n)]||{status:"absent"};return `<span>R${n}: ${esc(S[c.status].label.split(" · ")[0])}</span>`;}).join("");
+  document.getElementById("panel").innerHTML=
+    `<h2>${esc(f.fact_id)} · R${k}</h2>`+
+    `<div class="statusline">${esc(S[cell.status].label)}`+
+    ((injByStage[k]||[]).includes(f.fact_id)?" · <b>이 라운드 재주입 ↺</b>":"")+
+    (cell.votes?` · 표: ${esc(cell.votes.join(" / "))}`:"")+`</div>`+
+    `<div class="utt" style="border-style:dashed"><div class="who">팩트 원문</div>${esc(f.text)}`+
+    `<div class="muted" style="margin-top:5px">#${esc(f.tags.join(" #"))}${f.critical?" · ★critical":""}</div></div>`+
+    `<div class="traj">${trajCells}</div>`+
+    `<h2 style="margin-top:6px">R${k} 발화 ${utts.length}건</h2>`+
+    utts.map(u=>`<div class="utt${hits.has(u.agent_id)?" hit":""}"><div class="who">${esc(u.agent_id)}`+
+      (u.perspective?` · ${esc(u.perspective)}`:"")+(u.stance?` · ${esc(u.stance)}`:"")+`</div>${esc(u.text)}</div>`).join("");
+  document.getElementById("panel").scrollTop=0;
+}
+function showStage(k){
+  const utts=VM.utterances[k]||[];
+  document.getElementById("panel").innerHTML=`<h2>라운드 R${k} 발화 전체 (${utts.length}건)</h2>`+
+    (injByStage[k]?`<div class="statusline">↺ 이 라운드 재주입: ${esc(injByStage[k].join(", "))}</div>`:"")+
+    utts.map(u=>`<div class="utt"><div class="who">${esc(u.agent_id)}`+
+      (u.perspective?` · ${esc(u.perspective)}`:"")+(u.stance?` · ${esc(u.stance)}`:"")+`</div>${esc(u.text)}</div>`).join("");
+  document.getElementById("panel").scrollTop=0;
+}
+const tipEl=document.getElementById("tip");
+function tip(e,html){tipEl.innerHTML=html;tipEl.style.display="block";
+  tipEl.style.left=Math.min(e.clientX+13,innerWidth-290)+"px";tipEl.style.top=(e.clientY+13)+"px";}
+function hideTip(){tipEl.style.display="none";}
+loadRuns();
+</script>
+</body>
+</html>
