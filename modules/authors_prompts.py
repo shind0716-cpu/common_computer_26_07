@@ -18,6 +18,8 @@ DEFAULT_DIR = ROOT.parent / "DelibTrace-main"
 
 
 def author_dir() -> Path:
+    """저자 코드(DelibTrace) 루트 경로. 환경변수 DELIBTRACE_DIR 우선, 없으면 기본 위치.
+    폴더가 없으면 clone 안내와 함께 즉시 에러 — 프롬프트를 원본에서 읽는 설계라 없으면 진행 불가."""
     d = Path(os.environ.get("DELIBTRACE_DIR", DEFAULT_DIR))
     if not d.exists():
         raise RuntimeError(
