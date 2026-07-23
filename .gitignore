@@ -2,3 +2,12 @@
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+
+# 관찰 트랙 회사 데이터 (usage_approved 미확정) — 로컬 유지·커밋 금지.
+# 근거: 팀 메모리 [issue-mystery-usage-approved] 결정 + CLAUDE.md 규칙 #1 (패키지 A 대기).
+# facts/debate/raw 는 관람객(User) 원문 대화를 담아 유출 벡터. judgment(fact_id·status만)는 안전하나 함께 보류.
+/data/raw/
+/data/issues/issue_walkerhill.json
+/data/facts/facts_issue_walkerhill.json
+/data/debates/debate_issue_walkerhill_*.jsonl
+/data/judgments/judgment_issue_walkerhill_*.json
