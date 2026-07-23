@@ -23,12 +23,12 @@ if not defined PYCMD (
   pause
   exit /b 1
 )
-echo [1/3] 파이썬 확인 ...
+echo [1/4] 파이썬 확인 ...
 %PYCMD% --version
 echo.
 
 REM --- 패키지 설치 --------------------------------------------------------
-echo [2/3] 필요한 패키지 설치 (pyyaml) ...
+echo [2/4] 필요한 패키지 설치 (pyyaml) ...
 %PYCMD% -m pip install --quiet pyyaml
 if errorlevel 1 (
   echo     ^(경고^) 패키지 설치에 문제가 있었지만 계속 진행합니다.
@@ -37,16 +37,36 @@ echo     완료.
 echo.
 
 REM --- 스모크 검증 --------------------------------------------------------
-echo [3/3] 스모크 검증 실행 ...
+echo [3/4] 스모크 검증 실행 ...
 echo.
 %PYCMD% run_smoke.py
 set "RC=%errorlevel%"
+echo.
+
+REM --- 관측 데모: 뷰어 생성 + 열기 ---------------------------------------
+REM dryrun2 = 현행 구조 정본 픽스처(결정론적 소실 모의, 커밋됨). 재생성하지 않고
+REM 그대로 소비한다 — 정본 덮어쓰기 금지(재현성 보호, 7/22 dryrun 교훈).
+if "%RC%"=="0" (
+  if exist "data\judgments\judgment_issue_esa_dryrun2.json" (
+    echo [4/4] 관측 데모: 팩트 생존 뷰어 생성 ...
+    %PYCMD% scripts\make_viewer.py --issue issue_esa --run dryrun2
+    if exist "viewers\viewer_issue_esa_dryrun2.html" (
+      echo     브라우저에서 뷰어를 엽니다 — 팩트가 라운드를 지나며 살고 죽는 과정을 보세요.
+      start "" "viewers\viewer_issue_esa_dryrun2.html"
+    )
+  ) else (
+    echo [4/4] ^(건너뜀^) 데모 데이터^(dryrun2^)가 없어 뷰어 생성을 생략합니다.
+  )
+)
 
 echo.
 if "%RC%"=="0" (
   echo ------------------------------------------------------------
-  echo   [OK] 완료: 파이프라인이 정상 작동합니다.
-  echo   다음 단계: 실제 토론까지 보려면 run_debate.bat 실행 ^(.env 키 필요^)
+  echo   [OK] 완료: 파이프라인이 정상 작동하고, 뷰어가 열렸습니다.
+  echo   방금 본 것: 오프라인 데모 런^(dryrun2^)의 팩트 생존 매트릭스.
+  echo   다음 단계:
+  echo     - 실제 토론^(API 실호출^)은 run_debate.bat ^(.env 키 필요^)
+  echo     - 라이브 뷰어^(서버^)는 run_viewer.bat ^(새 run이 목록에 자동 등장^)
   echo ------------------------------------------------------------
 ) else (
   echo ------------------------------------------------------------
