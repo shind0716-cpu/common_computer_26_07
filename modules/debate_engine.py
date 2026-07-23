@@ -25,6 +25,14 @@
 - 안전장치(INTEGRATION §5): LLM 호출 상한(max_llm_calls) + 라운드별 체크포인트 저장.
 - utterance_fn/judge_vote_fn 파라미터는 테스트 주입용(기본 None = 실호출).
 ⚠ 동범 확인 대기 2건: judge_stage 시그니처(judge.py), 재주입 블록의 프롬프트 위치(others 뒤).
+  → 두 건 모두 7/22 보드에서 동범 승인 완료.
+
+[2026-07-23 · 민옥] 진행 계기판 (관측 전용, 판정·산출물 불변 — judge 계기판의 debate 쪽 절반):
+- 발화마다 콘솔 한 줄: `[debate] round 1/4 · 발화 3/8 · 폴백 누적 0`
+  (표시는 judge 계기판과 통일해 1-기반 — 파일의 round 필드는 종전대로 0-기반.)
+- 폴백 = 무음 공백 발화(llm 5회 재시도 실패 폴백 포함, _is_fallback 참조) 누적 집계.
+- 콘솔 출력만 추가한다 — debate.jsonl 이벤트 종류·필드는 한 글자도 바꾸지 않는다
+  (파일 기반 progress/run_end 이벤트는 스키마 v0.3 제안 상태라 합의 전 미구현).
 
 실행: python -m modules.debate_engine --issue issue_esa --run run001 --config configs/sprint_mini.yaml
 """
@@ -52,6 +60,14 @@ def now() -> str:
 
 def sha256(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+def _is_fallback(resp) -> bool:
+    """이 발화가 '무음 공백'인지 — llm 5회 재시도 실패 시의 FALLBACK(공백) 또는 빈 응답.
+    판정·산출물에 영향 없는 관측(계기판)용 판별 — 응답 값을 읽기만 한다(judge._is_parse_fail 와 대칭).
+    llm.obtain_response 는 성공했어도 빈 텍스트면 FALLBACK 으로 정규화하므로, 여기서는
+    '비어 있음' 자체를 센다 — "빈 발화 자체가 관측 대상"(llm.py 원칙)과 동일한 정의."""
+    return resp is None or (isinstance(resp, str) and resp.strip() == "")
 
 
 def build_edges(structure: str, length: int) -> list[list[int]]:
@@ -187,11 +203,25 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
         spend()
         return judge_vote_fn(fact, utts)
 
+    # --- 진행 계기판 (관측 전용, 판정·산출물 불변) ---------------------------
+    # 발화 하나 끝날 때마다 콘솔 한 줄 + 폴백(무음 공백) 누적 집계. judge 계기판
+    # (`[judge] stage 2/4 · …`)과 형식·1-기반 표시를 통일 — 라이브 뷰어가 양쪽을
+    # 같은 규칙으로 소비할 수 있게. 파일(debate.jsonl)에는 아무것도 추가하지 않는다.
+    n_fallbacks = 0
+
+    def note_utterance(r: int, i: int, resp) -> None:
+        """r = 파일 기준 round(0-기반), i = 이번 라운드 내 발화 순번(0-기반)."""
+        nonlocal n_fallbacks
+        if _is_fallback(resp):
+            n_fallbacks += 1
+        print(f"[debate] round {r + 1}/{rounds + 1} · 발화 {i + 1}/{length} · "
+              f"폴백 누적 {n_fallbacks}")
+
     # --- round 0: initial ---------------------------------------------------
     # 저자는 관점별로 yes/no 2개를 만든다. 우리 배분표는 이미 agent마다 stance가 있으므로
     # stance(pro/con) → answer(yes/no)로 바로 대응시킨다.
     current = []
-    for ag in agents:
+    for agent_idx, ag in enumerate(agents):
         fact_text = ""
         for fid in ag["assigned_fact_ids"]:
             fact_text += f"{fact_by_id[fid]}\n"
@@ -200,6 +230,7 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
         inputs, resp = initial_utterance(question, fact_text, answer, model, temp,
                                          respond=respond)
         current.append(resp)
+        note_utterance(0, agent_idx, resp)
         emit(
             "utterance",
             ledger_mode=ledger_mode, round=0, agent_id=ag["agent_id"],
@@ -251,6 +282,7 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
                 model, temp, respond=respond,
             )
             nxt.append(resp)
+            note_utterance(r, i, resp)
             emit(
                 "utterance",
                 ledger_mode=ledger_mode, round=r, agent_id=seated[i]["agent_id"],
@@ -273,9 +305,11 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
         flush()  # 체크포인트: 라운드별
 
     n_inject = sum(1 for e in events if e.get("event") == "ledger_inject")
+    warn = "  ⚠ 폴백(무음 공백) 있음 — 해당 발화 검토" if n_fallbacks else ""
     print(f"[OK] {out_path.name} — 이벤트 {len(events)}건 "
           f"(에이전트 {length} x 라운드 {rounds}+초기, ledger_mode={ledger_mode}, "
-          f"ledger_inject {n_inject}건, LLM 호출 {n_calls}/{max_calls})")
+          f"ledger_inject {n_inject}건, LLM 호출 {n_calls}/{max_calls}, "
+          f"폴백 {n_fallbacks}건){warn}")
     return out_path
 
 

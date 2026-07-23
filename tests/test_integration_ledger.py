@@ -4,6 +4,8 @@
 호출 상한·체크포인트. 판정 품질은 여기서 검증하지 않는다(그건 judge/사람라벨 몫).
 저자 프롬프트 원문(DelibTrace-main)도 불필요 — authors_prompts 를 가짜로 대체한다.
 """
+import contextlib
+import io
 import json
 import shutil
 import tempfile
@@ -81,9 +83,15 @@ class IntegrationBase(unittest.TestCase):
         return p
 
     def run_engine(self, cfg_path, vote_fn=None, run_id="t1"):
-        return debate_engine.run("issue_esa", run_id, cfg_path,
-                                 utterance_fn=self.fake_utterance,
-                                 judge_vote_fn=vote_fn)
+        # 진행 계기판(7/23)이 발화마다 콘솔 한 줄을 찍으므로, 테스트에서는 stdout 을
+        # 흡수해 스모크 출력(quickstart 친절 요약)을 깨끗하게 유지한다.
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            result = debate_engine.run("issue_esa", run_id, cfg_path,
+                                       utterance_fn=self.fake_utterance,
+                                       judge_vote_fn=vote_fn)
+        self.last_stdout = buf.getvalue()
+        return result
 
     def read_events(self, run_id="t1"):
         path = paths.debate("issue_esa", run_id)
