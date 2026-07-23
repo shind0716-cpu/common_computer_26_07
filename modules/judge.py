@@ -147,6 +147,13 @@ def _parse_vote(text: str, stage_utterances: list[dict]) -> dict:
     return {"status": status, "agents_mentioning": mentioning, "reason": obj.get("reason", "")}
 
 
+def _is_parse_fail(vote: dict) -> bool:
+    """이 표가 모델 출력 JSON 파싱에 실패했는지 — reason 이 'parse_fail:' 로 시작하면 실패.
+    _parse_vote 가 파싱 실패 시 그 접두사를 reason 에 남긴다(성공 시엔 모델의 한 문장 근거).
+    판정에는 영향 없는 관측(계기판)용 판별 — vote 값을 읽기만 한다."""
+    return str(vote.get("reason", "")).startswith("parse_fail:")
+
+
 # ---------------------------------------------------------------------------
 # 핵심 순수 함수: judge_fact
 # ---------------------------------------------------------------------------
@@ -240,12 +247,39 @@ def judge_debate(issue_id: str, run_id: str, cfg: dict, *, offline: bool = False
     n_votes = int(cfg.get("judge_n_votes", 3))
 
     if offline:
-        vote_fn = _offline_vote
+        base_vote_fn = _offline_vote
         model_id = "offline-stub"
     else:
         client = _make_client()
         model_id = _resolve_model(cfg.get("judge_model", "claude-sonnet"))
-        vote_fn = lambda fact, utts: _online_vote(client, model_id, fact, utts)  # noqa: E731
+        base_vote_fn = lambda fact, utts: _online_vote(client, model_id, fact, utts)  # noqa: E731
+
+    # --- 진행 계기판 (관측 전용, 판정 불변) ----------------------------------
+    # judge 는 표 하나당 vote 를 한 번 부르고(총 stage x 팩트 x n_votes 회), 실패해도
+    # 죽지 않고 조용히 unmentioned 로 강등된다(_parse_vote). 그래서 base_vote_fn 을
+    # 얇게 감싸 (1) 표마다 진행 한 줄 출력 (2) 파싱실패 표 수를 집계한다. 감싼 함수는
+    # base_vote_fn 의 반환값을 그대로 통과시키므로 judge_fact·판정 잣대에는 영향이 없다.
+    # 위치(stage/팩트/표)는 전역 표 순번에서 역산한다 — 매 stage 는 전 팩트 완전 스냅샷이라
+    # stage 하나 = (팩트 수 x n_votes) 표로 일정하다.
+    total_stages = len(stages_utt)
+    total_facts = len(facts)
+    votes_per_stage = max(total_facts * n_votes, 1)
+    health = {"n_calls": 0, "n_parse_fail": 0}
+
+    def instrumented_vote(fact, utts):
+        vote = base_vote_fn(fact, utts)
+        idx = health["n_calls"]  # 이번 표의 0-기반 순번
+        health["n_calls"] += 1
+        if _is_parse_fail(vote):
+            health["n_parse_fail"] += 1
+        within = idx % votes_per_stage
+        print(f"[judge] stage {idx // votes_per_stage + 1}/{total_stages} · "
+              f"팩트 {within // n_votes + 1}/{total_facts} · "
+              f"표 {within % n_votes + 1}/{n_votes} · "
+              f"파싱실패 누적 {health['n_parse_fail']}")
+        return vote
+
+    vote_fn = instrumented_vote
 
     stages_out, far_by_stage = [], []
     for stage, utts in stages_utt.items():
@@ -280,6 +314,7 @@ def judge_debate(issue_id: str, run_id: str, cfg: dict, *, offline: bool = False
             "far_system": last["far_system"],
             "far_agent_mean": None,  # TODO: assignments + FAR 수식 확정 후 산출
             "far_critical": last["far_critical"],
+            "judge_health": health,  # 관측 계기판(추가 필드): {n_calls, n_parse_fail} — 소비자 P2·ledger 무관
         },
     }
 
@@ -301,6 +336,9 @@ def main() -> None:
     print(f"[judge] 작성: {out_path}")
     print(f"[judge] far_system={result['summary']['far_system']} "
           f"far_critical={result['summary']['far_critical']} (잠정 수식)")
+    h = result["summary"]["judge_health"]
+    warn = "  ⚠ 파싱실패 있음 — 해당 판 재채점 검토" if h["n_parse_fail"] else ""
+    print(f"[judge] 건강: 표 {h['n_calls']}회 · 파싱실패 {h['n_parse_fail']}회{warn}")
     print("[judge] 자기검사: python -m modules.validate " + str(out_path))
 
 
