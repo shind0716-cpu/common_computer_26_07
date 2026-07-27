@@ -41,8 +41,11 @@ import argparse
 import io
 import json
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
+
+import yaml
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 
@@ -62,7 +65,7 @@ MAX_GEN_TOKENS = 2048   # llm.MAX_TOKENS와 동일
 MAX_JUDGE_TOKENS = 512  # judge._online_vote와 동일
 
 N_CALLS = 0
-MAX_CALLS = 600  # off 32 + v0 140 + 사후 judge 144x2 = 460 예상, 여유 포함
+MAX_CALLS = 500  # off 32 + v0 68(발화 32+루프내 n=1 36) + 사후 judge 144x2 = 388 예상, 여유 포함
 _client = None
 
 
@@ -96,9 +99,23 @@ def client():
     return _client
 
 
+MAX_ATTEMPTS = 5  # 429/5xx/연결 오류만 재시도. 그 외 4xx는 즉시 중단(동범 ③ fail-fast 동형)
+
+
+def _retryable(exc) -> bool:
+    """일시 오류(재시도 의미 있음)만 참: 429·5xx·연결/타임아웃. 400/401/403 등은 거짓."""
+    status = getattr(exc, "status_code", None)
+    if status is not None:
+        return status == 429 or status >= 500
+    return type(exc).__name__ in ("APIConnectionError", "APITimeoutError")
+
+
 def chat(system: str | None, user: str, *, temperature: float | None,
          max_tokens: int) -> str:
-    """단일 호출 + 전역 상한·절단 가드(민옥 D1: 절단은 즉시 에러, 폐기 대상)."""
+    """단일 호출 + 전역 상한·절단 가드(민옥 D1: 절단은 즉시 에러, 폐기 대상).
+    재시도: 429/5xx/연결 오류만 지수 백오프 — 무의미 4xx는 즉시 raise(비용 낭비 방지).
+    llm.py(5회 후 무음 공백)와 달리 **폴백 없이 죽는다** — 파일럿엔 체크포인트가
+    있으므로, 무음 공백으로 조용히 썩은 run보다 명시적 중단이 낫다."""
     global N_CALLS
     N_CALLS += 1
     if N_CALLS > MAX_CALLS:
@@ -108,7 +125,17 @@ def chat(system: str | None, user: str, *, temperature: float | None,
     kwargs = dict(model=GEN_MODEL, messages=messages, max_completion_tokens=max_tokens)
     if temperature is not None:
         kwargs["temperature"] = temperature
-    resp = client().chat.completions.create(**kwargs)
+    for attempt in range(MAX_ATTEMPTS):
+        try:
+            resp = client().chat.completions.create(**kwargs)
+            break
+        except Exception as e:  # noqa: BLE001 — _retryable 로 선별
+            if not _retryable(e) or attempt == MAX_ATTEMPTS - 1:
+                raise
+            wait = min(5 * (2 ** attempt), 30)
+            print(f"[retry] 일시 오류({type(e).__name__}) — {wait}초 후 재시도 "
+                  f"({attempt + 1}/{MAX_ATTEMPTS})")
+            time.sleep(wait)
     choice = resp.choices[0]
     if choice.finish_reason == "length":
         raise RuntimeError(f"출력 절단(finish_reason=length) — D1 교훈: 폐기 대상")
@@ -181,12 +208,29 @@ def make_vote_fn(dry: bool):
 # ---------------------------------------------------------------------------
 # phase: debate — 정본 엔진 재사용 (결합부 무수정)
 # ---------------------------------------------------------------------------
+def _count_utterances(path: Path) -> int:
+    n = 0
+    for ln in path.read_text(encoding="utf-8").splitlines():
+        if ln.strip() and json.loads(ln).get("event") == "utterance":
+            n += 1
+    return n
+
+
 def phase_debate(arm: str, dry: bool) -> None:
     run_id = RUN_IDS[arm]
     dst = paths.debate(ISSUE_ID, run_id)
     if dst.exists():
-        print(f"[debate:{arm}] {dst.name} 존재 — 스킵 (재실행하려면 파일 삭제)")
-        return
+        # 완주 판정: 엔진 라운드 체크포인트가 남긴 부분 파일을 완료본으로 오인하지 않는다.
+        cfg = yaml.safe_load(CFGS[arm].read_text(encoding="utf-8"))
+        expected = int(cfg["agents"]) * (int(cfg.get("rounds", 3)) + 1)
+        got = _count_utterances(dst)
+        if got >= expected:
+            print(f"[debate:{arm}] {dst.name} 완료본 존재({got}/{expected} 발화) — 스킵")
+            return
+        aside = dst.with_name(dst.name + f".incomplete-{now().replace(':', '')}")
+        dst.rename(aside)
+        print(f"[debate:{arm}] 부분 파일({got}/{expected} 발화) → {aside.name} 보관 후 재실행"
+              f" (엔진은 처음부터 다시 돈다 — 무결성 우선)")
     facts_list = json.loads(paths.facts(ISSUE_ID).read_text(encoding="utf-8"))["facts"]
     debate_engine.run(
         ISSUE_ID, run_id, CFGS[arm],
@@ -280,6 +324,27 @@ def phase_analyze() -> None:
                     for e in events if e.get("event") == "ledger_inject"}
 
     surviving = judge_mod.SURVIVING
+
+    # H1 — off 팔 단독 소실 실증 (QUESTIONS.md Q-H1): 궤적 + 소실 목록 + 첫 소실 시점
+    st_off = S["off"]
+    final = max(st_off) if st_off else 0
+    first_missing = {}
+    for fid in facts_by_id:
+        for r in sorted(st_off):
+            if st_off[r].get(fid) not in surviving:
+                first_missing[fid] = r
+                break
+    out["h1_baseline_attrition"] = {
+        "arm": "off",
+        "far_by_stage": J["off"]["summary"]["far_by_stage"],
+        "lost_at_final_stage": [
+            {"fact_id": fid, "critical": bool(facts_by_id[fid].get("critical")),
+             "tags": facts_by_id[fid].get("tags", [])}
+            for fid, stt in sorted(st_off.get(final, {}).items()) if stt not in surviving],
+        "first_missing_stage": first_missing,
+        "n_never_missing": sum(1 for fid in facts_by_id if fid not in first_missing),
+    }
+
     # Q0 — FAR off vs v0
     out["q0_far_by_stage"] = {arm: J[arm]["summary"]["far_by_stage"] for arm in RUN_IDS}
 
@@ -339,6 +404,12 @@ def phase_analyze() -> None:
 
     dst = PILOT_DATA / "h2_report.json"
     dst.write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
+    h1 = out["h1_baseline_attrition"]
+    print(f"[analyze] H1(off 소실 실증): far 궤적 "
+          f"{[x['far_system'] for x in h1['far_by_stage']]} · "
+          f"최종 소실 {len(h1['lost_at_final_stage'])}종"
+          f"(critical {sum(1 for x in h1['lost_at_final_stage'] if x['critical'])}) · "
+          f"무소실 {h1['n_never_missing']}종")
     print(f"[analyze] Q0 far(마지막 stage): "
           f"off={J['off']['summary']['far_system']} v0={J['v0']['summary']['far_system']}")
     print(f"[analyze] Q1 재발화율: {[x['rate'] for x in q1]}  "

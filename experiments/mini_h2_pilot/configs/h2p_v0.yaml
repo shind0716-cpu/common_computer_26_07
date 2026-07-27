@@ -10,5 +10,7 @@ debate_model: gpt-5.4-mini
 debate_temperature: 1.2
 judge_model: gpt-5.4-mini      # 루프-내 판정 = 실행기 주입 vote_fn (이 값은 기록용)
 judge_temperature: 0
-judge_n_votes: 3
+# 루프-내 판정은 주입 결정 전용(이진) — n=1로 충분 (D-p4, 108→36콜 절감).
+# 측정용 사후 judge는 실행기에 n=3 별도 고정(잣대 무손상, Q5 일치율 유지).
+judge_n_votes: 1
 ledger_mode: "v0"              # ← 실험군 (r>=2 직전 라운드 소실 전량 재주입)
