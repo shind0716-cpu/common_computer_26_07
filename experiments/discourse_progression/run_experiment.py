@@ -140,18 +140,34 @@ def call_openai(model, prompt, temperature, seed=None):
                 continue
             raise
 
+GEMINI_MAX_TOKENS = 4096  # 편차 D1: thinking 토큰이 1024 예산을 잠식해 본문 잘림 → 상한 확대
+GEMINI_THINKING = "minimal"  # 편차 D1: 사고 최소화로 본문 절단 방지 (Gemini 3 thinkingLevel)
+
 def call_gemini(model, prompt, temperature, seed=None):
     key = os.environ.get("GEMINI_API_KEY") or sys.exit("GEMINI_API_KEY 없음")
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}"
-    payload = {"contents": [{"parts": [{"text": prompt}]}],
-               "generationConfig": {"temperature": temperature, "maxOutputTokens": MAX_TOKENS}}
-    data = _post(url, {}, payload)
+    gen_cfg = {"temperature": temperature, "maxOutputTokens": GEMINI_MAX_TOKENS,
+               "thinkingConfig": {"thinkingLevel": GEMINI_THINKING}}
+    payload = {"contents": [{"parts": [{"text": prompt}]}], "generationConfig": gen_cfg}
+    deviations = ["gemini는 seed 미지원", f"D1: maxOutputTokens {GEMINI_MAX_TOKENS}·thinking {GEMINI_THINKING}"]
+    try:
+        data = _post(url, {}, payload)
+    except RuntimeError as e:
+        if "thinking" in str(e).lower():  # 구버전 모델 등 thinkingConfig 미지원 폴백
+            gen_cfg.pop("thinkingConfig")
+            deviations.append("thinkingConfig 미지원 — 제거됨")
+            data = _post(url, {}, payload)
+        else:
+            raise
     try:
         text = data["candidates"][0]["content"]["parts"][0]["text"].strip()
     except (KeyError, IndexError):
         raise RuntimeError(f"Gemini 응답 파싱 실패: {json.dumps(data)[:400]}")
-    used = {"model": model, "temperature": temperature, "max_tokens": MAX_TOKENS,
-            "seed": None, "deviations": ["gemini는 seed 미지원"]}
+    finish = data["candidates"][0].get("finishReason", "")
+    if finish == "MAX_TOKENS":  # 잘림은 더 이상 무음 통과 금지 — D1 재발 방지
+        raise RuntimeError(f"Gemini 출력 잘림(MAX_TOKENS) — 본문 {len(text)}자. 상한 재확인 필요")
+    used = {"model": model, "temperature": temperature, "max_tokens": GEMINI_MAX_TOKENS,
+            "seed": None, "deviations": deviations}
     return text, used
 
 def call_model(provider, model, prompt, temperature, seed=None):

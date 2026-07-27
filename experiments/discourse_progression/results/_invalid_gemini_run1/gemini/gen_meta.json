@@ -1,0 +1,482 @@
+{
+ "model_key": "gemini",
+ "provider": "gemini",
+ "model": "gemini-3-flash-preview",
+ "key_env": "GEMINI_API_KEY",
+ "gen_temperature": 0.7,
+ "max_tokens": 1024,
+ "runs": 3,
+ "rounds": 3,
+ "started_at": "2026-07-27T16:11:54+0900",
+ "calls": [
+  {
+   "file": "A1_r0.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:12:02"
+  },
+  {
+   "file": "A1_r1.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:12:10"
+  },
+  {
+   "file": "A1_r2.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:12:17"
+  },
+  {
+   "file": "A1_r3.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:12:24"
+  },
+  {
+   "file": "A2_r0.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:12:30"
+  },
+  {
+   "file": "A2_r1.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:12:38"
+  },
+  {
+   "file": "A2_r2.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:12:46"
+  },
+  {
+   "file": "A2_r3.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:12:54"
+  },
+  {
+   "file": "A3_r0.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:13:01"
+  },
+  {
+   "file": "A3_r1.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:13:09"
+  },
+  {
+   "file": "A3_r2.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:13:17"
+  },
+  {
+   "file": "A3_r3.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:13:24"
+  },
+  {
+   "file": "P1_r0.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:13:31"
+  },
+  {
+   "file": "P1_r1.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:13:39"
+  },
+  {
+   "file": "P1_r2.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:13:49"
+  },
+  {
+   "file": "P1_r3.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:13:57"
+  },
+  {
+   "file": "P2_r0.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:14:04"
+  },
+  {
+   "file": "P2_r1.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:14:13"
+  },
+  {
+   "file": "P2_r2.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:14:21"
+  },
+  {
+   "file": "P2_r3.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:14:29"
+  },
+  {
+   "file": "P3_r0.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:14:35"
+  },
+  {
+   "file": "P3_r1.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:14:41"
+  },
+  {
+   "file": "P3_r2.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:14:49"
+  },
+  {
+   "file": "P3_r3.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:14:56"
+  },
+  {
+   "file": "B1_r0.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:15:02"
+  },
+  {
+   "file": "B1_r1.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:15:10"
+  },
+  {
+   "file": "B1_r2.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:15:16"
+  },
+  {
+   "file": "B1_r3.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:15:23"
+  },
+  {
+   "file": "B2_r0.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:15:29"
+  },
+  {
+   "file": "B2_r1.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:15:36"
+  },
+  {
+   "file": "B2_r2.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:15:44"
+  },
+  {
+   "file": "B2_r3.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:15:52"
+  },
+  {
+   "file": "B3_r0.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:15:59"
+  },
+  {
+   "file": "B3_r1.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:16:08"
+  },
+  {
+   "file": "B3_r2.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:16:16"
+  },
+  {
+   "file": "B3_r3.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원"
+    ]
+   },
+   "at": "16:16:24"
+  }
+ ],
+ "finished_at": "2026-07-27T16:16:24+0900"
+}
