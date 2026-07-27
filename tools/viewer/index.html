@@ -128,7 +128,10 @@ const S={accepted:{g:"인",label:"인정 · 생존"},mentioned:{g:"언",label:"�
   refuted:{g:"반",label:"반박 · 소실"},absent:{g:"·",label:"기록 없음"}};
 
 let CUR=null;          // {issue_id, run_id}
+let RUNS={};           // "issue|run" -> run 요약(run_state·parts 포함)
 const cache={issue:{},facts:{},asg:{},vm:{},an:{}};
+// 부분 run(채점 전)은 매트릭스가 비어 있으니 기본 노드를 발화(debate)로.
+const defaultNodeFor=key=>(RUNS[key]&&RUNS[key].run_state==="partial")?"debate":"judge";
 
 // 노드 정의: kind = measure|intervene|hub|neutral
 const NODES=[
@@ -244,6 +247,10 @@ function renderDebate(vm){
 function renderJudge(vm){
   const p=document.getElementById("panel");
   p.innerHTML=H("채점기 · 생존 매트릭스",`${esc(vm.meta.run_id)} · judge ${esc((vm.meta.judge||{}).model||"?")} · 팩트 ${vm.meta.n_facts}`);
+  if(vm.run_state==="partial"||(vm.parts&&vm.parts.judgment==="absent")){
+    p.innerHTML+=`<div class="callout warn"><b>채점 전 (judgment 없음)</b> — 아직 생존 매트릭스가 없습니다. 토론 엔진 노드에서 발화 원문을 관측하세요.<br><span class="muted">run_state: ${esc(vm.run_state||"?")} · parts.judgment: ${esc((vm.parts||{}).judgment||"?")}</span></div>`;
+    return;
+  }
   const inj={}; (vm.injects||[]).forEach(i=>inj[String(i.round)]=i.fact_ids);
   const tbl=document.createElement("table");tbl.className="mx";
   const hr=document.createElement("tr");hr.innerHTML=`<th style="text-align:left">팩트</th>`+
@@ -304,12 +311,14 @@ async function boot(){
   const {runs}=await j("/api/runs");
   const sel=document.getElementById("runsel");
   if(!runs.length){document.getElementById("panel").innerHTML=`<div class="callout warn">가용 run 없음</div>`;return;}
-  runs.forEach(r=>{const o=document.createElement("option");o.value=r.issue_id+"|"+r.run_id;
-    o.textContent=`${r.title} · ${r.run_id} · judge ${r.judge||"?"}`;sel.appendChild(o);});
-  sel.onchange=()=>{const [i,rn]=sel.value.split("|");CUR={issue_id:i,run_id:rn};selectNode("judge");};
-  const first=sel.options[0].value.split("|");
-  CUR={issue_id:first[0],run_id:first[1]};
-  selectNode("judge");  // 기본: 채점기(매트릭스)
+  runs.forEach(r=>{const key=r.issue_id+"|"+r.run_id;RUNS[key]=r;
+    const o=document.createElement("option");o.value=key;
+    const badge=r.run_state==="partial"?"⏳부분":r.run_state==="complete"?"✓완전":"·";
+    o.textContent=`${r.title} · ${r.run_id} · ${badge} · judge ${r.judge||"?"}`;sel.appendChild(o);});
+  sel.onchange=()=>{const [i,rn]=sel.value.split("|");CUR={issue_id:i,run_id:rn};selectNode(defaultNodeFor(sel.value));};
+  const firstKey=sel.options[0].value,[fi,frn]=firstKey.split("|");
+  CUR={issue_id:fi,run_id:frn};
+  selectNode(defaultNodeFor(firstKey));  // 부분 run 이면 발화, 완전이면 매트릭스
 }
 boot();
 </script>
