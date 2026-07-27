@@ -1,0 +1,25 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "yohan_transmission_pilot",
+  "created_at": "2026-07-27T00:00:00+00:00",
+  "issue_id": "issue_carkey",
+  "extractor": {
+    "model": "manual",
+    "temperature": null,
+    "prompt_ver": "hyunsu-candidate2-v0 (보드 7/27 표 수기 변환 — 요한 측. harm_stance·critical_rationale·perspective 는 원표 보존용 추가 필드)"
+  },
+  "facts": [
+    {"fact_id": "fact_car_01", "text": "아버지는 78세다", "tags": ["condition"], "critical": false, "critical_rationale": "배경 조건, 단독으로는 판단 근거 아님", "harm_stance": null, "perspective": "아버지", "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_car_02", "text": "지난 1년간 접촉사고가 3회 있었다", "tags": ["counter_evidence"], "critical": true, "critical_rationale": "위험의 반복성을 보여주는 핵심 실적", "harm_stance": "con", "perspective": "화자", "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_car_03", "text": "두 달 전 주차장에서 보행자를 스칠 뻔했다", "tags": ["counter_evidence"], "critical": true, "critical_rationale": "대인 사고 직전까지 간 최근 사건", "harm_stance": "con", "perspective": "화자", "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_car_04", "text": "보행자 건은 신고되지 않아 공식 기록이 없다", "tags": ["counter_evidence"], "critical": true, "critical_rationale": "강제 개입의 공식 근거 부재, 숨김 입장의 약점", "harm_stance": "pro", "perspective": "화자", "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_car_05", "text": "병원에서 경도인지장애 소견을 받았다", "tags": ["counter_evidence"], "critical": true, "critical_rationale": "인지 저하의 의학적 단서", "harm_stance": "con", "perspective": "의료", "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_car_06", "text": "의사는 \"운전 금지 단계는 아니다\"라고 판단했다", "tags": ["counter_evidence"], "critical": true, "critical_rationale": "전문가가 강제 개입을 지지하지 않음", "harm_stance": "pro", "perspective": "의료", "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_car_07", "text": "의사는 6개월 뒤 재검을 제안했다", "tags": ["exception"], "critical": false, "critical_rationale": "즉시 결정 대신 유예라는 제3경로", "harm_stance": "both", "perspective": "의료", "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_car_08", "text": "아버지는 면허 반납을 완강히 거부한다", "tags": ["condition"], "critical": true, "critical_rationale": "\"몰래\"라는 수단이 문제되는 이유", "harm_stance": "pro", "perspective": "아버지", "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_car_09", "text": "부모님 댁은 읍내에서 12km 떨어져 있고 버스는 하루 4회다", "tags": ["counter_evidence"], "critical": true, "critical_rationale": "운전 중단 시 생활 기반 타격의 실측", "harm_stance": "pro", "perspective": "생활 여건", "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_car_10", "text": "어머니는 주 3회 투석 통원이 필요하고 아버지가 운전한다", "tags": ["counter_evidence"], "critical": true, "critical_rationale": "차를 뺏으면 어머니 의료 접근이 막힘", "harm_stance": "pro", "perspective": "생활 여건", "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_car_11", "text": "지자체 반납 지원은 30만 원 교통카드가 전부다", "tags": ["counter_evidence"], "critical": false, "critical_rationale": "대체 수단 미비의 보조 근거", "harm_stance": "pro", "perspective": "생활 여건", "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}},
+    {"fact_id": "fact_car_12", "text": "형은 즉시 키를 숨기자는 입장이다", "tags": ["stance_support"], "critical": false, "critical_rationale": "가족 내 입장 분포, 사안 실체와는 별개", "harm_stance": "con", "perspective": "화자", "prior": {"score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null}}
+  ]
+}

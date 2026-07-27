@@ -1,0 +1,18 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "yohan_transmission_pilot",
+  "created_at": "2026-07-27T00:00:00+00:00",
+  "issue_id": "issue_carkey",
+  "seed": 43,
+  "note": "관점 4분할(현수 원표) × pro/con — 관점의 팩트를 그 관점 pro·con 쌍에 배분(ESA 배분 관례). pro = 키를 숨긴다 / con = 숨기지 않는다.",
+  "agents": [
+    {"agent_id": "agent_1", "perspective": "화자", "stance": "pro", "assigned_fact_ids": ["fact_car_02", "fact_car_03", "fact_car_04", "fact_car_12"]},
+    {"agent_id": "agent_2", "perspective": "화자", "stance": "con", "assigned_fact_ids": ["fact_car_02", "fact_car_03", "fact_car_04", "fact_car_12"]},
+    {"agent_id": "agent_3", "perspective": "아버지", "stance": "pro", "assigned_fact_ids": ["fact_car_01", "fact_car_08"]},
+    {"agent_id": "agent_4", "perspective": "아버지", "stance": "con", "assigned_fact_ids": ["fact_car_01", "fact_car_08"]},
+    {"agent_id": "agent_5", "perspective": "의료", "stance": "pro", "assigned_fact_ids": ["fact_car_05", "fact_car_06", "fact_car_07"]},
+    {"agent_id": "agent_6", "perspective": "의료", "stance": "con", "assigned_fact_ids": ["fact_car_05", "fact_car_06", "fact_car_07"]},
+    {"agent_id": "agent_7", "perspective": "생활 여건", "stance": "pro", "assigned_fact_ids": ["fact_car_09", "fact_car_10", "fact_car_11"]},
+    {"agent_id": "agent_8", "perspective": "생활 여건", "stance": "con", "assigned_fact_ids": ["fact_car_09", "fact_car_10", "fact_car_11"]}
+  ]
+}
