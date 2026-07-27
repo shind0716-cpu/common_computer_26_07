@@ -56,6 +56,15 @@
   aside .muted{color:var(--muted);font-size:12px;line-height:1.65}
   .callout{background:var(--raise);border:1px solid var(--grid);border-radius:9px;padding:10px 12px;margin-bottom:10px;font-size:12.5px}
   .callout.warn{border-color:var(--warning)}
+  .callout.ok{border-color:var(--good)}
+  .pill{font:inherit;font-size:13px;padding:7px 12px;border-radius:8px;border:1px solid var(--baseline);background:var(--surface);color:var(--ink2);cursor:pointer}
+  /* 쌍 비교 뷰 */
+  table.cmp{border-collapse:separate;border-spacing:4px;margin-top:6px}
+  table.cmp th{font-size:11px;font-weight:600;color:var(--muted);padding:2px 6px;text-align:left}
+  table.cmp td{font-size:12px;padding:3px 6px;font-variant-numeric:tabular-nums}
+  td.pair{border:1px solid var(--grid);border-radius:6px;text-align:center;font-weight:600;font-size:11px;background:var(--surface);min-width:52px}
+  td.pair.dif{border-color:var(--critical);box-shadow:0 0 0 1px var(--critical)}
+  .axis{display:inline-block;font-size:10px;border:1px solid var(--baseline);border-radius:99px;padding:1px 7px;margin-right:5px;color:var(--ink2)}
   /* SVG 노드 */
   .node rect{stroke-width:1.5;rx:10}
   .node text{font-family:system-ui,sans-serif;fill:var(--ink)}
@@ -105,6 +114,8 @@
   <div class="bar">
     <h1>팩트 생존 뷰어 <small>파이프라인 지도</small></h1>
     <select id="runsel"></select>
+    <button class="pill" id="recbtn" title="이 run의 재현성 신원·건강 판정">run 기록</button>
+    <select id="cmpsel" title="쌍 비교 대상 — 선택하면 현재 run(A)과 비교(B)"></select>
     <div class="spacer"></div>
     <button class="toggle" id="themebtn" title="라이트/다크">◐</button>
   </div>
@@ -129,7 +140,13 @@ const S={accepted:{g:"인",label:"인정 · 생존"},mentioned:{g:"언",label:"�
 
 let CUR=null;          // {issue_id, run_id}
 let RUNS={};           // "issue|run" -> run 요약(run_state·parts 포함)
-const cache={issue:{},facts:{},asg:{},vm:{},an:{}};
+const cache={issue:{},facts:{},asg:{},vm:{},an:{},prov:{}};
+// 키("issue|run") 기반 getter — 단일 뷰와 쌍 비교 뷰가 같은 캐시를 공유한다.
+const keyOf=()=>CUR.issue_id+"|"+CUR.run_id;
+async function jk(map,key,path){const [i,r]=key.split("|");return map[key]??=await j(`/api/${path}/${i}/${r}`);}
+const vmOf=key=>jk(cache.vm,key,"viewmodel");
+const anOf=key=>jk(cache.an,key,"analysis");
+const provOf=key=>jk(cache.prov,key,"provenance");
 // 부분 run(채점 전)은 매트릭스가 비어 있으니 기본 노드를 발화(debate)로.
 const defaultNodeFor=key=>(RUNS[key]&&RUNS[key].run_state==="partial")?"debate":"judge";
 
@@ -197,7 +214,7 @@ function drawDiagram(){
 function markSel(id){document.querySelectorAll(".node").forEach(g=>g.classList.toggle("sel",g.getAttribute("data-id")===id));}
 
 async function j(url){const r=await fetch(url);if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.detail||r.status);}return r.json();}
-async function getVM(){const k=CUR.issue_id+"|"+CUR.run_id;return cache.vm[k]??=await j(`/api/viewmodel/${CUR.issue_id}/${CUR.run_id}`);}
+async function getVM(){return vmOf(keyOf());}
 
 async function selectNode(id){
   markSel(id);
@@ -210,7 +227,7 @@ async function selectNode(id){
     else if(id==="debate"){renderDebate(await getVM());}
     else if(id==="judge"){renderJudge(await getVM());}
     else if(id==="ledger"||id==="gate"){renderLedger(await getVM(),id);}
-    else if(id==="analysis"){const k=CUR.issue_id+"|"+CUR.run_id;const d=cache.an[k]??=await j(`/api/analysis/${CUR.issue_id}/${CUR.run_id}`);renderAnalysis(d);}
+    else if(id==="analysis"){renderAnalysis(await anOf(keyOf()));}
   }catch(e){p.innerHTML=`<h2>${byId[id].label}</h2><div class="callout warn">데이터 없음: ${esc(e.message)}</div>`;}
 }
 
@@ -303,19 +320,121 @@ function renderAnalysis(d){
   document.getElementById("panel").innerHTML=html;
 }
 
+// ---------- run 기록 (provenance + 건강 판정) — 베이스라인 자격을 화면에서 판별 ----------
+async function renderProvPanel(){
+  markSel(null);
+  const p=document.getElementById("panel");
+  p.innerHTML=`<div class="muted">불러오는 중…</div>`;
+  try{
+    const d=await provOf(keyOf());
+    const pv=d.provenance,h=d.health,jj=pv.judge||{};
+    const jline=["model","temperature","n_votes","prompt_ver"].filter(k=>jj[k]!=null)
+      .map(k=>`${k} <b>${esc(String(jj[k]))}</b>`).join(" · ")||"—";
+    p.innerHTML=H("run 기록 · 재현성 신원",`${esc(d.issue_id)} / ${esc(d.run_id)}`)+
+      (h.baseline_eligible
+        ?`<div class="callout ok"><b>베이스라인 자격: 통과</b> — 공백 발화 0 · 파싱실패 0 · 채점 완료</div>`
+        :`<div class="callout warn"><b>베이스라인 자격: 미충족</b><br>${h.issues.map(esc).join("<br>")}</div>`)+
+      `<div class="row"><div class="head">실행 신원</div>seed <b>${esc(String(pv.seed))}</b> · 에이전트 ${esc(String(pv.n_agents))} · 라운드 ${pv.n_rounds} · ledger <b>${esc(String(pv.ledger_mode))}</b> · stage_type ${esc(String(pv.stage_type))}</div>`+
+      `<div class="row"><div class="head">judge 사양</div>${jline}`+
+      (pv.judge_health?`<div class="muted" style="margin-top:3px">judge_health: 호출 ${pv.judge_health.n_calls} · 파싱실패 ${pv.judge_health.n_parse_fail}</div>`:"")+`</div>`+
+      `<div class="row"><div class="head">debate 관측</div>발화 ${h.n_utterances}건 (공백 ${h.blank_utterances}) · 재주입 ${h.n_injects}건</div>`+
+      `<div class="row"><div class="head">생성 시각 (judgment)</div>${esc(String(pv.created_at))}</div>`;
+  }catch(e){p.innerHTML=`<div class="callout warn">기록 없음: ${esc(e.message)}</div>`;}
+}
+
+// ---------- 쌍 비교 뷰 — 변주 축 3종(①config ②ledger ③아키텍처·데이터) diff + 교란 경고 ----------
+const G=s=>(S[s]||{g:"?",label:s||"?"});
+async function renderCompare(aKey,bKey){
+  markSel(null);
+  const p=document.getElementById("panel");
+  if(aKey===bKey){p.innerHTML=`<div class="callout warn">같은 run 끼리는 비교할 수 없습니다.</div>`;return;}
+  p.innerHTML=`<div class="muted">두 run 불러오는 중…</div>`;
+  let va,vb,pa,pb,aa=null,ab=null;
+  try{
+    [va,vb,pa,pb]=await Promise.all([vmOf(aKey),vmOf(bKey),provOf(aKey),provOf(bKey)]);
+    [aa,ab]=await Promise.all([anOf(aKey).catch(()=>null),anOf(bKey).catch(()=>null)]);
+  }catch(e){p.innerHTML=`<div class="callout warn">비교 실패: ${esc(e.message)}</div>`;return;}
+  const A=va.meta,B=vb.meta;
+  const partA=(va.parts||{}).judgment==="absent",partB=(vb.parts||{}).judgment==="absent";
+  const diffs=[];
+  const push=(axis,name,x,y)=>{if(String(x)!==String(y))diffs.push({axis,name,x,y});};
+  push("③","이슈(데이터)",A.issue_id,B.issue_id);
+  push("②","ledger_mode",A.ledger_mode,B.ledger_mode);
+  push("①","seed",pa.provenance.seed,pb.provenance.seed);
+  // 부분 run(채점 전)의 라운드 수·judge 는 진행 중 값/부재라 config 변주로 단정하지 않는다.
+  if(!partA&&!partB){
+    push("①","라운드 수",pa.provenance.n_rounds,pb.provenance.n_rounds);
+    push("①","judge 모델",(A.judge||{}).model,(B.judge||{}).model);
+  }
+  push("①","에이전트 수",pa.provenance.n_agents,pb.provenance.n_agents);
+  const axes=new Set(diffs.map(d=>d.axis));
+  const axname={"①":"① config","②":"② ledger","③":"③ 아키텍처·데이터"};
+  let html=H("쌍 비교",`A: ${esc(aKey.replace("|"," / "))} · B: ${esc(bKey.replace("|"," / "))}`);
+  html+=diffs.length
+    ?`<div class="callout"><b>무엇이 달랐나</b> (관측 가능한 축)<br>`+
+      diffs.map(d=>`<span class="axis">${axname[d.axis]}</span>${esc(d.name)}: <b>${esc(String(d.x))}</b> → <b>${esc(String(d.y))}</b>`).join("<br>")+
+      `<div class="muted" style="margin-top:4px">아키텍처 변주(③)는 계약에 라벨 필드가 없어 이슈·run_id 로만 추정합니다 (v0.3 안건 후보).</div></div>`
+    :`<div class="callout">관측 가능한 축에서 차이 없음 — 동일 조건 반복(재현성·API 비결정성 검사)으로 읽으세요.</div>`;
+  if(partA||partB)html+=`<div class="callout muted">${partA?"A":"B"}는 부분 run(채점 전) — 라운드 수·judge 는 아직 진행 중 값이라 변주 판정에서 제외했습니다.</div>`;
+  if(axes.size>=2)html+=`<div class="callout warn"><b>⚠ 교란 경고</b> — 변주 축이 ${axes.size}개 동시에 다릅니다. 지표 차이를 단일 원인에 귀속할 수 없습니다 (통제 실험 원칙: 한 번에 한 축).</div>`;
+  // 지표 병렬 — 실측 FAR + 조건부 hazard 나란히 (7/22 합의된 쌍 비교표 형식)
+  const far=r=>((r||{}).report||{}).far_by_stage||[];
+  const trs=r=>((r||{}).report||{}).transitions||[];
+  if(aa||ab){
+    const stg=[...new Set([...far(aa).map(s=>s.stage),...far(ab).map(s=>s.stage)])].sort((x,y)=>x-y);
+    const tks=[...new Set([...trs(aa),...trs(ab)].map(t=>t.from_stage+"→"+t.to_stage))];
+    html+=`<div class="callout"><div style="font-size:11px;color:var(--ink2);font-weight:600;margin-bottom:4px">지표 병렬 — 실측 FAR / 조건부 hazard</div><table class="cmp"><tr><th>지표</th><th>A</th><th>B</th></tr>`+
+      stg.map(n=>{const a=far(aa).find(s=>s.stage===n),b=far(ab).find(s=>s.stage===n);
+        return `<tr><td>R${n} FAR</td><td>${a?a.far:"—"}</td><td>${b?b.far:"—"}</td></tr>`;}).join("")+
+      tks.map(k=>{const a=trs(aa).find(t=>t.from_stage+"→"+t.to_stage===k),b=trs(ab).find(t=>t.from_stage+"→"+t.to_stage===k);
+        return `<tr><td>hazard ${k}</td><td>${a?a.cond_attrition:"—"}</td><td>${b?b.cond_attrition:"—"}</td></tr>`;}).join("")+
+      `<tr><td>누적 도입후 소실</td><td>${(((aa||{}).report||{}).post_intro_final_loss||{}).rate??"—"}</td><td>${(((ab||{}).report||{}).post_intro_final_loss||{}).rate??"—"}</td></tr></table>`+
+      ((!aa||!ab)?`<div class="muted" style="margin-top:4px">한쪽 run 은 judgment 가 없어(부분 run) 지표를 계산할 수 없습니다.</div>`:"")+`</div>`;
+  }
+  // 매트릭스 diff — 같은 이슈 · 양쪽 채점 완료일 때만 (팩트 단위 비교의 성립 조건)
+  const hasM=v=>Object.keys(v.matrix||{}).length>0;
+  if(A.issue_id===B.issue_id&&hasM(va)&&hasM(vb)){
+    const stages=va.stages.length>=vb.stages.length?va.stages:vb.stages;
+    const la=String(va.stages[va.stages.length-1]),lb=String(vb.stages[vb.stages.length-1]);
+    let ndiff=0;
+    let tbl=`<table class="cmp"><tr><th style="text-align:left">팩트</th>`+stages.map(n=>`<th style="text-align:center">R${n} A/B</th>`).join("")+`</tr>`;
+    va.facts.forEach(f=>{
+      const fa=((va.matrix[f.fact_id]||{})[la]||{}).status,fb=((vb.matrix[f.fact_id]||{})[lb]||{}).status;
+      if(fa!==fb)ndiff++;
+      tbl+=`<tr><td class="fact"><span class="fid">${esc(f.fact_id.replace(/^fact_/,""))}</span>${f.critical?'<span class="star">★</span> ':""}${esc(f.text)}</td>`+
+        stages.map(n=>{const k=String(n);
+          const ca=(((va.matrix[f.fact_id]||{})[k])||{status:"absent"}).status,cb=(((vb.matrix[f.fact_id]||{})[k])||{status:"absent"}).status;
+          return `<td class="pair${ca!==cb?" dif":""}" title="A ${esc(G(ca).label)} / B ${esc(G(cb).label)}">${G(ca).g}/${G(cb).g}</td>`;}).join("")+`</tr>`;
+    });
+    tbl+=`</table>`;
+    html+=`<div class="callout"><div style="font-size:11px;color:var(--ink2);font-weight:600;margin-bottom:4px">생존 매트릭스 diff — 최종 상태 갈림 ${ndiff}팩트 (빨간 테두리 = A≠B)</div>`+tbl+`</div>`;
+  }else if(A.issue_id!==B.issue_id){
+    html+=`<div class="callout muted">이슈가 달라 팩트 단위 매트릭스 diff 는 성립하지 않습니다 (지표 병렬만 유효).</div>`;
+  }else{
+    html+=`<div class="callout muted">매트릭스 diff 는 두 run 모두 채점 완료일 때 표시됩니다.</div>`;
+  }
+  p.innerHTML=html;
+}
+
 // 부트스트랩
 document.getElementById("themebtn").onclick=()=>{const r=document.documentElement;const c=r.getAttribute("data-theme");
   r.setAttribute("data-theme", c==="dark"?"light":(c==="light"?"dark":(matchMedia("(prefers-color-scheme:dark)").matches?"light":"dark")));};
+document.getElementById("recbtn").onclick=()=>renderProvPanel();
 async function boot(){
   drawDiagram();
   const {runs}=await j("/api/runs");
   const sel=document.getElementById("runsel");
   if(!runs.length){document.getElementById("panel").innerHTML=`<div class="callout warn">가용 run 없음</div>`;return;}
+  const cmp=document.getElementById("cmpsel");
+  cmp.appendChild(new Option("비교 안 함",""));
   runs.forEach(r=>{const key=r.issue_id+"|"+r.run_id;RUNS[key]=r;
     const o=document.createElement("option");o.value=key;
     const badge=r.run_state==="partial"?"⏳부분":r.run_state==="complete"?"✓완전":"·";
-    o.textContent=`${r.title} · ${r.run_id} · ${badge} · judge ${r.judge||"?"}`;sel.appendChild(o);});
-  sel.onchange=()=>{const [i,rn]=sel.value.split("|");CUR={issue_id:i,run_id:rn};selectNode(defaultNodeFor(sel.value));};
+    o.textContent=`${r.title} · ${r.run_id} · ${badge} · judge ${r.judge||"?"}`;sel.appendChild(o);
+    cmp.appendChild(new Option(`vs ${r.title} · ${r.run_id}`,key));});
+  sel.onchange=()=>{const [i,rn]=sel.value.split("|");CUR={issue_id:i,run_id:rn};
+    cmp.value="";selectNode(defaultNodeFor(sel.value));};
+  cmp.onchange=()=>{cmp.value?renderCompare(sel.value,cmp.value):selectNode(defaultNodeFor(sel.value));};
   const firstKey=sel.options[0].value,[fi,frn]=firstKey.split("|");
   CUR={issue_id:fi,run_id:frn};
   selectNode(defaultNodeFor(firstKey));  // 부분 run 이면 발화, 완전이면 매트릭스

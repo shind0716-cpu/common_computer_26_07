@@ -6,8 +6,9 @@
 같은 뷰모델을 먹고 화면 자산을 공유한다.
 
 FastAPI 어댑터의 실익(정적 생성 대비): run 목록/브라우징 + 라이브 파일시스템 직독
-(새 run 이 빌드 없이 등장). run 목록은 data/judgments 를 스캔해 build_viewmodel 이
-필요로 하는 4파일(issue·facts·judgment·debate)이 모두 있는 것만 노출.
+(새 run 이 빌드 없이 등장). run 발견 기준 = data/debates 의 debate.jsonl 스캔
+(v0.3 §G 제안 선반영) — 부분 run(채점 전)도 run_state/parts 와 함께 노출하며,
+"4파일 완비" 특례는 없다.
 
 실행(리포 루트에서):
   pip install -r tools/viewer/requirements.txt
@@ -247,6 +248,83 @@ def api_analysis(issue_id: str, run_id: str) -> dict:
         }
     except Exception as e:  # 계산 실패 = 스키마 드리프트 신호
         raise HTTPException(status_code=500, detail=f"분석 계산 실패(스키마 드리프트?): {e}")
+
+
+@app.get("/api/provenance/{issue_id}/{run_id}")
+def api_provenance(issue_id: str, run_id: str) -> dict:
+    """run 기록 노드 — 재현성 신원 + 건강 판정 (베이스라인 자격 판별, 순수 파일 관찰).
+
+    신원: seed·에이전트 수(assignment), judge 사양·judge_health·created_at(judgment),
+    ledger_mode·라운드 수(debate). 건강: 공백 발화(llm.py 무음 폴백 흔적)·judge
+    파싱실패·judgment 유무 — 전부 깨끗해야 baseline_eligible. "죽지 않는 파이프라인은
+    조용히 썩는다" — 썩은 run 이 베이스라인 증빙으로 인용되는 것을 화면에서 막는다.
+    """
+    dpath = paths.debate(issue_id, run_id)
+    if not dpath.exists():
+        raise HTTPException(status_code=404, detail=f"산출물 없음: debate 없음 ({issue_id}/{run_id})")
+    n_utt = n_blank = n_inject = 0
+    ledger_mode = None
+    rounds: set = set()
+    for line in dpath.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        try:
+            ev = json.loads(line)
+        except Exception:
+            continue
+        if ev.get("event") == "utterance":
+            n_utt += 1
+            rounds.add(ev.get("round"))
+            if ledger_mode is None:
+                ledger_mode = ev.get("ledger_mode")
+            if not str(ev.get("response_text") or "").strip():
+                n_blank += 1
+        elif ev.get("event") == "ledger_inject":
+            n_inject += 1
+
+    seed = n_agents = None
+    try:
+        asg = json.loads(paths.assignment(issue_id).read_text(encoding="utf-8"))
+        seed = asg.get("seed")
+        n_agents = len(asg.get("agents", []))
+    except FileNotFoundError:
+        pass
+
+    judge = judge_health = created_at = stage_type = None
+    judgment_exists = paths.judgment(issue_id, run_id).exists()
+    if judgment_exists:
+        try:
+            jd = json.loads(paths.judgment(issue_id, run_id).read_text(encoding="utf-8"))
+            judge = jd.get("judge")
+            judge_health = (jd.get("summary") or {}).get("judge_health")
+            created_at = jd.get("created_at")
+            stage_type = jd.get("stage_type")
+        except Exception:
+            pass
+
+    issues = []
+    if n_blank:
+        issues.append(f"공백 발화 {n_blank}건 — llm 무음 폴백(5회 실패 후 공백 반환) 의심")
+    if not judgment_exists:
+        issues.append("judgment 없음 — 채점 전 (부분 run)")
+    if judge_health and judge_health.get("n_parse_fail"):
+        issues.append(f"judge 파싱실패 {judge_health['n_parse_fail']}건 — 무음 unmentioned 강등 포함 가능")
+    if judgment_exists and judge_health is None:
+        issues.append("judge_health 미계측 — 계기판(PR #14) 이전 산출물")
+    return {
+        "issue_id": issue_id,
+        "run_id": run_id,
+        "provenance": {
+            "seed": seed, "n_agents": n_agents, "n_rounds": len(rounds),
+            "ledger_mode": ledger_mode, "judge": judge, "judge_health": judge_health,
+            "stage_type": stage_type, "created_at": created_at,
+        },
+        "health": {
+            "n_utterances": n_utt, "blank_utterances": n_blank, "n_injects": n_inject,
+            "baseline_eligible": not issues,
+            "issues": issues,
+        },
+    }
 
 
 @app.get("/", response_class=HTMLResponse)
