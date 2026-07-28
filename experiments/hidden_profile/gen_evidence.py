@@ -135,6 +135,12 @@ HTML = """<!doctype html><html lang="ko"><meta charset="utf-8">
 <div class="sub">2026-07-28 · 민옥·SilenceBreaker · 모델 gpt-5.4-mini · temperature 1.0 ·
 <b>탐색적 지위</b>(사전고정 문서 없음) · 원자료 <code>sanity_results_*.json</code> <code>curve_results.json</code></div>
 
+<div class="note" style="border-left-color:#E24B4A"><b>⚠ 먼저 읽을 것 — 본 검사에 토론은 없다.</b>
+전부 <b>단독 에이전트 1회 호출</b>이다. 한 명에게 팩트를 몇 개 주고 한 번 물어본 것이며, 에이전트끼리
+말을 주고받은 적이 없고 라운드도 없다. 조작한 변수는 <b>정보량 하나</b>뿐이다. 관점 4종도 각각 따로
+물어본 것이지 서로 대화하지 않았다. 즉 이것은 실험 결과가 아니라 <b>눈금</b>이다 — "혼자서 이만큼 알면
+이렇게 답한다". <b>토론 조건은 아직 실행하지 않았다.</b></div>
+
 <div class="note"><b>한 줄:</b> 정보를 전부 가진 에이전트는 정답(유지완)을, 공유 정보만 가진 에이전트는
 오답(한도영)을 <b>10/10으로</b> 고른다 — 단 기권을 금지했을 때만. 그러나 실제 배분에서는 4명 중 3명이
 혼자서 이미 정답을 알아(기준선 75%%), 현 배분으로는 정보 취합의 몫을 측정할 수 없다.</div>
