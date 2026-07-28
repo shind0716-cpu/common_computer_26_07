@@ -1,0 +1,2150 @@
+{
+  "protocol": "docs/P3_TRANSMISSION_DESIGN.md v1.0 (prereg commit a70470d)",
+  "audit": {
+    "judgment_sha256": "8c84057816331eea353db284d101928d9dbf82b505049c65fcca125f72f4bd1b",
+    "issue_id": "issue_carkey",
+    "run_id": "tp1",
+    "question_exposed_ids": []
+  },
+  "meta": {
+    "protocol": "docs/P3_TRANSMISSION_DESIGN.md v1.0 (prereg commit a70470d)",
+    "run_id": "tp1",
+    "rounds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_agents": 8,
+    "n_facts": 12,
+    "edges": {
+      "structure": "full",
+      "assumed_full": false
+    },
+    "question_excluded_facts": []
+  },
+  "records": [
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_01",
+      "agent_id": "agent_1",
+      "holders": [
+        "agent_3",
+        "agent_4"
+      ],
+      "prior_band": "low",
+      "critical": false,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_3",
+        "agent_4"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_01",
+      "agent_id": "agent_2",
+      "holders": [
+        "agent_3",
+        "agent_4"
+      ],
+      "prior_band": "low",
+      "critical": false,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_3",
+        "agent_4"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_01",
+      "agent_id": "agent_5",
+      "holders": [
+        "agent_3",
+        "agent_4"
+      ],
+      "prior_band": "low",
+      "critical": false,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_3",
+        "agent_4"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_01",
+      "agent_id": "agent_6",
+      "holders": [
+        "agent_3",
+        "agent_4"
+      ],
+      "prior_band": "low",
+      "critical": false,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_3",
+        "agent_4"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_01",
+      "agent_id": "agent_7",
+      "holders": [
+        "agent_3",
+        "agent_4"
+      ],
+      "prior_band": "low",
+      "critical": false,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_3",
+        "agent_4"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_01",
+      "agent_id": "agent_8",
+      "holders": [
+        "agent_3",
+        "agent_4"
+      ],
+      "prior_band": "low",
+      "critical": false,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_3",
+        "agent_4"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_02",
+      "agent_id": "agent_3",
+      "holders": [
+        "agent_1",
+        "agent_2"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": 1,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_1",
+        "agent_2"
+      ],
+      "u": 0,
+      "strict": false,
+      "u0_immediate": true,
+      "in_window_at_tau": true,
+      "censor_age": null,
+      "kind": "acquisition"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_02",
+      "agent_id": "agent_4",
+      "holders": [
+        "agent_1",
+        "agent_2"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_1",
+        "agent_2"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_02",
+      "agent_id": "agent_5",
+      "holders": [
+        "agent_1",
+        "agent_2"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": 1,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_1",
+        "agent_2"
+      ],
+      "u": 0,
+      "strict": false,
+      "u0_immediate": true,
+      "in_window_at_tau": true,
+      "censor_age": null,
+      "kind": "acquisition"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_02",
+      "agent_id": "agent_6",
+      "holders": [
+        "agent_1",
+        "agent_2"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_1",
+        "agent_2"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_02",
+      "agent_id": "agent_7",
+      "holders": [
+        "agent_1",
+        "agent_2"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": 1,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_1",
+        "agent_2"
+      ],
+      "u": 0,
+      "strict": false,
+      "u0_immediate": true,
+      "in_window_at_tau": true,
+      "censor_age": null,
+      "kind": "acquisition"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_02",
+      "agent_id": "agent_8",
+      "holders": [
+        "agent_1",
+        "agent_2"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_1",
+        "agent_2"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_03",
+      "agent_id": "agent_3",
+      "holders": [
+        "agent_1",
+        "agent_2"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": 4,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_1",
+        "agent_2"
+      ],
+      "u": 3,
+      "strict": true,
+      "u0_immediate": false,
+      "in_window_at_tau": false,
+      "censor_age": null,
+      "kind": "acquisition"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_03",
+      "agent_id": "agent_4",
+      "holders": [
+        "agent_1",
+        "agent_2"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_1",
+        "agent_2"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_03",
+      "agent_id": "agent_5",
+      "holders": [
+        "agent_1",
+        "agent_2"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": 4,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_1",
+        "agent_2"
+      ],
+      "u": 3,
+      "strict": true,
+      "u0_immediate": false,
+      "in_window_at_tau": false,
+      "censor_age": null,
+      "kind": "acquisition"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_03",
+      "agent_id": "agent_6",
+      "holders": [
+        "agent_1",
+        "agent_2"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_1",
+        "agent_2"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_03",
+      "agent_id": "agent_7",
+      "holders": [
+        "agent_1",
+        "agent_2"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": 4,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_1",
+        "agent_2"
+      ],
+      "u": 3,
+      "strict": true,
+      "u0_immediate": false,
+      "in_window_at_tau": false,
+      "censor_age": null,
+      "kind": "acquisition"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_03",
+      "agent_id": "agent_8",
+      "holders": [
+        "agent_1",
+        "agent_2"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_1",
+        "agent_2"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_04",
+      "agent_id": "agent_3",
+      "holders": [
+        "agent_1",
+        "agent_2"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": null,
+      "tau_round": null,
+      "channel": null,
+      "exposure_sources": [],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": null,
+      "kind": "never_exposed"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_04",
+      "agent_id": "agent_4",
+      "holders": [
+        "agent_1",
+        "agent_2"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": null,
+      "tau_round": null,
+      "channel": null,
+      "exposure_sources": [],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": null,
+      "kind": "never_exposed"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_04",
+      "agent_id": "agent_5",
+      "holders": [
+        "agent_1",
+        "agent_2"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": null,
+      "tau_round": null,
+      "channel": null,
+      "exposure_sources": [],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": null,
+      "kind": "never_exposed"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_04",
+      "agent_id": "agent_6",
+      "holders": [
+        "agent_1",
+        "agent_2"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": null,
+      "tau_round": null,
+      "channel": null,
+      "exposure_sources": [],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": null,
+      "kind": "never_exposed"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_04",
+      "agent_id": "agent_7",
+      "holders": [
+        "agent_1",
+        "agent_2"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": null,
+      "tau_round": null,
+      "channel": null,
+      "exposure_sources": [],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": null,
+      "kind": "never_exposed"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_04",
+      "agent_id": "agent_8",
+      "holders": [
+        "agent_1",
+        "agent_2"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": null,
+      "tau_round": null,
+      "channel": null,
+      "exposure_sources": [],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": null,
+      "kind": "never_exposed"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_05",
+      "agent_id": "agent_1",
+      "holders": [
+        "agent_5",
+        "agent_6"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_5",
+        "agent_6"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_05",
+      "agent_id": "agent_2",
+      "holders": [
+        "agent_5",
+        "agent_6"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_5",
+        "agent_6"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_05",
+      "agent_id": "agent_3",
+      "holders": [
+        "agent_5",
+        "agent_6"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_5",
+        "agent_6"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_05",
+      "agent_id": "agent_4",
+      "holders": [
+        "agent_5",
+        "agent_6"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_5",
+        "agent_6"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_05",
+      "agent_id": "agent_7",
+      "holders": [
+        "agent_5",
+        "agent_6"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_5",
+        "agent_6"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_05",
+      "agent_id": "agent_8",
+      "holders": [
+        "agent_5",
+        "agent_6"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_5",
+        "agent_6"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_06",
+      "agent_id": "agent_1",
+      "holders": [
+        "agent_5",
+        "agent_6"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_5",
+        "agent_6"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_06",
+      "agent_id": "agent_2",
+      "holders": [
+        "agent_5",
+        "agent_6"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_5",
+        "agent_6"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_06",
+      "agent_id": "agent_3",
+      "holders": [
+        "agent_5",
+        "agent_6"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_5",
+        "agent_6"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_06",
+      "agent_id": "agent_4",
+      "holders": [
+        "agent_5",
+        "agent_6"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_5",
+        "agent_6"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_06",
+      "agent_id": "agent_7",
+      "holders": [
+        "agent_5",
+        "agent_6"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_5",
+        "agent_6"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_06",
+      "agent_id": "agent_8",
+      "holders": [
+        "agent_5",
+        "agent_6"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_5",
+        "agent_6"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_07",
+      "agent_id": "agent_1",
+      "holders": [
+        "agent_5",
+        "agent_6"
+      ],
+      "prior_band": "low",
+      "critical": false,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_5",
+        "agent_6"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_07",
+      "agent_id": "agent_2",
+      "holders": [
+        "agent_5",
+        "agent_6"
+      ],
+      "prior_band": "low",
+      "critical": false,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_5",
+        "agent_6"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_07",
+      "agent_id": "agent_3",
+      "holders": [
+        "agent_5",
+        "agent_6"
+      ],
+      "prior_band": "low",
+      "critical": false,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_5",
+        "agent_6"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_07",
+      "agent_id": "agent_4",
+      "holders": [
+        "agent_5",
+        "agent_6"
+      ],
+      "prior_band": "low",
+      "critical": false,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_5",
+        "agent_6"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_07",
+      "agent_id": "agent_7",
+      "holders": [
+        "agent_5",
+        "agent_6"
+      ],
+      "prior_band": "low",
+      "critical": false,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_5",
+        "agent_6"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_07",
+      "agent_id": "agent_8",
+      "holders": [
+        "agent_5",
+        "agent_6"
+      ],
+      "prior_band": "low",
+      "critical": false,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_5",
+        "agent_6"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_08",
+      "agent_id": "agent_1",
+      "holders": [
+        "agent_3",
+        "agent_4"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_3",
+        "agent_4"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_08",
+      "agent_id": "agent_2",
+      "holders": [
+        "agent_3",
+        "agent_4"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_3",
+        "agent_4"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_08",
+      "agent_id": "agent_5",
+      "holders": [
+        "agent_3",
+        "agent_4"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_3",
+        "agent_4"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_08",
+      "agent_id": "agent_6",
+      "holders": [
+        "agent_3",
+        "agent_4"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_3",
+        "agent_4"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_08",
+      "agent_id": "agent_7",
+      "holders": [
+        "agent_3",
+        "agent_4"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_3",
+        "agent_4"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_08",
+      "agent_id": "agent_8",
+      "holders": [
+        "agent_3",
+        "agent_4"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_3",
+        "agent_4"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_09",
+      "agent_id": "agent_1",
+      "holders": [
+        "agent_7",
+        "agent_8"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_8"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_09",
+      "agent_id": "agent_2",
+      "holders": [
+        "agent_7",
+        "agent_8"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_8"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_09",
+      "agent_id": "agent_3",
+      "holders": [
+        "agent_7",
+        "agent_8"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_8"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_09",
+      "agent_id": "agent_4",
+      "holders": [
+        "agent_7",
+        "agent_8"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_8"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_09",
+      "agent_id": "agent_5",
+      "holders": [
+        "agent_7",
+        "agent_8"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_8"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_09",
+      "agent_id": "agent_6",
+      "holders": [
+        "agent_7",
+        "agent_8"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_8"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_10",
+      "agent_id": "agent_1",
+      "holders": [
+        "agent_7",
+        "agent_8"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": 4,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_7",
+        "agent_8"
+      ],
+      "u": 3,
+      "strict": true,
+      "u0_immediate": false,
+      "in_window_at_tau": true,
+      "censor_age": null,
+      "kind": "acquisition"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_10",
+      "agent_id": "agent_2",
+      "holders": [
+        "agent_7",
+        "agent_8"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": 1,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_7",
+        "agent_8"
+      ],
+      "u": 0,
+      "strict": false,
+      "u0_immediate": true,
+      "in_window_at_tau": true,
+      "censor_age": null,
+      "kind": "acquisition"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_10",
+      "agent_id": "agent_3",
+      "holders": [
+        "agent_7",
+        "agent_8"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": 4,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_7",
+        "agent_8"
+      ],
+      "u": 3,
+      "strict": true,
+      "u0_immediate": false,
+      "in_window_at_tau": true,
+      "censor_age": null,
+      "kind": "acquisition"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_10",
+      "agent_id": "agent_4",
+      "holders": [
+        "agent_7",
+        "agent_8"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": 1,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_7",
+        "agent_8"
+      ],
+      "u": 0,
+      "strict": false,
+      "u0_immediate": true,
+      "in_window_at_tau": true,
+      "censor_age": null,
+      "kind": "acquisition"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_10",
+      "agent_id": "agent_5",
+      "holders": [
+        "agent_7",
+        "agent_8"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": 4,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_7",
+        "agent_8"
+      ],
+      "u": 3,
+      "strict": true,
+      "u0_immediate": false,
+      "in_window_at_tau": true,
+      "censor_age": null,
+      "kind": "acquisition"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_10",
+      "agent_id": "agent_6",
+      "holders": [
+        "agent_7",
+        "agent_8"
+      ],
+      "prior_band": "low",
+      "critical": true,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": 1,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_7",
+        "agent_8"
+      ],
+      "u": 0,
+      "strict": false,
+      "u0_immediate": true,
+      "in_window_at_tau": true,
+      "censor_age": null,
+      "kind": "acquisition"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_11",
+      "agent_id": "agent_1",
+      "holders": [
+        "agent_7",
+        "agent_8"
+      ],
+      "prior_band": "low",
+      "critical": false,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_7"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_11",
+      "agent_id": "agent_2",
+      "holders": [
+        "agent_7",
+        "agent_8"
+      ],
+      "prior_band": "low",
+      "critical": false,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_7"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_11",
+      "agent_id": "agent_3",
+      "holders": [
+        "agent_7",
+        "agent_8"
+      ],
+      "prior_band": "low",
+      "critical": false,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_7"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_11",
+      "agent_id": "agent_4",
+      "holders": [
+        "agent_7",
+        "agent_8"
+      ],
+      "prior_band": "low",
+      "critical": false,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_7"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_11",
+      "agent_id": "agent_5",
+      "holders": [
+        "agent_7",
+        "agent_8"
+      ],
+      "prior_band": "low",
+      "critical": false,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_7"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_11",
+      "agent_id": "agent_6",
+      "holders": [
+        "agent_7",
+        "agent_8"
+      ],
+      "prior_band": "low",
+      "critical": false,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_7"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_12",
+      "agent_id": "agent_3",
+      "holders": [
+        "agent_1",
+        "agent_2"
+      ],
+      "prior_band": "low",
+      "critical": false,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": 0,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_1",
+        "agent_5",
+        "agent_7"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": null,
+      "kind": "prior_suspect"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_12",
+      "agent_id": "agent_4",
+      "holders": [
+        "agent_1",
+        "agent_2"
+      ],
+      "prior_band": "low",
+      "critical": false,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_1",
+        "agent_3",
+        "agent_5",
+        "agent_7"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_12",
+      "agent_id": "agent_5",
+      "holders": [
+        "agent_1",
+        "agent_2"
+      ],
+      "prior_band": "low",
+      "critical": false,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": 0,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_1",
+        "agent_3",
+        "agent_7"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": null,
+      "kind": "prior_suspect"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_12",
+      "agent_id": "agent_6",
+      "holders": [
+        "agent_1",
+        "agent_2"
+      ],
+      "prior_band": "low",
+      "critical": false,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_1",
+        "agent_3",
+        "agent_5",
+        "agent_7"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_12",
+      "agent_id": "agent_7",
+      "holders": [
+        "agent_1",
+        "agent_2"
+      ],
+      "prior_band": "low",
+      "critical": false,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": 0,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_1",
+        "agent_3",
+        "agent_5"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": null,
+      "kind": "prior_suspect"
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_car_12",
+      "agent_id": "agent_8",
+      "holders": [
+        "agent_1",
+        "agent_2"
+      ],
+      "prior_band": "low",
+      "critical": false,
+      "excluded": false,
+      "e_round": 1,
+      "tau_round": null,
+      "channel": "organic",
+      "exposure_sources": [
+        "agent_1",
+        "agent_3",
+        "agent_5",
+        "agent_7"
+      ],
+      "u": null,
+      "strict": null,
+      "u0_immediate": false,
+      "in_window_at_tau": null,
+      "censor_age": 3,
+      "kind": "censored"
+    }
+  ],
+  "fact_metrics": [
+    {
+      "fact_id": "fact_car_01",
+      "excluded": false,
+      "prior_band": "low",
+      "critical": false,
+      "n_nonholders": 6,
+      "n_exposed": 6,
+      "n_never_exposed": 0,
+      "n_prior_suspect": 0,
+      "B": 0,
+      "B_upper": 0,
+      "TSR": 0.0
+    },
+    {
+      "fact_id": "fact_car_02",
+      "excluded": false,
+      "prior_band": "low",
+      "critical": true,
+      "n_nonholders": 6,
+      "n_exposed": 6,
+      "n_never_exposed": 0,
+      "n_prior_suspect": 0,
+      "B": 0,
+      "B_upper": 3,
+      "TSR": 0.0
+    },
+    {
+      "fact_id": "fact_car_03",
+      "excluded": false,
+      "prior_band": "low",
+      "critical": true,
+      "n_nonholders": 6,
+      "n_exposed": 6,
+      "n_never_exposed": 0,
+      "n_prior_suspect": 0,
+      "B": 3,
+      "B_upper": 3,
+      "TSR": 0.5
+    },
+    {
+      "fact_id": "fact_car_04",
+      "excluded": false,
+      "prior_band": "low",
+      "critical": true,
+      "n_nonholders": 6,
+      "n_exposed": 0,
+      "n_never_exposed": 6,
+      "n_prior_suspect": 0,
+      "B": 0,
+      "B_upper": 0,
+      "TSR": null
+    },
+    {
+      "fact_id": "fact_car_05",
+      "excluded": false,
+      "prior_band": "low",
+      "critical": true,
+      "n_nonholders": 6,
+      "n_exposed": 6,
+      "n_never_exposed": 0,
+      "n_prior_suspect": 0,
+      "B": 0,
+      "B_upper": 0,
+      "TSR": 0.0
+    },
+    {
+      "fact_id": "fact_car_06",
+      "excluded": false,
+      "prior_band": "low",
+      "critical": true,
+      "n_nonholders": 6,
+      "n_exposed": 6,
+      "n_never_exposed": 0,
+      "n_prior_suspect": 0,
+      "B": 0,
+      "B_upper": 0,
+      "TSR": 0.0
+    },
+    {
+      "fact_id": "fact_car_07",
+      "excluded": false,
+      "prior_band": "low",
+      "critical": false,
+      "n_nonholders": 6,
+      "n_exposed": 6,
+      "n_never_exposed": 0,
+      "n_prior_suspect": 0,
+      "B": 0,
+      "B_upper": 0,
+      "TSR": 0.0
+    },
+    {
+      "fact_id": "fact_car_08",
+      "excluded": false,
+      "prior_band": "low",
+      "critical": true,
+      "n_nonholders": 6,
+      "n_exposed": 6,
+      "n_never_exposed": 0,
+      "n_prior_suspect": 0,
+      "B": 0,
+      "B_upper": 0,
+      "TSR": 0.0
+    },
+    {
+      "fact_id": "fact_car_09",
+      "excluded": false,
+      "prior_band": "low",
+      "critical": true,
+      "n_nonholders": 6,
+      "n_exposed": 6,
+      "n_never_exposed": 0,
+      "n_prior_suspect": 0,
+      "B": 0,
+      "B_upper": 0,
+      "TSR": 0.0
+    },
+    {
+      "fact_id": "fact_car_10",
+      "excluded": false,
+      "prior_band": "low",
+      "critical": true,
+      "n_nonholders": 6,
+      "n_exposed": 6,
+      "n_never_exposed": 0,
+      "n_prior_suspect": 0,
+      "B": 3,
+      "B_upper": 6,
+      "TSR": 0.5
+    },
+    {
+      "fact_id": "fact_car_11",
+      "excluded": false,
+      "prior_band": "low",
+      "critical": false,
+      "n_nonholders": 6,
+      "n_exposed": 6,
+      "n_never_exposed": 0,
+      "n_prior_suspect": 0,
+      "B": 0,
+      "B_upper": 0,
+      "TSR": 0.0
+    },
+    {
+      "fact_id": "fact_car_12",
+      "excluded": false,
+      "prior_band": "low",
+      "critical": false,
+      "n_nonholders": 6,
+      "n_exposed": 3,
+      "n_never_exposed": 0,
+      "n_prior_suspect": 3,
+      "B": 0,
+      "B_upper": 0,
+      "TSR": 0.0
+    }
+  ],
+  "system": {
+    "scope": {
+      "critical_only": false,
+      "band": null
+    },
+    "n_pairs_tracked": 72,
+    "n_pairs_excluded_question": 0,
+    "kinds": {
+      "acquisition": 12,
+      "censored": 51,
+      "prior_suspect": 3,
+      "never_exposed": 6
+    },
+    "n_exposed_pairs": 63,
+    "n_acq_strict": 6,
+    "n_acq_u0": 6,
+    "tsr_system": 0.0952,
+    "tsr_system_upper": 0.1905,
+    "by_channel": {
+      "organic": 12,
+      "ledger": 0,
+      "mixed": 0
+    }
+  },
+  "system_low_prior": {
+    "scope": {
+      "critical_only": false,
+      "band": "low"
+    },
+    "n_pairs_tracked": 72,
+    "n_pairs_excluded_question": 0,
+    "kinds": {
+      "acquisition": 12,
+      "censored": 51,
+      "prior_suspect": 3,
+      "never_exposed": 6
+    },
+    "n_exposed_pairs": 63,
+    "n_acq_strict": 6,
+    "n_acq_u0": 6,
+    "tsr_system": 0.0952,
+    "tsr_system_upper": 0.1905,
+    "by_channel": {
+      "organic": 12,
+      "ledger": 0,
+      "mixed": 0
+    }
+  },
+  "life_strict": {
+    "include_u0": false,
+    "scope": {
+      "critical_only": false,
+      "band": null
+    },
+    "n_pairs": 63,
+    "n_u0_immediate_censored": 6,
+    "life_table": [
+      {
+        "age": 0,
+        "at_risk": 63,
+        "acquisitions": 0,
+        "censored": 6,
+        "h_acq": 0.0
+      },
+      {
+        "age": 1,
+        "at_risk": 57,
+        "acquisitions": 0,
+        "censored": 0,
+        "h_acq": 0.0
+      },
+      {
+        "age": 2,
+        "at_risk": 57,
+        "acquisitions": 0,
+        "censored": 0,
+        "h_acq": 0.0
+      },
+      {
+        "age": 3,
+        "at_risk": 57,
+        "acquisitions": 6,
+        "censored": 51,
+        "h_acq": 0.1053
+      }
+    ],
+    "cif": [
+      {
+        "age": 0,
+        "cif": 0.0
+      },
+      {
+        "age": 1,
+        "cif": 0.0
+      },
+      {
+        "age": 2,
+        "cif": 0.0
+      },
+      {
+        "age": 3,
+        "cif": 0.1053
+      }
+    ]
+  },
+  "life_upper": {
+    "include_u0": true,
+    "scope": {
+      "critical_only": false,
+      "band": null
+    },
+    "n_pairs": 63,
+    "n_u0_immediate_censored": 0,
+    "life_table": [
+      {
+        "age": 0,
+        "at_risk": 63,
+        "acquisitions": 6,
+        "censored": 0,
+        "h_acq": 0.0952
+      },
+      {
+        "age": 1,
+        "at_risk": 57,
+        "acquisitions": 0,
+        "censored": 0,
+        "h_acq": 0.0
+      },
+      {
+        "age": 2,
+        "at_risk": 57,
+        "acquisitions": 0,
+        "censored": 0,
+        "h_acq": 0.0
+      },
+      {
+        "age": 3,
+        "at_risk": 57,
+        "acquisitions": 6,
+        "censored": 51,
+        "h_acq": 0.1053
+      }
+    ],
+    "cif": [
+      {
+        "age": 0,
+        "cif": 0.0952
+      },
+      {
+        "age": 1,
+        "cif": 0.0952
+      },
+      {
+        "age": 2,
+        "cif": 0.0952
+      },
+      {
+        "age": 3,
+        "cif": 0.1905
+      }
+    ]
+  },
+  "b_pre_series": {
+    "fact_car_03": [
+      4,
+      4,
+      4
+    ],
+    "fact_car_10": [
+      4,
+      4,
+      4
+    ]
+  },
+  "pilot_meta": {
+    "status": "탐색적/데모 지위 — 정식 판정(H-T1·H-T2)은 미니 H2 실호출분에서",
+    "scenario_credit": "carkey: 안현수 7/27 둘째 이슈 후보 2 (후보 지위, 팀 검수 전)",
+    "deviations": [
+      "rounds=4(논문 3)",
+      "GEN temp 0.7(민옥 N1)",
+      "파일럿 판정기 n=1(팀 확정 judge 아님)",
+      null
+    ]
+  }
+}

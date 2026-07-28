@@ -64,11 +64,12 @@ class TestDebateProgress(IntegrationBase):
         self.assertEqual(first_utt["response_text"], llm.FALLBACK)
 
     def test_no_new_event_types_in_output(self):
-        """관측 전용 증명: 이벤트 종류가 종전 그대로 — progress/run_end 파일 이벤트 없음
-        (스키마 v0.3 제안 상태, 합의 전 미구현)."""
+        """관측 전용 증명: 이벤트 종류가 계약에 있는 것뿐 — progress/run_end 파일 이벤트 없음
+        (계기판은 콘솔 전용). prompt_assembly 는 v0.3 확정(7/28 보드)으로 계약에 추가된
+        이벤트라 허용 집합에 포함한다 — 이 가드의 목적은 '미합의 이벤트 차단'이다."""
         self._run_captured(self.write_config(ledger_mode="off"))
         kinds = {e["event"] for e in self.read_events()}
-        self.assertEqual(kinds, {"utterance", "seating"})
+        self.assertEqual(kinds, {"utterance", "seating", "prompt_assembly"})
 
     def test_is_fallback_definition(self):
         self.assertTrue(debate_engine._is_fallback(llm.FALLBACK))

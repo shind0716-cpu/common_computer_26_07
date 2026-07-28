@@ -34,6 +34,15 @@
 - 콘솔 출력만 추가한다 — debate.jsonl 이벤트 종류·필드는 한 글자도 바꾸지 않는다
   (파일 기반 progress/run_end 이벤트는 스키마 v0.3 제안 상태라 합의 전 미구현).
 
+[2026-07-28 · 요한 — 작업 이관분(민옥 승인 7/28 보드, 소유권 이전 아님)] 스키마 v0.3 구현:
+- 발화마다 `prompt_assembly` 이벤트 방출 — 프롬프트 전문이 아니라 조립 명세(template·
+  slots 참조·prompt_hash)를 기록. 검증 계약: 명세대로 재조립한 텍스트의 sha256 ==
+  utterance.prompt_hash (validate --deep 가 검사). 조립 로직은 assemble_initial/
+  assemble_continue 순수 함수로 추출해 엔진과 검증기가 같은 코드를 쓴다(재조립 드리프트 차단).
+- `ledger_inject`에 `injected_text` 원문 전문 추가 — 저장된 사건에서 복원 불가능한
+  유일한 프롬프트 텍스트(v0.3 경계 조항 A-1의 첫 사례).
+- 기존 이벤트·필드는 한 글자도 바꾸지 않는다(append 호환). LLM 호출 0 증가.
+
 실행: python -m modules.debate_engine --issue issue_esa --run run001 --config configs/sprint_mini.yaml
 """
 import argparse
@@ -102,13 +111,30 @@ def build_edges(structure: str, length: int) -> list[list[int]]:
     raise KeyError(f"알 수 없는 토폴로지: {structure} (full|tree|line)")
 
 
-def initial_utterance(question: str, fact_text: str, answer: str, model: str, temp: float,
-                      respond=None):
-    """저자 obtain_discussion_initial_each() 계승. respond 는 테스트 주입용."""
+def assemble_initial(question: str, fact_text: str, answer: str) -> str:
+    """discussion_initial 프롬프트 조립(순수). 엔진과 validate --deep 재조립의 단일 소스 —
+    치환 순서까지 계약이다(순서가 다르면 hash 가 달라진다)."""
     prompt = authors_prompts.load("discussion_initial")
     inputs = prompt.replace("<===facts===>", fact_text)
     inputs = inputs.replace("<===answer===>", answer)
     inputs = inputs.replace("<===question===>", question)
+    return inputs
+
+
+def assemble_continue(question: str, previous: str, others: str, setting: str) -> str:
+    """discussion_continue 프롬프트 조립(순수). assemble_initial 과 동일한 지위."""
+    prompt = authors_prompts.load("discussion_continue")
+    inputs = prompt.replace("<===others===>", others)
+    inputs = inputs.replace("<===previous===>", previous)
+    inputs = inputs.replace("<===setting===>", setting)
+    inputs = inputs.replace("<===question===>", question)
+    return inputs
+
+
+def initial_utterance(question: str, fact_text: str, answer: str, model: str, temp: float,
+                      respond=None):
+    """저자 obtain_discussion_initial_each() 계승. respond 는 테스트 주입용."""
+    inputs = assemble_initial(question, fact_text, answer)
     fn = respond or llm.obtain_response
     return inputs, fn(inputs, model=model, temperature=temp)
 
@@ -116,11 +142,7 @@ def initial_utterance(question: str, fact_text: str, answer: str, model: str, te
 def continue_utterance(question: str, previous: str, others: str, setting: str,
                        model: str, temp: float, respond=None):
     """저자 discussion_continue() 내부 조립 계승. respond 는 테스트 주입용."""
-    prompt = authors_prompts.load("discussion_continue")
-    inputs = prompt.replace("<===others===>", others)
-    inputs = inputs.replace("<===previous===>", previous)
-    inputs = inputs.replace("<===setting===>", setting)
-    inputs = inputs.replace("<===question===>", question)
+    inputs = assemble_continue(question, previous, others, setting)
     fn = respond or llm.obtain_response
     return inputs, fn(inputs, model=model, temperature=temp)
 
@@ -231,6 +253,15 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
                                          respond=respond)
         current.append(resp)
         note_utterance(0, agent_idx, resp)
+        # v0.3: 발화 입력의 조립 명세 — utterance 와 prompt_hash 로 결합(같은 값).
+        emit(
+            "prompt_assembly",
+            round=0, agent_id=ag["agent_id"],
+            template="discussion_initial", prompt_ver=prompt_ver, setting_key=None,
+            slots={"assigned_fact_ids": list(ag["assigned_fact_ids"]),
+                   "others": [], "previous": None, "inject": None},
+            prompt_hash=sha256(inputs),
+        )
         emit(
             "utterance",
             ledger_mode=ledger_mode, round=0, agent_id=ag["agent_id"],
@@ -267,7 +298,11 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
             inject_ids = ledger.missing_facts(inloop_judgment, r - 1)
             inject_block = ledger.build_injection_block(inject_ids, facts_by_id_full)
             if inject_ids:
-                events.append(ledger.make_inject_event(run_id, r, inject_ids))
+                inject_ev = ledger.make_inject_event(run_id, r, inject_ids)
+                # v0.3: 재주입 블록 원문 전문 — 저장 사건에서 복원 불가능한 유일한
+                # 프롬프트 텍스트라 여기만 전문 저장(경계 조항 A-1). ledger.py 무수정.
+                inject_ev["injected_text"] = inject_block
+                events.append(inject_ev)
 
         nxt = []
         for i in range(length):
@@ -283,6 +318,19 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
             )
             nxt.append(resp)
             note_utterance(r, i, resp)
+            # v0.3: 조립 명세 — others/previous 는 저장된 발화 참조(좌석 j = seated[j]).
+            emit(
+                "prompt_assembly",
+                round=r, agent_id=seated[i]["agent_id"],
+                template="discussion_continue", prompt_ver=prompt_ver,
+                setting_key=setting_key,
+                slots={"assigned_fact_ids": [],
+                       "others": [{"round": r - 1, "agent_id": seated[j]["agent_id"]}
+                                  for j in edges[i]],
+                       "previous": {"round": r - 1, "agent_id": seated[i]["agent_id"]},
+                       "inject": {"round": r} if inject_block else None},
+                prompt_hash=sha256(inputs),
+            )
             emit(
                 "utterance",
                 ledger_mode=ledger_mode, round=r, agent_id=seated[i]["agent_id"],

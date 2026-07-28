@@ -63,3 +63,24 @@ ledger는 stages[].facts[].{fact_id,status} 두 필드만 의존하므로 양쪽
 6. **SURVIVING 최종값(P2 질문 D)은 본 확정과 별개 트랙** — 기업 회신 시 「FAR 정의」절과 judge.SURVIVING/far()만 교체한다(기존 강제 유지). 교체 절차는 docs/proposals/FAR_SWAP_PLAN.md 참조.
 
 구현상 문제 제기는 보드 패키지 A 항목 아래로(append-only).
+
+## v0.3 — 발화 입력 기록 추가 (2026-07-28, 요한 확정 — 규약 7 소관 확정, 보드 회신 게시)
+
+추가 2건, 기존 이벤트·필드 변경·삭제 0 (append 호환 — 구 로그는 prompt_assembly 부재 시 종전 재구성 방식으로 유효).
+
+### 4′. debates jsonl 이벤트 추가
+- **`prompt_assembly`** (새 이벤트): run_id, round, agent_id, template, prompt_ver, setting_key,
+  slots{assigned_fact_ids[], others[]:{round,agent_id}, previous:{round,agent_id}, inject:{round}|null},
+  prompt_hash(sha256 — 같은 (round,agent_id)의 utterance.prompt_hash와 동일값 = 결합 키), ts
+- **`ledger_inject.injected_text`** (필드 추가): 프롬프트에 붙은 재주입 블록 원문 전문 (요약 금지).
+- 검증 계약: 레시피 재조립 텍스트의 sha256 == prompt_hash. validate `--deep` 옵션에서 검사(기본 검사는 구조만).
+
+### 경계 조항 (개정 1 — 정제 시나리오 과적합 방지·드리프트 강건성)
+1. **복원 불가 텍스트 전문 저장(일반 조항)**: 저장된 사건들로부터 결정론적으로 재조립할 수 없는
+   신규 텍스트가 프롬프트에 들어가는 채널은 그 원문을 해당 이벤트에 전문 저장한다 (injected_text는 첫 사례).
+2. **노출 어휘 한정**: 파생 뷰의 노출은 직접 노출(원문/원문 발화 참조 포함, 조립 참조에서 결정론 유도)만
+   정의. 매개 노출(파생 텍스트 경유)은 예약 개념 — 해당 통신 구조 도입 시 별도 정의 없이 적용 금지.
+3. **template 등록제 + 창 정책**: 정본 등록값 discussion_initial|discussion_continue. 새 조건은 새
+   template명 등록(스키마 본체 불변), 등록 시 창 정책(rolling|cumulative) 명시.
+
+노출표 (agent, fact, round, 경로 assigned|neighbor|ledger)는 저장하지 않고 사건에서 유도한다(사건 원장 1급, 지표는 뷰). 상세·근거: docs/proposals/SCHEMA_v0.3_PROMPT_ASSEMBLY.md (부록 A 포함).

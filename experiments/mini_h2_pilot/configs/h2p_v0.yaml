@@ -1,0 +1,16 @@
+# 미니 H2 파일럿 — 실험군(ledger v0). 짝: h2p_off.yaml — 유일한 차이 = ledger_mode.
+# 같은 seed(42)로 공정 비교. 편차 사항은 h2p_off.yaml 머리말과 동일.
+experiment: mini_h2_pilot
+issue_id: issue_esa
+run_id: h2p_v0
+seed: 42
+agents: 8
+rounds: 3
+debate_model: gpt-5.4-mini
+debate_temperature: 1.2
+judge_model: gpt-5.4-mini      # 루프-내 판정 = 실행기 주입 vote_fn (이 값은 기록용)
+judge_temperature: 0
+# 루프-내 판정은 주입 결정 전용(이진) — n=1로 충분 (D-p4, 108→36콜 절감).
+# 측정용 사후 judge는 실행기에 n=3 별도 고정(잣대 무손상, Q5 일치율 유지).
+judge_n_votes: 1
+ledger_mode: "v0"              # ← 실험군 (r>=2 직전 라운드 소실 전량 재주입)

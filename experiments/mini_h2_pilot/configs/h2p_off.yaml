@@ -1,0 +1,16 @@
+# 미니 H2 파일럿 — 대조군(ledger off). configs/mini_h2_off.yaml의 파일럿판.
+# 편차(팀 정본 대비): debate_model만 OpenAI(gpt-5.4-mini) — 예산이 OpenAI 키라서.
+# temperature 1.2는 논문 상수 그대로 (OpenAI는 0~2 허용 — Anthropic 선결 ① 해당 없음).
+# judge는 이 config가 아니라 실행기의 파일럿 판정기(gpt-5.4-mini·temp0·n=3)가 담당.
+experiment: mini_h2_pilot
+issue_id: issue_esa
+run_id: h2p_off
+seed: 42
+agents: 8
+rounds: 3
+debate_model: gpt-5.4-mini
+debate_temperature: 1.2
+judge_model: gpt-5.4-mini      # 루프-내 판정용 표기 (off에선 미사용)
+judge_temperature: 0
+judge_n_votes: 3
+ledger_mode: "off"             # ← 대조군
