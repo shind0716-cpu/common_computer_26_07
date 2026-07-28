@@ -2,46 +2,71 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>전달 레이더 — 프로토타입</title>
+<title>전달 관문 측정 보고</title>
 <style>
-  :root { --bg:#101418; --panel:#1a2027; --line:#2a333d; --fg:#dbe4ec; --dim:#8598a8;
-          --ok:#3fb97f; --dead:#e06565; --warn:#e0a53f; --led:#7fb0e0; }
+  /* 문서 원칙: 보고서 한 편 — 종이 시트, 절제된 단일 색, 활자·괘선 중심.
+     잉크·괘선 토큰은 dataviz 참조 팔레트(light)의 값. */
+  :root { --chrome:#101418; --chrome-line:#2a333d; --chrome-fg:#8598a8;
+          --paper:#fcfcfb; --ink:#0b0b0b; --ink-2:#52514e; --muted:#898781;
+          --rule:#e1e0d9; --rule-strong:#c3c2b7; --accent:#2a78d6; }
   * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--fg);
-         font:14px/1.5 system-ui,'Malgun Gothic',sans-serif; }
-  header { padding:10px 16px; border-bottom:1px solid var(--line);
-           display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
-  header h1 { font-size:15px; margin:0; }
-  nav a { color:var(--dim); margin-right:10px; text-decoration:none; font-size:13px; }
-  nav a.here { color:var(--fg); }
-  select { background:var(--panel); color:var(--fg); border:1px solid var(--line);
+  body { margin:0; background:var(--chrome);
+         font:14px/1.65 system-ui,'Segoe UI','Malgun Gothic',sans-serif; }
+  /* 상단 크롬(도구줄) — 종이 밖 요소 */
+  header { padding:9px 16px; border-bottom:1px solid var(--chrome-line);
+           display:flex; gap:14px; align-items:center; color:var(--chrome-fg); }
+  nav a { color:var(--chrome-fg); margin-right:10px; text-decoration:none; font-size:13px; }
+  nav a.here { color:#dbe4ec; }
+  select { background:#1a2027; color:#dbe4ec; border:1px solid var(--chrome-line);
            padding:4px 8px; border-radius:4px; }
-  main { padding:16px 20px; max-width:1100px; }
-  .banner { background:var(--panel); border:1px solid var(--warn); border-radius:6px;
-            padding:8px 12px; margin-bottom:12px; color:var(--warn); font-size:13px; }
-  .cards { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px; }
-  .card { background:var(--panel); border:1px solid var(--line); border-radius:6px;
-          padding:10px 14px; min-width:130px; }
-  .card b { font-size:19px; display:block; }
-  .card span { color:var(--dim); font-size:12px; }
-  table { border-collapse:collapse; width:100%; font-size:13px; margin-bottom:16px; }
-  th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; }
-  th { background:var(--panel); color:var(--dim); font-weight:600; }
-  td.num { text-align:right; font-variant-numeric:tabular-nums; }
-  .excl { color:var(--dim); text-decoration:line-through; }
-  .meta { color:var(--dim); font-size:12px; margin:4px 0 12px; }
-  h2 { font-size:14px; margin:14px 0 6px; }
+  /* 종이 */
+  .sheet { max-width:780px; margin:26px auto 60px; background:var(--paper);
+           color:var(--ink); padding:52px 62px 44px; border-radius:2px;
+           box-shadow:0 2px 24px rgba(0,0,0,.5); }
+  h1 { font-size:21px; margin:0 0 2px; letter-spacing:-.2px; }
+  .subtitle { color:var(--ink-2); font-size:13px; margin-bottom:6px; }
+  .statusline { color:var(--muted); font-size:12px; border-bottom:2px solid var(--ink);
+                padding-bottom:14px; margin-bottom:22px; }
+  h2 { font-size:14px; margin:26px 0 8px; padding-top:14px; border-top:1px solid var(--rule); }
+  h2 .no { color:var(--muted); margin-right:8px; font-weight:600; }
+  p.lead { font-size:14.5px; margin:8px 0; }
+  sup { color:var(--accent); font-weight:600; }
+  /* 신원·지표: 정의 리스트 2열 */
+  dl { display:grid; grid-template-columns:150px 1fr; gap:2px 14px; margin:8px 0; font-size:13.5px; }
+  dt { color:var(--ink-2); }
+  dd { margin:0; font-variant-numeric:tabular-nums; }
+  /* 보고서 표 — 수평 괘선만 */
+  table { border-collapse:collapse; width:100%; font-size:13px; margin:10px 0 4px; }
+  th { text-align:left; color:var(--ink-2); font-weight:600; border-bottom:1px solid var(--rule-strong);
+       padding:5px 8px 5px 0; }
+  td { border-bottom:1px solid var(--rule); padding:4px 8px 4px 0; vertical-align:middle; }
+  th.num, td.num { text-align:right; font-variant-numeric:tabular-nums; }
+  tr.excl td { color:var(--muted); }
+  tr.excl td:first-child { text-decoration:line-through; }
+  /* TSR 인라인 바 — 단일 청색, 4px 라운드 엔드 */
+  .bar { display:inline-block; height:8px; background:var(--accent);
+         border-radius:0 4px 4px 0; vertical-align:middle; margin-right:6px; }
+  .bar.upper { background:#9ec5f4; }
+  .barwrap { display:inline-block; width:120px; background:#f0efec; height:8px;
+             border-radius:0 4px 4px 0; }
+  /* 각주 */
+  .footnotes { margin-top:30px; border-top:1px solid var(--rule-strong); padding-top:10px;
+               color:var(--ink-2); font-size:12px; }
+  .footnotes p { margin:4px 0; }
+  .audit { color:var(--muted); font-size:11.5px; margin-top:14px; }
+  @media print { header { display:none; } body { background:#fff; }
+                 .sheet { box-shadow:none; margin:0; max-width:none; } }
 </style>
 </head>
 <body>
 <header>
-  <h1>전달 레이더 <span style="color:var(--warn);font-size:12px">— 프로토타입 (G2 층1 · 팀 제안 지위 · 탐색적)</span></h1>
   <nav><a href="/biography">전기</a><a href="/ledger">장부</a><a class="here" href="/transmission">레이더</a></nav>
   <select id="runsel"><option>run 로딩…</option></select>
 </header>
-<main id="main"><p class="meta">로딩…</p></main>
+<div class="sheet" id="sheet"><p style="color:var(--muted)">로딩…</p></div>
 <script>
 const F = v => v == null ? "—" : v;
+const PCT = v => v == null ? "—" : (v * 100).toFixed(1) + "%";
 
 async function loadRuns() {
   const data = await (await fetch("/api/runs")).json();
@@ -60,46 +85,82 @@ async function loadRuns() {
 async function load(key) {
   const [issue, run] = key.split("/");
   const res = await fetch(`/api/transmission/${issue}/${run}`);
-  const m = document.getElementById("main");
-  if (!res.ok) { m.innerHTML = `<p class="banner">${(await res.json()).detail}</p>`; return; }
+  const sheet = document.getElementById("sheet");
+  if (!res.ok) { sheet.innerHTML = `<p>${(await res.json()).detail}</p>`; return; }
   const d = await res.json();
-  const s = d.system, lp = d.system_low_prior;
+  const s = d.system, lp = d.system_low_prior, zp = d.zero_point;
+  const zpMark = zp && zp.note ? `<sup>1</sup>` : "";
 
-  let html = "";
-  if (d.zero_point && d.zero_point.note)
-    html += `<div class="banner">⚠ ${d.zero_point.note}</div>`;
-  html += `<div class="meta">${d.status_note} · protocol=${d.protocol}</div>`;
+  // 0. 요약 — 수치를 문장 안에
+  const lead1 = `비보유자×팩트 <b>${s.n_pairs_tracked}쌍</b>을 추적했다. `
+    + `엄격 기준(u≥1)<sup>2</sup> 획득은 <b>${s.n_acq_strict}건</b>(TSR ${PCT(s.tsr_system)}${zpMark})이며, `
+    + `노출 당회 즉답 ${s.n_acq_u0}건을 포함한 상한 TSR은 ${PCT(s.tsr_system_upper)}${zpMark}이다.`;
+  const lead2 = `추적 쌍 중 ${s.kinds.censored}건은 관측창 종료까지 미획득(검열), `
+    + `${s.kinds.prior_suspect}건은 사전지식 의심(prior_suspect)으로 차단, `
+    + `${s.kinds.never_exposed}건은 무노출이었다. `
+    + `획득 경로는 자생 ${s.by_channel.organic} · 장부 ${s.by_channel.ledger} · 혼합 ${s.by_channel.mixed}.`;
+  const lead3 = `추적자 정본인 low-prior 층의 TSR은 <b>${PCT(lp.tsr_system)}</b>`
+    + `(추적 ${lp.n_pairs_tracked}쌍, 획득 ${lp.n_acq_strict}건)이다.`;
 
-  html += `<div class="cards">
-    <div class="card"><b>${F(s.n_pairs_tracked)}</b><span>추적 쌍 (비보유자×팩트)</span></div>
-    <div class="card"><b>${F(s.tsr_system)}</b><span>TSR 엄격 (u≥1)</span></div>
-    <div class="card"><b>${F(s.tsr_system_upper)}</b><span>TSR 상한 (u=0 포함)</span></div>
-    <div class="card"><b>${F(lp.tsr_system)}</b><span>low-prior TSR (추적자 정본)</span></div>
-    <div class="card"><b>${F(s.kinds.acquisition)} / ${F(s.kinds.censored)}</b><span>획득 / 검열</span></div>
-    <div class="card"><b>${F(s.kinds.prior_suspect)}</b><span>prior_suspect (차단)</span></div>
-    <div class="card"><b>${F(s.by_channel.organic)}·${F(s.by_channel.ledger)}·${F(s.by_channel.mixed)}</b><span>채널: 자생·장부·혼합</span></div>
-  </div>`;
-
-  html += `<h2>팩트별 전달 폭</h2>
-    <table><tr><th>팩트</th><th>prior</th><th>비보유자</th><th>노출</th><th>B (엄격)</th><th>B 상한</th><th>TSR</th></tr>`
-    + d.fact_metrics.map(f => `<tr class="${f.excluded ? "excl" : ""}">
-      <td>${f.critical ? "★ " : ""}${f.fact_id}${f.excluded ? " (영점 제외)" : ""}</td>
-      <td>${F(f.prior_band)}</td><td class="num">${F(f.n_nonholders)}</td>
-      <td class="num">${F(f.n_exposed)}</td><td class="num">${F(f.B)}</td>
-      <td class="num">${F(f.B_upper)}</td><td class="num">${F(f.TSR)}</td></tr>`).join("")
-    + `</table>`;
+  // 3. 팩트별 표
+  const factRows = d.fact_metrics.map(f => {
+    const w = f.TSR == null ? 0 : Math.round(f.TSR * 120);
+    const wu = (f.B_upper && f.n_exposed) ? Math.round(f.B_upper / f.n_exposed * 120) : w;
+    return `<tr class="${f.excluded ? "excl" : ""}">
+      <td>${f.critical ? "★ " : ""}${f.fact_id}${f.excluded ? `<sup>3</sup>` : ""}</td>
+      <td>${F(f.prior_band)}</td>
+      <td class="num">${F(f.n_nonholders)}</td><td class="num">${F(f.n_exposed)}</td>
+      <td class="num">${F(f.B)}</td><td class="num">${F(f.B_upper)}</td>
+      <td><span class="barwrap"><span class="bar upper" style="width:${wu}px"><span class="bar" style="width:${w}px;display:block"></span></span></span>
+          <span class="num">${PCT(f.TSR)}</span></td></tr>`;
+  }).join("");
 
   const lt = (d.life_strict && d.life_strict.life_table) || [];
-  if (lt.length) {
-    html += `<h2>획득 생명표 (엄격 · 노출 후 경과 age)</h2>
-      <table><tr><th>age</th><th>at risk</th><th>획득</th><th>검열</th><th>hazard</th></tr>`
-      + lt.map(r => `<tr><td class="num">${r.age}</td><td class="num">${F(r.at_risk)}</td>
-        <td class="num">${F(r.acquisitions)}</td><td class="num">${F(r.censored)}</td>
-        <td class="num">${F(r.h_acq)}</td></tr>`).join("") + `</table>`;
-  }
-  html += `<div class="meta">원장(records) ${d.records.length}건 — 상세 감사는 API 직접 조회
-    (/api/transmission/${issue}/${run}) · judgment_sha256=${d.audit.judgment_sha256.slice(0,12)}…</div>`;
-  m.innerHTML = html;
+  const lifeRows = lt.map(r => `<tr><td class="num">${r.age}</td>
+    <td class="num">${F(r.at_risk)}</td><td class="num">${F(r.acquisitions)}</td>
+    <td class="num">${F(r.censored)}</td><td class="num">${F(r.h_acq)}</td></tr>`).join("");
+
+  const j = d.meta || {};
+  sheet.innerHTML = `
+    <h1>전달 관문 측정 보고</h1>
+    <div class="subtitle">${d.audit.issue_id} · ${d.audit.run_id} — 층 1(전달-발화) 레이더</div>
+    <div class="statusline">지위: 탐색적 (G2 층 1 = 팀 제안·동결 상태) · ${d.protocol}</div>
+
+    <p class="lead">${lead1}</p>
+    <p class="lead">${lead2}</p>
+    <p class="lead">${lead3}</p>
+
+    <h2><span class="no">1</span>측정 조건</h2>
+    <dl>
+      <dt>에이전트 / 라운드</dt><dd>${F(j.n_agents)} / ${(j.rounds || []).length}</dd>
+      <dt>팩트</dt><dd>${F(j.n_facts)}</dd>
+      <dt>토폴로지</dt><dd>${j.edges ? j.edges.structure + (j.edges.assumed_full ? " (가정)" : "") : "—"}</dd>
+      <dt>영점 조정</dt><dd>${zp && zp.applied ? "적용 — 제외 " + zp.question_exposed_ids.length + "종" : "미적용<sup>1</sup>"}</dd>
+      <dt>원장 레코드</dt><dd>${d.records.length}건 (감사 API: /api/transmission/${issue}/${run})</dd>
+    </dl>
+
+    <h2><span class="no">2</span>팩트별 전달 폭</h2>
+    <table>
+      <tr><th>팩트</th><th>prior</th><th class="num">비보유</th><th class="num">노출</th>
+          <th class="num">B</th><th class="num">B 상한</th><th>TSR (엄격 ▍/ 상한 ▍)</th></tr>
+      ${factRows}
+    </table>
+
+    <h2><span class="no">3</span>획득 생명표 — 노출 후 경과(age)</h2>
+    <table style="max-width:420px">
+      <tr><th class="num">age</th><th class="num">at risk</th><th class="num">획득</th>
+          <th class="num">검열</th><th class="num">h_acq</th></tr>
+      ${lifeRows}
+    </table>
+
+    <div class="footnotes">
+      ${zp && zp.note ? `<p><sup>1</sup> ${zp.note}</p>` : ""}
+      <p><sup>2</sup> 엄격 = 노출 이후 라운드(u≥1)의 첫 언급만 획득으로 계상. 노출 당회 즉답(u=0)은
+         창 안 반향 가능성이 있어 상한에만 포함한다.</p>
+      <p><sup>3</sup> 영점 제외 = question 문면에서 판독 가능한 팩트 — 상시 노출이라 전달 측정 불능.</p>
+      <p class="audit">잣대: judge.SURVIVING 단일 소스 · judgment_sha256 = ${d.audit.judgment_sha256} ·
+         본 보고서의 모든 수치는 산출물에서 읽기 전용으로 유도되며 뷰어는 아무것도 쓰지 않는다.</p>
+    </div>`;
 }
 loadRuns();
 </script>
