@@ -3,6 +3,9 @@ __pycache__/
 *.pyc
 .ipynb_checkpoints/
 
+# 관측 트랙 동결(7/27) 정리: 회사 데이터 관련 코드·산출물 일체를 로컬 보관함으로 이동 (7/28).
+/_frozen_company/
+
 # 관찰 트랙 회사 데이터 (usage_approved 미확정) — 로컬 유지·커밋 금지.
 # 근거: 팀 메모리 [issue-mystery-usage-approved] 결정 + CLAUDE.md 규칙 #1 (패키지 A 대기).
 # facts/debate/raw 는 관람객(User) 원문 대화를 담아 유출 벡터. judgment(fact_id·status만)는 안전하나 함께 보류.
