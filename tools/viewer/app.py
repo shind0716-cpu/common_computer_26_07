@@ -353,9 +353,13 @@ def api_biography(issue_id: str, run_id: str) -> dict:
         raise HTTPException(status_code=404, detail=f"산출물 없음: {e}")
 
     assigned_to: dict[str, list[str]] = {}
+    agent_persp: dict[str, str] = {}
+    seed = None
     try:
         asg = json.loads(paths.assignment(issue_id).read_text(encoding="utf-8"))
+        seed = asg.get("seed")
         for ag in asg.get("agents", []):
+            agent_persp[ag["agent_id"]] = ag.get("perspective") or "?"
             for fid in ag.get("assigned_fact_ids", []):
                 assigned_to.setdefault(fid, []).append(ag["agent_id"])
     except FileNotFoundError:
@@ -421,6 +425,10 @@ def api_biography(issue_id: str, run_id: str) -> dict:
         bios.append({
             "fact_id": fid, "text": f.get("text", ""), "critical": bool(f.get("critical")),
             "tags": f.get("tags", []), "assigned_to": assigned_to.get(fid, []),
+            # 팩트의 '관점' = 이 팩트를 배정받은 에이전트들의 perspective (유도값 —
+            # facts 스키마에 관점 필드가 없어 assignment 에서 역산. 등장 순서 보존)
+            "perspectives": list(dict.fromkeys(
+                agent_persp.get(a, "?") for a in assigned_to.get(fid, []))),
             "chain": chain,
             "summary": {
                 "final_surviving": chain[-1]["surviving"] if chain else None,
@@ -428,9 +436,21 @@ def api_biography(issue_id: str, run_id: str) -> dict:
                 "n_revived_ledger": n_rev_ledger, "n_revived_organic": n_rev_organic,
             },
         })
+    ledger_mode = next((e.get("ledger_mode") for e in events
+                        if e.get("event") == "utterance"), None)
     return {"issue_id": issue_id, "run_id": run_id, "stages": stages,
-            "ledger_mode": next((e.get("ledger_mode") for e in events
-                                 if e.get("event") == "utterance"), None),
+            "ledger_mode": ledger_mode,
+            # 실험 조건 요약 — 사이드바 조건 패널용 (전부 기존 산출물에서 읽기 전용 유도)
+            "conditions": {
+                "seed": seed,
+                "n_agents": len(agent_persp) or None,
+                "n_rounds": len({e.get("round") for e in events
+                                 if e.get("event") == "utterance"}),
+                "ledger_mode": ledger_mode,
+                "judge": judgment.get("judge"),
+                "far_system": (judgment.get("summary") or {}).get("far_system"),
+                "perspectives": sorted(set(agent_persp.values())),
+            },
             "facts": bios,
             "note": "노출 사건(누가 언제 봤는가)은 스키마 v0.3 prompt_assembly 채택 후 완성 — 현재는 배정·언급·주입·판정 사슬까지."}
 

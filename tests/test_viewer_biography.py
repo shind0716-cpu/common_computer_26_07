@@ -63,6 +63,20 @@ class TestBiography(unittest.TestCase):
                     self.assertIn("agent_id", m)
         self.assertTrue(found, "언급이 하나도 없는 픽스처는 아님")
 
+    def test_conditions_and_perspectives(self):
+        """사이드바 재료: 실험 조건 블록 + 팩트별 관점(배정 에이전트 perspective 유도)."""
+        c = self.bio["conditions"]
+        self.assertEqual(c["n_agents"], 8)
+        self.assertEqual(c["n_rounds"], 4)
+        self.assertEqual(c["ledger_mode"], "off")
+        self.assertIsNotNone(c["far_system"])
+        self.assertTrue(c["perspectives"], "관점 어휘가 비어 있음")
+        vocab = set(c["perspectives"]) | {"?"}
+        for f in self.bio["facts"]:
+            self.assertIsInstance(f["perspectives"], list)
+            self.assertTrue(set(f["perspectives"]) <= vocab,
+                            f"{f['fact_id']} 관점이 어휘 밖: {f['perspectives']}")
+
     def test_missing_judgment_404(self):
         with self.assertRaises(HTTPException):
             viewer_app.api_biography(ISSUE, "no_such_run")

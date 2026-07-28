@@ -16,7 +16,20 @@
   select { background:var(--panel); color:var(--fg); border:1px solid var(--line);
            padding:4px 8px; border-radius:4px; }
   main { display:flex; min-height:calc(100vh - 90px); }
-  #factlist { width:330px; border-right:1px solid var(--line); overflow-y:auto; }
+  #sidebar { width:330px; border-right:1px solid var(--line); overflow-y:auto;
+             display:flex; flex-direction:column; }
+  #conditions { padding:10px 12px; border-bottom:1px solid var(--line);
+                background:var(--panel); font-size:12px; }
+  #conditions h2 { margin:0 0 6px; font-size:12px; color:var(--dim);
+                   text-transform:none; letter-spacing:.5px; }
+  #conditions table { width:100%; border-collapse:collapse; }
+  #conditions td { padding:1px 0; vertical-align:top; }
+  #conditions td:first-child { color:var(--dim); width:78px; }
+  #pfilter { margin-top:8px; width:100%; }
+  #factlist { flex:1; overflow-y:auto; }
+  .persp { display:inline-block; background:#20303e; border:1px solid #33485a;
+           border-radius:8px; padding:0 7px; font-size:11px; margin:2px 3px 0 0;
+           color:#9ec4e0; }
   .factrow { padding:8px 12px; border-bottom:1px solid var(--line); cursor:pointer; }
   .factrow:hover, .factrow.sel { background:var(--panel); }
   .dot { display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px; }
@@ -56,7 +69,10 @@
   <span id="runinfo" class="proto"></span>
 </header>
 <main>
-  <div id="factlist"></div>
+  <div id="sidebar">
+    <div id="conditions"></div>
+    <div id="factlist"></div>
+  </div>
   <div id="detail"><p style="color:var(--dim)">run과 팩트를 선택하세요.</p></div>
 </main>
 <footer id="note"></footer>
@@ -90,8 +106,32 @@ async function loadBio(key) {
   document.getElementById("runinfo").textContent =
     `ledger_mode=${BIO.ledger_mode} · stage ${BIO.stages.length}개`;
   document.getElementById("note").textContent = BIO.note;
+  renderConditions();
+  renderList("");
+}
+
+function renderConditions() {
+  const c = BIO.conditions || {};
+  const j = c.judge || {};
+  const el = document.getElementById("conditions");
+  el.innerHTML = `<h2>실험 조건</h2><table>
+    <tr><td>seed</td><td>${c.seed ?? "—"}</td></tr>
+    <tr><td>에이전트</td><td>${c.n_agents ?? "—"} · 라운드 ${c.n_rounds ?? "—"}</td></tr>
+    <tr><td>ledger</td><td>${c.ledger_mode ?? "—"}</td></tr>
+    <tr><td>judge</td><td>${j.model ?? "—"} · n=${j.n_votes ?? "—"} · ${j.prompt_ver ?? ""}</td></tr>
+    <tr><td>FAR</td><td>${c.far_system ?? "—"}</td></tr>
+  </table>
+  <select id="pfilter"><option value="">관점 전체</option>`
+    + (c.perspectives || []).map(p => `<option value="${p}">${p}</option>`).join("")
+    + `</select>`;
+  document.getElementById("pfilter").onchange = e => renderList(e.target.value);
+}
+
+function renderList(persp) {
   const list = document.getElementById("factlist"); list.innerHTML = "";
-  BIO.facts.forEach((f, i) => {
+  const facts = BIO.facts.filter(f => !persp || f.perspectives.includes(persp));
+  facts.forEach(f => {
+    const i = BIO.facts.indexOf(f);
     const d = document.createElement("div");
     d.className = "factrow"; d.dataset.idx = i;
     const col = f.summary.final_surviving ? "var(--ok)" : "var(--dead)";
@@ -101,19 +141,24 @@ async function loadBio(key) {
       + (f.critical ? "★ " : "") + f.fact_id
       + `<div class="rowmeta">${f.text.slice(0, 46)}…<br>`
       + (f.summary.first_missing_stage != null ? `첫 소실 s${f.summary.first_missing_stage}` : "무소실")
-      + rev + `</div>`;
+      + rev + `<br>` + f.perspectives.map(p => `<span class="persp">${p}</span>`).join("")
+      + `</div>`;
     d.onclick = () => { document.querySelectorAll(".factrow").forEach(x => x.classList.remove("sel"));
                         d.classList.add("sel"); renderFact(i); };
     list.appendChild(d);
   });
-  if (BIO.facts.length) { list.firstChild.classList.add("sel"); renderFact(0); }
+  if (facts.length) { list.firstChild.classList.add("sel"); renderFact(BIO.facts.indexOf(facts[0])); }
+  else { document.getElementById("detail").innerHTML =
+         `<p style="color:var(--dim)">이 관점에 배정된 팩트 없음.</p>`; }
 }
 
 function renderFact(i) {
   const f = BIO.facts[i]; const el = document.getElementById("detail");
   let html = `<div class="facthead"><b>${f.critical ? "★ " : ""}${f.fact_id}</b> — ${f.text}
     <div style="margin-top:6px">` + f.tags.map(t => `<span class="tag">${t}</span>`).join("")
-    + `<span class="tag">배정: ${f.assigned_to.join(", ") || "?"}</span></div></div><div class="chain">`;
+    + `<span class="tag">배정: ${f.assigned_to.join(", ") || "?"}</span>`
+    + f.perspectives.map(p => `<span class="persp">${p}</span>`).join("")
+    + `</div></div><div class="chain">`;
   f.chain.forEach((c, k) => {
     const nodeCls = !c.surviving ? "dead" : (c.votes.unanimous === false ? "split" : "ok");
     const [lab, cls] = EV_LABEL[c.event] || [c.event, ""];
