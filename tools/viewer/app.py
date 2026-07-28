@@ -455,9 +455,131 @@ def api_biography(issue_id: str, run_id: str) -> dict:
             "note": "노출 사건(누가 언제 봤는가)은 스키마 v0.3 prompt_assembly 채택 후 완성 — 현재는 배정·언급·주입·판정 사슬까지."}
 
 
+@app.get("/api/ledger/{issue_id}/{run_id}")
+def api_ledger(issue_id: str, run_id: str) -> dict:
+    """장부(ledger) 노드 — 라운드별 소실 장부 + 재주입·생환 성과 (프로토타입, 읽기 전용).
+
+    소실 잣대 = ledger.missing_facts(= judge.SURVIVING 단일 소스). off run 에서는
+    주입이 없으므로 '소실 장부'만 — v0 였다면 재주입됐을 목록이 그대로 보인다.
+    재주입 블록 문구는 build_injection_block 재조립본(실제 프롬프트 삽입 원문은
+    미보존 — 스키마 v0.3 ledger_inject.injected_text 안건이 해소).
+    """
+    jpath = paths.judgment(issue_id, run_id)
+    if not jpath.exists():
+        raise HTTPException(status_code=404, detail=f"judgment 없음 ({issue_id}/{run_id})")
+    try:
+        judgment = json.loads(jpath.read_text(encoding="utf-8"))
+        facts_by_id = ledger.load_facts_by_id(issue_id)
+        events = [json.loads(ln) for ln
+                  in paths.debate(issue_id, run_id).read_text(encoding="utf-8").splitlines()
+                  if ln.strip()]
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=f"산출물 없음: {e}")
+
+    stages = sorted(s["stage"] for s in judgment.get("stages", []))
+    status_by_stage = {s["stage"]: {f["fact_id"]: f["status"] for f in s["facts"]}
+                       for s in judgment.get("stages", [])}
+
+    def brief(fid):
+        f = facts_by_id.get(fid, {})
+        return {"fact_id": fid, "text": (f.get("text") or "")[:60],
+                "critical": bool(f.get("critical"))}
+
+    ledger_by_stage = []
+    for st in stages:
+        ids = ledger.missing_facts(judgment, st)
+        ledger_by_stage.append({
+            "stage": st, "missing": [brief(i) for i in ids],
+            "n_missing": len(ids),
+            "would_inject_chars": len(ledger.build_injection_block(ids, facts_by_id)),
+        })
+
+    injections = []
+    for e in events:
+        if e.get("event") != "ledger_inject":
+            continue
+        r, ids = e.get("round"), e.get("injected_fact_ids", [])
+        cur = status_by_stage.get(r, {})
+        revived = [i for i in ids if cur.get(i) in SURVIVING]
+        injections.append({
+            "round": r, "reason": e.get("reason"),
+            "injected": [brief(i) for i in ids],
+            "block_text_rebuilt": ledger.build_injection_block(ids, facts_by_id),
+            "outcome": {"revived": revived,
+                        "still_missing": [i for i in ids if i not in revived]},
+        })
+
+    ledger_mode = next((e.get("ledger_mode") for e in events
+                        if e.get("event") == "utterance"), None)
+    return {"issue_id": issue_id, "run_id": run_id, "ledger_mode": ledger_mode,
+            "stages": stages, "ledger_by_stage": ledger_by_stage,
+            "injections": injections,
+            "note": ("off run — 주입 없음: 소실 장부는 'v0였다면 재주입됐을 목록'이다."
+                     if not injections else
+                     "블록 문구는 재조립본 — 실삽입 원문 보존은 v0.3 injected_text 안건.")}
+
+
+@app.get("/api/transmission/{issue_id}/{run_id}")
+def api_transmission(issue_id: str, run_id: str) -> dict:
+    """전달 레이더 노드 — transmission.report() 현장 유도 (survival /api/analysis 전례).
+
+    ⚠ 지위: G2 층1 구현은 팀 제안(동결) 상태 — 이 페이지는 브랜치 프로토타입.
+    영점 조정(question 문면 팩트 제외)은 LLM 스캔 산출물이 필요해 뷰어(LLM 0)가
+    직접 못 만든다 — data/scans/question_scan_{issue}.json 이 있으면 적용, 없으면
+    '영점 미적용'을 명시해 강등 표기한다(침묵 실패 방지).
+    """
+    from modules import transmission as tr
+    jpath = paths.judgment(issue_id, run_id)
+    if not jpath.exists():
+        raise HTTPException(status_code=404, detail=f"judgment 없음 ({issue_id}/{run_id})")
+    try:
+        judgment = json.loads(jpath.read_text(encoding="utf-8"))
+        facts_by_id = ledger.load_facts_by_id(issue_id)
+        assignment = json.loads(paths.assignment(issue_id).read_text(encoding="utf-8"))
+        events = [json.loads(ln) for ln
+                  in paths.debate(issue_id, run_id).read_text(encoding="utf-8").splitlines()
+                  if ln.strip()]
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=f"산출물 없음: {e}")
+
+    scan_path = paths.DATA / "scans" / f"question_scan_{issue_id}.json"
+    exposed_ids: frozenset = frozenset()
+    if scan_path.exists():
+        try:
+            exposed_ids = frozenset(
+                json.loads(scan_path.read_text(encoding="utf-8"))
+                .get("question_exposed_ids", []))
+        except Exception:
+            pass
+    try:
+        rep = tr.report(judgment, assignment, events, facts_by_id,
+                        question_exposed_ids=exposed_ids)
+    except Exception as e:  # 계산 실패 = 스키마 드리프트 신호
+        raise HTTPException(status_code=500, detail=f"레이더 계산 실패(스키마 드리프트?): {e}")
+    rep["zero_point"] = {
+        "applied": bool(exposed_ids) or scan_path.exists(),
+        "question_exposed_ids": sorted(exposed_ids),
+        "note": (None if scan_path.exists() else
+                 "영점 미적용 — question 스캔 산출물 없음. TSR·획득에 question 유래 "
+                 "거짓양성이 섞였을 수 있음(탐색적으로만 읽을 것)."),
+    }
+    rep["status_note"] = "G2 층1 = 팀 제안(동결) — 브랜치 프로토타입 지위, 수치는 탐색적."
+    return rep
+
+
 @app.get("/biography", response_class=HTMLResponse)
 def biography_page() -> str:
     return (HERE / "biography.html").read_text(encoding="utf-8")
+
+
+@app.get("/ledger", response_class=HTMLResponse)
+def ledger_page() -> str:
+    return (HERE / "ledger.html").read_text(encoding="utf-8")
+
+
+@app.get("/transmission", response_class=HTMLResponse)
+def transmission_page() -> str:
+    return (HERE / "transmission.html").read_text(encoding="utf-8")
 
 
 @app.get("/", response_class=HTMLResponse)
