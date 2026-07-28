@@ -1,0 +1,22 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "manual",
+  "created_at": "2026-07-28T16:30:00+09:00",
+  "issue_id": "issue_hire",
+  "_note": "히든 프로필 v0. shared 4개(전원 보유·한도영 유리·요건 무관) + unshared 8개(관점당 2개·요건 충족 여부). 정답 유지완 3/4.",
+  "extractor": { "name": "manual", "ver": "0" },
+  "facts": [
+    { "fact_id": "fact_hire_01", "text": "한도영의 동종업계 경력은 7년이고 유지완은 4년이다", "tags": ["stance_support"], "critical": false, "share": "shared", "favors": "한도영", "requirement": null, "prior": { "score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null } },
+    { "fact_id": "fact_hire_02", "text": "1차 면접 발표 평가에서 한도영은 최상위였고 유지완은 중간이었다", "tags": ["stance_support"], "critical": false, "share": "shared", "favors": "한도영", "requirement": null, "prior": { "score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null } },
+    { "fact_id": "fact_hire_03", "text": "한도영의 추천서 3통은 모두 최상 평가였고 유지완의 추천서 2통은 보통 평가였다", "tags": ["stance_support"], "critical": false, "share": "shared", "favors": "한도영", "requirement": null, "prior": { "score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null } },
+    { "fact_id": "fact_hire_04", "text": "한도영과 유지완은 모두 서류와 1차 면접을 통과한 최종 2인이다", "tags": ["condition"], "critical": false, "share": "shared", "favors": null, "requirement": null, "prior": { "score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null } },
+    { "fact_id": "fact_hire_05", "text": "한도영의 경력 7년은 전부 신규 구축 업무이며 HANBIT 계열 유지보수 경험은 없다", "tags": ["counter_evidence"], "critical": true, "share": "unshared", "favors": "유지완", "requirement": 1, "prior": { "score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null } },
+    { "fact_id": "fact_hire_06", "text": "유지완은 경력 4년 중 3년을 HANBIT 유지보수 업무로 보냈다", "tags": ["counter_evidence"], "critical": true, "share": "unshared", "favors": "유지완", "requirement": 1, "prior": { "score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null } },
+    { "fact_id": "fact_hire_07", "text": "한도영은 최근 3년간 지방 출장 면제 조건으로 근무해왔다", "tags": ["counter_evidence"], "critical": true, "share": "unshared", "favors": "유지완", "requirement": 2, "prior": { "score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null } },
+    { "fact_id": "fact_hire_08", "text": "유지완은 이전 직장에서 주 2회 공장 상주를 2년간 수행했다", "tags": ["counter_evidence"], "critical": true, "share": "unshared", "favors": "유지완", "requirement": 2, "prior": { "score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null } },
+    { "fact_id": "fact_hire_09", "text": "한도영은 현 직장 퇴사 절차가 끝나 다음 주부터 합류할 수 있다", "tags": ["counter_evidence"], "critical": true, "share": "unshared", "favors": "한도영", "requirement": 3, "prior": { "score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null } },
+    { "fact_id": "fact_hire_10", "text": "유지완은 진행 중인 프로젝트 인수인계에 4개월이 필요하다", "tags": ["counter_evidence"], "critical": true, "share": "unshared", "favors": "한도영", "requirement": 3, "prior": { "score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null } },
+    { "fact_id": "fact_hire_11", "text": "한도영이 요청한 처우 조건은 연 4,600만원으로 환산된다", "tags": ["counter_evidence"], "critical": true, "share": "unshared", "favors": "유지완", "requirement": 4, "prior": { "score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null } },
+    { "fact_id": "fact_hire_12", "text": "유지완이 희망한 처우 조건은 연 4,050만원으로 환산된다", "tags": ["counter_evidence"], "critical": true, "share": "unshared", "favors": "유지완", "requirement": 4, "prior": { "score": null, "probe_model": null, "probe_prompt_ver": null, "probed_at": null } }
+  ]
+}

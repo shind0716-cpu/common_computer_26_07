@@ -1,0 +1,1551 @@
+[
+ {
+  "cond": "curve",
+  "k": 0,
+  "combo": [],
+  "run": 1,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 0,
+  "combo": [],
+  "run": 2,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 0,
+  "combo": [],
+  "run": 3,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 1,
+  "combo": [
+   "fact_hire_07"
+  ],
+  "run": 1,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 1,
+  "combo": [
+   "fact_hire_07"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 1,
+  "combo": [
+   "fact_hire_07"
+  ],
+  "run": 3,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 1,
+  "combo": [
+   "fact_hire_08"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 1,
+  "combo": [
+   "fact_hire_08"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 1,
+  "combo": [
+   "fact_hire_08"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 1,
+  "combo": [
+   "fact_hire_11"
+  ],
+  "run": 1,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 1,
+  "combo": [
+   "fact_hire_11"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 1,
+  "combo": [
+   "fact_hire_11"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 1,
+  "combo": [
+   "fact_hire_05"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 1,
+  "combo": [
+   "fact_hire_05"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 1,
+  "combo": [
+   "fact_hire_05"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 1,
+  "combo": [
+   "fact_hire_06"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 1,
+  "combo": [
+   "fact_hire_06"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 1,
+  "combo": [
+   "fact_hire_06"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 2,
+  "combo": [
+   "fact_hire_08",
+   "fact_hire_09"
+  ],
+  "run": 1,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 2,
+  "combo": [
+   "fact_hire_08",
+   "fact_hire_09"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 2,
+  "combo": [
+   "fact_hire_08",
+   "fact_hire_09"
+  ],
+  "run": 3,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 2,
+  "combo": [
+   "fact_hire_08",
+   "fact_hire_12"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 2,
+  "combo": [
+   "fact_hire_08",
+   "fact_hire_12"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 2,
+  "combo": [
+   "fact_hire_08",
+   "fact_hire_12"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 2,
+  "combo": [
+   "fact_hire_07",
+   "fact_hire_09"
+  ],
+  "run": 1,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 2,
+  "combo": [
+   "fact_hire_07",
+   "fact_hire_09"
+  ],
+  "run": 2,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 2,
+  "combo": [
+   "fact_hire_07",
+   "fact_hire_09"
+  ],
+  "run": 3,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 2,
+  "combo": [
+   "fact_hire_09",
+   "fact_hire_11"
+  ],
+  "run": 1,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 2,
+  "combo": [
+   "fact_hire_09",
+   "fact_hire_11"
+  ],
+  "run": 2,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 2,
+  "combo": [
+   "fact_hire_09",
+   "fact_hire_11"
+  ],
+  "run": 3,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 2,
+  "combo": [
+   "fact_hire_07",
+   "fact_hire_10"
+  ],
+  "run": 1,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 2,
+  "combo": [
+   "fact_hire_07",
+   "fact_hire_10"
+  ],
+  "run": 2,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 2,
+  "combo": [
+   "fact_hire_07",
+   "fact_hire_10"
+  ],
+  "run": 3,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 3,
+  "combo": [
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_10"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 3,
+  "combo": [
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_10"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 3,
+  "combo": [
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_10"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 3,
+  "combo": [
+   "fact_hire_08",
+   "fact_hire_10",
+   "fact_hire_11"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 3,
+  "combo": [
+   "fact_hire_08",
+   "fact_hire_10",
+   "fact_hire_11"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 3,
+  "combo": [
+   "fact_hire_08",
+   "fact_hire_10",
+   "fact_hire_11"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 3,
+  "combo": [
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 3,
+  "combo": [
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 3,
+  "combo": [
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 3,
+  "combo": [
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_12"
+  ],
+  "run": 1,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 3,
+  "combo": [
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_12"
+  ],
+  "run": 2,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 3,
+  "combo": [
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_12"
+  ],
+  "run": 3,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 3,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_07",
+   "fact_hire_09"
+  ],
+  "run": 1,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 3,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_07",
+   "fact_hire_09"
+  ],
+  "run": 2,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 3,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_07",
+   "fact_hire_09"
+  ],
+  "run": 3,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 4,
+  "combo": [
+   "fact_hire_06",
+   "fact_hire_08",
+   "fact_hire_10",
+   "fact_hire_12"
+  ],
+  "run": 1,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 4,
+  "combo": [
+   "fact_hire_06",
+   "fact_hire_08",
+   "fact_hire_10",
+   "fact_hire_12"
+  ],
+  "run": 2,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 4,
+  "combo": [
+   "fact_hire_06",
+   "fact_hire_08",
+   "fact_hire_10",
+   "fact_hire_12"
+  ],
+  "run": 3,
+  "choice": "한도영"
+ },
+ {
+  "cond": "curve",
+  "k": 4,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_08",
+   "fact_hire_09"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 4,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_08",
+   "fact_hire_09"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 4,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_08",
+   "fact_hire_09"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 4,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_12"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 4,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_12"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 4,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_12"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 4,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_10",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 4,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_10",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 4,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_10",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 4,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_08",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 4,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_08",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 4,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_08",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 5,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_09",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 5,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_09",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 5,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_09",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 5,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_10",
+   "fact_hire_11"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 5,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_10",
+   "fact_hire_11"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 5,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_10",
+   "fact_hire_11"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 5,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_12"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 5,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_12"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 5,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_12"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 5,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_08",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 5,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_08",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 5,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_08",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 5,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_09"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 5,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_09"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 5,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_09"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 6,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 6,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 6,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 6,
+  "combo": [
+   "fact_hire_06",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_10",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 6,
+  "combo": [
+   "fact_hire_06",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_10",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 6,
+  "combo": [
+   "fact_hire_06",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_10",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 6,
+  "combo": [
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 6,
+  "combo": [
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 6,
+  "combo": [
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 6,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_10",
+   "fact_hire_11"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 6,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_10",
+   "fact_hire_11"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 6,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_10",
+   "fact_hire_11"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 6,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_09",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 6,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_09",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 6,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_09",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 7,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_09",
+   "fact_hire_10",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 7,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_09",
+   "fact_hire_10",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 7,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_09",
+   "fact_hire_10",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 7,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 7,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 7,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 7,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_10",
+   "fact_hire_12"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 7,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_10",
+   "fact_hire_12"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 7,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_10",
+   "fact_hire_12"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 7,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_10",
+   "fact_hire_11"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 7,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_10",
+   "fact_hire_11"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 7,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_10",
+   "fact_hire_11"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 7,
+  "combo": [
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_10",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 7,
+  "combo": [
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_10",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 7,
+  "combo": [
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_10",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 8,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_10",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 8,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_10",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "curve",
+  "k": 8,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06",
+   "fact_hire_07",
+   "fact_hire_08",
+   "fact_hire_09",
+   "fact_hire_10",
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "perspective",
+  "k": 2,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06"
+  ],
+  "persp": "개발",
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "perspective",
+  "k": 2,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06"
+  ],
+  "persp": "개발",
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "perspective",
+  "k": 2,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06"
+  ],
+  "persp": "개발",
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "perspective",
+  "k": 2,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06"
+  ],
+  "persp": "개발",
+  "run": 4,
+  "choice": "유지완"
+ },
+ {
+  "cond": "perspective",
+  "k": 2,
+  "combo": [
+   "fact_hire_05",
+   "fact_hire_06"
+  ],
+  "persp": "개발",
+  "run": 5,
+  "choice": "유지완"
+ },
+ {
+  "cond": "perspective",
+  "k": 2,
+  "combo": [
+   "fact_hire_07",
+   "fact_hire_08"
+  ],
+  "persp": "공장",
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "perspective",
+  "k": 2,
+  "combo": [
+   "fact_hire_07",
+   "fact_hire_08"
+  ],
+  "persp": "공장",
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "perspective",
+  "k": 2,
+  "combo": [
+   "fact_hire_07",
+   "fact_hire_08"
+  ],
+  "persp": "공장",
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "perspective",
+  "k": 2,
+  "combo": [
+   "fact_hire_07",
+   "fact_hire_08"
+  ],
+  "persp": "공장",
+  "run": 4,
+  "choice": "유지완"
+ },
+ {
+  "cond": "perspective",
+  "k": 2,
+  "combo": [
+   "fact_hire_07",
+   "fact_hire_08"
+  ],
+  "persp": "공장",
+  "run": 5,
+  "choice": "유지완"
+ },
+ {
+  "cond": "perspective",
+  "k": 2,
+  "combo": [
+   "fact_hire_09",
+   "fact_hire_10"
+  ],
+  "persp": "인사",
+  "run": 1,
+  "choice": "한도영"
+ },
+ {
+  "cond": "perspective",
+  "k": 2,
+  "combo": [
+   "fact_hire_09",
+   "fact_hire_10"
+  ],
+  "persp": "인사",
+  "run": 2,
+  "choice": "한도영"
+ },
+ {
+  "cond": "perspective",
+  "k": 2,
+  "combo": [
+   "fact_hire_09",
+   "fact_hire_10"
+  ],
+  "persp": "인사",
+  "run": 3,
+  "choice": "한도영"
+ },
+ {
+  "cond": "perspective",
+  "k": 2,
+  "combo": [
+   "fact_hire_09",
+   "fact_hire_10"
+  ],
+  "persp": "인사",
+  "run": 4,
+  "choice": "한도영"
+ },
+ {
+  "cond": "perspective",
+  "k": 2,
+  "combo": [
+   "fact_hire_09",
+   "fact_hire_10"
+  ],
+  "persp": "인사",
+  "run": 5,
+  "choice": "한도영"
+ },
+ {
+  "cond": "perspective",
+  "k": 2,
+  "combo": [
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "persp": "재무",
+  "run": 1,
+  "choice": "유지완"
+ },
+ {
+  "cond": "perspective",
+  "k": 2,
+  "combo": [
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "persp": "재무",
+  "run": 2,
+  "choice": "유지완"
+ },
+ {
+  "cond": "perspective",
+  "k": 2,
+  "combo": [
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "persp": "재무",
+  "run": 3,
+  "choice": "유지완"
+ },
+ {
+  "cond": "perspective",
+  "k": 2,
+  "combo": [
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "persp": "재무",
+  "run": 4,
+  "choice": "유지완"
+ },
+ {
+  "cond": "perspective",
+  "k": 2,
+  "combo": [
+   "fact_hire_11",
+   "fact_hire_12"
+  ],
+  "persp": "재무",
+  "run": 5,
+  "choice": "유지완"
+ }
+]

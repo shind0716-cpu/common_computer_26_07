@@ -1,0 +1,62 @@
+{
+ "target": "B3_r1",
+ "drop": 2,
+ "original": {
+  "fact_esa_01": "unmentioned",
+  "fact_esa_02": "mentioned",
+  "fact_esa_03": "unmentioned",
+  "fact_esa_04": "mentioned",
+  "fact_esa_05": "mentioned",
+  "fact_esa_06": "mentioned",
+  "fact_esa_07": "unmentioned",
+  "fact_esa_08": "mentioned",
+  "fact_esa_09": "mentioned",
+  "fact_esa_10": "unmentioned",
+  "fact_esa_11": "mentioned",
+  "fact_esa_12": "mentioned"
+ },
+ "rejudges": [
+  {
+   "fact_esa_01": "unmentioned",
+   "fact_esa_02": "mentioned",
+   "fact_esa_03": "unmentioned",
+   "fact_esa_04": "mentioned",
+   "fact_esa_05": "mentioned",
+   "fact_esa_06": "mentioned",
+   "fact_esa_07": "unmentioned",
+   "fact_esa_08": "mentioned",
+   "fact_esa_09": "mentioned",
+   "fact_esa_10": "unmentioned",
+   "fact_esa_11": "mentioned",
+   "fact_esa_12": "mentioned"
+  },
+  {
+   "fact_esa_01": "unmentioned",
+   "fact_esa_02": "mentioned",
+   "fact_esa_03": "unmentioned",
+   "fact_esa_04": "mentioned",
+   "fact_esa_05": "mentioned",
+   "fact_esa_06": "mentioned",
+   "fact_esa_07": "unmentioned",
+   "fact_esa_08": "mentioned",
+   "fact_esa_09": "mentioned",
+   "fact_esa_10": "unmentioned",
+   "fact_esa_11": "mentioned",
+   "fact_esa_12": "mentioned"
+  },
+  {
+   "fact_esa_01": "unmentioned",
+   "fact_esa_02": "mentioned",
+   "fact_esa_03": "unmentioned",
+   "fact_esa_04": "mentioned",
+   "fact_esa_05": "mentioned",
+   "fact_esa_06": "mentioned",
+   "fact_esa_07": "unmentioned",
+   "fact_esa_08": "mentioned",
+   "fact_esa_09": "mentioned",
+   "fact_esa_10": "unmentioned",
+   "fact_esa_11": "mentioned",
+   "fact_esa_12": "mentioned"
+  }
+ ]
+}

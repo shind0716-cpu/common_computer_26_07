@@ -6,8 +6,8 @@ seed: 42
 agents: 8                    # 관점 4 x 입장 2 (논문 상수)
 rounds: 3
 debate_model: claude-haiku   # 파일럿 계승. 수요일 통합 때 확정
-debate_temperature: 1.2      # 논문 상수
-judge_model: claude-sonnet   # 확정 사양 (결정 로그 7/21)
+debate_temperature: 1.0      # 편차 D2 — 논문 상수 1.2는 Anthropic API 상한(0~1) 초과로 재현 불가 (민옥 확정 7/28)
+judge_model: claude-sonnet-4-6  # 확정 사양 "Sonnet·temp0" 유지 (결정 로그 7/21). 별칭 claude-sonnet→Sonnet 5는 temp 명시 시 400이라 정식 ID 직접 지정 (민옥 확정 7/28)
 judge_temperature: 0
 judge_n_votes: 3
 ledger_mode: "off"           # off | v0 | v1 | v2 | a1  — off=대조군

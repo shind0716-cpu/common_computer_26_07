@@ -1,0 +1,379 @@
+{
+ "model_key": "gpt",
+ "provider": "openai",
+ "model": "gpt-5.4-mini",
+ "key_env": "OPENAI_API_KEY",
+ "gen_temperature": 0.7,
+ "max_tokens": 1024,
+ "runs": 3,
+ "rounds": 3,
+ "started_at": "2026-07-27T16:09:57+0900",
+ "calls": [
+  {
+   "file": "A1_r3.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "seed": 1003,
+    "deviations": [
+     "max_tokens→max_completion_tokens"
+    ]
+   },
+   "at": "16:10:01"
+  },
+  {
+   "file": "A2_r0.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 2000,
+    "deviations": []
+   },
+   "at": "16:10:03"
+  },
+  {
+   "file": "A2_r1.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 2001,
+    "deviations": []
+   },
+   "at": "16:10:07"
+  },
+  {
+   "file": "A2_r2.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 2002,
+    "deviations": []
+   },
+   "at": "16:10:11"
+  },
+  {
+   "file": "A2_r3.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 2003,
+    "deviations": []
+   },
+   "at": "16:10:15"
+  },
+  {
+   "file": "A3_r0.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 3000,
+    "deviations": []
+   },
+   "at": "16:10:18"
+  },
+  {
+   "file": "A3_r1.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 3001,
+    "deviations": []
+   },
+   "at": "16:10:21"
+  },
+  {
+   "file": "A3_r2.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 3002,
+    "deviations": []
+   },
+   "at": "16:10:26"
+  },
+  {
+   "file": "A3_r3.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 3003,
+    "deviations": []
+   },
+   "at": "16:10:29"
+  },
+  {
+   "file": "P1_r0.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 1000,
+    "deviations": []
+   },
+   "at": "16:10:32"
+  },
+  {
+   "file": "P1_r1.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 1001,
+    "deviations": []
+   },
+   "at": "16:10:36"
+  },
+  {
+   "file": "P1_r2.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 1002,
+    "deviations": []
+   },
+   "at": "16:10:39"
+  },
+  {
+   "file": "P1_r3.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 1003,
+    "deviations": []
+   },
+   "at": "16:10:43"
+  },
+  {
+   "file": "P2_r0.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 2000,
+    "deviations": []
+   },
+   "at": "16:10:46"
+  },
+  {
+   "file": "P2_r1.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 2001,
+    "deviations": []
+   },
+   "at": "16:10:50"
+  },
+  {
+   "file": "P2_r2.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 2002,
+    "deviations": []
+   },
+   "at": "16:10:54"
+  },
+  {
+   "file": "P2_r3.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 2003,
+    "deviations": []
+   },
+   "at": "16:10:58"
+  },
+  {
+   "file": "P3_r0.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 3000,
+    "deviations": []
+   },
+   "at": "16:11:01"
+  },
+  {
+   "file": "P3_r1.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 3001,
+    "deviations": []
+   },
+   "at": "16:11:04"
+  },
+  {
+   "file": "P3_r2.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 3002,
+    "deviations": []
+   },
+   "at": "16:11:07"
+  },
+  {
+   "file": "P3_r3.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 3003,
+    "deviations": []
+   },
+   "at": "16:11:11"
+  },
+  {
+   "file": "B1_r0.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 1000,
+    "deviations": []
+   },
+   "at": "16:11:14"
+  },
+  {
+   "file": "B1_r1.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 1001,
+    "deviations": []
+   },
+   "at": "16:11:18"
+  },
+  {
+   "file": "B1_r2.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 1002,
+    "deviations": []
+   },
+   "at": "16:11:22"
+  },
+  {
+   "file": "B1_r3.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 1003,
+    "deviations": []
+   },
+   "at": "16:11:26"
+  },
+  {
+   "file": "B2_r0.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 2000,
+    "deviations": []
+   },
+   "at": "16:11:29"
+  },
+  {
+   "file": "B2_r1.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 2001,
+    "deviations": []
+   },
+   "at": "16:11:33"
+  },
+  {
+   "file": "B2_r2.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 2002,
+    "deviations": []
+   },
+   "at": "16:11:37"
+  },
+  {
+   "file": "B2_r3.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 2003,
+    "deviations": []
+   },
+   "at": "16:11:41"
+  },
+  {
+   "file": "B3_r0.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 3000,
+    "deviations": []
+   },
+   "at": "16:11:43"
+  },
+  {
+   "file": "B3_r1.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 3001,
+    "deviations": []
+   },
+   "at": "16:11:47"
+  },
+  {
+   "file": "B3_r2.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 3002,
+    "deviations": []
+   },
+   "at": "16:11:51"
+  },
+  {
+   "file": "B3_r3.txt",
+   "params_used": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "max_completion_tokens": 1024,
+    "seed": 3003,
+    "deviations": []
+   },
+   "at": "16:11:54"
+  }
+ ],
+ "finished_at": "2026-07-27T16:11:54+0900"
+}

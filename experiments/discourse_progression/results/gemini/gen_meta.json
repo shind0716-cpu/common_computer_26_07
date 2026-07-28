@@ -1,0 +1,518 @@
+{
+ "model_key": "gemini",
+ "provider": "gemini",
+ "model": "gemini-3-flash-preview",
+ "key_env": "GEMINI_API_KEY",
+ "gen_temperature": 0.7,
+ "max_tokens": 1024,
+ "runs": 3,
+ "rounds": 3,
+ "started_at": "2026-07-27T16:25:43+0900",
+ "calls": [
+  {
+   "file": "A1_r0.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:25:46"
+  },
+  {
+   "file": "A1_r1.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:25:50"
+  },
+  {
+   "file": "A1_r2.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:25:53"
+  },
+  {
+   "file": "A1_r3.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:25:57"
+  },
+  {
+   "file": "A2_r0.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:26:00"
+  },
+  {
+   "file": "A2_r1.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:26:04"
+  },
+  {
+   "file": "A2_r2.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:26:08"
+  },
+  {
+   "file": "A2_r3.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:26:11"
+  },
+  {
+   "file": "A3_r0.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:26:14"
+  },
+  {
+   "file": "A3_r1.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:26:18"
+  },
+  {
+   "file": "A3_r2.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:26:22"
+  },
+  {
+   "file": "A3_r3.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:26:27"
+  },
+  {
+   "file": "P1_r0.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:26:30"
+  },
+  {
+   "file": "P1_r1.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:26:34"
+  },
+  {
+   "file": "P1_r2.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:26:38"
+  },
+  {
+   "file": "P1_r3.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:26:42"
+  },
+  {
+   "file": "P2_r0.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:26:46"
+  },
+  {
+   "file": "P2_r1.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:26:49"
+  },
+  {
+   "file": "P2_r2.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:26:53"
+  },
+  {
+   "file": "P2_r3.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:26:57"
+  },
+  {
+   "file": "P3_r0.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:27:00"
+  },
+  {
+   "file": "P3_r1.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:27:03"
+  },
+  {
+   "file": "P3_r2.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:27:06"
+  },
+  {
+   "file": "P3_r3.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:27:09"
+  },
+  {
+   "file": "B1_r0.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:27:12"
+  },
+  {
+   "file": "B1_r1.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:27:16"
+  },
+  {
+   "file": "B1_r2.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:27:20"
+  },
+  {
+   "file": "B1_r3.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:27:24"
+  },
+  {
+   "file": "B2_r0.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:27:27"
+  },
+  {
+   "file": "B2_r1.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:27:31"
+  },
+  {
+   "file": "B2_r2.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:27:36"
+  },
+  {
+   "file": "B2_r3.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:27:39"
+  },
+  {
+   "file": "B3_r0.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:27:43"
+  },
+  {
+   "file": "B3_r1.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:27:48"
+  },
+  {
+   "file": "B3_r2.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:27:53"
+  },
+  {
+   "file": "B3_r3.txt",
+   "params_used": {
+    "model": "gemini-3-flash-preview",
+    "temperature": 0.7,
+    "max_tokens": 4096,
+    "seed": null,
+    "deviations": [
+     "gemini는 seed 미지원",
+     "D1: maxOutputTokens 4096·thinking minimal"
+    ]
+   },
+   "at": "16:27:58"
+  }
+ ],
+ "finished_at": "2026-07-27T16:27:58+0900"
+}
