@@ -1,0 +1,1030 @@
+{
+  "protocol": "docs/P3_TRANSMISSION_DESIGN.md v1.0 (prereg commit a70470d)",
+  "instrument": "access_window (서술 계기 — 판별표 밖)",
+  "meta": {
+    "protocol": "docs/P3_TRANSMISSION_DESIGN.md v1.0 (prereg commit a70470d)",
+    "run_id": "tp1",
+    "rounds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_agents": 8,
+    "n_facts": 12,
+    "window": {
+      "window_source": "reconstructed",
+      "n_from_assembly": 0,
+      "n_reconstructed": 40,
+      "edges": {
+        "structure": "full",
+        "assumed_full": false
+      }
+    },
+    "assigned_untracked_facts": [],
+    "question_excluded_facts": []
+  },
+  "records": [
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_esa_01",
+      "excluded": false,
+      "prior_band": "low",
+      "critical": true,
+      "timeline": [
+        {
+          "round": 0,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_1",
+            "agent_7"
+          ],
+          "n_access_agents": 2,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 1,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_5",
+            "agent_7"
+          ],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 2,
+          "state": "accessible",
+          "spoken_by": [],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 3,
+          "state": "inaccessible",
+          "spoken_by": [],
+          "n_access_agents": 0,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 4,
+          "state": "inaccessible",
+          "spoken_by": [],
+          "n_access_agents": 0,
+          "inject": false,
+          "resurgent_speakers": []
+        }
+      ],
+      "first_inaccessible_round": 3,
+      "revivals": [],
+      "retirements": [
+        {
+          "after_round": 1,
+          "grace_state": "accessible",
+          "outcome": "dead",
+          "outcome_round": 3
+        }
+      ],
+      "final_state": "inaccessible",
+      "rounds_by_state": {
+        "spoken": 2,
+        "accessible": 1,
+        "inaccessible": 2
+      },
+      "n_resurgent_rounds": 0
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_esa_02",
+      "excluded": false,
+      "prior_band": "low",
+      "critical": true,
+      "timeline": [
+        {
+          "round": 0,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_1",
+            "agent_2"
+          ],
+          "n_access_agents": 2,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 1,
+          "state": "accessible",
+          "spoken_by": [],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 2,
+          "state": "inaccessible",
+          "spoken_by": [],
+          "n_access_agents": 0,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 3,
+          "state": "inaccessible",
+          "spoken_by": [],
+          "n_access_agents": 0,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 4,
+          "state": "inaccessible",
+          "spoken_by": [],
+          "n_access_agents": 0,
+          "inject": false,
+          "resurgent_speakers": []
+        }
+      ],
+      "first_inaccessible_round": 2,
+      "revivals": [],
+      "retirements": [
+        {
+          "after_round": 0,
+          "grace_state": "accessible",
+          "outcome": "dead",
+          "outcome_round": 2
+        }
+      ],
+      "final_state": "inaccessible",
+      "rounds_by_state": {
+        "spoken": 1,
+        "accessible": 1,
+        "inaccessible": 3
+      },
+      "n_resurgent_rounds": 0
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_esa_03",
+      "excluded": false,
+      "prior_band": "low",
+      "critical": true,
+      "timeline": [
+        {
+          "round": 0,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_7"
+          ],
+          "n_access_agents": 2,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 1,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_7"
+          ],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 2,
+          "state": "accessible",
+          "spoken_by": [],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 3,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ],
+          "n_access_agents": 0,
+          "inject": false,
+          "resurgent_speakers": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "round": 4,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        }
+      ],
+      "first_inaccessible_round": null,
+      "revivals": [],
+      "retirements": [
+        {
+          "after_round": 1,
+          "grace_state": "accessible",
+          "outcome": "resurgence",
+          "outcome_round": 3
+        }
+      ],
+      "final_state": "spoken",
+      "rounds_by_state": {
+        "spoken": 4,
+        "accessible": 1,
+        "inaccessible": 0
+      },
+      "n_resurgent_rounds": 1
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_esa_04",
+      "excluded": false,
+      "prior_band": "low",
+      "critical": true,
+      "timeline": [
+        {
+          "round": 0,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_4"
+          ],
+          "n_access_agents": 2,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 1,
+          "state": "accessible",
+          "spoken_by": [],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 2,
+          "state": "inaccessible",
+          "spoken_by": [],
+          "n_access_agents": 0,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 3,
+          "state": "inaccessible",
+          "spoken_by": [],
+          "n_access_agents": 0,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 4,
+          "state": "inaccessible",
+          "spoken_by": [],
+          "n_access_agents": 0,
+          "inject": false,
+          "resurgent_speakers": []
+        }
+      ],
+      "first_inaccessible_round": 2,
+      "revivals": [],
+      "retirements": [
+        {
+          "after_round": 0,
+          "grace_state": "accessible",
+          "outcome": "dead",
+          "outcome_round": 2
+        }
+      ],
+      "final_state": "inaccessible",
+      "rounds_by_state": {
+        "spoken": 1,
+        "accessible": 1,
+        "inaccessible": 3
+      },
+      "n_resurgent_rounds": 0
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_esa_05",
+      "excluded": false,
+      "prior_band": "low",
+      "critical": true,
+      "timeline": [
+        {
+          "round": 0,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_4",
+            "agent_8"
+          ],
+          "n_access_agents": 2,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 1,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_2",
+            "agent_5"
+          ],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 2,
+          "state": "accessible",
+          "spoken_by": [],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 3,
+          "state": "inaccessible",
+          "spoken_by": [],
+          "n_access_agents": 0,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 4,
+          "state": "inaccessible",
+          "spoken_by": [],
+          "n_access_agents": 0,
+          "inject": false,
+          "resurgent_speakers": []
+        }
+      ],
+      "first_inaccessible_round": 3,
+      "revivals": [],
+      "retirements": [
+        {
+          "after_round": 1,
+          "grace_state": "accessible",
+          "outcome": "dead",
+          "outcome_round": 3
+        }
+      ],
+      "final_state": "inaccessible",
+      "rounds_by_state": {
+        "spoken": 2,
+        "accessible": 1,
+        "inaccessible": 2
+      },
+      "n_resurgent_rounds": 0
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_esa_06",
+      "excluded": false,
+      "prior_band": "low",
+      "critical": true,
+      "timeline": [
+        {
+          "round": 0,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_3",
+            "agent_7"
+          ],
+          "n_access_agents": 2,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 1,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_1",
+            "agent_5",
+            "agent_6",
+            "agent_7"
+          ],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 2,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 3,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_5",
+            "agent_6",
+            "agent_7"
+          ],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 4,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        }
+      ],
+      "first_inaccessible_round": null,
+      "revivals": [],
+      "retirements": [],
+      "final_state": "spoken",
+      "rounds_by_state": {
+        "spoken": 5,
+        "accessible": 0,
+        "inaccessible": 0
+      },
+      "n_resurgent_rounds": 0
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_esa_07",
+      "excluded": false,
+      "prior_band": "low",
+      "critical": true,
+      "timeline": [
+        {
+          "round": 0,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_2"
+          ],
+          "n_access_agents": 1,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 1,
+          "state": "accessible",
+          "spoken_by": [],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 2,
+          "state": "inaccessible",
+          "spoken_by": [],
+          "n_access_agents": 0,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 3,
+          "state": "inaccessible",
+          "spoken_by": [],
+          "n_access_agents": 0,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 4,
+          "state": "inaccessible",
+          "spoken_by": [],
+          "n_access_agents": 0,
+          "inject": false,
+          "resurgent_speakers": []
+        }
+      ],
+      "first_inaccessible_round": 2,
+      "revivals": [],
+      "retirements": [
+        {
+          "after_round": 0,
+          "grace_state": "accessible",
+          "outcome": "dead",
+          "outcome_round": 2
+        }
+      ],
+      "final_state": "inaccessible",
+      "rounds_by_state": {
+        "spoken": 1,
+        "accessible": 1,
+        "inaccessible": 3
+      },
+      "n_resurgent_rounds": 0
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_esa_08",
+      "excluded": false,
+      "prior_band": "low",
+      "critical": true,
+      "timeline": [
+        {
+          "round": 0,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_5",
+            "agent_6"
+          ],
+          "n_access_agents": 2,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 1,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 2,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 3,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_3",
+            "agent_7"
+          ],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 4,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_5"
+          ],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        }
+      ],
+      "first_inaccessible_round": null,
+      "revivals": [],
+      "retirements": [],
+      "final_state": "spoken",
+      "rounds_by_state": {
+        "spoken": 5,
+        "accessible": 0,
+        "inaccessible": 0
+      },
+      "n_resurgent_rounds": 0
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_esa_09",
+      "excluded": false,
+      "prior_band": "low",
+      "critical": false,
+      "timeline": [
+        {
+          "round": 0,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_3",
+            "agent_5"
+          ],
+          "n_access_agents": 2,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 1,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_1",
+            "agent_5",
+            "agent_7"
+          ],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 2,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_1",
+            "agent_3",
+            "agent_5"
+          ],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 3,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 4,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        }
+      ],
+      "first_inaccessible_round": null,
+      "revivals": [],
+      "retirements": [],
+      "final_state": "spoken",
+      "rounds_by_state": {
+        "spoken": 5,
+        "accessible": 0,
+        "inaccessible": 0
+      },
+      "n_resurgent_rounds": 0
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_esa_10",
+      "excluded": false,
+      "prior_band": "low",
+      "critical": false,
+      "timeline": [
+        {
+          "round": 0,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_4",
+            "agent_5",
+            "agent_6"
+          ],
+          "n_access_agents": 3,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 1,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_5"
+          ],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 2,
+          "state": "accessible",
+          "spoken_by": [],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 3,
+          "state": "inaccessible",
+          "spoken_by": [],
+          "n_access_agents": 0,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 4,
+          "state": "inaccessible",
+          "spoken_by": [],
+          "n_access_agents": 0,
+          "inject": false,
+          "resurgent_speakers": []
+        }
+      ],
+      "first_inaccessible_round": 3,
+      "revivals": [],
+      "retirements": [
+        {
+          "after_round": 1,
+          "grace_state": "accessible",
+          "outcome": "dead",
+          "outcome_round": 3
+        }
+      ],
+      "final_state": "inaccessible",
+      "rounds_by_state": {
+        "spoken": 2,
+        "accessible": 1,
+        "inaccessible": 2
+      },
+      "n_resurgent_rounds": 0
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_esa_11",
+      "excluded": false,
+      "prior_band": "low",
+      "critical": true,
+      "timeline": [
+        {
+          "round": 0,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_1",
+            "agent_8"
+          ],
+          "n_access_agents": 2,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 1,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_2"
+          ],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 2,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_4",
+            "agent_6",
+            "agent_8"
+          ],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 3,
+          "state": "accessible",
+          "spoken_by": [],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 4,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_4",
+            "agent_6",
+            "agent_8"
+          ],
+          "n_access_agents": 0,
+          "inject": false,
+          "resurgent_speakers": [
+            "agent_4",
+            "agent_6",
+            "agent_8"
+          ]
+        }
+      ],
+      "first_inaccessible_round": null,
+      "revivals": [],
+      "retirements": [
+        {
+          "after_round": 2,
+          "grace_state": "accessible",
+          "outcome": "resurgence",
+          "outcome_round": 4
+        }
+      ],
+      "final_state": "spoken",
+      "rounds_by_state": {
+        "spoken": 4,
+        "accessible": 1,
+        "inaccessible": 0
+      },
+      "n_resurgent_rounds": 1
+    },
+    {
+      "run_id": "tp1",
+      "fact_id": "fact_esa_12",
+      "excluded": false,
+      "prior_band": "high",
+      "critical": false,
+      "timeline": [
+        {
+          "round": 0,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_2",
+            "agent_8"
+          ],
+          "n_access_agents": 2,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 1,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_2",
+            "agent_6",
+            "agent_8"
+          ],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 2,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 3,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        },
+        {
+          "round": 4,
+          "state": "spoken",
+          "spoken_by": [
+            "agent_1",
+            "agent_2",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ],
+          "n_access_agents": 8,
+          "inject": false,
+          "resurgent_speakers": []
+        }
+      ],
+      "first_inaccessible_round": null,
+      "revivals": [],
+      "retirements": [],
+      "final_state": "spoken",
+      "rounds_by_state": {
+        "spoken": 5,
+        "accessible": 0,
+        "inaccessible": 0
+      },
+      "n_resurgent_rounds": 0
+    }
+  ],
+  "curve": [
+    {
+      "round": 0,
+      "spoken": 12,
+      "accessible": 0,
+      "inaccessible": 0,
+      "alive_spoken": 12,
+      "alive_access": 12
+    },
+    {
+      "round": 1,
+      "spoken": 9,
+      "accessible": 3,
+      "inaccessible": 0,
+      "alive_spoken": 9,
+      "alive_access": 12
+    },
+    {
+      "round": 2,
+      "spoken": 5,
+      "accessible": 4,
+      "inaccessible": 3,
+      "alive_spoken": 5,
+      "alive_access": 9
+    },
+    {
+      "round": 3,
+      "spoken": 5,
+      "accessible": 1,
+      "inaccessible": 6,
+      "alive_spoken": 5,
+      "alive_access": 6
+    },
+    {
+      "round": 4,
+      "spoken": 6,
+      "accessible": 0,
+      "inaccessible": 6,
+      "alive_spoken": 6,
+      "alive_access": 6
+    }
+  ],
+  "summary": {
+    "scope": {
+      "critical_only": false
+    },
+    "n_facts_tracked": 12,
+    "n_facts_excluded_question": 0,
+    "final_state": {
+      "spoken": 6,
+      "accessible": 0,
+      "inaccessible": 6
+    },
+    "n_ever_inaccessible": 6,
+    "retirement_outcomes": {
+      "dead": 6,
+      "resurgence": 2
+    },
+    "revival_channels": {},
+    "n_facts_with_resurgence": 2
+  },
+  "pilot_meta": {
+    "status": "탐색적/데모 지위 — 서술 계기(판별표 밖)",
+    "run_id": "tp1",
+    "note": "tp1 산출물(gpt-5.4-mini)에 접근 창 계기 사후 적용 — 추가 LLM 0"
+  }
+}
