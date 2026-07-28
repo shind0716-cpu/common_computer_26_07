@@ -1,0 +1,958 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "yohan_transmission_pilot",
+  "created_at": "2026-07-27T10:41:51.458806+00:00",
+  "issue_id": "issue_carkey",
+  "run_id": "tp1",
+  "judge": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0,
+    "n_votes": 1,
+    "aggregation": "single",
+    "prompt_ver": "tp-judge-v0.1",
+    "note": "파일럿 판정기 — 팀 확정 judge(Sonnet·temp0·n3) 아님. 탐색적."
+  },
+  "stage_type": "round",
+  "stages": [
+    {
+      "stage": 0,
+      "stage_type": "round",
+      "facts": [
+        {
+          "fact_id": "fact_car_01",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_4"
+              ],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_3",
+            "agent_4"
+          ]
+        },
+        {
+          "fact_id": "fact_car_02",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2"
+          ]
+        },
+        {
+          "fact_id": "fact_car_03",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2"
+          ]
+        },
+        {
+          "fact_id": "fact_car_04",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_05",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_6"
+              ],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_5",
+            "agent_6"
+          ]
+        },
+        {
+          "fact_id": "fact_car_06",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_6"
+              ],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_5",
+            "agent_6"
+          ]
+        },
+        {
+          "fact_id": "fact_car_07",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_6"
+              ],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_5",
+            "agent_6"
+          ]
+        },
+        {
+          "fact_id": "fact_car_08",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_4"
+              ],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_3",
+            "agent_4"
+          ]
+        },
+        {
+          "fact_id": "fact_car_09",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_8"
+              ],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_car_10",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_car_11",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7"
+              ],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_car_12",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_3",
+                "agent_5",
+                "agent_7"
+              ],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 1,
+      "stage_type": "round",
+      "facts": [
+        {
+          "fact_id": "fact_car_01",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_02",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_5",
+                "agent_3"
+              ],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_7",
+            "agent_5",
+            "agent_3"
+          ]
+        },
+        {
+          "fact_id": "fact_car_03",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_04",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_05",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5"
+              ],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_5"
+          ]
+        },
+        {
+          "fact_id": "fact_car_06",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_07",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_08",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_09",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_10",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_8",
+                "agent_4",
+                "agent_2",
+                "agent_6"
+              ],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_8",
+            "agent_4",
+            "agent_2",
+            "agent_6"
+          ]
+        },
+        {
+          "fact_id": "fact_car_11",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_12",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_5",
+                "agent_3",
+                "agent_1"
+              ],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_7",
+            "agent_5",
+            "agent_3",
+            "agent_1"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "stage_type": "round",
+      "facts": [
+        {
+          "fact_id": "fact_car_01",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_02",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_03",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_04",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_05",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_06",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_07",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_08",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_09",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_10",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_6"
+              ],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_4",
+            "agent_6"
+          ]
+        },
+        {
+          "fact_id": "fact_car_11",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_12",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_5",
+                "agent_3",
+                "agent_1"
+              ],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_7",
+            "agent_5",
+            "agent_3",
+            "agent_1"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "stage_type": "round",
+      "facts": [
+        {
+          "fact_id": "fact_car_01",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_02",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_5",
+                "agent_3"
+              ],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_7",
+            "agent_5",
+            "agent_3"
+          ]
+        },
+        {
+          "fact_id": "fact_car_03",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_04",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_05",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_06",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_07",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_08",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_09",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_10",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_6"
+              ],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_6"
+          ]
+        },
+        {
+          "fact_id": "fact_car_11",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_12",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_5",
+                "agent_3",
+                "agent_1"
+              ],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_7",
+            "agent_5",
+            "agent_3",
+            "agent_1"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 4,
+      "stage_type": "round",
+      "facts": [
+        {
+          "fact_id": "fact_car_01",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_02",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_5",
+                "agent_3",
+                "agent_1"
+              ],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_7",
+            "agent_5",
+            "agent_3",
+            "agent_1"
+          ]
+        },
+        {
+          "fact_id": "fact_car_03",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_5",
+                "agent_3",
+                "agent_1"
+              ],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_7",
+            "agent_5",
+            "agent_3",
+            "agent_1"
+          ]
+        },
+        {
+          "fact_id": "fact_car_04",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_05",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_06",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_07",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_08",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_09",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_10",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_8",
+                "agent_5",
+                "agent_4",
+                "agent_2",
+                "agent_6",
+                "agent_3",
+                "agent_1"
+              ],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_7",
+            "agent_8",
+            "agent_5",
+            "agent_4",
+            "agent_2",
+            "agent_6",
+            "agent_3",
+            "agent_1"
+          ]
+        },
+        {
+          "fact_id": "fact_car_11",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_car_12",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_5",
+                "agent_3",
+                "agent_1"
+              ],
+              "reason": "tp-single-vote"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_7",
+            "agent_5",
+            "agent_3",
+            "agent_1"
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "judge_health": {
+      "n_calls": 60,
+      "n_parse_fail": 0
+    }
+  }
+}
