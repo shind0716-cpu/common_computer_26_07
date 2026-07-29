@@ -17,6 +17,7 @@ FastAPI 어댑터의 실익(정적 생성 대비): run 목록/브라우징 + 라
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
@@ -567,6 +568,145 @@ def api_transmission(issue_id: str, run_id: str) -> dict:
     return rep
 
 
+def _ngrams(text: str, n: int = 3) -> set:
+    """문자 n-gram 집합 (한글·영숫자만 남기고 공백·문장부호 제거).
+
+    ⚠ 같은 식이 experiments/ 안 러너 3종에 이미 있다(run_experiment·run_checks·run_judge_probe).
+    이 뷰어가 네 번째 사본이며 WORKING_RULES R4(세 번째에 추출)의 추출 시점을 넘겼다 —
+    다만 뷰어는 읽기 전용 어댑터라 experiments/ 를 import 하지 않는 것이 경계 원칙이므로,
+    공용 계기로 뺄 때(modules 편입) 함께 정리한다. 식은 H2 실측과 동일해야 수치가 비교 가능하다.
+    """
+    t = re.sub(r"[^0-9A-Za-z가-힣]", "", text or "")
+    return {t[i:i + n] for i in range(len(t) - n + 1)}
+
+
+def _containment(fact_text: str, utt_text: str) -> float:
+    """팩트 원문의 3-gram 중 발화에 나타난 비율 (축자 인용=1.0). 결정론적 — LLM 0."""
+    fg = _ngrams(fact_text)
+    if not fg:
+        return 0.0
+    return round(len(fg & _ngrams(utt_text)) / len(fg), 3)
+
+
+# H2 실측(2026-07-29, experiments/instrument_check) — 근접도 구간별 판정기 검출률.
+# 지표가 아니라 **어디를 먼저 볼지 고르는 우선순위**로만 쓴다(§계약: 문자열 대조는 지표 불가).
+PROX_BANDS = [(0.6, "100%"), (0.4, "82%"), (0.2, "40%"), (0.0, "19%")]
+PROX_SUSPECT = 0.4   # 이 이상인데 계상 안 됐으면 눈으로 볼 값어치가 있다
+PROX_GRAY = (0.3, 0.5)  # H2 전이 구간 — 검출이 갈리기 시작하는 곳
+
+
+@app.get("/api/audit/{issue_id}/{run_id}")
+def api_audit(issue_id: str, run_id: str) -> dict:
+    """판정 ↔ 원문 대조 노드 — 판정 셀 옆에 **그 라운드 전원 발화 전문**을 놓는다.
+
+    왜 별도 뷰인가: 생존 매트릭스는 status 만, 전기(biography)는 **판정기가 센 화자만**
+    보여준다. 그런데 7/29 대조에서 나온 것은 정확히 그 반대편이다 — 말했는데 안 세어진
+    화자(esa_03 stage2: 5명이 발화했는데 unmentioned). 세어진 쪽만 보면 영원히 안 보인다.
+    그래서 이 뷰는 counted/uncounted 를 가르지 않고 그 라운드 발화를 **전문 그대로** 싣고,
+    판정 결과를 그 옆에 붙인다.
+
+    근접도(문자 3-gram containment)는 **판정이 아니라 시선 유도**다. 계약(SCHEMA_v0.3_NOTE_SLOT
+    §4)이 문자열 대조를 지표로 쓰는 것을 기각했으므로 여기서도 지표가 아니며, "먼저 볼 셀"을
+    고르는 데만 쓴다. 어휘만 바꿔도 0.641로 떨어지므로 낮은 값이 부재의 증거가 되지 않는다.
+
+    읽기 전용·LLM 0 (뷰어 경계 원칙). 산출물은 아무것도 쓰지 않는다.
+    """
+    jpath = paths.judgment(issue_id, run_id)
+    if not jpath.exists():
+        raise HTTPException(status_code=404, detail=f"judgment 없음 — 대조는 판정 이후 ({issue_id}/{run_id})")
+    try:
+        judgment = json.loads(jpath.read_text(encoding="utf-8"))
+        facts_doc = json.loads(paths.facts(issue_id).read_text(encoding="utf-8"))
+        events = [json.loads(ln) for ln
+                  in paths.debate(issue_id, run_id).read_text(encoding="utf-8").splitlines()
+                  if ln.strip()]
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=f"산출물 없음: {e}")
+
+    agent_persp: dict[str, str] = {}
+    try:
+        asg = json.loads(paths.assignment(issue_id).read_text(encoding="utf-8"))
+        for ag in asg.get("agents", []):
+            agent_persp[ag["agent_id"]] = ag.get("perspective") or "?"
+    except FileNotFoundError:
+        pass
+
+    # 라운드별 발화 전문 — 한 번만 싣고 팩트별로는 좌표만 참조한다(중복 전송 방지).
+    utts_by_stage: dict[int, list[dict]] = {}
+    for e in events:
+        if e.get("event") != "utterance":
+            continue
+        utts_by_stage.setdefault(e.get("round"), []).append({
+            "agent_id": e.get("agent_id"),
+            "perspective": e.get("perspective") or agent_persp.get(e.get("agent_id")),
+            "text": e.get("response_text") or "",
+        })
+
+    stage_recs = {s["stage"]: {f["fact_id"]: f for f in s.get("facts", [])}
+                  for s in judgment.get("stages", [])}
+    stages = sorted(stage_recs)
+
+    out_facts, n_flagged = [], 0
+    for f in facts_doc.get("facts", []):
+        fid, ftext = f["fact_id"], f.get("text", "")
+        cells = []
+        for st in stages:
+            rec = stage_recs[st].get(fid)
+            if rec is None:
+                continue
+            counted = list(rec.get("agents_mentioning") or [])
+            surv = rec.get("status") in SURVIVING
+            prox = {u["agent_id"]: _containment(ftext, u["text"])
+                    for u in utts_by_stage.get(st, [])}
+            top = max(prox.items(), key=lambda kv: kv[1], default=(None, 0.0))
+            votes = [v for v in (rec.get("votes") or []) if isinstance(v, dict)]
+            vstat = [v.get("status") for v in votes]
+
+            flags = []
+            # ① 계상 안 됐는데 원문이 상당히 남은 발화가 있다 = 7/29 esa_03 유형
+            if not surv and top[1] >= PROX_SUSPECT:
+                flags.append("uncounted_high")
+            # ② 살아는 있는데, 근접도가 높은 화자가 센 명단에서 빠졌다 = 화자 간 누락
+            missed = [a for a, p in prox.items() if p >= PROX_SUSPECT and a not in counted]
+            if surv and missed:
+                flags.append("partial_count")
+            # ③ 표가 갈렸다 (다수결이 가린 분열)
+            if vstat and len(set(vstat)) > 1:
+                flags.append("split")
+            # ④ H2 전이 구간 — 검출이 갈리기 시작하는 근접도
+            if PROX_GRAY[0] <= top[1] < PROX_GRAY[1]:
+                flags.append("gray")
+            n_flagged += 1 if flags else 0
+
+            cells.append({
+                "stage": st, "status": rec.get("status"), "surviving": surv,
+                "counted": counted, "missed_high": missed,
+                "prox": prox, "max_prox": top[1], "max_prox_agent": top[0],
+                "votes": {
+                    "n": len(vstat),
+                    "split": None if not vstat else f"{max(vstat.count(s) for s in set(vstat))}/{len(vstat)}",
+                    "unanimous": None if not vstat else len(set(vstat)) == 1,
+                    "parse_fail": sum(1 for v in votes
+                                      if str(v.get("reason", "")).startswith("parse_fail:")),
+                },
+                "flags": flags,
+            })
+        out_facts.append({"fact_id": fid, "text": ftext,
+                          "critical": bool(f.get("critical")), "cells": cells})
+
+    return {
+        "issue_id": issue_id, "run_id": run_id, "stages": stages,
+        "judge": judgment.get("judge"),
+        "utterances": {str(k): v for k, v in sorted(utts_by_stage.items())},
+        "facts": out_facts,
+        "n_flagged_cells": n_flagged,
+        "bands": [{"min": lo, "detect": d} for lo, d in PROX_BANDS],
+        "note": ("근접도는 지표가 아니라 시선 유도다 — 어휘만 바꿔도 0.641로 떨어지므로 "
+                 "낮은 값이 '안 말했다'의 증거가 되지 않는다(H2 실측). 표시는 어디를 먼저 "
+                 "읽을지 고르는 용도이며, 판정은 사람이 원문을 읽고 한다."),
+    }
+
+
 @app.get("/biography", response_class=HTMLResponse)
 def biography_page() -> str:
     return (HERE / "biography.html").read_text(encoding="utf-8")
@@ -580,6 +720,11 @@ def ledger_page() -> str:
 @app.get("/transmission", response_class=HTMLResponse)
 def transmission_page() -> str:
     return (HERE / "transmission.html").read_text(encoding="utf-8")
+
+
+@app.get("/audit", response_class=HTMLResponse)
+def audit_page() -> str:
+    return (HERE / "audit.html").read_text(encoding="utf-8")
 
 
 @app.get("/", response_class=HTMLResponse)
