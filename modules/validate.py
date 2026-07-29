@@ -170,6 +170,17 @@ def validate(path: Path, deep: bool = False):
                 continue  # 빈 줄은 건너뜀
             ev = json.loads(line)
             check_keys(ev, ["event", "run_id", "ts"], f"{path.name} line {i + 1}")
+            if ev["event"] == "run_meta":
+                # v0.3 §4‴ — 있으면 구조를 검사하고, 없으면 통과(구 로그 호환).
+                # 값의 의미(config와 실제 실행의 일치)는 검사하지 않는다 — 얕은 계약 검사.
+                where = f"{path.name} line {i + 1} run_meta"
+                check_keys(ev, ["issue_id", "condition", "config_ref", "settings"], where)
+                check_keys(ev["config_ref"], ["name", "sha256"], f"{where}.config_ref")
+                check_keys(ev["settings"],
+                           ["window", "memory", "rounds", "structure", "stance",
+                            "overlap_k", "ledger_mode", "seed"], f"{where}.settings")
+                if events:  # 빈 줄은 세지 않는다 — '첫 이벤트'가 기준
+                    fail(f"{where}: run_meta 는 첫 이벤트여야 한다 (앞에 {len(events)}건 있음)")
             events.append(ev)
         print(f"[OK] {path.name} (debate jsonl)")
         if deep:

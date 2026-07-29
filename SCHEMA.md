@@ -106,3 +106,30 @@ ledger는 stages[].facts[].{fact_id,status} 두 필드만 의존하므로 양쪽
   정책, 경계 조항 3)와 `memory`는 직교하며 수첩을 창 정책 값으로 넣지 않는다.
 
 상세·근거: docs/proposals/SCHEMA_v0.3_NOTE_SLOT.md (사전고정 커밋 a5af1bb — 고정 이후 변경은 append 전용).
+
+### 4‴. run_meta 이벤트 — 산출물이 자기 조건을 안다 (2026-07-29, 요한 확정 — 규약 7 소관)
+
+추가 1건(새 이벤트), 기존 이벤트·필드 변경·삭제 0. 구 로그는 run_meta 부재 시 종전대로 유효하다.
+
+**왜**: 조건 정의는 `configs/*.yaml`에 있는데 **산출물이 그 config를 가리키지 않았다.** 로그에는
+`ledger_mode` 한 칸만 실리고 seed·rounds·structure·stance는 실리지 않아, "이 run이 어떤 조건이었나"가
+사람 기억과 run_id 문자열에만 있었다(민옥 「실험 설정 사전 v0」 §1 증상 ①). 조건 어휘가 확정된 지금
+그 어휘를 로그에 싣는다.
+
+- **`run_meta`** (새 이벤트, debate jsonl **첫 줄**): run_id, ts, issue_id,
+  `condition`(사람용 슬러그 — 설정 사전 §3, config에 없으면 null),
+  `config_ref{name, sha256}`(조건 정의 파일의 이름과 내용 지문),
+  `settings{...}`(설정 사전 8축의 실제 값 — 아래).
+- **`settings` = 설정 사전 8축 좌표**: `window`(1 받는 말 범위) · `memory`(2 기억) ·
+  `rounds`(3) · `structure`(4 연결 모양) · `stance`(5 입장 — assignment에서 유도) ·
+  `persona`(6 성격) · `overlap_k`·`assignment_mode`(7 정보 나누기 — assignment에서 유도) ·
+  `ledger_mode`(8 장부). 부수: `seed` · `agents` · `debate_model` · `debate_temperature`.
+- **`config_ref.sha256`이 하는 일**: 조건 파일이 나중에 수정되면 해시가 달라져 **옛 run과 새 run이
+  같은 조건이 아님이 드러난다.** prompt_hash가 프롬프트에 한 것과 같은 수법 — 통제를 사람 기억이
+  아니라 지문으로 고정한다.
+- 검증 계약: `validate`는 run_meta가 있으면 구조를 검사하고, 없으면 통과시킨다(구 로그 호환).
+  값의 의미(예: config와 실제 실행의 일치)는 검사하지 않는다 — 얕은 계약 검사 원칙 유지.
+
+주의: `settings`는 **엔진이 실제로 실행한 값**을 적는다(config 원문 복사가 아니다). 미구현 축은
+엔진의 현행 동작을 그대로 적는다(예: 창은 롤링만 구현 → `window: "rolling"`, 수첩 미연결 →
+`memory: "none"`). 축이 구현되면 그 자리를 실제 값으로 채운다.
