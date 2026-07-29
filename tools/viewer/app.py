@@ -90,6 +90,26 @@ def _run_parts(issue_id: str, run_id: str) -> tuple[str, dict]:
     return run_state, parts
 
 
+def _run_meta(issue_id: str, run_id: str) -> dict | None:
+    """debate 로그 첫 이벤트의 run_meta (스키마 v0.3 §4‴). 구 로그면 None.
+
+    조건 좌표(설정 사전 8축)를 로그에서 그대로 읽는다 — run_id 문자열이나 config 파일명에서
+    추측하지 않는다. 추측이 바로 이 이벤트가 없애려던 문제다.
+    """
+    p = paths.debate(issue_id, run_id)
+    if not p.exists():
+        return None
+    for line in p.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        try:
+            ev = json.loads(line)
+        except Exception:
+            return None
+        return ev if ev.get("event") == "run_meta" else None
+    return None
+
+
 def _available_runs() -> list[dict]:
     """data/debates 스캔 → run 목록(부분/완전 모두). 존재 기준 = debate.jsonl (§G).
     run_id 는 파일 내용에서, issue_id 는 파일명 접미 제거로 역추출. '4파일 완비' 특례 없음."""
@@ -109,9 +129,15 @@ def _available_runs() -> list[dict]:
         if not issue_id or not paths.issue(issue_id).exists():
             continue
         run_state, parts = _run_parts(issue_id, run_id)
+        # 조건 좌표 — run_meta(스키마 v0.3 §4‴)가 있으면 로그에서 읽는다. 없으면 null:
+        # run 이름에서 조건을 추측하지 않는다(그게 애초에 없애려던 문제다).
+        meta = _run_meta(issue_id, run_id)
         item = {
             "issue_id": issue_id, "run_id": run_id, "title": _issue_title(issue_id),
             "run_state": run_state, "parts": parts,
+            "condition": (meta or {}).get("condition"),
+            "settings": (meta or {}).get("settings"),
+            "config_ref": (meta or {}).get("config_ref"),
             "stage_type": None, "judge": None, "n_stages": None, "far_system": None,
         }
         if parts["judgment"] == "present":

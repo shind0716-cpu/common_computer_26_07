@@ -66,10 +66,13 @@ class TestDebateProgress(IntegrationBase):
     def test_no_new_event_types_in_output(self):
         """관측 전용 증명: 이벤트 종류가 계약에 있는 것뿐 — progress/run_end 파일 이벤트 없음
         (계기판은 콘솔 전용). prompt_assembly 는 v0.3 확정(7/28 보드)으로 계약에 추가된
-        이벤트라 허용 집합에 포함한다 — 이 가드의 목적은 '미합의 이벤트 차단'이다."""
+        이벤트라 허용 집합에 포함한다 — 이 가드의 목적은 '미합의 이벤트 차단'이다.
+
+        2026-07-29 추가: run_meta 도 계약 이벤트다(스키마 v0.3 §4‴ — 조건 좌표 기록,
+        요한 소관 확정). 계기판 산물이 아니므로 같은 이유로 허용 집합에 포함한다."""
         self._run_captured(self.write_config(ledger_mode="off"))
         kinds = {e["event"] for e in self.read_events()}
-        self.assertEqual(kinds, {"utterance", "seating", "prompt_assembly"})
+        self.assertEqual(kinds, {"utterance", "seating", "prompt_assembly", "run_meta"})
 
     def test_is_fallback_definition(self):
         self.assertTrue(debate_engine._is_fallback(llm.FALLBACK))

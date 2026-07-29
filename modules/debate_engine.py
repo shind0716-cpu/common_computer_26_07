@@ -265,6 +265,35 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
         spend()
         return judge_vote_fn(fact, utts)
 
+    # --- run_meta: 산출물이 자기 조건을 안다 (스키마 v0.3 §4‴, 로그 첫 줄) --------
+    # 조건 정의는 configs/*.yaml 에 있는데 종전 로그는 ledger_mode 한 칸만 실어서,
+    # "이 run 이 어떤 조건이었나"가 run_id 문자열과 사람 기억에만 있었다. 설정 사전
+    # (docs/proposals/EXPERIMENT_SETTINGS_v0.md) 8축 좌표를 실제 실행값으로 적는다.
+    # config_ref.sha256 = 조건 파일의 지문 — 나중에 config 가 바뀌면 옛 run 과 새 run 이
+    # 같은 조건이 아님이 드러난다(prompt_hash 가 프롬프트에 한 것과 같은 수법).
+    emit(
+        "run_meta",
+        issue_id=issue_id,
+        condition=cfg.get("condition"),          # 사람용 슬러그. 없으면 null
+        config_ref={"name": config_path.name,
+                    "sha256": sha256(config_path.read_text(encoding="utf-8"))},
+        settings={
+            # 설정 사전 8축 — 미구현 축은 엔진의 현행 동작을 그대로 적는다
+            "window": "rolling",                 # ① 받는 말 범위 (누적 창 미구현)
+            "memory": "none",                    # ② 기억 (수첩 엔진 연결 전)
+            "rounds": rounds,                    # ③
+            "structure": structure,              # ④ 연결 모양
+            "stance": "none" if coop else "pro_con",   # ⑤ 입장
+            "persona": setting_key,              # ⑥ 성격 (협력 조건은 None)
+            "overlap_k": assign_doc.get("overlap_k"),          # ⑦ 정보 나누기
+            "assignment_mode": assign_doc.get("created_by"),   # ⑦ 배분 방식
+            "ledger_mode": ledger_mode,          # ⑧ 장부
+            # 부수 — 조건은 아니지만 재현에 필요
+            "seed": seed, "agents": length,
+            "debate_model": model, "debate_temperature": temp,
+        },
+    )
+
     # --- 진행 계기판 (관측 전용, 판정·산출물 불변) ---------------------------
     # 발화 하나 끝날 때마다 콘솔 한 줄 + 폴백(무음 공백) 누적 집계. judge 계기판
     # (`[judge] stage 2/4 · …`)과 형식·1-기반 표시를 통일 — 라이브 뷰어가 양쪽을
