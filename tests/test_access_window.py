@@ -220,6 +220,96 @@ class TestViewsAndExclusion(unittest.TestCase):
         self.assertEqual(s["n_facts_excluded_question"], 1)
 
 
+class TestEvidenceGrade(unittest.TestCase):
+    """근거 등급 — 원문 대조(literal)와 판정 매개(judged)를 섞지 않는다 (2026-07-29)."""
+
+    def test_assigned_access_is_literal(self):
+        # round0 침묵: 접근 근거가 assignment 뿐 → 전량 literal.
+        j = _judgment([_stage(0, {"f1": []})])
+        recs, _ = aw.fact_records(j, ASSIGN)
+        row = recs[0]["timeline"][0]
+        self.assertEqual(row["state"], "accessible")
+        self.assertEqual(row["evidence"], "literal")
+        self.assertEqual(row["n_access_literal"], row["n_access_agents"])
+
+    def test_mention_derived_access_is_judged(self):
+        # A 가 round0 발화 → round1 의 접근은 "이웃 직전 언급" 재구성 = 판정 매개.
+        j = _judgment([_stage(0, {"f1": ["A"]}), _stage(1, {"f1": []})])
+        recs, _ = aw.fact_records(j, ASSIGN)
+        row = recs[0]["timeline"][1]
+        self.assertEqual(row["state"], "accessible")
+        self.assertEqual(row["evidence"], "judged")
+        self.assertEqual(row["n_access_literal"], 0)
+
+    def test_inject_access_is_literal_even_after_mention(self):
+        # 주입은 injected_fact_ids 에 id 가 명시돼 판정을 거치지 않는다 → literal 섞임.
+        j = _judgment([_stage(0, {"f1": ["A"]}), _stage(1, {"f1": []})])
+        events = [{"event": "ledger_inject", "round": 1, "injected_fact_ids": ["f1"]}]
+        recs, _ = aw.fact_records(j, ASSIGN, events)
+        row = recs[0]["timeline"][1]
+        self.assertGreater(row["n_access_literal"], 0)
+        self.assertIn(row["evidence"], ("literal", "mixed"))
+
+    def test_spoken_and_inaccessible_are_judged(self):
+        # 발화도 부재도 agents_mentioning 에 기댄다 — 둘 다 judged.
+        j = _judgment([_stage(0, {"f1": ["A"]}), _stage(1, {"f1": []}),
+                       _stage(2, {"f1": []})])
+        recs, _ = aw.fact_records(j, ASSIGN)
+        tl = recs[0]["timeline"]
+        self.assertEqual(tl[0]["evidence"], "judged")   # spoken
+        self.assertEqual(tl[2]["evidence"], "judged")   # inaccessible
+
+    def test_rounds_by_evidence_sums_to_rounds(self):
+        j = _judgment([_stage(0, {"f1": ["A"]}), _stage(1, {"f1": []})])
+        recs, _ = aw.fact_records(j, ASSIGN)
+        self.assertEqual(sum(recs[0]["rounds_by_evidence"].values()),
+                         len(recs[0]["timeline"]))
+
+    def test_self_diagnostic_reports_resurgence_as_error_floor(self):
+        # B(비보유)가 round0 에 발화 = 접근 없는 발화 → 자기 진단에 잡힌다.
+        j = _judgment([_stage(0, {"f1": ["B"]})])
+        recs, _ = aw.fact_records(j, ASSIGN)
+        d = aw.summary(recs)["self_diagnostic"]
+        self.assertEqual(d["n_resurgent_rows"], 1)
+        self.assertEqual(d["resurgence_rate"], 1.0)
+        self.assertIsNotNone(d["judged_share"])
+
+    def test_curve_reports_literal_share(self):
+        j = _judgment([_stage(0, {"f1": []})])
+        recs, meta = aw.fact_records(j, ASSIGN)
+        self.assertEqual(aw.state_curve(recs, meta["rounds"])[0]["access_literal"], 1)
+
+
+class TestUndefinedChannel(unittest.TestCase):
+    """정의 밖 채널(개인 수첩) — 집계를 내지 않고 멈춘다 (SCHEMA_v0.3_NOTE_SLOT §4)."""
+
+    def _note_events(self):
+        return [{"event": "note_update", "round": 0, "agent_id": "A",
+                 "note_text": "남길 것", "origin": "model", "source": "dedicated"}]
+
+    def test_detection(self):
+        self.assertFalse(aw.has_undefined_channel([]))
+        self.assertTrue(aw.has_undefined_channel(self._note_events()))
+
+    def test_report_suspends_aggregates_but_keeps_ledger(self):
+        j = _judgment([_stage(0, {"f1": ["A"]}), _stage(1, {"f1": []})])
+        rep = aw.report(j, ASSIGN, self._note_events())
+        self.assertEqual(rep["status"], "suspended")
+        self.assertIsNone(rep["curve"])
+        self.assertIsNone(rep["summary"])
+        self.assertTrue(rep["suspended_reason"])
+        # 원장은 남는다 — 좌표는 여전히 사실이고, 틀리는 것은 집계다.
+        self.assertTrue(rep["records"])
+        self.assertTrue(all(t["evidence"] == "undefined"
+                            for t in rep["records"][0]["timeline"]))
+
+    def test_normal_run_is_ok(self):
+        j = _judgment([_stage(0, {"f1": ["A"]})])
+        rep = aw.report(j, ASSIGN, [])
+        self.assertEqual(rep["status"], "ok")
+        self.assertIsNotNone(rep["summary"])
+
+
 class TestDryrun2Smoke(unittest.TestCase):
     """dryrun2 정본 픽스처 — 구조 불변식만 단언(수치 고정 아님)."""
 
