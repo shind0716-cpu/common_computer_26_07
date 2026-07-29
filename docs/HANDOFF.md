@@ -12,6 +12,7 @@
 ## 1. 현재 상태
 
 - 브랜치 `feat/p3-transmission-layer1` — origin 동기화됨. master 머지 완료(히든 프로필 수신분 포함).
+- 브랜치 `docs/note-slot-prereg` — 수첩 계약 사전고정(a5af1bb), layer1 위에 쌓임. 미푸시.
 - **PR #19** 열림(→ master). 머지는 요한 판단.
 - 로컬 미커밋: `configs/mini_h2_off.yaml` · `configs/mini_h2_v0.yaml` · `.claude/launch.json`.
 
@@ -22,7 +23,11 @@
    `[확인 필요]` 2건: ⓐ carkey 팩트 텍스트를 외부 문서에 실을지(안현수 제작 후보, 팀 검수 전)
    ⓑ 리뷰 질문 선택(추천: C 최소 수선 + D judge-free 종점에서 사라지는가).
 3. **ka1 착수 여부** — §6 참조. 착수 시 `experiments/knowledge_absence/PREREG.md`부터.
-4. **R3(특이 관측 보고 게이트)을 보드 안건으로 올릴지** — 팀 산출물 품질에 걸리는 규칙이라.
+4. ~~R3(특이 관측 보고 게이트)을 보드 안건으로 올릴지~~ → **완료** (7/29 보드 게시, 팀 회신 대기).
+5. **민옥 측 회신 대기 3건** (수첩 계약 `docs/proposals/SCHEMA_v0.3_NOTE_SLOT.md` 관련):
+   ⓐ 5단 스토리 3→4 읽는 법 ⓑ 장부 "전량"의 지시 대상 ⓒ `note_budget` 좌표 분리.
+   회신 도착 시 구현 ②(`debate_engine` 방출·슬롯 주입, 민옥 소유)·③(`validate --deep` 확장, 요한)
+   착수 여부 판단.
 
 ## 3. 바로 집을 수 있는 작업
 
