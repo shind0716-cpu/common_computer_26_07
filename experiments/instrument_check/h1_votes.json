@@ -1,0 +1,2004 @@
+{
+  "n_votes": 5,
+  "rows": [
+    {
+      "stage": 0,
+      "fact_id": "fact_car_01",
+      "votes": [
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_3",
+            "agent_4"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_3",
+            "agent_4"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_3",
+            "agent_4"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_3",
+            "agent_4"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_3",
+            "agent_4"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 0,
+      "fact_id": "fact_car_02",
+      "votes": [
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_2"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_2"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_2"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_2"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_2"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 0,
+      "fact_id": "fact_car_03",
+      "votes": [
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 0,
+      "fact_id": "fact_car_04",
+      "votes": [
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 0,
+      "fact_id": "fact_car_05",
+      "votes": [
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_5",
+            "agent_6"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_5",
+            "agent_6"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_5",
+            "agent_6"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_5",
+            "agent_6"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_5",
+            "agent_6"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 0,
+      "fact_id": "fact_car_06",
+      "votes": [
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_5",
+            "agent_6"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_5",
+            "agent_6"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_5",
+            "agent_6"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_5",
+            "agent_6"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_5",
+            "agent_6"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 0,
+      "fact_id": "fact_car_07",
+      "votes": [
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_5",
+            "agent_6"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_5",
+            "agent_6"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_5",
+            "agent_6"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_5",
+            "agent_6"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_5",
+            "agent_6"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 0,
+      "fact_id": "fact_car_08",
+      "votes": [
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_3",
+            "agent_4"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_3",
+            "agent_4"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_3",
+            "agent_4"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_3",
+            "agent_4"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_3",
+            "agent_4"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 0,
+      "fact_id": "fact_car_09",
+      "votes": [
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_8"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_8"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_8"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_8"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_8"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 0,
+      "fact_id": "fact_car_10",
+      "votes": [
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_7",
+            "agent_8"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 0,
+      "fact_id": "fact_car_11",
+      "votes": [
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_7"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 0,
+      "fact_id": "fact_car_12",
+      "votes": [
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 1,
+      "fact_id": "fact_car_01",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 1,
+      "fact_id": "fact_car_02",
+      "votes": [
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_3",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_3",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_3",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_3",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_3",
+            "agent_7"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 1,
+      "fact_id": "fact_car_03",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 1,
+      "fact_id": "fact_car_04",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 1,
+      "fact_id": "fact_car_05",
+      "votes": [
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_5"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_5"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_5"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_5"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_5"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 1,
+      "fact_id": "fact_car_06",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 1,
+      "fact_id": "fact_car_07",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 1,
+      "fact_id": "fact_car_08",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 1,
+      "fact_id": "fact_car_09",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 1,
+      "fact_id": "fact_car_10",
+      "votes": [
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_2",
+            "agent_4",
+            "agent_6",
+            "agent_8"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_2",
+            "agent_4",
+            "agent_6",
+            "agent_8"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_2",
+            "agent_4",
+            "agent_6",
+            "agent_8"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_2",
+            "agent_4",
+            "agent_6",
+            "agent_8"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_2",
+            "agent_4",
+            "agent_6",
+            "agent_8"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 1,
+      "fact_id": "fact_car_11",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 1,
+      "fact_id": "fact_car_12",
+      "votes": [
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "fact_id": "fact_car_01",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "fact_id": "fact_car_02",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "fact_id": "fact_car_03",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "fact_id": "fact_car_04",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "fact_id": "fact_car_05",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "fact_id": "fact_car_06",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "fact_id": "fact_car_07",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "fact_id": "fact_car_08",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "fact_id": "fact_car_09",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "fact_id": "fact_car_10",
+      "votes": [
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_4",
+            "agent_6"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_4",
+            "agent_6"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_4",
+            "agent_6"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_4",
+            "agent_6"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_4",
+            "agent_6"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "fact_id": "fact_car_11",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "fact_id": "fact_car_12",
+      "votes": [
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "fact_id": "fact_car_01",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "fact_id": "fact_car_02",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "fact_id": "fact_car_03",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "fact_id": "fact_car_04",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "fact_id": "fact_car_05",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "fact_id": "fact_car_06",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "fact_id": "fact_car_07",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "fact_id": "fact_car_08",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "fact_id": "fact_car_09",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "fact_id": "fact_car_10",
+      "votes": [
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_6"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_6"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_6"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_6"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_6"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "fact_id": "fact_car_11",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "fact_id": "fact_car_12",
+      "votes": [
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 4,
+      "fact_id": "fact_car_01",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 4,
+      "fact_id": "fact_car_02",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 4,
+      "fact_id": "fact_car_03",
+      "votes": [
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 4,
+      "fact_id": "fact_car_04",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 4,
+      "fact_id": "fact_car_05",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 4,
+      "fact_id": "fact_car_06",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 4,
+      "fact_id": "fact_car_07",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 4,
+      "fact_id": "fact_car_08",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 4,
+      "fact_id": "fact_car_09",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 4,
+      "fact_id": "fact_car_10",
+      "votes": [
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 4,
+      "fact_id": "fact_car_11",
+      "votes": [
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        },
+        {
+          "mentioned": false,
+          "agents": []
+        }
+      ]
+    },
+    {
+      "stage": 4,
+      "fact_id": "fact_car_12",
+      "votes": [
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "mentioned": true,
+          "agents": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_7"
+          ]
+        }
+      ]
+    }
+  ]
+}

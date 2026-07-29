@@ -1,0 +1,582 @@
+{
+  "carrier": "제 생각을 말씀드리면, {}. 그래서 신중하게 접근해야 한다고 봅니다.",
+  "n_votes": 3,
+  "rows": [
+    {
+      "fact_id": "fact_car_01",
+      "rung": "r1_verbatim",
+      "text": "아버지는 78세다",
+      "utterance": "제 생각을 말씀드리면, 아버지는 78세다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_01",
+      "rung": "r2_lexical",
+      "text": "아버지의 나이는 78세이다",
+      "utterance": "제 생각을 말씀드리면, 아버지의 나이는 78세이다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.5,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_01",
+      "rung": "r3_gist",
+      "text": "아버지는 고령이다",
+      "utterance": "제 생각을 말씀드리면, 아버지는 고령이다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.3333,
+      "votes": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "fact_id": "fact_car_01",
+      "rung": "r4_abstract",
+      "text": "노년",
+      "utterance": "제 생각을 말씀드리면, 노년. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.0,
+      "votes": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "fact_id": "fact_car_02",
+      "rung": "r1_verbatim",
+      "text": "지난 1년간 접촉사고가 3회 있었다",
+      "utterance": "제 생각을 말씀드리면, 지난 1년간 접촉사고가 3회 있었다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_02",
+      "rung": "r2_lexical",
+      "text": "지난 1년 동안 접촉사고가 3번 있었다",
+      "utterance": "제 생각을 말씀드리면, 지난 1년 동안 접촉사고가 3번 있었다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.5385,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_02",
+      "rung": "r3_gist",
+      "text": "최근 1년간 사고가 세 차례 있었다",
+      "utterance": "제 생각을 말씀드리면, 최근 1년간 사고가 세 차례 있었다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.2308,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_02",
+      "rung": "r4_abstract",
+      "text": "반복된 사고",
+      "utterance": "제 생각을 말씀드리면, 반복된 사고. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.0,
+      "votes": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "fact_id": "fact_car_03",
+      "rung": "r1_verbatim",
+      "text": "두 달 전 주차장에서 보행자를 스칠 뻔했다",
+      "utterance": "제 생각을 말씀드리면, 두 달 전 주차장에서 보행자를 스칠 뻔했다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_03",
+      "rung": "r2_lexical",
+      "text": "두 달 전에 주차장에서 보행자를 거의 스칠 뻔했다",
+      "utterance": "제 생각을 말씀드리면, 두 달 전에 주차장에서 보행자를 거의 스칠 뻔했다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.7333,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_03",
+      "rung": "r3_gist",
+      "text": "주차장에서 보행자를 거의 스칠 뻔한 일이 있었다",
+      "utterance": "제 생각을 말씀드리면, 주차장에서 보행자를 거의 스칠 뻔한 일이 있었다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.5333,
+      "votes": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "fact_id": "fact_car_03",
+      "rung": "r4_abstract",
+      "text": "보행자 근접 사고",
+      "utterance": "제 생각을 말씀드리면, 보행자 근접 사고. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.0667,
+      "votes": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "fact_id": "fact_car_04",
+      "rung": "r1_verbatim",
+      "text": "보행자 건은 신고되지 않아 공식 기록이 없다",
+      "utterance": "제 생각을 말씀드리면, 보행자 건은 신고되지 않아 공식 기록이 없다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_04",
+      "rung": "r2_lexical",
+      "text": "보행자 건은 신고되지 않아 공식 기록이 존재하지 않는다",
+      "utterance": "제 생각을 말씀드리면, 보행자 건은 신고되지 않아 공식 기록이 존재하지 않는다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.875,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_04",
+      "rung": "r3_gist",
+      "text": "신고가 없어 공식 기록이 없다",
+      "utterance": "제 생각을 말씀드리면, 신고가 없어 공식 기록이 없다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.3125,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_04",
+      "rung": "r4_abstract",
+      "text": "미기록",
+      "utterance": "제 생각을 말씀드리면, 미기록. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_05",
+      "rung": "r1_verbatim",
+      "text": "병원에서 경도인지장애 소견을 받았다",
+      "utterance": "제 생각을 말씀드리면, 병원에서 경도인지장애 소견을 받았다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_05",
+      "rung": "r2_lexical",
+      "text": "병원에서 경도인지장애 진단 소견을 받았다",
+      "utterance": "제 생각을 말씀드리면, 병원에서 경도인지장애 진단 소견을 받았다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.8571,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_05",
+      "rung": "r3_gist",
+      "text": "의료기관에서 인지 기능 저하와 관련된 소견을 받았다",
+      "utterance": "제 생각을 말씀드리면, 의료기관에서 인지 기능 저하와 관련된 소견을 받았다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.2857,
+      "votes": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "fact_id": "fact_car_05",
+      "rung": "r4_abstract",
+      "text": "인지 저하",
+      "utterance": "제 생각을 말씀드리면, 인지 저하. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.0,
+      "votes": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "fact_id": "fact_car_06",
+      "rung": "r1_verbatim",
+      "text": "의사는 \"운전 금지 단계는 아니다\"라고 판단했다",
+      "utterance": "제 생각을 말씀드리면, 의사는 \"운전 금지 단계는 아니다\"라고 판단했다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_06",
+      "rung": "r2_lexical",
+      "text": "의사는 \"운전을 금지할 단계는 아니다\"라고 판단했다",
+      "utterance": "제 생각을 말씀드리면, 의사는 \"운전을 금지할 단계는 아니다\"라고 판단했다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.7647,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_06",
+      "rung": "r3_gist",
+      "text": "의사는 운전을 금지할 정도는 아니라고 판단했다",
+      "utterance": "제 생각을 말씀드리면, 의사는 운전을 금지할 정도는 아니라고 판단했다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.4706,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_06",
+      "rung": "r4_abstract",
+      "text": "운전 제한 아님",
+      "utterance": "제 생각을 말씀드리면, 운전 제한 아님. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_07",
+      "rung": "r1_verbatim",
+      "text": "의사는 6개월 뒤 재검을 제안했다",
+      "utterance": "제 생각을 말씀드리면, 의사는 6개월 뒤 재검을 제안했다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_07",
+      "rung": "r2_lexical",
+      "text": "의사는 6개월 후 재검사를 제안했다",
+      "utterance": "제 생각을 말씀드리면, 의사는 6개월 후 재검사를 제안했다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.5,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_07",
+      "rung": "r3_gist",
+      "text": "의사가 추후 재검사를 제안했다",
+      "utterance": "제 생각을 말씀드리면, 의사가 추후 재검사를 제안했다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.1667,
+      "votes": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "fact_id": "fact_car_07",
+      "rung": "r4_abstract",
+      "text": "재검사 제안",
+      "utterance": "제 생각을 말씀드리면, 재검사 제안. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.0,
+      "votes": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "fact_id": "fact_car_08",
+      "rung": "r1_verbatim",
+      "text": "아버지는 면허 반납을 완강히 거부한다",
+      "utterance": "제 생각을 말씀드리면, 아버지는 면허 반납을 완강히 거부한다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_08",
+      "rung": "r2_lexical",
+      "text": "아버지는 면허 반납을 강하게 거부한다",
+      "utterance": "제 생각을 말씀드리면, 아버지는 면허 반납을 강하게 거부한다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.6429,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_08",
+      "rung": "r3_gist",
+      "text": "아버지는 면허를 내놓는 것을 거부한다",
+      "utterance": "제 생각을 말씀드리면, 아버지는 면허를 내놓는 것을 거부한다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.4286,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_08",
+      "rung": "r4_abstract",
+      "text": "면허 반납 거부",
+      "utterance": "제 생각을 말씀드리면, 면허 반납 거부. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.1429,
+      "votes": [
+        true,
+        true,
+        false
+      ]
+    },
+    {
+      "fact_id": "fact_car_09",
+      "rung": "r1_verbatim",
+      "text": "부모님 댁은 읍내에서 12km 떨어져 있고 버스는 하루 4회다",
+      "utterance": "제 생각을 말씀드리면, 부모님 댁은 읍내에서 12km 떨어져 있고 버스는 하루 4회다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_09",
+      "rung": "r2_lexical",
+      "text": "부모님 댁은 읍내로부터 12km 떨어져 있으며 버스는 하루에 4번 운행된다",
+      "utterance": "제 생각을 말씀드리면, 부모님 댁은 읍내로부터 12km 떨어져 있으며 버스는 하루에 4번 운행된다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.5833,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_09",
+      "rung": "r3_gist",
+      "text": "부모님 댁은 읍내와 떨어져 있고 버스 운행이 하루에 몇 차례 있다",
+      "utterance": "제 생각을 말씀드리면, 부모님 댁은 읍내와 떨어져 있고 버스 운행이 하루에 몇 차례 있다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.4167,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_09",
+      "rung": "r4_abstract",
+      "text": "교통 불편",
+      "utterance": "제 생각을 말씀드리면, 교통 불편. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.0,
+      "votes": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "fact_id": "fact_car_10",
+      "rung": "r1_verbatim",
+      "text": "어머니는 주 3회 투석 통원이 필요하고 아버지가 운전한다",
+      "utterance": "제 생각을 말씀드리면, 어머니는 주 3회 투석 통원이 필요하고 아버지가 운전한다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_10",
+      "rung": "r2_lexical",
+      "text": "어머니는 주 3회 투석을 받으러 통원해야 하고, 아버지가 직접 운전한다",
+      "utterance": "제 생각을 말씀드리면, 어머니는 주 3회 투석을 받으러 통원해야 하고, 아버지가 직접 운전한다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.5909,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_10",
+      "rung": "r3_gist",
+      "text": "어머니는 정기적으로 투석 치료를 받기 위해 통원하며, 아버지가 이를 돕는다",
+      "utterance": "제 생각을 말씀드리면, 어머니는 정기적으로 투석 치료를 받기 위해 통원하며, 아버지가 이를 돕는다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.1818,
+      "votes": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "fact_id": "fact_car_10",
+      "rung": "r4_abstract",
+      "text": "가족의 치료 동행",
+      "utterance": "제 생각을 말씀드리면, 가족의 치료 동행. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.0,
+      "votes": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "fact_id": "fact_car_11",
+      "rung": "r1_verbatim",
+      "text": "지자체 반납 지원은 30만 원 교통카드가 전부다",
+      "utterance": "제 생각을 말씀드리면, 지자체 반납 지원은 30만 원 교통카드가 전부다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_11",
+      "rung": "r2_lexical",
+      "text": "지자체 반납 지원의 전부는 30만 원 교통카드다",
+      "utterance": "제 생각을 말씀드리면, 지자체 반납 지원의 전부는 30만 원 교통카드다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.6111,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_11",
+      "rung": "r3_gist",
+      "text": "지자체 반납 지원은 교통카드 형태로 제공된다",
+      "utterance": "제 생각을 말씀드리면, 지자체 반납 지원은 교통카드 형태로 제공된다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.4444,
+      "votes": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "fact_id": "fact_car_11",
+      "rung": "r4_abstract",
+      "text": "교통카드 지원",
+      "utterance": "제 생각을 말씀드리면, 교통카드 지원. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.1111,
+      "votes": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "fact_id": "fact_car_12",
+      "rung": "r1_verbatim",
+      "text": "형은 즉시 키를 숨기자는 입장이다",
+      "utterance": "제 생각을 말씀드리면, 형은 즉시 키를 숨기자는 입장이다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 1.0,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_12",
+      "rung": "r2_lexical",
+      "text": "형은 키를 즉시 숨기자는 입장이다",
+      "utterance": "제 생각을 말씀드리면, 형은 키를 즉시 숨기자는 입장이다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.5,
+      "votes": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "fact_id": "fact_car_12",
+      "rung": "r3_gist",
+      "text": "형은 무언가를 바로 감추자는 입장이다",
+      "utterance": "제 생각을 말씀드리면, 형은 무언가를 바로 감추자는 입장이다. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.3333,
+      "votes": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "fact_id": "fact_car_12",
+      "rung": "r4_abstract",
+      "text": "즉시 은폐",
+      "utterance": "제 생각을 말씀드리면, 즉시 은폐. 그래서 신중하게 접근해야 한다고 봅니다.",
+      "proximity": 0.0,
+      "votes": [
+        false,
+        false,
+        false
+      ]
+    }
+  ]
+}

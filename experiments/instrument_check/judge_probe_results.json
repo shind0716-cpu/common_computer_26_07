@@ -1,0 +1,175 @@
+{
+  "status": "탐색적 계기 점검 — 판별표 밖·단일 이슈·파일럿 판정기(n=1 정본)",
+  "predictions_before_run": {
+    "H1": "판정 불일치율이 stage와 함께 단조 증가한다",
+    "H2": "검출률이 사다리를 따라 단조 감소하며 3단(요지 압축)에서 급락한다"
+  },
+  "H1_rejudge_consistency": {
+    "by_stage": {
+      "0": {
+        "n": 12,
+        "binary_split": 0,
+        "attrib_split": 0,
+        "binary_split_rate": 0.0,
+        "attrib_split_rate": 0.0
+      },
+      "1": {
+        "n": 12,
+        "binary_split": 1,
+        "attrib_split": 1,
+        "binary_split_rate": 0.0833,
+        "attrib_split_rate": 0.0833
+      },
+      "2": {
+        "n": 12,
+        "binary_split": 0,
+        "attrib_split": 0,
+        "binary_split_rate": 0.0,
+        "attrib_split_rate": 0.0
+      },
+      "3": {
+        "n": 12,
+        "binary_split": 1,
+        "attrib_split": 1,
+        "binary_split_rate": 0.0833,
+        "attrib_split_rate": 0.0833
+      },
+      "4": {
+        "n": 12,
+        "binary_split": 2,
+        "attrib_split": 2,
+        "binary_split_rate": 0.1667,
+        "attrib_split_rate": 0.1667
+      }
+    }
+  },
+  "H2_abstraction_detection": {
+    "by_rung": {
+      "r1_verbatim": {
+        "n": 12,
+        "detected_majority": 12,
+        "votes_true": 36,
+        "votes_total": 36,
+        "split": 0,
+        "detection_rate_majority": 1.0,
+        "detection_rate_votes": 1.0,
+        "split_rate": 0.0,
+        "proximity_mean": 1.0
+      },
+      "r2_lexical": {
+        "n": 12,
+        "detected_majority": 12,
+        "votes_true": 36,
+        "votes_total": 36,
+        "split": 0,
+        "detection_rate_majority": 1.0,
+        "detection_rate_votes": 1.0,
+        "split_rate": 0.0,
+        "proximity_mean": 0.6414
+      },
+      "r3_gist": {
+        "n": 12,
+        "detected_majority": 5,
+        "votes_true": 15,
+        "votes_total": 36,
+        "split": 0,
+        "detection_rate_majority": 0.4167,
+        "detection_rate_votes": 0.4167,
+        "split_rate": 0.0,
+        "proximity_mean": 0.3448
+      },
+      "r4_abstract": {
+        "n": 12,
+        "detected_majority": 3,
+        "votes_true": 8,
+        "votes_total": 36,
+        "split": 1,
+        "detection_rate_majority": 0.25,
+        "detection_rate_votes": 0.2222,
+        "split_rate": 0.0833,
+        "proximity_mean": 0.0267
+      }
+    }
+  },
+  "H1_vs_tp1_original": {
+    "note": "n=5 다수결도 정답이 아니다 — 비교는 안정성 측정이지 정오 판정이 아니다",
+    "n_pairs": 60,
+    "binary_flip_vs_tp1": 2,
+    "attrib_mismatch_vs_tp1": 4,
+    "unstable_pairs": [
+      {
+        "stage": 0,
+        "fact_id": "fact_car_03",
+        "flags": [
+          "attrib_change:2->1"
+        ]
+      },
+      {
+        "stage": 0,
+        "fact_id": "fact_car_04",
+        "flags": [
+          "flip_vs_tp1:False->True",
+          "attrib_change:0->1"
+        ]
+      },
+      {
+        "stage": 1,
+        "fact_id": "fact_car_02",
+        "flags": [
+          "attrib_change:3->2"
+        ]
+      },
+      {
+        "stage": 1,
+        "fact_id": "fact_car_03",
+        "flags": [
+          "vote_split_binary",
+          "vote_split_attrib"
+        ]
+      },
+      {
+        "stage": 3,
+        "fact_id": "fact_car_02",
+        "flags": [
+          "flip_vs_tp1:True->False",
+          "attrib_change:3->0"
+        ]
+      },
+      {
+        "stage": 3,
+        "fact_id": "fact_car_03",
+        "flags": [
+          "vote_split_binary",
+          "vote_split_attrib"
+        ]
+      },
+      {
+        "stage": 4,
+        "fact_id": "fact_car_02",
+        "flags": [
+          "vote_split_binary",
+          "vote_split_attrib"
+        ]
+      },
+      {
+        "stage": 4,
+        "fact_id": "fact_car_03",
+        "flags": [
+          "vote_split_binary",
+          "vote_split_attrib"
+        ]
+      }
+    ],
+    "unstable_facts": [
+      "fact_car_02",
+      "fact_car_03",
+      "fact_car_04"
+    ],
+    "reported_anomaly_facts_0728": [
+      "fact_car_02",
+      "fact_car_03",
+      "fact_car_04",
+      "fact_car_12"
+    ]
+  }
+}
