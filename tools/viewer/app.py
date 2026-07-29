@@ -536,7 +536,9 @@ def api_ledger(issue_id: str, run_id: str) -> dict:
 def api_transmission(issue_id: str, run_id: str) -> dict:
     """전달 레이더 노드 — transmission.report() 현장 유도 (survival /api/analysis 전례).
 
-    ⚠ 지위: G2 층1 구현은 팀 제안(동결) 상태 — 이 페이지는 브랜치 프로토타입.
+    지위(2026-07-29 갱신): 층1은 **팀 확정**(동기화 구두 확정 — 종전 "제안·동결" 해제).
+    다만 같은 날 결정으로 **용도가 한정**됐다 — 본실험 주지표가 아니라 논문 재현(협의 과제)
+    쪽 지표다. 본실험의 과정 관측은 개인 수첩 원문이 맡는다(판정 무경유).
     영점 조정(question 문면 팩트 제외)은 LLM 스캔 산출물이 필요해 뷰어(LLM 0)가
     직접 못 만든다 — data/scans/question_scan_{issue}.json 이 있으면 적용, 없으면
     '영점 미적용'을 명시해 강등 표기한다(침묵 실패 방지).
@@ -576,7 +578,9 @@ def api_transmission(issue_id: str, run_id: str) -> dict:
                  "영점 미적용 — question 스캔 산출물 없음. TSR·획득에 question 유래 "
                  "거짓양성이 섞였을 수 있음(탐색적으로만 읽을 것)."),
     }
-    rep["status_note"] = "G2 층1 = 팀 제안(동결) — 브랜치 프로토타입 지위, 수치는 탐색적."
+    rep["status_note"] = ("층1 = 팀 확정(2026-07-29 동기화). 단 용도 한정 — 본실험 주지표가 "
+                          "아니라 논문 재현(협의 과제)용이며, 본실험 과정 관측은 수첩 원문이 "
+                          "맡는다. 이 층의 노출·언급은 전부 judge 출력을 거친다.")
     return rep
 
 

@@ -198,7 +198,8 @@ async function load(key) {
   sheet.innerHTML = `
     <h1>전달 관문 측정 보고</h1>
     <div class="subtitle">${d.audit.issue_id} · ${d.audit.run_id} — 층 1(전달-발화) 레이더</div>
-    <div class="statusline">지위: 탐색적 (G2 층 1 = 팀 제안·동결 상태) · ${d.protocol}</div>
+    <div class="statusline">지위: 층1 팀 확정(2026-07-29) · <b>용도 한정 — 논문 재현용이며 본실험 주지표가 아님</b>
+      (본실험 과정 관측은 수첩 원문) · ${d.protocol}</div>
 
     <p class="lead">${lead1}</p>
     ${figKinds(s)}

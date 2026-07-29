@@ -66,7 +66,15 @@ class TestTransmissionApi(unittest.TestCase):
         self.assertEqual(s["n_acq_strict"], 0)
 
     def test_status_note_present(self):
-        self.assertIn("탐색적", self.d["status_note"])
+        """지위 표기가 화면에 실리는지 지킨다.
+
+        2026-07-29 갱신: 종전 가드는 "탐색적"을 요구했으나, 같은 날 동기화에서 층1이 팀
+        확정되면서 지위 문면이 바뀌었다. 지금 떨어뜨리면 안 되는 것은 **용도 한정** —
+        이 수치는 본실험 주지표가 아니라 논문 재현용이라는 단서다(본실험 과정 관측은
+        수첩 원문). 가드를 약화한 것이 아니라 지켜야 할 문구를 옮긴 것이다.
+        """
+        self.assertIn("용도 한정", self.d["status_note"])
+        self.assertIn("주지표가 아니", self.d["status_note"])
         self.assertTrue(self.d["fact_metrics"])
 
     def test_404_without_judgment(self):
