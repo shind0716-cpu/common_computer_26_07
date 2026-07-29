@@ -624,12 +624,39 @@ def api_audit(issue_id: str, run_id: str) -> dict:
         raise HTTPException(status_code=404, detail=f"산출물 없음: {e}")
 
     agent_persp: dict[str, str] = {}
+    assignment: dict | None = None
     try:
-        asg = json.loads(paths.assignment(issue_id).read_text(encoding="utf-8"))
-        for ag in asg.get("agents", []):
+        assignment = json.loads(paths.assignment(issue_id).read_text(encoding="utf-8"))
+        for ag in assignment.get("agents", []):
             agent_persp[ag["agent_id"]] = ag.get("perspective") or "?"
     except FileNotFoundError:
         pass
+
+    # 근거 등급 — access_window 계기를 그대로 소비한다(뷰어에서 재구현하지 않는다).
+    # 판정 셀 옆에 "이 셀이 무엇에 기대고 있는가"를 붙이는 것이 이 뷰의 절반이다:
+    # literal=원문 대조 / judged=판정 매개 / undefined=정의 밖(수첩). 계기가 산출을
+    # 거부한 run(status=suspended)이면 그 사실을 그대로 싣는다 — 숨기면 뷰어가
+    # 계기의 정지를 무력화한다.
+    ev_by: dict[tuple, dict] = {}
+    access_meta: dict | None = None
+    if assignment is not None:
+        try:
+            from modules import access_window as aw
+            arep = aw.report(judgment, assignment, events)
+            for rec in arep["records"]:
+                for t in rec["timeline"]:
+                    ev_by[(rec["fact_id"], t["round"])] = t
+            s = arep.get("summary") or {}
+            access_meta = {
+                "status": arep["status"],
+                "window_source": arep["meta"]["window"]["window_source"],
+                "evidence_mix": s.get("evidence_mix"),
+                "judged_share": (s.get("self_diagnostic") or {}).get("judged_share"),
+                "resurgence_rate": (s.get("self_diagnostic") or {}).get("resurgence_rate"),
+                "note": arep["meta"]["evidence"]["note"],
+            }
+        except Exception as e:   # 계기 실패는 조용히 넘기지 않고 화면에 싣는다
+            access_meta = {"status": "unavailable", "note": f"접근 창 계산 실패: {e}"}
 
     # 라운드별 발화 전문 — 한 번만 싣고 팩트별로는 좌표만 참조한다(중복 전송 방지).
     utts_by_stage: dict[int, list[dict]] = {}
@@ -678,8 +705,12 @@ def api_audit(issue_id: str, run_id: str) -> dict:
                 flags.append("gray")
             n_flagged += 1 if flags else 0
 
+            aw_row = ev_by.get((fid, st))
             cells.append({
                 "stage": st, "status": rec.get("status"), "surviving": surv,
+                "evidence": (aw_row or {}).get("evidence"),
+                "access_state": (aw_row or {}).get("state"),
+                "n_access_literal": (aw_row or {}).get("n_access_literal"),
                 "counted": counted, "missed_high": missed,
                 "prox": prox, "max_prox": top[1], "max_prox_agent": top[0],
                 "votes": {
@@ -699,6 +730,7 @@ def api_audit(issue_id: str, run_id: str) -> dict:
         "judge": judgment.get("judge"),
         "utterances": {str(k): v for k, v in sorted(utts_by_stage.items())},
         "facts": out_facts,
+        "access": access_meta,
         "n_flagged_cells": n_flagged,
         "bands": [{"min": lo, "detect": d} for lo, d in PROX_BANDS],
         "note": ("근접도는 지표가 아니라 시선 유도다 — 어휘만 바꿔도 0.641로 떨어지므로 "
