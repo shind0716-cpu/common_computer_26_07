@@ -54,7 +54,7 @@ from pathlib import Path
 
 import yaml
 
-from modules import authors_prompts, ledger, llm, paths
+from modules import authors_prompts, ledger, llm, our_prompts, paths
 from modules import judge as judge_mod
 
 DEBATE_ROUNDS = 3  # 논문 상수. config에서 덮어쓸 수 있게 아래에서 읽는다.
@@ -131,6 +131,28 @@ def assemble_continue(question: str, previous: str, others: str, setting: str) -
     return inputs
 
 
+def assemble_coop_initial(question: str, body: str, fact_text: str) -> str:
+    """coop_initial 조립(순수) — 본실험 협력 템플릿(our_prompts, 우리 소유).
+    discussion_* 과 같은 지위: 치환 순서까지 계약(validate --deep 재조립의 단일 소스)."""
+    t = our_prompts.load("coop_initial")
+    t = t.replace("{{question}}", question)
+    t = t.replace("{{body}}", body)
+    t = t.replace("{{my_facts}}", fact_text)
+    return t
+
+
+def assemble_coop_continue(question: str, body: str, fact_text: str,
+                           previous: str, incoming: str) -> str:
+    """coop_continue 조립(순수). incoming = 이웃 발화(+재주입 블록이 있으면 그 뒤에)."""
+    t = our_prompts.load("coop_continue")
+    t = t.replace("{{question}}", question)
+    t = t.replace("{{body}}", body)
+    t = t.replace("{{my_facts}}", fact_text)
+    t = t.replace("{{previous}}", previous)
+    t = t.replace("{{incoming}}", incoming)
+    return t
+
+
 def initial_utterance(question: str, fact_text: str, answer: str, model: str, temp: float,
                       respond=None):
     """저자 obtain_discussion_initial_each() 계승. respond 는 테스트 주입용."""
@@ -175,6 +197,18 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
     agents = assign_doc["agents"]
     length = len(agents)
 
+    # 입장 가드 (설정 사전 §2 입장 3값): 미지 값을 조용히 변환하지 않고 즉사.
+    # (종전 코드는 stance!="pro"를 전부 "no"로 변환 — "none"이 소리 없이 반대파가 되는
+    #  함정이 있었다. 죽지 않는 파이프라인은 조용히 썩는다.)
+    _ALLOWED_STANCES = {"pro", "con", "none"}
+    _stances = [ag["stance"] for ag in agents]
+    _unknown = set(_stances) - _ALLOWED_STANCES
+    if _unknown:
+        raise KeyError(f"미지원 stance {sorted(_unknown)} — 허용: pro|con|none")
+    coop = "none" in _stances
+    if coop and set(_stances) != {"none"}:
+        raise KeyError("stance 혼합(none + pro/con)은 미정의 조건 — 전원 none 또는 전원 pro/con")
+
     respond = utterance_fn  # None 이면 initial/continue 가 llm.obtain_response 사용
 
     # --- ledger v0: 루프-내 judge 준비 (INTEGRATION_ledger.md §2C·§4) ----------
@@ -192,10 +226,16 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
     max_calls = int(cfg.get("max_llm_calls", expected))
     n_calls = 0
 
-    prompt_ver = authors_prompts.version_tag()
-    settings = authors_prompts.load_settings()
-    setting_key = cfg.get("persona", "default")  # 논문 기본값은 default
-    setting_text = settings[setting_key]
+    if coop:
+        # 협력 조건은 우리 템플릿만 사용 — 저자 저장소(DelibTrace-main) 불필요.
+        prompt_ver = our_prompts.version_tag()
+        setting_key = None
+        setting_text = None
+    else:
+        prompt_ver = authors_prompts.version_tag()
+        settings = authors_prompts.load_settings()
+        setting_key = cfg.get("persona", "default")  # 논문 기본값은 default
+        setting_text = settings[setting_key]
 
     out_path = paths.debate(issue_id, run_id)
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -243,21 +283,28 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
     # 저자는 관점별로 yes/no 2개를 만든다. 우리 배분표는 이미 agent마다 stance가 있으므로
     # stance(pro/con) → answer(yes/no)로 바로 대응시킨다.
     current = []
+    body = issue_doc.get("body", "")
     for agent_idx, ag in enumerate(agents):
         fact_text = ""
         for fid in ag["assigned_fact_ids"]:
             fact_text += f"{fact_by_id[fid]}\n"
-        answer = "yes" if ag["stance"] == "pro" else "no"
         spend()
-        inputs, resp = initial_utterance(question, fact_text, answer, model, temp,
-                                         respond=respond)
+        if coop:
+            inputs = assemble_coop_initial(question, body, fact_text)
+            _fn = respond or llm.obtain_response
+            resp = _fn(inputs, model=model, temperature=temp)
+        else:
+            answer = "yes" if ag["stance"] == "pro" else "no"
+            inputs, resp = initial_utterance(question, fact_text, answer, model, temp,
+                                             respond=respond)
         current.append(resp)
         note_utterance(0, agent_idx, resp)
         # v0.3: 발화 입력의 조립 명세 — utterance 와 prompt_hash 로 결합(같은 값).
         emit(
             "prompt_assembly",
             round=0, agent_id=ag["agent_id"],
-            template="discussion_initial", prompt_ver=prompt_ver, setting_key=None,
+            template="coop_initial" if coop else "discussion_initial",
+            prompt_ver=prompt_ver, setting_key=None,
             slots={"assigned_fact_ids": list(ag["assigned_fact_ids"]),
                    "others": [], "previous": None, "inject": None},
             prompt_hash=sha256(inputs),
@@ -308,23 +355,38 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
         for i in range(length):
             others = ""
             for k, j in enumerate(edges[i]):
-                others += f"View {k + 1}: {previous[j]}\n"
+                if coop:
+                    others += f"참석자{k + 1}: {previous[j]}\n"
+                else:
+                    others += f"View {k + 1}: {previous[j]}\n"
             # (B) 재주입 블록은 others 뒤에 잇는다 — 저자 프롬프트 슬롯 훼손 최소
             #     (INTEGRATION §3-2 제안, 동범 확인 대기).
             spend()
-            inputs, resp = continue_utterance(
-                question, previous[i] or "", others + inject_block, setting_text,
-                model, temp, respond=respond,
-            )
+            if coop:
+                # 협력 조건: 배정 팩트는 에이전트의 정체라 매 라운드 유지(설정 사전 §2-2ⓒ).
+                _ft = ""
+                for _fid in seated[i]["assigned_fact_ids"]:
+                    _ft += f"{fact_by_id[_fid]}\n"
+                inputs = assemble_coop_continue(question, body, _ft,
+                                                previous[i] or "", others + inject_block)
+                _fn = respond or llm.obtain_response
+                resp = _fn(inputs, model=model, temperature=temp)
+            else:
+                inputs, resp = continue_utterance(
+                    question, previous[i] or "", others + inject_block, setting_text,
+                    model, temp, respond=respond,
+                )
             nxt.append(resp)
             note_utterance(r, i, resp)
             # v0.3: 조립 명세 — others/previous 는 저장된 발화 참조(좌석 j = seated[j]).
             emit(
                 "prompt_assembly",
                 round=r, agent_id=seated[i]["agent_id"],
-                template="discussion_continue", prompt_ver=prompt_ver,
+                template="coop_continue" if coop else "discussion_continue",
+                prompt_ver=prompt_ver,
                 setting_key=setting_key,
-                slots={"assigned_fact_ids": [],
+                slots={"assigned_fact_ids": (list(seated[i]["assigned_fact_ids"])
+                                             if coop else []),
                        "others": [{"round": r - 1, "agent_id": seated[j]["agent_id"]}
                                   for j in edges[i]],
                        "previous": {"round": r - 1, "agent_id": seated[i]["agent_id"]},
