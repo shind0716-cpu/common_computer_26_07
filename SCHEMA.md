@@ -84,3 +84,25 @@ ledger는 stages[].facts[].{fact_id,status} 두 필드만 의존하므로 양쪽
    template명 등록(스키마 본체 불변), 등록 시 창 정책(rolling|cumulative) 명시.
 
 노출표 (agent, fact, round, 경로 assigned|neighbor|ledger)는 저장하지 않고 사건에서 유도한다(사건 원장 1급, 지표는 뷰). 상세·근거: docs/proposals/SCHEMA_v0.3_PROMPT_ASSEMBLY.md (부록 A 포함).
+
+### 4″. 개인 수첩 슬롯 (2026-07-29, 요한 확정 — 규약 7 소관 확정)
+
+민옥 측 「실험 설정 사전 v0」(2026-07-29)의 개인 수첩 신설분. 추가 2건, 기존 이벤트·필드 변경·삭제 0
+(구 로그는 note 슬롯 부재 시 `--deep`이 종전대로 통과).
+
+- **`note_update`** (새 이벤트): run_id, ts, agent_id, round(이 갱신이 일어난 라운드),
+  note_text(원문 전량 — 요약·절단 금지), origin(model|intervention), source(utterance|dedicated).
+  경계 조항 1(복원 불가 텍스트 전문 저장)의 **두 번째 사례**. 수첩의 "현재 값"은 저장하지 않는다
+  (사건 1급·상태는 뷰) — 이벤트 부재가 곧 미갱신이다.
+- **`prompt_assembly.note`** (슬롯 추가): {agent_id, source_round} | null. `source_round`는 "직전
+  라운드"로 계산하지 않고 **실제 사용한 판본의 라운드를 그대로** 적는다(round 0 및 갱신 생략 라운드
+  때문). null이면 슬롯 블록 **자체를 생략**한다(빈 문자열 삽입과 해시가 다르다). 참조 대상
+  `note_update`가 없으면 `--deep`은 실패로 처리한다.
+- **A-2 발동 (경계 조항 2의 매개 노출 첫 사례)**: 수첩 경유 도달은 **매개 노출**로 분류하며 직접
+  노출과 합산하지 않는다. 수첩이 켜진 조건(`memory: note`)에서 **P3 층1 지표(전달 폭 B·TSR·획득
+  hazard)는 산출하지 않는다.** 정량 정의는 판정 없이 성립하는 방법이 나올 때까지 예약을 유지한다.
+  층1은 수첩 없는 조건에서 종전대로 유효하다.
+- **설정 좌표 분리**: `memory: none|note` 와 `note_budget`(기본 500)은 별개 칸이다. `window`(창
+  정책, 경계 조항 3)와 `memory`는 직교하며 수첩을 창 정책 값으로 넣지 않는다.
+
+상세·근거: docs/proposals/SCHEMA_v0.3_NOTE_SLOT.md (사전고정 커밋 a5af1bb — 고정 이후 변경은 append 전용).
