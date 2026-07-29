@@ -1,0 +1,14 @@
+# 미니 H2 쌍비교 — 실험군(ledger v0, 전량 재주입). sprint_mini 복사 + ledger_mode·run_id만 변경.
+# 짝: configs/mini_h2_off.yaml. 유일한 실험 변수 = ledger_mode (off vs v0). seed 동일.
+experiment: mini_h2
+issue_id: issue_esa
+run_id: mini_h2_v0
+seed: 42
+agents: 8
+rounds: 3
+debate_model: claude-haiku
+debate_temperature: 1.2
+judge_model: claude-sonnet
+judge_temperature: 0
+judge_n_votes: 3
+ledger_mode: "v0"            # ← 실험군 (r>=2 직전 라운드 소실 팩트 재주입)

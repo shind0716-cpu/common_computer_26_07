@@ -14,3 +14,6 @@ __pycache__/
 /data/facts/facts_issue_walkerhill.json
 /data/debates/debate_issue_walkerhill_*.jsonl
 /data/judgments/judgment_issue_walkerhill_*.json
+
+# 실행 중 체크포인트 조각 (완성본이 옆에 남음)
+*.part

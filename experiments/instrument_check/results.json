@@ -1,0 +1,159 @@
+{
+  "status": "탐색적 계기 점검 — 판별표 밖·추가 LLM 0·단일 run·파일럿 판정기(n=1)",
+  "predictions_before_run": {
+    "H3": "v0 팔의 원문 근접도가 off 팔보다 높다",
+    "H4": "resurgence·prior_suspect가 known=True 팩트에 몰린다"
+  },
+  "H3_arm_dependent_judge_error": {
+    "off": {
+      "n_mentions": 213,
+      "inject_rounds": [],
+      "proximity_mean": 0.5485,
+      "by_stage": {
+        "0": {
+          "n": 25,
+          "mean": 0.8462,
+          "median": 0.9
+        },
+        "1": {
+          "n": 60,
+          "mean": 0.5065,
+          "median": 0.5333
+        },
+        "2": {
+          "n": 64,
+          "mean": 0.5203,
+          "median": 0.5
+        },
+        "3": {
+          "n": 64,
+          "mean": 0.4997,
+          "median": 0.5192
+        }
+      },
+      "detected": {
+        "n": 213,
+        "min": 0.0,
+        "p10": 0.25,
+        "median": 0.5385
+      },
+      "undetected": {
+        "n": 171,
+        "median": 0.1053,
+        "p90": 0.2667,
+        "max": 0.7333
+      },
+      "overlap_above_detected_p10": 47
+    },
+    "v0": {
+      "n_mentions": 214,
+      "inject_rounds": [
+        3
+      ],
+      "proximity_mean": 0.5239,
+      "by_stage": {
+        "0": {
+          "n": 24,
+          "mean": 0.8442,
+          "median": 0.8709
+        },
+        "1": {
+          "n": 58,
+          "mean": 0.4758,
+          "median": 0.4599
+        },
+        "2": {
+          "n": 62,
+          "mean": 0.4546,
+          "median": 0.4308
+        },
+        "3": {
+          "n": 70,
+          "mean": 0.5152,
+          "median": 0.5333
+        }
+      },
+      "detected": {
+        "n": 214,
+        "min": 0.0,
+        "p10": 0.25,
+        "median": 0.5385
+      },
+      "undetected": {
+        "n": 170,
+        "median": 0.0417,
+        "p90": 0.2667,
+        "max": 0.6
+      },
+      "overlap_above_detected_p10": 32,
+      "injected_True": {
+        "n": 16,
+        "mean": 0.7693
+      },
+      "injected_False": {
+        "n": 198,
+        "mean": 0.504
+      }
+    }
+  },
+  "H4_prior_composition_leak": {
+    "issue_esa": {
+      "n_facts": 12,
+      "n_known_true": 1,
+      "events": [
+        {
+          "fact_id": "fact_esa_03",
+          "known": false,
+          "resurgent_rounds": [
+            3
+          ],
+          "prior_suspect": 0
+        },
+        {
+          "fact_id": "fact_esa_11",
+          "known": false,
+          "resurgent_rounds": [
+            4
+          ],
+          "prior_suspect": 0
+        }
+      ],
+      "resurgent_facts_known_true": 0,
+      "resurgent_facts_known_false": 2,
+      "prior_suspect_total": 0
+    },
+    "issue_carkey": {
+      "n_facts": 12,
+      "n_known_true": 0,
+      "events": [
+        {
+          "fact_id": "fact_car_02",
+          "known": false,
+          "resurgent_rounds": [
+            3
+          ],
+          "prior_suspect": 0
+        },
+        {
+          "fact_id": "fact_car_03",
+          "known": false,
+          "resurgent_rounds": [
+            4
+          ],
+          "prior_suspect": 0
+        },
+        {
+          "fact_id": "fact_car_12",
+          "known": false,
+          "resurgent_rounds": [
+            0
+          ],
+          "prior_suspect": 3
+        }
+      ],
+      "resurgent_facts_known_true": 0,
+      "resurgent_facts_known_false": 3,
+      "prior_suspect_total": 3
+    }
+  }
+}
