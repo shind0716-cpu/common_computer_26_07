@@ -1,0 +1,14 @@
+# 미니 H2 쌍비교 — 대조군(ledger off). sprint_mini 복사 + run_id만 구분.
+# 짝: configs/mini_h2_v0.yaml (유일한 차이 = ledger_mode). 같은 seed로 공정 비교.
+experiment: mini_h2
+issue_id: issue_esa
+run_id: mini_h2_off
+seed: 42
+agents: 8
+rounds: 3
+debate_model: claude-haiku
+debate_temperature: 1.2
+judge_model: claude-sonnet
+judge_temperature: 0
+judge_n_votes: 3
+ledger_mode: "off"           # ← 대조군 (재주입 없음)
