@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>뷰어에서 발화 전문 보는 법 — 대조 화면</title>
+<style>
+  :root { --bg:#101418; --panel:#1a2027; --line:#2a333d; --fg:#dbe4ec; --dim:#8598a8;
+          --ok:#3fb97f; --dead:#e06565; --inject:#e0a53f; --flag:#c77dff; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font:15px/1.7 system-ui,'Malgun Gothic',sans-serif; }
+  .doc { max-width:920px; margin:0 auto; padding:28px 22px 80px; }
+  h1 { font-size:22px; margin:0 0 4px; }
+  h2 { font-size:17px; margin:34px 0 10px; padding-top:14px; border-top:1px solid var(--line); }
+  h3 { font-size:15px; margin:20px 0 6px; color:var(--inject); }
+  p, li { color:#c9d6e2; }
+  .lead { color:var(--dim); margin:0 0 20px; }
+  code, pre { font-family:ui-monospace,Consolas,monospace; font-size:13px; }
+  pre { background:#0c1013; border:1px solid var(--line); border-radius:6px;
+        padding:10px 12px; overflow-x:auto; }
+  table.doc-t { border-collapse:collapse; font-size:14px; margin:10px 0; width:100%; }
+  table.doc-t td, table.doc-t th { border:1px solid var(--line); padding:6px 10px; text-align:left; }
+  table.doc-t th { color:var(--dim); font-weight:normal; }
+  .callout { background:var(--panel); border:1px solid var(--inject); border-left-width:3px;
+             border-radius:6px; padding:10px 14px; margin:14px 0; }
+  .callout.stop { border-color:var(--dead); }
+  .shot { border:1px dashed var(--line); border-radius:8px; padding:14px; margin:12px 0 6px;
+          background:#0d1116; overflow-x:auto; }
+  .shotcap { color:var(--dim); font-size:12.5px; margin:0 0 14px; }
+
+  /* ↓ 여기부터는 뷰어(tools/viewer/audit.html)의 스타일 그대로 — 아래 화면이 실제와 같게 */
+  .meta { color:var(--dim); font-size:12px; }
+  .banner { background:var(--panel); border:1px solid var(--inject); border-radius:6px;
+            padding:8px 12px; margin-bottom:14px; color:var(--inject); font-size:13px; }
+  table.grid { border-collapse:collapse; font-size:12.5px; margin-bottom:8px; }
+  table.grid td, table.grid th { border:1px solid var(--line); padding:3px 7px; text-align:center; }
+  table.grid th { color:var(--dim); font-weight:normal; }
+  table.grid td.fact { text-align:left; max-width:330px; color:var(--fg); }
+  table.grid td.cell { min-width:52px; }
+  td.cell.alive { color:var(--ok); }
+  td.cell.dead  { color:var(--dead); }
+  td.cell.flag  { background:#2a1f36; }
+  td.cell.sel   { outline:2px solid var(--flag); }
+  .fid { color:var(--dim); margin-right:5px; }
+  .star { color:var(--inject); }
+  .panel { background:var(--panel); border:1px solid var(--line); border-radius:6px;
+           padding:12px 14px; margin-bottom:12px; }
+  .chip { display:inline-block; border:1px solid var(--line); color:var(--dim);
+          border-radius:8px; padding:1px 8px; font-size:12px; margin:2px 4px 2px 0; }
+  .chip.ok { border-color:var(--ok); color:var(--ok); }
+  .chip.dead { border-color:var(--dead); color:var(--dead); }
+  .chip.flag { border-color:var(--flag); color:var(--flag); }
+  .chip.warn { border-color:var(--inject); color:var(--inject); }
+  .utt { border:1px solid var(--line); border-left:3px solid var(--line);
+         border-radius:4px; padding:8px 10px; margin:8px 0; white-space:pre-wrap;
+         font-size:13px; color:#c9d6e2; }
+  .utt.counted { border-left-color:var(--ok); }
+  .utt.suspect { border-left-color:var(--flag); background:#1e1a26; }
+  .who { color:var(--dim); font-size:12px; margin-bottom:4px; }
+  .prox { float:right; color:var(--dim); font-size:12px; }
+  .facttext { background:#0c1013; border:1px solid var(--line); border-radius:6px;
+              padding:9px 12px; margin-bottom:10px; font-size:13.5px; }
+</style>
+</head>
+<body>
+<div class="doc">
+
+<h1>뷰어에서 발화 전문 보는 법</h1>
+<p class="lead">대조(<code>/audit</code>) 화면 설명 · 2026-07-29 · 요한 측<br>
+아래 화면은 그림이 아니라 <b>뷰어에서 그대로 떠온 것</b>입니다(파일럿 데이터 <code>h2p_v0</code>).</p>
+
+<h2>1. 이 화면은 뭘 하나</h2>
+
+<p><b>채점 결과 옆에 그 라운드 발화를 전문 그대로 놓습니다.</b></p>
+
+<p>왜 필요하냐면, 기존 화면들은 <b>채점기가 "말했다"고 센 사람만</b> 보여줍니다.
+그런데 7월 29일에 확인한 문제는 정확히 반대편이었습니다 —
+<b>말했는데 안 세어진 사람.</b> 센 쪽만 보는 화면으로는 영원히 안 보입니다.</p>
+
+<p>그래서 이 화면은 센 사람과 안 센 사람을 <b>가르지 않고 전부</b> 싣습니다.
+누가 맞는지는 사람이 원문을 읽고 판단합니다.</p>
+
+<h2>2. 여는 법</h2>
+
+<h3>팀 데이터로</h3>
+<pre>python -m uvicorn tools.viewer.app:app --port 8011</pre>
+<p class="meta">브라우저에서 <code>http://localhost:8011/audit</code> — 위쪽 메뉴의 <b>대조</b>입니다.</p>
+
+<h3>파일럿 데이터로 (실제 모델이 말한 로그)</h3>
+<p>팀 <code>data/</code>에는 지금 모의 로그만 있어서 발화가 한 줄짜리입니다.
+실제 발화(평균 400자)를 보려면 파일럿 데이터를 물려야 합니다.
+<code>paths.DATA</code>만 바꿔 끼우는 짧은 실행 파일을 쓰고, 리포에는 아무것도 쓰지 않습니다.</p>
+<pre>from modules import paths
+paths.DATA = ROOT / "experiments" / "mini_h2_pilot" / "data"
+from tools.viewer.app import app</pre>
+
+<h2>3. 화면 ① — 어디를 볼지 고르기</h2>
+
+<div class="shot">
+<div class="banner">근접도는 지표가 아니라 시선 유도다 — 어휘만 바꿔도 0.641로 떨어지므로 낮은 값이 '안 말했다'의 증거가 되지 않는다(H2 실측). 표시는 어디를 먼저 읽을지 고르는 용도이며, 판정은 사람이 원문을 읽고 한다.</div>
+<div class="meta">judge gpt-5.4-mini · 팩트 12 · 라운드 4 · <b style="color:var(--flag)">볼 값어치 있는 셀 10</b> · 근접도 구간별 판정기 검출률(H2): ≥0.6 → 100% · ≥0.4 → 82% · ≥0.2 → 40% · ≥0 → 19%</div>
+<div class="meta">근거 구성 {"literal":0,"judged":48,"mixed":0,"undefined":0} · <b style="color:var(--dead)">판정 의존 1</b> · resurgence 0 · 창 원천 reconstructed — 이 run의 접근 수치는 <b>전량 judge 출력 위</b>에 서 있습니다.</div>
+<h2 style="border:none;margin:14px 0 8px;font-size:14px">어디를 볼 것인가 <span class="meta">— 셀을 누르면 아래에 그 라운드 발화 전문이 열립니다</span></h2>
+<table class="grid"><tbody>
+<tr><th>팩트</th><th>r0</th><th>r1</th><th>r2</th><th>r3</th></tr>
+<tr><td class="fact"><span class="fid">esa_01</span><span class="star">★</span> 임대차 계약에 반려동물 금지 조항이 있다</td><td class="cell alive flag sel" title="mentioned · 근접도 0.933 · 센 명단에서 빠진 화자 있음">●<span style="color:var(--flag)">*</span></td><td class="cell alive flag" title="mentioned · 근접도 0.6 · 센 명단에서 빠진 화자 있음">●<span style="color:var(--flag)">*</span></td><td class="cell alive flag" title="mentioned · 근접도 0.533 · 센 명단에서 빠진 화자 있음">●<span style="color:var(--flag)">*</span></td><td class="cell alive" title="mentioned · 근접도 0.533">●</td></tr>
+<tr><td class="fact"><span class="fid">esa_02</span><span class="star">★</span> 계약 위반 시 보증금 500달러가 몰수된다</td><td class="cell alive" title="mentioned · 근접도 1">●</td><td class="cell alive" title="mentioned · 근접도 0.688">●</td><td class="cell dead" title="unmentioned · 근접도 0.188">○</td><td class="cell alive" title="mentioned · 근접도 0.875">●</td></tr>
+<tr><td class="fact"><span class="fid">esa_03</span><span class="star">★</span> Jenna가 6주 전 집주인 허락 없이 개를 데려왔다</td><td class="cell alive" title="mentioned · 근접도 0.95">●</td><td class="cell alive" title="mentioned · 근접도 0.8">●</td><td class="cell alive" title="mentioned · 근접도 0.7">●</td><td class="cell alive" title="mentioned · 근접도 0.7">●</td></tr>
+<tr><td class="fact"><span class="fid">esa_04</span><span class="star">★</span> Jenna는 진단된 불안이 있다</td><td class="cell alive" title="mentioned · 근접도 0.917">●</td><td class="cell alive" title="mentioned · 근접도 0.667">●</td><td class="cell alive" title="mentioned · 근접도 0.75">●</td><td class="cell alive" title="mentioned · 근접도 0.667">●</td></tr>
+<tr><td class="fact"><span class="fid">esa_05</span><span class="star">★</span> Jenna는 치료사에게 ESA 추천서를 받았다고 주장한다</td><td class="cell alive" title="mentioned · 근접도 0.792">●</td><td class="cell alive" title="mentioned · 근접도 0.708">●</td><td class="cell alive" title="mentioned · 근접도 0.292">●</td><td class="cell alive" title="mentioned · 근접도 0.292">●</td></tr>
+<tr><td class="fact"><span class="fid">esa_06</span><span class="star">★</span> ESA 서류가 집주인에게 제출되지 않은 상태다</td><td class="cell alive" title="mentioned · 근접도 0.778">●</td><td class="cell alive flag" title="mentioned · 근접도 0.944 · 센 명단에서 빠진 화자 있음">●<span style="color:var(--flag)">*</span></td><td class="cell alive" title="mentioned · 근접도 0.667">●</td><td class="cell alive" title="mentioned · 근접도 0.833">●</td></tr>
+<tr><td class="fact"><span class="fid">esa_07</span><span class="star">★</span> 신고된 반려동물은 월 40달러의 추가 비용이 있다</td><td class="cell alive" title="mentioned · 근접도 0.895">●</td><td class="cell alive" title="mentioned · 근접도 0.263">●</td><td class="cell dead" title="unmentioned · 근접도 0.105">○</td><td class="cell alive" title="mentioned · 근접도 0.842">●</td></tr>
+<tr><td class="fact"><span class="fid">esa_08</span><span class="star">★</span> 개가 낮에 짖어 이웃 항의가 한 차례 있었다</td><td class="cell alive" title="mentioned · 근접도 0.667">●</td><td class="cell alive flag" title="mentioned · 근접도 0.467 · H2 전이 구간">●<span style="color:var(--flag)">*</span></td><td class="cell alive flag" title="mentioned · 근접도 0.4 · H2 전이 구간">●<span style="color:var(--flag)">*</span></td><td class="cell alive flag" title="mentioned · 근접도 0.333 · H2 전이 구간">●<span style="color:var(--flag)">*</span></td></tr>
+<tr><td class="fact"><span class="fid">esa_09</span>화자는 경미한 개털 알레르기가 있다</td><td class="cell alive" title="mentioned · 근접도 0.769">●</td><td class="cell alive" title="mentioned · 근접도 0.769">●</td><td class="cell alive" title="mentioned · 근접도 0.692">●</td><td class="cell alive flag" title="mentioned · 근접도 0.462 · H2 전이 구간">●<span style="color:var(--flag)">*</span></td></tr>
+<tr><td class="fact"><span class="fid">esa_10</span>Jenna가 비밀로 해달라고 부탁했다</td><td class="cell alive" title="mentioned · 근접도 0.867">●</td><td class="cell alive flag" title="mentioned · 근접도 0.867 · 센 명단에서 빠진 화자 있음">●<span style="color:var(--flag)">*</span></td><td class="cell alive flag" title="mentioned · 근접도 0.867 · 센 명단에서 빠진 화자 있음">●<span style="color:var(--flag)">*</span></td><td class="cell alive" title="mentioned · 근접도 0.867">●</td></tr>
+<tr><td class="fact"><span class="fid">esa_11</span><span class="star">★</span> 임대차 계약 갱신이 3주 뒤다</td><td class="cell alive" title="mentioned · 근접도 0.9">●</td><td class="cell alive" title="mentioned · 근접도 0.9">●</td><td class="cell alive" title="mentioned · 근접도 0.9">●</td><td class="cell dead" title="unmentioned · 근접도 0">○</td></tr>
+<tr><td class="fact"><span class="fid">esa_12</span>ESA는 법적으로 일반 반려동물 금지 조항의 예외가 될 수 있다</td><td class="cell alive" title="mentioned · 근접도 1">●</td><td class="cell alive" title="mentioned · 근접도 0.542">●</td><td class="cell alive" title="mentioned · 근접도 0.542">●</td><td class="cell alive" title="mentioned · 근접도 0.542">●</td></tr>
+</tbody></table>
+<div class="meta">● 생존 · ○ 소실 · <span style="color:var(--flag)">*</span> 원문을 눈으로 볼 값어치가 있는 셀</div>
+</div>
+<p class="shotcap">실제 화면 (파일럿 <code>h2p_v0</code>) · 칸에 마우스를 올리면 근접도와 사유가 뜹니다.</p>
+
+<h3>읽는 법</h3>
+<table class="doc-t">
+<tr><th>표시</th><th>뜻</th></tr>
+<tr><td style="color:var(--ok)">●</td><td>그 라운드에 살아 있다고 채점됨</td></tr>
+<tr><td style="color:var(--dead)">○</td><td>사라졌다고 채점됨</td></tr>
+<tr><td style="color:var(--flag)">*</td><td><b>원문을 눈으로 볼 값어치가 있음</b> — 아래 네 경우</td></tr>
+</table>
+
+<table class="doc-t">
+<tr><th>* 가 붙는 경우</th><th>뜻</th></tr>
+<tr><td>계상 안 됐는데 원문이 남은 발화 있음</td><td>사라졌다고 셌는데, 그 팩트와 많이 겹치는 말이 그 라운드에 있음</td></tr>
+<tr><td>센 명단에서 빠진 화자 있음</td><td>살아는 있는데, 말한 것 같은 사람이 명단에 없음</td></tr>
+<tr><td>표 갈림</td><td>채점 세 표가 갈렸는데 다수결로 덮임</td></tr>
+<tr><td>H2 전이 구간</td><td>채점기가 잡을지 말지 갈리기 시작하는 근접도(0.3~0.5)</td></tr>
+</table>
+
+<h2>4. 화면 ② — 채점 옆에 발화 전문</h2>
+
+<p>격자에서 칸을 누르면 아래가 열립니다.</p>
+
+<div class="shot">
+<div class="facttext"><span class="meta">팩트 원문</span><br><span class="star">★</span> 임대차 계약에 반려동물 금지 조항이 있다</div>
+<div class="panel"><div>
+  <span class="chip ok">판정: mentioned</span>
+  <span class="chip">표 3/3</span>
+  <span class="chip">센 화자: agent_1, agent_7</span>
+  <span class="chip warn" title="발화 언급(judge 출력)에 기댄다 — 판정이 흔들리면 같이 흔들린다">근거: 판정 매개</span>
+  <span class="chip flag">센 명단에서 빠진 화자 있음</span>
+  </div>
+  <div class="meta" style="margin-top:6px">근거 등급 <b>판정 매개</b> — 발화 언급(judge 출력)에 기댄다 — 판정이 흔들리면 같이 흔들린다. 이 라운드에 원문 대조로 접근이 확정된 에이전트 2명.</div>
+  <div class="meta" style="margin-top:6px">살아 있다고 셌지만, 근접도가 높은데 센 명단에서 빠진 화자가 있습니다: <b>agent_2, agent_8</b>. 같은 라운드 안 화자 간 누락입니다.</div>
+</div>
+<div class="meta">이 라운드 발화 8건 — <b>전문 그대로</b>. 판정기가 센 것(초록)과 안 센 것을 가르지 않고 전부 싣습니다.</div>
+<div class="utt counted">
+  <div class="who">agent_1 · 계약·재정 <span class="chip ok">센 발화</span> <span class="prox">근접도 0.867</span></div>네, 신고해야 한다고 봐요.
+
+임대차 계약에 **반려동물 금지 조항**이 분명히 있고, **계약 위반 시 보증금 500달러가 몰수**된다고 되어 있다면 그냥 넘어가기 어렵다고 생각해요. 게다가 **임대차 계약 갱신이 3주 뒤**라서, 지금 문제를 방치하면 나중에 더 큰 분쟁으로 이어질 수 있어요.
+
+룸메이트를 바로 집주인에게 알리는 건 불편할 수 있지만, 계약을 지키는 게 우선이라고 봅니다. 저라면 이번에는 **집주인에게 신고하는 쪽**을 선택하겠어요.</div>
+<div class="utt suspect">
+  <div class="who">agent_2 · 계약·재정 <span class="chip">안 셈</span> <span class="prox">근접도 0.4</span></div>저라면 **아니요, 집주인에게 신고하지 않겠습니다.**
+계약 위반 시 보증금 500달러가 몰수될 수 있어서 상황이 더 커질 수 있고, 신고된 반려동물은 월 40달러의 추가 비용이 붙는 점도 부담스럽습니다. 또 **ESA는 법적으로 일반 반려동물 금지 조항의 예외가 될 수 있다**는 점도 고려해야 해서, 무조건 신고하기보다는 먼저 룸메이트와 대화해서 해결하는 게 더 낫다고 생각합니다.</div>
+<div class="meta">(나머지 6건도 같은 방식으로 이어집니다 — 이 문서에서는 두 건만 실었습니다.)</div>
+</div>
+<p class="shotcap">실제 화면 · 왼쪽 테두리가 초록이면 채점기가 센 발화, 보라면 안 셌는데 볼 값어치가 있는 발화.</p>
+
+<h2>5. 이 화면이 실제로 잡아낸 것</h2>
+
+<p>위 화면이 그 사례입니다. 팩트는 <b>"임대차 계약에 반려동물 금지 조항이 있다"</b>이고,
+채점기는 <code>agent_1</code>과 <code>agent_7</code> 두 명만 말했다고 셌습니다.</p>
+
+<p>그런데 <code>agent_2</code>의 발화를 읽어보면 이렇게 적혀 있습니다.</p>
+
+<div class="callout">"ESA는 법적으로 일반 <b>반려동물 금지 조항</b>의 예외가 될 수 있다"</div>
+
+<p><code>agent_8</code>도 같은 말을 합니다. 둘 다 팩트의 핵심 단어를
+<b>글자 그대로</b> 말했는데 명단에 없습니다.</p>
+
+<p>이건 7월 29일에 손으로 로그를 뒤져서 찾아낸 것과 같은 유형입니다.
+그때는 이슈 두 개를 하루 걸려 대조했고, 이 화면에서는 클릭 한 번에 나옵니다.
+이 run에서만 이런 칸이 <b>10개</b>입니다.</p>
+
+<h2>6. 조심할 것</h2>
+
+<div class="callout stop">
+<b>근접도는 점수가 아닙니다.</b> 글자가 얼마나 겹치는지일 뿐입니다.
+말을 바꿔서 표현하면 뚝 떨어집니다(같은 뜻이어도 0.641). 그래서
+<b>낮은 숫자가 "안 말했다"의 증거가 되지 않습니다.</b>
+하는 일은 하나뿐입니다 — 12개 팩트 × 4라운드를 다 읽는 대신
+<b>먼저 읽을 칸을 고르는 것.</b> 판단은 사람이 원문을 읽고 합니다.
+</div>
+
+<p><b>"근거: 판정 매개"</b>라는 배지도 같은 결입니다.
+그 칸의 숫자가 채점기에 기대고 있다는 뜻입니다.
+배정표나 재주입처럼 원문에 그대로 적힌 것에서 온 숫자는 <b>"원문 대조"</b>로 뜹니다.
+위 화면 맨 위를 보면 이 run은 <b>판정 의존이 1</b>입니다 — 전부 채점기 위에 서 있습니다.</p>
+
+<h2>7. 안 되는 조건</h2>
+
+<p>앞으로 <b>개인 수첩</b>을 켠 실험이 생기면, 이 화면의 근거 배지가
+<b>"정의 밖"</b>으로 바뀌고 접근 관련 집계는 아예 나오지 않습니다.
+수첩을 보고 말한 것을 "들었다"로 셀지 아직 정하지 않았기 때문입니다.</p>
+
+<p>대신 그 조건에서는 <b>수첩 원문</b>을 직접 읽을 수 있습니다.
+채점기를 거치지 않고 "무엇이 남았나"를 보는 유일한 창이 됩니다.</p>
+
+<h2>더 읽을 것</h2>
+<ul>
+<li><code>tools/viewer/app.py</code> — <code>api_audit</code> 함수의 설명글</li>
+<li><code>modules/access_window.py</code> — 근거 등급(원문 대조 / 판정 매개 / 정의 밖)의 정의</li>
+<li><code>docs/proposals/SCHEMA_v0.3_NOTE_SLOT.md</code> — 수첩 조건에서 왜 멈추는지</li>
+</ul>
+
+</div>
+</body>
+</html>
