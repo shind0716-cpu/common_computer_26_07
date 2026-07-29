@@ -83,7 +83,8 @@ def deep_check_debate(path: Path, events: list[dict]) -> None:
         fail(f"{path.name} --deep: 형제 산출물 없음 — {e}")
     question = issue.get("question") or issue["title"]
     fact_by_id = {f["fact_id"]: f["text"] for f in facts_doc["facts"]}
-    settings = authors_prompts.load_settings()
+    body = issue.get("body", "")
+    settings = None  # 지연 로딩 — discussion_* 템플릿을 만났을 때만 저자 저장소 접근
 
     for pa in pas:
         where = f"{path.name} prompt_assembly(round={pa.get('round')}, agent={pa.get('agent_id')})"
@@ -111,10 +112,36 @@ def deep_check_debate(path: Path, events: list[dict]) -> None:
                     fail(f"{where}: inject 참조 대상 ledger_inject.injected_text 없음")
                 others += iev["injected_text"]
             ptxt = _assembly_ref_text(utts, slots["previous"], where)
+            if settings is None:
+                settings = authors_prompts.load_settings()
             setting = settings.get(pa.get("setting_key"))
             if setting is None:
                 fail(f"{where}: 미등록 setting_key {pa.get('setting_key')}")
             inputs = debate_engine.assemble_continue(question, ptxt or "", others, setting)
+        elif pa["template"] == "coop_initial":
+            fact_text = ""
+            for fid in slots.get("assigned_fact_ids", []):
+                if fid not in fact_by_id:
+                    fail(f"{where}: 미지의 fact_id {fid}")
+                fact_text += f"{fact_by_id[fid]}\n"
+            inputs = debate_engine.assemble_coop_initial(question, body, fact_text)
+        elif pa["template"] == "coop_continue":
+            incoming = ""
+            for k, ref in enumerate(slots.get("others", [])):
+                incoming += f"참석자{k + 1}: {_assembly_ref_text(utts, ref, where)}\n"
+            if slots.get("inject"):
+                iev = injects.get(slots["inject"].get("round"))
+                if iev is None or "injected_text" not in iev:
+                    fail(f"{where}: inject 참조 대상 ledger_inject.injected_text 없음")
+                incoming += iev["injected_text"]
+            fact_text = ""
+            for fid in slots.get("assigned_fact_ids", []):
+                if fid not in fact_by_id:
+                    fail(f"{where}: 미지의 fact_id {fid}")
+                fact_text += f"{fact_by_id[fid]}\n"
+            ptxt = _assembly_ref_text(utts, slots["previous"], where)
+            inputs = debate_engine.assemble_coop_continue(question, body, fact_text,
+                                                          ptxt or "", incoming)
         else:
             # template 등록제(v0.3 경계 조항 A-3): 검증기는 등록된 template 만 재조립한다.
             fail(f"{where}: 미등록 template {pa['template']} — 재조립 불가")
