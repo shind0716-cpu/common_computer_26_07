@@ -67,8 +67,9 @@ async function load(key) {
           `<span class="chip ${inj.outcome.revived.includes(f.fact_id) ? "ok" : ""}">`
           + (f.critical ? "★ " : "") + f.fact_id
           + (inj.outcome.revived.includes(f.fact_id) ? " → 생환" : " → 여전히 소실") + `</span>`).join("")
-        + `</div><details><summary class="meta">재조립 블록 문구 (실삽입 원문 아님 — v0.3 안건)</summary>
-        <pre class="block">${inj.block_text_rebuilt}</pre></details></div>`;
+        + `</div><details><summary class="meta">${inj.block_text_source === "injected_text"
+             ? "실삽입 원문 (v0.3 injected_text)" : "재조립 블록 문구 (이 로그엔 실삽입 원문 없음 — v0.2 산출)"}</summary>
+        <pre class="block">${inj.block_text}</pre></details></div>`;
     }
   }
 

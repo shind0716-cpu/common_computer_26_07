@@ -338,8 +338,10 @@ def api_biography(issue_id: str, run_id: str) -> dict:
     장부/자생) → 재소실. 판정 불확실성(표 분열·parse_fail)을 셀 속성으로 병기한다.
 
     지금 지을 수 있는 7할: assignment+debate(utterance·ledger_inject)+judgment(votes).
-    나머지 3할(노출 사건 — 이웃 발화로 언제 봤는가)은 스키마 v0.3 prompt_assembly
-    안건(7/28 보드) 채택 시 완성된다. 잣대는 judge.SURVIVING 단일 소스.
+    나머지 3할(노출 사건 — 이웃 발화로 언제 봤는가)은 prompt_assembly 를 실은 로그에서
+    완성된다. 스키마는 확정·구현됐고(v0.3, 2026-07-28) 남은 것은 데이터다 — 현재 리포의
+    로그는 전부 그 이전 산출이라 아직 재구성 경로를 쓴다(modules/access_window 참조).
+    잣대는 judge.SURVIVING 단일 소스.
     """
     jpath = paths.judgment(issue_id, run_id)
     if not jpath.exists():
@@ -453,7 +455,9 @@ def api_biography(issue_id: str, run_id: str) -> dict:
                 "perspectives": sorted(set(agent_persp.values())),
             },
             "facts": bios,
-            "note": "노출 사건(누가 언제 봤는가)은 스키마 v0.3 prompt_assembly 채택 후 완성 — 현재는 배정·언급·주입·판정 사슬까지."}
+            "note": ("노출 사건(누가 언제 봤는가)은 prompt_assembly 를 실은 로그에서 완성된다 — "
+                     "스키마는 v0.3(7/28)로 확정·구현됐고, 이 로그는 그 이전 산출이라 "
+                     "배정·언급·주입·판정 사슬까지만이다.")}
 
 
 @app.get("/api/ledger/{issue_id}/{run_id}")
@@ -462,8 +466,11 @@ def api_ledger(issue_id: str, run_id: str) -> dict:
 
     소실 잣대 = ledger.missing_facts(= judge.SURVIVING 단일 소스). off run 에서는
     주입이 없으므로 '소실 장부'만 — v0 였다면 재주입됐을 목록이 그대로 보인다.
-    재주입 블록 문구는 build_injection_block 재조립본(실제 프롬프트 삽입 원문은
-    미보존 — 스키마 v0.3 ledger_inject.injected_text 안건이 해소).
+
+    재주입 블록 문구는 `ledger_inject.injected_text`(스키마 v0.3, 2026-07-28 확정·구현)가
+    있으면 **실삽입 원문**을 그대로 쓰고, 없으면 build_injection_block 재조립본으로 물러난다.
+    어느 쪽인지 `block_text_source` 에 적는다 — v0.2 로그는 원문이 아예 없으므로 재조립본이
+    유일한 선택지이며, 그 사실을 화면에서 숨기지 않는다.
     """
     jpath = paths.judgment(issue_id, run_id)
     if not jpath.exists():
@@ -502,10 +509,12 @@ def api_ledger(issue_id: str, run_id: str) -> dict:
         r, ids = e.get("round"), e.get("injected_fact_ids", [])
         cur = status_by_stage.get(r, {})
         revived = [i for i in ids if cur.get(i) in SURVIVING]
+        literal_text = e.get("injected_text")   # v0.3 — 실삽입 원문(있으면 이게 정본)
         injections.append({
             "round": r, "reason": e.get("reason"),
             "injected": [brief(i) for i in ids],
-            "block_text_rebuilt": ledger.build_injection_block(ids, facts_by_id),
+            "block_text": literal_text or ledger.build_injection_block(ids, facts_by_id),
+            "block_text_source": "injected_text" if literal_text else "rebuilt",
             "outcome": {"revived": revived,
                         "still_missing": [i for i in ids if i not in revived]},
         })
@@ -517,7 +526,10 @@ def api_ledger(issue_id: str, run_id: str) -> dict:
             "injections": injections,
             "note": ("off run — 주입 없음: 소실 장부는 'v0였다면 재주입됐을 목록'이다."
                      if not injections else
-                     "블록 문구는 재조립본 — 실삽입 원문 보존은 v0.3 injected_text 안건.")}
+                     "블록 문구 = 실삽입 원문(injected_text)."
+                     if all(i["block_text_source"] == "injected_text" for i in injections)
+                     else "블록 문구 = 재조립본 — 이 로그는 v0.2 산출이라 실삽입 원문이 "
+                          "없다(injected_text 는 v0.3 확정·구현, 이후 로그부터 실린다).")}
 
 
 @app.get("/api/transmission/{issue_id}/{run_id}")
