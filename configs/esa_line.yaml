@@ -1,0 +1,17 @@
+# 조건: 일렬(line) — "토론(전원 연결)이 릴레이 전달보다 나은가" (민옥 7/25 위상 비교)
+# 설정 사전 좌표: 연결 모양만 full→line(좌우 이웃만), 나머지는 재현 정본과 동일.
+# line은 저자 코드 계승분 — build_edges 기구현, 첫 사용.
+experiment: esa_line
+condition: line
+issue_id: issue_esa
+run_id: run001
+seed: 42
+agents: 8
+rounds: 3
+structure: line
+debate_model: claude-haiku
+debate_temperature: 1.0
+judge_model: claude-sonnet-4-6
+judge_temperature: 0
+judge_n_votes: 3
+ledger_mode: "off"

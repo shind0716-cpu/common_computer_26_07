@@ -1,0 +1,16 @@
+# 조건: 장기전(long) — "3라운드에서 본 것이 전부인가 시작인가" (요한 7/28 제안)
+# 설정 사전(docs/proposals/EXPERIMENT_SETTINGS_v0.md) 좌표: 라운드 수만 3→10, 나머지는 재현 정본과 동일.
+# 비용 주의: 발화 8×(10+1)=88콜 (재현 정본 32콜의 2.75배). judge는 사후 별도.
+experiment: esa_long
+condition: long              # 조건 이름(슬러그) — 사람·뷰어용 라벨. 엔진은 무시(v0.3 라벨 확정 전까지 잠정)
+issue_id: issue_esa
+run_id: run001
+seed: 42
+agents: 8
+rounds: 10
+debate_model: claude-haiku
+debate_temperature: 1.0      # 편차 D2 계승 (sprint_mini와 동일)
+judge_model: claude-sonnet-4-6
+judge_temperature: 0
+judge_n_votes: 3
+ledger_mode: "off"
