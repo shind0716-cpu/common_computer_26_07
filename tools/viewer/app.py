@@ -17,6 +17,7 @@ FastAPI 어댑터의 실익(정적 생성 대비): run 목록/브라우징 + 라
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
@@ -337,8 +338,10 @@ def api_biography(issue_id: str, run_id: str) -> dict:
     장부/자생) → 재소실. 판정 불확실성(표 분열·parse_fail)을 셀 속성으로 병기한다.
 
     지금 지을 수 있는 7할: assignment+debate(utterance·ledger_inject)+judgment(votes).
-    나머지 3할(노출 사건 — 이웃 발화로 언제 봤는가)은 스키마 v0.3 prompt_assembly
-    안건(7/28 보드) 채택 시 완성된다. 잣대는 judge.SURVIVING 단일 소스.
+    나머지 3할(노출 사건 — 이웃 발화로 언제 봤는가)은 prompt_assembly 를 실은 로그에서
+    완성된다. 스키마는 확정·구현됐고(v0.3, 2026-07-28) 남은 것은 데이터다 — 현재 리포의
+    로그는 전부 그 이전 산출이라 아직 재구성 경로를 쓴다(modules/access_window 참조).
+    잣대는 judge.SURVIVING 단일 소스.
     """
     jpath = paths.judgment(issue_id, run_id)
     if not jpath.exists():
@@ -452,7 +455,9 @@ def api_biography(issue_id: str, run_id: str) -> dict:
                 "perspectives": sorted(set(agent_persp.values())),
             },
             "facts": bios,
-            "note": "노출 사건(누가 언제 봤는가)은 스키마 v0.3 prompt_assembly 채택 후 완성 — 현재는 배정·언급·주입·판정 사슬까지."}
+            "note": ("노출 사건(누가 언제 봤는가)은 prompt_assembly 를 실은 로그에서 완성된다 — "
+                     "스키마는 v0.3(7/28)로 확정·구현됐고, 이 로그는 그 이전 산출이라 "
+                     "배정·언급·주입·판정 사슬까지만이다.")}
 
 
 @app.get("/api/ledger/{issue_id}/{run_id}")
@@ -461,8 +466,11 @@ def api_ledger(issue_id: str, run_id: str) -> dict:
 
     소실 잣대 = ledger.missing_facts(= judge.SURVIVING 단일 소스). off run 에서는
     주입이 없으므로 '소실 장부'만 — v0 였다면 재주입됐을 목록이 그대로 보인다.
-    재주입 블록 문구는 build_injection_block 재조립본(실제 프롬프트 삽입 원문은
-    미보존 — 스키마 v0.3 ledger_inject.injected_text 안건이 해소).
+
+    재주입 블록 문구는 `ledger_inject.injected_text`(스키마 v0.3, 2026-07-28 확정·구현)가
+    있으면 **실삽입 원문**을 그대로 쓰고, 없으면 build_injection_block 재조립본으로 물러난다.
+    어느 쪽인지 `block_text_source` 에 적는다 — v0.2 로그는 원문이 아예 없으므로 재조립본이
+    유일한 선택지이며, 그 사실을 화면에서 숨기지 않는다.
     """
     jpath = paths.judgment(issue_id, run_id)
     if not jpath.exists():
@@ -501,10 +509,12 @@ def api_ledger(issue_id: str, run_id: str) -> dict:
         r, ids = e.get("round"), e.get("injected_fact_ids", [])
         cur = status_by_stage.get(r, {})
         revived = [i for i in ids if cur.get(i) in SURVIVING]
+        literal_text = e.get("injected_text")   # v0.3 — 실삽입 원문(있으면 이게 정본)
         injections.append({
             "round": r, "reason": e.get("reason"),
             "injected": [brief(i) for i in ids],
-            "block_text_rebuilt": ledger.build_injection_block(ids, facts_by_id),
+            "block_text": literal_text or ledger.build_injection_block(ids, facts_by_id),
+            "block_text_source": "injected_text" if literal_text else "rebuilt",
             "outcome": {"revived": revived,
                         "still_missing": [i for i in ids if i not in revived]},
         })
@@ -516,14 +526,19 @@ def api_ledger(issue_id: str, run_id: str) -> dict:
             "injections": injections,
             "note": ("off run — 주입 없음: 소실 장부는 'v0였다면 재주입됐을 목록'이다."
                      if not injections else
-                     "블록 문구는 재조립본 — 실삽입 원문 보존은 v0.3 injected_text 안건.")}
+                     "블록 문구 = 실삽입 원문(injected_text)."
+                     if all(i["block_text_source"] == "injected_text" for i in injections)
+                     else "블록 문구 = 재조립본 — 이 로그는 v0.2 산출이라 실삽입 원문이 "
+                          "없다(injected_text 는 v0.3 확정·구현, 이후 로그부터 실린다).")}
 
 
 @app.get("/api/transmission/{issue_id}/{run_id}")
 def api_transmission(issue_id: str, run_id: str) -> dict:
     """전달 레이더 노드 — transmission.report() 현장 유도 (survival /api/analysis 전례).
 
-    ⚠ 지위: G2 층1 구현은 팀 제안(동결) 상태 — 이 페이지는 브랜치 프로토타입.
+    지위(2026-07-29 갱신): 층1은 **팀 확정**(동기화 구두 확정 — 종전 "제안·동결" 해제).
+    다만 같은 날 결정으로 **용도가 한정**됐다 — 본실험 주지표가 아니라 논문 재현(협의 과제)
+    쪽 지표다. 본실험의 과정 관측은 개인 수첩 원문이 맡는다(판정 무경유).
     영점 조정(question 문면 팩트 제외)은 LLM 스캔 산출물이 필요해 뷰어(LLM 0)가
     직접 못 만든다 — data/scans/question_scan_{issue}.json 이 있으면 적용, 없으면
     '영점 미적용'을 명시해 강등 표기한다(침묵 실패 방지).
@@ -563,8 +578,187 @@ def api_transmission(issue_id: str, run_id: str) -> dict:
                  "영점 미적용 — question 스캔 산출물 없음. TSR·획득에 question 유래 "
                  "거짓양성이 섞였을 수 있음(탐색적으로만 읽을 것)."),
     }
-    rep["status_note"] = "G2 층1 = 팀 제안(동결) — 브랜치 프로토타입 지위, 수치는 탐색적."
+    rep["status_note"] = ("층1 = 팀 확정(2026-07-29 동기화). 단 용도 한정 — 본실험 주지표가 "
+                          "아니라 논문 재현(협의 과제)용이며, 본실험 과정 관측은 수첩 원문이 "
+                          "맡는다. 이 층의 노출·언급은 전부 judge 출력을 거친다.")
     return rep
+
+
+def _ngrams(text: str, n: int = 3) -> set:
+    """문자 n-gram 집합 (한글·영숫자만 남기고 공백·문장부호 제거).
+
+    ⚠ 같은 식이 experiments/ 안 러너 3종에 이미 있다(run_experiment·run_checks·run_judge_probe).
+    이 뷰어가 네 번째 사본이며 WORKING_RULES R4(세 번째에 추출)의 추출 시점을 넘겼다 —
+    다만 뷰어는 읽기 전용 어댑터라 experiments/ 를 import 하지 않는 것이 경계 원칙이므로,
+    공용 계기로 뺄 때(modules 편입) 함께 정리한다. 식은 H2 실측과 동일해야 수치가 비교 가능하다.
+    """
+    t = re.sub(r"[^0-9A-Za-z가-힣]", "", text or "")
+    return {t[i:i + n] for i in range(len(t) - n + 1)}
+
+
+def _containment(fact_text: str, utt_text: str) -> float:
+    """팩트 원문의 3-gram 중 발화에 나타난 비율 (축자 인용=1.0). 결정론적 — LLM 0."""
+    fg = _ngrams(fact_text)
+    if not fg:
+        return 0.0
+    return round(len(fg & _ngrams(utt_text)) / len(fg), 3)
+
+
+# H2 실측(2026-07-29, experiments/instrument_check) — 근접도 구간별 판정기 검출률.
+# 지표가 아니라 **어디를 먼저 볼지 고르는 우선순위**로만 쓴다(§계약: 문자열 대조는 지표 불가).
+#
+# ⚠ 조건 주의 — 장부(재주입)를 켠 팔과 끈 팔의 근접도를 그냥 비교하면 안 된다.
+# 장부는 팩트 원문을 그대로 다시 넣으므로 그 뒤 발화가 원문에 가까워진다(H3 실측:
+# 주입 경험 팩트 0.769 vs 미주입 0.504). 닳아가던 것이 리셋되는 것이라, 팔 간 차이의
+# 일부가 현상이 아니라 주입의 산물이다. 다른 설정 축(창 범위·수첩 등)의 적용 가능성은
+# 조건이 실제로 생길 때 그 자리에서 판단한다 — 미리 표로 만들어봐야 돌려보면 달라진다.
+PROX_BANDS = [(0.6, "100%"), (0.4, "82%"), (0.2, "40%"), (0.0, "19%")]
+PROX_SUSPECT = 0.4   # 이 이상인데 계상 안 됐으면 눈으로 볼 값어치가 있다
+PROX_GRAY = (0.3, 0.5)  # H2 전이 구간 — 검출이 갈리기 시작하는 곳
+
+
+@app.get("/api/audit/{issue_id}/{run_id}")
+def api_audit(issue_id: str, run_id: str) -> dict:
+    """판정 ↔ 원문 대조 노드 — 판정 셀 옆에 **그 라운드 전원 발화 전문**을 놓는다.
+
+    왜 별도 뷰인가: 생존 매트릭스는 status 만, 전기(biography)는 **판정기가 센 화자만**
+    보여준다. 그런데 7/29 대조에서 나온 것은 정확히 그 반대편이다 — 말했는데 안 세어진
+    화자(esa_03 stage2: 5명이 발화했는데 unmentioned). 세어진 쪽만 보면 영원히 안 보인다.
+    그래서 이 뷰는 counted/uncounted 를 가르지 않고 그 라운드 발화를 **전문 그대로** 싣고,
+    판정 결과를 그 옆에 붙인다.
+
+    근접도(문자 3-gram containment)는 **판정이 아니라 시선 유도**다. 계약(SCHEMA_v0.3_NOTE_SLOT
+    §4)이 문자열 대조를 지표로 쓰는 것을 기각했으므로 여기서도 지표가 아니며, "먼저 볼 셀"을
+    고르는 데만 쓴다. 어휘만 바꿔도 0.641로 떨어지므로 낮은 값이 부재의 증거가 되지 않는다.
+
+    읽기 전용·LLM 0 (뷰어 경계 원칙). 산출물은 아무것도 쓰지 않는다.
+    """
+    jpath = paths.judgment(issue_id, run_id)
+    if not jpath.exists():
+        raise HTTPException(status_code=404, detail=f"judgment 없음 — 대조는 판정 이후 ({issue_id}/{run_id})")
+    try:
+        judgment = json.loads(jpath.read_text(encoding="utf-8"))
+        facts_doc = json.loads(paths.facts(issue_id).read_text(encoding="utf-8"))
+        events = [json.loads(ln) for ln
+                  in paths.debate(issue_id, run_id).read_text(encoding="utf-8").splitlines()
+                  if ln.strip()]
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=f"산출물 없음: {e}")
+
+    agent_persp: dict[str, str] = {}
+    assignment: dict | None = None
+    try:
+        assignment = json.loads(paths.assignment(issue_id).read_text(encoding="utf-8"))
+        for ag in assignment.get("agents", []):
+            agent_persp[ag["agent_id"]] = ag.get("perspective") or "?"
+    except FileNotFoundError:
+        pass
+
+    # 근거 등급 — access_window 계기를 그대로 소비한다(뷰어에서 재구현하지 않는다).
+    # 판정 셀 옆에 "이 셀이 무엇에 기대고 있는가"를 붙이는 것이 이 뷰의 절반이다:
+    # literal=원문 대조 / judged=판정 매개 / undefined=정의 밖(수첩). 계기가 산출을
+    # 거부한 run(status=suspended)이면 그 사실을 그대로 싣는다 — 숨기면 뷰어가
+    # 계기의 정지를 무력화한다.
+    ev_by: dict[tuple, dict] = {}
+    access_meta: dict | None = None
+    if assignment is not None:
+        try:
+            from modules import access_window as aw
+            arep = aw.report(judgment, assignment, events)
+            for rec in arep["records"]:
+                for t in rec["timeline"]:
+                    ev_by[(rec["fact_id"], t["round"])] = t
+            s = arep.get("summary") or {}
+            access_meta = {
+                "status": arep["status"],
+                "window_source": arep["meta"]["window"]["window_source"],
+                "evidence_mix": s.get("evidence_mix"),
+                "judged_share": (s.get("self_diagnostic") or {}).get("judged_share"),
+                "resurgence_rate": (s.get("self_diagnostic") or {}).get("resurgence_rate"),
+                "note": arep["meta"]["evidence"]["note"],
+            }
+        except Exception as e:   # 계기 실패는 조용히 넘기지 않고 화면에 싣는다
+            access_meta = {"status": "unavailable", "note": f"접근 창 계산 실패: {e}"}
+
+    # 라운드별 발화 전문 — 한 번만 싣고 팩트별로는 좌표만 참조한다(중복 전송 방지).
+    utts_by_stage: dict[int, list[dict]] = {}
+    for e in events:
+        if e.get("event") != "utterance":
+            continue
+        utts_by_stage.setdefault(e.get("round"), []).append({
+            "agent_id": e.get("agent_id"),
+            "perspective": e.get("perspective") or agent_persp.get(e.get("agent_id")),
+            "text": e.get("response_text") or "",
+        })
+
+    stage_recs = {s["stage"]: {f["fact_id"]: f for f in s.get("facts", [])}
+                  for s in judgment.get("stages", [])}
+    stages = sorted(stage_recs)
+
+    out_facts, n_flagged = [], 0
+    for f in facts_doc.get("facts", []):
+        fid, ftext = f["fact_id"], f.get("text", "")
+        cells = []
+        for st in stages:
+            rec = stage_recs[st].get(fid)
+            if rec is None:
+                continue
+            counted = list(rec.get("agents_mentioning") or [])
+            surv = rec.get("status") in SURVIVING
+            prox = {u["agent_id"]: _containment(ftext, u["text"])
+                    for u in utts_by_stage.get(st, [])}
+            top = max(prox.items(), key=lambda kv: kv[1], default=(None, 0.0))
+            votes = [v for v in (rec.get("votes") or []) if isinstance(v, dict)]
+            vstat = [v.get("status") for v in votes]
+
+            flags = []
+            # ① 계상 안 됐는데 원문이 상당히 남은 발화가 있다 = 7/29 esa_03 유형
+            if not surv and top[1] >= PROX_SUSPECT:
+                flags.append("uncounted_high")
+            # ② 살아는 있는데, 근접도가 높은 화자가 센 명단에서 빠졌다 = 화자 간 누락
+            missed = [a for a, p in prox.items() if p >= PROX_SUSPECT and a not in counted]
+            if surv and missed:
+                flags.append("partial_count")
+            # ③ 표가 갈렸다 (다수결이 가린 분열)
+            if vstat and len(set(vstat)) > 1:
+                flags.append("split")
+            # ④ H2 전이 구간 — 검출이 갈리기 시작하는 근접도
+            if PROX_GRAY[0] <= top[1] < PROX_GRAY[1]:
+                flags.append("gray")
+            n_flagged += 1 if flags else 0
+
+            aw_row = ev_by.get((fid, st))
+            cells.append({
+                "stage": st, "status": rec.get("status"), "surviving": surv,
+                "evidence": (aw_row or {}).get("evidence"),
+                "access_state": (aw_row or {}).get("state"),
+                "n_access_literal": (aw_row or {}).get("n_access_literal"),
+                "counted": counted, "missed_high": missed,
+                "prox": prox, "max_prox": top[1], "max_prox_agent": top[0],
+                "votes": {
+                    "n": len(vstat),
+                    "split": None if not vstat else f"{max(vstat.count(s) for s in set(vstat))}/{len(vstat)}",
+                    "unanimous": None if not vstat else len(set(vstat)) == 1,
+                    "parse_fail": sum(1 for v in votes
+                                      if str(v.get("reason", "")).startswith("parse_fail:")),
+                },
+                "flags": flags,
+            })
+        out_facts.append({"fact_id": fid, "text": ftext,
+                          "critical": bool(f.get("critical")), "cells": cells})
+
+    return {
+        "issue_id": issue_id, "run_id": run_id, "stages": stages,
+        "judge": judgment.get("judge"),
+        "utterances": {str(k): v for k, v in sorted(utts_by_stage.items())},
+        "facts": out_facts,
+        "access": access_meta,
+        "n_flagged_cells": n_flagged,
+        "bands": [{"min": lo, "detect": d} for lo, d in PROX_BANDS],
+        "note": ("근접도는 지표가 아니라 시선 유도다 — 어휘만 바꿔도 0.641로 떨어지므로 "
+                 "낮은 값이 '안 말했다'의 증거가 되지 않는다(H2 실측). 표시는 어디를 먼저 "
+                 "읽을지 고르는 용도이며, 판정은 사람이 원문을 읽고 한다."),
+    }
 
 
 @app.get("/biography", response_class=HTMLResponse)
@@ -580,6 +774,11 @@ def ledger_page() -> str:
 @app.get("/transmission", response_class=HTMLResponse)
 def transmission_page() -> str:
     return (HERE / "transmission.html").read_text(encoding="utf-8")
+
+
+@app.get("/audit", response_class=HTMLResponse)
+def audit_page() -> str:
+    return (HERE / "audit.html").read_text(encoding="utf-8")
 
 
 @app.get("/", response_class=HTMLResponse)

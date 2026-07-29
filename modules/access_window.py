@@ -1,11 +1,29 @@
-"""[요한 · P3 부속] 접근 창 계기 — 팩트 물리 상태 원장(발화/침묵·접근/접근 불가) (순수 계산).
+"""[요한 · P3 부속] 접근 창 계기 — 팩트 상태 원장(발화/침묵·접근/접근 불가) (순수 계산).
 
 설계 맥락: docs/P3_TRANSMISSION_DESIGN.md §2-0 "관측된 정보 생태" — 이 엔진의 에이전트는
 매 라운드 (question + 직전 발화 창 + inject)만 들고 다시 만들어지므로, 라운드를 넘는 숨은
 내부 기억이 구조적으로 없다. 따라서 "발화 밖에서 팩트가 남아있는가"는 심리량이 아니라
-**컨텍스트 조립에 물리적으로 존재하는가**로 전량 관측 가능하다. 이 모듈은 그 관측 창이다.
-지위: **서술 계기** — 사전고정 판별표(§6) 판정 밖(가설 검정 아님·지표 정본 아님). 브랜치
-시제품(§F "브랜치는 자유"), P3 팀 확정은 동기화 대기.
+**컨텍스트 조립에 존재하는가**로 관측 가능하다. 이 모듈은 그 관측 창이다.
+지위: **서술 계기** — 사전고정 판별표(§6) 판정 밖(가설 검정 아님·지표 정본 아님).
+P3 팀 확정 완료(2026-07-29 동기화 구두 확정 — 종전 "동기화 대기" 표기 해제). 다만 같은 날
+결정으로 이 계기의 **용도는 자기 진단으로 한정**됐다(전달·생존 지표의 근거로 쓰지 않는다):
+아래 근거 등급이 보여주듯 원장이 판정에 크게 기대고 있고, 본실험의 과정 관측은 개인 수첩
+원문이 맡는다. 근거 기록: 팀 메모리 3ac0261412b081c0a777cbfdd6706052 · WORKLOG 2026-07-29.
+
+⚠ 근거 등급 (2026-07-29 정정 — 이 모듈의 초판 독스트링은 상태를 "물리" 상태라 불렀다):
+창은 **전량 물리가 아니다. 상당 부분이 판정 매개다.** 창 재구성이 "이웃의 직전 라운드
+언급"을 쓰는데, 그 언급이 곧 judge 출력이기 때문이다. 7/29 계기 점검에서 그 판정이 경계면
+에서 불안정함이 확인됐으므로(요지압축 검출 41.7%, 재판정 5:0 뒤집힘 실물), 원장의 모든
+접근·상태에 근거 등급을 붙여 **원문 대조로 확정된 것과 판정에 기댄 것을 섞지 않는다.**
+
+  literal    — 원문 대조로 확정. assignment 의 assigned_fact_ids · ledger_inject 의
+               injected_fact_ids. 판정기를 거치지 않는다.
+  judged     — 판정 매개. agents_mentioning(발화 언급) 및 그것으로 재구성한 이웃 창.
+               spoken/inaccessible 상태 자체도 여기 속한다(부재 판정도 판정이다).
+  undefined  — 정의 밖. 파생 텍스트를 경유한 매개 노출(개인 수첩 등). 스키마 v0.3
+               경계 조항 2 + docs/proposals/SCHEMA_v0.3_NOTE_SLOT.md §4 에 따라
+               **정량 정의가 없으므로 수치를 내지 않는다** — note_update 이벤트가 있으면
+               집계 뷰를 산출 거부한다(조용히 틀린 수치를 내는 것보다 없는 편이 낫다).
 
 무엇: 라운드(stage)마다 각 팩트를 셋 중 하나로 판정한 **팩트 상태 원장**을 만든다.
   spoken        — 그 라운드에 누군가 발화했다(agents_mentioning 비어있지 않음).
@@ -58,6 +76,17 @@ from .transmission import (PROTOCOL, edges_map, holders_map, inject_map,
                            prior_band)
 
 STATES = ("spoken", "accessible", "inaccessible")
+EVIDENCE = ("literal", "judged", "mixed", "undefined")
+
+
+def has_undefined_channel(events: list[dict] | None) -> bool:
+    """정의 밖 채널(파생 텍스트 경유 매개 노출)이 로그에 있는가.
+
+    현재 유일한 사례 = 개인 수첩(`note_update`, 스키마 v0.3 note 슬롯). 있으면 접근
+    계산이 성립하지 않는다 — 수첩 경유로 닿은 팩트는 직접 노출 기록이 없어 이 계기가
+    'inaccessible' 로 계상하고, 그 위 발화는 resurgence 로 잡힌다(= 분모가 조용히 틀린다).
+    """
+    return any(ev.get("event") == "note_update" for ev in (events or []))
 
 
 # ---------------------------------------------------------------------------
@@ -73,11 +102,17 @@ def access_sets(
     mentions: dict,
     assignment: dict,
     events: list[dict] | None,
-) -> tuple[dict, dict]:
-    """{idx: {agent_id: 접근 가능 팩트 집합}} + meta(window_source·보정 기록).
+) -> tuple[dict, dict, dict]:
+    """{idx: {agent_id: 접근 팩트 집합}}, {idx: {agent_id: 그중 literal 부분집합}}, meta.
 
     prompt_assembly 이벤트가 있으면 그 (round, agent_id) 쌍은 실제 조립 기록으로 접근을
     계산하고, 없는 쌍은 롤링 창 재구성으로 채운다(혼재 시 meta 에 양쪽 카운트).
+
+    두 번째 반환값이 **근거 등급의 원천**이다: 배정(assigned_fact_ids)과 주입
+    (injected_fact_ids)은 원문에 명시돼 있어 literal, 이웃·자기 발화 좌표에서 온 팩트는
+    agents_mentioning(= judge 출력)을 거쳤으므로 judged. 창 원천이 prompt_assembly 든
+    재구성이든 이 구분은 같다 — 조립 기록은 "무엇을 봤나"의 좌표를 확정해 줄 뿐, 그
+    좌표의 발화에 어떤 팩트가 들어있었는지는 여전히 판정 산물이기 때문이다.
     """
     agents, _holders = holders_map(assignment)
     assigned = {ag["agent_id"]: set(ag.get("assigned_fact_ids", []))
@@ -91,44 +126,54 @@ def access_sets(
             pa[(ev.get("round"), ev.get("agent_id"))] = ev
 
     acc: dict = {}
+    lit: dict = {}
     n_from_pa = 0
     n_reconstructed = 0
     for idx, r in enumerate(rounds):
         per_agent: dict[str, set[str]] = {}
+        per_agent_lit: dict[str, set[str]] = {}
         inj_facts = injects.get(r, set())
         for a in agents:
             ev = pa.get((r, a))
             if ev is not None:
                 n_from_pa += 1
                 slots = ev.get("slots") or {}
-                facts: set[str] = set(slots.get("assigned_fact_ids") or [])
+                # literal — 조립 명세에 팩트 id 가 그대로 적힌 슬롯
+                literal: set[str] = set(slots.get("assigned_fact_ids") or [])
+                if slots.get("inject"):
+                    literal |= inj_facts
+                facts: set[str] = set(literal)
                 coords = list(slots.get("others") or [])
                 prev = slots.get("previous")
                 if prev:
                     coords.append(prev)
-                for c in coords:
+                for c in coords:  # judged — 좌표는 확정이나 내용물은 판정 산물
                     facts |= _mentioned_by(mentions.get(c.get("round"), {}),
                                            c.get("agent_id"))
-                if slots.get("inject"):
-                    facts |= inj_facts
                 per_agent[a] = facts
+                per_agent_lit[a] = literal
             else:
                 n_reconstructed += 1
                 if idx == 0:
-                    per_agent[a] = set(assigned.get(a, set())) | inj_facts
+                    literal = set(assigned.get(a, set())) | inj_facts
+                    per_agent[a] = set(literal)
+                    per_agent_lit[a] = literal
                 else:
                     prev_r = rounds[idx - 1]
-                    facts = set(inj_facts)
+                    literal = set(inj_facts)
+                    facts = set(literal)
                     for j in edges.get(a, set()) | {a}:
                         facts |= _mentioned_by(mentions.get(prev_r, {}), j)
                     per_agent[a] = facts
+                    per_agent_lit[a] = literal
         acc[idx] = per_agent
+        lit[idx] = per_agent_lit
 
     source = ("prompt_assembly" if n_reconstructed == 0 and n_from_pa > 0
               else "reconstructed" if n_from_pa == 0 else "mixed")
     meta = {"window_source": source, "n_from_assembly": n_from_pa,
             "n_reconstructed": n_reconstructed, "edges": edge_meta}
-    return acc, meta
+    return acc, lit, meta
 
 
 # ---------------------------------------------------------------------------
@@ -152,7 +197,8 @@ def fact_records(
     rounds, mentions = mention_map(judgment)
     agents, holders = holders_map(assignment)
     injects = inject_map(events)
-    acc, acc_meta = access_sets(rounds, mentions, assignment, events)
+    acc, lit, acc_meta = access_sets(rounds, mentions, assignment, events)
+    undefined = has_undefined_channel(events)
     run_id = judgment.get("run_id")
     n = len(rounds)
 
@@ -174,6 +220,7 @@ def fact_records(
             r = rounds[idx]
             spoken_by = sorted(mentions[r].get(fid, set()))
             access_agents = [a for a in agents if fid in acc[idx].get(a, set())]
+            literal_agents = [a for a in access_agents if fid in lit[idx].get(a, set())]
             if spoken_by:
                 state = "spoken"
             elif access_agents:
@@ -181,9 +228,24 @@ def fact_records(
             else:
                 state = "inaccessible"
             states.append(state)
+
+            # 근거 등급 — 이 행의 상태를 무엇이 떠받치는가.
+            #   접근: 배정·주입에서 왔으면 literal, 발화 언급에서 왔으면 judged.
+            #   spoken/inaccessible: 둘 다 agents_mentioning 에 기댄다 → judged
+            #     (부재 판정도 판정이다. 7/29 esa_03 이 그 실물).
+            if undefined:
+                ev_grade = "undefined"
+            elif state == "accessible":
+                ev_grade = ("literal" if len(literal_agents) == len(access_agents)
+                            else "judged" if not literal_agents else "mixed")
+            else:
+                ev_grade = "judged"
+
             timeline.append({
                 "round": r, "state": state, "spoken_by": spoken_by,
                 "n_access_agents": len(access_agents),
+                "n_access_literal": len(literal_agents),
+                "evidence": ev_grade,
                 "inject": fid in injects.get(r, set()),
                 "resurgent_speakers": sorted(set(spoken_by) - set(access_agents)),
             })
@@ -234,12 +296,22 @@ def fact_records(
             "retirements": retirements,
             "final_state": states[-1] if states else None,
             "rounds_by_state": {st: states.count(st) for st in STATES},
+            "rounds_by_evidence": {g: sum(1 for t in timeline if t["evidence"] == g)
+                                   for g in EVIDENCE},
             "n_resurgent_rounds": sum(1 for t in timeline if t["resurgent_speakers"]),
         })
 
     meta = {"protocol": PROTOCOL, "run_id": run_id, "rounds": rounds,
             "n_agents": len(agents), "n_facts": len(fact_ids),
             "window": acc_meta,
+            "evidence": {
+                "undefined_channel": undefined,
+                "note": ("note_update(개인 수첩) 있음 — 매개 노출은 정량 정의가 없어 "
+                         "집계를 산출하지 않는다(SCHEMA_v0.3_NOTE_SLOT §4)."
+                         if undefined else
+                         "literal=배정·주입(원문 대조) / judged=발화 언급(판정 매개). "
+                         "spoken·inaccessible 은 정의상 judged."),
+            },
             "assigned_untracked_facts": assigned_untracked,
             "question_excluded_facts": sorted(f for f in fact_ids
                                               if f in question_exposed_ids)}
@@ -264,11 +336,18 @@ def state_curve(records: list[dict], rounds: list, *,
     curve = []
     for idx, r in enumerate(rounds):
         counts = {st: 0 for st in STATES}
+        n_literal = 0
         for rec in tracked:
-            counts[rec["timeline"][idx]["state"]] += 1
+            row = rec["timeline"][idx]
+            counts[row["state"]] += 1
+            if row["n_access_literal"] > 0:
+                n_literal += 1
         curve.append({"round": r, **counts,
                       "alive_spoken": counts["spoken"],
-                      "alive_access": counts["spoken"] + counts["accessible"]})
+                      "alive_access": counts["spoken"] + counts["accessible"],
+                      # 접근이 원문 대조로 확정된 팩트 수 — alive_access 중 판정에
+                      # 기대지 않는 부분(나머지는 judge 가 흔들리면 같이 흔들린다)
+                      "access_literal": n_literal})
     return curve
 
 
@@ -283,6 +362,9 @@ def summary(records: list[dict], *, critical_only: bool = False) -> dict:
     for rec in tracked:
         for rv in rec["revivals"]:
             revival_ch[rv["channel"]] = revival_ch.get(rv["channel"], 0) + 1
+    n_rows = sum(len(r["timeline"]) for r in tracked)
+    n_res_rows = sum(r["n_resurgent_rounds"] for r in tracked)
+    ev_mix = {g: sum(r["rounds_by_evidence"][g] for r in tracked) for g in EVIDENCE}
     return {
         "scope": {"critical_only": critical_only},
         "n_facts_tracked": len(tracked),
@@ -295,6 +377,19 @@ def summary(records: list[dict], *, critical_only: bool = False) -> dict:
         "revival_channels": revival_ch,
         "n_facts_with_resurgence": sum(1 for r in tracked
                                        if r["n_resurgent_rounds"] > 0),
+        "evidence_mix": ev_mix,
+        # 자기 진단 — 이 계기가 자기 신뢰도를 스스로 보고한다(2026-07-29 격상).
+        "self_diagnostic": {
+            "n_rows": n_rows,
+            "n_resurgent_rows": n_res_rows,
+            "resurgence_rate": round(n_res_rows / n_rows, 3) if n_rows else None,
+            "judged_share": round(ev_mix["judged"] / n_rows, 3) if n_rows else None,
+            "note": ("resurgence = 접근 없이 발화. 7/29 원문 대조에서 5건 전건이 "
+                     "판정기 과소 계상으로 설명됐고 작화는 0건이었다 — 따라서 이 비율은 "
+                     "작화율이 아니라 **창 계산이 틀린 비율의 하한**이다. 0 이 아니면 "
+                     "그 run 의 접근 수치를 그만큼 의심할 것. judged_share 는 원장 행 중 "
+                     "판정에 기댄 비율."),
+        },
     }
 
 
@@ -311,14 +406,24 @@ def report(
     records, meta = fact_records(judgment, assignment, events,
                                  facts_by_id=facts_by_id,
                                  question_exposed_ids=question_exposed_ids)
-    return {
+    out = {
         "protocol": PROTOCOL,
         "instrument": "access_window (서술 계기 — 판별표 밖)",
         "meta": meta,
         "records": records,
-        "curve": state_curve(records, meta["rounds"], critical_only=critical_only),
-        "summary": summary(records, critical_only=critical_only),
     }
+    if meta["evidence"]["undefined_channel"]:
+        # 계기가 자기 범위 밖 입력을 받았다 — 조용히 틀린 수치를 내는 대신 멈춘다.
+        # 원장(records)은 그대로 둔다: 좌표는 여전히 사실이고, 틀리는 것은 집계다.
+        out["status"] = "suspended"
+        out["curve"] = None
+        out["summary"] = None
+        out["suspended_reason"] = meta["evidence"]["note"]
+        return out
+    out["status"] = "ok"
+    out["curve"] = state_curve(records, meta["rounds"], critical_only=critical_only)
+    out["summary"] = summary(records, critical_only=critical_only)
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -344,10 +449,15 @@ def main() -> None:
     print(f"[access_window] {PROTOCOL} · 창 원천={m['window']['window_source']}")
     print(f"[access_window] rounds={m['rounds']} agents={m['n_agents']} "
           f"facts={m['n_facts']} edges={m['window']['edges']}")
+    if rep["status"] == "suspended":
+        print(f"[access_window] ⚠ 집계 산출 정지 — {rep['suspended_reason']}")
+        print("[access_window] 원장(records)만 유효하다. 좌표는 사실이고 틀리는 것은 집계다.")
+        return
     print("[access_window] 상태 곡선 (spoken / accessible / inaccessible · 접근 생존):")
     for row in rep["curve"]:
         print(f"  round {row['round']}: {row['spoken']} / {row['accessible']} / "
-              f"{row['inaccessible']} · alive_access={row['alive_access']}")
+              f"{row['inaccessible']} · alive_access={row['alive_access']} "
+              f"(그중 원문 대조 확정 {row['access_literal']})")
     print("[access_window] 팩트별 타임라인 (S=발화 A=접근 D=불가 · *=resurgence):")
     for rec in rep["records"]:
         line = "".join(("S" if t["state"] == "spoken" else
@@ -362,6 +472,12 @@ def main() -> None:
           f"사망 경험={s['n_ever_inaccessible']}/{s['n_facts_tracked']} · "
           f"은퇴 결말={s['retirement_outcomes']} · 부활={s['revival_channels']} · "
           f"resurgence 팩트={s['n_facts_with_resurgence']}")
+    d = s["self_diagnostic"]
+    print(f"[access_window] 자기 진단: 근거 구성={s['evidence_mix']} · "
+          f"판정 의존 비율={d['judged_share']} · resurgence 비율={d['resurgence_rate']}")
+    if d["n_resurgent_rows"]:
+        print("  ⚠ resurgence > 0 — 작화율이 아니라 창 계산 오류율의 하한이다"
+              "(7/29 대조: 5건 전건 판정기 산물·작화 0). 접근 수치를 그만큼 의심할 것.")
 
 
 if __name__ == "__main__":
