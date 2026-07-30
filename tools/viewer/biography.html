@@ -88,7 +88,8 @@ const EV_LABEL = {
 let BIO = null;
 
 async function loadRuns() {
-  document.getElementById("nav").innerHTML = `<a class="here" href="/biography">전기</a><a href="/ledger">장부</a><a href="/transmission">레이더</a><a href="/audit">대조</a>`;
+  // 순서 = 관측 흐름(넓게→좁게).
+  document.getElementById("nav").innerHTML = `<a href="/">두 판</a><a href="/audit">대조</a><a class="here" href="/biography">전기</a>`;
   const res = await fetch("/api/runs"); const data = await res.json();
   const sel = document.getElementById("runsel"); sel.innerHTML = "";
   const eligible = data.runs.filter(r => r.parts && r.parts.judgment === "present");

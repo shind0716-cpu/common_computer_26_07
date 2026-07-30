@@ -57,6 +57,11 @@
   .far .num { font-size:16px; font-variant-numeric:tabular-nums; }
   .far .lab { color:var(--dim); font-size:11px; }
   .far .fin { color:var(--dead); font-weight:600; }
+  details.input { margin:7px 0 12px; border:1px solid var(--line); border-radius:5px;
+                  padding:6px 9px; background:#14191e; }
+  details.input summary { cursor:pointer; color:var(--inject); font-size:12px; }
+  details.input pre { white-space:pre-wrap; max-height:420px; overflow:auto; color:#c9d6e2; }
+  details.input mark { background:#3a2c12; color:var(--inject); }
 </style>
 </head>
 <body>
@@ -68,7 +73,7 @@
 </header>
 <main id="main"><p class="meta">불러오는 중…</p></main>
 <script>
-let D = null, SEL = null;
+let D = null, IN = null, SEL = null;
 const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
 // 이 화면의 낱말은 이 파일이 갖는다(공용 용어층 폐기 2026-07-30 — 조건 의존 수치 혼입).
 const FLAGNAME = {
@@ -86,7 +91,8 @@ const EV = {
 };
 
 async function loadRuns() {
-  document.getElementById("nav").innerHTML = `<a href="/biography">전기</a><a href="/ledger">장부</a><a href="/transmission">레이더</a><a class="here" href="/audit">대조</a>`;
+  // 내비 순서 = 관측 흐름(넓게→좁게): 두 판 비교 → 발화 전문 확인 → 팩트 하나의 일생.
+  document.getElementById("nav").innerHTML = `<a href="/">두 판</a><a class="here" href="/audit">대조</a><a href="/biography">전기</a>`;
   const data = await (await fetch("/api/runs")).json();
   const sel = document.getElementById("runsel"); sel.innerHTML = "";
   const el = (data.runs || []).filter(r => r.parts && r.parts.judgment === "present");
@@ -107,7 +113,10 @@ async function loadRuns() {
 
 async function load(key) {
   const [issue, run] = key.split("/");
-  D = await (await fetch(`/api/audit/${issue}/${run}`)).json();
+  [D, IN] = await Promise.all([
+    fetch(`/api/audit/${issue}/${run}`).then(r => r.json()),
+    fetch(`/api/inputs/${issue}/${run}`).then(r => r.json()),
+  ]);
   SEL = null;
   for (const f of D.facts) {                     // 처음엔 볼 값어치 있는 첫 셀로
     const c = f.cells.find(c => c.flags.length);
@@ -227,8 +236,22 @@ function detail() {
           <div class="who">${esc(u.agent_id)}${u.perspective ? " · " + esc(u.perspective) : ""}
           ${counted ? `<span class="chip ok">센 발화</span>` : `<span class="chip">안 셈</span>`}
           <span class="prox">근접도 ${p}</span></div>${esc(u.text) || "<span class='meta'>(빈 발화)</span>"}</div>`;
+    h += inputBeside(u.agent_id, c.stage);
   }
   return h;
+}
+
+function inputBeside(agent, stage) {
+  if (!IN || IN.status !== "ok")
+    return `<details class="input"><summary>이 발화가 보기 전 입력 전문</summary><div class="meta">입력 기록 없음 — ${esc((IN||{}).note || "기록을 불러오지 못했습니다")}</div></details>`;
+  const it = IN.items.find(x => x.round === stage && x.agent_id === agent);
+  if (!it) return `<details class="input"><summary>이 발화가 보기 전 입력 전문</summary><div class="meta">해당 좌표의 조립 기록 없음</div></details>`;
+  if (it.error) return `<details class="input"><summary>이 발화가 보기 전 입력 전문</summary><div class="meta">${esc(it.error)}</div></details>`;
+  let body = esc(it.text);
+  if (it.inject_text && body.includes(esc(it.inject_text)))
+    body = body.replace(esc(it.inject_text), `<mark>${esc(it.inject_text)}</mark>`);
+  return `<details class="input"><summary>이 발화가 보기 전 입력 전문 · ${it.hash_match ? "지문 일치" : "지문 확인 실패"}${it.inject_text ? " · 주입 자리 강조" : ""}</summary>
+    <div class="meta">${esc(it.template)} · 배정 팩트 ${it.slots.assigned_facts.length}개 · 이웃 발화 ${it.slots.others.length}건</div><pre>${body}</pre></details>`;
 }
 
 function pick(fid, stage) { SEL = [fid, stage]; render(); window.scrollTo({top: document.body.scrollHeight * 0.35, behavior: "smooth"}); }

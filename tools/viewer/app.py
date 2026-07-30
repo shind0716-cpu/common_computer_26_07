@@ -18,18 +18,27 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse, Response
 
-from modules import paths, ledger, survival
+from modules import access_window as aw
+from modules import crossrun, paths, ledger, survival
+from modules import transmission as tr
 from modules.judge import SURVIVING
 from modules.viewmodel import build_viewmodel, STATUS_ORDER
 
 app = FastAPI(title="팩트 생존 뷰어")
 HERE = Path(__file__).resolve().parent
+
+# 파일럿 관측에서 세션 스크래치패드가 사라지자 데이터 뿌리를 바꿔 보는 방법도 함께
+# 사라졌다. 읽기 전용 뷰어라 오염 경로가 없으므로 환경변수로 **뿌리만** 바꾸고,
+# 파일명 규칙은 계속 paths.py 함수 하나를 쓴다. 상대 경로는 실행 cwd 기준으로 확정한다.
+if os.environ.get("VIEWER_DATA"):
+    paths.DATA = Path(os.environ["VIEWER_DATA"]).expanduser().resolve()
 
 
 def _issue_title(issue_id: str) -> str:
@@ -663,58 +672,6 @@ def api_inputs(issue_id: str, run_id: str) -> dict:
     }
 
 
-@app.get("/api/transmission/{issue_id}/{run_id}")
-def api_transmission(issue_id: str, run_id: str) -> dict:
-    """전달 레이더 노드 — transmission.report() 현장 유도 (survival /api/analysis 전례).
-
-    지위(2026-07-29 갱신): 층1은 **팀 확정**(동기화 구두 확정 — 종전 "제안·동결" 해제).
-    다만 같은 날 결정으로 **용도가 한정**됐다 — 본실험 주지표가 아니라 논문 재현(협의 과제)
-    쪽 지표다. 본실험의 과정 관측은 개인 수첩 원문이 맡는다(판정 무경유).
-    영점 조정(question 문면 팩트 제외)은 LLM 스캔 산출물이 필요해 뷰어(LLM 0)가
-    직접 못 만든다 — data/scans/question_scan_{issue}.json 이 있으면 적용, 없으면
-    '영점 미적용'을 명시해 강등 표기한다(침묵 실패 방지).
-    """
-    from modules import transmission as tr
-    jpath = paths.judgment(issue_id, run_id)
-    if not jpath.exists():
-        raise HTTPException(status_code=404, detail=f"judgment 없음 ({issue_id}/{run_id})")
-    try:
-        judgment = json.loads(jpath.read_text(encoding="utf-8"))
-        facts_by_id = ledger.load_facts_by_id(issue_id)
-        assignment = json.loads(paths.assignment(issue_id).read_text(encoding="utf-8"))
-        events = [json.loads(ln) for ln
-                  in paths.debate(issue_id, run_id).read_text(encoding="utf-8").splitlines()
-                  if ln.strip()]
-    except FileNotFoundError as e:
-        raise HTTPException(status_code=404, detail=f"산출물 없음: {e}")
-
-    scan_path = paths.DATA / "scans" / f"question_scan_{issue_id}.json"
-    exposed_ids: frozenset = frozenset()
-    if scan_path.exists():
-        try:
-            exposed_ids = frozenset(
-                json.loads(scan_path.read_text(encoding="utf-8"))
-                .get("question_exposed_ids", []))
-        except Exception:
-            pass
-    try:
-        rep = tr.report(judgment, assignment, events, facts_by_id,
-                        question_exposed_ids=exposed_ids)
-    except Exception as e:  # 계산 실패 = 스키마 드리프트 신호
-        raise HTTPException(status_code=500, detail=f"레이더 계산 실패(스키마 드리프트?): {e}")
-    rep["zero_point"] = {
-        "applied": bool(exposed_ids) or scan_path.exists(),
-        "question_exposed_ids": sorted(exposed_ids),
-        "note": (None if scan_path.exists() else
-                 "영점 미적용 — question 스캔 산출물 없음. TSR·획득에 question 유래 "
-                 "거짓양성이 섞였을 수 있음(탐색적으로만 읽을 것)."),
-    }
-    rep["status_note"] = ("층1 = 팀 확정(2026-07-29 동기화). 단 용도 한정 — 본실험 주지표가 "
-                          "아니라 논문 재현(협의 과제)용이며, 본실험 과정 관측은 수첩 원문이 "
-                          "맡는다. 이 층의 노출·언급은 전부 judge 출력을 거친다.")
-    return rep
-
-
 def _ngrams(text: str, n: int = 3) -> set:
     """문자 n-gram 집합 (한글·영숫자만 남기고 공백·문장부호 제거).
 
@@ -787,12 +744,29 @@ def api_audit(issue_id: str, run_id: str) -> dict:
 
     agent_persp: dict[str, str] = {}
     assignment: dict | None = None
+    agent_ids: list[str] = []
     try:
         assignment = json.loads(paths.assignment(issue_id).read_text(encoding="utf-8"))
         for ag in assignment.get("agents", []):
             agent_persp[ag["agent_id"]] = ag.get("perspective") or "?"
+            agent_ids.append(ag["agent_id"])
     except FileNotFoundError:
         pass
+
+    # 접근 참가자는 access_window 계기의 산출을 stage 좌표로 옮기기만 한다. acc 키는
+    # stage 값이 아니라 rounds 안의 위치 인덱스이므로 rounds[idx]로 명시적으로 사상한다.
+    access_by_coord: dict[tuple, list[str]] = {}
+    if assignment is not None:
+        rounds, mentions = tr.mention_map(judgment)
+        acc, _lit, _meta = aw.access_sets(rounds, mentions, assignment, events)
+        facts_at_stage = {stage["stage"]: stage.get("facts", [])
+                          for stage in judgment.get("stages", [])}
+        for idx, stage in enumerate(rounds):
+            for fact in facts_at_stage.get(stage, []):
+                fact_id = fact["fact_id"]
+                access_by_coord[(fact_id, stage)] = [
+                    a for a in agent_ids if fact_id in acc[idx].get(a, set())
+                ]
 
     # 근거 등급 — access_window 계기를 그대로 소비한다(뷰어에서 재구현하지 않는다).
     # 판정 셀 옆에 "이 셀이 무엇에 기대고 있는가"를 붙이는 것이 이 뷰의 절반이다:
@@ -803,7 +777,6 @@ def api_audit(issue_id: str, run_id: str) -> dict:
     access_meta: dict | None = None
     if assignment is not None:
         try:
-            from modules import access_window as aw
             arep = aw.report(judgment, assignment, events)
             for rec in arep["records"]:
                 for t in rec["timeline"]:
@@ -873,6 +846,7 @@ def api_audit(issue_id: str, run_id: str) -> dict:
                 "evidence": (aw_row or {}).get("evidence"),
                 "access_state": (aw_row or {}).get("state"),
                 "n_access_literal": (aw_row or {}).get("n_access_literal"),
+                "access_agents": access_by_coord.get((fid, st), []),
                 "counted": counted, "missed_high": missed,
                 "prox": prox, "max_prox": top[1], "max_prox_agent": top[0],
                 "votes": {
@@ -915,19 +889,81 @@ def api_audit(issue_id: str, run_id: str) -> dict:
     }
 
 
+def _pair_record(issue_id: str, run_id: str) -> dict:
+    """기존 재료 API 셋을 판 간 계층 입력 한 판으로 얕게 조립한다."""
+    audit = api_audit(issue_id, run_id)
+    ledger_view = api_ledger(issue_id, run_id)
+    analysis = api_analysis(issue_id, run_id)
+    cells = []
+    fact_meta = []
+    for fact in audit["facts"]:
+        fact_meta.append({k: fact.get(k) for k in ("fact_id", "text", "critical")})
+        for cell in fact["cells"]:
+            cells.append({"fact_id": fact["fact_id"], **cell})
+    injections = [{
+        "round": inj["round"],
+        "fact_ids": [f["fact_id"] for f in inj["injected"]],
+        "reason": inj["reason"], "block_text": inj["block_text"],
+        "block_text_source": inj["block_text_source"],
+    } for inj in ledger_view["injections"]]
+    events = [json.loads(line) for line in
+              paths.debate(issue_id, run_id).read_text(encoding="utf-8").splitlines()
+              if line.strip()]
+    try:
+        assignment = json.loads(paths.assignment(issue_id).read_text(encoding="utf-8"))
+        agent_ids = [ag["agent_id"] for ag in assignment.get("agents", [])]
+    except FileNotFoundError:
+        agent_ids = []
+    edges, edge_meta = tr.edges_map(events, agent_ids)
+    seating = next((ev for ev in events if ev.get("event") == "seating"), None)
+    order = list(seating.get("order") or []) if seating is not None else list(agent_ids)
+    topology = {
+        "structure": edge_meta["structure"],
+        "order": order,
+        "edges": {agent_id: sorted(neighbors) for agent_id, neighbors in edges.items()},
+        "assumed_full": edge_meta["assumed_full"],
+    }
+    access = audit.get("access") or {}
+    return {
+        "run_id": run_id, "judge": audit["judge"], "far": audit["far"],
+        "ledger_mode": ledger_view["ledger_mode"],
+        "topology": topology,
+        "cells": cells, "facts": fact_meta, "injections": injections,
+        "evidence": {
+            "evidence_mix": access.get("evidence_mix"),
+            "window_source": access.get("window_source"),
+            "judged_share": access.get("judged_share"),
+            "resurgence_rate": access.get("resurgence_rate"),
+            "status": access.get("status"),
+            # 계기가 집계를 멈춘 사유(access_window status=suspended). 화면이 그 정지를
+            # 침묵하지 않도록 문면을 그대로 넘긴다 — 뷰어가 사유를 새로 쓰지 않는다.
+            "note": access.get("note"),
+        },
+        "run_meta": _run_meta(issue_id, run_id),
+        "analysis": analysis["report"],
+        # 발화 전문은 audit 산출을 그대로 싣는다. crossrun은 읽거나 가공하지 않는다.
+        "utterances": audit["utterances"],
+    }
+
+
+@app.get("/api/pair/{issue_id}/{run_a}/{run_b}")
+def api_pair(issue_id: str, run_a: str, run_b: str) -> dict:
+    """두 판의 기존 API 산출을 조립해 crossrun.report()에 넘긴다(새 계산 0)."""
+    try:
+        records = [_pair_record(issue_id, run_a), _pair_record(issue_id, run_b)]
+    except HTTPException:
+        raise
+    try:
+        out = crossrun.report(records)
+    except crossrun.CrossRunError as e:
+        raise HTTPException(status_code=500, detail=f"판 간 대조 실패(형태 드리프트?): {e}") from e
+    out.update({"issue_id": issue_id, "data_root": str(paths.DATA), "records": records})
+    return out
+
+
 @app.get("/biography", response_class=HTMLResponse)
 def biography_page() -> str:
     return (HERE / "biography.html").read_text(encoding="utf-8")
-
-
-@app.get("/ledger", response_class=HTMLResponse)
-def ledger_page() -> str:
-    return (HERE / "ledger.html").read_text(encoding="utf-8")
-
-
-@app.get("/transmission", response_class=HTMLResponse)
-def transmission_page() -> str:
-    return (HERE / "transmission.html").read_text(encoding="utf-8")
 
 
 @app.get("/audit", response_class=HTMLResponse)
@@ -936,8 +972,8 @@ def audit_page() -> str:
 
 
 @app.get("/", response_class=HTMLResponse)
-def index() -> str:
-    return (HERE / "index.html").read_text(encoding="utf-8")
+def pair_page() -> str:
+    return (HERE / "pair.html").read_text(encoding="utf-8")
 
 
 # [폐기 2026-07-30 · 요한 판단] /terms.js 용어층 — 고치기보다 지웠다.
