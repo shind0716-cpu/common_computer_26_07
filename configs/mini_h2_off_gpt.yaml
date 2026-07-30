@@ -1,0 +1,26 @@
+# 미니 H2 대조군(장부 끔) — GPT 판 (2026-07-30 · 민옥)
+#
+# 왜 새 파일인가: 조건 변경 = 새 yaml (CLAUDE.md 실험 무결성). mini_h2_off.yaml 은
+# 그대로 둔다 — 과거 기록이 그 파일을 가리킬 수 있고, append-only 가 그것을 지킨다.
+#
+# 무엇이 다른가: 공급자만 GPT 로 바꿨다. 그 결과 **논문 상수 temp 1.2 가 살아난다.**
+# 동범 님 7/23 선결 ①은 "Anthropic 은 0~1 만 허용하므로 1.2 재현 불가"였는데, 그 판정의
+# 전제는 Anthropic 전용 llm 모듈이었다. 7/30 다중 공급자 확장으로 전제가 바뀌었고,
+# 저자 모델(GPT-4.1·Gemini·Qwen)이 쓰던 0~2 스케일을 그대로 쓸 수 있다.
+#
+# 남는 편차(재현이 아니라는 근거): 모델이 다르다(gpt-5.4-mini ≠ GPT-4.1). 그리고
+# 시나리오가 논문 데이터셋이 아니다. 이 둘은 도구로 못 메우는 층이며 보고서에 적어야 한다.
+experiment: mini_h2_off_gpt
+condition: mini-h2-off
+issue_id: issue_esa
+seed: 42
+rounds: 3
+structure: full
+persona: default
+debate_model: gpt-mini
+debate_temperature: 1.2      # 논문 상수 — GPT 는 0~2 라 그대로 지킬 수 있다
+judge_model: gpt-mini        # ⚠ 팀 확정 판정 사양은 Sonnet 이다. 공급자를 바꾸면
+                             #   judgment 의 prompt_ver 에 +merged_system 이 붙는다(사후 보고 대상)
+judge_temperature: 0
+judge_n_votes: 3
+ledger_mode: "off"

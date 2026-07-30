@@ -1,0 +1,13 @@
+condition: mini-h2-off
+debate_model: gpt-mini
+debate_temperature: 1.2
+experiment: repro_smoke
+issue_id: issue_esa
+judge_model: gpt-mini
+judge_n_votes: 3
+judge_temperature: 0
+ledger_mode: 'off'
+persona: default
+rounds: 1
+seed: 42
+structure: full

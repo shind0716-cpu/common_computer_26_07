@@ -1,0 +1,20 @@
+# 실호출 연막 테스트 — GPT 경로가 실제로 도는지 최소 비용으로 확인(2026-07-30).
+# 라운드 1 · 수첩 on · 폴링 on → 4에이전트면 발화 8 + 라운드0수첩 4 + 폴링 4 = 16콜.
+experiment: smoke_gpt
+condition: smoke-gpt
+issue_id: issue_hire
+run_id: smoke_gpt
+seed: 42
+agents: 4
+rounds: 1
+window: rolling
+memory: note
+note_budget: 500
+note_call: utterance
+final_poll: true
+debate_model: gpt-mini
+debate_temperature: 1.0
+judge_model: claude-sonnet-4-6
+judge_temperature: 0
+judge_n_votes: 3
+ledger_mode: "off"

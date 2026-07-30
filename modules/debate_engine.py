@@ -54,13 +54,18 @@ from pathlib import Path
 
 import yaml
 
-from modules import authors_prompts, ledger, llm, our_prompts, paths
+from modules import authors_prompts, ledger, llm, note_slot, our_prompts, paths
 from modules import judge as judge_mod
 
 DEBATE_ROUNDS = 3  # 논문 상수. config에서 덮어쓸 수 있게 아래에서 읽는다.
 
 # 이번 통합이 아는 ledger_mode. v1/v2/a1 은 사다리 후속 칸 — 스키마엔 있으나 미구현.
 SUPPORTED_LEDGER_MODES = ("off", "v0")
+
+# 기억 축 (설정 사전 v0.1 변경 1 / 스키마 v0.3 §7 — window·memory 는 직교 슬롯).
+SUPPORTED_WINDOWS = ("rolling", "cumulative")   # 받은 발화의 창: 직전만 / 누적 전량
+SUPPORTED_MEMORY = ("none", "note")             # 개인 수첩 사용 여부
+SUPPORTED_NOTE_CALLS = ("utterance", "dedicated")  # 수첩 갱신 호출 방식 (§5)
 
 
 def now() -> str:
@@ -153,6 +158,59 @@ def assemble_coop_continue(question: str, body: str, fact_text: str,
     return t
 
 
+def assemble_coop_continue_note(question: str, body: str, note: str, incoming: str,
+                                *, template: str = "coop_continue_note") -> str:
+    """수첩 조건의 발화 프롬프트 조립(순수).
+
+    coop_continue 와 슬롯이 다르다 — `my_facts`·`previous` 가 **없다**:
+      · my_facts 없음 = B판(스키마 v0.3 §7 좌표, 설정 사전 v0.1 변경 3). 배정 팩트는
+        라운드 0에 1회만 제시하고, 이후엔 수첩에 적어야 생존한다. 자기 브리핑도 기억
+        압축의 대상이라는 것이 이 조건의 요지다.
+      · previous 없음 = 자기 직전 발언도 기억이다. 수첩에 안 적었으면 자기 말도
+        사라진다. (엔진이 previous 를 공짜로 되돌려주면 "수첩만 남는다"는 조건이
+        거짓이 된다 — 수첩 밖 통로가 하나 열린 셈.)
+
+    template 인자: note_call=utterance 면 coop_continue_note({"say","note"} 요구),
+    dedicated 면 coop_continue_note_say(발화만 요구). 슬롯 구성은 동일하므로 조립
+    함수를 하나로 두고 파일만 갈아 끼운다 — validate --deep 이 template 이름으로
+    같은 함수를 다시 호출해 재조립한다."""
+    t = our_prompts.load(template)
+    t = t.replace("{{question}}", question)
+    t = t.replace("{{body}}", body)
+    t = t.replace("{{note}}", note)
+    t = t.replace("{{incoming}}", incoming)
+    return t
+
+
+def assemble_coop_note_update(question: str, note: str, my_say: str, incoming: str,
+                              note_budget: int) -> str:
+    """별도 호출(note_call=dedicated) 의 수첩 갱신 프롬프트 조립(순수).
+
+    스키마 v0.3 §5: 별도 호출은 독립 LLM 호출이므로 **그 호출의 입력도 prompt_assembly
+    로 기록**되어야 한다("입력이 기록되지 않은 LLM 호출"이 v0.3이 없애려던 구멍).
+    그래서 이 조립도 발화 조립과 같은 지위의 순수 함수이고, template 등록제(A-3)에
+    coop_note_update 가 등재되어 있다."""
+    t = our_prompts.load("coop_note_update")
+    t = t.replace("{{question}}", question)
+    t = t.replace("{{note}}", note)
+    t = t.replace("{{my_say}}", my_say)
+    t = t.replace("{{incoming}}", incoming)
+    t = t.replace("{{note_budget}}", str(note_budget))
+    return t
+
+
+def assemble_coop_final(question: str, body: str, final_context: str) -> str:
+    """최종 폴링(coop_final) 조립(순수) — 벌거벗은 판단 {"recommend"} 한 필드.
+
+    final_context 는 조건에 따라 다른 것이 들어온다(수첩 조건이면 수첩, 아니면 마지막
+    라운드 발화들). 어느 것이 들어갔는지는 prompt_assembly.slots 가 기록한다."""
+    t = our_prompts.load("coop_final")
+    t = t.replace("{{question}}", question)
+    t = t.replace("{{body}}", body)
+    t = t.replace("{{final_context}}", final_context)
+    return t
+
+
 def initial_utterance(question: str, fact_text: str, answer: str, model: str, temp: float,
                       respond=None):
     """저자 obtain_discussion_initial_each() 계승. respond 는 테스트 주입용."""
@@ -182,9 +240,33 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
     ledger_mode = cfg.get("ledger_mode", "off")
     seed = int(cfg["seed"])
 
+    # --- 기억 축 3값 (설정 사전 v0.1 변경 1) ---------------------------------
+    # window(받은 발화의 창) 와 memory(수첩) 는 **직교 슬롯**이다(스키마 v0.3 §7).
+    # 실험 메뉴로 파는 세 점은 그 곱집합의 세 좌표일 뿐, 계약은 두 칸을 따로 둔다:
+    #   전체 기억 = window:cumulative + memory:none   (넘치기 전의 실전 시스템)
+    #   요약 기억 = window:rolling    + memory:note   (개인 수첩)
+    #   직전만   = window:rolling    + memory:none   (논문 세팅 · 재현 트랙 전용)
+    window = cfg.get("window", "rolling")
+    memory = cfg.get("memory", "none")
+    note_budget = int(cfg.get("note_budget", 500))
+    note_call = cfg.get("note_call", "utterance")
+
+    # 최종 폴링(coop_final): 벌거벗은 판단 {"recommend"} 한 필드. 코어 5종의 채점
+    # 원자료 — LLM judge 불사용이므로 이 폴링 결과가 곧 정답 여부다(설정 사전 §4).
+    final_poll = bool(cfg.get("final_poll", False))
+
     if ledger_mode not in SUPPORTED_LEDGER_MODES:
         raise KeyError(f"미구현 ledger_mode: {ledger_mode} (지원: {SUPPORTED_LEDGER_MODES} — "
                        "v1/v2/a1 은 DESIGN 사다리 후속 칸)")
+    # 가드: 미지 값을 조용히 기본값으로 흘리지 않는다(stance 가드와 같은 이유 —
+    # 오타 하나가 "다른 조건이 돌았는데 로그엔 맞다고 적힌" run 을 만든다).
+    if window not in SUPPORTED_WINDOWS:
+        raise KeyError(f"미지원 window: {window} (지원: {SUPPORTED_WINDOWS})")
+    if memory not in SUPPORTED_MEMORY:
+        raise KeyError(f"미지원 memory: {memory} (지원: {SUPPORTED_MEMORY})")
+    if note_call not in SUPPORTED_NOTE_CALLS:
+        raise KeyError(f"미지원 note_call: {note_call} (지원: {SUPPORTED_NOTE_CALLS})")
+    use_note = memory == "note"
 
     facts_doc = json.loads(paths.facts(issue_id).read_text(encoding="utf-8"))
     assign_doc = json.loads(paths.assignment(issue_id).read_text(encoding="utf-8"))
@@ -209,7 +291,30 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
     if coop and set(_stances) != {"none"}:
         raise KeyError("stance 혼합(none + pro/con)은 미정의 조건 — 전원 none 또는 전원 pro/con")
 
+    # 수첩·누적창은 우리 소유 협력 템플릿에만 있는 슬롯이다. 저자 템플릿
+    # (discussion_*)은 글자 단위 계승·무수정이 재현 트랙의 증거물이라 슬롯을 더할 수
+    # 없다 — 조용히 무시하고 도는 대신 여기서 즉사시킨다.
+    if not coop:
+        if use_note:
+            raise KeyError("memory=note 는 협력(무입장) 조건 전용 — 저자 템플릿엔 수첩 슬롯이 없다")
+        if window != "rolling":
+            raise KeyError(f"window={window} 는 협력 조건 전용 — 재현 트랙은 rolling 고정")
+
     respond = utterance_fn  # None 이면 initial/continue 가 llm.obtain_response 사용
+
+    # --- 키 관문 (2026-07-30 · 민옥) -----------------------------------------
+    # 실호출 경로일 때만 검사한다(테스트는 utterance_fn 을 주입하므로 키 불필요).
+    # 왜 시작 전인가: obtain_response 는 어떤 실패도 공백으로 폴백하므로(저자 계승)
+    # 키가 죽어 있으면 전 발화가 빈 로그가 조용히 완주한다. 실측 사고 — .env 의
+    # ANTHROPIC_API_KEY 가 10자 자리표시자였고 401 이 났는데, 5회 백오프 뒤 공백
+    # 폴백으로 넘어가 로그만 보면 성공처럼 보였다(7/30).
+    llm_meta = None
+    if respond is None:
+        # 온도까지 함께 검사한다 — 범위 밖 온도는 400 이고, 400 은 재시도해도 400 이라
+        # 공백 폴백으로 넘어가 빈 발화 로그가 완주한다(2026-07-30 · 민옥 온도 관문).
+        llm_meta = llm.preflight(model, temperature=temp)
+        print(f"[llm] {llm_meta['provider']} · {llm_meta['model_id']} "
+              f"(키: {llm_meta['key_env']})")
 
     # --- ledger v0: 루프-내 judge 준비 (INTEGRATION_ledger.md §2C·§4) ----------
     n_votes = int(cfg.get("judge_n_votes", 3))
@@ -223,6 +328,14 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
     expected = length * (rounds + 1)                     # 발화: 초기 + 라운드별
     if ledger_mode == "v0":
         expected += rounds * len(facts_list) * n_votes   # 루프-내 판정 표
+    if use_note:
+        # 라운드 0 첫 수첩: note_call 과 무관하게 항상 별도 호출 1콜/에이전트.
+        expected += length
+        if note_call == "dedicated":
+            # 라운드 1..N-1 끝의 갱신(마지막 라운드는 다음 라운드가 없어 갱신 불필요).
+            expected += length * max(0, rounds - 1)
+    if final_poll:
+        expected += length                               # 최종 폴링 1인 1콜
     max_calls = int(cfg.get("max_llm_calls", expected))
     n_calls = 0
 
@@ -279,8 +392,15 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
                     "sha256": sha256(config_path.read_text(encoding="utf-8"))},
         settings={
             # 설정 사전 8축 — 미구현 축은 엔진의 현행 동작을 그대로 적는다
-            "window": "rolling",                 # ① 받는 말 범위 (누적 창 미구현)
-            "memory": "none",                    # ② 기억 (수첩 엔진 연결 전)
+            "window": window,                    # ① 받는 말 범위 (rolling|cumulative)
+            "memory": memory,                    # ② 기억 (none|note)
+            # 수첩 부속 좌표 — 수첩이 꺼진 run 에도 적는다(값이 없는 것과 기본값인
+            # 것을 구별해야 나중에 250/1000 비교가 조건 이름 밖으로 안 밀린다, §7).
+            "note_budget": note_budget if use_note else None,
+            "note_call": note_call if use_note else None,
+            "note_parse_ver": (note_slot.NOTE_PARSE_VER
+                               if use_note and note_call == "utterance" else None),
+            "final_poll": final_poll,
             "rounds": rounds,                    # ③
             "structure": structure,              # ④ 연결 모양
             "stance": "none" if coop else "pro_con",   # ⑤ 입장
@@ -291,6 +411,11 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
             # 부수 — 조건은 아니지만 재현에 필요
             "seed": seed, "agents": length,
             "debate_model": model, "debate_temperature": temp,
+            # 공급자·실제 모델 ID 를 적는다 — 별칭만 남기면 나중에 .env 의
+            # OPENAI_MODEL 이 바뀌었을 때 옛 run 과 새 run 이 같은 모델이었는지
+            # 알 수 없다(config_ref 가 config 에 한 것과 같은 수법).
+            "provider": (llm_meta or {}).get("provider"),
+            "debate_model_id": (llm_meta or {}).get("model_id"),
         },
     )
 
@@ -365,6 +490,70 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
     # 루프-내 판정 누적(주입 결정 전용 — 정식 judgment 는 사후 오프라인 judge 몫).
     inloop_judgment = {"stages": []} if ledger_mode == "v0" else None
 
+    # 누적 창(window=cumulative)의 원자료: history[r] = 라운드 r 발화 리스트(좌석 순).
+    # 라운드 0은 셔플 후 좌석 순으로 재배열된 initial(= previous 초기값).
+    history = {0: list(previous)}
+
+    # --- 수첩 상태 (스키마 v0.3 §2: "사건이 1급, 상태는 뷰") -------------------
+    # notes[i] = 좌석 i 에이전트의 현재 수첩 텍스트(없으면 None).
+    # note_round[i] = 그 텍스트가 어느 라운드 갱신에서 나왔나 → prompt_assembly.note
+    #                 .source_round 로 그대로 적는다. "r-1 로 계산"하지 않는 이유는
+    #                 계약 §3에 있다: 갱신이 실패·생략된 라운드가 생기면 r-1 규칙이
+    #                 즉시 깨지고, 계산 규칙을 계약에 넣으면 예외마다 계약을 고쳐야 한다.
+    notes = [None] * length
+    note_round = [None] * length
+    n_note_updates = 0
+    n_note_parse_fail = 0
+    n_note_truncated = 0
+
+    def emit_note_update(r_: int, seat: int, note_text: str, source: str) -> None:
+        """note_update 이벤트 방출 + 상태 갱신. 예산 절단은 방출 전에 적용한다
+        (저장되는 것이 실제로 다음 라운드에 들어간 텍스트여야 재조립이 성립한다)."""
+        nonlocal n_note_updates, n_note_truncated
+        text, truncated = note_slot.apply_budget(note_text, note_budget)
+        if truncated:
+            n_note_truncated += 1
+        emit("note_update", agent_id=seated[seat]["agent_id"], round=r_,
+             note_text=text,           # 원문 전량(예산 내). 요약·재절단 금지 — A-1
+             origin="model",           # 사람이 고쳐 넣은 개입은 intervention (§6)
+             source=source)            # "utterance" | "dedicated" (§5)
+        notes[seat] = text
+        note_round[seat] = r_
+        n_note_updates += 1
+
+    # --- 라운드 0 수첩 (수첩 조건 전용) --------------------------------------
+    # 라운드 0의 배정 팩트 브리핑은 **한 번만** 제시된다(B판). 라운드 1의 입력에
+    # 수첩이 있어야 하므로 라운드 0 끝에 첫 갱신이 일어난다.
+    # 왜 라운드 0은 얹기 방식에서도 별도 호출을 쓰는가: 초기 프롬프트(coop_initial)는
+    # 저자 대응물 없는 우리 템플릿이지만 배정 팩트 브리핑 발화만 요구하고 note 필드를
+    # 요구하지 않는다. 여기에 note 를 얹으면 "첫 발화"의 프롬프트가 조건마다 달라져
+    # ③↔④ 비교의 라운드 0이 어긋난다. 라운드 0 발화는 두 조건에서 **글자 단위로
+    # 동일**해야 하므로, 첫 수첩만 별도 호출로 만든다(+에이전트수 1회, run 당 1회).
+    if use_note:
+        for i in range(length):
+            orig_idx = order[i]          # 좌석 i 에 앉은 에이전트의 initial 응답 위치
+            raw = current[orig_idx]
+            spend()
+            nu_inputs = assemble_coop_note_update(question, "", raw or "", "", note_budget)
+            _fn = respond or llm.obtain_response
+            nu_resp = _fn(nu_inputs, model=model, temperature=temp)
+            note_text = note_slot.parse_note_only(nu_resp)
+            emit("prompt_assembly", round=0, agent_id=seated[i]["agent_id"],
+                 template="coop_note_update", prompt_ver=prompt_ver,
+                 setting_key=None,
+                 slots={"assigned_fact_ids": [], "others": [], "previous": None,
+                        "inject": None, "note": None,
+                        "my_say": {"round": 0, "agent_id": seated[i]["agent_id"]},
+                        "note_budget": note_budget},
+                 prompt_hash=sha256(nu_inputs))
+            if note_text is None:
+                n_note_parse_fail += 1   # 미갱신 — 이벤트를 만들지 않는다(§2)
+            else:
+                # source 는 이 호출이 실제로 어떻게 생성됐는지를 적는다 — 라운드 0은
+                # note_call 설정과 무관하게 항상 별도 호출이므로 "dedicated".
+                emit_note_update(0, i, note_text, "dedicated")
+        flush()
+
     # --- rounds 1..N --------------------------------------------------------
     for r in range(1, rounds + 1):
         # (A) 주입: 직전 라운드 소실 팩트를 이번 라운드 프롬프트에 전량 재게시.
@@ -381,24 +570,62 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
                 events.append(inject_ev)
 
         nxt = []
+        round_notes = []   # 이번 라운드 끝에 반영할 (좌석, 수첩텍스트) — 동시 갱신용
         for i in range(length):
+            # (B-1) incoming 조립 — window 축이 여기서 갈린다.
+            #   rolling    : 직전 라운드 이웃 발화만 (논문 세팅)
+            #   cumulative : 라운드 1..r-1 의 이웃 발화 전부 (회의록 전체 재독)
+            # 누적은 "안 깎이는 기준선"이다 — ③ 온전 대화의 정정된 좌표(설정 사전 v0.1
+            # 변경 2). 라운드 표시를 넣는 이유: 같은 참석자의 여러 라운드 발언이 한
+            # 프롬프트에 들어오므로 순서·시점 없이 붙이면 모델이 최신·과거를 구별할 수
+            # 없다. 표시 형식도 계약이다(validate --deep 이 글자 단위로 재조립한다).
             others = ""
-            for k, j in enumerate(edges[i]):
-                if coop:
-                    others += f"참석자{k + 1}: {previous[j]}\n"
-                else:
-                    others += f"View {k + 1}: {previous[j]}\n"
-            # (B) 재주입 블록은 others 뒤에 잇는다 — 저자 프롬프트 슬롯 훼손 최소
+            if window == "cumulative":
+                # 라운드 0..r-1 의 이웃 발화를 전부, 라운드 순으로 붙인다. 마지막
+                # 블록(r-1)이 "방금 들은 말"이고 그 앞이 회의록이다.
+                # 왜 라운드 0을 포함하나: 초기 브리핑이 이 실험의 정보 원천이다.
+                # 누적이 그것을 떨어뜨리면 "안 깎이는 기준선"이 아니게 된다.
+                for past_r in range(0, r - 1):
+                    for k, j in enumerate(edges[i]):
+                        others += f"[라운드 {past_r}] 참석자{k + 1}: {history[past_r][j]}\n"
+                for k, j in enumerate(edges[i]):
+                    others += f"[라운드 {r - 1} · 방금] 참석자{k + 1}: {previous[j]}\n"
+            else:
+                for k, j in enumerate(edges[i]):
+                    if coop:
+                        others += f"참석자{k + 1}: {previous[j]}\n"
+                    else:
+                        others += f"View {k + 1}: {previous[j]}\n"
+            # (B-2) 재주입 블록은 others 뒤에 잇는다 — 저자 프롬프트 슬롯 훼손 최소
             #     (INTEGRATION §3-2 제안, 동범 확인 대기).
             spend()
-            if coop:
+            _fn = respond or llm.obtain_response
+            if use_note:
+                # 수첩 조건: 배정 팩트·직전 발언이 프롬프트에 없다. 남는 것은 수첩뿐.
+                # 수첩이 None(라운드 0 파싱 실패)이면 빈 문자열을 넣되 슬롯은 null 로
+                # 기록한다 — 계약 §3의 "null 이면 슬롯 블록 자체를 생략"과 구별하기
+                # 위해, 우리 템플릿은 {{note}} 치환을 항상 수행하고 슬롯 참조만 null 로
+                # 둔다(재조립도 같은 규칙을 쓰므로 hash 는 일치한다).
+                tmpl = ("coop_continue_note" if note_call == "utterance"
+                        else "coop_continue_note_say")
+                inputs = assemble_coop_continue_note(
+                    question, body, notes[i] or "", others + inject_block, template=tmpl)
+                raw = _fn(inputs, model=model, temperature=temp)
+                if note_call == "utterance":
+                    resp, note_text = note_slot.parse_say_and_note(raw)
+                    if note_text is None:
+                        n_note_parse_fail += 1
+                    elif r < rounds:      # 마지막 라운드 갱신은 쓰이지 않으므로 생략
+                        round_notes.append((i, note_text, "utterance"))
+                else:
+                    resp = raw
+            elif coop:
                 # 협력 조건: 배정 팩트는 에이전트의 정체라 매 라운드 유지(설정 사전 §2-2ⓒ).
                 _ft = ""
                 for _fid in seated[i]["assigned_fact_ids"]:
                     _ft += f"{fact_by_id[_fid]}\n"
                 inputs = assemble_coop_continue(question, body, _ft,
                                                 previous[i] or "", others + inject_block)
-                _fn = respond or llm.obtain_response
                 resp = _fn(inputs, model=model, temperature=temp)
             else:
                 inputs, resp = continue_utterance(
@@ -408,18 +635,45 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
             nxt.append(resp)
             note_utterance(r, i, resp)
             # v0.3: 조립 명세 — others/previous 는 저장된 발화 참조(좌석 j = seated[j]).
+            # others 참조 목록이 window 축을 그대로 반영한다 — 누적이면 과거 라운드가
+            # 전부 목록에 들어오고, 재조립은 이 목록 순서대로 붙인다(순서도 계약).
+            if window == "cumulative":
+                others_refs = [{"round": pr, "agent_id": seated[j]["agent_id"]}
+                               for pr in range(0, r - 1) for j in edges[i]]
+                others_refs += [{"round": r - 1, "agent_id": seated[j]["agent_id"]}
+                                for j in edges[i]]
+            else:
+                others_refs = [{"round": r - 1, "agent_id": seated[j]["agent_id"]}
+                               for j in edges[i]]
+            if use_note:
+                _tmpl_name = ("coop_continue_note" if note_call == "utterance"
+                              else "coop_continue_note_say")
+            elif coop:
+                _tmpl_name = "coop_continue"
+            else:
+                _tmpl_name = "discussion_continue"
             emit(
                 "prompt_assembly",
                 round=r, agent_id=seated[i]["agent_id"],
-                template="coop_continue" if coop else "discussion_continue",
+                template=_tmpl_name,
                 prompt_ver=prompt_ver,
                 setting_key=setting_key,
                 slots={"assigned_fact_ids": (list(seated[i]["assigned_fact_ids"])
-                                             if coop else []),
-                       "others": [{"round": r - 1, "agent_id": seated[j]["agent_id"]}
-                                  for j in edges[i]],
-                       "previous": {"round": r - 1, "agent_id": seated[i]["agent_id"]},
-                       "inject": {"round": r} if inject_block else None},
+                                             if coop and not use_note else []),
+                       "others": others_refs,
+                       # 수첩 조건은 previous 슬롯이 없다(자기 직전 발언도 기억이다).
+                       "previous": (None if use_note else
+                                    {"round": r - 1, "agent_id": seated[i]["agent_id"]}),
+                       "inject": {"round": r} if inject_block else None,
+                       # 계약 §3: source_round 는 계산하지 않고 실제 사용 판본을 적는다.
+                       "note": ({"agent_id": seated[i]["agent_id"],
+                                 "source_round": note_round[i]}
+                                if use_note and note_round[i] is not None else None),
+                       # window 를 슬롯에 명시하는 이유: 참조 목록만으로는 라운드 1에서
+                       # 누적과 직전만을 구별할 수 없다(둘 다 라운드 0 하나뿐). 재조립이
+                       # 추론에 의존하면 조건 경계에서 조용히 틀린다 — 계약은 추론하지
+                       # 않고 읽는다. (A-3 재조립 규칙의 일부로 등록)
+                       "window": window},
                 prompt_hash=sha256(inputs),
             )
             emit(
@@ -431,6 +685,44 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
                 response_text=resp,
             )
         previous = nxt
+        history[r] = list(nxt)   # 누적 창의 원자료 (좌석 순서 그대로)
+
+        # (C-note) 수첩 갱신 — 발화 루프가 **끝난 뒤** 일괄 반영한다.
+        # 왜 루프 안이 아닌가: 루프 안에서 notes[i] 를 바로 갱신하면 같은 라운드
+        # 뒷순번 에이전트가 앞순번의 새 수첩을 보게 되어(자기 것만 봐야 하는데)
+        # 라운드 경계가 무너진다. 수첩은 라운드 단위로 동시에 넘어간다.
+        if use_note and note_call == "utterance":
+            for seat, note_text, src in round_notes:
+                emit_note_update(r, seat, note_text, src)
+        elif use_note and note_call == "dedicated" and r < rounds:
+            # 별도 호출: 발화와 분리된 선별. 이 호출의 입력도 prompt_assembly 로
+            # 기록한다(계약 §5 — "입력이 기록되지 않은 LLM 호출"을 만들지 않는다).
+            for i in range(length):
+                inc = ""
+                for k, j in enumerate(edges[i]):
+                    inc += f"참석자{k + 1}: {nxt[j]}\n"
+                spend()
+                nu_inputs = assemble_coop_note_update(
+                    question, notes[i] or "", nxt[i] or "", inc, note_budget)
+                _fn2 = respond or llm.obtain_response
+                nu_resp = _fn2(nu_inputs, model=model, temperature=temp)
+                emit("prompt_assembly", round=r, agent_id=seated[i]["agent_id"],
+                     template="coop_note_update", prompt_ver=prompt_ver,
+                     setting_key=None,
+                     slots={"assigned_fact_ids": [], "previous": None, "inject": None,
+                            "others": [{"round": r, "agent_id": seated[j]["agent_id"]}
+                                       for j in edges[i]],
+                            "my_say": {"round": r, "agent_id": seated[i]["agent_id"]},
+                            "note": ({"agent_id": seated[i]["agent_id"],
+                                      "source_round": note_round[i]}
+                                     if note_round[i] is not None else None),
+                            "note_budget": note_budget},
+                     prompt_hash=sha256(nu_inputs))
+                note_text = note_slot.parse_note_only(nu_resp)
+                if note_text is None:
+                    n_note_parse_fail += 1
+                else:
+                    emit_note_update(r, i, note_text, "dedicated")
 
         # (C) 판정: 이번 라운드를 judge 순수 함수로 즉시 채점 → 다음 라운드 주입 근거.
         #     judge_debate(사후)와 같은 judge_fact 잣대 — judge.judge_stage 참조.
@@ -443,10 +735,59 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
 
         flush()  # 체크포인트: 라운드별
 
+    # --- 최종 폴링 (final_poll) ---------------------------------------------
+    # 벌거벗은 판단: {"recommend"} 한 필드. 회고·이유 필드 없음 — 결과가 자명한
+    # 측정을 배제한다(설정 사전 v0.1 변경 6, 민옥 7/29).
+    # 조건별로 final_context 에 들어가는 것이 다르고, 그 차이가 곧 조건의 정의다:
+    #   수첩 조건 : 자기 수첩만 — 수첩에서 떨어진 것은 그 에이전트에게 진짜로 없다
+    #   그 외     : 마지막 라운드 발언들(자기 것 + 이웃) — 대화가 그대로 남아 있다
+    # 이 폴링은 개입 창(수첩을 사람이 고쳐 넣고 1콜 재실행)의 재실행 지점이기도 하다.
+    if final_poll:
+        for i in range(length):
+            if use_note:
+                final_context = f"[당신의 수첩]\n{notes[i] or ''}\n"
+                fslots = {"note": ({"agent_id": seated[i]["agent_id"],
+                                    "source_round": note_round[i]}
+                                   if note_round[i] is not None else None),
+                          "others": [], "previous": None,
+                          "assigned_fact_ids": [], "inject": None}
+            else:
+                fc = f"[당신의 마지막 발언]\n{previous[i] or ''}\n\n[참석자들의 마지막 발언]\n"
+                for k, j in enumerate(edges[i]):
+                    fc += f"참석자{k + 1}: {previous[j]}\n"
+                final_context = fc
+                fslots = {"note": None,
+                          "others": [{"round": rounds, "agent_id": seated[j]["agent_id"]}
+                                     for j in edges[i]],
+                          "previous": {"round": rounds, "agent_id": seated[i]["agent_id"]},
+                          "assigned_fact_ids": [], "inject": None}
+            spend()
+            f_inputs = assemble_coop_final(question, body, final_context)
+            _fn3 = respond or llm.obtain_response
+            f_resp = _fn3(f_inputs, model=model, temperature=temp)
+            emit("prompt_assembly", round=rounds + 1, agent_id=seated[i]["agent_id"],
+                 template="coop_final", prompt_ver=prompt_ver, setting_key=None,
+                 slots=fslots, prompt_hash=sha256(f_inputs))
+            # 응답 원문 전량 저장 — 파싱된 선택지가 아니라 원문이 1급이다. 정답 대조는
+            # 하류(분석)에서 이 원문을 파싱해서 한다(판정기 불사용).
+            emit("final_poll", agent_id=seated[i]["agent_id"], round=rounds + 1,
+                 prompt_ver=prompt_ver, prompt_hash=sha256(f_inputs),
+                 model=llm.resolve_model(model), temperature=temp,
+                 response_text=f_resp)
+        flush()
+
     n_inject = sum(1 for e in events if e.get("event") == "ledger_inject")
     warn = "  ⚠ 폴백(무음 공백) 있음 — 해당 발화 검토" if n_fallbacks else ""
+    note_bit = ""
+    if use_note:
+        note_bit = (f", 수첩갱신 {n_note_updates}건/파싱실패 {n_note_parse_fail}"
+                    f"/절단 {n_note_truncated}")
+        if n_note_parse_fail:
+            warn += "  ⚠ 수첩 파싱 실패 있음 — 해당 라운드는 미갱신으로 돌았다"
+    poll_bit = f", 최종폴링 {length}건" if final_poll else ""
     print(f"[OK] {out_path.name} — 이벤트 {len(events)}건 "
-          f"(에이전트 {length} x 라운드 {rounds}+초기, ledger_mode={ledger_mode}, "
+          f"(에이전트 {length} x 라운드 {rounds}+초기, window={window}, memory={memory}"
+          f"{note_bit}{poll_bit}, ledger_mode={ledger_mode}, "
           f"ledger_inject {n_inject}건, LLM 호출 {n_calls}/{max_calls}, "
           f"폴백 {n_fallbacks}건){warn}")
     return out_path

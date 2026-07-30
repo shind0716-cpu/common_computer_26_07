@@ -1,0 +1,27 @@
+# 조건: 수첩+장부(talk-note-ledger) — 코어 5종의 ⑤ "깎이는 기억을 장부가 보완하는가"
+# ④ 위에 스위치 하나(ledger_mode: v0). 장부의 "전량" = ⓐ 자기 배정 팩트 재제시
+# (설정 사전 v0.1 변경 4 — judge 0·비대칭 유지).
+# ⑤의 질문: "원자료를 절대 안 사라지게 보장해도 천장에 못 미치면, 소실은 가용성이
+#            아니라 처리의 문제다."
+#
+# ⚠ 비용: ledger_mode=v0 는 라운드마다 루프-내 판정을 돈다.
+#    발화 16 + 라운드0 수첩 4 + 최종폴링 4 + 루프판정(3 x 팩트수 x 3표)로 크게 늘어난다.
+#    돌리기 전에 콘솔의 호출 수 미리보기로 확인할 것.
+experiment: hire_talk_note_ledger
+condition: talk-note-ledger
+issue_id: issue_hire
+run_id: run001
+seed: 42
+agents: 4
+rounds: 3
+window: rolling
+memory: note
+note_budget: 500
+note_call: utterance
+final_poll: true
+debate_model: claude-haiku
+debate_temperature: 1.0
+judge_model: claude-sonnet-4-6
+judge_temperature: 0
+judge_n_votes: 3
+ledger_mode: v0

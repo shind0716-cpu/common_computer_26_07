@@ -53,7 +53,8 @@ class ReplayError(Exception):
 def replay_context(events: list[dict], *, issue_doc: dict, facts_doc: dict) -> dict:
     """재조립에 필요한 좌표만 모은 사전 (순수 — 파일 I/O·LLM 0).
 
-    utts = (round, agent_id) → utterance 이벤트 / injects = round → ledger_inject 이벤트.
+    utts = (round, agent_id) → utterance / injects = round → ledger_inject /
+    notes = (agent_id, round) → note_update.
     settings 는 discussion_* 템플릿을 만났을 때만 저자 저장소를 읽도록 지연 로딩한다."""
     return {
         "utts": {(e.get("round"), e.get("agent_id")): e
@@ -62,6 +63,12 @@ def replay_context(events: list[dict], *, issue_doc: dict, facts_doc: dict) -> d
         "question": issue_doc.get("question") or issue_doc["title"],
         "body": issue_doc.get("body", ""),
         "fact_by_id": {f["fact_id"]: f["text"] for f in facts_doc["facts"]},
+        # 수첩 판본 색인 — (agent_id, round) 로 note_update 를 찾는다(계약 §3 source_round
+        # 참조가 이 색인을 때린다). origin=intervention 도 함께 색인한다: 사람이 고쳐 넣은
+        # 수첩으로 재실행한 run 도 재조립은 성립해야 한다(개입 run 을 집계에서 빼는 것과
+        # 재조립 검증을 통과시키는 것은 별개다).
+        "notes": {(e.get("agent_id"), e.get("round")): e
+                  for e in events if e.get("event") == "note_update"},
         "settings": None,
     }
 
@@ -79,20 +86,71 @@ def _assembly_ref_text(utts: dict, ref: dict, where: str) -> str | None:
     return txt
 
 
+def _note_ref_text(notes: dict, ref, where: str) -> str | None:
+    """prompt_assembly.note 슬롯 참조 → 저장된 note_update.note_text.
+
+    계약 §3: "참조 대상 note_update 가 없으면 --deep 은 실패로 처리한다(조용한 통과
+    금지)." null 이면 엔진이 빈 문자열을 치환했으므로 None 을 돌려준다 — 우리 템플릿은
+    {{note}} 치환을 항상 수행하므로 "슬롯 블록 생략"과는 다른 경로다(§3의 생략 규칙은
+    슬롯이 블록 단위인 템플릿에 적용된다)."""
+    if not ref:
+        return None
+    key = (ref.get("agent_id"), ref.get("source_round"))
+    ev = notes.get(key)
+    if ev is None:
+        raise ReplayError(f"{where}: note 참조 대상 note_update 없음 "
+                          f"(agent={key[0]}, source_round={key[1]})")
+    return ev.get("note_text")
+
+
+def _assemble_incoming(utts: dict, slots: dict, injects: dict, where: str) -> str:
+    """수첩·협력 발화의 incoming 조립 — 엔진의 window 분기를 참조 목록으로 재현한다.
+
+    엔진은 누적이면 과거 라운드를 `[라운드 N] 참석자K: …` 로 붙이고 마지막 라운드를
+    `[라운드 N · 방금] …` 로 붙인다. 어느 조립이었는지는 **슬롯의 window 값을 읽어서**
+    안다 — 참조 목록의 round 다양성으로 추론하지 않는다. 라운드 1에서는 누적과 직전만이
+    똑같이 "라운드 0 하나"라서 추론이 조용히 틀린다(실측으로 잡은 드리프트, 7/30).
+    window 슬롯이 없는 로그는 rolling 으로 읽는다(구 로그 호환 — v0.2·v0.3 초기 로그)."""
+    refs = slots.get("others", [])
+    incoming = ""
+    if slots.get("window") == "cumulative":
+        n_per = len(refs) // max(1, len({r.get("round") for r in refs}))
+        past, tail = (refs[:-n_per], refs[-n_per:]) if n_per and len(refs) > n_per \
+            else ([], refs)
+        for idx, ref in enumerate(past):
+            incoming += (f"[라운드 {ref.get('round')}] 참석자{idx % n_per + 1}: "
+                         f"{_assembly_ref_text(utts, ref, where)}\n")
+        for k, ref in enumerate(tail):
+            incoming += (f"[라운드 {ref.get('round')} · 방금] 참석자{k + 1}: "
+                         f"{_assembly_ref_text(utts, ref, where)}\n")
+    else:
+        for k, ref in enumerate(refs):
+            incoming += f"참석자{k + 1}: {_assembly_ref_text(utts, ref, where)}\n"
+    if slots.get("inject"):
+        iev = injects.get(slots["inject"].get("round"))
+        if iev is None or "injected_text" not in iev:
+            raise ReplayError(f"{where}: inject 참조 대상 ledger_inject.injected_text 없음")
+        incoming += iev["injected_text"]
+    return incoming
+
+
 def reassemble_prompt(pa: dict, ctx: dict, *, where: str = "prompt_assembly") -> str:
-    """prompt_assembly 명세 한 건 → 그 발화의 **입력 전문**. 조립 코드의 단일 소스.
+    """prompt_assembly 명세 한 건 → 그 호출의 **입력 전문**. 조립 코드의 단일 소스.
 
     조립은 debate_engine.assemble_* 를 그대로 호출한다(재구현 금지 — 여기서 문자열을 다시
     짜면 엔진이 바뀔 때 조용히 어긋나고, 그 어긋남을 잡는 것이 v0.3 검증 계약의 목적이다).
-    template 은 등록제(v0.3 경계 조항 A-3): 등록된 4종만 재조립하고 나머지는 거부한다.
+    template 은 등록제(v0.3 경계 조항 A-3): 등록된 것만 재조립하고 나머지는 거부한다 —
+    discussion_{initial,continue} · coop_{initial,continue} · coop_continue_note{,_say} ·
+    coop_note_update · coop_final.
     ctx 는 replay_context() 산출물이며 settings 를 이 함수가 채울 수 있다(지연 로딩)."""
     from modules import authors_prompts, debate_engine  # 지연 임포트 — 구조 검사는 무의존 유지
 
     for k in ("round", "agent_id", "template", "prompt_ver", "slots", "prompt_hash"):
         if k not in pa:
             raise ReplayError(f"{where}: 필수 필드 누락 '{k}'")
-    utts, injects, slots = ctx["utts"], ctx["injects"], pa["slots"]
-    fact_by_id, question = ctx["fact_by_id"], ctx["question"]
+    utts, injects, notes = ctx["utts"], ctx["injects"], ctx["notes"]
+    slots, fact_by_id = pa["slots"], ctx["fact_by_id"]
+    question, body, template = ctx["question"], ctx["body"], pa["template"]
 
     def fact_lines(ids) -> str:
         out = ""
@@ -102,25 +160,22 @@ def reassemble_prompt(pa: dict, ctx: dict, *, where: str = "prompt_assembly") ->
             out += f"{fact_by_id[fid]}\n"
         return out
 
-    def inject_text() -> str:
-        iev = injects.get(slots["inject"].get("round"))
-        if iev is None or "injected_text" not in iev:
-            raise ReplayError(f"{where}: inject 참조 대상 ledger_inject.injected_text 없음")
-        return iev["injected_text"]
-
-    if pa["template"] == "discussion_initial":
+    if template == "discussion_initial":
         u = utts.get((pa["round"], pa["agent_id"]))
         if u is None:
             raise ReplayError(f"{where}: 짝 utterance 없음")
         answer = "yes" if u.get("stance") == "pro" else "no"
         return debate_engine.assemble_initial(question, fact_lines(slots.get("assigned_fact_ids")),
                                               answer)
-    if pa["template"] == "discussion_continue":
+    if template == "discussion_continue":
         others = ""
         for k, ref in enumerate(slots.get("others", [])):
             others += f"View {k + 1}: {_assembly_ref_text(utts, ref, where)}\n"
         if slots.get("inject"):
-            others += inject_text()
+            iev = injects.get(slots["inject"].get("round"))
+            if iev is None or "injected_text" not in iev:
+                raise ReplayError(f"{where}: inject 참조 대상 ledger_inject.injected_text 없음")
+            others += iev["injected_text"]
         ptxt = _assembly_ref_text(utts, slots["previous"], where)
         if ctx.get("settings") is None:
             ctx["settings"] = authors_prompts.load_settings()
@@ -128,26 +183,60 @@ def reassemble_prompt(pa: dict, ctx: dict, *, where: str = "prompt_assembly") ->
         if setting is None:
             raise ReplayError(f"{where}: 미등록 setting_key {pa.get('setting_key')}")
         return debate_engine.assemble_continue(question, ptxt or "", others, setting)
-    if pa["template"] == "coop_initial":
+    if template == "coop_initial":
         return debate_engine.assemble_coop_initial(
-            question, ctx["body"], fact_lines(slots.get("assigned_fact_ids")))
-    if pa["template"] == "coop_continue":
+            question, body, fact_lines(slots.get("assigned_fact_ids")))
+    if template == "coop_continue":
+        # 누적 창이면 참조 목록에 과거 라운드가 들어있고 라운드 표시가 붙는다 —
+        # 수첩 조건과 같은 조립기를 쓴다(엔진도 같은 분기 하나로 만든다).
+        incoming = _assemble_incoming(utts, slots, injects, where)
+        ptxt = _assembly_ref_text(utts, slots["previous"], where)
+        return debate_engine.assemble_coop_continue(
+            question, body, fact_lines(slots.get("assigned_fact_ids")), ptxt or "", incoming)
+    if template in ("coop_continue_note", "coop_continue_note_say"):
+        # 수첩 조건 발화. 슬롯이 coop_continue 와 다르다 — my_facts·previous 없음,
+        # note 있음(스키마 v0.3 §3). others 목록 순서가 곧 조립 순서다: 누적 창이면
+        # 과거 라운드가 목록에 그대로 들어와 있고, 라운드 표시 문자열까지 계약이다.
+        incoming = _assemble_incoming(utts, slots, injects, where)
+        note_text = _note_ref_text(notes, slots.get("note"), where)
+        return debate_engine.assemble_coop_continue_note(
+            question, body, note_text or "", incoming, template=template)
+    if template == "coop_note_update":
+        # 별도 호출(note_call=dedicated)의 수첩 갱신 입력. 이 호출도 prompt_assembly 로
+        # 기록된다("입력이 기록되지 않은 LLM 호출"을 만들지 않는다 — §5).
         incoming = ""
         for k, ref in enumerate(slots.get("others", [])):
             incoming += f"참석자{k + 1}: {_assembly_ref_text(utts, ref, where)}\n"
-        if slots.get("inject"):
-            incoming += inject_text()
-        ptxt = _assembly_ref_text(utts, slots["previous"], where)
-        return debate_engine.assemble_coop_continue(
-            question, ctx["body"], fact_lines(slots.get("assigned_fact_ids")), ptxt or "", incoming)
-    raise ReplayError(f"{where}: 미등록 template {pa['template']} — 재조립 불가")
+        my_ref = slots.get("my_say")
+        my_say = _assembly_ref_text(utts, my_ref, where) if my_ref else ""
+        note_text = _note_ref_text(notes, slots.get("note"), where)
+        nb = slots.get("note_budget")
+        if nb is None:
+            raise ReplayError(f"{where}: coop_note_update 슬롯에 note_budget 없음")
+        return debate_engine.assemble_coop_note_update(
+            question, note_text or "", my_say or "", incoming, nb)
+    if template == "coop_final":
+        # 최종 폴링. final_context 는 조건에 따라 수첩 또는 마지막 라운드 발언들 —
+        # 어느 것이었는지가 슬롯에 적혀 있고, 재조립은 그 슬롯대로 되짚는다.
+        if slots.get("note") is not None:
+            note_text = _note_ref_text(notes, slots["note"], where)
+            final_context = f"[당신의 수첩]\n{note_text or ''}\n"
+        else:
+            pref = slots.get("previous")
+            ptxt = _assembly_ref_text(utts, pref, where) if pref else ""
+            final_context = f"[당신의 마지막 발언]\n{ptxt or ''}\n\n[참석자들의 마지막 발언]\n"
+            for k, ref in enumerate(slots.get("others", [])):
+                final_context += f"참석자{k + 1}: {_assembly_ref_text(utts, ref, where)}\n"
+        return debate_engine.assemble_coop_final(question, body, final_context)
+    raise ReplayError(f"{where}: 미등록 template {template} — 재조립 불가")
 
 
 def deep_check_debate(path: Path, events: list[dict]) -> None:
     """v0.3 검증 계약: prompt_assembly 명세 재조립 sha256 == prompt_hash.
-    utterance 결합 키(같은 round·agent 의 prompt_hash 동일)도 함께 검사한다.
 
-    조립 자체는 reassemble_prompt() 한 벌만 쓴다 — 이 함수는 '해시가 맞는가'만 판정한다."""
+    조립 자체는 reassemble_prompt() 한 벌만 쓴다 — 이 함수는 '해시가 맞는가'와 '결합 키가
+    맞는가'만 판정한다. 결합 키는 template 마다 다르다: 발화 템플릿은 utterance 와,
+    발화가 아닌 호출(수첩 갱신·최종 폴링)은 각자의 이벤트와 prompt_hash 로 결합한다."""
     pas = [e for e in events if e.get("event") == "prompt_assembly"]
     if not pas:
         print(f"[OK] {path.name} (--deep: prompt_assembly 없음 — v0.2 구 로그, 재검증 생략)")
@@ -169,6 +258,8 @@ def deep_check_debate(path: Path, events: list[dict]) -> None:
         fail(f"{path.name} --deep: 형제 산출물 없음 — {e}")
 
     ctx = replay_context(events, issue_doc=issue, facts_doc=facts_doc)
+    final_polls = {(e.get("agent_id"), e.get("round")): e
+                   for e in events if e.get("event") == "final_poll"}
     for pa in pas:
         where = f"{path.name} prompt_assembly(round={pa.get('round')}, agent={pa.get('agent_id')})"
         try:
@@ -178,9 +269,20 @@ def deep_check_debate(path: Path, events: list[dict]) -> None:
         digest = hashlib.sha256(inputs.encode("utf-8")).hexdigest()
         if digest != pa["prompt_hash"]:
             fail(f"{where}: 재조립 hash 불일치 — 로그 오염 또는 조립 규칙 드리프트")
-        u = ctx["utts"].get((pa["round"], pa["agent_id"]))
-        if u is None or u.get("prompt_hash") != pa["prompt_hash"]:
-            fail(f"{where}: utterance 결합 키(prompt_hash) 불일치")
+        if pa["template"] == "coop_note_update":
+            # 파싱 실패로 미갱신된 라운드는 note_update 가 아예 없다(§2) — 그때는 입력만
+            # 기록되고 결과가 없는 것이 정상이므로 결합 검사를 건너뛴다.
+            nev = ctx["notes"].get((pa["agent_id"], pa["round"]))
+            if nev is not None and nev.get("source") != "dedicated":
+                fail(f"{where}: coop_note_update 인데 note_update.source={nev.get('source')}")
+        elif pa["template"] == "coop_final":
+            fev = final_polls.get((pa["agent_id"], pa["round"]))
+            if fev is None or fev.get("prompt_hash") != pa["prompt_hash"]:
+                fail(f"{where}: final_poll 결합 키(prompt_hash) 불일치")
+        else:
+            u = ctx["utts"].get((pa["round"], pa["agent_id"]))
+            if u is None or u.get("prompt_hash") != pa["prompt_hash"]:
+                fail(f"{where}: utterance 결합 키(prompt_hash) 불일치")
     print(f"[OK] {path.name} (--deep: prompt_assembly {len(pas)}건 재조립 검증 통과)")
 
 
@@ -211,6 +313,16 @@ def validate(path: Path, deep: bool = False):
                             "overlap_k", "ledger_mode", "seed"], f"{where}.settings")
                 if events:  # 빈 줄은 세지 않는다 — '첫 이벤트'가 기준
                     fail(f"{where}: run_meta 는 첫 이벤트여야 한다 (앞에 {len(events)}건 있음)")
+            if ev["event"] == "note_update":
+                # 스키마 v0.3 §2 (SCHEMA_v0.3_NOTE_SLOT.md). note_text 는 A-1 대상 —
+                # 복원 불가 텍스트라 전문 저장이 계약이고, 여기서 존재만 강제한다.
+                where = f"{path.name} line {i + 1} note_update"
+                check_keys(ev, ["agent_id", "round", "note_text", "origin", "source"],
+                           where)
+                if ev["origin"] not in ("model", "intervention"):
+                    fail(f"{where}: origin 은 model|intervention (받은 값: {ev['origin']})")
+                if ev["source"] not in ("utterance", "dedicated"):
+                    fail(f"{where}: source 는 utterance|dedicated (받은 값: {ev['source']})")
             events.append(ev)
         print(f"[OK] {path.name} (debate jsonl)")
         if deep:

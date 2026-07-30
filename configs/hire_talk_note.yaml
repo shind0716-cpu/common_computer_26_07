@@ -1,0 +1,25 @@
+# 조건: 수첩 대화(talk-note) — 코어 5종의 ④ "기억이 깎이면 취합이 무너지는가"
+# 설정 사전 좌표: 협력(무입장)·4에이전트·직전만·개인 수첩 500자·장부 끔.
+# ③(talk-full = 전체 기억)과의 차이는 기억 축 하나뿐 — 그 차이가 3→4 서사를 만든다.
+# 배정 팩트는 라운드 0에 1회만 제시된다(B판) — 이후엔 수첩에 적어야 생존.
+# 수첩 갱신은 발화 호출에 얹는다(+0콜). 파싱 규칙이 계약이므로 note_parse_ver 가 로그에 찍힌다.
+experiment: hire_talk_note
+condition: talk-note
+issue_id: issue_hire
+run_id: run001
+seed: 42
+agents: 4
+rounds: 3
+window: rolling
+memory: note
+note_budget: 500
+note_call: utterance
+final_poll: true
+# 모델: 별칭 → 공급자 자동 유도(modules/llm.py). gpt-mini = .env 의 OPENAI_MODEL.
+# 2026-07-30 실측: Anthropic 키가 자리표시자라 GPT 로 착수(편차 — 보고서에 명기).
+debate_model: gpt-mini
+debate_temperature: 1.0
+judge_model: claude-sonnet-4-6
+judge_temperature: 0
+judge_n_votes: 3
+ledger_mode: "off"
