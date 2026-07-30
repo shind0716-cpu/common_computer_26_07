@@ -1,0 +1,4 @@
+# 콘솔 v0 생성 — 채점 조건
+judge_model: gpt-mini
+judge_temperature: 0
+judge_n_votes: 3

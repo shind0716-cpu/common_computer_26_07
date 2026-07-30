@@ -837,4 +837,10 @@ def api_far(issue_id: str, run_id: str, critical_only: bool = False):
 
 @app.get("/", response_class=HTMLResponse)
 def index():
-    return (HERE / "index.html").read_text(encoding="utf-8")
+    # 캐시 금지 (2026-07-30 · 민옥). 이 화면은 개발 중에 계속 고쳐지는데, 브라우저가
+    # 옛 index.html 을 들고 있으면 **고친 기능이 통째로 없는 화면**을 보게 된다 — 서버는
+    # 멀쩡한데 사람은 "안 된다"고 판단하게 되는 자리다(실측: FAR 패널을 못 찾음).
+    # 서버 자체는 재시작해야 반영된다(uvicorn 은 --reload 없이 모듈을 다시 안 읽는다).
+    return HTMLResponse(
+        (HERE / "index.html").read_text(encoding="utf-8"),
+        headers={"Cache-Control": "no-store, must-revalidate"})

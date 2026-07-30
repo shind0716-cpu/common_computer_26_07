@@ -221,7 +221,16 @@ document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('section').forEach(s=>s.classList.toggle('on',s.id===b.dataset.t));
   if(b.dataset.t==='iv') fillIvSrc();
   if(b.dataset.t==='scn') renderScnList();
+  // run 목록·판정 파일은 콘솔 밖에서도 생긴다(명령줄로 돌리는 경우). 탭에 들어올 때마다
+  // 다시 읽지 않으면 "채점을 끝냈는데 화면 어디에도 수치가 없다"가 된다(2026-07-30 실측).
+  if(b.dataset.t==='notes') refreshRuns();
 });
+
+async function refreshRuns(){
+  try{ META = await (await fetch('/api/meta')).json(); }catch(e){ return; }
+  renderRuns();
+  if(SEL) loadFar();
+}
 
 // ─── 시나리오 ───
 let SCN=null, SCN_REVEAL=false;
@@ -582,9 +591,14 @@ async function poll(){
     $('#btnRun').disabled = d.alive || window._blocked === true;
     if(!d.alive && d.returncode!==null && cursor>0 && !window._done){
       window._done = true;   // 완료 보고는 한 번만
+      const wasJudge = d.current && d.current.kind === 'judge';
       $('#runmsg').textContent = d.returncode===0
-        ? '완료 (종료코드 0) — 수첩 매트릭스 탭에서 확인' : '✗ 종료코드 '+d.returncode;
-      if(d.returncode===0){ META=await (await fetch('/api/meta')).json(); renderRuns(); }
+        ? (wasJudge ? '채점 완료 (종료코드 0) — 수첩 매트릭스 탭 맨 아래 「팩트 생존」에 수치가 뜹니다'
+                    : '완료 (종료코드 0) — 수첩 매트릭스 탭에서 확인')
+        : '✗ 종료코드 '+d.returncode;
+      // 끝났으면 화면도 따라가야 한다. 종전엔 목록만 새로 읽고 FAR 은 그대로여서,
+      // 채점을 끝내고도 수치를 찾을 수 없었다(사람이 행을 다시 클릭해야 했다).
+      if(d.returncode===0){ await refreshRuns(); }
     }
     if(d.alive) window._done = false;
   }catch(e){}
