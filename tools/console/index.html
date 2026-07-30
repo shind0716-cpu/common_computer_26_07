@@ -65,12 +65,39 @@
   <h1>실험 콘솔 v0</h1>
   <span class="sub" id="hdr">설정 사전 8축 · 수첩 · 개입</span>
   <nav>
+    <button data-t="scn">시나리오</button>
     <button data-t="setup" class="on">설정 · 실행</button>
     <button data-t="notes">수첩 매트릭스</button>
     <button data-t="iv">개입 모드</button>
   </nav>
 </header>
 <main>
+
+<!-- ─── 시나리오 ────────────────────────────────────────────────────── -->
+<section id="scn">
+  <div class="panel">
+    <h2>시나리오 고르기</h2>
+    <p class="why">실험을 돌리기 전에 "이 시나리오가 무엇을 묻고, 누가 무엇을 아는가"를
+       확인한다. 여기서 고른 시나리오가 <b>설정·실행 탭에도 함께 선택</b>된다.</p>
+    <div class="runlist"><table id="scnList"></table></div>
+  </div>
+  <div class="panel" id="scnDetailPanel">
+    <h2>원문</h2>
+    <div id="scnHead"><span class="empty">시나리오를 고르세요</span></div>
+  </div>
+  <div class="panel">
+    <h2>팩트 <span class="foot" id="factHint"></span></h2>
+    <p class="why">에이전트들이 나눠 갖는 원자 사실들. <code>unshared</code>는 일부만
+       아는 것이고, 그것이 취합의 대상이다.</p>
+    <div id="scnFacts"><span class="empty">—</span></div>
+  </div>
+  <div class="panel">
+    <h2>누가 무엇을 아는가 (배분)</h2>
+    <p class="why">에이전트 × 팩트 격자. 히든 프로필이 성립하려면 어느 한 명도
+       혼자서는 답을 완성할 수 없어야 한다.</p>
+    <div id="scnAssign"><span class="empty">—</span></div>
+  </div>
+</section>
 
 <!-- ─── 설정 · 실행 ─────────────────────────────────────────────────── -->
 <section id="setup" class="on">
@@ -165,7 +192,132 @@ document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));
   document.querySelectorAll('section').forEach(s=>s.classList.toggle('on',s.id===b.dataset.t));
   if(b.dataset.t==='iv') fillIvSrc();
+  if(b.dataset.t==='scn') renderScnList();
 });
+
+// ─── 시나리오 ───
+let SCN=null, SCN_REVEAL=false;
+
+function renderScnList(){
+  const t=$('#scnList'); t.innerHTML='';
+  const hr=el('tr');
+  ['시나리오','트랙','팩트','critical','공유/미공유','에이전트','배분'].forEach(h=>hr.append(el('th',null,h)));
+  t.append(hr);
+  (META.issue_rows||[]).forEach(r=>{
+    const tr=el('tr');
+    if(SCN && SCN.issue_id===r.issue_id) tr.classList.add('sel');
+    // 목록에선 가벼운 값만 — 자세한 건 클릭 후 조회한다.
+    tr.append(el('td',null,r.issue_id));
+    tr.append(el('td',null,r.coop?'협력·무입장':(r.has_assignment?'재현 '+r.stances.join('/'):'배분표 없음')));
+    ['—','—','—','—','—'].forEach(v=>tr.append(el('td',null,v)));
+    tr.onclick=()=>loadScn(r.issue_id);
+    t.append(tr);
+  });
+  if(SCN) fillScnRow();
+}
+
+function fillScnRow(){
+  // 선택된 행에만 상세 수치를 채운다(전 시나리오를 미리 다 읽지 않는다).
+  const rows=[...$('#scnList').querySelectorAll('tr')].slice(1);
+  const r=rows.find(x=>x.cells[0].textContent===SCN.issue_id);
+  if(!r) return;
+  const sc=SCN.share_counts||{};
+  const share=Object.keys(sc).length
+    ? `${sc.shared||0} / ${sc.unshared||0}` : '구분 없음';
+  const vals=[String(SCN.n_facts), String(SCN.n_critical), share,
+              String(SCN.agents.length),
+              (SCN.assignment_mode||'—')+(SCN.overlap_k!=null?` k=${SCN.overlap_k}`:'')];
+  vals.forEach((v,i)=>{ r.cells[i+2].textContent=v; });
+}
+
+async function loadScn(iid){
+  const r=await fetch('/api/scenario?issue_id='+encodeURIComponent(iid)
+                      +(SCN_REVEAL?'&reveal=true':''));
+  const d=await r.json();
+  if(!r.ok){ $('#scnHead').innerHTML='<span class="warn">'+(d.detail||'')+'</span>'; return; }
+  SCN=d;
+  // 설정·실행 탭의 이슈 선택도 함께 옮긴다 — 두 탭이 다른 시나리오를 보면 혼란스럽다.
+  const is=$('#issue_id'); if(is && is.value!==iid){ is.value=iid; estimate(); }
+  renderScnList();
+  renderScnDetail();
+}
+
+function renderScnDetail(){
+  const d=SCN, h=$('#scnHead'); h.innerHTML='';
+  h.append(el('div','badge', d.coop?'협력·무입장':'재현 '+d.stances.join('/')));
+  if(d.source) h.append(el('span','badge','출처: '+d.source));
+  if(d.usage_approved===false) h.append(el('span','badge iv','사용 승인 안 됨'));
+  if(d.orphan_fact_ids && d.orphan_fact_ids.length)
+    h.append(el('span','badge iv','고아 팩트 '+d.orphan_fact_ids.length+'개'));
+  const t=el('div'); t.style.marginTop='10px';
+  t.append(el('div',null,'')); t.lastChild.innerHTML='<b>'+(d.title||'')+'</b>';
+  if(d.question){ const q=el('div'); q.style.marginTop='6px';
+    q.innerHTML='<b>질문:</b> '+d.question; t.append(q); }
+  if(d.options){ const o=el('div','foot','선택지: '+JSON.stringify(d.options)); t.append(o); }
+  const b=el('div'); b.style.cssText='margin-top:10px;white-space:pre-wrap;'
+    +'background:var(--note);padding:11px;border-radius:7px;font-size:13px';
+  b.textContent=d.body||''; t.append(b);
+  if(d.note){ const n=el('div','foot','메모: '+d.note); t.append(n); }
+  h.append(t);
+
+  // 팩트 표
+  const fh=$('#factHint');
+  if(d.hidden_fields && d.hidden_fields.length){
+    fh.innerHTML='';
+    fh.append(document.createTextNode(
+      `— 정답 누설 필드 ${d.hidden_fields.join(', ')} 는 ${d.revealed?'펼침':'접힘'} `));
+    const btn=el('button','alt', d.revealed?'다시 접기':'정답 필드 펼치기');
+    btn.style.cssText='padding:3px 10px;font-size:11px';
+    btn.onclick=()=>{ SCN_REVEAL=!SCN_REVEAL; loadScn(d.issue_id); };
+    fh.append(btn);
+  } else { fh.textContent=''; }
+
+  const fp=$('#scnFacts'); fp.innerHTML='';
+  if(!d.facts.length){ fp.append(el('span','empty','팩트 파일 없음')); }
+  else{
+    const keys=[...new Set(d.facts.flatMap(f=>Object.keys(f)))]
+      .filter(k=>k!=='text' && k!=='fact_id');
+    const tb=el('table'); const hr=el('tr');
+    ['id','내용',...keys].forEach(k=>hr.append(el('th',null,k))); tb.append(hr);
+    d.facts.forEach(f=>{
+      const tr=el('tr');
+      tr.append(el('td',null,f.fact_id||''));
+      const td=el('td','cell'); td.append(el('div','txt',f.text||'')); tr.append(td);
+      keys.forEach(k=>{
+        const v=f[k];
+        tr.append(el('td',null, v===undefined?'—':
+          (Array.isArray(v)?v.join(','):String(v))));
+      });
+      tb.append(tr);
+    });
+    fp.append(tb);
+  }
+
+  // 배분 격자 (에이전트 × 팩트)
+  const ap=$('#scnAssign'); ap.innerHTML='';
+  if(!d.agents.length){ ap.append(el('span','empty','배분표 없음')); return; }
+  const ids=d.facts.map(f=>f.fact_id);
+  const tb=el('table'); const hr=el('tr');
+  hr.append(el('th',null,'에이전트'));
+  ids.forEach(i=>hr.append(el('th',null,i.replace(/^fact_[a-z]+_/,''))));
+  hr.append(el('th',null,'계')); tb.append(hr);
+  d.agents.forEach(a=>{
+    const tr=el('tr');
+    const th=el('th',null,a.agent_id+(a.perspective?` (${a.perspective})`:''));
+    tr.append(th);
+    ids.forEach(i=>{
+      const has=a.assigned_fact_ids.includes(i);
+      const td=el('td',null,has?'●':'');
+      td.style.cssText='text-align:center;'+(has?'background:#e6efe9;font-weight:700':'color:#ccc');
+      tr.append(td);
+    });
+    tr.append(el('td',null,String(a.n_facts)+(a.n_unshared?` (미공유 ${a.n_unshared})`:'')));
+    tb.append(tr);
+  });
+  ap.append(tb);
+  if(d.orphan_fact_ids.length)
+    ap.append(el('p','foot','⚠ 아무에게도 배정되지 않은 팩트: '+d.orphan_fact_ids.join(', ')));
+}
 
 // ─── 설정 폼 ───
 async function boot(){

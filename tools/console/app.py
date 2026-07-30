@@ -138,6 +138,84 @@ def _issue_rows() -> list[dict]:
     return rows
 
 
+# 정답 누설 필드 — 시나리오 열람에서 기본 가린다.
+# 왜: issue_hire 의 facts 는 favors(어느 후보에게 유리한가)·requirement(어느 요건인가)
+# 를 들고 있고, 이건 "정답이 무엇인가"를 사실상 적어둔 칸이다. 사람이 실험 전에
+# 이걸 읽으면 조건 설정·프롬프트 손질이 정답 쪽으로 기울 수 있다(관측자 오염).
+# 숨기는 게 아니라 **기본은 접고 눌러서 펴게** 한다 — 검수할 땐 봐야 하니까.
+ANSWER_KEY_FIELDS = ("favors", "requirement", "side")
+
+
+def _scenario(issue_id: str, *, reveal: bool = False) -> dict:
+    """시나리오 한 벌(원문 + 팩트 + 배분)을 열람용으로 조립한다. 읽기 전용.
+
+    실험을 돌리기 전에 "이 시나리오가 무엇을 묻고, 누가 무엇을 아는가"를 사람이
+    확인할 수 있어야 한다. 종전엔 이걸 보려면 data/ 아래 json 3개를 직접 열어야
+    했다(민옥 요청 7/30).
+
+    reveal=False(기본)면 정답 누설 필드를 뺀 뒤 돌려준다 — ANSWER_KEY_FIELDS 주석 참조."""
+    try:
+        iss = json.loads(paths.issue(issue_id).read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        raise HTTPException(404, f"이슈 원문 없음: {issue_id}")
+    try:
+        facts = json.loads(paths.facts(issue_id).read_text(encoding="utf-8"))["facts"]
+    except FileNotFoundError:
+        facts = []
+    try:
+        asg = json.loads(paths.assignment(issue_id).read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        asg = {"agents": []}
+
+    hidden = [k for k in ANSWER_KEY_FIELDS if any(k in f for f in facts)]
+    out_facts = []
+    for f in facts:
+        row = {k: v for k, v in f.items() if reveal or k not in ANSWER_KEY_FIELDS}
+        out_facts.append(row)
+
+    # 배분 요약: 누가 몇 개를 쥐고, 공유/미공유가 어떻게 갈리나.
+    by_fact = {f["fact_id"]: f for f in facts}
+    agents = []
+    for a in asg.get("agents", []):
+        ids = list(a.get("assigned_fact_ids", []))
+        agents.append({
+            "agent_id": a.get("agent_id"), "stance": a.get("stance"),
+            "perspective": a.get("perspective"), "n_facts": len(ids),
+            "assigned_fact_ids": ids,
+            "n_unshared": sum(1 for i in ids
+                              if by_fact.get(i, {}).get("share") == "unshared"),
+        })
+    # 고아 팩트 = 아무에게도 안 간 것. 있으면 배분이 잘못된 것이므로 드러낸다.
+    assigned = {i for a in asg.get("agents", []) for i in a.get("assigned_fact_ids", [])}
+    orphans = [f["fact_id"] for f in facts if f["fact_id"] not in assigned]
+
+    st = {a.get("stance") for a in asg.get("agents", [])}
+    return {
+        "issue_id": issue_id,
+        "title": iss.get("title"), "question": iss.get("question"),
+        "body": iss.get("body"), "options": iss.get("options"),
+        "source": iss.get("source"),
+        "usage_approved": (iss.get("source_meta") or {}).get("usage_approved"),
+        "note": iss.get("_note"),
+        "n_facts": len(facts),
+        "n_critical": sum(1 for f in facts if f.get("critical")),
+        "share_counts": {v: sum(1 for f in facts if f.get("share") == v)
+                         for v in ("shared", "unshared")
+                         if any(f.get("share") == v for f in facts)},
+        "facts": out_facts,
+        "agents": agents, "orphan_fact_ids": orphans,
+        "overlap_k": asg.get("overlap_k"), "assignment_mode": asg.get("created_by"),
+        "coop": bool(st) and st == {"none"},
+        "stances": sorted(s for s in st if s),
+        "hidden_fields": hidden, "revealed": reveal,
+    }
+
+
+@app.get("/api/scenario")
+def api_scenario(issue_id: str, reveal: bool = False):
+    return _scenario(issue_id, reveal=reveal)
+
+
 def _runs() -> list[dict]:
     """data/debates 스캔 → run 목록(최신순). 수첩 유무를 함께 보고한다."""
     d = paths.DATA / "debates"

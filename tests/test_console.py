@@ -134,6 +134,60 @@ class TestEstimate(ConsoleBase):
         self.assertEqual(d["blocking"], [])
 
 
+class TestScenario(ConsoleBase):
+    """시나리오 열람 — 돌리기 전에 "무엇을 묻고 누가 무엇을 아는가"를 본다."""
+
+    def test_returns_origin_facts_and_assignment(self):
+        d = self.c.get(f"/api/scenario?issue_id={self.issue_id}").json()
+        self.assertEqual(d["issue_id"], self.issue_id)
+        self.assertTrue(d["body"])
+        self.assertEqual(d["n_facts"], 6)
+        self.assertEqual(len(d["agents"]), 3)
+        self.assertTrue(d["coop"])
+        for a in d["agents"]:
+            self.assertIn("n_facts", a)
+            self.assertIn("assigned_fact_ids", a)
+
+    def test_answer_key_fields_hidden_by_default(self):
+        # 정답 누설 필드는 기본 접힘 — 사람이 실험 전에 읽으면 조건 설정이
+        # 정답 쪽으로 기울 수 있다(관측자 오염).
+        fp = paths.facts(self.issue_id)
+        doc = json.loads(fp.read_text(encoding="utf-8"))
+        for f in doc["facts"]:
+            f["favors"] = "후보A"
+        fp.write_text(json.dumps(doc, ensure_ascii=False), encoding="utf-8")
+
+        d = self.c.get(f"/api/scenario?issue_id={self.issue_id}").json()
+        self.assertIn("favors", d["hidden_fields"])
+        self.assertFalse(d["revealed"])
+        self.assertTrue(all("favors" not in f for f in d["facts"]))
+
+        # 검수할 땐 볼 수 있어야 한다 — 숨김이 아니라 접힘이다.
+        d2 = self.c.get(f"/api/scenario?issue_id={self.issue_id}&reveal=true").json()
+        self.assertTrue(d2["revealed"])
+        self.assertTrue(all("favors" in f for f in d2["facts"]))
+
+    def test_detects_orphan_facts(self):
+        # 아무에게도 배정되지 않은 팩트는 배분 결함이므로 드러내야 한다.
+        aj = paths.assignment(self.issue_id)
+        doc = json.loads(aj.read_text(encoding="utf-8"))
+        doc["agents"][0]["assigned_fact_ids"] = []
+        aj.write_text(json.dumps(doc, ensure_ascii=False), encoding="utf-8")
+        d = self.c.get(f"/api/scenario?issue_id={self.issue_id}").json()
+        self.assertTrue(d["orphan_fact_ids"])
+
+    def test_missing_issue_404(self):
+        r = self.c.get("/api/scenario?issue_id=issue_nope")
+        self.assertEqual(r.status_code, 404)
+
+    def test_survives_missing_assignment(self):
+        # 배분표가 없어도 원문·팩트는 볼 수 있어야 한다(죽지 않는다).
+        paths.assignment(self.issue_id).unlink()
+        d = self.c.get(f"/api/scenario?issue_id={self.issue_id}").json()
+        self.assertEqual(d["agents"], [])
+        self.assertEqual(d["n_facts"], 6)
+
+
 class TestRunBlocking(ConsoleBase):
     """실행 요청 자체를 막나 — 경고를 지나쳐 눌러도 엔진에 도달하지 않아야 한다."""
 
