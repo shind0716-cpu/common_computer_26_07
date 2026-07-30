@@ -16,7 +16,13 @@ from pathlib import Path
 from modules.paths import ROOT
 
 DIR = ROOT / "prompts"
-TEMPLATES = ("coop_initial", "coop_continue", "coop_continue_note", "coop_final")
+TEMPLATES = ("coop_initial", "coop_continue", "coop_continue_note", "coop_final",
+             # 수첩 구현(2026-07-30 · 민옥) — 갱신 호출 방식 2종을 config 로 전환하므로
+             # 템플릿도 쌍으로 등재된다(스키마 v0.3 §5 "두 방식이 한 run 안에 섞이는 것 금지").
+             #   note_call=utterance  → coop_continue_note      ({"say","note"} 한 호출)
+             #   note_call=dedicated  → coop_continue_note_say  (발화만)
+             #                        + coop_note_update        (수첩만, 별도 호출)
+             "coop_continue_note_say", "coop_note_update")
 
 
 def load(name: str) -> str:
