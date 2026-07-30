@@ -1,5 +1,13 @@
 # SCHEMA — 파일 계약 v0.2 (원본: 노션 「스키마 — 파일 계약 5종 (현행 v0.2)」)
 
+> **길잡이 (2026-07-30 민옥 추가 — 본문 무수정, 요한 님 확인 요망)**
+> 위 제목은 v0.2지만 **이 문서는 v0.3까지 반영돼 있다.** append-only 원칙에 따라 제목을
+> 고치지 않고 아래에 덧붙였기 때문이다(§ "v0.3 — 발화 입력 기록 추가" 이하).
+> **앞부분만 읽고 v0.2 로 판단하지 말 것** — 실측 사고: 2026-07-30 새 세션이 제목만 보고
+> v0.2 기준으로 작업을 시작했다.
+> 현행에 포함된 v0.3 추가분: `prompt_assembly` 이벤트 · `ledger_inject.injected_text` ·
+> `note_update` 이벤트 · `prompt_assembly.note` 슬롯 · `prompt_assembly.slots.window`.
+
 공통: UTF-8, snake_case. 모든 파일에 schema_ver/created_by/created_at.
 경로는 modules/paths.py로만 유도. 검사는 modules/validate.py.
 
