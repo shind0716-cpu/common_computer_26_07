@@ -15,7 +15,9 @@ memory: note
 note_budget: 500
 note_call: utterance
 final_poll: true
-debate_model: claude-haiku
+# 모델: 별칭 → 공급자 자동 유도(modules/llm.py). gpt-mini = .env 의 OPENAI_MODEL.
+# 2026-07-30 실측: Anthropic 키가 자리표시자라 GPT 로 착수(편차 — 보고서에 명기).
+debate_model: gpt-mini
 debate_temperature: 1.0
 judge_model: claude-sonnet-4-6
 judge_temperature: 0
