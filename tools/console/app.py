@@ -123,6 +123,21 @@ def _issues() -> list[str]:
     return sorted(p.stem for p in d.glob("*.json")) if d.exists() else []
 
 
+def _issue_rows() -> list[dict]:
+    """이슈 + 그 배분표의 트랙. 고르기 **전에** 무슨 조건인지 보이게 한다.
+
+    협력(전원 none)이면 수첩·누적창이 가능하고, 재현(pro/con)이면 저자 저장소가
+    필요하다 — 이 차이를 UI 가 미리 말하지 않으면 사람이 실행 버튼을 누른 뒤에
+    RuntimeError 로 알게 된다(2026-07-30 실측)."""
+    rows = []
+    for iid in _issues():
+        st = _stances_of(iid)
+        rows.append({"issue_id": iid, "stances": sorted(s for s in st if s),
+                     "coop": bool(st) and st == {"none"},
+                     "has_assignment": bool(st)})
+    return rows
+
+
 def _runs() -> list[dict]:
     """data/debates 스캔 → run 목록(최신순). 수첩 유무를 함께 보고한다."""
     d = paths.DATA / "debates"
@@ -170,6 +185,36 @@ def _read_events(issue_id: str, run_id: str) -> list[dict]:
 
 
 # ─── API ─────────────────────────────────────────────────────────────────────
+def _author_repo_present() -> bool:
+    """저자 저장소(DelibTrace) 클론이 있나 — 재현 트랙(pro/con) 실행의 선행 조건.
+
+    authors_prompts.author_dir() 를 그대로 쓴다(경로 규칙을 두 곳에 두면 갈라진다).
+    존재 확인만 하고 읽지 않는다 — 읽으면 없을 때 예외가 나서 목록 조회가 죽는다."""
+    from modules import authors_prompts
+    try:
+        return authors_prompts.author_dir().exists()
+    except Exception:
+        return False
+
+
+def _author_dir_hint() -> str:
+    from modules import authors_prompts
+    try:
+        d = authors_prompts.DEFAULT_DIR
+    except Exception:
+        return "DelibTrace 클론 필요"
+    return (f"git clone https://github.com/whr000001/DelibTrace.git \"{d}\" "
+            f"(또는 환경변수 DELIBTRACE_DIR 지정)")
+
+
+def _stances_of(issue_id: str) -> set:
+    try:
+        doc = json.loads(paths.assignment(issue_id).read_text(encoding="utf-8"))
+    except Exception:
+        return set()
+    return {a.get("stance") for a in doc.get("agents", [])}
+
+
 def _models() -> list[dict]:
     """고를 수 있는 모델 목록 + **키 실재 여부**.
 
@@ -198,8 +243,10 @@ def _models() -> list[dict]:
 @app.get("/api/meta")
 def api_meta():
     return {"axes": AXES, "static_notes": STATIC_NOTES,
-            "issues": _issues(), "runs": _runs(),
+            "issues": _issues(), "issue_rows": _issue_rows(), "runs": _runs(),
             "models": _models(),
+            "author_repo": _author_repo_present(),
+            "author_hint": _author_dir_hint(),
             "note_parse_ver": note_slot.NOTE_PARSE_VER}
 
 
@@ -278,12 +325,29 @@ def api_estimate(req: RunReq):
     if req.final_poll:
         calls += n
         parts.append(f"최종폴링 {n}")
-    warn = []
-    if req.memory == "note" and stances != {"none"}:
-        warn.append("배분표 stance 가 전원 none 이 아니다 — 수첩은 협력 조건 전용이라 엔진이 즉사한다.")
-    if req.window == "cumulative" and stances != {"none"}:
-        warn.append("누적 창도 협력 조건 전용이다.")
-    return {"agents": n, "total": calls, "breakdown": parts, "warnings": warn,
+    # ── 경고 계산 ────────────────────────────────────────────────────────────
+    # 이 이슈가 협력 조건인가(전원 none)를 먼저 정한다 — 그 값이 아래 판정 전부의
+    # 전제다. 협력이 아니면 저자 템플릿(discussion_*) 경로로 가고, 그건 저자 저장소
+    # 클론을 요구한다.
+    coop = stances == {"none"}
+    warn, blocking = [], []
+    if req.memory == "note" and not coop:
+        blocking.append("수첩(memory=note)은 협력 조건 전용 — 저자 템플릿엔 수첩 슬롯이 없어 엔진이 즉사한다.")
+    if req.window == "cumulative" and not coop:
+        blocking.append("누적 창(window=cumulative)도 협력 조건 전용이다.")
+    if not coop:
+        # 재현 트랙(pro/con)은 저자 프롬프트를 원본 저장소에서 직접 읽는다
+        # (라이선스 보류 — 우리 리포에 복사하지 않는다). 클론이 없으면 실행 도중
+        # RuntimeError 로 죽는데, 그때는 이미 사람이 실행 버튼을 누른 뒤다.
+        # 그래서 누르기 전에 여기서 알린다(2026-07-30 실측 — issue_esa 로 즉사).
+        if not _author_repo_present():
+            blocking.append(
+                f"이 배분표는 stance={sorted(stances)} (재현 트랙)이라 저자 저장소가 필요하다. "
+                f"없으면 실행 즉시 RuntimeError. → {_author_dir_hint()}")
+        else:
+            warn.append("재현 트랙(pro/con) 조건이다 — 저자 템플릿을 쓰므로 수첩·누적창을 켤 수 없다.")
+    return {"agents": n, "total": calls, "breakdown": parts,
+            "warnings": warn, "blocking": blocking, "coop": coop,
             "stances": sorted(s for s in stances if s)}
 
 
@@ -296,6 +360,23 @@ def api_run(req: RunReq):
     if out.exists():
         raise HTTPException(409, f"이미 있는 run: {out.name} — run_id 를 바꿔라 "
                                  "(append-only: 기존 기록을 덮어쓰지 않는다)")
+
+    # 실행 전 차단 — 경고만으로는 부족하다. 사람이 경고를 지나쳐 누를 수 있고,
+    # 그러면 엔진이 도중에 죽으며 사람은 스택트레이스를 읽어야 한다.
+    # (2026-07-30 실측: issue_esa 를 골라 실행 → authors_prompts RuntimeError)
+    stances = _stances_of(req.issue_id)
+    if stances and stances != {"none"}:
+        if req.memory == "note":
+            raise HTTPException(400, "수첩(memory=note)은 협력 조건 전용 — 이 배분표는 "
+                                     f"stance={sorted(stances)} 다. 저자 템플릿엔 수첩 슬롯이 없다.")
+        if req.window != "rolling":
+            raise HTTPException(400, f"window={req.window} 는 협력 조건 전용 — 이 배분표는 "
+                                     f"stance={sorted(stances)}(재현 트랙)다.")
+        if not _author_repo_present():
+            raise HTTPException(400,
+                                f"재현 트랙(stance={sorted(stances)})은 저자 저장소가 필요하다. "
+                                f"{_author_dir_hint()}")
+
     cfg_path = _write_config(req)
     cmd = [sys.executable, "-X", "utf8", "-m", "modules.debate_engine",
            "--issue", req.issue_id, "--run", req.run_id, "--config", str(cfg_path)]

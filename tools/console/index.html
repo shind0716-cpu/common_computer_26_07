@@ -187,8 +187,17 @@ async function boot(){
     }
     f.append(w);
   });
+  // 이슈 목록 — 트랙(협력/재현)을 이름 옆에 적는다. 고른 뒤에 알게 되면 늦다.
   const is=$('#issue_id'); is.innerHTML='';
-  META.issues.forEach(v=>{const o=el('option',null,v);o.value=v;is.append(o);});
+  (META.issue_rows||META.issues.map(v=>({issue_id:v}))).forEach(r=>{
+    const tag = r.coop ? '협력·무입장' :
+                (r.has_assignment ? '재현 트랙 '+(r.stances||[]).join('/') : '배분표 없음');
+    const o=el('option',null,`${r.issue_id}  —  ${tag}`);
+    o.value=r.issue_id; is.append(o);
+  });
+  // 협력 이슈를 기본 선택(수첩·누적창이 되는 쪽)
+  const coopIssue=(META.issue_rows||[]).find(r=>r.coop);
+  if(coopIssue) is.value=coopIssue.issue_id;
 
   // 모델 목록 — 키 없는 모델도 보여주되 왜 못 쓰는지 적고, 기본값은 키가 있는 첫 모델.
   const ms=$('#debate_model'); ms.innerHTML='';
@@ -239,11 +248,19 @@ async function estimate(){
     headers:{'Content-Type':'application/json'},body:JSON.stringify(payload())});
   const d = await r.json();
   if(!r.ok){ $('#est').innerHTML='<span class="warn">'+(d.detail||'추정 실패')+'</span>'; return; }
+  const kind = d.coop ? '협력(무입장)' : '재현 트랙(pro/con)';
   let h = '<b>LLM 호출 예상 '+d.total+'회</b> — '+d.breakdown.join(' + ')
         + ' <span style="color:var(--dim)">(에이전트 '+d.agents
-        + ', stance '+(d.stances.join('/')||'?')+')</span>';
-  if(d.warnings.length) h += '<br><span class="warn">⚠ '+d.warnings.join(' / ')+'</span>';
+        + ' · stance '+(d.stances.join('/')||'?')+' → '+kind+')</span>';
+  (d.warnings||[]).forEach(w=>{ h += '<br><span class="warn">⚠ '+w+'</span>'; });
+  // 차단 사유는 경고와 다르게 보여준다 — 실행 버튼도 잠근다.
+  const blk = d.blocking||[];
+  blk.forEach(b=>{ h += '<br><span class="warn">✗ 실행 불가: '+b+'</span>'; });
   $('#est').innerHTML = h;
+  window._blocked = blk.length>0;   // 폴러가 이 값을 존중한다
+  $('#btnRun').disabled = window._blocked;
+  if(blk.length) $('#runmsg').textContent = '설정을 바꾸거나 선행 조건을 갖춘 뒤 다시.';
+  else if($('#runmsg').textContent.startsWith('설정을 바꾸')) $('#runmsg').textContent='';
 }
 
 $('#btnRun').onclick = async ()=>{
@@ -277,7 +294,9 @@ async function poll(){
       cursor = d.next;
     }
     alive = d.alive;
-    $('#btnRun').disabled = d.alive;
+    // 실행 중이면 잠그고, 아니면 **차단 사유가 없을 때만** 푼다.
+    // (estimate() 가 걸어둔 잠금을 폴러가 되돌리면 차단이 무력해진다)
+    $('#btnRun').disabled = d.alive || window._blocked === true;
     if(!d.alive && d.returncode!==null && cursor>0 && !window._done){
       window._done = true;   // 완료 보고는 한 번만
       $('#runmsg').textContent = d.returncode===0

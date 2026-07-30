@@ -11,6 +11,7 @@ import shutil
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 from fastapi.testclient import TestClient
 
@@ -98,14 +99,66 @@ class TestEstimate(ConsoleBase):
         cfg.write_text(yaml.safe_dump(doc, allow_unicode=True), encoding="utf-8")
         debate_engine.run(self.issue_id, "budget", cfg, utterance_fn=fake)  # 안 죽어야 함
 
-    def test_warns_on_note_without_coop(self):
+    def _make_repro_track(self):
+        """배분표를 pro/con 으로 바꿔 재현 트랙으로 만든다."""
         aj = paths.assignment(self.issue_id)
         doc = json.loads(aj.read_text(encoding="utf-8"))
         for i, ag in enumerate(doc["agents"]):
             ag["stance"] = "pro" if i % 2 else "con"
         aj.write_text(json.dumps(doc, ensure_ascii=False), encoding="utf-8")
+
+    def test_blocks_note_without_coop(self):
+        # 경고가 아니라 차단이어야 한다 — 경고만이면 사람이 지나쳐 누르고,
+        # 엔진이 도중에 죽으며 스택트레이스를 읽어야 한다.
+        self._make_repro_track()
         d = self._est(memory="note")
-        self.assertTrue(d["warnings"], "협력 조건 아닌데 수첩을 켜면 경고해야 한다")
+        self.assertTrue(d["blocking"], "협력 조건 아닌데 수첩을 켜면 차단해야 한다")
+        self.assertFalse(d["coop"])
+
+    def test_blocks_cumulative_without_coop(self):
+        self._make_repro_track()
+        d = self._est(window="cumulative")
+        self.assertTrue(d["blocking"])
+
+    def test_repro_track_flags_missing_author_repo(self):
+        # 2026-07-30 실측: issue_esa(pro/con)를 골라 실행하니 authors_prompts 가
+        # RuntimeError — 저자 저장소 클론이 없어서였다. 누르기 전에 알려야 한다.
+        self._make_repro_track()
+        with mock.patch.object(self.mod, "_author_repo_present", lambda: False):
+            d = self._est()
+        self.assertTrue(any("저자 저장소" in b for b in d["blocking"]))
+
+    def test_coop_issue_has_no_blocking(self):
+        d = self._est(memory="note", final_poll=True)
+        self.assertTrue(d["coop"])
+        self.assertEqual(d["blocking"], [])
+
+
+class TestRunBlocking(ConsoleBase):
+    """실행 요청 자체를 막나 — 경고를 지나쳐 눌러도 엔진에 도달하지 않아야 한다."""
+
+    def _make_repro_track(self):
+        aj = paths.assignment(self.issue_id)
+        doc = json.loads(aj.read_text(encoding="utf-8"))
+        for i, ag in enumerate(doc["agents"]):
+            ag["stance"] = "pro" if i % 2 else "con"
+        aj.write_text(json.dumps(doc, ensure_ascii=False), encoding="utf-8")
+
+    def test_run_rejects_note_on_repro_track(self):
+        self._make_repro_track()
+        r = self.c.post("/api/run", json={"issue_id": self.issue_id,
+                                          "run_id": "blk1", "memory": "note"})
+        self.assertEqual(r.status_code, 400)
+        self.assertFalse(paths.debate(self.issue_id, "blk1").exists())
+
+    def test_run_rejects_repro_track_without_author_repo(self):
+        self._make_repro_track()
+        with mock.patch.object(self.mod, "_author_repo_present", lambda: False):
+            r = self.c.post("/api/run", json={"issue_id": self.issue_id,
+                                              "run_id": "blk2"})
+        self.assertEqual(r.status_code, 400)
+        self.assertIn("저자 저장소", r.json()["detail"])
+        self.assertFalse(paths.debate(self.issue_id, "blk2").exists())
 
 
 class TestRunGuard(ConsoleBase):
