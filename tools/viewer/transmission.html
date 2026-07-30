@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>전달 관문 측정 보고</title>
+<title>레이더 — 말이 남에게 옮겨갔는지</title>
 <style>
   /* 보고서 한 편 + 그림 1급 (민옥 전진 가설 보고서 양식 지향).
      색은 dataviz 참조 팔레트 light(종이면 #fcfcfb 기준 사전 검증분)만 사용:
@@ -64,20 +64,24 @@
 </head>
 <body>
 <header>
-  <nav><a href="/biography">전기</a><a href="/ledger">장부</a><a class="here" href="/transmission">레이더</a><a href="/audit">대조</a></nav>
-  <select id="runsel"><option>run 로딩…</option></select>
+  <nav id="nav"></nav>
+  <select id="runsel"><option>실행 목록 불러오는 중…</option></select>
 </header>
-<div class="sheet" id="sheet"><p style="color:var(--muted)">로딩…</p></div>
+<div class="sheet" id="sheet"><p style="color:var(--muted)">불러오는 중…</p></div>
 <div id="tip"></div>
 <script>
 const F = v => v == null ? "—" : v;
 const PCT = v => v == null ? "—" : (v * 100).toFixed(1) + "%";
-const KIND_COLORS = { "획득":"var(--c1)", "검열":"var(--c2)", "무노출":"var(--c3)", "prior_suspect":"var(--c4)" };
+// 그림 범례는 SVG·직접 라벨이라 일상어 한 낱말만 쓴다(병기는 본문·용어표에서 한다).
+const KINDS = [["acquisition", "받아서 말함", "var(--c1)"],
+               ["censored", "끝까지 모름", "var(--c2)"],
+               ["never_exposed", "볼 기회 없음", "var(--c3)"],
+               ["prior_suspect", "노출 전에 말함", "var(--c4)"]];
 
 function tipOn(el) {
   el.addEventListener("mousemove", e => {
-    const t = e.target.closest("[data-tip]"); const tip = document.getElementById("tip");
-    if (t) { tip.textContent = t.dataset.tip; tip.style.display = "block";
+    const hit = e.target.closest("[data-tip]"); const tip = document.getElementById("tip");
+    if (hit) { tip.textContent = hit.dataset.tip; tip.style.display = "block";
              tip.style.left = (e.clientX + 12) + "px"; tip.style.top = (e.clientY + 12) + "px"; }
     else tip.style.display = "none";
   });
@@ -87,23 +91,24 @@ function tipOn(el) {
 /* 그림 1 — 추적 쌍 구성 분해: 수평 100% 스택 바 (세그먼트 2px 간격, 직접 라벨) */
 function figKinds(s) {
   const total = s.n_pairs_tracked || 1;
-  const parts = [["획득", s.kinds.acquisition], ["검열", s.kinds.censored],
-                 ["무노출", s.kinds.never_exposed], ["prior_suspect", s.kinds.prior_suspect]];
+  const parts = KINDS.map(([key, label, color]) => [key, label, color, s.kinds[key]]);
   const W = 660, H = 34; let x = 0, rects = "";
-  for (const [name, v] of parts) {
+  for (const [key, label, color, v] of parts) {
     if (!v) continue;
     const w = Math.max(v / total * W - 2, 2);
-    rects += `<g data-tip="${name} ${v}건 (${PCT(v / total)})">
-      <rect x="${x}" y="6" width="${w}" height="18" rx="4" fill="${KIND_COLORS[name]}"/>`
+    rects += `<g data-tip="${label} ${v}건 (${PCT(v / total)})">
+      <rect x="${x}" y="6" width="${w}" height="18" rx="4" fill="${color}"/>`
       + (w > 46 ? `<text class="val" x="${x + 8}" y="19" fill="#fff" style="fill:#fff">${v}</text>` : "")
       + `</g>`;
     x += w + 2;
   }
   return `<figure><svg viewBox="0 0 ${W} ${H}" width="100%">${rects}</svg>
-    <div class="legend">` + parts.map(([n, v]) =>
-      `<span><i style="background:${KIND_COLORS[n]}"></i>${n} ${v}</span>`).join("")
-    + `</div><figcaption><b>그림 1.</b> 추적 쌍(비보유자×팩트, n=${s.n_pairs_tracked}) 구성 분해.
-       획득만이 전달 사건이며 검열은 관측창 종료까지 미획득을 뜻한다.</figcaption></figure>`;
+    <div class="legend">` + parts.map(([k, label, color, v]) =>
+      `<span><i style="background:${color}"></i>${label} ${v}</span>`).join("")
+    + `</div><figcaption><b>그림 1.</b> 추적 쌍 n=${s.n_pairs_tracked}
+       — '그 팩트를 안 가진 사람 × 팩트' 조합을 무슨 일이 있었는지로 나눈 것.
+       받아서 말한 것만 전달로 세고, '끝까지 모름'은 관측이 끝날 때까지 안 받았다는 뜻이다
+       (안 받았다고 단정하지 않는다).</figcaption></figure>`;
 }
 
 /* 그림 2 — 팩트별 전달 폭: 수평 막대 (엄격 진한 청 + 상한 연한 청 연장, 직접 라벨) */
@@ -120,17 +125,18 @@ function figTSR(fm) {
     g += `<text x="${LAB - 8}" y="${y + 12}" text-anchor="end"
            style="${f.excluded ? "text-decoration:line-through" : ""}">${f.critical ? "★" : ""}${f.fact_id.replace("fact_", "")}</text>
       <rect x="${LAB}" y="${y + 3}" width="${BARW}" height="10" fill="#f0efec" rx="4"/>
-      <g data-tip="${f.fact_id} — B ${f.B}/${den} 상한 ${f.B_upper} TSR ${PCT(f.TSR)}">`
+      <g data-tip="${f.fact_id} — 볼 기회 ${den}명 중 받아서 말함 ${f.B}명 (상한 ${f.B_upper}) = 전달 폭 ${PCT(f.TSR)}">`
       + (w2 > 0 ? `<rect x="${LAB}" y="${y + 3}" width="${Math.max(w2, 2)}" height="10" fill="var(--c1l)" rx="4"/>` : "")
       + (w1 > 0 ? `<rect x="${LAB}" y="${y + 3}" width="${Math.max(w1, 2)}" height="10" fill="var(--c1)" rx="4"/>` : "")
       + `<rect x="${LAB}" y="${y}" width="${BARW}" height="16" fill="transparent"/></g>
       <text class="val" x="${LAB + BARW + 8}" y="${y + 12}">${PCT(f.TSR)}</text>`;
   });
   return `<figure><svg viewBox="0 0 ${W} ${H}" width="100%">${g}</svg>
-    <div class="legend"><span><i style="background:var(--c1)"></i>TSR 엄격 (u≥1)</span>
-    <span><i style="background:var(--c1l)"></i>상한 (u=0 포함)</span></div>
-    <figcaption><b>그림 2.</b> 팩트별 전달 폭 — 노출된 비보유자 중 획득 비율.
-      TSR 내림차순, 취소선 = 영점 제외.</figcaption></figure>`;
+    <div class="legend"><span><i style="background:var(--c1)"></i>엄격하게 센 것</span>
+    <span><i style="background:var(--c1l)"></i>노출된 그 라운드의 발화까지 포함한 상한</span></div>
+    <figcaption><b>그림 2.</b> 팩트별 TSR — 그 팩트를 원래 안 가졌는데 볼 기회가 생긴 사람 중
+      실제로 받아서 말한 사람의 비율. 높은 순이며, 취소선은 질문 문면만 읽어도 알 수 있어
+      전달을 잴 수 없다고 빼둔 팩트다(영점 조정).</figcaption></figure>`;
 }
 
 /* 그림 3 — 획득 hazard: age별 세로 막대 */
@@ -141,18 +147,19 @@ function figHazard(lt) {
   lt.forEach((r, i) => {
     const x = PAD + 14 + i * (BW + 22);
     const h = (r.h_acq || 0) / maxH * (H - 50);
-    g += `<g data-tip="age ${r.age}: at risk ${r.at_risk}, 획득 ${r.acquisitions}, h=${F(r.h_acq)}">
+    g += `<g data-tip="노출 ${r.age}바퀴 뒤: 아직 결과 안 난 쌍 ${r.at_risk}, 받아서 말함 ${r.acquisitions}, 비율 ${F(r.h_acq)}">
       <rect x="${x}" y="${H - 22 - Math.max(h, 2)}" width="${BW}" height="${Math.max(h, 2)}"
         fill="var(--c1)" rx="4"/>
       <text class="val" x="${x + BW / 2}" y="${H - 26 - Math.max(h, 2)}" text-anchor="middle">${F(r.h_acq)}</text>
-      <text class="axis" x="${x + BW / 2}" y="${H - 8}" text-anchor="middle">age ${r.age}</text></g>`;
+      <text class="axis" x="${x + BW / 2}" y="${H - 8}" text-anchor="middle">${r.age}바퀴 뒤</text></g>`;
   });
   return `<figure><svg viewBox="0 0 ${W} ${H}" width="${W}px">${g}</svg>
-    <figcaption><b>그림 3.</b> 획득 hazard h_acq(age) — 노출 후 경과 라운드별 획득 확률
-      (엄격 계상, 검열 처리 포함).</figcaption></figure>`;
+    <figcaption><b>그림 3.</b> 처음 본 뒤 몇 바퀴 만에 자기 입으로 말하나
+      (그 시점에 아직 안 받은 사람만 분모로, 엄격(u≥1)).</figcaption></figure>`;
 }
 
 async function loadRuns() {
+  document.getElementById("nav").innerHTML = `<a href="/biography">전기</a><a href="/ledger">장부</a><a class="here" href="/transmission">레이더</a><a href="/audit">대조</a>`;
   const data = await (await fetch("/api/runs")).json();
   const sel = document.getElementById("runsel"); sel.innerHTML = "";
   const el = data.runs.filter(r => r.parts && r.parts.judgment === "present");
@@ -175,12 +182,16 @@ async function load(key) {
   const s = d.system, lp = d.system_low_prior, zp = d.zero_point;
   const zpMark = zp && zp.note ? `<sup>1</sup>` : "";
 
-  const lead1 = `비보유자×팩트 <b>${s.n_pairs_tracked}쌍</b>을 추적했다. `
-    + `엄격 기준(u≥1)<sup>2</sup> 획득은 <b>${s.n_acq_strict}건</b>(TSR ${PCT(s.tsr_system)}${zpMark})이며, `
-    + `노출 당회 즉답 ${s.n_acq_u0}건을 포함한 상한 TSR은 ${PCT(s.tsr_system_upper)}${zpMark}이다. `
-    + `획득 경로는 자생 ${s.by_channel.organic} · 장부 ${s.by_channel.ledger} · 혼합 ${s.by_channel.mixed}.`;
-  const lead2 = `추적자 정본인 low-prior 층의 TSR은 <b>${PCT(lp.tsr_system)}</b>`
-    + `(추적 ${lp.n_pairs_tracked}쌍, 획득 ${lp.n_acq_strict}건)이다.`;
+  const lead1 = `그 팩트를 안 가진 사람과 팩트를 짝지어 <b>${s.n_pairs_tracked}쌍</b>을 따라갔다. `
+    + `엄격(u≥1)<sup>2</sup>으로 받아서 말한 것은 <b>${s.n_acq_strict}건</b>`
+    + `(TSR ${PCT(s.tsr_system)}${zpMark})이고, 들은 그 라운드에 바로 말한 ${s.n_acq_u0}건까지 `
+    + `포함하면 ${PCT(s.tsr_system_upper)}${zpMark}까지 올라간다. `
+    + `어디서 받았는지는 상한에 든 것까지 함께 세면 — 남의 발화로 ${s.by_channel.organic} · `
+    + `장부로 다시 넣어줘서 ${s.by_channel.ledger} · 둘 섞임 ${s.by_channel.mixed}건이다`
+    + `(엄격 셈 ${s.n_acq_strict}건이 아니라 상한 쪽 숫자다 — 경로는 상한 기준으로만 나뉘어 있다).`;
+  const lead2 = `원래 알고 있었을 가능성이 낮은 층(사전 지식 낮음)만 보면 `
+    + `TSR은 <b>${PCT(lp.tsr_system)}</b>이다(${lp.n_pairs_tracked}쌍 중 ${lp.n_acq_strict}건). `
+    + `이 층이 전달을 판정하는 기준 층이다 — 원래 알던 것과 받은 것이 섞이지 않기 때문이다.`;
 
   const factRows = d.fact_metrics.map(f => `<tr class="${f.excluded ? "excl" : ""}">
       <td>${f.critical ? "★ " : ""}${f.fact_id}${f.excluded ? `<sup>3</sup>` : ""}</td>
@@ -196,42 +207,44 @@ async function load(key) {
 
   const j = d.meta || {};
   sheet.innerHTML = `
-    <h1>전달 관문 측정 보고</h1>
-    <div class="subtitle">${d.audit.issue_id} · ${d.audit.run_id} — 층 1(전달-발화) 레이더</div>
+    <h1>말이 남에게 옮겨갔는지 보는 보고서</h1>
+    <div class="subtitle">${d.audit.issue_id} · ${d.audit.run_id} — 한 사람이 말한 팩트를 다른 사람이 받아서 말했나</div>
     <div class="statusline">지위: 층1 팀 확정(2026-07-29) · <b>용도 한정 — 논문 재현용이며 본실험 주지표가 아님</b>
-      (본실험 과정 관측은 수첩 원문) · ${d.protocol}</div>
+      (본실험 과정 관측은 개인 수첩 원문) · ${d.protocol}</div>
+
 
     <p class="lead">${lead1}</p>
     ${figKinds(s)}
     <p class="lead">${lead2}</p>
 
-    <h2><span class="no">1</span>측정 조건</h2>
-    <p class="lead" style="font-size:13.5px">에이전트 ${F(j.n_agents)} · 라운드 ${(j.rounds || []).length} ·
-      팩트 ${F(j.n_facts)} · 토폴로지 ${j.edges ? j.edges.structure + (j.edges.assumed_full ? "(가정)" : "") : "—"} ·
-      영점 조정 ${zp && zp.applied ? "적용(제외 " + zp.question_exposed_ids.length + "종)" : "미적용<sup>1</sup>"} ·
-      원장 레코드 ${d.records.length}건</p>
+    <h2><span class="no">1</span>어떤 조건에서 잰 것인가</h2>
+    <p class="lead" style="font-size:13.5px">에이전트 ${F(j.n_agents)}명 ·
+      라운드 ${(j.rounds || []).length}바퀴 · 팩트 ${F(j.n_facts)}개 ·
+      누가 누구 말을 듣는가 ${j.edges ? j.edges.structure + (j.edges.assumed_full ? "(가정)" : "") : "—"} ·
+      영점 조정 ${zp && zp.applied ? "적용(" + zp.question_exposed_ids.length + "개 제외)" : "안 함<sup>1</sup>"} ·
+      사건 기록 ${d.records.length}건</p>
 
-    <h2><span class="no">2</span>팩트별 전달 폭</h2>
+    <h2><span class="no">2</span>팩트마다 몇 명에게 옮겨갔나</h2>
     ${figTSR(d.fact_metrics)}
-    <details><summary>부록 표 A — 팩트별 수치 전량</summary><table>
-      <tr><th>팩트</th><th>prior</th><th class="num">비보유</th><th class="num">노출</th>
-          <th class="num">B</th><th class="num">B 상한</th><th class="num">TSR</th></tr>
+    <details><summary>표 A — 팩트별 수치 전량</summary><table>
+      <tr><th>팩트</th><th>prior</th><th class="num">안 가진 사람</th><th class="num">볼 기회 있었음</th>
+          <th class="num">받아서 말함</th><th class="num">상한</th><th class="num">TSR</th></tr>
       ${factRows}</table></details>
 
-    <h2><span class="no">3</span>획득 hazard — 노출 후 경과</h2>
-    ${lt.length ? figHazard(lt) : "<p class='lead'>생명표 없음</p>"}
-    <details><summary>부록 표 B — 생명표 전량</summary><table style="max-width:420px">
-      <tr><th class="num">age</th><th class="num">at risk</th><th class="num">획득</th>
-          <th class="num">검열</th><th class="num">h_acq</th></tr>
+    <h2><span class="no">3</span>처음 본 뒤 몇 바퀴 만에 말하나</h2>
+    ${lt.length ? figHazard(lt) : "<p class='lead'>계산할 자료가 없음</p>"}
+    <details><summary>표 B — 바퀴별 수치 전량</summary><table style="max-width:460px">
+      <tr><th class="num">노출 후</th><th class="num">at risk</th><th class="num">받아서 말함</th>
+          <th class="num">검열</th><th class="num">비율</th></tr>
       ${lifeRows}</table></details>
 
     <div class="footnotes">
       ${zp && zp.note ? `<p><sup>1</sup> ${zp.note}</p>` : ""}
-      <p><sup>2</sup> 엄격 = 노출 이후 라운드(u≥1)의 첫 언급만 획득으로 계상. 노출 당회 즉답(u=0)은
-         창 안 반향 가능성이 있어 상한에만 포함한다.</p>
-      <p><sup>3</sup> 영점 제외 = question 문면에서 판독 가능한 팩트 — 상시 노출이라 전달 측정 불능.</p>
-      <p class="audit">잣대: judge.SURVIVING 단일 소스 · judgment_sha256 = ${d.audit.judgment_sha256} ·
-         본 보고서의 모든 수치는 산출물에서 읽기 전용으로 유도되며 뷰어는 아무것도 쓰지 않는다.</p>
+      <p><sup>2</sup> 엄격(u≥1) = 처음 본 <b>다음</b> 라운드부터의 첫 언급만 전달로 센다.
+         들은 그 라운드에 바로 말한 것은 창 안에서 되울린 것일 수 있어 상한에만 넣는다(전문어: u≥1 / u=0).</p>
+      <p><sup>3</sup> 취소선 = 질문 문면만 읽어도 알 수 있는 팩트. 항상 노출된 셈이라 전달을 잴 수 없어 뺀다.</p>
+      <p class="audit">잣대는 채점기 판정 하나(judge.SURVIVING)를 공유한다 · 판정물 지문 = ${d.audit.judgment_sha256} ·
+         이 보고서의 모든 수치는 산출물에서 읽어 온 것이고 뷰어는 아무것도 쓰지 않는다.</p>
     </div>`;
   tipOn(sheet);
 }

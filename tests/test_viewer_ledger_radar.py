@@ -27,9 +27,16 @@ class TestLedgerApi(unittest.TestCase):
         self.d = viewer_app.api_ledger(ISSUE, RUN)
 
     def test_off_run_no_injections(self):
+        """off run 이면 주입 0이고, 그 사실을 note 가 말해야 한다.
+
+        문면 가드 갱신(2026-07-30): 종전엔 "off run" 이라는 영문 표기를 요구했으나 뷰어
+        문면을 일상어로 옮기면서 "장부를 끈 판" 으로 바뀌었다. 지켜야 할 것은 특정 낱말이
+        아니라 **주입이 없었음을 침묵하지 않는 것**이므로 그 뜻을 검사한다(약화 아님).
+        """
         self.assertEqual(self.d["ledger_mode"], "off")
         self.assertEqual(self.d["injections"], [])
-        self.assertIn("off run", self.d["note"])
+        self.assertIn("장부를 끈", self.d["note"])
+        self.assertIn("다시 넣은 적이 없다", self.d["note"])
 
     def test_missing_matches_ledger_module(self):
         """페이지의 소실 목록은 ledger.missing_facts 와 글자 단위 일치(잣대 단일 소스)."""

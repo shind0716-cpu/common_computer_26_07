@@ -16,12 +16,13 @@ FastAPI 어댑터의 실익(정적 생성 대비): run 목록/브라우징 + 라
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, Response
 
 from modules import paths, ledger, survival
 from modules.judge import SURVIVING
@@ -550,12 +551,116 @@ def api_ledger(issue_id: str, run_id: str) -> dict:
     return {"issue_id": issue_id, "run_id": run_id, "ledger_mode": ledger_mode,
             "stages": stages, "ledger_by_stage": ledger_by_stage,
             "injections": injections,
-            "note": ("off run — 주입 없음: 소실 장부는 'v0였다면 재주입됐을 목록'이다."
+            "note": ("이 판은 장부를 끈 판이라 다시 넣은 적이 없다. 아래 목록은 "
+                     "'장부를 켰다면 다시 넣었을 팩트'다."
                      if not injections else
-                     "블록 문구 = 실삽입 원문(injected_text)."
+                     "아래 문구는 실제로 입력에 넣은 원문 그대로다(로그에 남아 있다)."
                      if all(i["block_text_source"] == "injected_text" for i in injections)
-                     else "블록 문구 = 재조립본 — 이 로그는 v0.2 산출이라 실삽입 원문이 "
-                          "없다(injected_text 는 v0.3 확정·구현, 이후 로그부터 실린다).")}
+                     else "아래 문구는 넣었을 내용을 되짚어 만든 것이다 — 이 로그는 옛 판본 "
+                          "산출물이라 실제로 넣은 원문이 저장돼 있지 않다(원문 저장은 v0.3부터).")}
+
+
+@app.get("/api/inputs/{issue_id}/{run_id}")
+def api_inputs(issue_id: str, run_id: str) -> dict:
+    """입력 전문 뷰 — 그 라운드에 그 참가자가 **말하기 전에 본 것 전문**.
+
+    왜 필요한가: 로그는 출력(발화)은 전문 보존하지만 입력은 `prompt_hash` 하나였다. 해시는
+    위조 검증만 되고 복원은 안 되므로, "무엇을 보고 저 말을 했나"는 사람이 확인할 길이
+    없었다. 스키마 v0.3 의 `prompt_assembly`(조립 명세) + `ledger_inject.injected_text`
+    (재주입 원문)가 그 구멍을 메운다 — 이 노드는 그 두 이벤트를 사람이 읽는 화면으로 옮긴다.
+
+    재조립은 **validate.reassemble_prompt() 한 벌만** 쓴다. 뷰어에서 조립 문자열을 다시
+    짜면 엔진이 바뀔 때 조용히 어긋나고, 그 어긋남을 잡는 것이 v0.3 검증 계약의 목적이라
+    자기 계약을 무력화하는 짓이 된다. 재조립분의 sha256 을 `prompt_hash` 와 대조해
+    `hash_match` 로 싣는다 — 화면이 "이 전문이 그때 그것과 같다"를 스스로 증명한다.
+
+    구 로그(v0.2)에는 `prompt_assembly` 가 없다. 그 경우 조립 명세가 없다는 사실을 그대로
+    싣고(status="absent") 재구성을 시도하지 않는다 — 없는 기록을 그럴듯하게 지어내면
+    이 뷰가 메우려던 구멍이 더 깊어진다.
+
+    수첩(`note_text`)이 생기면 같은 자리에 슬롯 하나로 붙는다(계약 SCHEMA_v0.3_NOTE_SLOT).
+    읽기 전용·LLM 0.
+    """
+    dpath = paths.debate(issue_id, run_id)
+    if not dpath.exists():
+        raise HTTPException(status_code=404, detail=f"debate 로그 없음 ({issue_id}/{run_id})")
+    events = [json.loads(ln) for ln in dpath.read_text(encoding="utf-8").splitlines()
+              if ln.strip()]
+    pas = [e for e in events if e.get("event") == "prompt_assembly"]
+    utts = {(e.get("round"), e.get("agent_id")): e
+            for e in events if e.get("event") == "utterance"}
+
+    if not pas:
+        return {
+            "issue_id": issue_id, "run_id": run_id, "status": "absent",
+            "rounds": sorted({r for r, _ in utts}), "items": [],
+            "note": ("이 로그에는 입력 조립 기록(prompt_assembly)이 없습니다 — 스키마 v0.2 "
+                     "시절 산출물입니다. 입력은 prompt_hash(지문)만 남아 있어 복원할 수 "
+                     "없고, 뷰어는 없는 기록을 추측해 채우지 않습니다. v0.3 로그(엔진 "
+                     "2026-07-28 이후 실행)부터 이 화면이 채워집니다."),
+        }
+
+    try:
+        issue_doc = json.loads(paths.issue(issue_id).read_text(encoding="utf-8"))
+        facts_doc = json.loads(paths.facts(issue_id).read_text(encoding="utf-8"))
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=f"형제 산출물 없음: {e}")
+
+    from modules import validate as vd
+    ctx = vd.replay_context(events, issue_doc=issue_doc, facts_doc=facts_doc)
+    injects = {e.get("round"): e for e in events if e.get("event") == "ledger_inject"}
+    fact_by_id = ctx["fact_by_id"]
+
+    items, n_ok, n_fail = [], 0, 0
+    for pa in pas:
+        rd, ag = pa.get("round"), pa.get("agent_id")
+        slots = pa.get("slots") or {}
+        text, err = None, None
+        try:
+            text = vd.reassemble_prompt(pa, ctx, where=f"round {rd} · {ag}")
+        except vd.ReplayError as e:
+            err = str(e)
+        except Exception as e:      # 저자 저장소 부재 등 환경 사유 — 화면에 사유를 싣는다
+            err = f"재조립 불가(환경): {e}"
+        digest = (hashlib.sha256(text.encode("utf-8")).hexdigest() if text is not None else None)
+        stored = pa.get("prompt_hash")
+        match = (digest == stored) if digest else None
+        n_ok += 1 if match else 0
+        n_fail += 1 if match is False else 0
+
+        inj = injects.get((slots.get("inject") or {}).get("round")) if slots.get("inject") else None
+        u = utts.get((rd, ag)) or {}
+        items.append({
+            "round": rd, "agent_id": ag, "template": pa.get("template"),
+            "prompt_ver": pa.get("prompt_ver"), "setting_key": pa.get("setting_key"),
+            # 슬롯 = 이 입력이 무엇으로 조립됐는지의 좌표. 화면은 이 좌표를 사람 말로 옮긴다.
+            "slots": {
+                "assigned_facts": [{"fact_id": f, "text": fact_by_id.get(f, "")}
+                                   for f in (slots.get("assigned_fact_ids") or [])],
+                "others": slots.get("others") or [],
+                "previous": slots.get("previous"),
+                "inject": slots.get("inject"),
+            },
+            "inject_text": (inj or {}).get("injected_text"),
+            "inject_fact_ids": (inj or {}).get("injected_fact_ids") or [],
+            "prompt_hash": stored,
+            "hash_match": match,          # True=그때 보낸 것과 동일 확인 / False=오염 / None=재조립 실패
+            "text": text,
+            "error": err,
+            "response_text": u.get("response_text"),   # 이 입력으로 나온 발화(바로 옆에 놓는다)
+        })
+
+    return {
+        "issue_id": issue_id, "run_id": run_id, "status": "ok",
+        "rounds": sorted({i["round"] for i in items}),
+        "agents": sorted({i["agent_id"] for i in items}),
+        "items": items,
+        "n_verified": n_ok, "n_mismatch": n_fail,
+        "note": ("입력 전문은 조립 명세(prompt_assembly)대로 되살린 것이며, 되살린 전문의 "
+                 "지문이 그때 저장된 지문(prompt_hash)과 같은지 함께 표시합니다 — 같다면 "
+                 "이 화면의 글자가 그때 모델이 실제로 받은 글자입니다. 재주입 블록만은 "
+                 "복원이 아니라 로그에 저장된 원문 그대로입니다."),
+    }
 
 
 @app.get("/api/transmission/{issue_id}/{run_id}")
@@ -630,17 +735,25 @@ def _containment(fact_text: str, utt_text: str) -> float:
     return round(len(fg & _ngrams(utt_text)) / len(fg), 3)
 
 
-# H2 실측(2026-07-29, experiments/instrument_check) — 근접도 구간별 판정기 검출률.
-# 지표가 아니라 **어디를 먼저 볼지 고르는 우선순위**로만 쓴다(§계약: 문자열 대조는 지표 불가).
+# 근접도 임계값 — **어디를 먼저 볼지 고르는 우선순위**로만 쓴다(§계약: 문자열 대조는 지표 불가).
+#
+# [폐기 2026-07-30 · 요한 판단] 구간별 판정기 검출률 표(PROX_BANDS: 0.6→100% … 0→19%)를
+# 화면에서 지웠다. 그 값은 2026-07-29 H2(experiments/instrument_check, 판정기 gpt-5.4-mini)
+# **한 실험의 관측**인데 대조 화면이 **모든 run 옆에** "실측"으로 붙였다. 지금 뷰어에 뜨는
+# run 만 해도 판정기가 갈린다(파일럿 gpt-5.4-mini vs dryrun2·fixture_v03 offline-stub —
+# 부분일치 판정기는 구조적으로 검출률이 100%에 가깝다). 조건이 다른 곡선을 그 run 의
+# 성질처럼 보이게 하는 표시였다. 값이 필요하면 그 실험의 산출물을 직접 읽을 것.
+#
+# 아래 두 임계값은 남긴다 — 표시가 아니라 **플래그 계산**에 쓰이고, 화면이 "지표가 아니라
+# 시선 유도"임을 문면으로 밝힌다. 출처는 같은 H2 실험이므로 다른 조건에서는 경계가 다를 수
+# 있다(그래서 이 값으로 run 간 비교를 하지 않는다).
 #
 # ⚠ 조건 주의 — 장부(재주입)를 켠 팔과 끈 팔의 근접도를 그냥 비교하면 안 된다.
 # 장부는 팩트 원문을 그대로 다시 넣으므로 그 뒤 발화가 원문에 가까워진다(H3 실측:
 # 주입 경험 팩트 0.769 vs 미주입 0.504). 닳아가던 것이 리셋되는 것이라, 팔 간 차이의
-# 일부가 현상이 아니라 주입의 산물이다. 다른 설정 축(창 범위·수첩 등)의 적용 가능성은
-# 조건이 실제로 생길 때 그 자리에서 판단한다 — 미리 표로 만들어봐야 돌려보면 달라진다.
-PROX_BANDS = [(0.6, "100%"), (0.4, "82%"), (0.2, "40%"), (0.0, "19%")]
+# 일부가 현상이 아니라 주입의 산물이다.
 PROX_SUSPECT = 0.4   # 이 이상인데 계상 안 됐으면 눈으로 볼 값어치가 있다
-PROX_GRAY = (0.3, 0.5)  # H2 전이 구간 — 검출이 갈리기 시작하는 곳
+PROX_GRAY = (0.3, 0.5)  # 검출이 갈리기 시작하는 구간(같은 H2 실험 관측)
 
 
 @app.get("/api/audit/{issue_id}/{run_id}")
@@ -655,7 +768,8 @@ def api_audit(issue_id: str, run_id: str) -> dict:
 
     근접도(문자 3-gram containment)는 **판정이 아니라 시선 유도**다. 계약(SCHEMA_v0.3_NOTE_SLOT
     §4)이 문자열 대조를 지표로 쓰는 것을 기각했으므로 여기서도 지표가 아니며, "먼저 볼 셀"을
-    고르는 데만 쓴다. 어휘만 바꿔도 0.641로 떨어지므로 낮은 값이 부재의 증거가 되지 않는다.
+    고르는 데만 쓴다. 어휘만 바꿔도 크게 떨어지므로(H2 실측 0.641 — 2026-07-29
+    experiments/instrument_check, 그 조건의 값이다) 낮은 값이 부재의 증거가 되지 않는다.
 
     읽기 전용·LLM 0 (뷰어 경계 원칙). 산출물은 아무것도 쓰지 않는다.
     """
@@ -773,17 +887,31 @@ def api_audit(issue_id: str, run_id: str) -> dict:
         out_facts.append({"fact_id": fid, "text": ftext,
                           "critical": bool(f.get("critical")), "cells": cells})
 
+    # 이 판의 소실률(FAR) — 판정물 summary 에 이미 있는 값을 그대로 싣는다(재계산 금지).
+    # 왜 대조 화면에 붙이나: 격자는 셀 하나하나만 보여줘서, 화면만 보면 "이 판이 전체로
+    # 얼마나 사라졌나"를 지나치게 된다(실제로 7/30 파일럿 관측에서 FAR 확인을 건너뛰었다).
+    # 잣대는 격자의 ●/○ 와 같은 judge.SURVIVING 단일 소스라 두 수치가 어긋날 수 없다.
+    summ = judgment.get("summary") or {}
+    far = {
+        "by_stage": summ.get("far_by_stage"),
+        "final": summ.get("far_system"),
+        "final_critical": summ.get("far_critical"),
+        "note": ("격자의 ○ 와 같은 잣대(judge.SURVIVING)로 센 비율이다. 단 전체 FAR 은 "
+                 "아직 등장할 차례가 안 온 팩트까지 소실로 세는 구간이 있어(survival.py) "
+                 "'새로 사라진 비율'(조건부 hazard)과 같이 읽어야 한다."),
+    }
+
     return {
         "issue_id": issue_id, "run_id": run_id, "stages": stages,
         "judge": judgment.get("judge"),
         "utterances": {str(k): v for k, v in sorted(utts_by_stage.items())},
         "facts": out_facts,
         "access": access_meta,
+        "far": far,
         "n_flagged_cells": n_flagged,
-        "bands": [{"min": lo, "detect": d} for lo, d in PROX_BANDS],
-        "note": ("근접도는 지표가 아니라 시선 유도다 — 어휘만 바꿔도 0.641로 떨어지므로 "
-                 "낮은 값이 '안 말했다'의 증거가 되지 않는다(H2 실측). 표시는 어디를 먼저 "
-                 "읽을지 고르는 용도이며, 판정은 사람이 원문을 읽고 한다."),
+        "note": ("근접도는 지표가 아니라 어디를 먼저 볼지 고르는 표시다. 같은 뜻을 다른 말로 "
+                 "바꿔 쓰기만 해도 크게 떨어지므로, 낮은 값이 '안 말했다'의 증거가 되지는 "
+                 "않는다. 판정은 사람이 발화 원문을 읽고 한다."),
     }
 
 
@@ -810,3 +938,11 @@ def audit_page() -> str:
 @app.get("/", response_class=HTMLResponse)
 def index() -> str:
     return (HERE / "index.html").read_text(encoding="utf-8")
+
+
+# [폐기 2026-07-30 · 요한 판단] /terms.js 용어층 — 고치기보다 지웠다.
+# 사유: run 과 무관한 정적 층 하나로 5개 화면을 덮으려다 **조건 의존 수치를 조건 비의존
+# 정의처럼** 실었다(prox 0.641 · gray 0.3~0.5 · resurgence "실측 5건"). 화면은 run 마다
+# 판정기·조건이 다른데 문면은 하나였다. 출처를 값과 함께 내려보내고 조건이 다르면 접는
+# 기계를 새로 짓는 대안은 기각 — 틀린 표시를 관리하는 장치가 늘 뿐이고 그 장치도 틀린다.
+# 화면 문면은 각 면이 자기 낱말을 직접 쓴다(중복을 감수하고 조건 혼입을 막는 쪽).

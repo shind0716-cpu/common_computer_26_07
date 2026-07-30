@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>팩트 전기 — 프로토타입</title>
+<title>전기 — 팩트 하나가 라운드마다 겪은 일</title>
 <style>
   :root { --bg:#101418; --panel:#1a2027; --line:#2a333d; --fg:#dbe4ec; --dim:#8598a8;
           --ok:#3fb97f; --dead:#e06565; --inject:#e0a53f; --ledger:#7fb0e0; }
@@ -64,9 +64,9 @@
 </head>
 <body>
 <header>
-  <h1>팩트 전기 <span class="proto">— 프로토타입 (읽기 전용 · 상태가 아니라 사건)</span></h1>
-  <nav><a href="/biography" style="color:var(--fg);margin-right:10px;text-decoration:none;font-size:13px">전기</a><a href="/ledger" style="color:var(--dim);margin-right:10px;text-decoration:none;font-size:13px">장부</a><a href="/transmission" style="color:var(--dim);margin-right:10px;text-decoration:none;font-size:13px">레이더</a><a href="/audit" style="color:var(--dim);text-decoration:none;font-size:13px">대조</a></nav>
-  <select id="runsel"><option>run 로딩…</option></select>
+  <h1>전기 <span class="proto">— 팩트 하나가 라운드마다 겪은 일 (읽기 전용)</span></h1>
+  <nav id="nav" style="font-size:13px"></nav>
+  <select id="runsel"><option>실행 목록 불러오는 중…</option></select>
   <span id="runinfo" class="proto"></span>
 </header>
 <main>
@@ -74,26 +74,30 @@
     <div id="conditions"></div>
     <div id="factlist"></div>
   </div>
-  <div id="detail"><p style="color:var(--dim)">run과 팩트를 선택하세요.</p></div>
+  <div id="detail"><p style="color:var(--dim)">왼쪽에서 팩트를 하나 고르세요.</p></div>
 </main>
 <footer id="note"></footer>
 <script>
+// 사건 이름표 — 이 화면의 세로 줄은 상태가 아니라 "그 라운드에 무슨 일이 있었나"다.
 const EV_LABEL = {
-  first_mention: ["첫 언급","b-ok"], alive: ["생존 지속","b-ok"],
-  died: ["사망","b-dead"], missing: ["침묵","b-dead"],
-  revived_ledger: ["부활 — 장부 경로","b-led"], revived_organic: ["부활 — 자생","b-ok"],
+  first_mention: ["처음 말해짐","b-ok"], alive: ["계속 살아 있음","b-ok"],
+  died: ["여기서 사라짐","b-dead"], missing: ["계속 안 나옴","b-dead"],
+  revived_ledger: ["다시 넣어줘서 되살아남","b-led"], revived_organic: ["저절로 되살아남","b-ok"],
 };
+
 let BIO = null;
 
 async function loadRuns() {
+  document.getElementById("nav").innerHTML = `<a class="here" href="/biography">전기</a><a href="/ledger">장부</a><a href="/transmission">레이더</a><a href="/audit">대조</a>`;
   const res = await fetch("/api/runs"); const data = await res.json();
   const sel = document.getElementById("runsel"); sel.innerHTML = "";
   const eligible = data.runs.filter(r => r.parts && r.parts.judgment === "present");
-  if (!eligible.length) { sel.innerHTML = "<option>판정 완료 run 없음</option>"; return; }
+  if (!eligible.length) { sel.innerHTML = "<option>채점까지 끝난 실행 없음</option>"; return; }
   for (const r of eligible) {
     const o = document.createElement("option");
     o.value = r.issue_id + "/" + r.run_id;
-    o.textContent = `${r.issue_id} / ${r.run_id}` + (r.far_system != null ? ` (FAR ${r.far_system})` : "");
+    o.textContent = `${r.issue_id} / ${r.run_id}`
+      + (r.far_system != null ? ` — 사라진 팩트 ${Math.round(r.far_system * 100)}%` : "");
     sel.appendChild(o);
   }
   sel.onchange = () => loadBio(sel.value);
@@ -104,8 +108,9 @@ async function loadBio(key) {
   const [issue, run] = key.split("/");
   const res = await fetch(`/api/biography/${issue}/${run}`);
   BIO = await res.json();
-  document.getElementById("runinfo").textContent =
-    `ledger_mode=${BIO.ledger_mode} · stage ${BIO.stages.length}개`;
+  document.getElementById("runinfo").innerHTML =
+    (BIO.ledger_mode === "off" ? "ledger_mode=off" : BIO.ledger_mode === "v0" ? "ledger_mode=v0"
+      : `장부 ${BIO.ledger_mode}`) + ` · 라운드 ${BIO.stages.length}바퀴`;
   document.getElementById("note").textContent = BIO.note;
   renderConditions();
   renderList("");
@@ -115,11 +120,11 @@ function renderConditions() {
   const c = BIO.conditions || {};
   const j = c.judge || {};
   const el = document.getElementById("conditions");
-  el.innerHTML = `<h2>실험 조건</h2><table>
+  el.innerHTML = `<h2>이 판의 조건</h2><table>
     <tr><td>seed</td><td>${c.seed ?? "—"}</td></tr>
-    <tr><td>에이전트</td><td>${c.n_agents ?? "—"} · 라운드 ${c.n_rounds ?? "—"}</td></tr>
+    <tr><td>에이전트</td><td>${c.n_agents ?? "—"}명 · 라운드 ${c.n_rounds ?? "—"}바퀴</td></tr>
     <tr><td>ledger</td><td>${c.ledger_mode ?? "—"}</td></tr>
-    <tr><td>judge</td><td>${j.model ?? "—"} · n=${j.n_votes ?? "—"} · ${j.prompt_ver ?? ""}</td></tr>
+    <tr><td>judge</td><td>${j.model ?? "—"} · ${j.n_votes ?? "?"}번 채점 후 다수결 ${j.prompt_ver ?? ""}</td></tr>
     <tr><td>FAR</td><td>${c.far_system ?? "—"}</td></tr>
   </table>
   <select id="pfilter"><option value="">관점 전체</option>`
@@ -136,12 +141,13 @@ function renderList(persp) {
     const d = document.createElement("div");
     d.className = "factrow"; d.dataset.idx = i;
     const col = f.summary.final_surviving ? "var(--ok)" : "var(--dead)";
-    const rev = (f.summary.n_revived_ledger ? ` · 장부부활 ${f.summary.n_revived_ledger}` : "")
-              + (f.summary.n_revived_organic ? ` · 자생부활 ${f.summary.n_revived_organic}` : "");
+    const rev = (f.summary.n_revived_ledger ? ` · 다시 넣어서 되살아남 ${f.summary.n_revived_ledger}번` : "")
+              + (f.summary.n_revived_organic ? ` · 저절로 되살아남 ${f.summary.n_revived_organic}번` : "");
     d.innerHTML = `<span class="dot" style="background:${col}"></span>`
       + (f.critical ? "★ " : "") + f.fact_id
       + `<div class="rowmeta">${f.text.slice(0, 46)}…<br>`
-      + (f.summary.first_missing_stage != null ? `첫 소실 s${f.summary.first_missing_stage}` : "무소실")
+      + (f.summary.first_missing_stage != null
+          ? `라운드 ${f.summary.first_missing_stage}에서 처음 사라짐` : "한 번도 안 사라짐")
       + rev + `<br>` + f.perspectives.map(p => `<span class="persp">${p}</span>`).join("")
       + `</div>`;
     d.onclick = () => { document.querySelectorAll(".factrow").forEach(x => x.classList.remove("sel"));
@@ -156,8 +162,8 @@ function renderList(persp) {
 function renderFact(i) {
   const f = BIO.facts[i]; const el = document.getElementById("detail");
   let html = `<div class="facthead"><b>${f.critical ? "★ " : ""}${f.fact_id}</b> — ${f.text}
-    <div style="margin-top:6px">` + f.tags.map(t => `<span class="tag">${t}</span>`).join("")
-    + `<span class="tag">배정: ${f.assigned_to.join(", ") || "?"}</span>`
+    <div style="margin-top:6px">` + f.tags.map(tg => `<span class="tag">${tg}</span>`).join("")
+    + `<span class="tag">처음 이 팩트를 받은 사람: ${f.assigned_to.join(", ") || "?"}</span>`
     + f.perspectives.map(p => `<span class="persp">${p}</span>`).join("")
     + `</div></div><div class="chain">`;
   f.chain.forEach((c, k) => {
@@ -165,11 +171,11 @@ function renderFact(i) {
     const [lab, cls] = EV_LABEL[c.event] || [c.event, ""];
     html += `<div class="stagecard"><div class="rail"><div class="node ${nodeCls}"></div>`
       + (k < f.chain.length - 1 ? `<div class="railline"></div>` : "") + `</div><div class="card">
-      <div class="badges"><span class="badge">stage ${c.stage}</span>
+      <div class="badges"><span class="badge">라운드 ${c.stage}</span>
       <span class="badge ${c.surviving ? "b-ok" : "b-dead"}">${c.status}</span>
       <span class="badge ${cls}">${lab}</span>`
-      + (c.injected ? `<span class="badge b-inj">이 라운드에 재주입됨</span>` : "")
-      + (c.votes.n ? `<span class="badge ${c.votes.unanimous === false ? "b-warn" : ""}">표 ${c.votes.split}${c.votes.unanimous === false ? " 분열" : ""}</span>` : "")
+      + (c.injected ? `<span class="badge b-inj">이 라운드에 다시 넣어줌</span>` : "")
+      + (c.votes.n ? `<span class="badge ${c.votes.unanimous === false ? "b-warn" : ""}">표 ${c.votes.split}${c.votes.unanimous === false ? " 표 갈림" : ""}</span>` : "")
       + (c.votes.parse_fail ? `<span class="badge b-warn">parse_fail ${c.votes.parse_fail}</span>` : "")
       + `</div>`;
     if (c.mentions.length) {

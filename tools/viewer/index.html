@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>팩트 생존 뷰어 — 파이프라인</title>
+<title>팩트 생존 뷰어 — 지도</title>
 <style>
   .viz-root{
     color-scheme:light;
@@ -112,18 +112,19 @@
 <body>
 <div class="viz-root">
   <div class="bar">
-    <h1>팩트 생존 뷰어 <small>파이프라인 지도</small></h1>
+    <h1>팩트 생존 뷰어 <small>지도 — 어느 단계에서 무엇이 나오나</small></h1>
+    <nav id="nav" style="font-size:13px"></nav>
     <select id="runsel"></select>
-    <button class="pill" id="recbtn" title="이 run의 재현성 신원·건강 판정">run 기록</button>
-    <select id="cmpsel" title="쌍 비교 대상 — 선택하면 현재 run(A)과 비교(B)"></select>
+    <button class="pill" id="recbtn" title="이 실행이 어떤 조건이었고 그대로 다시 돌릴 수 있는지">실행 기록</button>
+    <select id="cmpsel" title="두 실행을 나란히 비교 — 고르면 지금 실행(A)과 비교(B)"></select>
     <div class="spacer"></div>
-    <button class="toggle" id="themebtn" title="라이트/다크">◐</button>
+    <button class="toggle" id="themebtn" title="밝게/어둡게">◐</button>
   </div>
   <div class="legend">
     <span class="lg"><span class="sw" style="border-color:var(--measure);background:color-mix(in srgb,var(--measure) 14%,var(--surface))"></span>측정 계열</span>
     <span class="lg"><span class="sw" style="border-color:var(--intervene);border-style:dashed;background:color-mix(in srgb,var(--intervene) 10%,var(--surface))"></span>개입 계열 — 끄면 대조군, 켜면 실험군</span>
     <span class="lg"><span class="sw" style="border-color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,var(--surface))"></span>토론 허브</span>
-    <span class="muted">엣지 라벨 = 파일 계약 · 노드 클릭 = 그 단계 데이터</span>
+    <span class="muted">화살표 옆 글자 = 그 단계가 남기는 파일 · 상자를 누르면 그 단계 데이터가 오른쪽에 열립니다</span>
   </div>
   <main>
     <div class="diagram"><svg id="svg" viewBox="0 0 440 940" xmlns="http://www.w3.org/2000/svg"></svg></div>
@@ -134,9 +135,9 @@
 <script>
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const NS="http://www.w3.org/2000/svg";
-const S={accepted:{g:"인",label:"인정 · 생존"},mentioned:{g:"언",label:"언급 · 생존"},
-  unmentioned:{g:"미",label:"미언급 · 소실"},ignored:{g:"무",label:"무시 · 소실"},
-  refuted:{g:"반",label:"반박 · 소실"},absent:{g:"·",label:"기록 없음"}};
+const S={accepted:{g:"인",label:"받아들여짐 · 살아 있음"},mentioned:{g:"언",label:"말해짐 · 살아 있음"},
+  unmentioned:{g:"미",label:"아무도 안 말함 · 사라짐"},ignored:{g:"무",label:"말했지만 묻힘 · 사라짐"},
+  refuted:{g:"반",label:"반박됨 · 사라짐"},absent:{g:"·",label:"기록 없음"}};
 
 let CUR=null;          // {issue_id, run_id}
 let RUNS={};           // "issue|run" -> run 요약(run_state·parts 포함)
@@ -152,14 +153,14 @@ const defaultNodeFor=key=>(RUNS[key]&&RUNS[key].run_state==="partial")?"debate":
 
 // 노드 정의: kind = measure|intervene|hub|neutral
 const NODES=[
-  {id:"loader",  label:"데이터 로더", sub:"issue → 본문",      x:40, y:20,  kind:"neutral"},
-  {id:"extract", label:"팩트 추출기", sub:"원자 팩트 + prior", x:40, y:130, kind:"measure"},
-  {id:"assign",  label:"배분기",     sub:"에이전트별 배분",   x:40, y:240, kind:"neutral"},
-  {id:"debate",  label:"토론 엔진",   sub:"8명 × N라운드",     x:40, y:360, kind:"hub"},
-  {id:"judge",   label:"채점기",     sub:"라운드별 생존 판정", x:250,y:360, kind:"measure"},
-  {id:"ledger",  label:"장부 (스위치)",sub:"소실분 재주입 on/off",x:250,y:470, kind:"intervene"},
-  {id:"gate",    label:"합의 전 게이트",sub:"합의문 ↔ 장부 대조",x:40, y:600, kind:"intervene"},
-  {id:"analysis",label:"분석 · 리포트",sub:"FAR·hazard·fact-clock",x:40,y:710, kind:"neutral"},
+  {id:"loader",  label:"이슈 불러오기", sub:"토론할 글 한 편",    x:40, y:20,  kind:"neutral"},
+  {id:"extract", label:"팩트 뽑기",    sub:"잘게 쪼갠 사실 목록", x:40, y:130, kind:"measure"},
+  {id:"assign",  label:"나눠주기",     sub:"참가자별로 팩트 배분", x:40, y:240, kind:"neutral"},
+  {id:"debate",  label:"토론",         sub:"8명 × 여러 라운드",   x:40, y:360, kind:"hub"},
+  {id:"judge",   label:"채점기",       sub:"라운드마다 남았나 세기", x:250,y:360, kind:"measure"},
+  {id:"ledger",  label:"장부 (스위치)",sub:"사라진 것 다시 넣기 켬/끔",x:250,y:470, kind:"intervene"},
+  {id:"gate",    label:"합의문 점검",  sub:"합의문에 빠진 팩트 대조",x:40, y:600, kind:"intervene"},
+  {id:"analysis",label:"수치 뽑기",    sub:"사라진 비율 · 새로 사라진 비율",x:40,y:710, kind:"neutral"},
 ];
 const NW=180, NH=64;
 const byId=Object.fromEntries(NODES.map(n=>[n.id,n]));
@@ -186,7 +187,7 @@ function drawDiagram(){
   m.appendChild(mk("path",{d:"M0,0 L6,3 L0,6 Z",fill:"var(--baseline)"})); defs.appendChild(m); svg.appendChild(defs);
   // 결합 루프 영역 (debate·judge·ledger)
   const box=mk("rect",{x:28,y:348,width:410,height:200,rx:12,class:"loopbox"}); svg.appendChild(box);
-  svg.appendChild(Object.assign(mk("text",{x:36,y:344,class:"looptext"}),{textContent:"실행 시점 결합 — 유일 결합점 (장부 on/off = 실험/대조)"}));
+  svg.appendChild(Object.assign(mk("text",{x:36,y:344,class:"looptext"}),{textContent:"이 안에서만 돌아간다 — 장부를 켜면 실험군, 끄면 대조군"}));
   // 세로 스파인 엣지
   const cx=n=>n.x+NW/2, cy=n=>n.y+NH/2;
   EDGES.forEach(([a,b,lbl])=>{
@@ -235,7 +236,7 @@ function H(title,sub){return `<h2>${esc(title)}</h2><div class="sub">${esc(sub||
 
 function renderLoader(d){
   const sm=d.source_meta||{};
-  document.getElementById("panel").innerHTML=H("데이터 로더 · issue",`${esc(d.issue_id)} · source ${esc(d.source)}`)+
+  document.getElementById("panel").innerHTML=H("이슈 불러오기 — 토론할 글",`${esc(d.issue_id)} · source ${esc(d.source)}`)+
     `<div class="callout"><b>${esc(d.title)}</b></div>`+
     `<div class="row"><div class="head">본문</div>${esc(d.body)}</div>`+
     `<div class="row"><div class="head">source_meta</div>`+
@@ -243,19 +244,19 @@ function renderLoader(d){
 }
 function renderFacts(d){
   const fs=d.facts||[];
-  document.getElementById("panel").innerHTML=H("팩트 추출기 · facts",`${fs.length}개 · critical ${fs.filter(f=>f.critical).length} · extractor ${esc((d.extractor||{}).model||"?")}`)+
-    fs.map(f=>{const p=(f.prior||{}).score;return `<div class="row"><div class="head">${esc(f.fact_id.replace(/^fact_/,""))} ${f.critical?'<span class="star">★</span>':""} <span class="tag">${(f.tags||[]).map(t=>"#"+esc(t)).join(" ")}</span></div>`+
+  document.getElementById("panel").innerHTML=H("팩트 뽑기 — 잘게 쪼갠 사실",`${fs.length}개 · critical ${fs.filter(f=>f.critical).length} · extractor ${esc((d.extractor||{}).model||"?")}`)+
+    fs.map(f=>{const p=(f.prior||{}).score;return `<div class="row"><div class="head">${esc(f.fact_id.replace(/^fact_/,""))} ${f.critical?'<span class="star">★</span>':""} <span class="tag">${(f.tags||[]).map(tg=>"#"+esc(tg)).join(" ")}</span></div>`+
       esc(f.text)+ (p!=null?`<div class="priortrack"><div class="prior" style="width:${Math.round(p*100)}%"></div></div><div class="muted" style="margin-top:2px">prior ${p}</div>`:"")+`</div>`;}).join("");
 }
 function renderAssign(d){
   const ag=d.agents||[];
-  document.getElementById("panel").innerHTML=H("배분기 · assignment",`seed ${esc(String(d.seed))} · ${ag.length} 에이전트 (비대칭 배분)`)+
+  document.getElementById("panel").innerHTML=H("나눠주기 — 누가 어떤 팩트를 갖고 시작하나",`seed ${esc(String(d.seed))} · ${ag.length} 에이전트 (비대칭 배분)`)+
     `<div class="callout muted">주의: dryrun 발화 로그의 perspective 라벨이 placeholder("관점A(TODO)")인 경우가 있어, 여기 assignment 값을 기준으로 표시합니다.</div>`+
     ag.map(a=>`<div class="row"><div class="head">${esc(a.agent_id)} · ${esc(a.perspective)} · <b>${esc(a.stance)}</b></div>`+
       `배분 팩트: ${(a.assigned_fact_ids||[]).map(x=>esc(x.replace(/^fact_/,""))).join(", ")}</div>`).join("");
 }
 function renderDebate(vm){
-  const stages=vm.stages||[];let html=H("토론 엔진 · 발화",`${esc(vm.meta.run_id)} · ledger ${esc(vm.meta.ledger_mode)} · ${stages.length} 라운드`);
+  const stages=vm.stages||[];let html=H("토론 — 발화 원문",`${esc(vm.meta.run_id)} · ledger ${esc(vm.meta.ledger_mode)} · ${stages.length} 라운드`);
   stages.forEach(n=>{const us=vm.utterances[String(n)]||[];
     html+=`<div class="row"><div class="head">R${n} · 발화 ${us.length}건</div>`+
       us.map(u=>`<div class="utt"><div class="who">${esc(u.agent_id)}${u.perspective?" · "+esc(u.perspective):""}${u.stance?" · "+esc(u.stance):""}</div>${esc(u.text)}</div>`).join("")+`</div>`;});
@@ -263,9 +264,9 @@ function renderDebate(vm){
 }
 function renderJudge(vm){
   const p=document.getElementById("panel");
-  p.innerHTML=H("채점기 · 생존 매트릭스",`${esc(vm.meta.run_id)} · judge ${esc((vm.meta.judge||{}).model||"?")} · 팩트 ${vm.meta.n_facts}`);
+  p.innerHTML=H("채점기 — 라운드마다 남았나 센 표",`${esc(vm.meta.run_id)} · judge ${esc((vm.meta.judge||{}).model||"?")} · 팩트 ${vm.meta.n_facts}`);
   if(vm.run_state==="partial"||(vm.parts&&vm.parts.judgment==="absent")){
-    p.innerHTML+=`<div class="callout warn"><b>채점 전 (judgment 없음)</b> — 아직 생존 매트릭스가 없습니다. 토론 엔진 노드에서 발화 원문을 관측하세요.<br><span class="muted">run_state: ${esc(vm.run_state||"?")} · parts.judgment: ${esc((vm.parts||{}).judgment||"?")}</span></div>`;
+    p.innerHTML+=`<div class="callout warn"><b>아직 채점 안 됨</b> — 남았나 센 표가 없습니다. 왼쪽 '토론' 상자를 누르면 발화 원문은 볼 수 있습니다.<br><span class="muted">run_state: ${esc(vm.run_state||"?")} · parts.judgment: ${esc((vm.parts||{}).judgment||"?")}</span></div>`;
     return;
   }
   const inj={}; (vm.injects||[]).forEach(i=>inj[String(i.round)]=i.fact_ids);
@@ -300,27 +301,30 @@ function bar(lbl,val,cls,max){const w=max?Math.min(100,Math.round((val/max)*100)
   return `<div class="metric"><div class="lbl"><span>${esc(lbl)}</span><b>${val==null?"—":val}</b></div><div class="track"><div class="fill ${cls||''}" style="width:${val==null?0:w}%"></div></div></div>`;}
 function renderAnalysis(d){
   const rep=d.report||{}, fc=d.fact_clock||{};
-  let html=H("분석 · 리포트 · survival",`${esc(d.issue_id)} / ${esc(d.run_id)} · surviving=${(fc.surviving_set||[]).join("+")}`);
-  // FAR by stage
-  html+=`<div class="callout"><div class="head" style="font-size:11px;color:var(--ink2);margin-bottom:6px;font-weight:600">전체 FAR (단계별)</div>`+
-    (rep.far_by_stage||[]).map(s=>bar(`R${s.stage}`, s.far, "")).join("")+`</div>`;
-  // 조건부 hazard (transitions)
-  html+=`<div class="callout"><div class="head" style="font-size:11px;color:var(--ink2);margin-bottom:6px;font-weight:600">조건부 소실률 (hazard) — 생존자 중 다음 단계 이탈</div>`+
-    (rep.transitions||[]).map(t=>bar(`R${t.from_stage}→R${t.to_stage} (모수 ${t.surviving_denom}, 소실 ${t.lost})`, t.cond_attrition, "hz")).join("")+
-    `<div class="muted" style="margin-top:4px">누적 도입후 최종생존 소실: ${(rep.post_intro_final_loss||{}).rate}</div></div>`;
+  let html=H("수치 뽑기 — 얼마나 사라졌나",`${esc(d.issue_id)} / ${esc(d.run_id)} · 살아 있다고 세는 채점 결과: ${(fc.surviving_set||[]).join(", ")}`);
+  // 사라진 팩트 비율 (라운드별)
+  html+=`<div class="callout"><div class="head" style="font-size:11px;color:var(--ink2);margin-bottom:6px;font-weight:600">FAR — 라운드별</div>`+
+    (rep.far_by_stage||[]).map(s=>bar(`라운드 ${s.stage}`, s.far, "")).join("")+
+    `<div class="muted" style="margin-top:4px">전체 FAR 은 아직 등장할 차례가 안 온 팩트까지 소실로 세는 구간이 있어 조건부 hazard 와 같이 읽는다.</div></div>`;
+  // 새로 사라진 비율 ("조건부 hazard")
+  html+=`<div class="callout"><div class="head" style="font-size:11px;color:var(--ink2);margin-bottom:6px;font-weight:600">조건부 hazard</div>`+
+    (rep.transitions||[]).map(x=>bar(`라운드 ${x.from_stage}→${x.to_stage} (살아 있던 ${x.surviving_denom}개 중 ${x.lost}개 사라짐)`, x.cond_attrition, "hz")).join("")+
+    `<div class="muted" style="margin-top:4px">등장한 뒤로 끝까지 사라진 비율: ${(rep.post_intro_final_loss||{}).rate}</div></div>`;
   // fact-clock KM
   const w0=(fc.by_w||{})[0]||{}, w1=(fc.by_w||{})[1]||{};
-  const km=(o)=> (o.survival||[]).map(s=>`R${s.age}:${s.S}`).join("  ");
-  html+=`<div class="callout"><div class="head" style="font-size:11px;color:var(--ink2);margin-bottom:6px;font-weight:600">fact-clock KM 생존 (도입 정렬)</div>`+
-    `<div class="muted">w=0: ${esc(km(w0))} · 사망 ${w0.n_deaths_total}</div>`+
-    `<div class="muted">w=1: ${esc(km(w1))} · 사망 ${w1.n_deaths_total}</div>`;
+  const km=(o)=> (o.survival||[]).map(s=>`등장 후 ${s.age}바퀴: ${s.S}`).join("  ");
+  html+=`<div class="callout"><div class="head" style="font-size:11px;color:var(--ink2);margin-bottom:6px;font-weight:600">fact-clock KM 생존</div>`+
+    `<div class="muted">한 번도 안 봐줄 때(${w=0}): ${esc(km(w0))} · 사라진 팩트 ${w0.n_deaths_total}개</div>`+
+    `<div class="muted">한 번 쉬는 건 봐줄 때(${w=1}): ${esc(km(w1))} · 사라진 팩트 ${w1.n_deaths_total}개</div>`+
+    `<div class="muted" style="margin-top:4px">w=0 은 한 라운드만 안 나와도 소실로 세고, w=1 은 한 번 쉬어도 다음에 다시 나오면 생존으로 센다.</div>`;
   const wd=fc.w_divergence;
-  if(wd)html+=`<div style="margin-top:8px" class="muted">w=0→1 분해 — robust 사망 <b>${wd.counts.death_robust}</b> · 재등장(churn) <b>${wd.counts.churn_reappearance}</b> · 관측창부족 아티팩트 <b>${wd.counts.artifact_terminal_silence}</b></div>`;
+  if(wd)html+=`<div style="margin-top:8px" class="muted">두 셈의 차이가 어디서 왔나 — robust 사망 <b>${wd.counts.death_robust}</b> ·
+    재등장(churn) <b>${wd.counts.churn_reappearance}</b> · 관측창 부족 <b>${wd.counts.artifact_terminal_silence}</b></div>`;
   html+=`</div>`;
   document.getElementById("panel").innerHTML=html;
 }
 
-// ---------- run 기록 (provenance + 건강 판정) — 베이스라인 자격을 화면에서 판별 ----------
+// ---------- 실행 기록 (조건 신원 + 건강 판정) — 기준선으로 쓸 수 있는 판인지 화면에서 판별 ----------
 async function renderProvPanel(){
   markSel(null);
   const p=document.getElementById("panel");
@@ -330,15 +334,15 @@ async function renderProvPanel(){
     const pv=d.provenance,h=d.health,jj=pv.judge||{};
     const jline=["model","temperature","n_votes","prompt_ver"].filter(k=>jj[k]!=null)
       .map(k=>`${k} <b>${esc(String(jj[k]))}</b>`).join(" · ")||"—";
-    p.innerHTML=H("run 기록 · 재현성 신원",`${esc(d.issue_id)} / ${esc(d.run_id)}`)+
+    p.innerHTML=H("실행 기록 — 그대로 다시 돌릴 수 있나",`${esc(d.issue_id)} / ${esc(d.run_id)}`)+
       (h.baseline_eligible
-        ?`<div class="callout ok"><b>베이스라인 자격: 통과</b> — 공백 발화 0 · 파싱실패 0 · 채점 완료</div>`
-        :`<div class="callout warn"><b>베이스라인 자격: 미충족</b><br>${h.issues.map(esc).join("<br>")}</div>`)+
-      `<div class="row"><div class="head">실행 신원</div>seed <b>${esc(String(pv.seed))}</b> · 에이전트 ${esc(String(pv.n_agents))} · 라운드 ${pv.n_rounds} · ledger <b>${esc(String(pv.ledger_mode))}</b> · stage_type ${esc(String(pv.stage_type))}</div>`+
-      `<div class="row"><div class="head">judge 사양</div>${jline}`+
-      (pv.judge_health?`<div class="muted" style="margin-top:3px">judge_health: 호출 ${pv.judge_health.n_calls} · 파싱실패 ${pv.judge_health.n_parse_fail}</div>`:"")+`</div>`+
-      `<div class="row"><div class="head">debate 관측</div>발화 ${h.n_utterances}건 (공백 ${h.blank_utterances}) · 재주입 ${h.n_injects}건</div>`+
-      `<div class="row"><div class="head">생성 시각 (judgment)</div>${esc(String(pv.created_at))}</div>`;
+        ?`<div class="callout ok"><b>베이스라인 자격: 통과</b> — 빈 발화 0 · 채점기 답을 못 읽은 표 0 · 채점 완료</div>`
+        :`<div class="callout warn"><b>베이스라인 자격: 아직 아님</b><br>${h.issues.map(esc).join("<br>")}</div>`)+
+      `<div class="row"><div class="head">이 판의 조건</div>seed <b>${esc(String(pv.seed))}</b> · 참가자 ${esc(String(pv.n_agents))}명 · 라운드 ${pv.n_rounds}바퀴 · ledger <b>${esc(String(pv.ledger_mode))}</b> · 라운드 세는 방식 ${esc(String(pv.stage_type))}</div>`+
+      `<div class="row"><div class="head">judge 사양 (임의 변경 금지)</div>${jline}`+
+      (pv.judge_health?`<div class="muted" style="margin-top:3px">채점기 호출 ${pv.judge_health.n_calls}번 · 답을 못 읽은 표 ${pv.judge_health.n_parse_fail}개</div>`:"")+`</div>`+
+      `<div class="row"><div class="head">토론에서 관측된 것</div>발화 ${h.n_utterances}건 (그중 빈 발화 ${h.blank_utterances}) · 다시 넣어준 횟수 ${h.n_injects}</div>`+
+      `<div class="row"><div class="head">채점물이 만들어진 시각</div>${esc(String(pv.created_at))}</div>`;
   }catch(e){p.innerHTML=`<div class="callout warn">기록 없음: ${esc(e.message)}</div>`;}
 }
 
@@ -369,7 +373,7 @@ async function renderCompare(aKey,bKey){
   push("①","에이전트 수",pa.provenance.n_agents,pb.provenance.n_agents);
   const axes=new Set(diffs.map(d=>d.axis));
   const axname={"①":"① config","②":"② ledger","③":"③ 아키텍처·데이터"};
-  let html=H("쌍 비교",`A: ${esc(aKey.replace("|"," / "))} · B: ${esc(bKey.replace("|"," / "))}`);
+  let html=H("두 실행 나란히 보기",`A: ${esc(aKey.replace("|"," / "))} · B: ${esc(bKey.replace("|"," / "))}`);
   html+=diffs.length
     ?`<div class="callout"><b>무엇이 달랐나</b> (관측 가능한 축)<br>`+
       diffs.map(d=>`<span class="axis">${axname[d.axis]}</span>${esc(d.name)}: <b>${esc(String(d.x))}</b> → <b>${esc(String(d.y))}</b>`).join("<br>")+
@@ -382,11 +386,11 @@ async function renderCompare(aKey,bKey){
   const trs=r=>((r||{}).report||{}).transitions||[];
   if(aa||ab){
     const stg=[...new Set([...far(aa).map(s=>s.stage),...far(ab).map(s=>s.stage)])].sort((x,y)=>x-y);
-    const tks=[...new Set([...trs(aa),...trs(ab)].map(t=>t.from_stage+"→"+t.to_stage))];
+    const tks=[...new Set([...trs(aa),...trs(ab)].map(x=>x.from_stage+"→"+x.to_stage))];
     html+=`<div class="callout"><div style="font-size:11px;color:var(--ink2);font-weight:600;margin-bottom:4px">지표 병렬 — 실측 FAR / 조건부 hazard</div><table class="cmp"><tr><th>지표</th><th>A</th><th>B</th></tr>`+
       stg.map(n=>{const a=far(aa).find(s=>s.stage===n),b=far(ab).find(s=>s.stage===n);
         return `<tr><td>R${n} FAR</td><td>${a?a.far:"—"}</td><td>${b?b.far:"—"}</td></tr>`;}).join("")+
-      tks.map(k=>{const a=trs(aa).find(t=>t.from_stage+"→"+t.to_stage===k),b=trs(ab).find(t=>t.from_stage+"→"+t.to_stage===k);
+      tks.map(k=>{const a=trs(aa).find(x=>x.from_stage+"→"+x.to_stage===k),b=trs(ab).find(x=>x.from_stage+"→"+x.to_stage===k);
         return `<tr><td>hazard ${k}</td><td>${a?a.cond_attrition:"—"}</td><td>${b?b.cond_attrition:"—"}</td></tr>`;}).join("")+
       `<tr><td>누적 도입후 소실</td><td>${(((aa||{}).report||{}).post_intro_final_loss||{}).rate??"—"}</td><td>${(((ab||{}).report||{}).post_intro_final_loss||{}).rate??"—"}</td></tr></table>`+
       ((!aa||!ab)?`<div class="muted" style="margin-top:4px">한쪽 run 은 judgment 가 없어(부분 run) 지표를 계산할 수 없습니다.</div>`:"")+`</div>`;
@@ -421,10 +425,11 @@ document.getElementById("themebtn").onclick=()=>{const r=document.documentElemen
   r.setAttribute("data-theme", c==="dark"?"light":(c==="light"?"dark":(matchMedia("(prefers-color-scheme:dark)").matches?"light":"dark")));};
 document.getElementById("recbtn").onclick=()=>renderProvPanel();
 async function boot(){
+  document.getElementById("nav").innerHTML=`<a href="/biography">전기</a><a href="/ledger">장부</a><a href="/transmission">레이더</a><a href="/audit">대조</a>`;
   drawDiagram();
   const {runs}=await j("/api/runs");
   const sel=document.getElementById("runsel");
-  if(!runs.length){document.getElementById("panel").innerHTML=`<div class="callout warn">가용 run 없음</div>`;return;}
+  if(!runs.length){document.getElementById("panel").innerHTML=`<div class="callout warn">아직 돌린 실행이 없습니다</div>`;return;}
   const cmp=document.getElementById("cmpsel");
   cmp.appendChild(new Option("비교 안 함",""));
   runs.forEach(r=>{const key=r.issue_id+"|"+r.run_id;RUNS[key]=r;
