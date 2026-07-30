@@ -96,3 +96,39 @@
 - prompts/coop_continue_note.txt B판 반영(my_facts 블록 제거 — 수첩 조건에선 자기 팩트도 수첩이 유일한 생존 경로). ⚠ 템플릿 해시 변경 → our_prompts version_tag 자동 갱신.
 - 보드: 요한 질의 3건 답 + R3 찬성(판정기 매개 한정) + 단계 전환 제안 + 배분 생성기 통합 조율 게시.
 - 남은 구현 예약: 누적(전체 기억) incoming 모드, 수첩 방출(PR #20 명세 기반), 최종 폴링 러너, 생성기 stance_balanced 모드 이식.
+
+## 2026-07-30 (민옥, 오후) — 콘솔 실사: 조용한 오염 3건 차단 + 재현 트랙 개통 + FAR 배관
+
+- **온도 관문 신설** (`llm.TEMPERATURE_RANGE` · `check_temperature` · `preflight(temperature=)`).
+  범위 밖 온도는 400 → 재시도 5회 → 공백 폴백 → **빈 발화 로그가 종료코드 0으로 완주**한다.
+  `configs/mini_h2_*.yaml` 의 haiku+1.2 가 그 지뢰였고 preflight 는 키만 봐서 통과시켰다.
+  온도 검사는 키 검사보다 **먼저** 돈다 — 설정 오류는 키 유무와 무관하기 때문.
+- **개입 창 관문 신설** (`/api/intervene` → `preflight`). 종전엔 키가 자리표시자면 "개입 후
+  판단"이 공백으로 저장되고 화면엔 "결론이 바뀌었다"로 보였다 — 인과 개입에서 가짜 발견이
+  나오는 경로. 호출 전에 막고, 막히면 파일도 안 만든다.
+- **실행 로그 커서 버그 수정** (`index.html`). 두 번째 run 부터 로그가 갱신되지 않고 **직전
+  run 의 로그가 화면에 남아 있었다**(서버 `_log` 는 새 리스트인데 클라 커서가 안 돌아감).
+- **에이전트 수 = 배분표**: `assignment_gen` CLI 신설 + 콘솔 `/api/variant` — 원문·팩트를
+  새 id 로 복사하고 배분표만 새로 만드는 **변종 파생**. 같은 이슈 아래 배분표를 갈아치우면
+  과거 run 의 조건이 소리 없이 변하므로(append-only). 실측: `issue_hire_a6` 6명 생성.
+- **재현 트랙 개통**: 저자 저장소가 `Downloads\8주 프로젝트\DelibTrace-main` 에 이미 있었다.
+  `.env` 에 `DELIBTRACE_DIR` 추가 + `authors_prompts` 가 .env 를 읽게 함. 실호출 확인 —
+  `debate_issue_esa_repro_smoke` 8에이전트 16콜 공백 0, `validate --deep` 16/16 통과.
+- **`version_tag()` 내용 해시 폴백**: zip 사본은 .git 이 없어 조용히 `delibtrace@unknown` 을
+  로그의 prompt_ver 에 적고 있었다 — 재현성 근거 칸에 '모름'이 조용히 들어가던 자리.
+  이제 `delibtrace-files@<prompts 내용해시>`.
+- **콘솔 persona 값 교정**: `open` → `open-minded`. 저자 `discussion_setting.json` 에 없는
+  키였고, 재현 트랙이 안 돌던 동안 가려져 있던 KeyError 즉사 버그.
+- **FAR 배관**: judge 에 공급자 무관 경로 `_llm_vote` **추가**(기존 Anthropic 경로 무수정,
+  기본 별칭도 그대로). 비-Anthropic 경로는 `prompt_ver` 에 `+merged_system` 이 붙어 잣대가
+  달랐음이 산출물에 남는다. 콘솔에 `/api/judge/status`·`/api/judge/run`·`/api/far` 추가 —
+  채점은 비용이 커서 자동이 아니라 버튼 + 예상 콜 수(gpt001 기준 144콜). 수치는
+  `survival.report` 에 위임(재구현 금지).
+- `configs/mini_h2_{off,v0}_gpt.yaml` 신설 — 공급자를 GPT 로 바꾸니 **논문 상수 temp 1.2 가
+  살아난다**(0~2 스케일). 기존 파일은 규칙대로 무수정.
+- 테스트 225 → 245종 전체 통과. 신규 `tests/test_console_gates.py`.
+- **사후 보고 대상**: `modules/judge.py`·`modules/authors_prompts.py` 는 동범 님 담당 파일이다.
+  둘 다 기존 로직 무수정 추가지만 보드 규약 5에 걸리며, 판정기의 공급자 좌표는 팀 확정
+  사양(Sonnet·temp0·n=3)과 관련되므로 보드 확인이 필요하다.
+- 다음: 보드 사후 보고 게시 / ③ `talk-full` 의 window 좌표(민옥 결정) / 회고(A4) 프로브는
+  `feat/recall-probe` 에 미머지 상태로 남아 있음(coop 분기 신설 필요).

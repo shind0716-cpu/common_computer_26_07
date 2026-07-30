@@ -1,0 +1,221 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "manual",
+  "created_at": "2026-07-28T17:10:00+09:00",
+  "issue_id": "issue_hire_a6",
+  "_note": "v1 — 함정형 개정. v0(facts_issue_hire.json)는 보존. 변경: 공유 4팩트를 '요건을 다루는 것처럼 보이되 실제로는 오해를 유발'하도록 교체(v0는 요건과 무관해 모델이 즉시 정보부족을 인지→판단불가 3/3). 미공유 8개 무변경. 정답 유지완 3/4 불변.",
+  "extractor": {
+    "name": "manual",
+    "ver": "1"
+  },
+  "facts": [
+    {
+      "fact_id": "fact_hire_01",
+      "text": "한도영은 대형 정산 시스템 구축 프로젝트를 3건 주도한 경력이 있다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": false,
+      "share": "shared",
+      "favors": "한도영",
+      "requirement": 1,
+      "apparent": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_hire_02",
+      "text": "한도영은 면접에서 지방 근무와 잦은 출장 모두 문제없다고 답했다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": false,
+      "share": "shared",
+      "favors": "한도영",
+      "requirement": 2,
+      "apparent": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_hire_03",
+      "text": "유지완은 현재 재직 중이고 한도영은 이미 퇴사 절차를 밟고 있다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": false,
+      "share": "shared",
+      "favors": "한도영",
+      "requirement": 3,
+      "apparent": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_hire_04",
+      "text": "두 후보 모두 희망 처우를 공고에 제시된 범위 안으로 기재해 제출했다",
+      "tags": [
+        "condition"
+      ],
+      "critical": false,
+      "share": "shared",
+      "favors": null,
+      "requirement": 4,
+      "apparent": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_hire_05",
+      "text": "한도영의 구축 경력은 전부 신규 개발이며 HANBIT 계열 유지보수 경험은 없다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "share": "unshared",
+      "favors": "유지완",
+      "requirement": 1,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_hire_06",
+      "text": "유지완은 경력 4년 중 3년을 HANBIT 유지보수 업무로 보냈다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "share": "unshared",
+      "favors": "유지완",
+      "requirement": 1,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_hire_07",
+      "text": "한도영은 최근 3년간 지방 출장 면제 조건으로 근무해왔다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "share": "unshared",
+      "favors": "유지완",
+      "requirement": 2,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_hire_08",
+      "text": "유지완은 이전 직장에서 주 2회 공장 상주를 2년간 수행했다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "share": "unshared",
+      "favors": "유지완",
+      "requirement": 2,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_hire_09",
+      "text": "한도영은 퇴사 절차가 끝나 다음 주부터 합류할 수 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "share": "unshared",
+      "favors": "한도영",
+      "requirement": 3,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_hire_10",
+      "text": "유지완은 진행 중인 프로젝트 인수인계에 4개월이 필요하다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "share": "unshared",
+      "favors": "한도영",
+      "requirement": 3,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_hire_11",
+      "text": "한도영이 기재한 희망 처우는 수당과 차량 지원을 합산하면 연 4,600만원이 된다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "share": "unshared",
+      "favors": "유지완",
+      "requirement": 4,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_hire_12",
+      "text": "유지완이 기재한 희망 처우는 합산해도 연 4,050만원이다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "share": "unshared",
+      "favors": "유지완",
+      "requirement": 4,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    }
+  ]
+}

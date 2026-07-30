@@ -97,10 +97,14 @@ AXES = [
     {"key": "structure", "label": "④ 연결 모양", "type": "choice",
      "values": ["full", "line", "tree"],
      "names": {"full": "전원 (기본)", "line": "일렬 (릴레이 비교용)", "tree": "트리"}},
+    # 값은 저자 discussion_setting.json 의 키와 **글자 단위로 같아야 한다.**
+    # 종전 "open" 은 그 파일에 없는 키였고(실제 키: open-minded), 재현 트랙에서 고르면
+    # debate_engine 의 settings[setting_key] 가 KeyError 로 즉사한다. 저자 저장소가
+    # 없어서 재현 트랙 자체가 안 돌던 동안 가려져 있던 버그다(2026-07-30 실측).
     {"key": "persona", "label": "⑥ 성격", "type": "choice",
-     "values": ["default", "open", "stubborn"],
-     "names": {"default": "기본", "open": "열린", "stubborn": "고집"},
-     "help": "협력(무입장) 조건에서는 사용되지 않는다(우리 템플릿에 성격 슬롯 없음)."},
+     "values": ["default", "open-minded", "stubborn"],
+     "names": {"default": "기본", "open-minded": "열린", "stubborn": "고집"},
+     "help": "재현 트랙(pro/con) 전용 — 협력 조건에는 우리 템플릿에 성격 슬롯이 없어 무시된다."},
     {"key": "ledger_mode", "label": "⑧ 장부", "type": "choice",
      "values": ["off", "v0"],
      "names": {"off": "끔", "v0": "자동 재주입 (소실 팩트 전량 재제시)"},
@@ -409,6 +413,15 @@ def api_estimate(req: RunReq):
     # 클론을 요구한다.
     coop = stances == {"none"}
     warn, blocking = [], []
+    # 온도 관문 (2026-07-30 · 민옥). 범위 밖 온도는 400 이고, 400 은 재시도해도 400 이라
+    # 5회 뒤 공백 폴백으로 넘어간다 — 빈 발화 로그가 종료코드 0 으로 완주한다.
+    # 엔진의 preflight 도 같은 검사를 하지만, 여기서 먼저 보여주면 버튼을 누르기 전에 안다.
+    try:
+        llm.check_temperature(req.debate_model, req.debate_temperature)
+    except SystemExit as e:
+        blocking.append(str(e).replace("\n", " "))
+    except KeyError as e:
+        blocking.append(f"공급자를 알 수 없는 모델 — {e}")
     if req.memory == "note" and not coop:
         blocking.append("수첩(memory=note)은 협력 조건 전용 — 저자 템플릿엔 수첩 슬롯이 없어 엔진이 즉사한다.")
     if req.window == "cumulative" and not coop:
@@ -442,6 +455,10 @@ def api_run(req: RunReq):
     # 실행 전 차단 — 경고만으로는 부족하다. 사람이 경고를 지나쳐 누를 수 있고,
     # 그러면 엔진이 도중에 죽으며 사람은 스택트레이스를 읽어야 한다.
     # (2026-07-30 실측: issue_esa 를 골라 실행 → authors_prompts RuntimeError)
+    try:
+        llm.check_temperature(req.debate_model, req.debate_temperature)
+    except SystemExit as e:
+        raise HTTPException(400, str(e))
     stances = _stances_of(req.issue_id)
     if stances and stances != {"none"}:
         if req.memory == "note":
@@ -544,6 +561,15 @@ def api_intervene(req: InterveneReq):
       · note_update.origin="intervention" — 집계 기본 제외가 습관이 아니라 필드(§6)
       · condition 에 개입 표시 — 로그만 보고 구분 가능해야 한다(§6)
     """
+    # 키·온도 관문 (2026-07-30 · 민옥). /api/run 은 엔진 서브프로세스가 preflight 를
+    # 부르지만, 개입은 **이 프로세스에서** llm.obtain_response 를 직접 부른다. 그건 어떤
+    # 실패도 5회 백오프 뒤 공백으로 폴백하므로, 키가 자리표시자면 "개입 후 판단"이 빈
+    # 문자열로 저장되고 화면에는 원본과 다르게 — 즉 "결론이 바뀌었다"로 — 보인다.
+    # 인과 개입은 이 창의 존재 이유이므로, 가짜 차이가 나오는 경로를 열어둘 수 없다.
+    try:
+        llm.preflight(req.debate_model, temperature=req.debate_temperature)
+    except SystemExit as e:
+        raise HTTPException(400, str(e))
     src = _read_events(req.issue_id, req.run_id)
     meta = next((e for e in src if e["event"] == "run_meta"), None)
     if meta is None:
@@ -614,6 +640,199 @@ def api_intervene(req: InterveneReq):
               for e in src if e["event"] == "final_poll"}
     return {"ok": True, "file": out.name, "changed_agents": changed,
             "before": before, "after": results}
+
+
+# ─── 변종 이슈 파생 (에이전트 수) ────────────────────────────────────────────
+# 왜 폼 드롭다운 하나로 안 되는가: 엔진은 에이전트 수를 **배분표에서** 읽는다(config 가
+# 아니다). 그래서 "에이전트 수를 바꾼다 = 배분표를 새로 만든다"이고, 같은 issue_id 아래
+# 배분표를 갈아치우면 그 이슈로 돌린 과거 run 들이 "어떤 배분이었는지"를 새 파일에
+# 잘못 맞춰보게 된다. 그래서 **변종 이슈를 파생**시킨다 — 원문·팩트를 새 id 로 복사하고
+# 배분표만 새로 만든다. 과거 run 은 원본 id 아래 그대로 남는다(append-only, 규약 1).
+class VariantReq(BaseModel):
+    issue_id: str                    # 원본
+    suffix: str                      # 새 id 의 꼬리. 예: a6 → issue_hire_a6
+    n_agents: int = 4
+    seed: int = 42
+    mode: str = "split_pairs"        # split_pairs | k_overlap
+    overlap_k: int = 1
+    stance: str = "none"
+
+
+@app.post("/api/variant")
+def api_variant(req: VariantReq):
+    from modules import assignment_gen, validate as validate_mod
+
+    suffix = "".join(c for c in req.suffix if c.isalnum() or c in "-_")
+    if not suffix:
+        raise HTTPException(400, "꼬리표가 비었다 — 영숫자·하이픈·밑줄만 쓸 수 있다.")
+    new_id = f"{req.issue_id}_{suffix}"
+    targets = [paths.issue(new_id), paths.facts(new_id), paths.assignment(new_id)]
+    exists = [p.name for p in targets if p.exists()]
+    if exists:
+        raise HTTPException(409, f"이미 있음: {', '.join(exists)} — 덮어쓰지 않는다"
+                                 "(append-only). 꼬리표를 바꿔라.")
+
+    try:
+        issue_doc = json.loads(paths.issue(req.issue_id).read_text(encoding="utf-8"))
+        facts_doc = json.loads(paths.facts(req.issue_id).read_text(encoding="utf-8"))
+    except FileNotFoundError as e:
+        raise HTTPException(400, f"원본 산출물 없음 — {e}")
+
+    # issue_id 는 세 파일에서 모두 새 id 를 가리켜야 한다. 하나라도 원본 id 가 남으면
+    # 엔진이 원본 팩트를 찾아가 배분과 팩트가 어긋난다.
+    issue_doc["issue_id"] = new_id
+    facts_doc["issue_id"] = new_id
+    issue_doc["_note"] = (f"{req.issue_id} 의 변종 (에이전트 {req.n_agents}명 배분). "
+                          f"원문·팩트는 원본과 같고 배분표만 다르다. 콘솔 생성.")
+    try:
+        if req.mode == "split_pairs":
+            asg = assignment_gen.generate_split_pairs(
+                facts_doc, n_agents=req.n_agents, seed=req.seed,
+                overlap_k=req.overlap_k, stance=req.stance)
+        else:
+            asg = assignment_gen.generate_k_overlap(
+                facts_doc, n_agents=req.n_agents, seed=req.seed, overlap_k=req.overlap_k)
+    except (ValueError, AssertionError) as e:
+        # 생성기가 자기 규칙(같은 요건 2개 금지 등)을 못 지키면 시끄럽게 죽는다.
+        raise HTTPException(400, f"배분 생성 실패 — {e}")
+    asg["issue_id"] = new_id
+
+    for p, doc in zip(targets, (issue_doc, facts_doc, asg)):
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(json.dumps(doc, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    # 규칙 3: 산출물을 만들면 자가 검사한다. validate 는 CLI 라 실패 시 SystemExit 이므로
+    # 여기서 잡아 400 으로 바꾼다 — 검사에 걸린 파일을 남겨두면 다음 사람이 그걸 쓴다.
+    # validate 는 CLI 라 실패 이유를 stdout 에 찍고 SystemExit(1) 로 죽는다. 종료 코드만
+    # 보여주면 "— 1" 이 되어 사람이 아무것도 못 하므로, 찍은 문장을 잡아서 돌려준다.
+    import contextlib
+    import io
+
+    buf = io.StringIO()
+    try:
+        with contextlib.redirect_stdout(buf):
+            for p in targets:
+                validate_mod.validate(p)
+    except SystemExit:
+        for p in targets:
+            p.unlink(missing_ok=True)
+        reason = next((l for l in buf.getvalue().splitlines() if l.startswith("[FAIL]")),
+                      buf.getvalue().strip() or "이유 미상")
+        raise HTTPException(400, f"생성물이 스키마 검사에 걸려 되돌렸다 — {reason}")
+
+    return {"ok": True, "issue_id": new_id, "n_agents": req.n_agents,
+            "files": [p.name for p in targets],
+            "unshared_per_agent": [a["assigned_fact_ids"] and sum(
+                1 for i in a["assigned_fact_ids"]
+                if next((f for f in facts_doc["facts"] if f["fact_id"] == i), {})
+                .get("share") == "unshared") for a in asg["agents"]]}
+
+
+# ─── 채점(FAR) ───────────────────────────────────────────────────────────────
+# judge 는 이미 far()·far_by_stage() 를 갖고 있었지만 콘솔이 채점 단계를 안 붙여서,
+# 실험을 돌려도 팩트 생존 수치가 나오지 않았다(7/30 실측: 협력 트랙 run 4개 전부
+# judgment 없음). 비용이 크므로 자동이 아니라 **버튼 + 예상 콜 수**로 붙인다.
+class JudgeReq(BaseModel):
+    issue_id: str
+    run_id: str
+    judge_model: str = "gpt-mini"
+    judge_n_votes: int = 3
+    offline: bool = False
+
+
+def _judge_cost(issue_id: str, run_id: str, n_votes: int) -> dict:
+    facts = json.loads(paths.facts(issue_id).read_text(encoding="utf-8"))["facts"]
+    events = _read_events(issue_id, run_id)
+    stages = sorted({e["round"] for e in events if e["event"] == "utterance"})
+    return {"facts": len(facts), "stages": len(stages), "n_votes": n_votes,
+            "total": len(facts) * len(stages) * n_votes}
+
+
+@app.get("/api/judge/status")
+def api_judge_status(issue_id: str, run_id: str, judge_model: str = "gpt-mini",
+                     judge_n_votes: int = 3):
+    """채점됐나 + 채점하면 몇 콜인가 + 지금 그 모델로 채점이 가능한가."""
+    jp = paths.judgment(issue_id, run_id)
+    cost = _judge_cost(issue_id, run_id, judge_n_votes)
+    ready, reason = True, ""
+    try:
+        llm.preflight(judge_model, temperature=0)
+    except SystemExit as e:
+        ready, reason = False, str(e).splitlines()[0]
+    except KeyError as e:
+        ready, reason = False, str(e)
+    return {"judged": jp.exists(), "file": jp.name, "cost": cost,
+            "judge_ready": ready, "judge_reason": reason,
+            "spec_note": "팀 확정 판정 사양은 Sonnet·temp0·n=3 이다. 다른 공급자로 채점하면 "
+                         "judgment 의 prompt_ver 에 +merged_system 이 붙어 잣대가 달랐음이 "
+                         "산출물에 남는다(사후 보고 대상)."}
+
+
+@app.post("/api/judge/run")
+def api_judge_run(req: JudgeReq):
+    """채점을 서브프로세스로 띄운다. 실행 슬롯은 토론과 공유 — 동시 실행은 비용 사고다."""
+    global _proc, _log, _current
+    if _proc is not None and _proc.poll() is None:
+        raise HTTPException(409, "이미 실행 중 — 끝나거나 중단한 뒤에 다시.")
+    if paths.judgment(req.issue_id, req.run_id).exists():
+        raise HTTPException(409, f"이미 채점됨: {paths.judgment(req.issue_id, req.run_id).name} "
+                                 "— 재채점은 기존 판정을 덮어쓰므로 파일을 먼저 옮겨라"
+                                 "(append-only).")
+    if not req.offline:
+        try:
+            llm.preflight(req.judge_model, temperature=0)
+        except SystemExit as e:
+            raise HTTPException(400, str(e))
+
+    # 판정 조건도 파일로 남긴다 — run config 와 같은 이유(산출물이 자기 잣대를 알아야 한다).
+    d = ROOT / "configs" / "console"
+    d.mkdir(parents=True, exist_ok=True)
+    cfg_path = d / f"judge_{req.run_id}.yaml"
+    cfg_path.write_text(
+        "# 콘솔 v0 생성 — 채점 조건\n" + yaml.safe_dump(
+            {"judge_model": req.judge_model, "judge_temperature": 0,
+             "judge_n_votes": req.judge_n_votes},
+            allow_unicode=True, sort_keys=False), encoding="utf-8")
+
+    cmd = [sys.executable, "-X", "utf8", "-m", "modules.judge",
+           "--issue", req.issue_id, "--run", req.run_id, "--config", str(cfg_path)]
+    if req.offline:
+        cmd.append("--offline")
+    with _log_lock:
+        _log = [f"$ {' '.join(cmd)}", f"[config] {cfg_path.relative_to(ROOT)}",
+                "[주의] 채점은 팩트×라운드×표 수만큼 호출한다 — 중단하면 처음부터다"
+                "(judge 에는 체크포인트가 없다)."]
+    _current = {"issue_id": req.issue_id, "run_id": req.run_id,
+                "config": str(cfg_path.relative_to(ROOT)), "kind": "judge"}
+    _proc = subprocess.Popen(cmd, cwd=str(ROOT), stdout=subprocess.PIPE,
+                             stderr=subprocess.STDOUT, text=True, encoding="utf-8",
+                             errors="replace", bufsize=1)
+    threading.Thread(target=_tail_reader, args=(_proc,), daemon=True).start()
+    return {"ok": True, "config": _current["config"]}
+
+
+@app.get("/api/far")
+def api_far(issue_id: str, run_id: str, critical_only: bool = False):
+    """판정 파일 → FAR + 조건부 소실률. 계산은 survival.report 에 위임한다(재구현 금지)."""
+    from modules import survival
+
+    jp = paths.judgment(issue_id, run_id)
+    if not jp.exists():
+        raise HTTPException(404, f"채점 안 됨: {jp.name} — 먼저 채점을 돌려라")
+    judgment = json.loads(jp.read_text(encoding="utf-8"))
+    facts = json.loads(paths.facts(issue_id).read_text(encoding="utf-8"))["facts"]
+    facts_by_id = {f["fact_id"]: f for f in facts}
+    rep = survival.report(judgment, facts_by_id, critical_only=critical_only)
+    return {
+        "judge": judgment.get("judge", {}),
+        "summary": judgment.get("summary", {}),
+        "report": rep,
+        "critical_only": critical_only,
+        # FAR 수식은 아직 잠정이다(judge.py 머리말 — 노션 확정 대기). 화면이 이걸 감추면
+        # 사람이 확정된 수치로 읽는다.
+        "far_note": "FAR 수식 방향은 미확정(잠정 정의: status ∉ {mentioned, accepted} = 소실). "
+                    "초반 미등장 팩트가 소실로 잡혀 부풀 수 있어 조건부 소실률을 함께 본다.",
+    }
 
 
 @app.get("/", response_class=HTMLResponse)

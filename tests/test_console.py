@@ -262,15 +262,22 @@ class TestIntervene(ConsoleBase):
     def setUp(self):
         super().setUp()
         self._orig_llm = llm.obtain_response
+        self._orig_pre = llm.preflight
         # 개입 폴링만 가짜로 — 수첩 내용에 따라 다른 답을 주게 해서 "결론이 바뀌나"를 본다.
         def fake_resp(inputs, model=None, temperature=None):
             if "핵심사실" in inputs:
                 return json.dumps({"recommend": "채용"}, ensure_ascii=False)
             return json.dumps({"recommend": "불채용"}, ensure_ascii=False)
         llm.obtain_response = fake_resp
+        # 키 관문도 함께 비활성화한다. 이 테스트는 가짜 응답을 주입하므로 키가 필요 없고,
+        # 관문 자체는 TestInterveneGate 가 따로 검증한다 — 여기서 관문을 남겨두면
+        # "가짜를 주입했는데 실키를 요구한다"가 되어 테스트가 환경에 의존한다.
+        llm.preflight = lambda model, temperature=None: {
+            "model": model, "model_id": model, "provider": "stub", "key_env": "STUB"}
 
     def tearDown(self):
         llm.obtain_response = self._orig_llm
+        llm.preflight = self._orig_pre
         super().tearDown()
 
     def test_intervention_writes_new_run_and_marks_origin(self):

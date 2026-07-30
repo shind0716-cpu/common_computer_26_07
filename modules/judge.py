@@ -119,6 +119,33 @@ def _online_vote(client, model: str, fact: dict, stage_utterances: list[dict]) -
     return _parse_vote(text, stage_utterances)
 
 
+def _llm_vote(model_alias: str, fact: dict, stage_utterances: list[dict]) -> dict:
+    """API 한 번 호출 = 한 표 — **공급자 무관** 경로 (2026-07-30 · 민옥, 추가분).
+
+    왜 추가하는가: 위 _online_vote 는 Anthropic SDK 에 직결돼 있어, ANTHROPIC_API_KEY 가
+    없으면 채점 자체가 불가능하다 — 그러면 FAR 이 영원히 안 나온다. llm 모듈은 이미
+    3사 공급자를 유도하므로 그 경로를 한 갈래 더 놓는다.
+
+    **기존 경로는 한 글자도 바꾸지 않았다.** judge_model 이 claude 계열이면 종전
+    _online_vote 가 그대로 쓰이고, 그 외 공급자일 때만 이 함수가 쓰인다. 확정 사양
+    (Sonnet 단일·temp 0·n=3 다수결)의 기본값도 그대로다 — 넓힌 것은 사양이 아니라
+    사양이 표현할 수 있는 좌표다.
+
+    ⚠ 조립 편차 1건 (조용히 넘기지 않는다): llm.obtain_response 는 system 역할을 받지
+    않으므로 JUDGE_SYSTEM 을 사용자 프롬프트 앞에 붙인다. 같은 문장이지만 역할 배치가
+    달라 판정이 달라질 수 있다. 그래서 이 경로로 만든 judgment 은 prompt_ver 에
+    `+merged_system` 이 붙는다 — 나중에 두 판정을 나란히 놓을 때 잣대가 달랐음이
+    산출물에서 드러나야 한다(조용한 프롬프트 변경은 재현성을 깬다).
+    ⚠ 지위: judge.py 는 동범 님 담당 파일(패키지 A)이다. 이 추가는 사후 보고 대상이며,
+    판정 사양의 공급자 좌표는 보드 확인이 필요하다.
+    """
+    from . import llm as llm_mod
+    text = llm_mod.obtain_response(
+        JUDGE_SYSTEM + "\n\n" + _user_prompt(fact, stage_utterances),
+        model=model_alias, temperature=0)     # temp 0 = 확정 사양
+    return _parse_vote(text, stage_utterances)
+
+
 def _offline_vote(fact: dict, stage_utterances: list[dict]) -> dict:
     """키 없이 도는 결정론적 스텁 — 뼈대·스키마 검증 전용(모델 판정 아님).
     규칙: 발화 원문에 fact_id 또는 팩트 텍스트가 나타나면 mentioned, 아니면 unmentioned."""
@@ -246,13 +273,28 @@ def judge_debate(issue_id: str, run_id: str, cfg: dict, *, offline: bool = False
     stages_utt = group_by_stage(load_utterances(paths.debate(issue_id, run_id)))
     n_votes = int(cfg.get("judge_n_votes", 3))
 
+    prompt_ver = JUDGE_PROMPT_VER
     if offline:
         base_vote_fn = _offline_vote
         model_id = "offline-stub"
     else:
-        client = _make_client()
-        model_id = _resolve_model(cfg.get("judge_model", "claude-sonnet"))
-        base_vote_fn = lambda fact, utts: _online_vote(client, model_id, fact, utts)  # noqa: E731
+        judge_alias = cfg.get("judge_model", "claude-sonnet")
+        # 공급자 분기 (2026-07-30 · 민옥, 추가). claude 계열은 종전 경로 그대로,
+        # 그 외 공급자만 llm 경유. 어느 경로로 갔는지는 prompt_ver 에 남는다.
+        from . import llm as llm_mod
+        try:
+            provider = llm_mod.resolve_provider(judge_alias)
+        except KeyError:
+            provider = "anthropic"      # 미지 별칭은 종전 동작(Anthropic) 유지
+        if provider == "anthropic":
+            client = _make_client()
+            model_id = _resolve_model(judge_alias)
+            base_vote_fn = lambda fact, utts: _online_vote(client, model_id, fact, utts)  # noqa: E731
+        else:
+            llm_mod.preflight(judge_alias, temperature=0)   # 키·온도 관문
+            model_id = llm_mod.resolve_model(judge_alias)
+            prompt_ver = JUDGE_PROMPT_VER + "+merged_system"
+            base_vote_fn = lambda fact, utts: _llm_vote(judge_alias, fact, utts)  # noqa: E731
 
     # --- 진행 계기판 (관측 전용, 판정 불변) ----------------------------------
     # judge 는 표 하나당 vote 를 한 번 부르고(총 stage x 팩트 x n_votes 회), 실패해도
@@ -303,7 +345,7 @@ def judge_debate(issue_id: str, run_id: str, cfg: dict, *, offline: bool = False
             "temperature": int(cfg.get("judge_temperature", 0)),
             "n_votes": n_votes,
             "aggregation": "majority",
-            "prompt_ver": JUDGE_PROMPT_VER,
+            "prompt_ver": prompt_ver,   # 비-Anthropic 경로면 +merged_system 이 붙는다
         },
         "stage_type": "round",  # 실험 트랙. 관찰 트랙(summary_layer)은 별도 실행에서.
         "stages": stages_out,

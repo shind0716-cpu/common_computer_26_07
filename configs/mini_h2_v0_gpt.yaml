@@ -1,0 +1,21 @@
+# 미니 H2 실험군(장부 자동 재주입) — GPT 판 (2026-07-30 · 민옥)
+#
+# mini_h2_off_gpt.yaml 과 **장부 한 축만** 다르다. 쌍 비교의 전제가 "축 하나만 바뀐다"
+# 이므로 나머지 값은 글자 단위로 같아야 한다 — 뷰어의 쌍 비교가 축 2개 이상 변경 시
+# "단일 원인 귀속 불가" 경고를 띄우는 것도 같은 이유다.
+#
+# ⚠ 비용 주의: ledger v0 는 라운드마다 판정기를 돌린다(팩트 × 라운드 × 표). 돌리기 전에
+# 콘솔의 호출 수 미리보기로 확인할 것.
+experiment: mini_h2_v0_gpt
+condition: mini-h2-v0
+issue_id: issue_esa
+seed: 42
+rounds: 3
+structure: full
+persona: default
+debate_model: gpt-mini
+debate_temperature: 1.2      # off 판과 같아야 한다(축 하나만 변주)
+judge_model: gpt-mini
+judge_temperature: 0
+judge_n_votes: 3
+ledger_mode: v0

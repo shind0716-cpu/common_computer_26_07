@@ -97,6 +97,27 @@
        혼자서는 답을 완성할 수 없어야 한다.</p>
     <div id="scnAssign"><span class="empty">—</span></div>
   </div>
+  <div class="panel">
+    <h2>에이전트 수 바꾸기 — 변종 만들기</h2>
+    <p class="why">에이전트 수는 설정이 아니라 <b>배분표</b>가 정한다(엔진이 배분표에서
+       읽는다). 그래서 수를 바꾸는 것은 배분표를 새로 만드는 일이고, 같은 이슈 이름 아래
+       배분표를 갈아치우면 그 이슈로 돌린 <b>과거 run 들이 어떤 배분이었는지를 잃는다.</b>
+       그래서 원문·팩트를 새 이름으로 복사하고 배분표만 새로 만든다 — 원본은 그대로 남는다.</p>
+    <div class="grid">
+      <div><label>꼬리표<span class="h">새 이슈 이름의 끝. issue_hire + a6 → issue_hire_a6</span></label>
+        <input type="text" id="vSuffix" placeholder="a6"></div>
+      <div><label>에이전트 수</label><input type="number" id="vAgents" value="6" min="2"></div>
+      <div><label>seed<span class="h">같은 seed = 같은 배분(결정론)</span></label>
+        <input type="number" id="vSeed" value="42"></div>
+      <div><label>배분 방식</label><select id="vMode">
+        <option value="split_pairs">요건 쌍 쪼개기 (히든 프로필 — 혼자선 못 맞힘)</option>
+        <option value="k_overlap">라운드로빈 (requirement 없는 이슈)</option></select></div>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:9px;align-items:center">
+      <button class="alt" id="btnVariant">변종 만들기</button>
+      <span class="foot" id="vmsg">LLM 호출 0 · 파일 3개(원문·팩트·배분표)가 새 이름으로 생깁니다.</span>
+    </div>
+  </div>
 </section>
 
 <!-- ─── 설정 · 실행 ─────────────────────────────────────────────────── -->
@@ -153,6 +174,13 @@
     <h2>발화 × 라운드</h2>
     <p class="why">수첩과 나란히 봐야 "무엇을 남기고 무엇을 버렸나"가 읽힌다.</p>
     <div id="saymatrix"><span class="empty">—</span></div>
+  </div>
+  <div class="panel">
+    <h2>팩트 생존 (FAR) — 채점</h2>
+    <p class="why">수첩 매트릭스는 <b>기억에 무엇이 남았나</b>를 보여준다. FAR 은
+       <b>발화에서 팩트가 살아남았나</b>를 센다 — 다른 관문이라 둘 다 필요하다. 채점은
+       팩트 × 라운드 × 표 수만큼 호출하므로 자동이 아니라 버튼이다.</p>
+    <div id="farBox"><span class="empty">run 을 고르세요</span></div>
   </div>
 </section>
 
@@ -319,6 +347,104 @@ function renderScnDetail(){
     ap.append(el('p','foot','⚠ 아무에게도 배정되지 않은 팩트: '+d.orphan_fact_ids.join(', ')));
 }
 
+// ─── 변종 만들기 (에이전트 수) ───
+$('#btnVariant').onclick = async ()=>{
+  if(!SCN){ $('#vmsg').textContent='먼저 원본 시나리오를 고르세요.'; return; }
+  const body={issue_id:SCN.issue_id, suffix:$('#vSuffix').value.trim(),
+              n_agents:+$('#vAgents').value, seed:+$('#vSeed').value,
+              mode:$('#vMode').value, overlap_k:1,
+              stance: SCN.coop ? 'none' : 'pro'};
+  if(!body.suffix){ $('#vmsg').textContent='꼬리표를 적으세요 (예: a6).'; return; }
+  $('#btnVariant').disabled=true; $('#vmsg').textContent='만드는 중…';
+  const r=await fetch('/api/variant',{method:'POST',
+    headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+  const d=await r.json();
+  $('#btnVariant').disabled=false;
+  if(!r.ok){ $('#vmsg').innerHTML='<span class="warn">✗ '+(d.detail||'')+'</span>'; return; }
+  $('#vmsg').textContent='만들었습니다 → '+d.issue_id+' (에이전트 '+d.n_agents+'명)';
+  // 목록·폼을 다시 읽어 새 이슈가 바로 보이게 한다.
+  META=await (await fetch('/api/meta')).json();
+  const is=$('#issue_id'); is.innerHTML='';
+  (META.issue_rows||[]).forEach(row=>{
+    const tag = row.coop ? '협력·무입장'
+      : (row.has_assignment ? '재현 트랙 '+(row.stances||[]).join('/') : '배분표 없음');
+    const o=el('option',null,`${row.issue_id}  —  ${tag}`); o.value=row.issue_id; is.append(o);
+  });
+  is.value=d.issue_id;
+  renderScnList(); loadScn(d.issue_id); estimate();
+};
+
+// ─── 팩트 생존 (FAR) ───
+async function loadFar(){
+  const box=$('#farBox'); box.innerHTML='';
+  if(!SEL||!SEL.issue_id||!SEL.run_id){ box.append(el('span','empty','run 을 고르세요')); return; }
+  const st=await (await fetch('/api/judge/status?issue_id='+encodeURIComponent(SEL.issue_id)
+                              +'&run_id='+encodeURIComponent(SEL.run_id))).json();
+  if(st.detail){ box.innerHTML='<span class="warn">'+st.detail+'</span>'; return; }
+  if(!st.judged){
+    const p=el('p',null,''); 
+    p.innerHTML='아직 채점하지 않은 run 입니다. 채점하면 <b>'+st.cost.total+'회</b> 호출 — '
+      +'팩트 '+st.cost.facts+' × 라운드 '+st.cost.stages+' × 표 '+st.cost.n_votes+'.';
+    box.append(p);
+    if(!st.judge_ready)
+      box.append(el('p','warn','✗ 지금 이 모델로는 채점할 수 없습니다 — '+st.judge_reason));
+    const row=el('div'); row.style.cssText='display:flex;gap:9px;align-items:center;margin-top:10px';
+    const b=el('button','go','채점 실행'); b.disabled=!st.judge_ready;
+    b.onclick=()=>runJudge(false);
+    const b2=el('button','alt','오프라인 스텁으로 (호출 0)'); b2.onclick=()=>runJudge(true);
+    row.append(b, b2); box.append(row);
+    box.append(el('p','foot','오프라인 스텁은 문자열 포함 여부로 판정합니다 — 배관·스키마 '
+      +'확인용이며 측정이 아닙니다. ' + st.spec_note));
+    return;
+  }
+  const d=await (await fetch('/api/far?issue_id='+encodeURIComponent(SEL.issue_id)
+                             +'&run_id='+encodeURIComponent(SEL.run_id))).json();
+  if(d.detail){ box.innerHTML='<span class="warn">'+d.detail+'</span>'; return; }
+  const s=d.summary||{}, j=d.judge||{};
+  const head=el('div'); head.style.marginBottom='10px';
+  head.append(el('span','badge','판정 모델 '+(j.model||'?')));
+  head.append(el('span','badge','표 '+(j.n_votes??'?')));
+  if(String(j.prompt_ver||'').includes('merged_system'))
+    head.append(el('span','badge iv','잣대 편차 '+j.prompt_ver));
+  else head.append(el('span','badge',j.prompt_ver||''));
+  box.append(head);
+  const big=el('p',null,'');
+  big.innerHTML='<b>최종 FAR '+fmt(s.far_system)+'</b> · critical만 '+fmt(s.far_critical);
+  box.append(big);
+  // 라운드별 FAR + 전이별 조건부 소실률을 한 표로. 둘을 나란히 두는 이유는 FAR 이
+  // '아직 등장 전' 팩트까지 소실로 세어 초반에 부풀기 때문(순환 함정).
+  const tb=el('table'); const hr=el('tr');
+  ['구간','FAR (전체 팩트 기준)','조건부 소실률 (이미 등장한 팩트만)'].forEach(h=>hr.append(el('th',null,h)));
+  tb.append(hr);
+  (d.report.far_by_stage||[]).forEach(row=>{
+    const tr=el('tr'); tr.append(el('td',null,'라운드 '+row.stage));
+    tr.append(el('td',null,fmt(row.far))); tr.append(el('td',null,'—')); tb.append(tr);
+  });
+  (d.report.transitions||[]).forEach(t=>{
+    const tr=el('tr');
+    tr.append(el('td',null,'전이 '+t.from_stage+'→'+t.to_stage));
+    tr.append(el('td',null,'—'));
+    tr.append(el('td',null,fmt(t.hazard)+(t.n_at_risk!=null?` (모수 ${t.n_at_risk})`:'')));
+    tb.append(tr);
+  });
+  box.append(tb);
+  box.append(el('p','foot',d.far_note));
+}
+
+function fmt(v){ return (v===null||v===undefined) ? '—' : Number(v).toFixed(3); }
+
+async function runJudge(offline){
+  const r=await fetch('/api/judge/run',{method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({issue_id:SEL.issue_id, run_id:SEL.run_id,
+                         judge_model:$('#debate_model').value, offline:offline})});
+  const d=await r.json();
+  const box=$('#farBox');
+  if(!r.ok){ box.append(el('p','warn','✗ '+(d.detail||''))); return; }
+  box.append(el('p','foot','채점을 시작했습니다 — 진행은 설정·실행 탭의 로그에서 보입니다. '
+    +'끝나면 이 탭을 다시 열어주세요.'));
+}
+
 // ─── 설정 폼 ───
 async function boot(){
   META = await (await fetch('/api/meta')).json();
@@ -438,6 +564,11 @@ async function poll(){
   let alive=false;
   try{
     const d = await (await fetch('/api/log?since='+cursor)).json();
+    // 새 실행이 시작되면 서버가 _log 를 새 리스트로 갈아치우므로 총 길이가 커서보다
+    // 작아진다. 커서를 되돌리지 않으면 _log[커서:] 가 영구히 빈 배열이라 **두 번째
+    // 실행부터 로그가 화면에 안 나오고, 직전 실행의 로그가 그대로 남아 있는다** —
+    // 비어 보이는 것보다 나쁘다(2026-07-30 수정).
+    if(d.next < cursor){ cursor = 0; $('#log').textContent = '(새 실행 — 로그 다시 받는 중)'; }
     if(d.lines.length){
       const p=$('#log');
       if(cursor===0) p.textContent='';
@@ -495,6 +626,7 @@ async function loadNotes(){
   }
   $('#saymatrix').append(grid(d.agents, d.say_rounds,
     d.says.map(s=>({...s, len:(s.text||'').length})), false, null));
+  loadFar();   // 같은 run 의 팩트 생존을 아래에 이어 붙인다
 }
 
 function grid(agents, rounds, cells, isNote, polls){

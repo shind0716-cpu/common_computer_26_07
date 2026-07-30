@@ -65,6 +65,19 @@ PROVIDER_KEY_ENV = {
     "gemini": "GEMINI_API_KEY",
 }
 
+# 공급자별 temperature 허용 범위 (2026-07-30 · 민옥 — 온도 관문).
+# 범위 밖 값은 API 가 400 을 돌려주고, 400 은 재시도해도 400 이다. 그런데
+# obtain_response 는 어떤 예외든 5회 백오프 뒤 공백을 반환하므로(저자 계승), 범위를
+# 벗어난 온도는 **전 발화가 빈 로그를 종료코드 0 으로 완주**시킨다 — 키 자리표시자
+# 사고와 정확히 같은 모양이며, preflight 는 키만 보므로 이걸 통과시켰다.
+# 동범 님 7/23 선결 ①이 지적한 위험(configs/mini_h2_*.yaml 의 haiku + 1.2)의 실현 경로.
+# 시작 전에 알 수 있는 실패는 시작 전에 죽인다.
+TEMPERATURE_RANGE = {
+    "anthropic": (0.0, 1.0),
+    "openai": (0.0, 2.0),
+    "gemini": (0.0, 2.0),
+}
+
 MAX_TOKENS = 2048
 GEMINI_MAX_TOKENS = 4096   # 편차 D1 계승: thinking 토큰이 예산을 잠식해 본문 절단
 GEMINI_THINKING = "minimal"
@@ -107,14 +120,42 @@ def resolve_provider(name: str) -> str:
         f"(등록된 별칭: {sorted(MODEL_ALIASES)})")
 
 
-def preflight(model: str) -> dict:
+def check_temperature(model: str, temperature: float) -> None:
+    """온도가 공급자 허용 범위 안인가. 밖이면 SystemExit (2026-07-30 · 민옥).
+
+    왜 폴백이 아니라 즉사인가: 온도를 코드가 알아서 깎으면 로그의 temperature 와 실제
+    호출값이 갈라져 재현성이 깨진다(LAST_DEVIATIONS 로 남기는 편차와 성격이 다르다 —
+    저쪽은 파라미터 '이름'이 달라 못 보내는 것이고, 이쪽은 사람이 정한 실험 조건이다).
+    조건을 조용히 바꾸느니 시끄럽게 멈추고 사람이 config 를 고치게 한다."""
+    provider = resolve_provider(model)
+    lo, hi = TEMPERATURE_RANGE[provider]
+    if not (lo <= float(temperature) <= hi):
+        raise SystemExit(
+            f"[llm] temperature={temperature} 는 {provider} 허용 범위 {lo}~{hi} 밖입니다 "
+            f"(모델 '{model}' → {resolve_model(model)}).\n"
+            f"  이 값으로 호출하면 API 가 400 을 돌려주고, 재시도해도 400 이라 5회 뒤 "
+            f"공백 폴백으로 넘어갑니다 — 빈 발화 로그가 성공처럼 완주합니다.\n"
+            f"  · 논문 상수 1.2 를 지키려면 공급자를 바꾸세요 (gpt-mini·gemini-flash 는 0~2).\n"
+            f"  · Anthropic 으로 갈 거면 1.0 으로 내리고 \"1.2 는 API 제약으로 재현 불가\"를 "
+            f"편차로 문서화하세요.")
+
+
+def preflight(model: str, temperature: float | None = None) -> dict:
     """run 시작 **전에** 부르는 관문. 키가 없으면 여기서 죽는다.
+
+    temperature 를 주면 공급자 허용 범위까지 함께 검사한다(check_temperature).
+    기본값 None 은 "온도를 아직 모르는 호출자"(키 점검 단독 실행 등)를 위한 것이며,
+    실호출 경로는 반드시 온도를 넘긴다.
 
     왜 필요한가: obtain_response 는 어떤 실패도 공백으로 폴백한다(저자 계승). 그래서
     키가 없으면 전 발화가 빈 로그가 조용히 완주해버린다 — 24콜을 다 태운 뒤에야
     폴백 카운터로 알게 된다. 시작 전에 알 수 있는 실패는 시작 전에 알린다."""
     _load_env()
     provider = resolve_provider(model)
+    # 온도를 키보다 **먼저** 본다. 온도는 순수한 설정 오류라 키가 있든 없든 틀린 것이고,
+    # 키 오류가 앞서면 키를 채워 넣은 뒤에야 온도 문제를 알게 된다(두 번 걸리는 길).
+    if temperature is not None:
+        check_temperature(model, temperature)
     env = PROVIDER_KEY_ENV[provider]
     key = os.environ.get(env, "")
     if not key:
