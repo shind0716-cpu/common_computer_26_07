@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>실험 콘솔 v0</title>
+<style>
+  :root{
+    --bg:#faf9f7; --panel:#fff; --line:#e3e0da; --ink:#1c1a17; --dim:#6b665e;
+    --accent:#3d6b5c; --warn:#a8532a; --note:#f3efe6;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font:14px/1.6 -apple-system,"Malgun Gothic","맑은 고딕",sans-serif;
+       background:var(--bg);color:var(--ink)}
+  header{padding:14px 22px;border-bottom:1px solid var(--line);background:var(--panel);
+         display:flex;align-items:baseline;gap:14px;position:sticky;top:0;z-index:10}
+  header h1{margin:0;font-size:16px;letter-spacing:-.01em}
+  header .sub{color:var(--dim);font-size:12px}
+  nav{display:flex;gap:2px;margin-left:auto}
+  nav button{background:none;border:1px solid transparent;padding:6px 14px;cursor:pointer;
+             border-radius:6px;font-size:13px;color:var(--dim)}
+  nav button.on{background:var(--note);border-color:var(--line);color:var(--ink);font-weight:600}
+  main{padding:22px;max-width:1200px;margin:0 auto}
+  section{display:none} section.on{display:block}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+         padding:18px;margin-bottom:16px}
+  .panel h2{margin:0 0 4px;font-size:14px}
+  .panel .why{color:var(--dim);font-size:12px;margin:0 0 14px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+  label{display:block;font-size:12px;font-weight:600;margin-bottom:4px}
+  label .h{display:block;font-weight:400;color:var(--dim);font-size:11px;margin-top:2px}
+  select,input[type=text],input[type=number],textarea{
+    width:100%;padding:7px 9px;border:1px solid var(--line);border-radius:6px;
+    font:inherit;background:#fff}
+  textarea{font-family:ui-monospace,Consolas,monospace;font-size:12px;line-height:1.5}
+  button.go{background:var(--accent);color:#fff;border:none;padding:9px 20px;
+            border-radius:7px;cursor:pointer;font-weight:600;font-size:13px}
+  button.go:disabled{background:#b5b0a8;cursor:not-allowed}
+  button.alt{background:#fff;border:1px solid var(--line);padding:8px 16px;
+             border-radius:7px;cursor:pointer;font-size:13px}
+  pre.log{background:#1c1a17;color:#d8d3c8;padding:14px;border-radius:8px;
+          max-height:340px;overflow:auto;font-size:12px;margin:0;white-space:pre-wrap}
+  table{width:100%;border-collapse:collapse;font-size:12px}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:var(--note);font-weight:600}
+  .cell{max-width:280px}
+  .cell .meta{color:var(--dim);font-size:10px;margin-bottom:3px}
+  .cell .txt{white-space:pre-wrap;word-break:break-word;max-height:130px;overflow:auto}
+  .empty{color:#b5b0a8;font-style:italic}
+  .badge{display:inline-block;padding:1px 7px;border-radius:10px;font-size:10px;
+         background:var(--note);border:1px solid var(--line);margin-right:4px}
+  .badge.iv{background:#f7e6dc;border-color:#e0c3b0;color:var(--warn)}
+  .est{background:var(--note);border-radius:7px;padding:10px 13px;font-size:12px;margin-top:12px}
+  .warn{color:var(--warn);font-weight:600}
+  .runlist{max-height:260px;overflow:auto}
+  .runlist tr{cursor:pointer} .runlist tr:hover td{background:var(--note)}
+  .runlist tr.sel td{background:#e6efe9}
+  .diff{display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12px}
+  .diff div{padding:9px;border-radius:6px;background:var(--note)}
+  .diff .chg{background:#f7e6dc}
+  .foot{color:var(--dim);font-size:11px;margin-top:6px}
+</style>
+</head>
+<body>
+<header>
+  <h1>실험 콘솔 v0</h1>
+  <span class="sub" id="hdr">설정 사전 8축 · 수첩 · 개입</span>
+  <nav>
+    <button data-t="setup" class="on">설정 · 실행</button>
+    <button data-t="notes">수첩 매트릭스</button>
+    <button data-t="iv">개입 모드</button>
+  </nav>
+</header>
+<main>
+
+<!-- ─── 설정 · 실행 ─────────────────────────────────────────────────── -->
+<section id="setup" class="on">
+  <div class="panel">
+    <h2>설정</h2>
+    <p class="why">설정 사전(EXPERIMENT_SETTINGS_v0.md) 8축을 그대로 폼으로 옮긴 것.
+       고른 값은 <code>configs/console/&lt;run_id&gt;.yaml</code> 로 저장되고, 그 파일의
+       sha256 이 로그의 run_meta 에 찍힌다 — 산출물이 자기 조건을 안다.</p>
+    <div class="grid" id="form"></div>
+    <div class="grid" style="margin-top:14px">
+      <div><label>이슈<span class="h">data/issues 에 있는 것</span></label>
+        <select id="issue_id"></select></div>
+      <div><label>run_id<span class="h">기존 run 을 덮어쓰지 않는다(append-only)</span></label>
+        <input type="text" id="run_id" placeholder="예: note001"></div>
+      <div><label>조건 슬러그<span class="h">사람용 이름. 예: talk-note</span></label>
+        <input type="text" id="condition" placeholder="talk-note"></div>
+      <div><label>seed</label><input type="number" id="seed" value="42"></div>
+      <div><label>모델<span class="h" id="modelHelp">키가 있는 모델만 실행됩니다</span></label>
+        <select id="debate_model"></select></div>
+      <div><label>온도<span class="h">일부 신형 모델은 temperature 를 안 받습니다 — 그때는 자동 제거되고 로그에 편차로 남습니다</span></label>
+        <input type="number" id="debate_temperature" value="1.0" step="0.1"></div>
+    </div>
+    <div id="statics" class="foot"></div>
+    <div class="est" id="est">호출 수 계산 중…</div>
+    <div style="margin-top:14px;display:flex;gap:9px;align-items:center">
+      <button class="go" id="btnRun">실행</button>
+      <button class="alt" id="btnStop">중단</button>
+      <span class="foot" id="runmsg"></span>
+    </div>
+  </div>
+  <div class="panel">
+    <h2>실행 로그</h2>
+    <p class="why">엔진을 서브프로세스로 띄우고 콘솔 출력을 그대로 흘린다. 라운드마다
+       체크포인트가 저장되므로 중단해도 그때까지는 남는다.</p>
+    <pre class="log" id="log">(대기)</pre>
+  </div>
+</section>
+
+<!-- ─── 수첩 매트릭스 ───────────────────────────────────────────────── -->
+<section id="notes">
+  <div class="panel">
+    <h2>run 고르기</h2>
+    <p class="why">수첩 건수(수첩)가 0 이면 수첩 없는 조건이다.</p>
+    <div class="runlist"><table id="runs"></table></div>
+  </div>
+  <div class="panel">
+    <h2>수첩 × 라운드</h2>
+    <p class="why">"이 에이전트가 이 라운드에 무엇을 기억에 남겼나" — 보유 관문의 직접
+       관측. 사건(note_update)에서 상태를 만든 뷰이며, 저장하지 않는다.</p>
+    <div id="matrix"><span class="empty">run 을 고르세요</span></div>
+  </div>
+  <div class="panel">
+    <h2>발화 × 라운드</h2>
+    <p class="why">수첩과 나란히 봐야 "무엇을 남기고 무엇을 버렸나"가 읽힌다.</p>
+    <div id="saymatrix"><span class="empty">—</span></div>
+  </div>
+</section>
+
+<!-- ─── 개입 모드 ───────────────────────────────────────────────────── -->
+<section id="iv">
+  <div class="panel">
+    <h2>개입 창</h2>
+    <p class="why">수첩에서 특정 팩트를 지우고 최종 폴링만 다시 돌린다 — 결론이 바뀌면
+       그 팩트가 결론을 지탱했다는 인과 증거. 개입 run 은 <b>새 run_id</b> 로 나가고
+       <code>origin=intervention</code> 이 붙어 집계에서 기본 제외된다(습관이 아니라 필드).</p>
+    <div class="grid">
+      <div><label>원본 run</label><select id="ivSrc"></select></div>
+      <div><label>개입 run_id<span class="h">원본을 건드리지 않는다</span></label>
+        <input type="text" id="ivNew" placeholder="예: note001_iv1"></div>
+    </div>
+    <div id="ivNotes" style="margin-top:14px"></div>
+    <div style="margin-top:12px;display:flex;gap:9px;align-items:center">
+      <button class="go" id="btnIv" disabled>수첩 고쳐서 최종 폴링 재실행</button>
+      <span class="foot" id="ivmsg">API 키가 필요한 실호출입니다 (에이전트 수만큼 1콜).</span>
+    </div>
+  </div>
+  <div class="panel">
+    <h2>결과 대조</h2>
+    <div id="ivRes"><span class="empty">—</span></div>
+  </div>
+</section>
+</main>
+
+<script>
+const $ = s => document.querySelector(s);
+const el = (t,c,x) => { const n=document.createElement(t); if(c)n.className=c;
+                        if(x!==undefined)n.textContent=x; return n; };
+let META=null, SEL=null, IVDATA=null;
+
+// ─── 탭 ───
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));
+  document.querySelectorAll('section').forEach(s=>s.classList.toggle('on',s.id===b.dataset.t));
+  if(b.dataset.t==='iv') fillIvSrc();
+});
+
+// ─── 설정 폼 ───
+async function boot(){
+  META = await (await fetch('/api/meta')).json();
+  const f = $('#form'); f.innerHTML='';
+  META.axes.forEach(a=>{
+    const w = el('div');
+    const l = el('label'); l.append(document.createTextNode(a.label));
+    if(a.help){ const h=el('span','h',a.help); l.append(h); }
+    w.append(l);
+    if(a.type==='choice'){
+      const s=el('select'); s.id='ax_'+a.key;
+      a.values.forEach(v=>{ const o=el('option',null,(a.names&&a.names[v])||v);
+                            o.value=v; s.append(o); });
+      w.append(s);
+    } else {
+      const i=el('input'); i.type='number'; i.id='ax_'+a.key;
+      i.value=a.default!==undefined?a.default:0; w.append(i);
+    }
+    f.append(w);
+  });
+  const is=$('#issue_id'); is.innerHTML='';
+  META.issues.forEach(v=>{const o=el('option',null,v);o.value=v;is.append(o);});
+
+  // 모델 목록 — 키 없는 모델도 보여주되 왜 못 쓰는지 적고, 기본값은 키가 있는 첫 모델.
+  const ms=$('#debate_model'); ms.innerHTML='';
+  (META.models||[]).forEach(m=>{
+    const o=el('option',null,
+      `${m.alias} (${m.provider})` + (m.ready ? '' : ` — ✗ ${m.reason}`));
+    o.value=m.alias; o.disabled=!m.ready; ms.append(o);
+  });
+  const ready=(META.models||[]).filter(m=>m.ready);
+  if(ready.length){
+    ms.value=ready[0].alias;
+    $('#modelHelp').textContent =
+      `실행 가능: ${ready.map(m=>m.alias).join(', ')} · 선택: ${ready[0].model_id}`;
+  } else {
+    $('#modelHelp').innerHTML='<span style="color:var(--warn)">'
+      +'실행 가능한 모델이 없습니다 — .env 에 키를 넣으세요</span>';
+  }
+  ms.onchange=()=>{
+    const m=(META.models||[]).find(x=>x.alias===ms.value);
+    if(m) $('#modelHelp').textContent = `${m.provider} · ${m.model_id} (키: ${m.key_env})`;
+  };
+  $('#statics').innerHTML = META.static_notes.map(t=>'· '+t).join('<br>')
+    + '<br>· 수첩 파싱 규칙 버전: <code>'+META.note_parse_ver+'</code>';
+  f.addEventListener('change', estimate);
+  $('#issue_id').onchange = estimate;
+  ['rounds','judge_n_votes'].forEach(k=>{const e=$('#ax_'+k); if(e)e.oninput=estimate;});
+  renderRuns();
+  estimate();
+  poll();
+}
+
+function payload(){
+  const g = k => { const e=$('#ax_'+k); return e?e.value:null; };
+  return {
+    issue_id:$('#issue_id').value, run_id:$('#run_id').value.trim(),
+    condition:$('#condition').value.trim(),
+    window:g('window'), memory:g('memory'),
+    note_budget:+(g('note_budget')||500), note_call:g('note_call'),
+    rounds:+(g('rounds')||3), structure:g('structure'), persona:g('persona'),
+    ledger_mode:g('ledger_mode'), final_poll:g('final_poll')==='yes',
+    seed:+$('#seed').value, debate_model:$('#debate_model').value,
+    debate_temperature:+$('#debate_temperature').value, judge_n_votes:3
+  };
+}
+
+async function estimate(){
+  const r = await fetch('/api/estimate',{method:'POST',
+    headers:{'Content-Type':'application/json'},body:JSON.stringify(payload())});
+  const d = await r.json();
+  if(!r.ok){ $('#est').innerHTML='<span class="warn">'+(d.detail||'추정 실패')+'</span>'; return; }
+  let h = '<b>LLM 호출 예상 '+d.total+'회</b> — '+d.breakdown.join(' + ')
+        + ' <span style="color:var(--dim)">(에이전트 '+d.agents
+        + ', stance '+(d.stances.join('/')||'?')+')</span>';
+  if(d.warnings.length) h += '<br><span class="warn">⚠ '+d.warnings.join(' / ')+'</span>';
+  $('#est').innerHTML = h;
+}
+
+$('#btnRun').onclick = async ()=>{
+  const p = payload();
+  if(!p.run_id){ $('#runmsg').textContent='run_id 를 적어라.'; return; }
+  $('#btnRun').disabled=true;
+  const r = await fetch('/api/run',{method:'POST',
+    headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});
+  const d = await r.json();
+  $('#runmsg').textContent = r.ok ? ('실행 시작 → '+d.out) : ('✗ '+(d.detail||''));
+  if(!r.ok) $('#btnRun').disabled=false;
+};
+$('#btnStop').onclick = async ()=>{
+  const d = await (await fetch('/api/stop',{method:'POST'})).json();
+  $('#runmsg').textContent = d.msg;
+};
+
+// ─── 로그 폴링 ───
+// 돌고 있을 때만 촘촘히 본다. 유휴 상태에서 1.2초마다 두드리면 브라우저·서버 둘 다
+// 쓸데없이 바쁘고, 하루 켜둔 콘솔이 로그를 수만 줄 요청한다.
+let cursor=0, idle=0;
+async function poll(){
+  let alive=false;
+  try{
+    const d = await (await fetch('/api/log?since='+cursor)).json();
+    if(d.lines.length){
+      const p=$('#log');
+      if(cursor===0) p.textContent='';
+      p.textContent += d.lines.join('\n')+'\n';
+      p.scrollTop = p.scrollHeight;
+      cursor = d.next;
+    }
+    alive = d.alive;
+    $('#btnRun').disabled = d.alive;
+    if(!d.alive && d.returncode!==null && cursor>0 && !window._done){
+      window._done = true;   // 완료 보고는 한 번만
+      $('#runmsg').textContent = d.returncode===0
+        ? '완료 (종료코드 0) — 수첩 매트릭스 탭에서 확인' : '✗ 종료코드 '+d.returncode;
+      if(d.returncode===0){ META=await (await fetch('/api/meta')).json(); renderRuns(); }
+    }
+    if(d.alive) window._done = false;
+  }catch(e){}
+  idle = alive ? 0 : Math.min(idle+1, 10);
+  setTimeout(poll, alive ? 1200 : 1200 + idle*1500);   // 유휴면 최대 ~16초로 늘린다
+}
+
+// ─── run 목록 ───
+function renderRuns(){
+  const t=$('#runs'); t.innerHTML='';
+  const hr=el('tr');
+  ['run','이슈','조건','창','기억','수첩','라운드','장부'].forEach(h=>hr.append(el('th',null,h)));
+  t.append(hr);
+  META.runs.forEach(r=>{
+    const tr=el('tr');
+    if(SEL && SEL.run_id===r.run_id && SEL.issue_id===r.issue_id) tr.classList.add('sel');
+    [r.run_id||'?', r.issue_id||'?', r.condition||'—', r.window||'—',
+     (r.memory||'—')+(r.note_call?' / '+r.note_call:''),
+     r.n_notes||0, r.rounds??'—', r.ledger_mode||'—']
+      .forEach(v=>tr.append(el('td',null,String(v))));
+    tr.onclick=()=>{ SEL=r; renderRuns(); loadNotes(); };
+    t.append(tr);
+  });
+}
+
+// ─── 수첩 매트릭스 ───
+async function loadNotes(){
+  if(!SEL||!SEL.issue_id||!SEL.run_id) return;
+  const r = await fetch('/api/notes?issue_id='+encodeURIComponent(SEL.issue_id)
+                        +'&run_id='+encodeURIComponent(SEL.run_id));
+  const d = await r.json();
+  if(!r.ok){ $('#matrix').innerHTML='<span class="warn">'+(d.detail||'')+'</span>'; return; }
+  $('#matrix').innerHTML=''; $('#saymatrix').innerHTML='';
+  if(!d.cells.length){
+    $('#matrix').innerHTML='<span class="empty">이 run 에는 수첩이 없다 '
+      +'(memory='+(d.settings.memory||'none')+').</span>';
+  } else {
+    $('#matrix').append(grid(d.agents, d.note_rounds, d.cells, true, d.polls));
+  }
+  $('#saymatrix').append(grid(d.agents, d.say_rounds,
+    d.says.map(s=>({...s, len:(s.text||'').length})), false, null));
+}
+
+function grid(agents, rounds, cells, isNote, polls){
+  const by={}; cells.forEach(c=>by[c.agent_id+'|'+c.round]=c);
+  const t=el('table'); const hr=el('tr'); hr.append(el('th',null,'에이전트'));
+  rounds.forEach(r=>hr.append(el('th',null,'R'+r)));
+  if(isNote && polls) hr.append(el('th',null,'최종 판단'));
+  t.append(hr);
+  agents.forEach(a=>{
+    const tr=el('tr'); tr.append(el('th',null,a));
+    rounds.forEach(r=>{
+      const td=el('td','cell'); const c=by[a+'|'+r];
+      if(!c){ td.append(el('span','empty','—')); }
+      else{
+        const m=el('div','meta');
+        if(isNote){
+          m.append(el('span','badge',c.len+'자'));
+          m.append(el('span','badge',c.source||''));
+          if(c.origin==='intervention') m.append(el('span','badge iv','개입'));
+        } else { m.append(el('span','badge',c.len+'자')); }
+        td.append(m); td.append(el('div','txt',c.text||''));
+      }
+      tr.append(td);
+    });
+    if(isNote && polls){
+      const td=el('td','cell'); td.append(el('div','txt',polls[a]||'—')); tr.append(td);
+    }
+    t.append(tr);
+  });
+  return t;
+}
+
+// ─── 개입 ───
+function fillIvSrc(){
+  const s=$('#ivSrc'); s.innerHTML='';
+  const cands = META.runs.filter(r=>r.n_notes>0);
+  if(!cands.length){
+    const o=el('option',null,'수첩 있는 run 이 없다'); o.value=''; s.append(o);
+    $('#ivNotes').innerHTML='<span class="empty">먼저 memory=note 로 run 을 돌리세요.</span>';
+    $('#btnIv').disabled=true; return;
+  }
+  cands.forEach(r=>{ const o=el('option',null,r.run_id+' ('+r.issue_id+')');
+                     o.value=r.issue_id+'|'+r.run_id; s.append(o); });
+  s.onchange=loadIv; loadIv();
+}
+
+async function loadIv(){
+  const v=$('#ivSrc').value; if(!v) return;
+  const [iid,rid]=v.split('|');
+  const d = await (await fetch('/api/notes?issue_id='+encodeURIComponent(iid)
+                               +'&run_id='+encodeURIComponent(rid))).json();
+  IVDATA={iid,rid,d};
+  // 각 에이전트의 마지막 수첩 판본을 편집 가능하게 띄운다.
+  const last={};
+  d.cells.forEach(c=>{ if(!last[c.agent_id]||c.round>last[c.agent_id].round) last[c.agent_id]=c; });
+  const box=$('#ivNotes'); box.innerHTML='';
+  Object.keys(last).sort().forEach(a=>{
+    const w=el('div'); w.style.marginBottom='12px';
+    const l=el('label'); l.append(document.createTextNode(a+' — 마지막 수첩 (R'+last[a].round+')'));
+    l.append(el('span','h','여기서 지운 내용은 이 에이전트에게 진짜로 없어진다.'));
+    w.append(l);
+    const ta=el('textarea'); ta.id='iv_'+a; ta.rows=5; ta.value=last[a].text||'';
+    w.append(ta); box.append(w);
+  });
+  $('#ivNew').value = rid+'_iv1';
+  $('#btnIv').disabled=false;
+}
+
+$('#btnIv').onclick = async ()=>{
+  if(!IVDATA) return;
+  const notes={};
+  IVDATA.d.agents.forEach(a=>{ const t=$('#iv_'+a); if(t) notes[a]=t.value; });
+  $('#btnIv').disabled=true; $('#ivmsg').textContent='재실행 중…';
+  const r=await fetch('/api/intervene',{method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({issue_id:IVDATA.iid, run_id:IVDATA.rid,
+                         new_run_id:$('#ivNew').value.trim(), notes})});
+  const d=await r.json();
+  $('#btnIv').disabled=false;
+  if(!r.ok){ $('#ivmsg').textContent='✗ '+(d.detail||''); return; }
+  $('#ivmsg').textContent='완료 → '+d.file;
+  const box=$('#ivRes'); box.innerHTML='';
+  box.append(el('p','foot','수첩을 고친 에이전트: '
+    +(d.changed_agents.join(', ')||'없음')+' · 개입 run 은 집계에서 기본 제외된다.'));
+  Object.keys(d.after).sort().forEach(a=>{
+    const w=el('div'); w.style.marginBottom='10px';
+    w.append(el('label',null,a+(d.changed_agents.includes(a)?' (수첩 수정됨)':'')));
+    const g=el('div','diff');
+    const b=el('div',null); b.append(el('div','meta','원본 판단'));
+    b.append(el('div',null,d.before[a]||'—'));
+    const af=el('div',d.changed_agents.includes(a)?'chg':null);
+    af.append(el('div','meta','개입 후 판단')); af.append(el('div',null,d.after[a]||'—'));
+    g.append(b); g.append(af); w.append(g); box.append(w);
+  });
+  META=await (await fetch('/api/meta')).json(); renderRuns();
+};
+
+boot();
+</script>
+</body>
+</html>
