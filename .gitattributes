@@ -4,3 +4,10 @@
 *.md text eol=lf
 *.json text eol=lf
 *.yaml text eol=lf
+
+# .bat 은 예외 — CRLF 고정 (2026-07-30 실측 사고)
+# cmd.exe 는 LF 만 있는 배치 파일에서 괄호 블록(if ... ( ... ))을 조기 종료해
+# 안쪽 echo 줄을 명령으로 오인한다. eol=lf 를 상속받으면 체크아웃마다 깨진다.
+# 또한 .bat 은 chcp 실행 전에 OS 코드페이지로 읽히므로 내용은 cp949 여야 한다
+# (tools/console/_mkbat.py 가 생성 시 둘 다 보장한다).
+*.bat text eol=crlf
