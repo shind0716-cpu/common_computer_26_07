@@ -524,6 +524,7 @@ function payload(){
     window:g('window'), memory:g('memory'),
     note_budget:+(g('note_budget')||500), note_call:g('note_call'),
     rounds:+(g('rounds')||3), structure:g('structure'), persona:g('persona'),
+    reasoning:g('reasoning')||'default',
     ledger_mode:g('ledger_mode'), final_poll:g('final_poll')==='yes',
     seed:+$('#seed').value, debate_model:$('#debate_model').value,
     debate_temperature:+$('#debate_temperature').value, judge_n_votes:3
