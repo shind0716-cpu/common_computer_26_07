@@ -132,3 +132,45 @@
   사양(Sonnet·temp0·n=3)과 관련되므로 보드 확인이 필요하다.
 - 다음: 보드 사후 보고 게시 / ③ `talk-full` 의 window 좌표(민옥 결정) / 회고(A4) 프로브는
   `feat/recall-probe` 에 미머지 상태로 남아 있음(coop 분기 신설 필요).
+
+## 2026-07-31 (동범) — llm·judge 수리: 무음 실패 경로 차단 + 별칭 사본 제거
+
+- **F3 회귀 복구** (`llm.RETRYABLE_STATUS` · `_retryable`). `obtain_response` 가 어떤 예외든
+  5회 재시도 후 공백을 반환하던 것을 **일시 장애(429/500/502/503/529·타임아웃)에만** 한정.
+  4xx(설정·인증), SDK 부재, 출력 절단은 즉시 raise. 참조 러너 `run_experiment._post()` 에
+  이미 있던 화이트리스트가 본류 이식에서 유실된 것 — 신규 기능이 아니라 회귀 복구다.
+  ⚠ **동작 변화**: 종전엔 401 이 "32발화 공백 로그가 성공으로 완주"였고 지금은 1콜에 죽는다.
+- **절단 감지 이식** (`llm.LLMTruncated`). anthropic `stop_reason=max_tokens` · openai
+  `finish_reason=length` · gemini `finishReason=MAX_TOKENS` → raise. 편차 D1(제미나이 절단본
+  QC 폐기·재실행)의 코드화 — 절단본은 폐기 대상이지 폴백 대상이 아니다.
+  ⚠ **동작 변화**: 절단 시 run 이 그 자리에서 죽는다. `debate_engine.flush()` 가 라운드마다
+  체크포인트를 쓰므로 직전 라운드까지는 보존되나, **진행 중 라운드는 유실**된다.
+- **OpenAI 파라미터 폴백을 400 에서만** 발동하도록 한정. 종전엔 상태를 안 보고 본문 문자열만
+  봐서 **429 본문에 'temperature' 가 스치면 temperature 를 영구 제거**할 수 있었다 —
+  로그엔 1.0 인데 실제 호출엔 빠진 채 도는, 이 팀이 연구하는 기록-실체 괴리 그 자체.
+- **보안**: Gemini 키를 URL 쿼리스트링 → `x-goog-api-key` 헤더로 이관. 예외·경고 문자열은
+  `_mask()` 로 키를 가린다(앞 6자만 노출). 종전엔 네트워크 예외 한 번에 콘솔·CI 로그에
+  실키 평문이 남았다.
+- **preflight 에 SDK 관문 추가** — 키가 멀쩡해도 `anthropic` 미설치면 호출 시점
+  ModuleNotFoundError 가 재시도 5회 뒤 공백으로 위장됐다(401 위장과 같은 구멍).
+- **judge 별칭 사본 제거 1단계** — `judge.MODEL_ALIASES = llm.MODEL_ALIASES` 참조 바인딩,
+  `_resolve_model` 위임. 값 분기가 구조적으로 불가능해지고, gpt/gemini 별칭을 judge_model
+  로 지정할 수 있게 된다. **프롬프트·JUDGE_PROMPT_VER 무변경**(2단계 obtain_response 완전
+  이관은 금지 — system 채널이 없어 프롬프트 버전업이 필요하고 과거 판정과 비교가 끊긴다).
+- **judge 미지 별칭 즉사** — 종전 `except KeyError: provider = "anthropic"` 폴백 제거.
+  오타가 조용히 Anthropic 으로 흘러 "다른 모델이 돌았는데 로그엔 맞다고 적힌" run 을 만든다.
+  아울러 Anthropic 경로에도 `llm.preflight` 를 태워 자리표시자 키·SDK 부재를 144콜 전에 잡는다.
+- **judge.temperature 기록 = 실제 전송값** (`JUDGE_TEMPERATURE = 0` 상수). 종전엔 cfg 값을
+  적어, config 에 다른 값을 넣으면 산출물 메타데이터가 실체와 갈라졌다. cfg 가 다르면
+  무시하지 않고 경고를 찍는다. 확정 사양(temp 0) 자체는 불변.
+- **judge_health 에 `n_blank_utterances` 추가** — llm 폴백(`' '`)이 만든 공백 발화가 채점에
+  섞이면 전 팩트 unmentioned → `far_system=1.0` 인데, 종전 계기판은 그걸 정상 산출물과
+  구별하지 못했다. 공백을 세는 코드가 뷰어에만 있던 것을 판정 산출물로 이식.
+  → 우리 attrition 지표가 "모델이 팩트를 잃었다"와 "호출이 실패했다"를 구별하게 된다.
+- 테스트 245 → 260종 전체 통과. 신규 `tests/test_llm_judge_hardening.py` 15종.
+  `python -m modules.validate` 로 판정 산출물 스키마 통과 확인(정본 픽스처 dryrun2 는
+  검증 후 원복 — 재생성은 결정 사안이지 부작용이 아니다).
+- **통지**: 이 변경으로 `tools/console/app.py:618`(개입 창)의 `obtain_response` 직접 호출이
+  4xx·절단 시 공백 대신 예외를 올린다 — FastAPI 500 이 된다. 종전엔 공백이 저장돼 화면에
+  "결론이 바뀌었다"로 보이던 자리라 방향은 옳으나, 우아한 처리는 파일 주인(민옥) 판단이다.
+- 다음: 보드 사후 보고 + PR / ② 판정기 재검증 실호출은 여전히 리더 승인 대기.
