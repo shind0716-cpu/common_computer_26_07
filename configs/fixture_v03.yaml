@@ -1,0 +1,21 @@
+# 픽스처 조건 — 스키마 v0.3 이벤트(prompt_assembly · injected_text)가 든 로그를 만들기 위한
+# 전용 조건 파일. **실험 조건이 아니다**: 발화는 결정론적 모의(LLM 0콜)이고 수치를 인용하지
+# 않는다. scripts/gen_fixture_v03.py 만 이 파일을 쓴다.
+#
+# 왜 별도 파일인가: sprint_mini(재현 정본)는 동결이고 장부가 꺼져 있어 injected_text 가 아예
+# 안 생긴다. mini_h2_v0 를 재사용하면 픽스처 run 이 그 실험 조건 이름표를 달게 된다
+# (run_meta.config_ref 가 그 파일을 가리키므로). 조건 변경은 새 yaml — CLAUDE.md 실험 무결성.
+#
+# sprint_mini 와 다른 칸: ledger_mode(off→v0) · run_id · experiment 이름. 나머지 동일.
+experiment: fixture_v03
+issue_id: issue_esa
+run_id: fixture_v03
+seed: 42
+agents: 8
+rounds: 3
+debate_model: claude-haiku      # 모의 발화라 실제로 호출되지 않는다(로그 표기용)
+debate_temperature: 1.0
+judge_model: claude-sonnet-4-6  # 동일 — 판정도 오프라인 스텁으로 대체된다
+judge_temperature: 0
+judge_n_votes: 3
+ledger_mode: "v0"               # ← 이 픽스처의 핵심. r>=2 직전 라운드 소실분 재주입 → injected_text 발생

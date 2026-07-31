@@ -87,6 +87,32 @@ TEMPERATURE_RANGE = {
     "gemini": (0.0, 2.0),
 }
 
+# ⑨ 추론(사고) 모드 — 공급자별 값 사전 (2026-07-30 · 민옥).
+#
+# 왜 축으로 올리는가: 종전엔 **공급자마다 추론 상태가 제각각인데 아무도 지정하지 않았고
+# 로그에도 안 남았다.** Gemini 만 GEMINI_THINKING 으로 눌러뒀고(편차 D1), Anthropic 은
+# 파라미터를 안 넘겨 모델 기본값(Sonnet 5 는 adaptive thinking 이 기본 ON — 동범 7/23),
+# OpenAI 도 모델 기본값이었다. 즉 같은 실험을 공급자만 바꿔 돌리면 사고량이 달라지는데
+# 그 사실이 산출물 어디에도 없었다 — 온도 지뢰와 같은 종류의 "조용히 달라진 조건".
+#
+# 연구상 의미: 추론은 4관문의 **보유와 발화 사이**에 앉는다. "생각에선 꺼냈는데 발화엔
+# 안 실었다"가 담화 전진 가설의 직접 증거이므로, 이 축은 나중에 1급 변수가 될 수 있다.
+# ⚠ 단 공급자마다 추론 원문 접근성이 달라(Anthropic=블록 반환 / OpenAI·Gemini=요약 또는
+# 없음) **추론 on/off 비교는 같은 공급자 안에서만** 유효하다.
+#
+# off = 끌 수 있으면 끈다, on = 켠다, default = 지정하지 않는다(모델 기본값 — 종전 동작).
+# default 를 남겨두는 이유: 과거 run 과의 연속성. 지정 안 함과 꺼짐은 다른 상태다.
+REASONING_MODES = ("default", "off", "on")
+# 공급자별로 실제 무엇을 보내는지. None 이면 그 공급자에서 그 값은 "파라미터 미전송".
+REASONING_PARAM = {
+    "anthropic": {"off": {"type": "disabled"},
+                  "on": {"type": "enabled", "budget_tokens": 2048}},
+    # OpenAI 신형은 reasoning_effort. 구형은 이 파라미터를 거부하므로 폴백으로 제거한다.
+    "openai": {"off": "minimal", "on": "high"},
+    # Gemini 3 thinkingLevel. 종전 하드코딩 값(minimal)이 곧 off 였다.
+    "gemini": {"off": "minimal", "on": "high"},
+}
+
 MAX_TOKENS = 2048
 GEMINI_MAX_TOKENS = 4096   # 편차 D1 계승: thinking 토큰이 예산을 잠식해 본문 절단
 GEMINI_THINKING = "minimal"
@@ -195,7 +221,26 @@ def check_temperature(model: str, temperature: float) -> None:
             f"편차로 문서화하세요.")
 
 
-def preflight(model: str, temperature: float | None = None) -> dict:
+def check_reasoning(model: str, reasoning: str) -> None:
+    """추론 모드 값이 이 공급자에서 유효한가. 아니면 SystemExit (2026-07-30 · 민옥).
+
+    온도 관문과 같은 자리·같은 이유다 — 지원하지 않는 값을 보내면 400 이고, 400 은
+    재시도해도 400 이라 5회 뒤 공백 폴백으로 넘어가 빈 발화 로그가 완주한다."""
+    if reasoning not in REASONING_MODES:
+        raise SystemExit(
+            f"[llm] reasoning={reasoning!r} 은 허용값이 아닙니다. "
+            f"{list(REASONING_MODES)} 중 하나여야 합니다.")
+    if reasoning == "default":
+        return                      # 파라미터를 안 보내므로 공급자 검사 불필요
+    provider = resolve_provider(model)
+    if provider not in REASONING_PARAM:
+        raise SystemExit(
+            f"[llm] 공급자 {provider} 는 추론 모드 지정을 지원하지 않습니다 "
+            f"(모델 '{model}'). reasoning=default 로 두세요.")
+
+
+def preflight(model: str, temperature: float | None = None,
+              reasoning: str | None = None) -> dict:
     """run 시작 **전에** 부르는 관문. 키가 없으면 여기서 죽는다.
 
     temperature 를 주면 공급자 허용 범위까지 함께 검사한다(check_temperature).
@@ -211,6 +256,8 @@ def preflight(model: str, temperature: float | None = None) -> dict:
     # 키 오류가 앞서면 키를 채워 넣은 뒤에야 온도 문제를 알게 된다(두 번 걸리는 길).
     if temperature is not None:
         check_temperature(model, temperature)
+    if reasoning is not None:
+        check_reasoning(model, reasoning)
     env = PROVIDER_KEY_ENV[provider]
     key = os.environ.get(env, "")
     if not key:
@@ -238,24 +285,45 @@ def preflight(model: str, temperature: float | None = None) -> dict:
 
 
 # ─── 공급자별 호출 ────────────────────────────────────────────────────────────
-def _call_anthropic(model_id: str, inputs: str, temperature: float) -> str:
+def _note_deviation(dev: str) -> None:
+    """편차를 한 번만 기록한다. 조용한 파라미터 변경은 재현성을 깬다."""
+    if dev not in LAST_DEVIATIONS:
+        LAST_DEVIATIONS.append(dev)
+
+
+def _call_anthropic(model_id: str, inputs: str, temperature: float,
+                    reasoning: str = "default") -> str:
     if "anthropic" not in _clients:
         from anthropic import Anthropic  # 지연 import
         _load_env()
         _clients["anthropic"] = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
-    msg = _clients["anthropic"].messages.create(
-        model=model_id, max_tokens=MAX_TOKENS, temperature=temperature,
-        messages=[{"role": "user", "content": inputs}],
-    )
+    kwargs = {"model": model_id, "max_tokens": MAX_TOKENS,
+              "temperature": temperature,
+              "messages": [{"role": "user", "content": inputs}]}
+    think = REASONING_PARAM["anthropic"].get(reasoning)
+    if think is not None:
+        # 사고 예산은 출력 예산과 별도가 아니라 그 안에서 나뉜다 — 켜면 본문 몫이
+        # 줄어 절단이 난다(편차 D1 과 같은 기전). 켤 때는 상한을 함께 올린다.
+        kwargs["thinking"] = think
+        if think.get("type") == "enabled":
+            kwargs["max_tokens"] = MAX_TOKENS + int(think.get("budget_tokens", 0))
+            # 확장 사고는 temperature 를 받지 않는다(API 제약).
+            kwargs.pop("temperature", None)
+            _note_deviation("anthropic 확장 사고 — temperature 미전송(API 제약)")
+    msg = _clients["anthropic"].messages.create(**kwargs)
+    parts = [b.text for b in msg.content if getattr(b, "type", None) == "text"]
+    text = "".join(parts).strip()
+    # 절단은 무음 통과 금지 — 7/27 에 제미나이 팔 전체를 폐기하게 만든 사고가
+    # "잘렸는데 성공으로 보인 것"이었다(편차 D1). 예외로 올려 재시도·폴백에 태운다.
     if getattr(msg, "stop_reason", None) == "max_tokens":
         raise LLMTruncated(
-            f"anthropic 출력 절단(stop_reason=max_tokens, 예산 {MAX_TOKENS}) — "
-            f"절단본은 폐기, max_tokens 상향 또는 프롬프트 축소 필요")
-    parts = [b.text for b in msg.content if getattr(b, "type", None) == "text"]
-    return "".join(parts).strip()
+            f"anthropic 출력 절단(max_tokens {kwargs['max_tokens']}) — "
+            f"reasoning={reasoning}. 사고 토큰이 본문 예산을 잠식했을 수 있습니다.")
+    return text
 
 
-def _call_openai(model_id: str, inputs: str, temperature: float) -> str:
+def _call_openai(model_id: str, inputs: str, temperature: float,
+                 reasoning: str = "default") -> str:
     """raw HTTP — SDK 버전 차이에 안 걸리게. 파라미터 명 폴백 포함."""
     global _openai_maxtok, _openai_no_temp
     import requests
@@ -267,21 +335,35 @@ def _call_openai(model_id: str, inputs: str, temperature: float) -> str:
                _openai_maxtok: MAX_TOKENS}
     if not _openai_no_temp:
         payload["temperature"] = temperature
-    for _ in range(3):   # 신형 모델 파라미터 명 변화 폴백
+    effort = REASONING_PARAM["openai"].get(reasoning)
+    if effort is not None:
+        payload["reasoning_effort"] = effort
+        if effort == "high":
+            # 사고 토큰이 출력 예산을 먹는다 — 켤 때 상한을 함께 올린다(편차 D1 기전).
+            payload[_openai_maxtok] = MAX_TOKENS * 3
+    for _ in range(4):   # 신형 모델 파라미터 명 변화 폴백
         r = requests.post(url, headers={"Authorization": f"Bearer {key}"},
                           json=payload, timeout=180)
         if r.status_code == 200:
             choice = r.json()["choices"][0]
+            # 절단 무음 통과 금지(편차 D1 기전) — 사고 토큰이 본문 예산을 먹으면
+            # finish_reason 이 length 로 오는데, 종전엔 그대로 성공 처리됐다.
             if choice.get("finish_reason") == "length":
                 raise LLMTruncated(
-                    f"openai 출력 절단(finish_reason=length, 예산 {MAX_TOKENS}) — "
-                    f"절단본은 폐기(편차 D1 교훈)")
+                    f"OpenAI 출력 절단(finish_reason=length) — reasoning={reasoning}. "
+                    f"사고 토큰이 본문 예산을 잠식했을 수 있습니다.")
             return choice["message"]["content"].strip()
         body = r.text[:400]
         # 파라미터 폴백은 **400에서만** 발동한다. 종전엔 상태를 안 보고 본문 문자열만
         # 봐서, 429 본문에 'temperature' 가 스치면 temperature 를 영구 제거할 수
         # 있었다 — 로그엔 1.0 인데 실제 호출엔 빠진 채 도는, 이 팀이 연구하는 바로 그
         # 기록-실체 괴리다(무음 실패 ⓒ). 400 = "요청이 틀렸다"일 때만 요청을 고친다.
+        if r.status_code == 400 and "reasoning_effort" in body and "reasoning_effort" in payload:
+            # 구형 모델은 이 파라미터를 거부한다. 제거하고 재시도하되 편차로 남긴다 —
+            # "추론 off 로 돌렸다"와 "추론 파라미터가 안 먹혔다"는 다른 상태다.
+            payload.pop("reasoning_effort")
+            _note_deviation(f"openai reasoning_effort 미지원 — 제거됨(요청값 {effort})")
+            continue
         if r.status_code == 400 and "max_tokens" in body and "max_tokens" in payload:
             payload["max_completion_tokens"] = payload.pop("max_tokens")
             _openai_maxtok = "max_completion_tokens"
@@ -300,7 +382,8 @@ def _call_openai(model_id: str, inputs: str, temperature: float) -> str:
     raise LLMCallError("openai", 400, "파라미터 폴백 3회 소진 — 같은 400이 반복됨")
 
 
-def _call_gemini(model_id: str, inputs: str, temperature: float) -> str:
+def _call_gemini(model_id: str, inputs: str, temperature: float,
+                 reasoning: str = "default") -> str:
     import requests
     _load_env()
     key = os.environ["GEMINI_API_KEY"]
@@ -309,21 +392,25 @@ def _call_gemini(model_id: str, inputs: str, temperature: float) -> str:
     # 노출된다 — 공식 권장 헤더 x-goog-api-key 사용.
     url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
            f"{model_id}:generateContent")
+    # reasoning=default 는 종전 동작(GEMINI_THINKING="minimal")을 그대로 유지한다 —
+    # 과거 run 과의 연속성. off 도 값이 같지만 **의도가 기록된다**는 점이 다르다.
+    level = REASONING_PARAM["gemini"].get(reasoning) or GEMINI_THINKING
+    out_tokens = GEMINI_MAX_TOKENS * 2 if level == "high" else GEMINI_MAX_TOKENS
     payload = {"contents": [{"parts": [{"text": inputs}]}],
                "generationConfig": {
                    "temperature": temperature,
-                   "maxOutputTokens": GEMINI_MAX_TOKENS,
-                   "thinkingConfig": {"thinkingLevel": GEMINI_THINKING}}}
+                   "maxOutputTokens": out_tokens,
+                   "thinkingConfig": {"thinkingLevel": level}}}
     r = requests.post(url, headers={"x-goog-api-key": key}, json=payload, timeout=180)
     if r.status_code != 200:
         raise LLMCallError("gemini", r.status_code, r.text[:400])
     cand = r.json()["candidates"][0]
+    # 절단 무음 통과 금지 — 편차 D1 의 원본 사고가 정확히 이 자리였다(사고 토큰이
+    # 1024 예산을 잠식해 문장 중간에서 끊겼고, 판정상으론 "완전 복제"로 보였다).
     if cand.get("finishReason") == "MAX_TOKENS":
-        # 참조 러너(run_experiment)의 절단 감지 이식 — 편차 D1 실사고(제미나이 절단본
-        # QC 폐기·재실행)의 재발 방지. thinking 이 예산을 잠식하면 여기서 걸린다.
         raise LLMTruncated(
-            f"gemini 출력 절단(finishReason=MAX_TOKENS, 예산 {GEMINI_MAX_TOKENS}) — "
-            f"절단본은 폐기(편차 D1 교훈)")
+            f"Gemini 출력 절단(MAX_TOKENS {out_tokens}) — reasoning={reasoning} "
+            f"thinkingLevel={level}. 편차 D1 재발.")
     return "".join(p.get("text", "")
                    for p in cand.get("content", {}).get("parts", [])).strip()
 
@@ -332,8 +419,12 @@ _DISPATCH = {"anthropic": _call_anthropic, "openai": _call_openai,
              "gemini": _call_gemini}
 
 
-def obtain_response(inputs: str, model: str, temperature: float = 0.0) -> str:
+def obtain_response(inputs: str, model: str, temperature: float = 0.0,
+                    reasoning: str = "default") -> str:
     """프롬프트 하나 → 응답 텍스트 하나. 저자 obtain_response()와 같은 계약.
+
+    reasoning 은 **기본값이 종전 동작("default" = 파라미터 미전송)** 이므로 기존
+    호출자는 한 글자도 안 고쳐도 된다 — 호출 계약(설계 원칙 2)을 깨지 않는 확장이다.
 
     **일시 장애만** 재시도 5회 지수 백오프, 끝에도 실패하면 공백을 반환한다 — 저자
     코드 계승. 한 발화가 비어도 나머지 토론은 계속돼야 하고, 빈 발화 자체가 관측
@@ -348,7 +439,7 @@ def obtain_response(inputs: str, model: str, temperature: float = 0.0) -> str:
     fn = _DISPATCH[provider]
     for attempt in range(MAX_ATTEMPTS):
         try:
-            text = fn(model_id, inputs, temperature)
+            text = fn(model_id, inputs, temperature, reasoning)
             return text if text else FALLBACK
         except Exception as e:  # noqa: BLE001 — 일시 장애만 재시도 후 폴백
             if not _retryable(e):

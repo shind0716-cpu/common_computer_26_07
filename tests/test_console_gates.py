@@ -74,6 +74,68 @@ class TestTemperatureGuard(unittest.TestCase):
             llm.check_temperature("llama-3-70b", 0.5)
 
 
+class TestReasoningAxis(unittest.TestCase):
+    """⑨ 추론 모드 — 종전엔 공급자마다 사고량이 다른데 기록이 없었다."""
+
+    def test_default_is_previous_behavior(self):
+        # "지정 안 함"은 파라미터를 안 보내는 것 = 종전 동작. 옛 config 가 그대로 돌아야 한다.
+        llm.check_reasoning("gpt-mini", "default")
+        llm.check_reasoning("claude-haiku", "default")
+        llm.check_reasoning("gemini-flash", "default")
+
+    def test_rejects_unknown_value(self):
+        with self.assertRaises(SystemExit):
+            llm.check_reasoning("gpt-mini", "maximum")
+
+    def test_all_three_providers_have_a_mapping(self):
+        # 관문이 통과시킨 값은 실제로 보낼 것이 있어야 한다 — 통과했는데 보낼 게
+        # 없으면 "켰다고 생각했는데 안 켜진" 상태가 되고, 그건 기록과 실제가 갈리는 것.
+        for provider in ("anthropic", "openai", "gemini"):
+            for mode in ("off", "on"):
+                self.assertIn(mode, llm.REASONING_PARAM[provider], f"{provider}/{mode}")
+
+    def test_obtain_response_signature_keeps_old_contract(self):
+        # 설계 원칙 2(호출 계약 불변) — 기존 호출자는 한 글자도 안 고쳐야 한다.
+        import inspect
+        sig = inspect.signature(llm.obtain_response)
+        self.assertEqual(sig.parameters["reasoning"].default, "default")
+        # 앞 세 인자의 이름·순서가 그대로인가
+        self.assertEqual(list(sig.parameters)[:3], ["inputs", "model", "temperature"])
+
+
+class TestReasoningRecorded(GateBase):
+    """축의 존재보다 중요한 것: 이 run 이 어떤 상태로 돌았는지가 로그에 남는가."""
+
+    def test_run_meta_records_reasoning(self):
+        self._make_run("rz1")
+        events = [json.loads(l) for l in
+                  paths.debate(self.issue_id, "rz1").read_text(encoding="utf-8")
+                  .splitlines() if l.strip()]
+        meta = next(e for e in events if e["event"] == "run_meta")
+        # 기록이 없으면 나중에 "그때 추론 켰었나?"를 사람 기억에 묻게 된다.
+        self.assertIn("reasoning", meta["settings"])
+        self.assertEqual(meta["settings"]["reasoning"], "default")
+
+    def test_console_writes_reasoning_into_config(self):
+        import yaml as _yaml
+        req = self.mod.RunReq(issue_id=self.issue_id, run_id="rz2", reasoning="on")
+        p = self.mod._write_config(req)
+        self.assertEqual(_yaml.safe_load(p.read_text(encoding="utf-8"))["reasoning"], "on")
+        p.unlink()
+
+    def test_run_rejects_unknown_reasoning(self):
+        r = self.c.post("/api/run", json={
+            "issue_id": self.issue_id, "run_id": "rz3", "reasoning": "maximum"})
+        self.assertEqual(r.status_code, 400)
+        self.assertFalse(paths.debate(self.issue_id, "rz3").exists())
+
+    def test_estimate_warns_when_reasoning_on(self):
+        # 켜면 편차 D1(사고 토큰이 본문 예산 잠식)이 되살아난다 — 조용히 넘기지 않는다.
+        d = self.c.post("/api/estimate", json={
+            "issue_id": self.issue_id, "run_id": "x", "reasoning": "on"}).json()
+        self.assertTrue(any("D1" in w for w in d["warnings"]))
+
+
 class TestConsoleTemperatureGate(GateBase):
     def test_estimate_blocks_out_of_range(self):
         d = self.c.post("/api/estimate", json={

@@ -211,19 +211,31 @@ def assemble_coop_final(question: str, body: str, final_context: str) -> str:
     return t
 
 
+def _reasoning_bound(reasoning: str):
+    """추론 좌표를 묶은 실호출 함수를 만든다 (2026-07-30 · 민옥).
+
+    왜 llm.obtain_response 를 직접 안 쓰는가: 주입된 가짜(테스트의 utterance_fn)는
+    시그니처가 `(inputs, model=, temperature=)` 이므로 reasoning 을 넘기면 깨진다.
+    실호출 경로에만 좌표를 싣고 주입 경로는 종전 계약 그대로 둔다."""
+    def _call(inputs, model=None, temperature=None):
+        return llm.obtain_response(inputs, model=model, temperature=temperature,
+                                   reasoning=reasoning)
+    return _call
+
+
 def initial_utterance(question: str, fact_text: str, answer: str, model: str, temp: float,
-                      respond=None):
+                      respond=None, reasoning: str = "default"):
     """저자 obtain_discussion_initial_each() 계승. respond 는 테스트 주입용."""
     inputs = assemble_initial(question, fact_text, answer)
-    fn = respond or llm.obtain_response
+    fn = respond or _reasoning_bound(reasoning)
     return inputs, fn(inputs, model=model, temperature=temp)
 
 
 def continue_utterance(question: str, previous: str, others: str, setting: str,
-                       model: str, temp: float, respond=None):
+                       model: str, temp: float, respond=None, reasoning: str = "default"):
     """저자 discussion_continue() 내부 조립 계승. respond 는 테스트 주입용."""
     inputs = assemble_continue(question, previous, others, setting)
-    fn = respond or llm.obtain_response
+    fn = respond or _reasoning_bound(reasoning)
     return inputs, fn(inputs, model=model, temperature=temp)
 
 
@@ -235,6 +247,9 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
     cfg = yaml.safe_load(config_path.read_text(encoding="utf-8"))
     model = cfg["debate_model"]
     temp = float(cfg["debate_temperature"])
+    # ⑨ 추론 모드 (2026-07-30). 기본 "default" = 파라미터 미전송 = 종전 동작이므로
+    # 이 키가 없는 옛 config 도 그대로 돈다. 값의 의미는 llm.REASONING_MODES 참조.
+    reasoning = str(cfg.get("reasoning", "default"))
     rounds = int(cfg.get("rounds", DEBATE_ROUNDS))
     structure = cfg.get("structure", "full")
     ledger_mode = cfg.get("ledger_mode", "off")
@@ -312,7 +327,7 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
     if respond is None:
         # 온도까지 함께 검사한다 — 범위 밖 온도는 400 이고, 400 은 재시도해도 400 이라
         # 공백 폴백으로 넘어가 빈 발화 로그가 완주한다(2026-07-30 · 민옥 온도 관문).
-        llm_meta = llm.preflight(model, temperature=temp)
+        llm_meta = llm.preflight(model, temperature=temp, reasoning=reasoning)
         print(f"[llm] {llm_meta['provider']} · {llm_meta['model_id']} "
               f"(키: {llm_meta['key_env']})")
 
@@ -358,8 +373,21 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
         rec = {"event": event, "run_id": run_id, "ts": now(), **fields}
         events.append(rec)
 
+    # 이 run 이 시작될 때 이미 쌓여 있던 편차는 남의 것이다(LAST_DEVIATIONS 는
+    # 프로세스 전역). 여기서부터 늘어난 것만 이 run 의 편차로 센다.
+    _dev_base = len(llm.LAST_DEVIATIONS)
+
     def flush():
-        """체크포인트: 지금까지의 이벤트를 파일로. 라운드마다 호출(중단 시 유실 최소화)."""
+        """체크포인트: 지금까지의 이벤트를 파일로. 라운드마다 호출(중단 시 유실 최소화).
+
+        쓰기 전에 run_meta 의 편차 칸을 갱신한다 (2026-07-30 · 민옥).
+        왜 여기인가: 편차는 **첫 호출을 해봐야** 드러난다(예: 구형 모델이
+        reasoning_effort 를 거부해 제거됨). run_meta 는 로그 첫 줄이라 실행 전에
+        나가므로, 그대로 두면 `reasoning: on` 이라 적힌 로그가 실제로는 추론 없이
+        돌았을 수 있다 — **기록과 실제가 갈리는** 자리다. flush 가 파일을 통째로
+        다시 쓰므로 여기서 채우면 체크포인트에도 그 시점까지의 편차가 남는다."""
+        if events and events[0].get("event") == "run_meta":
+            events[0]["settings"]["deviations"] = list(llm.LAST_DEVIATIONS[_dev_base:])
         with out_path.open("w", encoding="utf-8") as f:
             for rec in events:
                 f.write(json.dumps(rec, ensure_ascii=False) + "\n")
@@ -408,6 +436,13 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
             "overlap_k": assign_doc.get("overlap_k"),          # ⑦ 정보 나누기
             "assignment_mode": assign_doc.get("created_by"),   # ⑦ 배분 방식
             "ledger_mode": ledger_mode,          # ⑧ 장부
+            # ⑨ 추론 모드 (2026-07-30 신설). 종전엔 공급자마다 사고량이 다른데
+            # 그 사실이 산출물 어디에도 없었다 — "지정 안 함(default)"도 하나의 상태로
+            # 명시해 기록한다. 요청한 좌표와 **실제로 전송된 것**이 갈릴 수 있으므로
+            # (구형 모델이 파라미터를 거부하면 제거하고 재시도한다) 그 차이는 아래
+            # settings.deviations 에 flush 시점마다 채워진다.
+            "reasoning": reasoning,
+            "deviations": [],                    # flush() 가 실행 중에 채운다
             # 부수 — 조건은 아니지만 재현에 필요
             "seed": seed, "agents": length,
             "debate_model": model, "debate_temperature": temp,
@@ -445,12 +480,12 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
         spend()
         if coop:
             inputs = assemble_coop_initial(question, body, fact_text)
-            _fn = respond or llm.obtain_response
+            _fn = respond or _reasoning_bound(reasoning)
             resp = _fn(inputs, model=model, temperature=temp)
         else:
             answer = "yes" if ag["stance"] == "pro" else "no"
             inputs, resp = initial_utterance(question, fact_text, answer, model, temp,
-                                             respond=respond)
+                                             respond=respond, reasoning=reasoning)
         current.append(resp)
         note_utterance(0, agent_idx, resp)
         # v0.3: 발화 입력의 조립 명세 — utterance 와 prompt_hash 로 결합(같은 값).
@@ -535,7 +570,7 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
             raw = current[orig_idx]
             spend()
             nu_inputs = assemble_coop_note_update(question, "", raw or "", "", note_budget)
-            _fn = respond or llm.obtain_response
+            _fn = respond or _reasoning_bound(reasoning)
             nu_resp = _fn(nu_inputs, model=model, temperature=temp)
             note_text = note_slot.parse_note_only(nu_resp)
             emit("prompt_assembly", round=0, agent_id=seated[i]["agent_id"],
@@ -599,7 +634,7 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
             # (B-2) 재주입 블록은 others 뒤에 잇는다 — 저자 프롬프트 슬롯 훼손 최소
             #     (INTEGRATION §3-2 제안, 동범 확인 대기).
             spend()
-            _fn = respond or llm.obtain_response
+            _fn = respond or _reasoning_bound(reasoning)
             if use_note:
                 # 수첩 조건: 배정 팩트·직전 발언이 프롬프트에 없다. 남는 것은 수첩뿐.
                 # 수첩이 None(라운드 0 파싱 실패)이면 빈 문자열을 넣되 슬롯은 null 로
@@ -630,7 +665,7 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
             else:
                 inputs, resp = continue_utterance(
                     question, previous[i] or "", others + inject_block, setting_text,
-                    model, temp, respond=respond,
+                    model, temp, respond=respond, reasoning=reasoning,
                 )
             nxt.append(resp)
             note_utterance(r, i, resp)
@@ -704,7 +739,7 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
                 spend()
                 nu_inputs = assemble_coop_note_update(
                     question, notes[i] or "", nxt[i] or "", inc, note_budget)
-                _fn2 = respond or llm.obtain_response
+                _fn2 = respond or _reasoning_bound(reasoning)
                 nu_resp = _fn2(nu_inputs, model=model, temperature=temp)
                 emit("prompt_assembly", round=r, agent_id=seated[i]["agent_id"],
                      template="coop_note_update", prompt_ver=prompt_ver,
@@ -763,7 +798,7 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
                           "assigned_fact_ids": [], "inject": None}
             spend()
             f_inputs = assemble_coop_final(question, body, final_context)
-            _fn3 = respond or llm.obtain_response
+            _fn3 = respond or _reasoning_bound(reasoning)
             f_resp = _fn3(f_inputs, model=model, temperature=temp)
             emit("prompt_assembly", round=rounds + 1, agent_id=seated[i]["agent_id"],
                  template="coop_final", prompt_ver=prompt_ver, setting_key=None,
