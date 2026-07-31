@@ -1,0 +1,192 @@
+{
+  "method": "hash-verified reassembly (modules.validate 헬퍼 + debate_engine.assemble_*)",
+  "token_estimate_band_tok_per_char": [
+    0.45,
+    0.7
+  ],
+  "runs": [
+    {
+      "run": "debate_issue_esa_dryrun.jsonl",
+      "condition": null,
+      "model": null,
+      "calls": 0,
+      "utterances": 32,
+      "polls": 0,
+      "notes": 0,
+      "blank_utterances": 0,
+      "output_chars": 1440,
+      "input_chars": null,
+      "hash_verified": 0,
+      "hash_mismatch": 0,
+      "input_error": "구 로그(v0.2) — prompt_assembly 없음, 출력만 계수"
+    },
+    {
+      "run": "debate_issue_esa_dryrun2.jsonl",
+      "condition": null,
+      "model": null,
+      "calls": 0,
+      "utterances": 32,
+      "polls": 0,
+      "notes": 0,
+      "blank_utterances": 0,
+      "output_chars": 2030,
+      "input_chars": null,
+      "hash_verified": 0,
+      "hash_mismatch": 0,
+      "input_error": "구 로그(v0.2) — prompt_assembly 없음, 출력만 계수"
+    },
+    {
+      "run": "debate_issue_esa_repro_smoke.jsonl",
+      "condition": "mini-h2-off",
+      "model": "gpt-mini",
+      "calls": 16,
+      "utterances": 16,
+      "polls": 0,
+      "notes": 0,
+      "blank_utterances": 0,
+      "output_chars": 5150,
+      "input_chars": 27653,
+      "hash_verified": 16,
+      "hash_mismatch": 0,
+      "input_error": null,
+      "per_template": {
+        "discussion_initial": {
+          "n": 8,
+          "chars": 3213
+        },
+        "discussion_continue": {
+          "n": 8,
+          "chars": 24440
+        }
+      }
+    },
+    {
+      "run": "debate_issue_hire_111.jsonl",
+      "condition": null,
+      "model": "gpt-mini",
+      "calls": 20,
+      "utterances": 16,
+      "polls": 4,
+      "notes": 0,
+      "blank_utterances": 0,
+      "output_chars": 13386,
+      "input_chars": 68276,
+      "hash_verified": 20,
+      "hash_mismatch": 0,
+      "input_error": null,
+      "per_template": {
+        "coop_initial": {
+          "n": 4,
+          "chars": 3182
+        },
+        "coop_continue": {
+          "n": 12,
+          "chars": 51166
+        },
+        "coop_final": {
+          "n": 4,
+          "chars": 13928
+        }
+      }
+    },
+    {
+      "run": "debate_issue_hire_gpt001.jsonl",
+      "condition": "talk-note",
+      "model": "gpt-mini",
+      "calls": 24,
+      "utterances": 16,
+      "polls": 4,
+      "notes": 12,
+      "blank_utterances": 0,
+      "output_chars": 8907,
+      "input_chars": 37471,
+      "hash_verified": 24,
+      "hash_mismatch": 0,
+      "input_error": null,
+      "per_template": {
+        "coop_initial": {
+          "n": 4,
+          "chars": 3182
+        },
+        "coop_note_update": {
+          "n": 4,
+          "chars": 3840
+        },
+        "coop_continue_note": {
+          "n": 12,
+          "chars": 27803
+        },
+        "coop_final": {
+          "n": 4,
+          "chars": 2646
+        }
+      }
+    },
+    {
+      "run": "debate_issue_hire_smoke_gpt.jsonl",
+      "condition": "smoke-gpt",
+      "model": "gpt-mini",
+      "calls": 16,
+      "utterances": 8,
+      "polls": 4,
+      "notes": 4,
+      "blank_utterances": 0,
+      "output_chars": 5237,
+      "input_chars": 22230,
+      "hash_verified": 16,
+      "hash_mismatch": 0,
+      "input_error": null,
+      "per_template": {
+        "coop_initial": {
+          "n": 4,
+          "chars": 3182
+        },
+        "coop_note_update": {
+          "n": 4,
+          "chars": 3885
+        },
+        "coop_continue_note": {
+          "n": 4,
+          "chars": 12083
+        },
+        "coop_final": {
+          "n": 4,
+          "chars": 3080
+        }
+      }
+    },
+    {
+      "run": "debate_issue_hire_테스트.jsonl",
+      "condition": "1",
+      "model": "gpt-mini",
+      "calls": 24,
+      "utterances": 16,
+      "polls": 4,
+      "notes": 12,
+      "blank_utterances": 0,
+      "output_chars": 8488,
+      "input_chars": 36673,
+      "hash_verified": 24,
+      "hash_mismatch": 0,
+      "input_error": null,
+      "per_template": {
+        "coop_initial": {
+          "n": 4,
+          "chars": 3182
+        },
+        "coop_note_update": {
+          "n": 4,
+          "chars": 3747
+        },
+        "coop_continue_note": {
+          "n": 12,
+          "chars": 27041
+        },
+        "coop_final": {
+          "n": 4,
+          "chars": 2703
+        }
+      }
+    }
+  ]
+}
