@@ -1,0 +1,20 @@
+# 콘솔 v0 생성 — 설정 사전 8축 좌표
+experiment: console_논문재현콜
+condition: null
+issue_id: issue_esa
+run_id: 논문재현콜
+seed: 42
+rounds: 3
+structure: full
+window: rolling
+memory: none
+note_budget: 500
+note_call: utterance
+final_poll: true
+persona: default
+debate_model: gpt-mini
+debate_temperature: 1.0
+judge_model: claude-sonnet-4-6
+judge_temperature: 0
+judge_n_votes: 3
+ledger_mode: 'off'

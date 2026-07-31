@@ -1,0 +1,20 @@
+# 콘솔 v0 생성 — 설정 사전 8축 좌표
+experiment: console_테스트
+condition: '1'
+issue_id: issue_hire
+run_id: 테스트
+seed: 42
+rounds: 3
+structure: full
+window: rolling
+memory: note
+note_budget: 500
+note_call: utterance
+final_poll: true
+persona: open
+debate_model: gpt-mini
+debate_temperature: 0.7
+judge_model: claude-sonnet-4-6
+judge_temperature: 0
+judge_n_votes: 3
+ledger_mode: 'off'

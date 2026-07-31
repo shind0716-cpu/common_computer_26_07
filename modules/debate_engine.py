@@ -310,7 +310,9 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
     # 폴백으로 넘어가 로그만 보면 성공처럼 보였다(7/30).
     llm_meta = None
     if respond is None:
-        llm_meta = llm.preflight(model)
+        # 온도까지 함께 검사한다 — 범위 밖 온도는 400 이고, 400 은 재시도해도 400 이라
+        # 공백 폴백으로 넘어가 빈 발화 로그가 완주한다(2026-07-30 · 민옥 온도 관문).
+        llm_meta = llm.preflight(model, temperature=temp)
         print(f"[llm] {llm_meta['provider']} · {llm_meta['model_id']} "
               f"(키: {llm_meta['key_env']})")
 

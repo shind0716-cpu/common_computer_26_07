@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>대조 — 판정 ↔ 원문</title>
+<title>대조 — 채점 결과와 발화 원문</title>
 <style>
   :root { --bg:#101418; --panel:#1a2027; --line:#2a333d; --fg:#dbe4ec; --dim:#8598a8;
           --ok:#3fb97f; --dead:#e06565; --inject:#e0a53f; --flag:#c77dff; }
@@ -52,26 +52,37 @@
   .prox { float:right; color:var(--dim); font-size:12px; }
   .facttext { background:#0c1013; border:1px solid var(--line); border-radius:6px;
               padding:9px 12px; margin-bottom:10px; font-size:13.5px; }
+  .far { display:flex; gap:16px; align-items:flex-end; flex-wrap:wrap; }
+  .far .cell { text-align:center; }
+  .far .num { font-size:16px; font-variant-numeric:tabular-nums; }
+  .far .lab { color:var(--dim); font-size:11px; }
+  .far .fin { color:var(--dead); font-weight:600; }
+  details.input { margin:7px 0 12px; border:1px solid var(--line); border-radius:5px;
+                  padding:6px 9px; background:#14191e; }
+  details.input summary { cursor:pointer; color:var(--inject); font-size:12px; }
+  details.input pre { white-space:pre-wrap; max-height:420px; overflow:auto; color:#c9d6e2; }
+  details.input mark { background:#3a2c12; color:var(--inject); }
 </style>
 </head>
 <body>
 <header>
-  <h1>대조 <span style="color:var(--flag);font-size:12px">— 판정 셀 옆에 그 라운드 발화 전문</span></h1>
-  <nav><a href="/biography">전기</a><a href="/ledger">장부</a><a href="/transmission">레이더</a><a class="here" href="/audit">대조</a></nav>
-  <select id="runsel"><option>run 로딩…</option></select>
-  <label><input type="checkbox" id="onlyflag"> 볼 값어치 있는 셀만</label>
+  <h1>대조 <span style="color:var(--flag);font-size:12px">— 채점 결과 옆에 그 라운드 발화 전문</span></h1>
+  <nav id="nav"></nav>
+  <select id="runsel"><option>실행 목록 불러오는 중…</option></select>
+  <label><input type="checkbox" id="onlyflag"> 눈으로 볼 값어치 있는 칸만</label>
 </header>
-<main id="main"><p class="meta">로딩…</p></main>
+<main id="main"><p class="meta">불러오는 중…</p></main>
 <script>
-let D = null, SEL = null;
+let D = null, IN = null, SEL = null;
 const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+// 이 화면의 낱말은 이 파일이 갖는다(공용 용어층 폐기 2026-07-30 — 조건 의존 수치 혼입).
 const FLAGNAME = {
   uncounted_high: "계상 안 됐는데 원문이 남은 발화 있음",
   partial_count:  "센 명단에서 빠진 화자 있음",
   split:          "표 갈림",
-  gray:           "H2 전이 구간 (검출이 갈리는 근접도)",
+  gray:           "검출이 갈리는 근접도 구간",
 };
-// 근거 등급 — access_window 계기 산출. 무엇에 기대고 있는 셀인가.
+// 근거 등급 — access_window 계기 산출. 무엇에 기대고 있는 칸인가.
 const EV = {
   literal:   ["원문 대조", "ok",   "배정·주입에 팩트 id가 명시돼 판정을 거치지 않는다"],
   judged:    ["판정 매개", "warn", "발화 언급(judge 출력)에 기댄다 — 판정이 흔들리면 같이 흔들린다"],
@@ -80,24 +91,32 @@ const EV = {
 };
 
 async function loadRuns() {
+  // 내비 순서 = 관측 흐름(넓게→좁게): 두 판 비교 → 발화 전문 확인 → 팩트 하나의 일생.
+  document.getElementById("nav").innerHTML = `<a href="/">두 판</a><a class="here" href="/audit">대조</a><a href="/biography">전기</a>`;
   const data = await (await fetch("/api/runs")).json();
   const sel = document.getElementById("runsel"); sel.innerHTML = "";
   const el = (data.runs || []).filter(r => r.parts && r.parts.judgment === "present");
   for (const r of el) {
     const o = document.createElement("option");
     o.value = r.issue_id + "/" + r.run_id;
-    o.textContent = `${r.issue_id} / ${r.run_id}`;
+    o.textContent = `${r.issue_id} / ${r.run_id}`
+      + (r.far_system != null ? ` — 사라진 팩트 ${Math.round(r.far_system * 100)}%` : "");
     sel.appendChild(o);
   }
   sel.onchange = () => load(sel.value);
   document.getElementById("onlyflag").onchange = render;
   if (el.length) load(sel.value); else
-    document.getElementById("main").innerHTML = `<p class="meta">판정된 run이 없습니다 — 대조는 judgment 이후입니다.</p>`;
+    document.getElementById("main").innerHTML =
+      `<p class="meta">채점까지 끝난 실행이 없습니다 — 이 화면은 채점 결과와 발화를 나란히 놓는 곳이라
+       채점 뒤부터 볼 수 있습니다.</p>`;
 }
 
 async function load(key) {
   const [issue, run] = key.split("/");
-  D = await (await fetch(`/api/audit/${issue}/${run}`)).json();
+  [D, IN] = await Promise.all([
+    fetch(`/api/audit/${issue}/${run}`).then(r => r.json()),
+    fetch(`/api/inputs/${issue}/${run}`).then(r => r.json()),
+  ]);
   SEL = null;
   for (const f of D.facts) {                     // 처음엔 볼 값어치 있는 첫 셀로
     const c = f.cells.find(c => c.flags.length);
@@ -106,29 +125,52 @@ async function load(key) {
   render();
 }
 
+const PCT = v => v == null ? "—" : (v * 100).toFixed(1) + "%";
+
+function farBlock() {
+  const F = D.far || {};
+  const by = F.by_stage || [];
+  if (!by.length && F.final == null)
+    return `<div class="panel"><div class="meta">이 실행의 판정물에 소실률이 없습니다.</div></div>`;
+  const cells = by.map((s, i) => `<div class="cell">
+      <div class="num ${i === by.length - 1 ? "fin" : ""}">${PCT(s.far_system)}</div>
+      <div class="lab">라운드 ${s.stage}</div></div>`).join("");
+  return `<div class="panel">
+    <div style="margin-bottom:8px">FAR <span class="meta">— 라운드가 갈수록 얼마나 사라졌나</span></div>
+    <div class="far">${cells}
+      <div class="cell" style="margin-left:8px">
+        <div class="num">${PCT(F.final_critical)}</div>
+        <div class="lab">far_critical(마지막)</div></div></div>
+    <div class="meta" style="margin-top:8px">${esc(F.note)}</div>
+    <div class="meta">아래 격자의 ○ 개수와 같은 셈이라, 이 숫자와 격자가 어긋나면 둘 중 하나가 잘못된 것입니다.</div>
+  </div>`;
+}
+
 function render() {
   const only = document.getElementById("onlyflag").checked;
   const facts = only ? D.facts.filter(f => f.cells.some(c => c.flags.length)) : D.facts;
 
-  let h = `<div class="banner">${esc(D.note)}</div>`;
+  let h = "";
+  h += `<div class="banner">${esc(D.note)}</div>`;
   const A = D.access;
   if (A && A.status === "suspended")
-    h += `<div class="banner stop"><b>접근 창 계기 산출 정지</b> — ${esc(A.note)}
-          근거 등급은 전부 <b>정의 밖</b>입니다.</div>`;
+    h += `<div class="banner stop"><b>접근 창 집계를 멈췄습니다</b> — ${esc(A.note)}
+          이 실행의 칸은 전부 <b>정의 밖</b>입니다.</div>`;
   else if (A && A.status === "unavailable")
-    h += `<div class="banner stop">근거 등급 없음 — ${esc(A.note)}</div>`;
-  h += `<div class="meta">judge ${esc((D.judge||{}).model || "?")} · 팩트 ${D.facts.length} ·
-        라운드 ${D.stages.length} · <b style="color:var(--flag)">볼 값어치 있는 셀 ${D.n_flagged_cells}</b>
-        · 근접도 구간별 판정기 검출률(H2): ${D.bands.map(b => `≥${b.min} → ${b.detect}`).join(" · ")}</div>`;
+    h += `<div class="banner stop">근거 등급을 못 냈습니다 — ${esc(A.note)}</div>`;
+  h += farBlock();
+  h += `<div class="meta">판정기 ${esc((D.judge||{}).model || "?")} ·
+        팩트 ${D.facts.length}개 · 라운드 ${D.stages.length}바퀴 ·
+        <b style="color:var(--flag)">눈으로 볼 값어치 있는 칸 ${D.n_flagged_cells}개</b></div>`;
   if (A && A.status === "ok")
-    h += `<div class="meta">근거 구성 ${esc(JSON.stringify(A.evidence_mix))} ·
+    h += `<div class="meta">근거 등급 구성 ${esc(JSON.stringify(A.evidence_mix))} ·
           <b style="color:${A.judged_share >= 0.999 ? "var(--dead)" : "var(--inject)"}">판정 의존 ${A.judged_share}</b>
-          · resurgence ${A.resurgence_rate} · 창 원천 ${esc(A.window_source)}
-          ${A.judged_share >= 0.999 ? " — 이 run의 접근 수치는 <b>전량 judge 출력 위</b>에 서 있습니다." : ""}</div>`;
+          · resurgence ${A.resurgence_rate} · 접근 창 얻은 방법 ${esc(A.window_source)}
+          ${A.judged_share >= 0.999 ? " — 이 실행의 접근 수치는 <b>전부 채점기 출력 위</b>에 서 있습니다." : ""}</div>`;
 
-  h += `<h2>어디를 볼 것인가 <span class="meta">— 셀을 누르면 아래에 그 라운드 발화 전문이 열립니다</span></h2>`;
+  h += `<h2>어디를 볼 것인가 <span class="meta">— 칸을 누르면 아래에 그 라운드 발화 전문이 열립니다</span></h2>`;
   h += `<table class="grid"><tr><th>팩트</th>` +
-       D.stages.map(s => `<th>r${s}</th>`).join("") + `</tr>`;
+       D.stages.map(s => `<th>라운드 ${s}</th>`).join("") + `</tr>`;
   for (const f of facts) {
     h += `<tr><td class="fact"><span class="fid">${esc(f.fact_id.replace(/^fact_/, ""))}</span>` +
          (f.critical ? `<span class="star">★</span> ` : "") + esc(f.text.slice(0, 44)) +
@@ -143,13 +185,17 @@ function render() {
     }
     h += `</tr>`;
   }
-  h += `</table><div class="meta">● 생존 · ○ 소실 · <span style="color:var(--flag)">*</span> 원문을 눈으로 볼 값어치가 있는 셀</div>`;
+  h += `</table><div class="meta">● 살아 있음 ·
+        ○ 사라짐 ·
+        <span style="color:var(--flag)">*</span> 발화 원문을 눈으로 볼 값어치가 있는 칸 ·
+        ★ 중요 팩트</div>`;
   h += detail();
   document.getElementById("main").innerHTML = h;
 }
 
 function detail() {
-  if (!SEL) return `<h2>대조</h2><p class="meta">셀을 고르세요. (표시할 셀이 없으면 이 run에서는 눈에 걸리는 것이 없다는 뜻입니다.)</p>`;
+  if (!SEL) return `<h2>대조</h2><p class="meta">위 격자에서 칸을 하나 고르세요.
+    (* 표시가 하나도 없으면 이 실행에서는 눈에 걸리는 칸이 없다는 뜻입니다.)</p>`;
   const f = D.facts.find(x => x.fact_id === SEL[0]);
   const c = f.cells.find(x => x.stage === SEL[1]);
   const us = D.utterances[String(c.stage)] || [];
@@ -157,30 +203,31 @@ function detail() {
   let h = `<h2>대조 — ${esc(f.fact_id)} · 라운드 ${c.stage}</h2>`;
   h += `<div class="facttext"><span class="meta">팩트 원문</span><br>${f.critical ? "<span class='star'>★</span> " : ""}${esc(f.text)}</div>`;
   h += `<div class="panel"><div>
-        <span class="chip ${c.surviving ? "ok" : "dead"}">판정: ${esc(c.status)}</span>
-        <span class="chip">표 ${esc(c.votes.split || "-")}${c.votes.unanimous === false ? " (갈림)" : ""}</span>
-        <span class="chip">센 화자: ${c.counted.length ? c.counted.map(esc).join(", ") : "없음"}</span>
-        ${c.votes.parse_fail ? `<span class="chip dead">파싱실패 ${c.votes.parse_fail}</span>` : ""}
+        <span class="chip ${c.surviving ? "ok" : "dead"}">채점 결과: ${esc(c.status)}</span>
+        <span class="chip">표 ${esc(c.votes.split || "-")}${c.votes.unanimous === false ? " (표 갈림)" : " (만장일치)"}</span>
+        <span class="chip">말했다고 센 사람: ${c.counted.length ? c.counted.map(esc).join(", ") : "없음"}</span>
+        ${c.votes.parse_fail ? `<span class="chip dead">parse_fail ${c.votes.parse_fail}</span>` : ""}
         ${c.evidence ? `<span class="chip ${EV[c.evidence][1]}" title="${esc(EV[c.evidence][2])}">근거: ${EV[c.evidence][0]}</span>` : ""}
         ${c.flags.map(x => `<span class="chip flag">${FLAGNAME[x]}</span>`).join("")}
         </div>`;
   if (c.evidence)
-    h += `<div class="meta" style="margin-top:6px">근거 등급 <b>${EV[c.evidence][0]}</b> — ${esc(EV[c.evidence][2])}.
-          ${c.n_access_literal ? `이 라운드에 원문 대조로 접근이 확정된 에이전트 ${c.n_access_literal}명.` : ""}</div>`;
+    h += `<div class="meta" style="margin-top:6px">이 칸은 <b>${EV[c.evidence][0]}</b> — ${esc(EV[c.evidence][2])}
+          ${c.n_access_literal ? `이 라운드에 원문으로 접근이 확정된 참가자 ${c.n_access_literal}명.` : ""}</div>`;
   if (!c.surviving && c.access_state === "accessible")
-    h += `<div class="meta" style="margin-top:6px"><b style="color:var(--inject)">판정은 소실인데 창에는 남아 있었습니다</b>
-          (접근 창 상태: accessible). 말하지 않았을 뿐 입력에는 있었다는 뜻이라,
-          "사라졌다"로 읽으면 안 되는 셀입니다.</div>`;
+    h += `<div class="meta" style="margin-top:6px"><b style="color:var(--inject)">채점기는 사라졌다고 셌지만, 입력에는 남아 있었습니다</b>
+          (접근 창 상태 accessible). 말하지 않았을 뿐 볼 수 있는 자리에는 있었다는 뜻이라,
+          "없어졌다"로 읽으면 안 되는 칸입니다.</div>`;
   if (c.flags.includes("uncounted_high"))
-    h += `<div class="meta" style="margin-top:6px">판정은 이 팩트를 <b>소실</b>로 셌는데,
-          같은 라운드에 근접도 ${c.max_prox}(${esc(c.max_prox_agent)})인 발화가 있습니다. 아래 원문을 읽고 판단하세요.</div>`;
+    h += `<div class="meta" style="margin-top:6px">채점기는 이 팩트를 <b>사라졌다</b>고 셌는데,
+          같은 라운드에 근접도 ${c.max_prox}인 발화가 있습니다(${esc(c.max_prox_agent)}).
+          아래 원문을 읽고 사람이 판단하세요.</div>`;
   if (c.flags.includes("partial_count"))
-    h += `<div class="meta" style="margin-top:6px">살아 있다고 셌지만, 근접도가 높은데 센 명단에서 빠진 화자가 있습니다:
-          <b>${c.missed_high.map(esc).join(", ")}</b>. 같은 라운드 안 화자 간 누락입니다.</div>`;
+    h += `<div class="meta" style="margin-top:6px">살아 있다고 셌지만, 말이 많이 겹치는데도 센 명단에서 빠진 사람이 있습니다:
+          <b>${c.missed_high.map(esc).join(", ")}</b>. 같은 라운드 안에서 사람 단위로 빠진 것입니다.</div>`;
   h += `</div>`;
 
-  h += `<div class="meta">이 라운드 발화 ${us.length}건 — <b>전문 그대로</b>. 판정기가 센 것(초록)과
-        안 센 것을 가르지 않고 전부 싣습니다.</div>`;
+  h += `<div class="meta">이 라운드 발화 ${us.length}건 — <b>전문 그대로</b>.
+        채점기가 센 발화(초록 줄)와 안 센 발화를 가르지 않고 전부 싣습니다.</div>`;
   for (const u of us) {
     const p = c.prox[u.agent_id] ?? 0;
     const counted = c.counted.includes(u.agent_id);
@@ -189,8 +236,22 @@ function detail() {
           <div class="who">${esc(u.agent_id)}${u.perspective ? " · " + esc(u.perspective) : ""}
           ${counted ? `<span class="chip ok">센 발화</span>` : `<span class="chip">안 셈</span>`}
           <span class="prox">근접도 ${p}</span></div>${esc(u.text) || "<span class='meta'>(빈 발화)</span>"}</div>`;
+    h += inputBeside(u.agent_id, c.stage);
   }
   return h;
+}
+
+function inputBeside(agent, stage) {
+  if (!IN || IN.status !== "ok")
+    return `<details class="input"><summary>이 발화가 보기 전 입력 전문</summary><div class="meta">입력 기록 없음 — ${esc((IN||{}).note || "기록을 불러오지 못했습니다")}</div></details>`;
+  const it = IN.items.find(x => x.round === stage && x.agent_id === agent);
+  if (!it) return `<details class="input"><summary>이 발화가 보기 전 입력 전문</summary><div class="meta">해당 좌표의 조립 기록 없음</div></details>`;
+  if (it.error) return `<details class="input"><summary>이 발화가 보기 전 입력 전문</summary><div class="meta">${esc(it.error)}</div></details>`;
+  let body = esc(it.text);
+  if (it.inject_text && body.includes(esc(it.inject_text)))
+    body = body.replace(esc(it.inject_text), `<mark>${esc(it.inject_text)}</mark>`);
+  return `<details class="input"><summary>이 발화가 보기 전 입력 전문 · ${it.hash_match ? "지문 일치" : "지문 확인 실패"}${it.inject_text ? " · 주입 자리 강조" : ""}</summary>
+    <div class="meta">${esc(it.template)} · 배정 팩트 ${it.slots.assigned_facts.length}개 · 이웃 발화 ${it.slots.others.length}건</div><pre>${body}</pre></details>`;
 }
 
 function pick(fid, stage) { SEL = [fid, stage]; render(); window.scrollTo({top: document.body.scrollHeight * 0.35, behavior: "smooth"}); }
