@@ -26,10 +26,17 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
+from . import llm as _llm   # 별칭 표·공급자 유도의 단일 소스 (모듈 상단은 stdlib 뿐 — SDK 불필요 유지)
 from . import paths
 
 SCHEMA_VER = "0.2"
 JUDGE_PROMPT_VER = "judge-v0.2-binary"
+
+# 확정 사양의 temperature — 표 생성 경로(_online_vote·_llm_vote)가 **실제로 보내는 값**.
+# judgment 의 judge.temperature 에는 cfg 가 아니라 이 상수를 적는다(7/30 보드 회신 ②:
+# 기록은 실제 전송값이어야 한다 — cfg 를 적으면 config 에 다른 값을 넣는 순간 산출물
+# 메타데이터가 실체와 갈라진다. 기록과 실체의 괴리는 이 파이프라인이 연구하는 실패다).
+JUDGE_TEMPERATURE = 0
 
 # 스키마 5번의 status 5종 (validate.py 와 동일 집합).
 STATUSES = ("unmentioned", "mentioned", "accepted", "refuted", "ignored")
@@ -41,11 +48,12 @@ SURVIVING = {"mentioned", "accepted"}
 # 다수결 동점 시 우선순위(보수적 = 소실 쪽을 우선 보고). 앞일수록 먼저 채택.
 _TIEBREAK_ORDER = ("unmentioned", "ignored", "refuted", "mentioned", "accepted")
 
-# config 의 짧은 별칭 → 실제 모델 ID. 이미 전체 ID 면 그대로 통과.
-MODEL_ALIASES = {
-    "claude-sonnet": "claude-sonnet-5",
-    "claude-haiku": "claude-haiku-4-5-20251001",
-}
+# config 의 짧은 별칭 → 실제 모델 ID. **llm.MODEL_ALIASES 가 단일 소스** (7/30 사본 제거
+# 1단계 — 보드 회신 ⑥). 종전엔 judge 가 자기 사본(2항목)을 들고 있어 ⓐ gpt/gemini
+# 별칭을 config 로 지정할 수 없었고 ⓑ 별칭 값 수정 시 두 곳을 동시에 고쳐야 했다
+# (예: claude-sonnet 별칭은 llm.py·judge.py 두 곳 — "사본의 첫 실제 비용").
+# 참조 바인딩이므로 값 분기가 구조적으로 불가능하다. 프롬프트·판정 규칙은 무변경.
+MODEL_ALIASES = _llm.MODEL_ALIASES
 
 JUDGE_SYSTEM = (
     "너는 멀티에이전트 토론 로그의 사실 보존을 채점하는 판정기다. "
@@ -91,7 +99,7 @@ def group_by_stage(utterances: list[dict]) -> dict[int, list[dict]]:
 # 한 표(vote) — 온라인(API) / 오프라인(결정론적 스텁)
 # ---------------------------------------------------------------------------
 def _resolve_model(name: str) -> str:
-    return MODEL_ALIASES.get(name, name)
+    return _llm.resolve_model(name)   # 위임 — 해석 규칙도 llm 이 단일 소스
 
 
 def _user_prompt(fact: dict, stage_utterances: list[dict]) -> str:
@@ -111,7 +119,7 @@ def _online_vote(client, model: str, fact: dict, stage_utterances: list[dict]) -
     resp = client.messages.create(
         model=model,
         max_tokens=512,
-        temperature=0,  # 확정 사양
+        temperature=JUDGE_TEMPERATURE,  # 확정 사양 — 기록(judge.temperature)과 같은 상수
         system=JUDGE_SYSTEM,
         messages=[{"role": "user", "content": _user_prompt(fact, stage_utterances)}],
     )
@@ -139,10 +147,9 @@ def _llm_vote(model_alias: str, fact: dict, stage_utterances: list[dict]) -> dic
     ⚠ 지위: judge.py 는 동범 님 담당 파일(패키지 A)이다. 이 추가는 사후 보고 대상이며,
     판정 사양의 공급자 좌표는 보드 확인이 필요하다.
     """
-    from . import llm as llm_mod
-    text = llm_mod.obtain_response(
+    text = _llm.obtain_response(
         JUDGE_SYSTEM + "\n\n" + _user_prompt(fact, stage_utterances),
-        model=model_alias, temperature=0)     # temp 0 = 확정 사양
+        model=model_alias, temperature=JUDGE_TEMPERATURE)  # 확정 사양 — 기록과 같은 상수
     return _parse_vote(text, stage_utterances)
 
 
@@ -272,6 +279,12 @@ def judge_debate(issue_id: str, run_id: str, cfg: dict, *, offline: bool = False
     facts_by_id = {f["fact_id"]: f for f in facts}
     stages_utt = group_by_stage(load_utterances(paths.debate(issue_id, run_id)))
     n_votes = int(cfg.get("judge_n_votes", 3))
+    cfg_temp = cfg.get("judge_temperature", JUDGE_TEMPERATURE)
+    if float(cfg_temp) != float(JUDGE_TEMPERATURE):
+        # 조용히 무시하지 않는다 — cfg 에 다른 값을 적은 사람은 그 값이 쓰였다고 믿는다.
+        print(f"[judge] ⚠ config judge_temperature={cfg_temp} 는 사용되지 않습니다 — "
+              f"확정 사양이 temperature={JUDGE_TEMPERATURE} 를 하드코딩합니다(임의 변경 금지). "
+              f"산출물에는 실제 전송값 {JUDGE_TEMPERATURE} 이 기록됩니다.")
 
     prompt_ver = JUDGE_PROMPT_VER
     if offline:
@@ -279,20 +292,21 @@ def judge_debate(issue_id: str, run_id: str, cfg: dict, *, offline: bool = False
         model_id = "offline-stub"
     else:
         judge_alias = cfg.get("judge_model", "claude-sonnet")
-        # 공급자 분기 (2026-07-30 · 민옥, 추가). claude 계열은 종전 경로 그대로,
-        # 그 외 공급자만 llm 경유. 어느 경로로 갔는지는 prompt_ver 에 남는다.
-        from . import llm as llm_mod
-        try:
-            provider = llm_mod.resolve_provider(judge_alias)
-        except KeyError:
-            provider = "anthropic"      # 미지 별칭은 종전 동작(Anthropic) 유지
+        # 공급자 분기 (7/30 민옥 추가 / 7/30 동범 개정 — 담당 파일 후속). claude 계열은
+        # 종전 _online_vote 그대로, 그 외 공급자만 llm 경유. 경로는 prompt_ver 에 남는다.
+        # 개정 2건: ① 미지 별칭 → Anthropic 임시 폴백을 제거하고 **즉사**로 — 오타가
+        # 조용히 Anthropic 으로 흘러 "다른 모델이 돌았는데 로그엔 맞다고 적힌" run 을
+        # 만드는 구멍(리뷰 ⑥ⓑ). llm.resolve_provider 의 즉사 가드를 그대로 쓴다.
+        # ② preflight 를 Anthropic 경로에도 — 자리표시자 키(24자 미만)·SDK 부재를
+        # 144콜 태우기 전에 잡는다(_make_client 는 키 '존재'만 봤다).
+        provider = _llm.resolve_provider(judge_alias)   # 미지 모델은 여기서 KeyError
+        _llm.preflight(judge_alias, temperature=JUDGE_TEMPERATURE)  # 키·자리표시자·SDK·온도 관문
         if provider == "anthropic":
             client = _make_client()
             model_id = _resolve_model(judge_alias)
             base_vote_fn = lambda fact, utts: _online_vote(client, model_id, fact, utts)  # noqa: E731
         else:
-            llm_mod.preflight(judge_alias, temperature=0)   # 키·온도 관문
-            model_id = llm_mod.resolve_model(judge_alias)
+            model_id = _llm.resolve_model(judge_alias)
             prompt_ver = JUDGE_PROMPT_VER + "+merged_system"
             base_vote_fn = lambda fact, utts: _llm_vote(judge_alias, fact, utts)  # noqa: E731
 
@@ -306,7 +320,14 @@ def judge_debate(issue_id: str, run_id: str, cfg: dict, *, offline: bool = False
     total_stages = len(stages_utt)
     total_facts = len(facts)
     votes_per_stage = max(total_facts * n_votes, 1)
-    health = {"n_calls": 0, "n_parse_fail": 0}
+    # 공백 발화 계수 (7/30 보드 회신 ⑤ — 관측 전용, 판정 불변). llm 폴백(' ')이 만든
+    # 공백 발화가 채점에 섞이면 팩트가 있을 수 없으니 전 팩트 unmentioned →
+    # far_system=1.0 인데, 종전 계기판(n_calls·n_parse_fail)만으로는 그 판정 파일이
+    # 정상 산출물과 구별되지 않았다. "모델이 팩트를 잃었다"와 "호출이 실패했다"를
+    # 산출물이 스스로 구별하도록 입력 발화의 공백 수를 센다(뷰어에만 있던 검사의 이식).
+    n_blank = sum(1 for utts in stages_utt.values() for u in utts
+                  if not str(u.get("response_text") or "").strip())
+    health = {"n_calls": 0, "n_parse_fail": 0, "n_blank_utterances": n_blank}
 
     def instrumented_vote(fact, utts):
         vote = base_vote_fn(fact, utts)
@@ -342,7 +363,9 @@ def judge_debate(issue_id: str, run_id: str, cfg: dict, *, offline: bool = False
         "run_id": run_id,
         "judge": {
             "model": model_id,
-            "temperature": int(cfg.get("judge_temperature", 0)),
+            # 실제 전송값을 적는다 — cfg 값이 아니라(7/30 보드 회신 ② 불일치 수정).
+            # 두 vote 경로 모두 JUDGE_TEMPERATURE 를 보내므로 이 기록은 항상 실체와 같다.
+            "temperature": JUDGE_TEMPERATURE,
             "n_votes": n_votes,
             "aggregation": "majority",
             "prompt_ver": prompt_ver,   # 비-Anthropic 경로면 +merged_system 이 붙는다
@@ -356,7 +379,7 @@ def judge_debate(issue_id: str, run_id: str, cfg: dict, *, offline: bool = False
             "far_system": last["far_system"],
             "far_agent_mean": None,  # TODO: assignments + FAR 수식 확정 후 산출
             "far_critical": last["far_critical"],
-            "judge_health": health,  # 관측 계기판(추가 필드): {n_calls, n_parse_fail} — 소비자 P2·ledger 무관
+            "judge_health": health,  # 관측 계기판(추가 필드): {n_calls, n_parse_fail, n_blank_utterances} — 소비자 P2·ledger 무관
         },
     }
 
@@ -380,7 +403,11 @@ def main() -> None:
           f"far_critical={result['summary']['far_critical']} (잠정 수식)")
     h = result["summary"]["judge_health"]
     warn = "  ⚠ 파싱실패 있음 — 해당 판 재채점 검토" if h["n_parse_fail"] else ""
-    print(f"[judge] 건강: 표 {h['n_calls']}회 · 파싱실패 {h['n_parse_fail']}회{warn}")
+    blank = h.get("n_blank_utterances", 0)
+    warn2 = (f"  ⚠ 공백 발화 {blank}건 입력 — far 오염 가능(llm 폴백 흔적), debate 로그 확인"
+             if blank else "")
+    print(f"[judge] 건강: 표 {h['n_calls']}회 · 파싱실패 {h['n_parse_fail']}회 · "
+          f"공백 발화 {blank}건{warn}{warn2}")
     print("[judge] 자기검사: python -m modules.validate " + str(out_path))
 
 

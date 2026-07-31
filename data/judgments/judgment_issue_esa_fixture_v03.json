@@ -1,0 +1,1485 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "modules.judge",
+  "created_at": "2026-07-30T02:55:42.377769+00:00",
+  "issue_id": "issue_esa",
+  "run_id": "fixture_v03",
+  "judge": {
+    "model": "offline-stub",
+    "temperature": 0,
+    "n_votes": 3,
+    "aggregation": "majority",
+    "prompt_ver": "judge-v0.2-binary"
+  },
+  "stage_type": "round",
+  "stages": [
+    {
+      "stage": 0,
+      "facts": [
+        {
+          "fact_id": "fact_esa_01",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_7"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_7"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_7"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_02",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_03",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_6",
+                "agent_7"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_6",
+                "agent_7"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_6",
+                "agent_7"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_6",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_04",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_4"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_4"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_4"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_3",
+            "agent_4"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_05",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_8"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_8"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_8"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_4",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_06",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_7"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_7"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_7"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_3",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_07",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_2"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_08",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_6"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_6"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_6"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_5",
+            "agent_6"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_09",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_5"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_5"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_5"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_3",
+            "agent_5"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_10",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_6"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_6"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_6"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_4",
+            "agent_5",
+            "agent_6"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_11",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_8"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_8"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_8"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_12",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2",
+                "agent_8"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2",
+                "agent_8"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2",
+                "agent_8"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_2",
+            "agent_8"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 1,
+      "facts": [
+        {
+          "fact_id": "fact_esa_01",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_1"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_1"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_1"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_02",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_03",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_6"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_6"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_6"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_6",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_04",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_3"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_3"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_3"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_3",
+            "agent_4"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_05",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_8"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_8"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_8"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_4",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_06",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_3"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_07",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_2"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_08",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_6"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_6"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_6"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_5",
+            "agent_6"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_09",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_5"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_10",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_11",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_8"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_8"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_8"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_12",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": []
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "facts": [
+        {
+          "fact_id": "fact_esa_01",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_1"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_1"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_1"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_02",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_2"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_03",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_6"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_6"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_6"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_6"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_04",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_3"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_3"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_3"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_3",
+            "agent_4"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_05",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_8"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_8"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_8"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_06",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_07",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_08",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_5"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_09",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_10",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_11",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_12",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": []
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "facts": [
+        {
+          "fact_id": "fact_esa_01",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_1"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_1"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_1"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_02",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_2"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_03",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_6"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_6"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_6"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_6"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_04",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_3"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_3"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_3"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_3",
+            "agent_4"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_05",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_8"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_8"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_8"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_06",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_07",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_08",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5"
+              ],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5"
+              ],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_5"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_09",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_10",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_11",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_12",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "offline-stub(substring)"
+            }
+          ],
+          "agents_mentioning": []
+        }
+      ]
+    }
+  ],
+  "recall_probe": [],
+  "summary": {
+    "far_by_stage": [
+      {
+        "stage": 0,
+        "far_system": 0.0,
+        "far_critical": 0.0
+      },
+      {
+        "stage": 1,
+        "far_system": 0.1667,
+        "far_critical": 0.0
+      },
+      {
+        "stage": 2,
+        "far_system": 0.5,
+        "far_critical": 0.3333
+      },
+      {
+        "stage": 3,
+        "far_system": 0.5,
+        "far_critical": 0.3333
+      }
+    ],
+    "far_system": 0.5,
+    "far_agent_mean": null,
+    "far_critical": 0.3333,
+    "judge_health": {
+      "n_calls": 144,
+      "n_parse_fail": 0
+    }
+  }
+}
