@@ -22,6 +22,15 @@ Anthropic 전용이라 `debate_model`에 무엇을 적어도 Anthropic 으로 �
    죽이고, 돌다가 나는 것(레이트리밋·타임아웃)만 폴백한다. `preflight()` 가
    그 관문이며 debate_engine 이 run 시작 전에 부른다.
 
+[2026-07-30 · 동범] **재시도 화이트리스트 복원 + 절단 감지 + 키 위생 (리뷰 ⑥ 후속).**
+독스트링이 근거로 든 run_experiment._post() 에는 fail-fast 화이트리스트(429/5xx 만
+재시도, 나머지 즉시 raise)가 있는데 본류 이식에서 유실됐다 — 회귀 복구다. 원칙 3의
+정밀한 문면: **폴백은 "돌다가 나는 일시 장애"(429·5xx·타임아웃)에만 허용**되고,
+같은 입력이면 같은 실패가 나는 것(4xx 설정·인증 오류, SDK 부재, 출력 절단)은 즉시
+예외로 죽는다 — 재시도 5회는 그 실패를 65초 위장한 뒤 공백으로 바꿀 뿐이다.
+절단 감지는 참조 러너의 finishReason 검사를 3공급자로 이식(편차 D1 재발 방지).
+예외·경고 문자열은 _mask() 로 키를 가린다(키가 URL·본문에 실려 로그로 새는 경로 차단).
+
 편차 기록: OpenAI 신형 모델은 `max_tokens` 를 거부하고 `max_completion_tokens` 를
 요구하며, 일부는 `temperature` 를 아예 안 받는다. 두 경우 다 파라미터를 갈아 재시도하고
 무엇을 갈았는지 `LAST_DEVIATIONS` 에 남긴다 — 조용한 파라미터 변경은 재현성을 깬다.
@@ -109,6 +118,52 @@ GEMINI_MAX_TOKENS = 4096   # 편차 D1 계승: thinking 토큰이 예산을 잠�
 GEMINI_THINKING = "minimal"
 MAX_ATTEMPTS = 5
 FALLBACK = " "  # 저자 코드 fallback()과 동일 — 실패해도 파이프라인을 멈추지 않는다
+
+# 재시도가 의미 있는 HTTP 상태 — run_experiment._post() 화이트리스트와 동일(회귀 복구).
+# 이 밖의 상태(400 설정·401 인증·403 권한·404 모델명 오타)는 재시도해도 같은 답이다.
+RETRYABLE_STATUS = {429, 500, 502, 503, 529}
+
+
+class LLMCallError(RuntimeError):
+    """공급자 HTTP 오류. status 를 예외에 실어 재시도 판별이 본문 문자열 파싱에
+    걸리지 않게 한다 — 종전엔 429 본문에 'temperature' 가 스치기만 해도 파라미터
+    폴백이 발동해 temperature 를 영구 제거할 수 있었다(무음 실패 ⓒ)."""
+
+    def __init__(self, provider: str, status: int, body: str):
+        self.provider, self.status = provider, status
+        super().__init__(f"{provider} {status}: {_mask(body)}")
+
+
+class LLMTruncated(RuntimeError):
+    """출력 절단(finish/stop reason 기준) — 같은 입력이면 같은 절단이라 재시도 무의미.
+    참조 러너(run_experiment)의 finishReason==MAX_TOKENS raise 이식(편차 D1 교훈:
+    절단본은 폐기 대상이지 폴백 대상이 아니다 — 조용히 넘기면 절단 발화가 채점에 섞인다)."""
+
+
+def _mask(text) -> str:
+    """문자열에서 실키 값을 가린다 — 예외 본문·URL 에 키가 실려 콘솔·CI 로그로 새는
+    경로 차단(보안 1건). 키 앞 6자만 남겨 어느 키인지 사람이 식별은 할 수 있게 한다."""
+    out = str(text)
+    for env in PROVIDER_KEY_ENV.values():
+        val = os.environ.get(env, "")
+        if len(val) >= 8:   # 자리표시자 수준의 짧은 값까지 치환하면 무관한 본문이 깨진다
+            out = out.replace(val, val[:6] + "…<마스킹>")
+    return out
+
+
+def _retryable(exc: Exception) -> bool:
+    """이 실패는 다시 시도하면 결과가 달라질 수 있는가.
+
+    판별 순서: ① 절단·의존성 부재는 결정론적 실패 — 즉사. ② 상태를 아는 HTTP 오류는
+    화이트리스트로. ③ 상태 미상(타임아웃·연결 끊김)은 일시 장애로 보고 재시도."""
+    if isinstance(exc, (LLMTruncated, ImportError)):   # ModuleNotFoundError 포함
+        return False
+    if isinstance(exc, LLMCallError):
+        return exc.status in RETRYABLE_STATUS
+    status = getattr(exc, "status_code", None)         # anthropic SDK 예외가 실어 온다
+    if isinstance(status, int):
+        return status in RETRYABLE_STATUS
+    return True
 
 # 이번 프로세스에서 실제로 일어난 파라미터 편차(조용한 변경 금지).
 LAST_DEVIATIONS: list[str] = []
@@ -215,6 +270,16 @@ def preflight(model: str, temperature: float | None = None,
         raise SystemExit(
             f"[llm] {env} 가 너무 짧습니다(길이 {len(key)}) — 자리표시자로 보입니다. "
             f"실제 키를 넣으세요.")
+    # 의존성 관문 (무음 실패 ⓐ): 키가 멀쩡해도 SDK 가 없으면 호출 시점
+    # ModuleNotFoundError 가 나고, 종전엔 그게 재시도 5회 뒤 공백으로 위장됐다 —
+    # 401 위장 경로와 이름만 다른 같은 구멍. 시작 전에 알 수 있는 실패는 시작 전에.
+    sdk = "anthropic" if provider == "anthropic" else "requests"
+    try:
+        __import__(sdk)
+    except ImportError:
+        raise SystemExit(
+            f"[llm] {sdk} 패키지 미설치 — 모델 '{model}'({provider}) 호출에 필요합니다. "
+            f"`pip install {sdk}` 후 다시 실행하세요.") from None
     return {"model": model, "model_id": resolve_model(model), "provider": provider,
             "key_env": env}
 
@@ -251,7 +316,7 @@ def _call_anthropic(model_id: str, inputs: str, temperature: float,
     # 절단은 무음 통과 금지 — 7/27 에 제미나이 팔 전체를 폐기하게 만든 사고가
     # "잘렸는데 성공으로 보인 것"이었다(편차 D1). 예외로 올려 재시도·폴백에 태운다.
     if getattr(msg, "stop_reason", None) == "max_tokens":
-        raise RuntimeError(
+        raise LLMTruncated(
             f"anthropic 출력 절단(max_tokens {kwargs['max_tokens']}) — "
             f"reasoning={reasoning}. 사고 토큰이 본문 예산을 잠식했을 수 있습니다.")
     return text
@@ -284,33 +349,37 @@ def _call_openai(model_id: str, inputs: str, temperature: float,
             # 절단 무음 통과 금지(편차 D1 기전) — 사고 토큰이 본문 예산을 먹으면
             # finish_reason 이 length 로 오는데, 종전엔 그대로 성공 처리됐다.
             if choice.get("finish_reason") == "length":
-                raise RuntimeError(
+                raise LLMTruncated(
                     f"OpenAI 출력 절단(finish_reason=length) — reasoning={reasoning}. "
                     f"사고 토큰이 본문 예산을 잠식했을 수 있습니다.")
             return choice["message"]["content"].strip()
         body = r.text[:400]
-        if "reasoning_effort" in body and "reasoning_effort" in payload:
+        # 파라미터 폴백은 **400에서만** 발동한다. 종전엔 상태를 안 보고 본문 문자열만
+        # 봐서, 429 본문에 'temperature' 가 스치면 temperature 를 영구 제거할 수
+        # 있었다 — 로그엔 1.0 인데 실제 호출엔 빠진 채 도는, 이 팀이 연구하는 바로 그
+        # 기록-실체 괴리다(무음 실패 ⓒ). 400 = "요청이 틀렸다"일 때만 요청을 고친다.
+        if r.status_code == 400 and "reasoning_effort" in body and "reasoning_effort" in payload:
             # 구형 모델은 이 파라미터를 거부한다. 제거하고 재시도하되 편차로 남긴다 —
             # "추론 off 로 돌렸다"와 "추론 파라미터가 안 먹혔다"는 다른 상태다.
             payload.pop("reasoning_effort")
             _note_deviation(f"openai reasoning_effort 미지원 — 제거됨(요청값 {effort})")
             continue
-        if "max_tokens" in body and "max_tokens" in payload:
+        if r.status_code == 400 and "max_tokens" in body and "max_tokens" in payload:
             payload["max_completion_tokens"] = payload.pop("max_tokens")
             _openai_maxtok = "max_completion_tokens"
             dev = "max_tokens→max_completion_tokens"
             if dev not in LAST_DEVIATIONS:
                 LAST_DEVIATIONS.append(dev)
             continue
-        if "temperature" in body and "temperature" in payload:
+        if r.status_code == 400 and "temperature" in body and "temperature" in payload:
             payload.pop("temperature")
             _openai_no_temp = True
             dev = "temperature 미지원 — 제거됨(보고서에 명기할 것)"
             if dev not in LAST_DEVIATIONS:
                 LAST_DEVIATIONS.append(dev)
             continue
-        raise RuntimeError(f"OpenAI {r.status_code}: {body}")
-    raise RuntimeError("OpenAI 파라미터 폴백 3회 소진")
+        raise LLMCallError("openai", r.status_code, body)
+    raise LLMCallError("openai", 400, "파라미터 폴백 3회 소진 — 같은 400이 반복됨")
 
 
 def _call_gemini(model_id: str, inputs: str, temperature: float,
@@ -318,8 +387,11 @@ def _call_gemini(model_id: str, inputs: str, temperature: float,
     import requests
     _load_env()
     key = os.environ["GEMINI_API_KEY"]
+    # 키는 URL 쿼리스트링이 아니라 **헤더**로 보낸다(보안 1건). 쿼리스트링에 실으면
+    # 네트워크 예외 문자열·프록시 로그·CI 콘솔에 URL 이 통째로 남을 때 실키가 평문
+    # 노출된다 — 공식 권장 헤더 x-goog-api-key 사용.
     url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
-           f"{model_id}:generateContent?key={key}")
+           f"{model_id}:generateContent")
     # reasoning=default 는 종전 동작(GEMINI_THINKING="minimal")을 그대로 유지한다 —
     # 과거 run 과의 연속성. off 도 값이 같지만 **의도가 기록된다**는 점이 다르다.
     level = REASONING_PARAM["gemini"].get(reasoning) or GEMINI_THINKING
@@ -329,14 +401,14 @@ def _call_gemini(model_id: str, inputs: str, temperature: float,
                    "temperature": temperature,
                    "maxOutputTokens": out_tokens,
                    "thinkingConfig": {"thinkingLevel": level}}}
-    r = requests.post(url, json=payload, timeout=180)
+    r = requests.post(url, headers={"x-goog-api-key": key}, json=payload, timeout=180)
     if r.status_code != 200:
-        raise RuntimeError(f"Gemini {r.status_code}: {r.text[:400]}")
+        raise LLMCallError("gemini", r.status_code, r.text[:400])
     cand = r.json()["candidates"][0]
     # 절단 무음 통과 금지 — 편차 D1 의 원본 사고가 정확히 이 자리였다(사고 토큰이
     # 1024 예산을 잠식해 문장 중간에서 끊겼고, 판정상으론 "완전 복제"로 보였다).
     if cand.get("finishReason") == "MAX_TOKENS":
-        raise RuntimeError(
+        raise LLMTruncated(
             f"Gemini 출력 절단(MAX_TOKENS {out_tokens}) — reasoning={reasoning} "
             f"thinkingLevel={level}. 편차 D1 재발.")
     return "".join(p.get("text", "")
@@ -354,8 +426,11 @@ def obtain_response(inputs: str, model: str, temperature: float = 0.0,
     reasoning 은 **기본값이 종전 동작("default" = 파라미터 미전송)** 이므로 기존
     호출자는 한 글자도 안 고쳐도 된다 — 호출 계약(설계 원칙 2)을 깨지 않는 확장이다.
 
-    재시도 5회 지수 백오프, 끝에도 실패하면 공백을 반환한다 — 저자 코드 계승.
-    한 발화가 비어도 나머지 토론은 계속돼야 하고, 빈 발화 자체가 관측 대상이다.
+    **일시 장애만** 재시도 5회 지수 백오프, 끝에도 실패하면 공백을 반환한다 — 저자
+    코드 계승. 한 발화가 비어도 나머지 토론은 계속돼야 하고, 빈 발화 자체가 관측
+    대상이다. 단 재시도해도 같은 결과인 실패(4xx 설정·인증 오류, SDK 부재, 출력
+    절단)는 즉시 예외로 죽는다 — run_experiment._post() 화이트리스트 복원(회귀 복구).
+    폴백을 이런 실패에까지 허용하면 "키가 죽었다"가 "모델이 침묵했다"로 위장된다.
 
     공급자는 model 이름에서 유도한다(resolve_provider). 미지 모델은 폴백하지 않고
     즉사한다 — 그건 돌다가 나는 실패가 아니라 설정 오류다."""
@@ -366,9 +441,11 @@ def obtain_response(inputs: str, model: str, temperature: float = 0.0,
         try:
             text = fn(model_id, inputs, temperature, reasoning)
             return text if text else FALLBACK
-        except Exception as e:  # noqa: BLE001 — 어떤 실패든 재시도 후 폴백
+        except Exception as e:  # noqa: BLE001 — 일시 장애만 재시도 후 폴백
+            if not _retryable(e):
+                raise      # 결정론적 실패 — 65초 위장 없이 그 자리에서 원인을 말한다
             if attempt == MAX_ATTEMPTS - 1:
-                print(f"[WARN] LLM 호출 {MAX_ATTEMPTS}회 실패, 폴백 반환: {e}")
+                print(f"[WARN] LLM 호출 {MAX_ATTEMPTS}회 실패, 폴백 반환: {_mask(e)}")
                 return FALLBACK
             time.sleep(min(5 * (2 ** attempt), 30))
     return FALLBACK
