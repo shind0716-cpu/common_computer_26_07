@@ -109,6 +109,17 @@ AXES = [
      "values": ["off", "v0"],
      "names": {"off": "끔", "v0": "자동 재주입 (소실 팩트 전량 재제시)"},
      "help": "v0 는 라운드마다 판정기를 돈다 — 호출 수가 크게 늘어난다."},
+    # ⑨ 추론 모드 (2026-07-30 신설). 종전엔 공급자마다 사고량이 제각각인데 아무도
+    # 지정하지 않았고 로그에도 없었다 — Gemini 만 minimal 하드코딩, Anthropic 은
+    # 모델 기본값(Sonnet 5 는 adaptive thinking 기본 ON), OpenAI 도 모델 기본값.
+    {"key": "reasoning", "label": "⑨ 추론(사고) 모드", "type": "choice",
+     "values": ["default", "off", "on"],
+     "names": {"default": "지정 안 함 (모델 기본값 — 종전 동작)",
+               "off": "끔 (끌 수 있으면 끈다)",
+               "on": "켬 (발화 전에 길게 생각)"},
+     "help": "'지정 안 함'과 '끔'은 다른 상태다 — 앞은 모델 마음, 뒤는 우리가 정한 것. "
+             "⚠ 공급자마다 추론 원문 접근성이 달라 on/off 비교는 같은 공급자 안에서만 유효. "
+             "켜면 사고 토큰이 출력 예산을 먹어 본문이 잘릴 수 있어 상한을 함께 올린다(편차 D1)."},
     {"key": "final_poll", "label": "최종 폴링", "type": "choice",
      "values": ["yes", "no"], "names": {"yes": "돌린다 (벌거벗은 판단 1콜/인)",
                                         "no": "안 돌린다"},
@@ -343,6 +354,7 @@ class RunReq(BaseModel):
     rounds: int = 3
     structure: str = "full"
     persona: str = "default"
+    reasoning: str = "default"
     ledger_mode: str = "off"
     final_poll: bool = False
     seed: int = 42
@@ -364,6 +376,7 @@ def _write_config(req: RunReq) -> Path:
         "note_budget": req.note_budget, "note_call": req.note_call,
         "final_poll": req.final_poll,
         "persona": req.persona,
+        "reasoning": req.reasoning,          # ⑨ 추론 모드
         "debate_model": req.debate_model,
         "debate_temperature": req.debate_temperature,
         "judge_model": "claude-sonnet-4-6", "judge_temperature": 0,
@@ -418,10 +431,15 @@ def api_estimate(req: RunReq):
     # 엔진의 preflight 도 같은 검사를 하지만, 여기서 먼저 보여주면 버튼을 누르기 전에 안다.
     try:
         llm.check_temperature(req.debate_model, req.debate_temperature)
+        llm.check_reasoning(req.debate_model, req.reasoning)
     except SystemExit as e:
         blocking.append(str(e).replace("\n", " "))
     except KeyError as e:
         blocking.append(f"공급자를 알 수 없는 모델 — {e}")
+    if req.reasoning == "on":
+        warn.append("추론을 켜면 사고 토큰이 출력 예산을 먹어 본문이 잘릴 수 있습니다 "
+                    "(편차 D1 — 7/27에 제미나이 팔 전체를 폐기하게 만든 사고). "
+                    "상한을 함께 올리고 절단은 예외로 잡지만, 결과 원문을 눈으로 확인하세요.")
     if req.memory == "note" and not coop:
         blocking.append("수첩(memory=note)은 협력 조건 전용 — 저자 템플릿엔 수첩 슬롯이 없어 엔진이 즉사한다.")
     if req.window == "cumulative" and not coop:
@@ -457,6 +475,7 @@ def api_run(req: RunReq):
     # (2026-07-30 실측: issue_esa 를 골라 실행 → authors_prompts RuntimeError)
     try:
         llm.check_temperature(req.debate_model, req.debate_temperature)
+        llm.check_reasoning(req.debate_model, req.reasoning)
     except SystemExit as e:
         raise HTTPException(400, str(e))
     stances = _stances_of(req.issue_id)

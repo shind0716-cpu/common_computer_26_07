@@ -132,3 +132,36 @@
   사양(Sonnet·temp0·n=3)과 관련되므로 보드 확인이 필요하다.
 - 다음: 보드 사후 보고 게시 / ③ `talk-full` 의 window 좌표(민옥 결정) / 회고(A4) 프로브는
   `feat/recall-probe` 에 미머지 상태로 남아 있음(coop 분기 신설 필요).
+
+## 2026-07-30 (민옥, 저녁) — ⑨ 추론 모드 축 신설 + 편차 기록 구멍 메움
+
+- **⑨ 추론(사고) 모드 신설.** 계기: 종전엔 **공급자마다 사고량이 다른데 아무도 지정하지
+  않았고 로그에도 없었다.** Gemini 만 `thinkingLevel: minimal` 하드코딩(편차 D1),
+  Anthropic 은 파라미터 미전송(Sonnet 5 는 adaptive thinking 기본 ON — 동범 7/23),
+  OpenAI 도 모델 기본값. 즉 공급자만 바꿔 돌리면 조건이 달라지는데 산출물에 흔적이 없었다 —
+  온도 지뢰와 같은 종류의 "조용히 달라진 조건".
+- 값 3종 `default | off | on`. **`default` 는 파라미터 미전송 = 종전 동작**이므로 이 키가
+  없는 옛 config 도 그대로 돈다. "지정 안 함"과 "끔"을 구별하는 이유: 앞은 모델 마음,
+  뒤는 우리가 정한 것 — 다른 상태다.
+- **호출 계약(설계 원칙 2) 불변**: `obtain_response(inputs, model=, temperature=,
+  reasoning="default")` — 기존 호출자 무수정. 테스트가 주입하는 가짜는 시그니처가
+  `(inputs, model=, temperature=)` 이므로 `_reasoning_bound()` 로 실호출 경로에만 좌표를 싣는다.
+- `llm.check_reasoning()` 관문 + 콘솔 `blocking[]` 연결(온도 관문과 같은 자리).
+- **절단 감지 3종 신설** — 추론을 켜면 사고 토큰이 출력 예산을 먹어 편차 D1(7/27 제미나이
+  팔 전체 폐기)이 되살아난다. Anthropic `stop_reason=max_tokens` · OpenAI
+  `finish_reason=length` · Gemini `finishReason=MAX_TOKENS` 를 전부 예외로 올린다.
+  종전엔 **잘렸는데 성공으로 통과**했다. 켤 때는 출력 상한도 함께 올린다.
+- ★ **편차 기록 구멍을 메웠다.** `llm.LAST_DEVIATIONS` 는 메모리 리스트일 뿐 로그·화면
+  어디에도 남지 않았다 — `reasoning: on` 이라 적힌 로그가 실제로는 파라미터가 거부돼
+  추론 없이 돌았을 수 있는 상태였다(**기록과 실제가 갈리는 자리**). `flush()` 가 파일을
+  통째로 다시 쓰는 성질을 이용해 매 flush 마다 `run_meta.settings.deviations` 를 채운다.
+  프로세스 전역 리스트이므로 run 시작 시점 기준으로 잘라 이 run 의 몫만 센다.
+- 실호출 검증: `debate_issue_hire_reason_on2` — `reasoning: on`,
+  `deviations: ["max_tokens→max_completion_tokens"]`(추론 파라미터는 **거부되지 않음** =
+  실제로 켜져서 돌았다), 발화 4·빈 발화 0, `--deep` 재조립 검증 통과.
+- 테스트 245 → 253종 전체 통과.
+- **사후 보고 대상**: `modules/llm.py` 는 동범 님 담당이며 그분이 오늘 수리를 예고하셨다
+  (fail-fast 회귀·무음실패 3·Gemini 키 URL 노출). **그 항목들은 손대지 않았다**(규약 2).
+  `run_meta.settings` 에 필드 2개(`reasoning`·`deviations`) 추가는 기록 층이라 요한 님 소관.
+- 다음: 요한 님 7/29 「작업 경계 v0」 A/B 질의 회신 · 추론 on/off 쌍 비교(같은 공급자 안에서만)
+  · 설정 사전을 9축으로 개정.

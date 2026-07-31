@@ -1,0 +1,10 @@
+[llm] openai · gpt-5.4-mini (키: OPENAI_API_KEY)
+[debate] round 1/2 · 발화 1/4 · 폴백 누적 0
+[debate] round 1/2 · 발화 2/4 · 폴백 누적 0
+[debate] round 1/2 · 발화 3/4 · 폴백 누적 0
+[debate] round 1/2 · 발화 4/4 · 폴백 누적 0
+[debate] round 2/2 · 발화 1/4 · 폴백 누적 0
+[debate] round 2/2 · 발화 2/4 · 폴백 누적 0
+[debate] round 2/2 · 발화 3/4 · 폴백 누적 0
+[debate] round 2/2 · 발화 4/4 · 폴백 누적 0
+[OK] debate_issue_hire_reason_on2.jsonl — 이벤트 18건 (에이전트 4 x 라운드 1+초기, window=rolling, memory=none, ledger_mode=off, ledger_inject 0건, LLM 호출 8/8, 폴백 0건)
