@@ -140,3 +140,22 @@ PYTHONUTF8=1 python experiments/paper_repro/verify_bridge.py              # 라�
 
 **결정 대기 추가분**
 - L-2: 원본 `ethics_issues.json` 리포 반입 여부 — 사양 §4 "반입하라(규약 8)" vs 라이선스 미확인(`usage_approved` null, walkerhill 전례). 현재는 정본 sha 관문으로 대체 중이나 **다른 기계에서 loader 실행 불가** 상태
+
+---
+
+## evaluate_stance 대응물 구현 (2026-08-10 밤 — append, 기능 구현률 7/7)
+
+저자 파이프라인의 마지막 공백을 채웠다. 발화마다 "질문에 YES/NO 어느 입장인가"를
+저자 프롬프트(`evaluate_stance.txt`) 원본 직독·gpt-5·temp 0 으로 판정한다.
+
+- `bridge.parse_stance`(YES/NO/None 3상태 — 저자는 무파싱, 파싱 규칙은 우리 정의) ·
+  `bridge.stance_rows_to_summary`(기대값 = 배분 stance 의 엔진 매핑 pro→yes/con→no,
+  debate_engine.py:486) — **입장 이탈**(지시 vs 실제 발화 입장)의 라운드별 유지율 산출
+- `rehearse_splice.py` 단계 ⑤′: live 는 발화당 1콜(건당 +32콜, 체크포인트
+  `raw_calls/stance_{run}.jsonl` 원문 전량) · 리허설은 기대값 스텁(0콜)
+- 산출: `data/stance_summary_{issue}_{run}.json` — **계약 밖 보조 산출물**(manifests 전례,
+  스키마·validate·paths.py 무수정)
+
+**지위 사전 고정**: stance 는 **관찰 계기**다. §1 결과 변수(FAR)에 사후 추가하지 않는다 —
+결론 언어로 쓰려면 별도 사전 고정 절차를 거칠 것(HANDOFF §1 "사후 지표 추가 금지").
+pilot1 소급(32콜)은 별도 승인 관문.

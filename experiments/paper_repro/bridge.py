@@ -94,6 +94,77 @@ def author_fact_lines(facts_doc: dict) -> str:
 
 
 # ---------------------------------------------------------------------------
+# 저자 evaluate_stance 산출 → 입장 이탈 요약 (계약 밖 보조 산출물 — manifests 전례)
+
+def parse_stance(raw) -> str | None:
+    """저자 evaluate_stance 응답("Answer (YES/NO only)") 파싱.
+
+    저자는 원문 그대로 저장하고 파싱하지 않으므로 파싱 규칙은 우리 정의다:
+    공백 제거·대문자화 후 YES/NO 접두 판정. 그 외는 None = parse_fail
+    (axis_probe 의 3상태 원칙 — 조용한 0 금지). 원문 보존은 호출자 책임(규약 5)."""
+    if not isinstance(raw, str):
+        return None
+    s = raw.strip().upper()
+    if s.startswith("YES"):
+        return "yes"
+    if s.startswith("NO"):
+        return "no"
+    return None
+
+
+def stance_rows_to_summary(rows: list[dict], assignment: dict, *,
+                           issue_id: str, run_id: str) -> dict:
+    """stance 체크포인트 행들 → 입장 이탈 요약.
+
+    기대값은 배분 stance 의 엔진 매핑 그대로: pro→yes, con→no (debate_engine.py:486).
+    지위: **관찰 계기** — §1 결과 변수(FAR)가 아니다. 결론 언어로 쓰려면 별도 사전 고정 필요.
+    중복 (round, agent_id)는 나중 것이 이긴다(체크포인트 재개 의미론)."""
+    expected_by_agent = {}
+    for ag in assignment["agents"]:
+        if ag["stance"] not in ("pro", "con"):
+            raise ValueError(f"{issue_id}: 미지 stance {ag['stance']!r} ({ag['agent_id']})")
+        expected_by_agent[ag["agent_id"]] = "yes" if ag["stance"] == "pro" else "no"
+
+    dedup: dict[tuple, dict] = {}
+    for r in rows:
+        dedup[(r["round"], r["agent_id"])] = r
+
+    per_utterance = []
+    by_round: dict[int, list[bool]] = {}
+    n_parse_fail = 0
+    for (rnd, agent_id), r in sorted(dedup.items(), key=lambda kv: kv[0]):
+        if agent_id not in expected_by_agent:
+            raise ValueError(f"{issue_id}: 배분표에 없는 발화자 {agent_id!r}")
+        judged = r.get("parsed", parse_stance(r.get("raw_response")))
+        if judged is None:
+            n_parse_fail += 1
+        expected = expected_by_agent[agent_id]
+        match = (judged == expected) if judged is not None else None
+        per_utterance.append({"round": rnd, "agent_id": agent_id,
+                              "expected": expected, "judged": judged, "match": match})
+        if match is not None:
+            by_round.setdefault(rnd, []).append(match)
+
+    return {
+        "schema_ver": SCHEMA_VER,
+        "created_by": CREATED_BY,
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "issue_id": issue_id,
+        "run_id": run_id,
+        "_note": ("입장 이탈 관찰 계기 — 지시된 입장(pro→yes/con→no) vs 발화가 실제 취한 "
+                  "입장(저자 evaluate_stance). §1 결과 변수가 아니며 계약 파일 5종 밖의 "
+                  "보조 산출물이다(manifests 전례)."),
+        "per_utterance": per_utterance,
+        "summary": {
+            "match_rate_by_round": {
+                str(rnd): round(sum(v) / len(v), 4) for rnd, v in sorted(by_round.items()) if v},
+            "n_rows": len(dedup),
+            "n_parse_fail": n_parse_fail,
+        },
+    }
+
+
+# ---------------------------------------------------------------------------
 # 저자 축 판정물 → judgment 스키마 5
 
 def author_rows_to_judgment(rows: list[dict], facts_doc: dict, *,

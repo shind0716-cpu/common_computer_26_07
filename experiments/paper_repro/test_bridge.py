@@ -111,5 +111,57 @@ class AuthorJudgmentTests(unittest.TestCase):
                 validate_mod.validate(p)  # 실패 시 SystemExit → 테스트 실패
 
 
+FIXTURE_ASSIGN = json.loads((HERE / "fixtures" / "data" / "assignments" /
+                             "assignment_issue_repro_fx.json").read_text(encoding="utf-8"))
+
+
+class StanceTests(unittest.TestCase):
+    def test_parse_stance_variants(self):
+        self.assertEqual(bridge.parse_stance("YES"), "yes")
+        self.assertEqual(bridge.parse_stance("  yes."), "yes")
+        self.assertEqual(bridge.parse_stance("No, the author is not."), "no")
+        self.assertIsNone(bridge.parse_stance("Maybe."))
+        self.assertIsNone(bridge.parse_stance(""))
+        self.assertIsNone(bridge.parse_stance(None))
+
+    def test_summary_expected_mapping_and_match(self):
+        rows = [
+            {"round": 0, "agent_id": "agent_1", "parsed": "yes", "raw_response": "YES"},   # pro 일치
+            {"round": 0, "agent_id": "agent_2", "parsed": "yes", "raw_response": "YES"},   # con 이탈
+            {"round": 1, "agent_id": "agent_1", "parsed": None, "raw_response": "?"},      # parse_fail
+        ]
+        doc = bridge.stance_rows_to_summary(rows, FIXTURE_ASSIGN,
+                                            issue_id="issue_repro_fx", run_id="t")
+        by = {(u["round"], u["agent_id"]): u for u in doc["per_utterance"]}
+        self.assertEqual(by[(0, "agent_1")], {"round": 0, "agent_id": "agent_1",
+                                              "expected": "yes", "judged": "yes", "match": True})
+        self.assertEqual(by[(0, "agent_2")]["expected"], "no")
+        self.assertFalse(by[(0, "agent_2")]["match"])
+        self.assertIsNone(by[(1, "agent_1")]["match"])          # parse_fail 은 판정 제외
+        self.assertEqual(doc["summary"]["match_rate_by_round"], {"0": 0.5})
+        self.assertEqual(doc["summary"]["n_parse_fail"], 1)
+
+    def test_summary_duplicate_last_wins(self):
+        rows = [{"round": 0, "agent_id": "agent_1", "parsed": "no", "raw_response": "NO"},
+                {"round": 0, "agent_id": "agent_1", "parsed": "yes", "raw_response": "YES"}]
+        doc = bridge.stance_rows_to_summary(rows, FIXTURE_ASSIGN,
+                                            issue_id="issue_repro_fx", run_id="t")
+        self.assertEqual(doc["summary"]["n_rows"], 1)
+        self.assertTrue(doc["per_utterance"][0]["match"])
+
+    def test_summary_all_eight_agents_mapped_from_fixture(self):
+        rows = [{"round": 0, "agent_id": ag["agent_id"],
+                 "parsed": "yes", "raw_response": "YES"}
+                for ag in FIXTURE_ASSIGN["agents"]]
+        doc = bridge.stance_rows_to_summary(rows, FIXTURE_ASSIGN,
+                                            issue_id="issue_repro_fx", run_id="t")
+        expected = [u["expected"] for u in doc["per_utterance"]]
+        self.assertEqual(expected, ["yes", "no"] * 4)            # pro/con 쌍 4개
+        with self.assertRaises(ValueError):
+            bridge.stance_rows_to_summary(
+                [{"round": 0, "agent_id": "ghost", "parsed": "yes", "raw_response": "YES"}],
+                FIXTURE_ASSIGN, issue_id="x", run_id="t")
+
+
 if __name__ == "__main__":
     unittest.main()

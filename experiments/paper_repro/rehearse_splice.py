@@ -36,7 +36,7 @@ ROOT = HERE.parent.parent
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(HERE))
 
-from modules import access_window, debate_engine, ledger, llm, paths  # noqa: E402
+from modules import access_window, authors_prompts, debate_engine, ledger, llm, paths  # noqa: E402
 from modules import judge as judge_mod  # noqa: E402
 from modules import validate as validate_mod  # noqa: E402
 from experiments.judge_axis.axis_probe import (  # noqa: E402 — import만(폴더 무수정)
@@ -235,6 +235,54 @@ def main() -> None:
             health = jd_author["summary"]["judge_health"]
             print(f"⑤ 저자 축 변환: rows {health['n_rows']} (parse_fail {health['n_parse_fail']}) · "
                   f"validate OK · ledger 소실 {len(missing_author)}/{n} — 차단 해소")
+
+            # ⑤′ 입장 판정 (저자 evaluate_stance 계승) — 관찰 계기, §1 결과 변수 아님
+            issue_doc = json.loads(paths.issue(issue_id).read_text(encoding="utf-8"))
+            question = issue_doc.get("question") or issue_doc["title"]
+            expected_of = {ag["agent_id"]: ("yes" if ag["stance"] == "pro" else "no")
+                           for ag in assignment["agents"]}
+            if args.live:
+                sck = data_root / "raw_calls" / f"stance_{run_id}.jsonl"
+                sck.parent.mkdir(parents=True, exist_ok=True)
+                sdone = {}
+                if sck.exists():
+                    for line in sck.read_text(encoding="utf-8").splitlines():
+                        if line.strip():
+                            r = json.loads(line)
+                            sdone[(r["round"], r["agent_id"])] = r
+                srows = []
+                with sck.open("a", encoding="utf-8") as fh:
+                    for u in utts:
+                        key = (u["round"], u["agent_id"])
+                        if key in sdone:
+                            srows.append(sdone[key])
+                            continue
+                        prompt = (authors_prompts.load("evaluate_stance")
+                                  .replace("<===question===>", question)
+                                  .replace("<===text===>", u.get("response_text", "")))
+                        raw = llm.obtain_response(prompt, model="gpt-5", temperature=0.0)
+                        rec = {"round": u["round"], "agent_id": u["agent_id"],
+                               "model": "gpt-5", "temperature": 0.0, "n": 1,
+                               "axis": "author_evaluate_stance",
+                               "parsed": bridge.parse_stance(raw),
+                               "raw_response": raw}  # 규약 5 — 원문 그대로
+                        fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
+                        fh.flush()
+                        srows.append(rec)
+            else:
+                # 0콜 스텁 = 기대값 그대로 — 배관 검증용이라 match 1.0 이 정상
+                srows = [{"round": u["round"], "agent_id": u["agent_id"],
+                          "parsed": expected_of[u["agent_id"]],
+                          "raw_response": expected_of[u["agent_id"]].upper()}
+                         for u in utts]
+            stance_doc = bridge.stance_rows_to_summary(
+                srows, assignment, issue_id=issue_id, run_id=run_id)
+            (data_root / f"stance_summary_{issue_id}_{run_id}.json").write_text(
+                json.dumps(stance_doc, ensure_ascii=False, indent=2), encoding="utf-8")
+            ss = stance_doc["summary"]
+            tag = "" if args.live else " (스텁=기대값 — match 1.0 이 정상)"
+            print(f"⑤′ 입장 판정: rows {ss['n_rows']} (parse_fail {ss['n_parse_fail']}) · "
+                  f"라운드별 유지율 {ss['match_rate_by_round']}{tag}")
 
             # ⑥ 요약
             print("⑥ 전 산출물 validate 통과. 스텁 수치는 배관 확인용 — 인용 금지.")
