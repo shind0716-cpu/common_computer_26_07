@@ -157,9 +157,10 @@ def stance_rows_to_summary(rows: list[dict], assignment: dict, *,
         "created_at": datetime.now(timezone.utc).isoformat(),
         "issue_id": issue_id,
         "run_id": run_id,
-        "_note": ("입장 이탈 관찰 계기 — 지시된 입장(pro→yes/con→no) vs 발화가 실제 취한 "
-                  "입장(저자 evaluate_stance). §1 결과 변수가 아니며 계약 파일 5종 밖의 "
-                  "보조 산출물이다(manifests 전례)."),
+        "_note": ("입장 이탈 관찰 계기 — 지시된 입장의 기대 판정(교정 매핑 pro→NO/con→YES, "
+                  "2026-08-10: 엔진 yes=행동 비난 vs 저자 YES=행동 지지, 같은 토큰 반대 뜻) "
+                  "vs 발화가 실제 취한 입장(저자 evaluate_stance). §1 결과 변수가 아니며 "
+                  "계약 파일 5종 밖의 보조 산출물이다(manifests 전례)."),
         "per_utterance": per_utterance,
         "summary": {
             "match_rate_by_round": {

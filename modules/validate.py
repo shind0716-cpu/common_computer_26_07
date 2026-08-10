@@ -332,6 +332,11 @@ def validate(path: Path, deep: bool = False):
     if kind not in REQUIRED:
         fail(f"알 수 없는 파일 종류: {kind} ({path.name})")
     check_keys(obj, REQUIRED[kind], path.name)
+    if kind == "issue":
+        # §1′(2026-08-10 확정): question 은 선택 필드 — 부재는 구 문서 호환으로 허용,
+        # 있으면 문자열이어야 한다(문서가 약속한 타입 검사 — PR#34 리뷰로 구현 누락 발견).
+        if "question" in obj and not isinstance(obj["question"], str):
+            fail(f"issue.question 이 문자열 아님: {type(obj['question']).__name__} ({path.name})")
     if kind == "facts":
         # facts 는 최상위뿐 아니라 각 팩트 항목도 계약을 지켜야 한다.
         for f in obj["facts"]:

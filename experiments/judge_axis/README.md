@@ -54,3 +54,26 @@ python -m experiments.judge_axis.axis_compare --issue issue_esa --run 논문재�
 재현되는지 확인하지 않았다(같은 축을 3번 돌리면 갈리는지가 다음 질문). 이 수치로
 "어느 축이 옳다"를 말할 수 없다 — 말할 수 있는 것은 **셀 판정은 거의 같고 화자
 명단은 체계적으로 다르다**는 것뿐이다.
+
+---
+
+## 결함 기록 — 재사용 금지 (2026-08-10 append, PR#34 리뷰 실측)
+
+이 폴더는 **종결된 기록**이다(요한 방침 8/10: 종결 러너는 증거물 — 결함 있는 채로가
+정직하다. 수정하지 않고 기록만 남긴다). 위 실측 수치의 provenance 로는 유효하나,
+**러너를 재사용하지 말 것.** 리뷰에서 실측 재현된 결함:
+
+1. `axis_probe.py --offline` 이 **라이브 체크포인트를 오염**시킨다 — 체크포인트가
+   mode/model/prompt 와 무관하게 같은 파일·같은 tag 를 쓰므로, offline 후 실호출하면
+   32건 전부 `offline_stub` 를 0콜 재사용한다(모델을 바꿔도 동일).
+2. `axis_probe.py` 에 **preflight 부재** — 자격증명/SDK 실패가 정상 체크포인트의
+   `parse_fail` 로 저장되고 재개 시 계속 건너뛴다.
+3. `axis_compare.py` 가 **부분 체크포인트를 완전한 실험으로 집계**한다 — 행 수·
+   화자×라운드 완전성을 검증하지 않아 32발화 중 9행만 있어도 지표를 출력하고,
+   parse_fail 의 미지 매치가 사실상 absence(소실)로 계상된다.
+
+같은 계열 결함의 **수정본은 현행 트랙에 있다**: 좌표 지문 체크포인트
+(`paper_repro/extract_facts.CallCheckpoint`), dry/live 격리(`probe_extract`),
+재사용 관문(`rehearse_splice.check_*`), parse_fail=모름 정책
+(`paper_repro/bridge.author_rows_to_judgment`). 이 축 대조를 다시 하려면
+저 부품들 위에서 새로 지어라.

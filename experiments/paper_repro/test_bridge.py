@@ -180,6 +180,17 @@ class StanceTests(unittest.TestCase):
         self.assertEqual(doc["summary"]["n_rows"], 1)
         self.assertTrue(doc["per_utterance"][0]["match"])
 
+    def test_note_describes_actual_mapping(self):
+        # PR#34 리뷰 회귀: 계산은 pro→no 로 교정됐는데 _note 가 pro→yes 로 남아
+        # provenance 가 반대로 기록되던 결함 — 문구와 계산이 같은 방향이어야 한다.
+        rows = [{"round": 0, "agent_id": "agent_1", "parsed": "no", "raw_response": "NO"}]
+        doc = bridge.stance_rows_to_summary(rows, FIXTURE_ASSIGN,
+                                            issue_id="issue_repro_fx", run_id="t")
+        pro_expected = {u["agent_id"]: u["expected"] for u in doc["per_utterance"]}
+        self.assertEqual(pro_expected["agent_1"], "no")           # 계산: pro→NO
+        self.assertIn("pro→NO", doc["_note"])                     # 문구도 같은 방향
+        self.assertNotIn("pro→yes", doc["_note"].lower())         # 옛 반대 문구 잔재 금지
+
     def test_summary_all_eight_agents_mapped_from_fixture(self):
         rows = [{"round": 0, "agent_id": ag["agent_id"],
                  "parsed": "yes", "raw_response": "YES"}
