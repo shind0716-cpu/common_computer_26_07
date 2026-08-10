@@ -241,3 +241,11 @@
   그때 계약 안건으로.
 - 테스트 293 → 296종 전체 통과. 실호출 0.
 - 다음: 입장 엔트로피 계측기(stance 기반, API 콜 0 — 검토 공유 토론 요청 ③) 착수 가능.
+- (추가) 요한 님 PR#33 리뷰 반영 — **지적이 정확했다**: 절단 즉사 시 flush() 전에 죽어
+  편차가 메모리에서 증발, "산출물에 남긴다"가 제어 흐름에서 미달성이었다. `debate_engine`
+  에 `guarded()` 가드 신설: 발화·수첩·폴링·루프 내 채점 전 호출 지점에서 LLMTruncated 만
+  잡아 flush(체크포인트+deviations 기록) 후 **같은 예외 재raise** — A안 유지, 타 실패 동작
+  불변. 저자 트랙(initial/continue_utterance) 우회 2곳도 가드 주입. 통합 테스트 신설
+  (절단 → debate JSONL 의 run_meta.settings.deviations 실증) + main guard 파일 끝 이동.
+  테스트 296→297 통과. ⚠ debate_engine 은 조건 층=민옥 소관 — 이 추가는 기록 층 수정
+  (요한 리뷰 지시)이며 기존 로직 무변경, 민옥 님께 사후 통지.
