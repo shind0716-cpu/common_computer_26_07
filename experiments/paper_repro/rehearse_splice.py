@@ -137,10 +137,31 @@ def main() -> None:
             facts_doc = json.loads(paths.facts(issue_id).read_text(encoding="utf-8"))
             facts = facts_doc["facts"]
             facts_by_id = {f["fact_id"]: f for f in facts}
+            assignment = json.loads(paths.assignment(issue_id).read_text(encoding="utf-8"))
 
             # ① 토론 — 기본은 스텁(실호출 0), --live 면 엔진이 실호출(자체 체크포인트)
             if args.live:
-                debate_path = debate_engine.run(issue_id, run_id, cfg_path)
+                # 재생성 방지 가드 (2026-08-10 실사고: 완주 판을 --live 재실행하자 엔진이
+                # 발화 32콜을 새로 뽑아 기존 판정들과 짝이 안 맞는 다른 토론이 됐다.
+                # temp>0 발화는 재생성 = 다른 데이터다 — 완주 판은 절대 다시 만들지 않는다.)
+                import yaml as _yaml
+                _rounds = int(_yaml.safe_load(Path(cfg_path).read_text(encoding="utf-8"))
+                              .get("rounds", 3))
+                _expected = len(assignment["agents"]) * (_rounds + 1)
+                _dp = paths.debate(issue_id, run_id)
+                if _dp.exists():
+                    _n = sum(1 for l in _dp.read_text(encoding="utf-8").splitlines()
+                             if l.strip() and json.loads(l).get("event") == "utterance")
+                    if _n == _expected:
+                        debate_path = _dp
+                        print(f"① 기존 debate 재사용({_n}발화) — 재생성 방지 가드, 콜 0")
+                    else:
+                        raise SystemExit(
+                            f"debate 파일이 부분 상태({_n}/{_expected}발화): {_dp}\n"
+                            "  mini_h2 관례대로 .incomplete-<ts> 로 밀어낸 뒤 재실행하라 — "
+                            "부분 판 위에 이어 뽑으면 원장 정합이 깨진다.")
+                else:
+                    debate_path = debate_engine.run(issue_id, run_id, cfg_path)
             else:
                 stub = _stub_utterance_factory(facts)
                 debate_path = debate_engine.run(issue_id, run_id, cfg_path,
@@ -154,11 +175,17 @@ def main() -> None:
             print(f"① debate 완주: 발화 {n_utt} · seating {n_seating} · {mode} · validate OK")
 
             # ② 우리 축 judgment (3표 — live 면 실판정, 아니면 offline)
-            cfg = judge_mod._load_config(cfg_path)
-            jd_ours = judge_mod.judge_debate(issue_id, run_id, cfg, offline=not args.live)
             jp = paths.judgment(issue_id, run_id)
-            jp.parent.mkdir(parents=True, exist_ok=True)
-            jp.write_text(json.dumps(jd_ours, ensure_ascii=False, indent=2), encoding="utf-8")
+            if args.live and jp.exists():
+                # 재판정 방지 가드 — judge 단계엔 자체 체크포인트가 없다(같은 실사고).
+                jd_ours = json.loads(jp.read_text(encoding="utf-8"))
+                print("② 기존 judgment 재사용 — 재판정 방지 가드, 콜 0")
+            else:
+                cfg = judge_mod._load_config(cfg_path)
+                jd_ours = judge_mod.judge_debate(issue_id, run_id, cfg, offline=not args.live)
+                jp.parent.mkdir(parents=True, exist_ok=True)
+                jp.write_text(json.dumps(jd_ours, ensure_ascii=False, indent=2),
+                              encoding="utf-8")
             _validate(jp)
             print(f"② 우리 축 judgment: stages {len(jd_ours['stages'])} · "
                   f"far_by_stage {[s['far_system'] for s in jd_ours['summary']['far_by_stage']]} · validate OK")
@@ -172,7 +199,6 @@ def main() -> None:
             print(f"③ ledger(우리 축): 마지막 stage 소실 {len(missing_ours)}/{n} — 오판 없음")
 
             # ④ access_window
-            assignment = json.loads(paths.assignment(issue_id).read_text(encoding="utf-8"))
             rep = access_window.report(jd_ours, assignment, events, facts_by_id)
             assert rep["status"] == "ok", f"access_window status={rep['status']}"
             assert not rep["meta"]["window"]["edges"].get("assumed_full"), \
@@ -239,7 +265,9 @@ def main() -> None:
             # ⑤′ 입장 판정 (저자 evaluate_stance 계승) — 관찰 계기, §1 결과 변수 아님
             issue_doc = json.loads(paths.issue(issue_id).read_text(encoding="utf-8"))
             question = issue_doc.get("question") or issue_doc["title"]
-            expected_of = {ag["agent_id"]: ("yes" if ag["stance"] == "pro" else "no")
+            # 극성 주의: 저자 evaluate_stance 의 YES = 행동 지지, 토론 pro 의 yes = 행동 비난.
+            # 기대값은 bridge.stance_rows_to_summary 의 교정 매핑(pro→no)과 같아야 한다.
+            expected_of = {ag["agent_id"]: ("no" if ag["stance"] == "pro" else "yes")
                            for ag in assignment["agents"]}
             if args.live:
                 sck = data_root / "raw_calls" / f"stance_{run_id}.jsonl"

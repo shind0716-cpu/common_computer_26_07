@@ -126,24 +126,24 @@ class StanceTests(unittest.TestCase):
 
     def test_summary_expected_mapping_and_match(self):
         rows = [
-            {"round": 0, "agent_id": "agent_1", "parsed": "yes", "raw_response": "YES"},   # pro 일치
-            {"round": 0, "agent_id": "agent_2", "parsed": "yes", "raw_response": "YES"},   # con 이탈
+            {"round": 0, "agent_id": "agent_1", "parsed": "no", "raw_response": "NO"},     # pro(행동 반대) 일치
+            {"round": 0, "agent_id": "agent_2", "parsed": "no", "raw_response": "NO"},     # con(행동 지지) 이탈
             {"round": 1, "agent_id": "agent_1", "parsed": None, "raw_response": "?"},      # parse_fail
         ]
         doc = bridge.stance_rows_to_summary(rows, FIXTURE_ASSIGN,
                                             issue_id="issue_repro_fx", run_id="t")
         by = {(u["round"], u["agent_id"]): u for u in doc["per_utterance"]}
         self.assertEqual(by[(0, "agent_1")], {"round": 0, "agent_id": "agent_1",
-                                              "expected": "yes", "judged": "yes", "match": True})
-        self.assertEqual(by[(0, "agent_2")]["expected"], "no")
+                                              "expected": "no", "judged": "no", "match": True})
+        self.assertEqual(by[(0, "agent_2")]["expected"], "yes")
         self.assertFalse(by[(0, "agent_2")]["match"])
         self.assertIsNone(by[(1, "agent_1")]["match"])          # parse_fail 은 판정 제외
         self.assertEqual(doc["summary"]["match_rate_by_round"], {"0": 0.5})
         self.assertEqual(doc["summary"]["n_parse_fail"], 1)
 
     def test_summary_duplicate_last_wins(self):
-        rows = [{"round": 0, "agent_id": "agent_1", "parsed": "no", "raw_response": "NO"},
-                {"round": 0, "agent_id": "agent_1", "parsed": "yes", "raw_response": "YES"}]
+        rows = [{"round": 0, "agent_id": "agent_1", "parsed": "yes", "raw_response": "YES"},
+                {"round": 0, "agent_id": "agent_1", "parsed": "no", "raw_response": "NO"}]
         doc = bridge.stance_rows_to_summary(rows, FIXTURE_ASSIGN,
                                             issue_id="issue_repro_fx", run_id="t")
         self.assertEqual(doc["summary"]["n_rows"], 1)
@@ -156,7 +156,7 @@ class StanceTests(unittest.TestCase):
         doc = bridge.stance_rows_to_summary(rows, FIXTURE_ASSIGN,
                                             issue_id="issue_repro_fx", run_id="t")
         expected = [u["expected"] for u in doc["per_utterance"]]
-        self.assertEqual(expected, ["yes", "no"] * 4)            # pro/con 쌍 4개
+        self.assertEqual(expected, ["no", "yes"] * 4)            # pro→NO(행동 반대)/con→YES 쌍 4개
         with self.assertRaises(ValueError):
             bridge.stance_rows_to_summary(
                 [{"round": 0, "agent_id": "ghost", "parsed": "yes", "raw_response": "YES"}],

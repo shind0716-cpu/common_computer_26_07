@@ -159,3 +159,9 @@ PYTHONUTF8=1 python experiments/paper_repro/verify_bridge.py              # 라�
 **지위 사전 고정**: stance 는 **관찰 계기**다. §1 결과 변수(FAR)에 사후 추가하지 않는다 —
 결론 언어로 쓰려면 별도 사전 고정 절차를 거칠 것(HANDOFF §1 "사후 지표 추가 금지").
 pilot1 소급(32콜)은 별도 승인 관문.
+
+**정정 (2026-08-10 밤 append)** — 위 「evaluate_stance 대응물」의 기대값 매핑 서술
+"pro→yes/con→no"는 **틀렸다**. 저자 evaluate_stance 의 YES 는 행동 지지, 토론 pro 의
+yes 는 행동 비난(AITA) — 극성이 반대라 **pro→NO / con→YES** 가 맞다(pilot1 r0 유지율
+0.0 이라는 불가능 수치로 발각, 원문 대조 확정, bridge 교정 완료). 상세와 재발 방지
+관문 5는 MUTUAL_REVIEW.md 사고 보고 참조.

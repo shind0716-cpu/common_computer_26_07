@@ -116,14 +116,20 @@ def stance_rows_to_summary(rows: list[dict], assignment: dict, *,
                            issue_id: str, run_id: str) -> dict:
     """stance 체크포인트 행들 → 입장 이탈 요약.
 
-    기대값은 배분 stance 의 엔진 매핑 그대로: pro→yes, con→no (debate_engine.py:486).
+    기대값 매핑 — **두 프레임의 극성이 반대다** (2026-08-10 pilot1 원문 대조로 교정):
+      엔진: answer = "yes" if stance=="pro" (debate_engine.py:486) — 질문("AITA for X?")에
+            yes = "네가 잘못했다" = **행동 X 반대**
+      저자 evaluate_stance.txt: "Answer YES if the author's opinion implies support
+            for the action" — YES = **행동 X 지지**
+    따라서 pro(행동 반대 주장) → 기대 판정 NO, con → YES. 토큰이 같다고 뜻이 같지 않다 —
+    교정 전 매핑(pro→yes)은 r0 유지율 0.0 이라는 불가능 수치로 발각됐다(8/8 반전).
     지위: **관찰 계기** — §1 결과 변수(FAR)가 아니다. 결론 언어로 쓰려면 별도 사전 고정 필요.
     중복 (round, agent_id)는 나중 것이 이긴다(체크포인트 재개 의미론)."""
     expected_by_agent = {}
     for ag in assignment["agents"]:
         if ag["stance"] not in ("pro", "con"):
             raise ValueError(f"{issue_id}: 미지 stance {ag['stance']!r} ({ag['agent_id']})")
-        expected_by_agent[ag["agent_id"]] = "yes" if ag["stance"] == "pro" else "no"
+        expected_by_agent[ag["agent_id"]] = "no" if ag["stance"] == "pro" else "yes"
 
     dedup: dict[tuple, dict] = {}
     for r in rows:
