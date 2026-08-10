@@ -269,5 +269,87 @@ class TestBlankUtteranceCounter(unittest.TestCase):
             shutil.rmtree(tmp, ignore_errors=True)
 
 
+
+
+class TestTruncationCounter(unittest.TestCase):
+    """절단 자동 계수 (요한 7/31 숙제: A안 유지 + "절단 횟수는 세야 한다").
+
+    지키는 것: 절단으로 run 이 죽더라도 **빈도 데이터는 남는다** — 216건 전수 스캔의
+    "절단 0건" 실측이 앞으로도 참인지를 이 카운터가 말한다. 계수는 raise 지점이 아니라
+    LLMTruncated 생성자에서 하므로 공급자가 늘어도 빠뜨릴 수 없다."""
+
+    def setUp(self):
+        llm.TRUNCATIONS.clear()
+        llm.LAST_DEVIATIONS.clear()
+        llm._openai_maxtok = "max_tokens"
+        llm._openai_no_temp = False
+
+    def test_truncation_is_counted_even_though_run_dies(self):
+        trunc = _Resp(200, {"choices": [{"message": {"content": "잘린 답"},
+                                         "finish_reason": "length"}]})
+        with self.assertRaises(llm.LLMTruncated):
+            _run_openai([trunc])
+        self.assertEqual(len(llm.TRUNCATIONS), 1)
+        # 편차 계약을 타고 산출물로 간다 — run_meta.settings.deviations (요한 7/31 확정,
+        # 그 칸만 실행 중 재기록 허용). 회차가 문자열에 박혀 중복 제거에 안 지워진다.
+        self.assertTrue(any("절단 1회째" in d for d in llm.LAST_DEVIATIONS))
+
+    def test_each_truncation_counts_separately(self):
+        llm.LLMTruncated("첫 절단")
+        llm.LLMTruncated("둘째 절단")
+        self.assertEqual(len(llm.TRUNCATIONS), 2)
+        self.assertTrue(any("절단 2회째" in d for d in llm.LAST_DEVIATIONS))
+
+    def test_counter_masks_keys_in_detail(self):
+        key = "sk-" + "q" * 60
+        with mock.patch.dict(os.environ, {"OPENAI_API_KEY": key}, clear=False):
+            llm.LLMTruncated(f"절단 본문에 키가 섞임 {key}")
+        self.assertNotIn(key, llm.TRUNCATIONS[0])   # 계수 기록에도 실키 평문 금지
+
+
+class TestTruncationFlushedToLog(unittest.TestCase):
+    """요한 PR#33 리뷰 반영 — 절단 기록이 메모리가 아니라 **debate JSONL 에** 남는가.
+
+    종전 결함: LLMTruncated 가 run 을 즉사시키면 flush() 전에 죽어, 방금
+    LAST_DEVIATIONS 에 적힌 절단 기록이 프로세스와 함께 증발했다. 엔진의
+    guarded() 가드가 절단 직전 체크포인트를 남기고 같은 예외를 다시 올린다."""
+
+    def test_truncation_record_lands_in_run_meta_deviations(self):
+        import shutil
+        import tempfile
+        from modules import debate_engine, paths
+        from tests.test_note_slot import FakeLLM, _cfg, _write_fixture
+
+        inner = FakeLLM()
+        state = {"n": 0}
+
+        def truncating(inputs, model=None, temperature=None):
+            state["n"] += 1
+            if state["n"] == 2:      # 라운드 도중 절단 — flush 체크포인트 이전 시점
+                raise llm.LLMTruncated("테스트 절단(finish_reason=length 상당)")
+            return inner(inputs, model=model, temperature=temperature)
+
+        llm.TRUNCATIONS.clear()
+        llm.LAST_DEVIATIONS.clear()
+        tmp = Path(tempfile.mkdtemp())
+        orig = paths.DATA
+        paths.DATA = tmp / "data"
+        try:
+            iid = _write_fixture(paths.DATA)
+            cfg = _cfg(tmp, debate_model="gpt-mini")
+            with self.assertRaises(llm.LLMTruncated):   # A안 유지 — run 은 죽는다
+                debate_engine.run(iid, "truncrun", cfg, utterance_fn=truncating)
+            out = paths.debate(iid, "truncrun")
+            self.assertTrue(out.exists(), "절단에도 체크포인트 파일이 남아야 한다")
+            first = json.loads(out.read_text(encoding="utf-8").splitlines()[0])
+            self.assertEqual(first["event"], "run_meta")
+            devs = first["settings"]["deviations"]
+            self.assertTrue(any("절단" in d for d in devs),
+                            f"run_meta.settings.deviations 에 절단 기록이 없다: {devs}")
+        finally:
+            paths.DATA = orig
+            shutil.rmtree(tmp, ignore_errors=True)
+
+
 if __name__ == "__main__":
     unittest.main()
