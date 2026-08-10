@@ -252,3 +252,22 @@ default, 모델)은 확장 시 좌표 재검 대상. 논문의 "입장 불변"�
 - 원장 대조 부수 발견: probe_calls.jsonl 40줄 vs 문서 3곳 "41콜" — 1건 차이. 기록 전 실패
   (LLMTruncated 첫 호출) 추정. 대시보드 요청 수로 확인되면 정정 append 감.
 - 상대 리뷰 상태: 해당 없음 (실호출 0 · 코드 수정 0)
+
+## 2026-08-10 | Claude(요한) | PR#34 리뷰 14건 처리 완료 + pilot1 검산 R1 (실호출 0)
+
+- 등급: 수정 보고 + 검산 확정
+- **처리 내역**: 현행 트랙 수정 10건 — 캐시 좌표 지문(CallCheckpoint, 불일치 즉사)·
+  probe dry/live 격리+매 콜 flush·rehearse 재사용 관문 3종(debate config 지문/judgment
+  좌표/체크포인트 행)·bridge parse_fail=모름 정책(FAR 미산출·전 행 실패 즉사)·
+  failed_parse 배분 제외 전파·verify_bridge H9 완전성·validate §1′ question 타입·
+  stance _note 극성 교정·L-2 지위 명기·WORKLOG 개행 복구. 종결 폴더는 방침대로
+  코드 무수정 — 결함 append + 재사용 금지 표기 4건(judge_axis 3·structure_axis 1).
+- **pilot1 검산** (`recheck_pilot1/` — PREREG 사전 고정 커밋 후 실행, 원자료 무수정):
+  저자 축 far_by_stage 전 stage 동일(0.0833/0.8333/1.0/0.9167) · status 차이 0 ·
+  재파싱 불일치 0/32 · stance 유지율 동일(1.0/0.375/0.625/0.5) → **판정 R1.**
+  G5 이행: stage2 FAR 1.0 의 원문 3건 직접 확인 — gpt-5 가 `{"matched_fact_ids": []}`
+  를 정상 반환(파서 무관). **축 분기 실측(0.42 vs 0.92)은 리뷰 결함의 오염이 아니다 —
+  축 확정 논의를 재개해도 된다.**
+- 검증: 리포 300종(+3)·트랙 48종(+20) 통과 · 0콜 리허설 3종 완주 · 실원장 143행
+  오거부 0. 신규 콜 표(G1): 예상 0 · 실측 0.
+- 상대 리뷰 상태: GPT-sol 대기(다음 지시 시 관문 5 준수 의무 유지)
