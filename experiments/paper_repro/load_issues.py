@@ -73,6 +73,41 @@ def sample_items(items: list[dict], n: int, seed: int):
     return out, len(pool), share
 
 
+def _normalize(doc: dict) -> dict:
+    """내용 비교용 사본 — 타임스탬프(created_at·source_meta.fetched_at)를 제거.
+    재실행 때 내용이 같은 파일을 타임스탬프만 바꿔 다시 쓰는 것을 막는다(L-3:
+    2026-08-10 실측 — --n 20 재실행이 20건만 다시 써서 created_at 이 20/180 으로 갈렸다)."""
+    d = json.loads(json.dumps(doc))
+    d.pop("created_at", None)
+    if isinstance(d.get("source_meta"), dict):
+        d["source_meta"].pop("fetched_at", None)
+    return d
+
+
+def write_if_changed(path: Path, doc: dict) -> bool:
+    """내용(타임스탬프 제외)이 같으면 쓰지 않는다. 썼으면 True."""
+    if path.exists():
+        try:
+            old = json.loads(path.read_text(encoding="utf-8"))
+            if _normalize(old) == _normalize(doc):
+                return False
+        except (json.JSONDecodeError, OSError):
+            pass  # 깨진 파일은 다시 쓴다
+    path.write_text(json.dumps(doc, ensure_ascii=False, indent=2), encoding="utf-8")
+    return True
+
+
+def code_ver() -> str | None:
+    """loader 코드 버전(git 짧은 해시) — manifest 감사용(L-4). git 밖에서는 None."""
+    try:
+        import subprocess
+        r = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
+                           capture_output=True, text=True, cwd=HERE, timeout=5)
+        return r.stdout.strip() or None
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def to_issue_doc(item: dict, fetched_at: str) -> dict:
     """원본 항목 1건 → issues/ 계약 문서. 순수 함수 — 여기서만 매핑한다."""
     issue_id = f"issue_ethics_{item['_pos']:04d}"
@@ -138,14 +173,16 @@ def main() -> None:
         return
 
     issues_dir.mkdir(parents=True, exist_ok=True)
+    n_written = 0
     for d in docs:
-        p = issues_dir / f"{d['issue_id']}.json"
-        p.write_text(json.dumps(d, ensure_ascii=False, indent=2), encoding="utf-8")
+        n_written += write_if_changed(issues_dir / f"{d['issue_id']}.json", d)
+    print(f"[loader] 파일 신규·변경 {n_written} · 무변경 유지 {len(docs) - n_written}")
 
     manifest = {
         "schema_ver": SCHEMA_VER,
         "created_by": CREATED_BY,
         "created_at": fetched_at,
+        "loader_code_ver": code_ver(),
         "source": {"path": str(src), "sha256": src_sha, "n_items": len(items)},
         "sample": {
             "seed": args.seed,
@@ -159,8 +196,7 @@ def main() -> None:
         "deviations": ["P-2 표본 출처(역추정 710건)", "P-3 동점 28건 제외",
                        "라이선스 미확인 — usage_approved 전건 null"],
     }
-    (out_root / "sample_manifest.json").write_text(
-        json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+    write_if_changed(out_root / "sample_manifest.json", manifest)
 
     # 규약 3 — 산출 전건 자가 검사. 통과 전엔 완료가 아니다.
     from modules import validate as validate_mod  # noqa: E402

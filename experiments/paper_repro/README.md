@@ -117,3 +117,26 @@ PYTHONUTF8=1 python experiments/paper_repro/assign_perspective.py --dry   # 배�
 PYTHONUTF8=1 python experiments/paper_repro/rehearse_splice.py            # 접합 0콜 완주
 PYTHONUTF8=1 python experiments/paper_repro/verify_bridge.py              # 라이브 산출 게이트
 ```
+
+---
+
+## 완성도 리뷰 반영 (2026-08-10 밤 — append)
+
+3모듈(loader·extractor·배분기) 리뷰: 라이브 검증 전부 통과, 아래만 조치.
+
+**편차 대장 추가**
+
+| # | 내용 |
+|---|---|
+| P-8 | **길이 불일치 처리.** refined/important 길이가 어긋나면 저자는 `zip` 으로 조용히 절단(perspective.py:20), 우리 extractor 는 즉시 에러. 우리 쪽이 안전하나 저자와 다른 동작 — 라이브 20건 실측 발생 0건 |
+
+**조치 완료 (접합 계층)**: L-1 loader 테스트 7종 신설(층화 몫 보정·결정론·접두 부분집합·매핑 보존·멱등 쓰기·정본 sha 일관성) · L-3 멱등 쓰기(재실행 시 내용 무변경 파일 skip — 실증: --n 20 재실행 신규 0/유지 20) · L-4 manifest 에 `loader_code_ver`(git 해시) 기록.
+
+**GPT 지시(§10)**: E-1 파싱 실패 항목 skip+기록(전체 중단 방지) + 회귀 테스트.
+
+**확장 시 설계 목록 (지금 수정 안 함 — 미검증 코드 증식 방지)**
+- A-1: 한 yaml 다이슈 실행 시 좌석 순열 고정 → 러너에서 이슈별 seed 유도(엔진 무수정)
+- E-1 적용 후 대량 실행 재검증
+
+**결정 대기 추가분**
+- L-2: 원본 `ethics_issues.json` 리포 반입 여부 — 사양 §4 "반입하라(규약 8)" vs 라이선스 미확인(`usage_approved` null, walkerhill 전례). 현재는 정본 sha 관문으로 대체 중이나 **다른 기계에서 loader 실행 불가** 상태
