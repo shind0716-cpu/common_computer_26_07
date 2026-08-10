@@ -19,6 +19,12 @@ README 「브리지 계약」과 저자 prompts/perspective.txt 지침에서 독
     H8  bridge.py 실물 왕복 — sets 를 to_fact_ids 로 번역하면 assigned_fact_ids 와 같고
         역번역(to_positions)은 원 인덱스로 돌아온다. H5 가 자체 구현 대조라면 H8 은
         번역층(bridge.py) 그 자체를 검사한다 (2026-08-10 플랜 승인분)
+    H9  완전성 — manifest 가 "단계 완료"를 주장하면 그 주장과 실물 파일을 대조한다
+        (PR#34 리뷰: 빈 산출 루트가 "경성 전건 통과"로 끝나던 결함). sample_manifest
+        의 표본 전건에 대해 issue 실물 필수, facts_manifest 존재 시 facts 실물 필수
+        (예외: failed_parse), assignments_manifest 존재 시 assignment 실물 필수
+        (예외: failed_parse ∪ excluded_refined_lt5 ∪ skipped). manifest 부재 =
+        해당 단계 미실행으로 보고 검사를 생략하되 그 사실을 출력에 명시한다.
   [연성 — 저자 프롬프트 지침. 위반은 집계·보고만 (지침이지 형식 계약이 아님)]
     S1  모든 팩트가 최소 1개 관점에 등장 (커버리지)
     S2  전체 팩트를 다 가진 관점 없음
@@ -129,6 +135,48 @@ def verify_assignment(doc: dict, fact_ids: list[str],
     _ = critical_missing
 
 
+def check_completeness(root: Path) -> tuple[list[str], list[str]]:
+    """H9 — manifest 의 완료 주장과 실물 파일 대조. (경성 오류 목록, 안내 목록) 반환."""
+    errors: list[str] = []
+    notes: list[str] = []
+    sm = root / "sample_manifest.json"
+    if not sm.exists():
+        notes.append("H9 생략: sample_manifest 부재 — 표본 미확정 루트(픽스처 등)")
+        return errors, notes
+    expected = [x["issue_id"] for x in _load(sm)["sample"]["ids"]]
+    for iid in expected:
+        if not (root / "issues" / f"{iid}.json").exists():
+            errors.append(f"{iid}: H9 표본에 있는 issue 실물 부재")
+
+    fm = root / "facts_manifest.json"
+    failed_ids: set[str] = set()
+    excluded_ids: set[str] = set()
+    if not fm.exists():
+        notes.append("H9 부분 생략: facts_manifest 부재 — 추출 단계 미실행으로 간주")
+        return errors, notes
+    fman = _load(fm)
+    failed_ids = {x["issue_id"] for x in fman.get("failed_parse", [])}
+    excluded_ids = set(fman.get("excluded_refined_lt5", []))
+    for iid in expected:
+        if iid in failed_ids:
+            continue  # 설명된 누락 — extractor 가 사유를 기록했다
+        if not (root / "facts" / f"facts_{iid}.json").exists():
+            errors.append(f"{iid}: H9 facts 실물 부재 — manifest 에 설명(failed_parse) 없음")
+
+    am = root / "assignments_manifest.json"
+    if not am.exists():
+        notes.append("H9 부분 생략: assignments_manifest 부재 — 배분 단계 미실행으로 간주")
+        return errors, notes
+    skipped_ids = {x["issue_id"] for x in _load(am).get("skipped", [])}
+    allowed_missing = failed_ids | excluded_ids | skipped_ids
+    for iid in expected:
+        if iid in allowed_missing:
+            continue
+        if not (root / "assignments" / f"assignment_{iid}.json").exists():
+            errors.append(f"{iid}: H9 assignment 실물 부재 — manifest 에 설명 없음")
+    return errors, notes
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--data-dir", type=Path, default=HERE / "data")
@@ -194,8 +242,13 @@ def main() -> None:
                 if back != list(group):
                     errors.append(f"{iid}: H8 sets[{k}] 왕복 비항등 {group} -> {back}")
 
+    h9_errors, h9_notes = check_completeness(root)
+    errors.extend(h9_errors)
+
     print(f"[verify_bridge] root={root}")
     print(f"  이슈 {len(issues)} · facts {n_facts_seen} · assignments {n_assign_seen}")
+    for note in h9_notes:
+        print(f"  [안내] {note}")
     if dist:
         ratios = sorted(d["critical_ratio"] for d in dist if d["critical_ratio"] is not None)
         mid = ratios[len(ratios) // 2] if ratios else None

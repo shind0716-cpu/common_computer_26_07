@@ -74,10 +74,16 @@ class AuthorJudgmentTests(unittest.TestCase):
         self.assertEqual(s0["fact_repro_fx_02"]["agents_mentioning"],
                          ["agent_1", "agent_2"])
         self.assertEqual(s0["fact_repro_fx_03"]["status"], "unmentioned")
-        # stage0: 8팩트 중 2 생존 → FAR 6/8
+        # stage0: 8팩트 중 2 생존 → FAR 6/8 (parse_fail 0 — 완전 stage 는 산출)
         self.assertEqual(jd["summary"]["far_by_stage"][0]["far_system"], 0.75)
-        # stage1: 매치 0 (parse_fail 은 0으로 세지 않되 생존도 아님) → FAR 1.0
-        self.assertEqual(jd["summary"]["far_by_stage"][1]["far_system"], 1.0)
+        self.assertEqual(jd["summary"]["far_by_stage"][0]["n_parse_fail"], 0)
+        # stage1: parse_fail 1 이 섞임 → FAR 미산출(None) — "모름"을 "소실"로 계상하지
+        # 않는다(PR#34 리뷰: 판정기 장애가 far_system=1.0 으로 변환되던 결함).
+        self.assertIsNone(jd["summary"]["far_by_stage"][1]["far_system"])
+        self.assertEqual(jd["summary"]["far_by_stage"][1]["n_rows_ok"], 1)
+        self.assertEqual(jd["summary"]["far_by_stage"][1]["n_parse_fail"], 1)
+        # 헤드라인은 마지막 stage 상속 — 미산출이면 None ("모름"이라고 말한다)
+        self.assertIsNone(jd["summary"]["far_system"])
         self.assertEqual(jd["summary"]["judge_health"]["n_parse_fail"], 1)
         self.assertEqual(jd["summary"]["judge_health"]["n_rows"], 4)
         # 정본 judge 와 혼동 불가능한 각인
@@ -99,6 +105,31 @@ class AuthorJudgmentTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             bridge.author_rows_to_judgment(
                 rows, FIXTURE_FACTS, issue_id="x", run_id="t", prompt_ver="test")
+
+    def test_all_parse_fail_stage_dies(self):
+        # PR#34 리뷰 재현: 전 행 parse_fail stage → 전 팩트 unmentioned·FAR 1.0 조작 대신 즉사
+        rows = [
+            {"round": 0, "agent_id": "agent_1", "matched_fact_ids": None, "parse": "parse_fail"},
+            {"round": 0, "agent_id": "agent_2", "matched_fact_ids": None, "parse": "parse_fail"},
+        ]
+        with self.assertRaises(ValueError):
+            bridge.author_rows_to_judgment(
+                rows, FIXTURE_FACTS, issue_id="x", run_id="t", prompt_ver="test")
+
+    def test_empty_matches_are_legit_full_loss_not_unknown(self):
+        # 변형 대조: 빈 배열 매치는 정상 판정(gpt-5 빈 배열 정상 반환 — pilot1 r1+ 실측 유형).
+        # 전 행이 []여도 parse_fail 0 이면 FAR 1.0 은 정당한 산출이다 — None 이 아니다.
+        rows = [
+            {"round": 0, "agent_id": "agent_1", "matched_fact_ids": [], "parse": "json"},
+            {"round": 0, "agent_id": "agent_2", "matched_fact_ids": [], "parse": "json"},
+        ]
+        jd = bridge.author_rows_to_judgment(
+            rows, FIXTURE_FACTS, issue_id="issue_repro_fx", run_id="t", prompt_ver="test")
+        entry = jd["summary"]["far_by_stage"][0]
+        self.assertEqual(entry["far_system"], 1.0)
+        self.assertEqual(entry["n_parse_fail"], 0)
+        self.assertEqual(entry["n_rows_ok"], 2)
+        self.assertEqual(jd["summary"]["far_system"], 1.0)
 
     def test_output_passes_contract_validate(self):
         jd = bridge.author_rows_to_judgment(

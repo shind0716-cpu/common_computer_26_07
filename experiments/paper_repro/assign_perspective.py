@@ -127,13 +127,25 @@ def _issue_plan(data_root: Path, dry: bool) -> tuple[list[str], list[str], list[
     excluded = manifest.get("excluded_refined_lt5")
     if not isinstance(excluded, list) or not all(isinstance(x, str) for x in excluded):
         raise ValueError("facts_manifest.excluded_refined_lt5는 issue_id 문자열 배열이어야 함")
-    unknown = set(excluded) - set(all_ids)
+    # PR#34 리뷰: failed_parse 도 제외 집합이다 — extractor 가 facts 없이 기록만 남긴
+    # 이슈가 eligible 에 남으면 FileNotFoundError 로 전체 중단되거나, 이전 트랜치의
+    # 낡은 facts 파일이 있으면 조용히 섞인다. 두 집합을 합치고 사유를 보존한다.
+    failed = manifest.get("failed_parse", [])
+    if not isinstance(failed, list) or not all(
+            isinstance(x, dict) and isinstance(x.get("issue_id"), str) for x in failed):
+        raise ValueError("facts_manifest.failed_parse는 {issue_id,…} 객체 배열이어야 함")
+    failed_ids = {x["issue_id"] for x in failed}
+    unknown = (set(excluded) | failed_ids) - set(all_ids)
     if unknown:
         raise ValueError(f"facts_manifest에 표본 밖 제외 issue_id 존재: {sorted(unknown)}")
-    excluded_set = set(excluded)
+    excluded_set = set(excluded) | failed_ids
     eligible = [issue_id for issue_id in all_ids if issue_id not in excluded_set]
-    skipped = [{"issue_id": issue_id, "reason": "refined_lt5"}
-               for issue_id in all_ids if issue_id in excluded_set]
+    skipped = []
+    for issue_id in all_ids:
+        if issue_id in failed_ids:
+            skipped.append({"issue_id": issue_id, "reason": "extractor_failed_parse"})
+        elif issue_id in set(excluded):
+            skipped.append({"issue_id": issue_id, "reason": "refined_lt5"})
     return all_ids, eligible, skipped
 
 

@@ -306,3 +306,114 @@ class ReuseGateTests(unittest.TestCase):
                     dict(ok, axis="author_evaluate_stance"), {"round": 0, "agent_id": "a"}):
             with self.assertRaises(SystemExit):
                 self.rs.check_row_identity(bad, "gpt-5", 0.0, "author_evaluate_fact", Path("x"))
+
+
+class FailedParsePropagationTests(unittest.TestCase):
+    """PR#34 리뷰 회귀 — extractor 의 failed_parse 가 배분 대상에서 제외돼야 한다."""
+
+    def _root(self, td, failed, excluded):
+        root = Path(td)
+        ids = ["issue_ethics_0001", "issue_ethics_0002"]
+        (root / "sample_manifest.json").write_text(json.dumps(
+            {"sample": {"n": 2, "ids": [{"issue_id": i} for i in ids]}}), encoding="utf-8")
+        (root / "facts_manifest.json").write_text(json.dumps(
+            {"excluded_refined_lt5": excluded, "failed_parse": failed}), encoding="utf-8")
+        return root, ids
+
+    def test_failed_parse_issue_is_excluded_with_reason(self):
+        # 리뷰 재현: failed_parse=[issue_x], excluded=[] 인데 eligible 에 issue_x 가 남았다
+        with tempfile.TemporaryDirectory() as td:
+            root, ids = self._root(
+                td, failed=[{"issue_id": "issue_ethics_0001", "stage": "initial",
+                             "tag": "issue_ethics_0001|initial"}], excluded=[])
+            all_ids, eligible, skipped = assign._issue_plan(root, dry=False)
+            self.assertEqual(all_ids, ids)
+            self.assertEqual(eligible, ["issue_ethics_0002"])
+            self.assertEqual(skipped, [{"issue_id": "issue_ethics_0001",
+                                        "reason": "extractor_failed_parse"}])
+
+    def test_both_exclusion_sets_union_with_distinct_reasons(self):
+        with tempfile.TemporaryDirectory() as td:
+            root, ids = self._root(
+                td, failed=[{"issue_id": "issue_ethics_0001", "stage": "refine",
+                             "tag": "issue_ethics_0001|refine"}],
+                excluded=["issue_ethics_0002"])
+            _, eligible, skipped = assign._issue_plan(root, dry=False)
+            self.assertEqual(eligible, [])
+            self.assertEqual({s["issue_id"]: s["reason"] for s in skipped},
+                             {"issue_ethics_0001": "extractor_failed_parse",
+                              "issue_ethics_0002": "refined_lt5"})
+
+    def test_malformed_failed_parse_dies(self):
+        with tempfile.TemporaryDirectory() as td:
+            root, _ = self._root(td, failed=["issue_ethics_0001"], excluded=[])
+            with self.assertRaises(ValueError):
+                assign._issue_plan(root, dry=False)
+
+
+class VerifyBridgeCompletenessTests(unittest.TestCase):
+    """PR#34 리뷰 회귀 — 빈/결손 산출 루트가 '경성 전건 통과'로 끝나지 않아야 한다(H9)."""
+
+    @classmethod
+    def setUpClass(cls):
+        import verify_bridge
+        cls.vb = verify_bridge
+
+    def _root(self, td, ids, issues=(), facts=(), assigns=(),
+              facts_manifest=None, assigns_manifest=None):
+        root = Path(td)
+        for d in ("issues", "facts", "assignments"):
+            (root / d).mkdir(parents=True, exist_ok=True)
+        (root / "sample_manifest.json").write_text(json.dumps(
+            {"sample": {"n": len(ids), "ids": [{"issue_id": i} for i in ids]}}),
+            encoding="utf-8")
+        for i in issues:
+            (root / "issues" / f"{i}.json").write_text("{}", encoding="utf-8")
+        for i in facts:
+            (root / "facts" / f"facts_{i}.json").write_text("{}", encoding="utf-8")
+        for i in assigns:
+            (root / "assignments" / f"assignment_{i}.json").write_text("{}", encoding="utf-8")
+        if facts_manifest is not None:
+            (root / "facts_manifest.json").write_text(
+                json.dumps(facts_manifest), encoding="utf-8")
+        if assigns_manifest is not None:
+            (root / "assignments_manifest.json").write_text(
+                json.dumps(assigns_manifest), encoding="utf-8")
+        return root
+
+    def test_empty_root_with_manifests_fails_hard(self):
+        # 리뷰 재현: 이슈만 있고 facts/assignment 0 — manifest 가 완료를 주장하면 경성 실패
+        with tempfile.TemporaryDirectory() as td:
+            root = self._root(td, ids=["issue_a"], issues=["issue_a"],
+                              facts_manifest={"excluded_refined_lt5": [], "failed_parse": []},
+                              assigns_manifest={"skipped": []})
+            errors, _ = self.vb.check_completeness(root)
+            self.assertTrue(any("facts 실물 부재" in e for e in errors))
+
+    def test_explained_absence_is_allowed(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = self._root(
+                td, ids=["issue_a", "issue_b"], issues=["issue_a", "issue_b"],
+                facts=["issue_b"], assigns=(),
+                facts_manifest={"excluded_refined_lt5": [],
+                                "failed_parse": [{"issue_id": "issue_a"}]},
+                assigns_manifest={"skipped": [{"issue_id": "issue_b",
+                                               "reason": "check_available"}]})
+            errors, _ = self.vb.check_completeness(root)
+            self.assertEqual(errors, [])  # failed_parse·skipped = 설명된 누락
+
+    def test_unexplained_assignment_absence_fails(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = self._root(
+                td, ids=["issue_a"], issues=["issue_a"], facts=["issue_a"], assigns=(),
+                facts_manifest={"excluded_refined_lt5": [], "failed_parse": []},
+                assigns_manifest={"skipped": []})
+            errors, _ = self.vb.check_completeness(root)
+            self.assertTrue(any("assignment 실물 부재" in e for e in errors))
+
+    def test_missing_manifests_are_noted_not_failed(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = self._root(td, ids=["issue_a"], issues=["issue_a"])
+            errors, notes = self.vb.check_completeness(root)
+            self.assertEqual(errors, [])
+            self.assertTrue(any("facts_manifest 부재" in n for n in notes))

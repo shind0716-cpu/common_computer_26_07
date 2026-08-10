@@ -182,10 +182,23 @@ def author_rows_to_judgment(rows: list[dict], facts_doc: dict, *,
     규칙 (judge_axis/axis_compare.py 의 저자 축 FAR 재구성 계승):
       status            = 그 round 의 어느 발화든 매치되면 mentioned, 아니면 unmentioned
       agents_mentioning = 해당 팩트를 매치한 발화의 agent_id (발화 순서 유지)
-      parse_fail 행     = 매치 0 으로 세지 않고 judge_health.n_parse_fail 로 드러낸다
-                          (조용한 0 금지 — axis_probe 의 3상태 구분과 같은 원칙)
     같은 (round, agent_id) 중복 행은 나중 것이 이긴다(체크포인트 재개 의미론).
-    summary 는 modules.judge 산출과 같은 모양이며 far 계산은 judge.far() 재사용."""
+    summary 는 modules.judge 산출과 같은 모양이며 far 계산은 judge.far() 재사용.
+
+    parse_fail 정책 (PR#34 리뷰 반영 — "모름"을 "소실"로 계상하지 않는다, §4⁗·§1′
+    "부재는 모름" 원칙의 판정 층 적용):
+      * matched_fact_ids == []  : **정상 판정**(발화가 아무 팩트도 재진술 안 함) —
+                                  unmentioned 정당, FAR 에 그대로 들어간다.
+      * matched_fact_ids is None: **parse_fail = 모름.** 그 행은 판정에서 제외하고,
+        - 그 stage 의 far_system/far_critical 은 **None(미산출)** — 모름이 섞인
+          분모로 손실률을 말하지 않는다. far_by_stage 항목에 n_rows_ok /
+          n_parse_fail 을 실어 어느 stage 가 왜 비었는지 드러낸다.
+        - stage 의 모든 행이 parse_fail 이면 **즉사**(ValueError) — 전 팩트
+          unmentioned 스냅숏은 판정기 장애의 조작된 전량 소실이다. 재판정하라.
+        - status 는 성공 행 기준의 **하한**이다(실패 발화가 언급했을 수 있음).
+          ledger 가 이를 재주입 판단에 쓰면 보수 방향(더 주입)으로만 어긋난다.
+      * summary.far_system/far_critical 은 마지막 stage 값을 그대로 상속한다 —
+        마지막 stage 가 미산출이면 헤드라인도 None("모름"이라고 말한다)."""
     ids = fact_ids_in_order(facts_doc)
     facts_by_id = {f["fact_id"]: f for f in facts_doc["facts"]}
 
@@ -202,11 +215,14 @@ def author_rows_to_judgment(rows: list[dict], facts_doc: dict, *,
     stages_out, far_by_stage = [], []
     for stage in sorted(by_stage):
         mentioned_by: dict[int, list[str]] = {}
-        for r in by_stage[stage]:
-            matched = r.get("matched_fact_ids")
-            if matched is None:
-                continue  # parse_fail — judge_health 로만 보고
-            for i in matched:
+        stage_fail = [r for r in by_stage[stage] if r.get("matched_fact_ids") is None]
+        stage_ok = [r for r in by_stage[stage] if r.get("matched_fact_ids") is not None]
+        if not stage_ok:
+            raise ValueError(
+                f"{issue_id}: r{stage} 전 행({len(stage_fail)}) parse_fail — 전 팩트 "
+                "unmentioned 스냅숏은 판정기 장애의 전량 소실 조작이다. 재판정하라.")
+        for r in stage_ok:
+            for i in r["matched_fact_ids"]:
                 if not isinstance(i, int) or isinstance(i, bool) or i < 0 or i >= len(ids):
                     raise ValueError(
                         f"{issue_id}: r{stage} {r['agent_id']} 무효 매치 인덱스 {i!r}")
@@ -224,10 +240,15 @@ def author_rows_to_judgment(rows: list[dict], facts_doc: dict, *,
                 "agents_mentioning": agents,
             })
         stages_out.append({"stage": stage, "facts": recs})
+        complete = not stage_fail
         far_by_stage.append({
             "stage": stage,
-            "far_system": judge_mod.far(recs, facts_by_id),
-            "far_critical": judge_mod.far(recs, facts_by_id, critical_only=True),
+            # parse_fail 이 섞인 stage 는 미산출(None) — 모름을 소실로 계상하지 않는다.
+            "far_system": judge_mod.far(recs, facts_by_id) if complete else None,
+            "far_critical": (judge_mod.far(recs, facts_by_id, critical_only=True)
+                             if complete else None),
+            "n_rows_ok": len(stage_ok),
+            "n_parse_fail": len(stage_fail),
         })
 
     last = far_by_stage[-1] if far_by_stage else {"far_system": None, "far_critical": None}
