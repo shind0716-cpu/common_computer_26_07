@@ -392,6 +392,23 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
             for rec in events:
                 f.write(json.dumps(rec, ensure_ascii=False) + "\n")
 
+    def guarded(fn):
+        """LLM 호출 가드: 절단 즉사(A안) 직전에 체크포인트를 남긴다 (요한 PR#33 리뷰 반영).
+
+        LLMTruncated 는 run 을 그 자리에서 끝내는 게 맞지만(절단 논쟁 A안), flush 없이
+        죽으면 방금 LAST_DEVIATIONS 에 적힌 절단 기록이 프로세스 메모리와 함께 증발한다 —
+        "절단 횟수는 세야 한다"(요한 7/31)가 제어 흐름에서 달성되지 않는 구멍이었다.
+        여기서 잡아 flush() 로 run_meta.settings.deviations 까지 내려앉힌 뒤 **같은
+        예외를 다시 올린다.** 잡는 것은 절단뿐 — 다른 실패의 동작은 한 글자도 안 바뀐다.
+        발화·수첩·폴링·루프 내 채점이 전부 이 가드를 거치도록 각 호출 지점에서 감싼다."""
+        def _wrapped(*args, **kwargs):
+            try:
+                return fn(*args, **kwargs)
+            except llm.LLMTruncated:
+                flush()
+                raise
+        return _wrapped
+
     def spend():
         """LLM 호출 1회 계상. 상한 초과 시 체크포인트 저장 후 중단."""
         nonlocal n_calls
@@ -404,7 +421,7 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
 
     def counted_vote(fact, utts):
         spend()
-        return judge_vote_fn(fact, utts)
+        return guarded(judge_vote_fn)(fact, utts)   # 루프 내 채점의 절단도 같은 가드로
 
     # --- run_meta: 산출물이 자기 조건을 안다 (스키마 v0.3 §4‴, 로그 첫 줄) --------
     # 조건 정의는 configs/*.yaml 에 있는데 종전 로그는 ledger_mode 한 칸만 실어서,
@@ -480,12 +497,14 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
         spend()
         if coop:
             inputs = assemble_coop_initial(question, body, fact_text)
-            _fn = respond or _reasoning_bound(reasoning)
+            _fn = guarded(respond or _reasoning_bound(reasoning))
             resp = _fn(inputs, model=model, temperature=temp)
         else:
             answer = "yes" if ag["stance"] == "pro" else "no"
-            inputs, resp = initial_utterance(question, fact_text, answer, model, temp,
-                                             respond=respond, reasoning=reasoning)
+            inputs, resp = initial_utterance(
+                question, fact_text, answer, model, temp,
+                # 저자 트랙도 절단 가드를 거친다 — 헬퍼 내부의 폴백 대신 가드된 호출자를 주입
+                respond=guarded(respond or _reasoning_bound(reasoning)), reasoning=reasoning)
         current.append(resp)
         note_utterance(0, agent_idx, resp)
         # v0.3: 발화 입력의 조립 명세 — utterance 와 prompt_hash 로 결합(같은 값).
@@ -570,7 +589,7 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
             raw = current[orig_idx]
             spend()
             nu_inputs = assemble_coop_note_update(question, "", raw or "", "", note_budget)
-            _fn = respond or _reasoning_bound(reasoning)
+            _fn = guarded(respond or _reasoning_bound(reasoning))
             nu_resp = _fn(nu_inputs, model=model, temperature=temp)
             note_text = note_slot.parse_note_only(nu_resp)
             emit("prompt_assembly", round=0, agent_id=seated[i]["agent_id"],
@@ -634,7 +653,7 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
             # (B-2) 재주입 블록은 others 뒤에 잇는다 — 저자 프롬프트 슬롯 훼손 최소
             #     (INTEGRATION §3-2 제안, 동범 확인 대기).
             spend()
-            _fn = respond or _reasoning_bound(reasoning)
+            _fn = guarded(respond or _reasoning_bound(reasoning))
             if use_note:
                 # 수첩 조건: 배정 팩트·직전 발언이 프롬프트에 없다. 남는 것은 수첩뿐.
                 # 수첩이 None(라운드 0 파싱 실패)이면 빈 문자열을 넣되 슬롯은 null 로
@@ -665,7 +684,9 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
             else:
                 inputs, resp = continue_utterance(
                     question, previous[i] or "", others + inject_block, setting_text,
-                    model, temp, respond=respond, reasoning=reasoning,
+                    model, temp, reasoning=reasoning,
+                    # 저자 트랙도 절단 가드를 거친다 (위 initial 과 동일)
+                    respond=guarded(respond or _reasoning_bound(reasoning)),
                 )
             nxt.append(resp)
             note_utterance(r, i, resp)
@@ -739,7 +760,7 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
                 spend()
                 nu_inputs = assemble_coop_note_update(
                     question, notes[i] or "", nxt[i] or "", inc, note_budget)
-                _fn2 = respond or _reasoning_bound(reasoning)
+                _fn2 = guarded(respond or _reasoning_bound(reasoning))
                 nu_resp = _fn2(nu_inputs, model=model, temperature=temp)
                 emit("prompt_assembly", round=r, agent_id=seated[i]["agent_id"],
                      template="coop_note_update", prompt_ver=prompt_ver,
@@ -798,7 +819,7 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
                           "assigned_fact_ids": [], "inject": None}
             spend()
             f_inputs = assemble_coop_final(question, body, final_context)
-            _fn3 = respond or _reasoning_bound(reasoning)
+            _fn3 = guarded(respond or _reasoning_bound(reasoning))
             f_resp = _fn3(f_inputs, model=model, temperature=temp)
             emit("prompt_assembly", round=rounds + 1, agent_id=seated[i]["agent_id"],
                  template="coop_final", prompt_ver=prompt_ver, setting_key=None,

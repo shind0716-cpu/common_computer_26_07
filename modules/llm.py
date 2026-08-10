@@ -137,7 +137,21 @@ class LLMCallError(RuntimeError):
 class LLMTruncated(RuntimeError):
     """출력 절단(finish/stop reason 기준) — 같은 입력이면 같은 절단이라 재시도 무의미.
     참조 러너(run_experiment)의 finishReason==MAX_TOKENS raise 이식(편차 D1 교훈:
-    절단본은 폐기 대상이지 폴백 대상이 아니다 — 조용히 넘기면 절단 발화가 채점에 섞인다)."""
+    절단본은 폐기 대상이지 폴백 대상이 아니다 — 조용히 넘기면 절단 발화가 채점에 섞인다).
+
+    [2026-08-10 · 동범] **생성 시 자동 계수** (요한 7/31 절단 논쟁 회신의 숙제 이행 —
+    A안 지지 + "발생하지 않았다는 실측 216건이 계속 참인지 확인하려면 절단 횟수는
+    세야 한다"). run 은 A안대로 죽지만 빈도 데이터는 남아야 하므로, 예외가 만들어지는
+    순간 TRUNCATIONS 에 한 줄 적고 LAST_DEVIATIONS 에도 한 줄 얹는다 — 후자는
+    `run_meta.settings.deviations` 계약(요한 7/31 확정: 그 칸만 실행 중 재기록 허용)을
+    타고 산출물까지 닿는다. 스키마 필드 추가 0. 세 공급자 raise 지점을 한 곳에서
+    커버하려고 raise 측이 아니라 생성자에서 센다 — 새 공급자가 늘어도 빠뜨릴 수 없다."""
+
+    def __init__(self, *args):
+        super().__init__(*args)
+        detail = _mask(args[0]) if args else "상세 미상"
+        TRUNCATIONS.append(detail)
+        LAST_DEVIATIONS.append(f"절단 {len(TRUNCATIONS)}회째: {detail}")
 
 
 def _mask(text) -> str:
@@ -167,6 +181,11 @@ def _retryable(exc: Exception) -> bool:
 
 # 이번 프로세스에서 실제로 일어난 파라미터 편차(조용한 변경 금지).
 LAST_DEVIATIONS: list[str] = []
+
+# 이번 프로세스에서 일어난 출력 절단의 기록 (요한 7/31: "절단 횟수는 세야 한다").
+# 216건 전수 스캔에서 절단 0건이었다는 실측이 앞으로도 참인지는 이 목록이 말한다 —
+# LLMTruncated 생성자가 자동으로 채우며, 항목 = 마스킹된 절단 상세 한 줄.
+TRUNCATIONS: list[str] = []
 
 _clients: dict = {}
 _openai_maxtok = "max_tokens"    # 한 번 폴백하면 이후 호출은 처음부터 새 이름 사용
