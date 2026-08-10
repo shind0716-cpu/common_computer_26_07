@@ -1,0 +1,22 @@
+{
+  "schema_ver": "0.3",
+  "created_by": "fixture",
+  "created_at": "2026-08-10T00:00:00+09:00",
+  "issue_id": "issue_repro_fx",
+  "seed": 20260810,
+  "_note": "논문 재현 트랙 픽스처 (2026-08-10 역리뷰 R-1·R-2 반영 재작성). 저자 규칙을 계약으로 시연한다 — (1) 관점은 정확히 4개 (discussion.py check_available: len(pers)==4), (2) 같은 관점의 pro/con 쌍은 assigned_fact_ids가 완전히 동일 (discussion.py obtain_discussion_initial: 관점당 fact_text 1회 조립 후 yes/no 공유), (3) 각 관점은 critical(=important) 팩트 전부{0,1,2,5}를 포함하되 전체 팩트를 갖지 않는다 (저자 perspective.txt: 'Ensure that each perspective contains important facts' + 'No perspective should contain all facts' — 연성 S2·S3), (4) 모든 팩트가 최소 1개 관점에 등장 (S1). perspective 라벨은 라이브 배분기(assign_perspective.py)와 동일한 '관점N' 관례를 쓴다. perspective_sets가 저자 perspective.py 산출(위치 인덱스 배열)의 보존 자리이고, agents[].assigned_fact_ids는 그것을 fact_id로 번역한 것이다.",
+  "perspective_sets": {
+    "origin_format": "list of 4 lists of positional fact indices (author perspective.py output)",
+    "sets": [[0, 1, 2, 3, 5], [0, 1, 2, 4, 5], [0, 1, 2, 5, 6], [0, 1, 2, 5, 7]]
+  },
+  "agents": [
+    {"agent_id": "agent_1", "perspective": "관점1", "stance": "pro", "assigned_fact_ids": ["fact_repro_fx_01", "fact_repro_fx_02", "fact_repro_fx_03", "fact_repro_fx_04", "fact_repro_fx_06"]},
+    {"agent_id": "agent_2", "perspective": "관점1", "stance": "con", "assigned_fact_ids": ["fact_repro_fx_01", "fact_repro_fx_02", "fact_repro_fx_03", "fact_repro_fx_04", "fact_repro_fx_06"]},
+    {"agent_id": "agent_3", "perspective": "관점2", "stance": "pro", "assigned_fact_ids": ["fact_repro_fx_01", "fact_repro_fx_02", "fact_repro_fx_03", "fact_repro_fx_05", "fact_repro_fx_06"]},
+    {"agent_id": "agent_4", "perspective": "관점2", "stance": "con", "assigned_fact_ids": ["fact_repro_fx_01", "fact_repro_fx_02", "fact_repro_fx_03", "fact_repro_fx_05", "fact_repro_fx_06"]},
+    {"agent_id": "agent_5", "perspective": "관점3", "stance": "pro", "assigned_fact_ids": ["fact_repro_fx_01", "fact_repro_fx_02", "fact_repro_fx_03", "fact_repro_fx_06", "fact_repro_fx_07"]},
+    {"agent_id": "agent_6", "perspective": "관점3", "stance": "con", "assigned_fact_ids": ["fact_repro_fx_01", "fact_repro_fx_02", "fact_repro_fx_03", "fact_repro_fx_06", "fact_repro_fx_07"]},
+    {"agent_id": "agent_7", "perspective": "관점4", "stance": "pro", "assigned_fact_ids": ["fact_repro_fx_01", "fact_repro_fx_02", "fact_repro_fx_03", "fact_repro_fx_06", "fact_repro_fx_08"]},
+    {"agent_id": "agent_8", "perspective": "관점4", "stance": "con", "assigned_fact_ids": ["fact_repro_fx_01", "fact_repro_fx_02", "fact_repro_fx_03", "fact_repro_fx_06", "fact_repro_fx_08"]}
+  ]
+}

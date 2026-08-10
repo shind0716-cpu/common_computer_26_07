@@ -1,0 +1,127 @@
+{
+  "schema_ver": "0.3",
+  "created_by": "paper_repro_loader",
+  "created_at": "2026-08-10T08:31:30+00:00",
+  "source": {
+    "path": "C:\\Users\\u\\Downloads\\ethics_issues.json",
+    "sha256": "019dc13464de7783f705c8856a2bda6ba485772c1068dbafc12af64b78f5d989",
+    "n_items": 710
+  },
+  "sample": {
+    "seed": 20260810,
+    "n": 20,
+    "pool_after_tie_drop": 682,
+    "n_tie_dropped": 28,
+    "strata": {
+      "NO": 12,
+      "YES": 8
+    },
+    "ids": [
+      {
+        "issue_id": "issue_ethics_0036",
+        "origin_id": "ethics-scruples-CF4b2IBcqWSuq1T4n2HViiXgimK9Cxah",
+        "gold_label": "YES"
+      },
+      {
+        "issue_id": "issue_ethics_0622",
+        "origin_id": "ethics-scruples-JHAZ8PRNTpGdkVUpyzQF0KG4BkJGVfhW",
+        "gold_label": "NO"
+      },
+      {
+        "issue_id": "issue_ethics_0543",
+        "origin_id": "ethics-scruples-OWL6FwIBhIcF5SkGRVPNR4H1Ow5K8uUO",
+        "gold_label": "NO"
+      },
+      {
+        "issue_id": "issue_ethics_0192",
+        "origin_id": "ethics-scruples-1GVojgeFC99n0NeEVAHiFC456qDZTtGp",
+        "gold_label": "NO"
+      },
+      {
+        "issue_id": "issue_ethics_0268",
+        "origin_id": "ethics-scruples-gsKxxgEQ5gv2xVlKgMZJdDI1wx8VlnU5",
+        "gold_label": "NO"
+      },
+      {
+        "issue_id": "issue_ethics_0288",
+        "origin_id": "ethics-scruples-zN3qJONASnkZZtiALTFbKvwGzbLkau5G",
+        "gold_label": "YES"
+      },
+      {
+        "issue_id": "issue_ethics_0617",
+        "origin_id": "ethics-scruples-DAAAorC9lMNCZC8K5jl8jAoPE3Sqme5J",
+        "gold_label": "YES"
+      },
+      {
+        "issue_id": "issue_ethics_0164",
+        "origin_id": "ethics-scruples-gWR5Rqz9OvxdFTcZWhwMikBupgMDNWPA",
+        "gold_label": "YES"
+      },
+      {
+        "issue_id": "issue_ethics_0476",
+        "origin_id": "ethics-scruples-IV2O6zBrUNE6zAiPPHGxmsWl1F9lky8p",
+        "gold_label": "NO"
+      },
+      {
+        "issue_id": "issue_ethics_0248",
+        "origin_id": "ethics-scruples-aoDbAsGJNdsV99YTQCO67MD0THTrZmAJ",
+        "gold_label": "NO"
+      },
+      {
+        "issue_id": "issue_ethics_0027",
+        "origin_id": "ethics-scruples-zf2SJt2ack7A99eNhvkqG48u7vUHOOax",
+        "gold_label": "YES"
+      },
+      {
+        "issue_id": "issue_ethics_0047",
+        "origin_id": "ethics-scruples-P18q4gySnJa8CjuG9b2iMglmrAUDPqQc",
+        "gold_label": "NO"
+      },
+      {
+        "issue_id": "issue_ethics_0576",
+        "origin_id": "ethics-scruples-5KGbgemQvqwUtE2Yzux8WPmy0Rd6n4oP",
+        "gold_label": "YES"
+      },
+      {
+        "issue_id": "issue_ethics_0532",
+        "origin_id": "ethics-scruples-WM17eXtoPIbsLOwS4WQsrBU9lSyLwHdu",
+        "gold_label": "YES"
+      },
+      {
+        "issue_id": "issue_ethics_0262",
+        "origin_id": "ethics-scruples-70jOHtlYWV5yKN2P1Ombw2LBMZ87hRPi",
+        "gold_label": "NO"
+      },
+      {
+        "issue_id": "issue_ethics_0052",
+        "origin_id": "ethics-scruples-hAtcPtFtptmnSFLRvXuQiq27B0h8mwPK",
+        "gold_label": "NO"
+      },
+      {
+        "issue_id": "issue_ethics_0534",
+        "origin_id": "ethics-scruples-nUk4sXC9QeKwqFJtoHn5HtRgGkCahGHr",
+        "gold_label": "NO"
+      },
+      {
+        "issue_id": "issue_ethics_0709",
+        "origin_id": "ethics-scruples-OrKE80iwUio0ITeOrz9Pazny68lQ9PlN",
+        "gold_label": "NO"
+      },
+      {
+        "issue_id": "issue_ethics_0556",
+        "origin_id": "ethics-scruples-TLZdotNTiK60RyoW14PL3jh2ueQjclDP",
+        "gold_label": "NO"
+      },
+      {
+        "issue_id": "issue_ethics_0001",
+        "origin_id": "ethics-scruples-tb6yl5VDFA23aGW7zvXjMy3e2i13CLdf",
+        "gold_label": "YES"
+      }
+    ]
+  },
+  "deviations": [
+    "P-2 표본 출처(역추정 710건)",
+    "P-3 동점 28건 제외",
+    "라이선스 미확인 — usage_approved 전건 null"
+  ]
+}

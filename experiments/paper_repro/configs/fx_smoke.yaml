@@ -1,0 +1,19 @@
+# 논문 재현 트랙 — 접합 리허설 전용 config (0콜 · rehearse_splice.py 가 사용)
+# 지위: 리허설 좌표. 파일럿 본 config 가 아니다 — 파일럿 조건은 다음 라운드에 새 yaml 로.
+# 필수 3키(debate_model·debate_temperature·seed — 없으면 엔진 KeyError) 포함.
+# pro/con 조건 가드: window 는 rolling, memory 는 none 만 통과(debate_engine.py:312-316).
+experiment: paper_repro_fx_smoke
+condition: fx-smoke
+issue_id: issue_repro_fx        # 문서용 — 엔진은 인자로 받은 issue_id 만 쓴다
+seed: 42
+rounds: 3
+structure: full
+persona: default
+window: rolling
+memory: none
+debate_model: gpt-mini
+debate_temperature: 1.0         # 요한 결정 8/10: 기존 팔들과 일치(저자 1.2 와의 차이는 편차 등재)
+judge_model: gpt-mini
+judge_temperature: 0
+judge_n_votes: 3
+ledger_mode: "off"
