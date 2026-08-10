@@ -7,6 +7,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent.parent
@@ -76,6 +77,51 @@ class ExtractFactsTests(unittest.TestCase):
                                            responder=lambda prompt: '["unexpected"]')
             with self.assertRaises(RuntimeError):
                 calls.call("prompt", "x|initial")
+
+    def test_parse_failure_skips_one_issue_and_records_manifest(self):
+        with tempfile.TemporaryDirectory() as td:
+            data_root = Path(td)
+            issue_ids = ["issue_ethics_0001", "issue_ethics_0002"]
+            (data_root / "issues").mkdir(parents=True)
+            (data_root / "raw_calls").mkdir(parents=True)
+            manifest = {"sample": {"n": 2, "ids": [
+                {"issue_id": issue_id} for issue_id in issue_ids
+            ]}}
+            (data_root / "sample_manifest.json").write_text(
+                json.dumps(manifest), encoding="utf-8")
+            for issue_id in issue_ids:
+                issue = {"issue_id": issue_id, "body": f"body for {issue_id}",
+                         "question": f"question for {issue_id}"}
+                (data_root / "issues" / f"{issue_id}.json").write_text(
+                    json.dumps(issue), encoding="utf-8")
+
+            records = [
+                {"tag": "issue_ethics_0001|initial", "raw": "not json"},
+                {"tag": "issue_ethics_0002|initial", "raw": '["raw fact"]'},
+                {"tag": "issue_ethics_0002|refine", "raw":
+                 '["one", "two", "three", "four", "five"]'},
+                {"tag": "issue_ethics_0002|select", "raw": "[1, 0, 0, 0, 0]"},
+            ]
+            raw_path = data_root / "raw_calls" / "extract_facts_calls.jsonl"
+            raw_path.write_text(
+                "".join(json.dumps(record) + "\n" for record in records), encoding="utf-8")
+
+            with mock.patch.object(extract.llm, "preflight"):
+                result = extract.run(data_root, max_calls=0, dry=False)
+
+            self.assertEqual(result["actual_calls"], 0)
+            self.assertEqual(result["n_written_and_validated"], 1)
+            self.assertEqual(result["failed_parse"], [{
+                "issue_id": "issue_ethics_0001",
+                "stage": "initial",
+                "tag": "issue_ethics_0001|initial",
+            }])
+            facts_path = data_root / "facts" / "facts_issue_ethics_0002.json"
+            self.assertTrue(facts_path.exists())
+            saved_manifest = json.loads(
+                (data_root / "facts_manifest.json").read_text(encoding="utf-8"))
+            self.assertEqual(saved_manifest["failed_parse"], result["failed_parse"])
+            self.assertEqual(raw_path.read_text(encoding="utf-8").count("not json"), 1)
 
 
 class AssignPerspectiveTests(unittest.TestCase):

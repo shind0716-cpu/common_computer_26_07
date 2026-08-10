@@ -78,10 +78,19 @@ class CallCheckpoint:
         return raw
 
 
+class ParseFailure(ValueError):
+    """원문은 보존됐지만 저자 JSON 배열로 파싱할 수 없는 호출."""
+
+    def __init__(self, tag: str):
+        self.tag = tag
+        self.stage = tag.rsplit("|", 1)[-1]
+        super().__init__(f"{tag}: JSON 배열 파싱 실패 — 원문은 raw_calls JSONL에 보존됨")
+
+
 def _require_list(raw: str, tag: str) -> list:
     parsed = obtain_json(raw)
     if not isinstance(parsed, list):
-        raise ValueError(f"{tag}: JSON 배열 파싱 실패 — 원문은 raw_calls JSONL에 보존됨")
+        raise ParseFailure(tag)
     return parsed
 
 
@@ -207,23 +216,29 @@ def run(data_root: Path, max_calls: int, dry: bool) -> dict:
             paths.DATA / "raw_calls" / "extract_facts_calls.jsonl", max_calls,
             prompt_ver=prompt_ver)
         excluded = []
+        failed_parse = []
         written = 0
         for issue_id in issue_ids:
-            issue = json.loads(paths.issue(issue_id).read_text(encoding="utf-8"))
-            p1 = authors_prompts.load("facts_initial").replace("<===text===>", issue["body"])
-            raw_facts = _require_list(checkpoint.call(p1, f"{issue_id}|initial"),
-                                      f"{issue_id}|initial")
-            fact_text = "".join(f"{x}\n" for x in raw_facts)
-            p2 = (authors_prompts.load("facts_refine").replace("<===text===>", issue["body"])
-                  .replace("<===facts===>", fact_text))
-            refined = _require_list(checkpoint.call(p2, f"{issue_id}|refine"),
-                                    f"{issue_id}|refine")
-            refined_text = "".join(f"{x}\n" for x in refined)
-            p3 = (authors_prompts.load("facts_select")
-                  .replace("<===question===>", issue["question"])
-                  .replace("<===facts===>", refined_text))
-            important = _require_list(checkpoint.call(p3, f"{issue_id}|select"),
-                                      f"{issue_id}|select")
+            try:
+                issue = json.loads(paths.issue(issue_id).read_text(encoding="utf-8"))
+                p1 = authors_prompts.load("facts_initial").replace("<===text===>", issue["body"])
+                raw_facts = _require_list(checkpoint.call(p1, f"{issue_id}|initial"),
+                                          f"{issue_id}|initial")
+                fact_text = "".join(f"{x}\n" for x in raw_facts)
+                p2 = (authors_prompts.load("facts_refine").replace("<===text===>", issue["body"])
+                      .replace("<===facts===>", fact_text))
+                refined = _require_list(checkpoint.call(p2, f"{issue_id}|refine"),
+                                        f"{issue_id}|refine")
+                refined_text = "".join(f"{x}\n" for x in refined)
+                p3 = (authors_prompts.load("facts_select")
+                      .replace("<===question===>", issue["question"])
+                      .replace("<===facts===>", refined_text))
+                important = _require_list(checkpoint.call(p3, f"{issue_id}|select"),
+                                          f"{issue_id}|select")
+            except ParseFailure as exc:
+                failed_parse.append(
+                    {"issue_id": issue_id, "stage": exc.stage, "tag": exc.tag})
+                continue
             doc = build_facts_doc(issue_id, refined, important, created_at, prompt_ver)
             out = paths.facts(issue_id)
             out.parent.mkdir(parents=True, exist_ok=True)
@@ -239,6 +254,7 @@ def run(data_root: Path, max_calls: int, dry: bool) -> dict:
             "prompt_ver": prompt_ver, "max_tokens": MAX_TOKENS,
             "n_issues": len(issue_ids), "n_written_and_validated": written,
             "excluded_refined_lt5": excluded,
+            "failed_parse": failed_parse,
             "raw_calls": "raw_calls/extract_facts_calls.jsonl",
             "deviations": ["P-1 max_tokens=8192 (저자는 상한 미전송)"],
         }
