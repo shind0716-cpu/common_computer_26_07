@@ -1,0 +1,118 @@
+{
+  "schema_ver": "0.3",
+  "created_by": "paper_repro_extractor",
+  "created_at": "2026-08-10T08:51:00+00:00",
+  "issue_id": "issue_ethics_0288",
+  "extractor": {
+    "model": "gpt-5",
+    "temperature": 0.0,
+    "prompt_ver": "delibtrace@afce3595"
+  },
+  "_note": "facts[] 배열 순서가 저자 위치 인덱스이며 origin_index가 그 대응을 보존한다. raw/refine/select 응답 원문은 형제 raw_calls JSONL에 전량 보존한다.",
+  "facts": [
+    {
+      "fact_id": "fact_ethics_0288_01",
+      "origin_index": 0,
+      "text": "The author sent a woman a Snapchat photo of one of his closest friends.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0288_02",
+      "origin_index": 1,
+      "text": "After seeing it, the woman asked the author to have that friend add her on Snapchat.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0288_03",
+      "origin_index": 2,
+      "text": "The friend added her, and they began Snapchatting each other.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0288_04",
+      "origin_index": 3,
+      "text": "According to the author, the woman is in a deeply committed romantic relationship.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0288_05",
+      "origin_index": 4,
+      "text": "The author confronted her, saying that Snapchatting another man while in a committed relationship was being unfaithful.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0288_06",
+      "origin_index": 5,
+      "text": "She responded by telling the author to mind his own business and to \"fuck off.\"",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0288_07",
+      "origin_index": 6,
+      "text": "The author then insulted her, calling her a \"thirsty hoe.\"",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0288_08",
+      "origin_index": 7,
+      "text": "After this exchange, the author and the woman stopped communicating.",
+      "tags": [],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    }
+  ]
+}

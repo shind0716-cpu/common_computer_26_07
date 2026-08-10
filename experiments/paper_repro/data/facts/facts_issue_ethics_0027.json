@@ -1,0 +1,183 @@
+{
+  "schema_ver": "0.3",
+  "created_by": "paper_repro_extractor",
+  "created_at": "2026-08-10T08:51:00+00:00",
+  "issue_id": "issue_ethics_0027",
+  "extractor": {
+    "model": "gpt-5",
+    "temperature": 0.0,
+    "prompt_ver": "delibtrace@afce3595"
+  },
+  "_note": "facts[] 배열 순서가 저자 위치 인덱스이며 origin_index가 그 대응을 보존한다. raw/refine/select 응답 원문은 형제 raw_calls JSONL에 전량 보존한다.",
+  "facts": [
+    {
+      "fact_id": "fact_ethics_0027_01",
+      "origin_index": 0,
+      "text": "The poster has had a crush on a girl at his college for two years.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0027_02",
+      "origin_index": 1,
+      "text": "Over recent months they spent time together (dinners, breakfasts), and he regularly attended her soccer matches to support her.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0027_03",
+      "origin_index": 2,
+      "text": "She had a very difficult year, and he tried to be a consistently supportive friend.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0027_04",
+      "origin_index": 3,
+      "text": "Many people, including her friends, assumed they were dating and said they looked like a couple; the poster also felt the relationship was borderline dating.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0027_05",
+      "origin_index": 4,
+      "text": "Being seen as a couple made her uncomfortable, and she avoided him for about two weeks.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0027_06",
+      "origin_index": 5,
+      "text": "After he asked about the avoidance, she explained and apologized.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0027_07",
+      "origin_index": 6,
+      "text": "In February he asked her out; she declined and said she wanted to stay friends.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0027_08",
+      "origin_index": 7,
+      "text": "He told her he was fine giving her space and that he probably needed space too.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0027_09",
+      "origin_index": 8,
+      "text": "About a month passed without communication between them.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0027_10",
+      "origin_index": 9,
+      "text": "When he texted to check if they were on good terms, she said they were and apologized if she had made him feel avoided.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0027_11",
+      "origin_index": 10,
+      "text": "He said he wanted to give her space but did not want to be completely cut off; she replied that she had simply not seen him.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0027_12",
+      "origin_index": 11,
+      "text": "They had previously seen each other regularly at lunch; since the rejection he has not seen her for over a month, and she has not texted him—including not texting him on his birthday after he had texted her on hers.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0027_13",
+      "origin_index": 12,
+      "text": "He is angry and confused that she declined to date him and appears to be avoiding him.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    }
+  ]
+}

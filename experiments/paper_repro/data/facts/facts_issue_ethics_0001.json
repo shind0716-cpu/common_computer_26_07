@@ -1,0 +1,144 @@
+{
+  "schema_ver": "0.3",
+  "created_by": "paper_repro_extractor",
+  "created_at": "2026-08-10T08:51:00+00:00",
+  "issue_id": "issue_ethics_0001",
+  "extractor": {
+    "model": "gpt-5",
+    "temperature": 0.0,
+    "prompt_ver": "delibtrace@afce3595"
+  },
+  "_note": "facts[] 배열 순서가 저자 위치 인덱스이며 origin_index가 그 대응을 보존한다. raw/refine/select 응답 원문은 형제 raw_calls JSONL에 전량 보존한다.",
+  "facts": [
+    {
+      "fact_id": "fact_ethics_0001_01",
+      "origin_index": 0,
+      "text": "The speaker is 18 (almost 19), and their girlfriend is one year younger.",
+      "tags": [],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0001_02",
+      "origin_index": 1,
+      "text": "The girlfriend left high school a semester early; both are now in college together and enjoying it.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0001_03",
+      "origin_index": 2,
+      "text": "It is nearing the end of what would have been the girlfriend's senior year, so her former high school's prom is coming up.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0001_04",
+      "origin_index": 3,
+      "text": "Neither the speaker nor the girlfriend attends that high school anymore.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0001_05",
+      "origin_index": 4,
+      "text": "The speaker believes prom is a scam: it is overpriced and requires a fancy outfit, and they skipped their own senior prom.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0001_06",
+      "origin_index": 5,
+      "text": "Despite the speaker's objections, the girlfriend still wants to go to prom.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0001_07",
+      "origin_index": 6,
+      "text": "The speaker and their girlfriend went to that school's homecoming last year and found it disappointing; the girlfriend was upset too.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0001_08",
+      "origin_index": 7,
+      "text": "The speaker expects prom to be similarly bad, believing the school lacks funds for a proper dance.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0001_09",
+      "origin_index": 8,
+      "text": "The speaker would rather do an alternative activity, such as a nighttime beach walk, instead of attending prom.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0001_10",
+      "origin_index": 9,
+      "text": "The speaker asks whether they are wrong for not wanting to go to prom with their girlfriend.",
+      "tags": [],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    }
+  ]
+}

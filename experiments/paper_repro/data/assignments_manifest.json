@@ -1,0 +1,82 @@
+{
+  "schema_ver": "0.3",
+  "created_by": "paper_repro_perspective",
+  "created_at": "2026-08-10T09:19:12+00:00",
+  "issues": 20,
+  "planned_calls": 19,
+  "actual_calls": 19,
+  "validated": 19,
+  "skipped": [
+    {
+      "issue_id": "issue_ethics_0192",
+      "reason": "refined_lt5"
+    }
+  ],
+  "violations_by_issue": {
+    "issue_ethics_0036": [
+      "critical_missing"
+    ],
+    "issue_ethics_0622": [
+      "critical_missing"
+    ],
+    "issue_ethics_0543": [
+      "critical_missing"
+    ],
+    "issue_ethics_0268": [
+      "critical_missing"
+    ],
+    "issue_ethics_0288": [
+      "critical_missing"
+    ],
+    "issue_ethics_0617": [
+      "critical_missing"
+    ],
+    "issue_ethics_0164": [
+      "critical_missing"
+    ],
+    "issue_ethics_0476": [
+      "critical_missing"
+    ],
+    "issue_ethics_0248": [
+      "critical_missing"
+    ],
+    "issue_ethics_0027": [
+      "critical_missing"
+    ],
+    "issue_ethics_0047": [
+      "critical_missing"
+    ],
+    "issue_ethics_0576": [
+      "critical_missing"
+    ],
+    "issue_ethics_0532": [
+      "critical_missing"
+    ],
+    "issue_ethics_0262": [
+      "critical_missing"
+    ],
+    "issue_ethics_0052": [
+      "critical_missing"
+    ],
+    "issue_ethics_0534": [
+      "critical_missing"
+    ],
+    "issue_ethics_0709": [
+      "critical_missing"
+    ],
+    "issue_ethics_0556": [
+      "critical_missing"
+    ],
+    "issue_ethics_0001": [
+      "critical_missing"
+    ]
+  },
+  "pair_equal": 76,
+  "pair_total": 76,
+  "prompt_ver": "delibtrace@afce3595",
+  "seed": 20260810,
+  "raw_calls": "raw_calls/assign_perspective_calls.jsonl",
+  "model": "gpt-5",
+  "temperature": 0.0,
+  "n": 1
+}

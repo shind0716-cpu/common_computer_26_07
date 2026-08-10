@@ -1,0 +1,183 @@
+{
+  "schema_ver": "0.3",
+  "created_by": "paper_repro_extractor",
+  "created_at": "2026-08-10T08:51:00+00:00",
+  "issue_id": "issue_ethics_0164",
+  "extractor": {
+    "model": "gpt-5",
+    "temperature": 0.0,
+    "prompt_ver": "delibtrace@afce3595"
+  },
+  "_note": "facts[] 배열 순서가 저자 위치 인덱스이며 origin_index가 그 대응을 보존한다. raw/refine/select 응답 원문은 형제 raw_calls JSONL에 전량 보존한다.",
+  "facts": [
+    {
+      "fact_id": "fact_ethics_0164_01",
+      "origin_index": 0,
+      "text": "The author and his wife are in their 40s, happily married, and report a great sex life.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0164_02",
+      "origin_index": 1,
+      "text": "During a romantic weekend with champagne, they discussed past regrets.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0164_03",
+      "origin_index": 2,
+      "text": "About a month after the author and his wife began dating, he met a very attractive foreign woman visiting his workplace on a 10-day business trip.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0164_04",
+      "origin_index": 3,
+      "text": "He offered to show her around town and they spent time together with strong chemistry.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0164_05",
+      "origin_index": 4,
+      "text": "She explicitly said she wanted to have sex with him.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0164_06",
+      "origin_index": 5,
+      "text": "He declined to have sex with her.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0164_07",
+      "origin_index": 6,
+      "text": "They kissed enthusiastically at the airport when he dropped her off, and he never saw her again.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0164_08",
+      "origin_index": 7,
+      "text": "The author says he has otherwise never been unfaithful to his wife.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0164_09",
+      "origin_index": 8,
+      "text": "He has long regretted not sleeping with that woman.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0164_10",
+      "origin_index": 9,
+      "text": "His wife was blasé about this disclosure and does not consider it an issue.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0164_11",
+      "origin_index": 10,
+      "text": "The author asks if he is wrong to keep holding on to this regret.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0164_12",
+      "origin_index": 11,
+      "text": "He says that if he were in the same room with the woman now, he could not promise he would refrain from sex.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0164_13",
+      "origin_index": 12,
+      "text": "He describes this ongoing temptation as almost irrational.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    }
+  ]
+}

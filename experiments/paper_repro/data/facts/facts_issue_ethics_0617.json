@@ -1,0 +1,196 @@
+{
+  "schema_ver": "0.3",
+  "created_by": "paper_repro_extractor",
+  "created_at": "2026-08-10T08:51:00+00:00",
+  "issue_id": "issue_ethics_0617",
+  "extractor": {
+    "model": "gpt-5",
+    "temperature": 0.0,
+    "prompt_ver": "delibtrace@afce3595"
+  },
+  "_note": "facts[] 배열 순서가 저자 위치 인덱스이며 origin_index가 그 대응을 보존한다. raw/refine/select 응답 원문은 형제 raw_calls JSONL에 전량 보존한다.",
+  "facts": [
+    {
+      "fact_id": "fact_ethics_0617_01",
+      "origin_index": 0,
+      "text": "The narrator and his best friend booked a surprise holiday for their girlfriends because their birthdays were around the same time.",
+      "tags": [],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0617_02",
+      "origin_index": 1,
+      "text": "A few days before the trip, the narrator returned late from work drinks and canceled plans to see his girlfriend.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0617_03",
+      "origin_index": 2,
+      "text": "The next night, after a date, the girlfriend invited him into her home, where her father and brother arrived and ignored him.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0617_04",
+      "origin_index": 3,
+      "text": "The narrator tried to apologize to the girlfriend's father, who swore at him and threatened to hit him and his parents.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0617_05",
+      "origin_index": 4,
+      "text": "The girlfriend's brother squared up to the narrator before the father pulled him away.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0617_06",
+      "origin_index": 5,
+      "text": "The narrator left, the girlfriend followed, and he suggested they break up; she disagreed.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0617_07",
+      "origin_index": 6,
+      "text": "They went on the holiday the following week, during which the girlfriend was unhappy and complained he had forgotten her birthday card.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0617_08",
+      "origin_index": 7,
+      "text": "He had forgotten the card but bought one on the trip and gave it to her at midnight, listing 24 things he loved about her for her 24th birthday.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0617_09",
+      "origin_index": 8,
+      "text": "That night they attempted make-up sex; he struggled to keep an erection while putting on a condom, and she said it was because he did not find her attractive.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0617_10",
+      "origin_index": 9,
+      "text": "During intercourse she punched him in the face, causing a bitten lip, heavy bleeding, and a black eye, then said she had pent-up anger and did not want to continue.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0617_11",
+      "origin_index": 10,
+      "text": "The next day they did not discuss the incident.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0617_12",
+      "origin_index": 11,
+      "text": "After the holiday, the narrator had a one-night stand with a woman he met at a club, having sex in his car.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0617_13",
+      "origin_index": 12,
+      "text": "About a month later the girlfriend discovered this by looking through his phone, and they broke up.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0617_14",
+      "origin_index": 13,
+      "text": "The narrator states he has never hit her.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    }
+  ]
+}

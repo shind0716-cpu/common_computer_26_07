@@ -1,0 +1,157 @@
+{
+  "schema_ver": "0.3",
+  "created_by": "paper_repro_extractor",
+  "created_at": "2026-08-10T08:51:00+00:00",
+  "issue_id": "issue_ethics_0576",
+  "extractor": {
+    "model": "gpt-5",
+    "temperature": 0.0,
+    "prompt_ver": "delibtrace@afce3595"
+  },
+  "_note": "facts[] 배열 순서가 저자 위치 인덱스이며 origin_index가 그 대응을 보존한다. raw/refine/select 응답 원문은 형제 raw_calls JSONL에 전량 보존한다.",
+  "facts": [
+    {
+      "fact_id": "fact_ethics_0576_01",
+      "origin_index": 0,
+      "text": "The narrator and their best friend have been close for about 10 years.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0576_02",
+      "origin_index": 1,
+      "text": "The friend has been in law school for about a year after going directly from undergrad.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0576_03",
+      "origin_index": 2,
+      "text": "The narrator plans to work for a few years after graduating and then apply to law school.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0576_04",
+      "origin_index": 3,
+      "text": "They are long-distance and mostly communicate via Snapchat and phone calls.",
+      "tags": [],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0576_05",
+      "origin_index": 4,
+      "text": "During LSAT prep and law school applications, the friend frequently vented about the difficulty, and the narrator supported her.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0576_06",
+      "origin_index": 5,
+      "text": "Since starting law school, the friend constantly posts about it on social media (Instagram stories/posts and Snapchats).",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0576_07",
+      "origin_index": 6,
+      "text": "When the narrator discusses their own law school plans, the friend repeatedly discourages them, saying it is very hard and telling them not to go.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0576_08",
+      "origin_index": 7,
+      "text": "The friend knows the narrator wants to go to law school.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0576_09",
+      "origin_index": 8,
+      "text": "The narrator feels the friend's discouraging comments are condescending and imply the narrator cannot handle law school.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0576_10",
+      "origin_index": 9,
+      "text": "The narrator is exhausted by the constant law school content, feels triggered by posts about presentations or grades, and is faking enthusiasm.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0576_11",
+      "origin_index": 10,
+      "text": "The narrator expected reciprocal support from the friend regarding their own law school ambitions.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    }
+  ]
+}

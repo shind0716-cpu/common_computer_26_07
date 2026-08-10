@@ -1,0 +1,170 @@
+{
+  "schema_ver": "0.3",
+  "created_by": "paper_repro_extractor",
+  "created_at": "2026-08-10T08:51:00+00:00",
+  "issue_id": "issue_ethics_0476",
+  "extractor": {
+    "model": "gpt-5",
+    "temperature": 0.0,
+    "prompt_ver": "delibtrace@afce3595"
+  },
+  "_note": "facts[] 배열 순서가 저자 위치 인덱스이며 origin_index가 그 대응을 보존한다. raw/refine/select 응답 원문은 형제 raw_calls JSONL에 전량 보존한다.",
+  "facts": [
+    {
+      "fact_id": "fact_ethics_0476_01",
+      "origin_index": 0,
+      "text": "The poster works in a big city with a large homeless population.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0476_02",
+      "origin_index": 1,
+      "text": "The poster is frequently approached by homeless people for money or food and recognizes many of them.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0476_03",
+      "origin_index": 2,
+      "text": "The poster has previously tried to be receptive to homeless individuals.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0476_04",
+      "origin_index": 3,
+      "text": "Past personal and witnessed incidents have made the poster cautious because they cannot predict potential aggression.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0476_05",
+      "origin_index": 4,
+      "text": "The poster avoids engaging because conversations often lead to persistent requests for money.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0476_06",
+      "origin_index": 5,
+      "text": "At a train station, the poster and their boyfriend were waiting for the poster's train.",
+      "tags": [],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0476_07",
+      "origin_index": 6,
+      "text": "A homeless man was approaching people to ask for food and then approached the poster.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0476_08",
+      "origin_index": 7,
+      "text": "Feeling uncomfortable, the poster waved him off and pulled their boyfriend closer.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0476_09",
+      "origin_index": 8,
+      "text": "The man responded by cursing at the poster, leading to a verbal back-and-forth among the three.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0476_10",
+      "origin_index": 9,
+      "text": "The confrontation caused the poster to lose their temper.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0476_11",
+      "origin_index": 10,
+      "text": "Afterwards, the boyfriend argued that the poster's actions were wrong and made the man feel less than human.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0476_12",
+      "origin_index": 11,
+      "text": "The poster asked Reddit for a verdict on whether they were wrong.",
+      "tags": [],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "schema_ver": "0.3",
+  "created_by": "paper_repro_extractor",
+  "created_at": "2026-08-10T08:51:00+00:00",
+  "issue_id": "issue_ethics_0534",
+  "extractor": {
+    "model": "gpt-5",
+    "temperature": 0.0,
+    "prompt_ver": "delibtrace@afce3595"
+  },
+  "_note": "facts[] 배열 순서가 저자 위치 인덱스이며 origin_index가 그 대응을 보존한다. raw/refine/select 응답 원문은 형제 raw_calls JSONL에 전량 보존한다.",
+  "facts": [
+    {
+      "fact_id": "fact_ethics_0534_01",
+      "origin_index": 0,
+      "text": "The narrator and their girlfriend recently broke up, largely because their mental health issues clashed and the narrator was unhappy.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0534_02",
+      "origin_index": 1,
+      "text": "The narrator has severe depression.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0534_03",
+      "origin_index": 2,
+      "text": "The ex-girlfriend has severe anxiety.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0534_04",
+      "origin_index": 3,
+      "text": "Throughout the relationship, the narrator prioritized the ex-girlfriend’s needs over their own, believing anxiety attacks were worse than depressive episodes, which worsened the narrator’s depression.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0534_05",
+      "origin_index": 4,
+      "text": "After the breakup, they tried to stay friends but had a hookup a few weeks later, after which they began avoiding and ignoring each other.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0534_06",
+      "origin_index": 5,
+      "text": "About two weeks ago, the ex-girlfriend was hospitalized with a high fever.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0534_07",
+      "origin_index": 6,
+      "text": "The narrator did not visit her, partly because friends were already visiting and because the narrator didn't know where they stood and didn't want to ask.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0534_08",
+      "origin_index": 7,
+      "text": "Recently, the ex-girlfriend messaged the narrator around 2 a.m. asking how they were.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0534_09",
+      "origin_index": 8,
+      "text": "She said she had felt lonely in the hospital and wrote, \"i guess no one cares about me as much as i thought\".",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0534_10",
+      "origin_index": 9,
+      "text": "The narrator felt bad but replied, \"I don't want to listen to this anxiety-ridden self-consciousness over and over again,\" and, \"I'm not your therapist.\"",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0534_11",
+      "origin_index": 10,
+      "text": "The ex-girlfriend responded that she only wanted to talk and that she understood.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0534_12",
+      "origin_index": 11,
+      "text": "The narrator feels like they might be the asshole for refusing to talk because it worsens their depression.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    }
+  ]
+}
