@@ -1,0 +1,176 @@
+{
+  "issue_id": "issue_esa",
+  "run_id": "논문재현콜",
+  "n_utterances": 32,
+  "n_parse_fail": 0,
+  "cell_level": {
+    "both": 41,
+    "neither": 6,
+    "only_ours": [],
+    "only_author": [
+      {
+        "round": 2,
+        "fact_id": "fact_esa_07",
+        "our_status": "unmentioned",
+        "author_speakers": [
+          "agent_6"
+        ]
+      }
+    ],
+    "agreement": 0.9792
+  },
+  "speaker_level": {
+    "n_divergent_cells": 9,
+    "n_our_missed": 8,
+    "n_our_extra": 2,
+    "cells": [
+      {
+        "round": 0,
+        "fact_id": "fact_esa_03",
+        "our_status": "mentioned",
+        "n_author": 2,
+        "n_ours": 3,
+        "our_missed": [],
+        "our_extra": [
+          "agent_1"
+        ]
+      },
+      {
+        "round": 1,
+        "fact_id": "fact_esa_01",
+        "our_status": "mentioned",
+        "n_author": 2,
+        "n_ours": 1,
+        "our_missed": [
+          "agent_7"
+        ],
+        "our_extra": []
+      },
+      {
+        "round": 1,
+        "fact_id": "fact_esa_06",
+        "our_status": "mentioned",
+        "n_author": 6,
+        "n_ours": 5,
+        "our_missed": [
+          "agent_2"
+        ],
+        "our_extra": []
+      },
+      {
+        "round": 1,
+        "fact_id": "fact_esa_09",
+        "our_status": "mentioned",
+        "n_author": 7,
+        "n_ours": 6,
+        "our_missed": [
+          "agent_8"
+        ],
+        "our_extra": []
+      },
+      {
+        "round": 1,
+        "fact_id": "fact_esa_10",
+        "our_status": "mentioned",
+        "n_author": 3,
+        "n_ours": 3,
+        "our_missed": [
+          "agent_7"
+        ],
+        "our_extra": [
+          "agent_6"
+        ]
+      },
+      {
+        "round": 2,
+        "fact_id": "fact_esa_01",
+        "our_status": "mentioned",
+        "n_author": 2,
+        "n_ours": 1,
+        "our_missed": [
+          "agent_4"
+        ],
+        "our_extra": []
+      },
+      {
+        "round": 2,
+        "fact_id": "fact_esa_03",
+        "our_status": "mentioned",
+        "n_author": 8,
+        "n_ours": 7,
+        "our_missed": [
+          "agent_8"
+        ],
+        "our_extra": []
+      },
+      {
+        "round": 2,
+        "fact_id": "fact_esa_07",
+        "our_status": "unmentioned",
+        "n_author": 1,
+        "n_ours": 0,
+        "our_missed": [
+          "agent_6"
+        ],
+        "our_extra": []
+      },
+      {
+        "round": 2,
+        "fact_id": "fact_esa_08",
+        "our_status": "mentioned",
+        "n_author": 7,
+        "n_ours": 6,
+        "our_missed": [
+          "agent_8"
+        ],
+        "our_extra": []
+      }
+    ]
+  },
+  "far": {
+    "author_axis": [
+      {
+        "stage": 0,
+        "far_system": 0.0,
+        "far_critical": 0.0
+      },
+      {
+        "stage": 1,
+        "far_system": 0.0833,
+        "far_critical": 0.1111
+      },
+      {
+        "stage": 2,
+        "far_system": 0.0833,
+        "far_critical": 0.0
+      },
+      {
+        "stage": 3,
+        "far_system": 0.3333,
+        "far_critical": 0.3333
+      }
+    ],
+    "our_axis": [
+      {
+        "stage": 0,
+        "far_system": 0.0,
+        "far_critical": 0.0
+      },
+      {
+        "stage": 1,
+        "far_system": 0.0833,
+        "far_critical": 0.1111
+      },
+      {
+        "stage": 2,
+        "far_system": 0.1667,
+        "far_critical": 0.1111
+      },
+      {
+        "stage": 3,
+        "far_system": 0.3333,
+        "far_critical": 0.3333
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+# 연결 모양 축 — tree 팔 (2026-08-10 · 요한)
+#
+# 왜 새 파일인가: 조건 변경 = 새 yaml (CLAUDE.md 실험 무결성). 기존 파일 무수정.
+#
+# 무엇이 다른가: configs/mini_h2_off_gpt.yaml 대비 **structure 한 칸만** 바꿨다.
+# 나머지(모델·온도 1.2·시드·라운드·판정 사양·장부 off)는 글자 그대로 같다 —
+# full 팔은 새로 돌리지 않고 experiments/mini_h2_pilot 의 h2p_off 를 그대로 쓴다
+# (입력 3파일 sha256 일치 확인: issue/facts/assignment).
+#
+# 계기: 설정 사전 ④ 연결 모양 축이 실행 로그 0건이었다. build_edges 는 저자 코드와
+# 글자 단위로 같은 full|tree|line 3종을 이미 구현하고 있는데 full 만 돌아 있었다.
+# 저자 논문은 이 3구조 비교가 축이다.
+experiment: struct_tree_gpt
+condition: struct-tree
+issue_id: issue_esa
+seed: 42
+rounds: 3
+structure: tree
+persona: default
+window: rolling
+memory: none
+debate_model: gpt-mini
+debate_temperature: 1.2      # 논문 상수 — GPT 는 0~2 라 그대로 지킬 수 있다
+judge_model: gpt-mini        # D-p2 계승: 확정 사양(Sonnet)과 모델만 다름, n=3 다수결 유지
+judge_temperature: 0
+judge_n_votes: 3
+ledger_mode: "off"

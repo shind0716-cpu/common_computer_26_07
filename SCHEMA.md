@@ -12,6 +12,8 @@
 > 위 목록은 작성 시점에 이미 `run_meta`(§4‴)가 빠져 있었다 — 길잡이도 본문과 같은 이유로
 > 낡는다는 실례다. 누락분과 이후 추가분을 여기 잇는다: `run_meta` 이벤트(§4‴) ·
 > `settings.reasoning`·`settings.deviations`(§4⁗) · `judge{}` 문면 명확화(§5′).**)**
+>
+> (2026-08-10 요한 추가 — 「버전 규칙」의 갱신 의무 이행) `issue.question`(§1′).
 
 공통: UTF-8, snake_case. 모든 파일에 schema_ver/created_by/created_at.
 경로는 modules/paths.py로만 유도. 검사는 modules/validate.py.
@@ -202,3 +204,40 @@ config를 읽지 않는데(`_online_vote`·`_llm_vote`), 산출물은 `int(cfg["
 수치는 영향받지 않는다** — 수리해도 옛 값이 변하지 않는다.
 
 수리는 `modules/judge.py` 담당자(동범) 소관이며 이 문면은 스키마 변경이 아니다.
+
+### 1′. `issue.question` 등재 (2026-08-10, 요한 확정 — 규약 7 소관)
+
+`issues/{issue_id}.json` 에 **선택 필드 1개 추가.** 기존 필드 변경·삭제 0. 구 issue 문서는
+이 필드 부재 시 종전대로 유효하다(§1 의 필수 키는 그대로).
+
+- **`question`** (문자열 | 부재): 이 이슈로 토론할 **예/아니오 질문**. 발화·판정 프롬프트의
+  `<===question===>` 슬롯에 들어가는 문자열이다.
+
+**왜 지금 등재하는가** — 이 필드는 **이미 쓰이고 있는데 계약에만 없었다.**
+`debate_engine.run()` 이 `issue_doc.get("question") or issue_doc["title"]` 로 읽고(발화),
+`validate.replay_context()` 가 같은 규칙으로 재조립하며(검증), 저자 파이프라인은
+`dataset[index]['question']` 을 **1급 필드로 전제**한다(`discussion.py`·`facts_select`·
+`evaluate_stance`). 규약 1 이 SCHEMA 를 "모듈 간 약속의 전부"라 부르는데 그 밖에 있었다.
+
+**폴백은 유지하되 계약에 명시한다** — 부재 시 `title` 을 쓴다. 다만 이 폴백은 **조용히
+발동한다**: 2026-08-10 실측으로 `data/issues/issue_esa.json` 에 `question` 이 없어 모든 ESA
+판의 프롬프트에 제목이 그대로 실렸고, 그 제목은 `"룸메이트 ESA 개 무단 반입 신고 딜레마
+(스프린트 정본 v1)"` 라 **리포 버전 태그가 프롬프트로 새어 들어갔다.** 같은 이슈의 파일럿
+사본(`experiments/mini_h2_pilot/data`)에는 `question` 이 주입돼 있어 **두 뿌리가 다른 조건으로
+돌고 있었다** — 계약에 없으니 아무도 그 차이를 검사하지 않았다.
+
+경계 조항:
+
+1. **폴백 발동은 기록에 드러나야 한다.** `question` 부재로 `title` 을 쓴 run 은 그 사실을
+   알 수 있어야 한다(수단은 구현 소관 — 경고 출력이든 `run_meta` 든). 부재 자체는 허용하나
+   **"조용히"는 허용하지 않는다.** 이 절이 생긴 계기가 그것이다.
+2. **`title` 은 질문이 아니다.** 폴백은 편의이지 설계가 아니다. 새로 적재하는 이슈는
+   `question` 을 채운다.
+3. **부재는 "모름"이다** — `title` 과 같다는 뜻이 아니다(§4⁗ 의 `reasoning` 부재 처리와 같은
+   원칙). 집계에서 폴백 run 과 명시 run 을 같이 세지 말 것.
+
+검증 계약: `validate` 는 **필수 키에 넣지 않는다**(구 문서 호환). 있으면 문자열인지만 본다 —
+얕은 계약 검사 원칙 유지. 값이 실제로 질문 형태인지는 검사하지 않는다.
+
+발동 계기: 논문 재현 트랙 데이터(`ethics_issues.json` 710건)가 `question` 을 1급으로 갖고
+들어왔고, 적재하려면 계약에 자리가 있어야 했다. 상세: `docs/proposals/PAPER_REPRO_HANDOFF.md`.

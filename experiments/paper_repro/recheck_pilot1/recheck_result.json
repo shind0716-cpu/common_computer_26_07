@@ -1,0 +1,66 @@
+{
+  "prereg": "PREREG.md (실행 전 커밋)",
+  "n_rows_author": 32,
+  "n_rows_stance": 32,
+  "r3_reparse_mismatch": [],
+  "far_by_stage_original": [
+    {
+      "stage": 0,
+      "far_system": 0.0833,
+      "far_critical": 0.1
+    },
+    {
+      "stage": 1,
+      "far_system": 0.8333,
+      "far_critical": 0.9
+    },
+    {
+      "stage": 2,
+      "far_system": 1.0,
+      "far_critical": 1.0
+    },
+    {
+      "stage": 3,
+      "far_system": 0.9167,
+      "far_critical": 1.0
+    }
+  ],
+  "far_by_stage_recheck": [
+    {
+      "stage": 0,
+      "far_system": 0.0833,
+      "far_critical": 0.1
+    },
+    {
+      "stage": 1,
+      "far_system": 0.8333,
+      "far_critical": 0.9
+    },
+    {
+      "stage": 2,
+      "far_system": 1.0,
+      "far_critical": 1.0
+    },
+    {
+      "stage": 3,
+      "far_system": 0.9167,
+      "far_critical": 1.0
+    }
+  ],
+  "far_identical": true,
+  "status_diff": [],
+  "stance_original": {
+    "0": 1.0,
+    "1": 0.375,
+    "2": 0.625,
+    "3": 0.5
+  },
+  "stance_recheck": {
+    "0": 1.0,
+    "1": 0.375,
+    "2": 0.625,
+    "3": 0.5
+  },
+  "stance_identical": true,
+  "verdict": "R1 — 전건 일치: 0.92 는 리뷰 결함의 오염이 아님(검산 완료)"
+}

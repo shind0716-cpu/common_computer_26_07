@@ -1,0 +1,157 @@
+{
+  "schema_ver": "0.3",
+  "created_by": "paper_repro_extractor",
+  "created_at": "2026-08-10T08:51:00+00:00",
+  "issue_id": "issue_ethics_0709",
+  "extractor": {
+    "model": "gpt-5",
+    "temperature": 0.0,
+    "prompt_ver": "delibtrace@afce3595"
+  },
+  "_note": "facts[] 배열 순서가 저자 위치 인덱스이며 origin_index가 그 대응을 보존한다. raw/refine/select 응답 원문은 형제 raw_calls JSONL에 전량 보존한다.",
+  "facts": [
+    {
+      "fact_id": "fact_ethics_0709_01",
+      "origin_index": 0,
+      "text": "The narrator went on a lunch date with a man she matched with on Tinder after a few weeks of texting.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0709_02",
+      "origin_index": 1,
+      "text": "Because he was still a stranger, the narrator didn't want him to know her address or rely on his ride; since they lived about an hour apart, she suggested meeting in a public place midway.",
+      "tags": [],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0709_03",
+      "origin_index": 2,
+      "text": "The date was going well until it was time to pay.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0709_04",
+      "origin_index": 3,
+      "text": "The narrator ordered shrimp costing around $20.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0709_05",
+      "origin_index": 4,
+      "text": "The narrator and the man are both college students.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0709_06",
+      "origin_index": 5,
+      "text": "When the bill came, the man offered to pay, but the narrator declined, having intended to pay for her own meal and not wanting him to spend extra; they had not discussed payment beforehand.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0709_07",
+      "origin_index": 6,
+      "text": "The man repeatedly insisted on paying and the narrator repeatedly declined, creating an awkward scene that made the waitress uneasy.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0709_08",
+      "origin_index": 7,
+      "text": "The narrator told him she appreciated the gesture but preferred to pay for her own food.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0709_09",
+      "origin_index": 8,
+      "text": "The man conceded and paid only his own bill but seemed upset and somewhat passive-aggressive.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0709_10",
+      "origin_index": 9,
+      "text": "The narrator has not heard from him since the date.",
+      "tags": [],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0709_11",
+      "origin_index": 10,
+      "text": "The narrator initially believed she was in the right but now feels bothered and wonders if she should have let him pay.",
+      "tags": [],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    }
+  ]
+}

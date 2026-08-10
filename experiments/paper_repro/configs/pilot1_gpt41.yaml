@@ -1,0 +1,22 @@
+# 논문 재현 트랙 — 1건 계기 교정 실호출 (2026-08-10 요한 결정: 발화 모델 저자 일치)
+# 지위: 파일럿 前 단건 계기 교정 좌표. 결과 수치는 가설 언어 금지(1건).
+# 대상: issue_ethics_0476 (배분 19건 중 팩트 수 중앙값 12, seed 20260810 선정 —
+#       규칙을 먼저 박고 뽑았다. 결과 기반 선별 금지)
+# 모델 표기는 별칭이 아니라 실제 ID — gpt·gpt-mini 별칭은 같은 OPENAI_MODEL 환경변수를
+# 보므로 발화(저자 일치 gpt-4.1)와 판정(mini)을 갈라 쓸 수 없다(llm.MODEL_ALIASES).
+experiment: paper_repro_pilot1
+condition: pilot1-gpt41
+issue_id: issue_ethics_0476     # 문서용 — 엔진은 인자로 받은 issue_id 만 쓴다
+seed: 42                        # 좌석 셔플 — 기존 팔들(structure_axis·h2p)과 일치
+rounds: 3
+structure: full
+persona: default
+window: rolling
+memory: none
+debate_model: gpt-4.1           # 저자 discussion.py 상수와 동일 (요한 결정 8/10 저녁)
+debate_temperature: 1.0         # 요한 결정 8/10: 기존 팔 일치 (저자 1.2 — 편차 P-7)
+judge_model: gpt-5.4-mini       # 기존 팔들의 실판정 모델과 일치 (Sonnet 정본 사양의
+                                # 별칭 우회 결정 7/28 민옥 계승 — 편차로 기재)
+judge_temperature: 0
+judge_n_votes: 3
+ledger_mode: "off"

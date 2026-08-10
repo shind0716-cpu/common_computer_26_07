@@ -1,0 +1,196 @@
+{
+  "schema_ver": "0.3",
+  "created_by": "paper_repro_extractor",
+  "created_at": "2026-08-10T08:51:00+00:00",
+  "issue_id": "issue_ethics_0036",
+  "extractor": {
+    "model": "gpt-5",
+    "temperature": 0.0,
+    "prompt_ver": "delibtrace@afce3595"
+  },
+  "_note": "facts[] 배열 순서가 저자 위치 인덱스이며 origin_index가 그 대응을 보존한다. raw/refine/select 응답 원문은 형제 raw_calls JSONL에 전량 보존한다.",
+  "facts": [
+    {
+      "fact_id": "fact_ethics_0036_01",
+      "origin_index": 0,
+      "text": "The narrator is in Belize on his honeymoon after marrying on March 9.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0036_02",
+      "origin_index": 1,
+      "text": "The wife's parents agreed to pay for the honeymoon and let the couple stay in their Belize house for three weeks if the wedding was small and inexpensive.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0036_03",
+      "origin_index": 2,
+      "text": "The narrator says he was not told beforehand that they were expected to visit multiple sets of the parents' Belize friends as part of this arrangement.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0036_04",
+      "origin_index": 3,
+      "text": "They believed they were to visit five couples, and as of yesterday they had reached the fourth visit.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0036_05",
+      "origin_index": 4,
+      "text": "The second set of friends were Rod and Pete; Pete owns a helicopter and flew them sightseeing.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0036_06",
+      "origin_index": 5,
+      "text": "The fourth visit was very unpleasant: the older hosts were quarrelsome and complained about family estrangement, the husband's alcohol relapse, and the wife's health problems.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0036_07",
+      "origin_index": 6,
+      "text": "The couple spent nearly six hours in the fourth couple's hot living room without being offered a drink.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0036_08",
+      "origin_index": 7,
+      "text": "When the narrator asked for water, he found the kitchen and dishes dirty, took a hot bottled water from under the sink, and the husband reacted angrily.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0036_09",
+      "origin_index": 8,
+      "text": "After leaving, the narrator told his wife it had been one of the most miserable experiences of his life and called the hosts miserable people.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0036_10",
+      "origin_index": 9,
+      "text": "The wife said those hosts were two of her dearest friends and accused the narrator of being ungrateful to her parents for paying for the trip.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0036_11",
+      "origin_index": 10,
+      "text": "The narrator said he wished her parents had made the long social visits a clear condition of the honeymoon.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0036_12",
+      "origin_index": 11,
+      "text": "Angry, the wife called Rod and Pete to pick her up and left.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0036_13",
+      "origin_index": 12,
+      "text": "The narrator has not seen his wife since the previous evening, and his texts to her are not being delivered.",
+      "tags": [],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0036_14",
+      "origin_index": 13,
+      "text": "He does not know how to get to Rod and Pete's house.",
+      "tags": [],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    }
+  ]
+}

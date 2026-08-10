@@ -1,0 +1,175 @@
+{
+  "schema_ver": "0.3",
+  "created_by": "paper_repro_perspective",
+  "created_at": "2026-08-10T09:19:12+00:00",
+  "issue_id": "issue_ethics_0709",
+  "seed": 20260810,
+  "_note": "저자 perspective.py의 위치 인덱스 배열을 perspective_sets.sets에 원형 보존. 같은 관점 pro/con 쌍은 assigned_fact_ids가 완전히 동일하다.",
+  "perspective_sets": {
+    "origin_format": "list of 4 lists of positional fact indices (author perspective.py output)",
+    "sets": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        10
+      ],
+      [
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8
+      ],
+      [
+        2,
+        3,
+        6,
+        7,
+        8
+      ],
+      [
+        0,
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    ]
+  },
+  "agents": [
+    {
+      "agent_id": "agent_1",
+      "perspective": "관점1",
+      "stance": "pro",
+      "assigned_fact_ids": [
+        "fact_ethics_0709_01",
+        "fact_ethics_0709_02",
+        "fact_ethics_0709_03",
+        "fact_ethics_0709_04",
+        "fact_ethics_0709_05",
+        "fact_ethics_0709_06",
+        "fact_ethics_0709_07",
+        "fact_ethics_0709_08",
+        "fact_ethics_0709_09",
+        "fact_ethics_0709_11"
+      ]
+    },
+    {
+      "agent_id": "agent_2",
+      "perspective": "관점1",
+      "stance": "con",
+      "assigned_fact_ids": [
+        "fact_ethics_0709_01",
+        "fact_ethics_0709_02",
+        "fact_ethics_0709_03",
+        "fact_ethics_0709_04",
+        "fact_ethics_0709_05",
+        "fact_ethics_0709_06",
+        "fact_ethics_0709_07",
+        "fact_ethics_0709_08",
+        "fact_ethics_0709_09",
+        "fact_ethics_0709_11"
+      ]
+    },
+    {
+      "agent_id": "agent_3",
+      "perspective": "관점2",
+      "stance": "pro",
+      "assigned_fact_ids": [
+        "fact_ethics_0709_01",
+        "fact_ethics_0709_03",
+        "fact_ethics_0709_04",
+        "fact_ethics_0709_05",
+        "fact_ethics_0709_06",
+        "fact_ethics_0709_07",
+        "fact_ethics_0709_09"
+      ]
+    },
+    {
+      "agent_id": "agent_4",
+      "perspective": "관점2",
+      "stance": "con",
+      "assigned_fact_ids": [
+        "fact_ethics_0709_01",
+        "fact_ethics_0709_03",
+        "fact_ethics_0709_04",
+        "fact_ethics_0709_05",
+        "fact_ethics_0709_06",
+        "fact_ethics_0709_07",
+        "fact_ethics_0709_09"
+      ]
+    },
+    {
+      "agent_id": "agent_5",
+      "perspective": "관점3",
+      "stance": "pro",
+      "assigned_fact_ids": [
+        "fact_ethics_0709_03",
+        "fact_ethics_0709_04",
+        "fact_ethics_0709_07",
+        "fact_ethics_0709_08",
+        "fact_ethics_0709_09"
+      ]
+    },
+    {
+      "agent_id": "agent_6",
+      "perspective": "관점3",
+      "stance": "con",
+      "assigned_fact_ids": [
+        "fact_ethics_0709_03",
+        "fact_ethics_0709_04",
+        "fact_ethics_0709_07",
+        "fact_ethics_0709_08",
+        "fact_ethics_0709_09"
+      ]
+    },
+    {
+      "agent_id": "agent_7",
+      "perspective": "관점4",
+      "stance": "pro",
+      "assigned_fact_ids": [
+        "fact_ethics_0709_01",
+        "fact_ethics_0709_02",
+        "fact_ethics_0709_03",
+        "fact_ethics_0709_05",
+        "fact_ethics_0709_06",
+        "fact_ethics_0709_07",
+        "fact_ethics_0709_08",
+        "fact_ethics_0709_09",
+        "fact_ethics_0709_10",
+        "fact_ethics_0709_11"
+      ]
+    },
+    {
+      "agent_id": "agent_8",
+      "perspective": "관점4",
+      "stance": "con",
+      "assigned_fact_ids": [
+        "fact_ethics_0709_01",
+        "fact_ethics_0709_02",
+        "fact_ethics_0709_03",
+        "fact_ethics_0709_05",
+        "fact_ethics_0709_06",
+        "fact_ethics_0709_07",
+        "fact_ethics_0709_08",
+        "fact_ethics_0709_09",
+        "fact_ethics_0709_10",
+        "fact_ethics_0709_11"
+      ]
+    }
+  ]
+}

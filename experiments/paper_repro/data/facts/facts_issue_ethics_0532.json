@@ -1,0 +1,183 @@
+{
+  "schema_ver": "0.3",
+  "created_by": "paper_repro_extractor",
+  "created_at": "2026-08-10T08:51:00+00:00",
+  "issue_id": "issue_ethics_0532",
+  "extractor": {
+    "model": "gpt-5",
+    "temperature": 0.0,
+    "prompt_ver": "delibtrace@afce3595"
+  },
+  "_note": "facts[] 배열 순서가 저자 위치 인덱스이며 origin_index가 그 대응을 보존한다. raw/refine/select 응답 원문은 형제 raw_calls JSONL에 전량 보존한다.",
+  "facts": [
+    {
+      "fact_id": "fact_ethics_0532_01",
+      "origin_index": 0,
+      "text": "The author has been dating his girlfriend for five months and is very protective of her.",
+      "tags": [],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0532_02",
+      "origin_index": 1,
+      "text": "For the past month, the girlfriend has been receiving unsolicited women's panties from a former high school classmate who had a crush on her.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0532_03",
+      "origin_index": 2,
+      "text": "The classmate messages her on social media asking her to wear the panties and send them back to him.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0532_04",
+      "origin_index": 3,
+      "text": "She repeatedly told him to stop and blocked him, but he continued sending packages.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0532_05",
+      "origin_index": 4,
+      "text": "She filed a police report; they have footage of a hooded person delivering packages without a return address, but no police action had occurred yet.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0532_06",
+      "origin_index": 5,
+      "text": "She does not want to pay a lawyer to get a restraining order.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0532_07",
+      "origin_index": 6,
+      "text": "The author messaged the classmate on Facebook, warning him not to contact her; the classmate taunted him and threatened to beat him up.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0532_08",
+      "origin_index": 7,
+      "text": "The classmate posted that he worked at a local Petco; the author went there, saw the same BMW as in their delivery video, and followed him home.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0532_09",
+      "origin_index": 8,
+      "text": "After dark, the author smashed the classmate’s car windows with a collapsible baton, threw new panties on the driver’s seat, and left as the alarm sounded.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0532_10",
+      "origin_index": 9,
+      "text": "The author told his girlfriend not to worry about it anymore.",
+      "tags": [],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0532_11",
+      "origin_index": 10,
+      "text": "The author's father is a retired corrections officer and was furious when told about the incident.",
+      "tags": [],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0532_12",
+      "origin_index": 11,
+      "text": "The author acknowledges he committed a crime but doubts he will be identified and believes the classmate will now stop.",
+      "tags": [],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_ethics_0532_13",
+      "origin_index": 12,
+      "text": "The author asks whether he was in the wrong and if he should have waited for the police to act.",
+      "tags": [],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    }
+  ]
+}

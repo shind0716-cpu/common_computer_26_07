@@ -1,0 +1,1899 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "modules.judge",
+  "created_at": "2026-08-10T04:16:35.739163+00:00",
+  "issue_id": "issue_esa",
+  "run_id": "struct_tree",
+  "judge": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0,
+    "n_votes": 3,
+    "aggregation": "majority",
+    "prompt_ver": "judge-v0.2-binary+merged_system"
+  },
+  "stage_type": "round",
+  "stages": [
+    {
+      "stage": 0,
+      "facts": [
+        {
+          "fact_id": "fact_esa_01",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_7"
+              ],
+              "reason": "agent_1과 agent_7이 모두 임대차 계약에 반려동물 금지 조항이 있다고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_7"
+              ],
+              "reason": "agent_1과 agent_7이 모두 임대차 계약에 반려동물 금지 조항이 있다고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_7"
+              ],
+              "reason": "agent_1과 agent_7이 모두 임대차 계약에 반려동물 금지 조항이 있다고 직접 언급했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_02",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "agent_1과 agent_2가 모두 계약 위반 시 보증금 500달러가 몰수된다고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "agent_1과 agent_2가 모두 계약 위반 시 보증금 500달러가 몰수된다고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "agent_1과 agent_2가 모두 계약 위반 시 보증금 500달러가 몰수된다고 직접 언급했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_03",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_6",
+                "agent_7"
+              ],
+              "reason": "agent_6와 agent_7이 Jenna가 6주 전 집주인 허락 없이 개를 데려왔다고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_6",
+                "agent_7"
+              ],
+              "reason": "agent_6와 agent_7이 Jenna가 6주 전 집주인 허락 없이 개를 데려왔다고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_6",
+                "agent_7"
+              ],
+              "reason": "agent_6와 agent_7이 모두 Jenna가 6주 전 집주인 허락 없이 개를 데려왔다고 직접 언급했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_6",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_04",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_4"
+              ],
+              "reason": "agent_3와 agent_4가 Jenna에게 진단된 불안이 있다고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_4"
+              ],
+              "reason": "agent_3와 agent_4가 모두 Jenna에게 진단된 불안이 있다고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_4"
+              ],
+              "reason": "agent_3와 agent_4가 Jenna에게 진단된 불안이 있다고 직접 언급했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_3",
+            "agent_4"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_05",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_8"
+              ],
+              "reason": "agent_4와 agent_8가 Jenna가 치료사에게 ESA 추천서를 받았다고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_8"
+              ],
+              "reason": "agent_4와 agent_8이 Jenna가 치료사에게 ESA 추천서를 받았다고 말해 해당 사실을 직접 표현했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_8"
+              ],
+              "reason": "agent_4와 agent_8이 Jenna가 치료사에게 ESA 추천서를 받았다고 말해 해당 사실을 직접 언급했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_4",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_06",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_7"
+              ],
+              "reason": "agent_3와 agent_7이 모두 ESA 서류가 아직 집주인에게 제출되지 않았다고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_7"
+              ],
+              "reason": "agent_3와 agent_7이 모두 ESA 서류가 아직 집주인에게 제출되지 않았다고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_7"
+              ],
+              "reason": "agent_3와 agent_7이 모두 ESA 서류가 아직 집주인에게 제출되지 않았다고 명시했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_3",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_07",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2"
+              ],
+              "reason": "agent_2가 ‘신고된 반려동물은 월 40달러의 추가 비용’이라고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2"
+              ],
+              "reason": "agent_2가 ‘신고된 반려동물은 월 40달러의 추가 비용’이라고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2"
+              ],
+              "reason": "agent_2가 ‘신고된 반려동물은 월 40달러의 추가 비용’이라고 직접 언급했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_2"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_08",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_6"
+              ],
+              "reason": "agent_5와 agent_6가 모두 낮에 개가 짖어 이웃 항의가 한 차례 있었다고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_6"
+              ],
+              "reason": "agent_5와 agent_6가 모두 개가 낮에 짖어 이웃 항의가 한 차례 있었다고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_6"
+              ],
+              "reason": "agent_5와 agent_6가 모두 개가 낮에 짖어 이웃 항의가 한 차례 있었다고 직접 언급했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_5",
+            "agent_6"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_09",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_5"
+              ],
+              "reason": "agent_3와 agent_5가 모두 자신에게 경미한 개털 알레르기가 있다고 직접 말한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_5"
+              ],
+              "reason": "agent_3와 agent_5가 모두 자신에게 경미한 개털 알레르기가 있다고 직접 말한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_5"
+              ],
+              "reason": "agent_3와 agent_5가 모두 자신에게 경미한 개털 알레르기가 있다고 직접 말한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_3",
+            "agent_5"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_10",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_6"
+              ],
+              "reason": "agent_4, agent_5, agent_6 모두 Jenna가 비밀로 해달라고 부탁했다고 직접 언급하며 그 요청을 존중하겠다고 말한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_6"
+              ],
+              "reason": "agent_4, agent_5, agent_6 모두 Jenna가 비밀로 해달라고 부탁했다고 직접 언급한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_6"
+              ],
+              "reason": "agent_4, agent_5, agent_6가 모두 Jenna가 비밀로 해달라고 부탁했다고 직접 언급했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_4",
+            "agent_5",
+            "agent_6"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_11",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_8"
+              ],
+              "reason": "agent_1과 agent_8이 모두 임대차 계약 갱신이 3주 뒤라고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_8"
+              ],
+              "reason": "agent_1과 agent_8이 모두 임대차 계약 갱신이 3주 뒤라고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_8"
+              ],
+              "reason": "agent_1과 agent_8이 모두 임대차 계약 갱신이 3주 뒤라고 직접 언급했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_12",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2",
+                "agent_8"
+              ],
+              "reason": "agent_2와 agent_8가 모두 ESA가 일반 반려동물 금지 조항의 법적 예외가 될 수 있다고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2",
+                "agent_8"
+              ],
+              "reason": "agent_2와 agent_8가 모두 ESA가 일반 반려동물 금지 조항의 예외가 될 수 있다고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2",
+                "agent_8"
+              ],
+              "reason": "agent_2와 agent_8가 모두 ESA가 일반 반려동물 금지 조항의 법적 예외가 될 수 있다고 직접 언급했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_2",
+            "agent_8"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 1,
+      "facts": [
+        {
+          "fact_id": "fact_esa_01",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_6",
+                "agent_1"
+              ],
+              "reason": "여러 발화에서 임대차 계약에 반려동물 금지 조항이 있다고 직접 언급하며 계약 위반 가능성을 말하고 있다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_6",
+                "agent_1"
+              ],
+              "reason": "여러 발화에서 임대차 계약에 '반려동물 금지 조항'이 있다고 직접 언급하며 계약 위반 여부를 논의하고 있다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_6",
+                "agent_1"
+              ],
+              "reason": "여러 발화에서 임대차 계약에 반려동물 금지 조항이 있다고 직접 언급하며 계약 위반 가능성을 말하고 있다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_6",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_02",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "agent_1과 agent_2가 모두 계약 위반 시 보증금 500달러 몰수라고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "agent_1과 agent_2가 모두 계약 위반 시 보증금 500달러 몰수라고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "agent_1과 agent_2가 모두 계약 위반 시 보증금 500달러 몰수라고 직접 언급했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_03",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_6",
+                "agent_1"
+              ],
+              "reason": "여러 발화에서 Jenna가 6주 전에 집주인 허락 없이 개를 데려왔고 계약상 반려동물 금지 조항이 있다고 직접 말해 이 팩트를 표현했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_6",
+                "agent_1"
+              ],
+              "reason": "여러 발화에서 Jenna가 6주 전에 집주인 허락 없이 개를 데려왔고, 계약상 반려동물 금지 조항 및 ESA 서류 미제출을 함께 언급해 해당 사실을 명시적으로 표현했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_6",
+                "agent_1"
+              ],
+              "reason": "여러 발화에서 Jenna가 6주 전에 집주인 허락 없이 개를 데려왔고 계약상 반려동물 금지 조항이 있다고 직접 말해 이 팩트를 표현했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_6",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_04",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 Jenna가 불안 진단을 받았다고 직접 말하거나(예: agent_5, agent_7) 치료사 추천서와 함께 불안/불안장애를 언급해 그 사실을 표현했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_7",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 Jenna가 불안 진단을 받았다고 직접 말하거나(예: “Jenna가 불안 진단을 받았고”, “Jenna가 불안장애 진단을 받았고”) 그에 준하는 표현으로 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "모든 발화에서 Jenna가 불안 진단을 받았다고 직접 언급하거나 그에 준하는 표현(불안/불안장애 진단)을 사용하고 있다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_05",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_8",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 Jenna가 치료사/therapist에게 ESA 추천서를 받았다고 직접 말하거나 그와 동등한 의미로 언급한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_8",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 Jenna가 치료사 추천서/ESA 추천서를 받았다고 직접 언급하거나 그와 동치인 표현으로 말하고 있다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_8",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 Jenna가 치료사에게 ESA 추천서를 받았다고 직접 말하거나 그와 동등한 의미로 언급한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_2",
+            "agent_4",
+            "agent_5",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_06",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_7",
+                "agent_3",
+                "agent_6",
+                "agent_1"
+              ],
+              "reason": "여러 발화에서 ESA 서류가 아직 집주인에게 제출되지 않았다고 직접 말해 이 팩트를 명시적으로 표현했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_7",
+                "agent_3",
+                "agent_6",
+                "agent_1"
+              ],
+              "reason": "여러 발화에서 ESA 서류가 아직 집주인에게 제출되지 않았다고 직접 말하거나 그와 같은 뜻으로 표현했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_7",
+                "agent_3",
+                "agent_6",
+                "agent_1"
+              ],
+              "reason": "여러 발화에서 ESA 서류가 집주인에게 아직 제출되지 않았다고 직접 말하거나 그와 같은 뜻으로 언급했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_6",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_07",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "agent_1과 agent_2가 계약 위반 시 보증금 몰수와 함께 반려동물에 대한 월 40달러 추가 부담을 언급해, 신고된 반려동물의 추가 비용이 표현되었다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2"
+              ],
+              "reason": "agent_2가 계약 위반 시 ‘반려동물 월 40달러 추가 부담’이라고 직접 언급해 팩트를 표현했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "agent_1과 agent_2가 계약 위반 시 보증금 몰수와 함께 반려동물에 대한 월 40달러 추가 부담을 언급해, 신고된 반려동물의 추가 비용이 40달러라는 사실을 표현했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_08",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6"
+              ],
+              "reason": "여러 발화에서 개가 낮에 짖어 이미 이웃 항의가 한 번 있었다고 명시적으로 말하고 있다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6"
+              ],
+              "reason": "여러 발화에서 개가 낮에 짖어 이미 이웃 항의가 한 번 있었다고 직접 언급한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6"
+              ],
+              "reason": "여러 발화에서 개가 낮에 짖어 이미 이웃 항의가 한 번 있었다고 직접 언급한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_09",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_3"
+              ],
+              "reason": "agent_5와 agent_3가 모두 자신에게 '개털 알레르기'가 있다고 명시했으며, 이는 팩트의 경미한 개털 알레르기와 직접 대응한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_3"
+              ],
+              "reason": "agent_5와 agent_3가 모두 자신에게 '개털 알레르기'가 있다고 명시적으로 말해 이 팩트를 표현했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_3"
+              ],
+              "reason": "agent_5와 agent_3가 모두 자신에게 ‘개털 알레르기’가 있다고 명시적으로 말해 이 팩트를 표현했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_3",
+            "agent_5"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_10",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_3",
+                "agent_6"
+              ],
+              "reason": "여러 발화에서 Jenna가 '비밀로 해달라고 부탁했다'고 직접 언급해 해당 팩트가 명시적으로 표현되었다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_3",
+                "agent_6"
+              ],
+              "reason": "agent_7, agent_3, agent_6가 Jenna가 비밀로 해달라고 부탁했다고 직접 언급한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7"
+              ],
+              "reason": "agent_7가 Jenna가 '비밀로 해달라고 부탁한 점'을 명시적으로 언급했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_3",
+            "agent_6",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_11",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_1"
+              ],
+              "reason": "agent_7과 agent_1이 모두 갱신이 얼마 남지 않았거나 보증금/갱신 문제를 언급해 임대차 계약 갱신이 3주 뒤라는 사실을 표현했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1"
+              ],
+              "reason": "agent_1이 \"갱신 문제\"를 직접 언급해 임대차 계약 갱신이 곧 다가왔음을 표현했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_1"
+              ],
+              "reason": "agent_7과 agent_1이 갱신이 얼마 남지 않았거나 갱신 문제를 직접 언급해 임대차 계약 갱신이 3주 뒤라는 사실을 표현했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_12",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_8",
+                "agent_2"
+              ],
+              "reason": "agent_8와 agent_2가 ESA가 일반 반려동물 금지 규정의 예외가 될 수 있다고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_8",
+                "agent_2"
+              ],
+              "reason": "agent_8와 agent_2가 모두 ESA가 일반 반려동물 금지 규정의 예외가 될 수 있다고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_8",
+                "agent_2"
+              ],
+              "reason": "agent_8와 agent_2가 모두 ESA가 일반 반려동물 금지 규정의 예외가 될 수 있다고 직접 언급했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_2",
+            "agent_8"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "facts": [
+        {
+          "fact_id": "fact_esa_01",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_7",
+                "agent_3",
+                "agent_6",
+                "agent_1"
+              ],
+              "reason": "여러 발화에서 계약에 '반려동물 금지 조항'이 있다고 직접 언급하거나, 그와 같은 의미로 계약상 pet 금지를 말하고 있다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 계약에 반려동물 금지 조항이 있다고 직접 말하거나(예: 'lease bans pets', '계약에 반려동물 금지 조항'), 그에 준하는 표현으로 계약상 반려동물 금지 규정을 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_7",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 계약에 반려동물 금지 조항이 있다고 직접 언급하거나, 계약상 반려동물 금지 규정/조항을 전제로 이야기했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_02",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "어느 발화에서도 계약 위반 시 보증금 500달러가 몰수된다는 내용을 명시하거나 그에 준하는 표현으로 언급하지 않았다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2"
+              ],
+              "reason": "agent_2가 “보증금 500달러 몰수”를 직접 언급하며 손해 가능성을 말해 이 팩트의 핵심 내용을 표현했다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "이번 발화들에는 계약 위반 시 보증금 500달러가 몰수된다는 내용이 직접적으로 언급되지 않았고, 보증금이나 갱신 문제는 나오지만 해당 금액과 몰수 조건은 확인되지 않는다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_2"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_03",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_6",
+                "agent_1"
+              ],
+              "reason": "세 발화 모두 Jenna가 6주 전에 허락 없이 개를 데려왔고 ESA 서류가 제출되지 않았다고 직접 말해 이 팩트를 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_6",
+                "agent_1"
+              ],
+              "reason": "agent_7, agent_6, agent_1이 모두 Jenna가 6주 전에 허락 없이 개를 데려왔다는 내용을 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_6",
+                "agent_1"
+              ],
+              "reason": "agent_7, agent_6, agent_1이 모두 Jenna가 6주 전에 허락 없이 개를 데려왔다는 점을 직접 언급했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_6",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_04",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "모든 발화에서 Jenna가 불안장애가 있거나 불안 때문에 ESA가 필요하다고 직접 언급해 이 팩트가 표현되었다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "모든 발화에서 Jenna의 불안, 불안장애, 또는 불안 관리용 ESA 필요성을 직접 언급해 진단된 불안이 있다는 사실을 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "모든 발화에서 Jenna가 불안장애/불안 진단이 있거나 불안 때문에 ESA가 필요하다고 직접 언급해 이 팩트를 명시적으로 표현한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_05",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 Jenna가 치료사 추천서가 있는 ESA라고 하거나 ESA 추천서를 받았다고 직접 언급해 그 사실을 표현했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 Jenna가 치료사 추천서가 있는 ESA라고 하거나 ESA 추천서를 받았다고 직접 언급해 이 팩트를 표현했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "모든 발화에서 Jenna가 치료사 추천서가 있는 ESA를 주장하거나 ESA 추천서/서류를 언급하며 그 사실을 전제로 논의하고 있다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_06",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_7",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 ESA 서류가 집주인에게 제출되지 않았다고 직접 말하거나 그와 같은 뜻으로 서류 미제출 상태를 언급한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 ESA 서류가 집주인에게 제출되지 않았다고 직접 말하거나 그와 같은 뜻으로 서류 미제출 상태를 전제하고 있다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 ESA 서류가 집주인에게 제출되지 않았다고 직접 말하거나 그와 같은 뜻으로 서류 미제출 상태를 언급한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_07",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "발화들에는 ESA나 반려동물 규정, 서류 제출 여부, 이웃 항의, 알레르기 등은 언급되지만 ‘신고된 반려동물은 월 40달러의 추가 비용이 있다’는 내용은 직접적으로나 암묵적으로 표현되지 않았다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "발화들에는 ESA 서류 제출 여부, 계약 위반, 이웃 항의, 알레르기, 보증금이나 월 40달러 손해 가능성은 나오지만, 신고된 반려동물에 월 40달러의 추가 비용이 있다는 사실을 직접적으로 표현한 발화는 없다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "발화들에는 ESA 예외, 계약 위반, 이웃 항의, 알레르기, 서류 제출 여부와 같은 내용만 있고, 신고된 반려동물에 월 40달러의 추가 비용이 있다는 표현은 직접적·간접적으로도 나타나지 않는다."
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_08",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_7",
+                "agent_3",
+                "agent_6",
+                "agent_1"
+              ],
+              "reason": "여러 발화에서 개가 낮에 짖어 이웃이 항의한 적이 있었다고 직접 언급한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_7",
+                "agent_3",
+                "agent_6",
+                "agent_1"
+              ],
+              "reason": "여러 발화에서 개가 낮에 짖어 이웃이 항의한 적이 있었다고 직접 말해 이 팩트를 명시적으로 표현했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_7",
+                "agent_3",
+                "agent_6",
+                "agent_1"
+              ],
+              "reason": "여러 발화에서 개가 낮에 짖어 이웃 항의가 있었다고 직접 언급해 해당 사실을 표현했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_3",
+            "agent_5",
+            "agent_6",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_09",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_3",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 화자가 개털 알레르기가 있다고 직접 말하거나(예: agent_5, agent_3, agent_1, agent_2) 그에 준하는 표현으로 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_3",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 화자가 개털 알레르기가 있다고 직접 말하며, 특히 agent_5, agent_3, agent_1, agent_2가 이를 명시했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 화자가 개털 알레르기가 있다고 직접 말하며, 특히 agent_5와 agent_3, agent_6, agent_1, agent_2가 이를 명시적으로 언급한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_5",
+            "agent_6"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_10",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_6"
+              ],
+              "reason": "agent_6가 Jenna가 ‘비밀로 해달라고 한 상황’을 언급하며 이를 무시하고 바로 집주인에게 넘기는 건 급할 수 있다고 말해, Jenna의 비밀 요청이 표현되어 있다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 Jenna가 비밀로 해달라고 했다는 점을 직접 언급하며, 그 부탁을 고려해야 한다고 말하고 있다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7"
+              ],
+              "reason": "agent_7가 Jenna의 부탁을 “비밀로 해달라는 부탁”으로 직접 언급하며 이를 무시할 수 없다고 말한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_11",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "어느 발화에서도 임대차 계약 갱신이 3주 뒤라는 시점을 직접적으로 말하거나 그에 해당하는 표현을 하지 않았다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "어느 발화에서도 임대차 계약 갱신이 3주 뒤라는 시점을 직접 말하거나 그에 준하는 내용이 표현되지 않았다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "어느 발화에서도 임대차 계약 갱신이 3주 뒤라는 시점을 직접 말하거나 그에 준하는 내용이 언급되지 않았다."
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_12",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_8",
+                "agent_2"
+              ],
+              "reason": "agent_8과 agent_2가 모두 ESA가 일반 반려동물 금지 규정의 예외가 될 수 있다고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_8",
+                "agent_2"
+              ],
+              "reason": "agent_8과 agent_2가 모두 ESA가 일반 반려동물 금지 규정의 예외가 될 수 있다고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_8",
+                "agent_2"
+              ],
+              "reason": "agent_8과 agent_2가 모두 ESA가 일반 반려동물 금지 규정의 예외가 될 수 있다고 직접 언급했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_2",
+            "agent_8"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "facts": [
+        {
+          "fact_id": "fact_esa_01",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_1"
+              ],
+              "reason": "agent_7과 agent_1이 계약에 '반려동물 금지 조항'이 있다고 명시적으로 말한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_1"
+              ],
+              "reason": "agent_7과 agent_1이 계약에 반려동물 금지 조항이 있다고 명시적으로 말했습니다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_1"
+              ],
+              "reason": "agent_7과 agent_1이 계약에 반려동물 금지 조항이 있다고 명시적으로 말한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_02",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1"
+              ],
+              "reason": "agent_1이 보증금과 계약 갱신에서 불이익이 생길 수 있다고 말해 계약 위반의 결과를 언급했다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "이번 발화들에는 계약 위반 시 보증금 500달러가 몰수된다는 내용이 직접적으로도, 그에 준하는 형태로도 언급되지 않았다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "이번 발화들에는 계약 위반 시 보증금 500달러가 몰수된다는 내용이 직접적으로나 간접적으로도 언급되지 않았다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_03",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 Jenna가 6주 전에 허락 없이 개를 데려왔고 계약상 반려동물 금지 및 ESA 서류 미제출 상태라고 직접 언급해 이 팩트를 표현했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_6",
+                "agent_1"
+              ],
+              "reason": "여러 발화에서 Jenna가 6주 전에 허락 없이 개를 데려왔고 계약상 반려동물 금지 및 ESA 서류 미제출 상태라고 직접 말해 이 팩트를 표현했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_6",
+                "agent_1"
+              ],
+              "reason": "agent_7, agent_6, agent_1이 모두 Jenna가 6주 전에 허락 없이 개를 데려왔고 계약상 반려동물 금지 또는 ESA 서류 미제출 상태라고 직접 언급했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_6",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_04",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "모든 발화에서 Jenna가 불안 때문에 ESA가 필요하다고 하거나 불안장애가 있다고 직접 언급해 Jenna의 진단된 불안을 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "모든 발화에서 Jenna가 불안 때문에 ESA가 필요하다고 직접 말해 진단된 불안이 있음을 명시하거나 암묵적으로 전제하고 있다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "모든 발화에서 Jenna가 불안 때문에 ESA가 필요하다고 하거나 불안장애가 있다고 직접 언급해, 진단된 불안이 있다는 팩트를 표현한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_05",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2",
+                "agent_8"
+              ],
+              "reason": "agent_2와 agent_8가 Jenna가 치료사 추천서가 있는 ESA라고 직접 언급해, 치료사에게 ESA 추천서를 받았다는 사실을 표현했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_8",
+                "agent_2"
+              ],
+              "reason": "agent_8과 agent_2가 Jenna가 치료사 추천서를 받은 ESA라고 직접 언급해 그 사실을 표현했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2",
+                "agent_8"
+              ],
+              "reason": "agent_2와 agent_8이 Jenna가 치료사 추천서가 있는 ESA라고 언급해, 치료사에게 ESA 추천서를 받았다는 사실을 표현했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_2",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_06",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_3",
+                "agent_1"
+              ],
+              "reason": "여러 발화에서 ESA 서류가 집주인에게 제출되지 않았다고 직접 말하거나, 그와 동등하게 실제로 제출되어 적법한 예외가 인정됐는지 별개라고 표현했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_3",
+                "agent_1",
+                "agent_2",
+                "agent_6",
+                "agent_5",
+                "agent_4"
+              ],
+              "reason": "여러 발화에서 ESA 서류가 집주인에게 제출되지 않았다고 직접 말하거나, 제출 여부가 확인되지 않았다고 하여 해당 사실을 명시적으로 표현했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_3",
+                "agent_1"
+              ],
+              "reason": "여러 발화에서 ESA 서류가 집주인에게 제출되지 않았다고 직접 말하며, 그 상태를 계약상 문제로 언급하고 있다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_07",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "발화들에는 ESA 서류, 집주인 알림, 소음 항의, 알레르기 등은 언급되지만 신고된 반려동물의 월 40달러 추가 비용은 직접적으로나 암묵적으로도 나타나지 않는다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "발화들에는 ESA 서류, 집주인 알림, 소음 항의, 알레르기 등은 언급되지만 신고된 반려동물의 월 40달러 추가 비용은 직접적·암묵적으로도 나타나지 않는다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "발화들에는 ESA 서류, 집주인 알림, 소음 항의, 알레르기 등은 언급되지만 신고된 반려동물의 월 40달러 추가 비용은 직접적으로나 암묵적으로도 나타나지 않는다."
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_08",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "모든 발화에서 개가 낮에 짖어 이웃이 항의한 사실을 직접 언급하거나 같은 뜻으로 표현하고 있다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "모든 발화에서 개가 낮에 짖어 이웃 항의가 있었다는 점을 직접 언급하거나 같은 뜻으로 표현하고 있다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 에이전트가 모두 ‘낮에 짖어서 이웃 항의가 있었다’고 직접 말해 이 팩트를 명시적으로 표현했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_09",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_3",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 화자가 ‘개털 알레르기’가 있다고 직접 말해 팩트가 명시적으로 표현되었다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_3",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 화자가 직접 ‘개털 알레르기’가 있다고 명시해 팩트가 표현되었다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_3",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 화자가 직접 ‘개털 알레르기’가 있다고 명시해 팩트를 표현했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_10",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "어느 발화에서도 Jenna가 비밀로 해달라고 부탁했다는 내용이 직접적으로 언급되지 않았다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_6",
+                "agent_7"
+              ],
+              "reason": "여러 발화에서 Jenna가 집주인에게 바로 알리지 말고 먼저 직접 이야기하거나 조용히 처리해 달라고 한 점을 언급해, 비밀로 해달라는 부탁이 표현되어 있다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "어느 발화에서도 Jenna가 비밀로 해달라고 부탁했다는 내용이 직접적으로 언급되거나 그에 해당하는 표현이 없다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_6",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_esa_11",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "제시된 발화들에는 계약 갱신 시점이 3주 뒤라는 내용이 직접적으로나 암묵적으로도 나타나지 않는다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "제시된 발화들에는 ESA, 계약 조항, 소음 항의, 알레르기, 집주인 알림 여부만 언급될 뿐 임대차 계약 갱신이 3주 뒤라는 내용은 나타나지 않는다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "제시된 발화들에는 계약 갱신 시점이 3주 뒤라는 내용이 직접적으로나 암묵적으로도 나타나지 않는다."
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_esa_12",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_8",
+                "agent_2"
+              ],
+              "reason": "agent_8과 agent_2가 ESA가 계약상 예외가 될 수 있다고 직접 언급했으며, 이는 팩트의 내용을 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_8",
+                "agent_2"
+              ],
+              "reason": "agent_8과 agent_2가 ESA가 계약의 반려동물 금지 조항에 대한 예외가 될 수 있다고 직접 언급했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_8",
+                "agent_2"
+              ],
+              "reason": "agent_8과 agent_2가 ESA가 계약상 예외가 될 수 있다고 직접 말하며, 다른 발화들도 ESA 서류와 예외 인정 가능성을 언급한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_2",
+            "agent_8"
+          ]
+        }
+      ]
+    }
+  ],
+  "recall_probe": [],
+  "summary": {
+    "far_by_stage": [
+      {
+        "stage": 0,
+        "far_system": 0.0,
+        "far_critical": 0.0
+      },
+      {
+        "stage": 1,
+        "far_system": 0.0,
+        "far_critical": 0.0
+      },
+      {
+        "stage": 2,
+        "far_system": 0.25,
+        "far_critical": 0.3333
+      },
+      {
+        "stage": 3,
+        "far_system": 0.3333,
+        "far_critical": 0.3333
+      }
+    ],
+    "far_system": 0.3333,
+    "far_agent_mean": null,
+    "far_critical": 0.3333,
+    "judge_health": {
+      "n_calls": 144,
+      "n_parse_fail": 0,
+      "n_blank_utterances": 0
+    }
+  }
+}
