@@ -271,3 +271,39 @@ class TestBlankUtteranceCounter(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestTruncationCounter(unittest.TestCase):
+    """절단 자동 계수 (요한 7/31 숙제: A안 유지 + "절단 횟수는 세야 한다").
+
+    지키는 것: 절단으로 run 이 죽더라도 **빈도 데이터는 남는다** — 216건 전수 스캔의
+    "절단 0건" 실측이 앞으로도 참인지를 이 카운터가 말한다. 계수는 raise 지점이 아니라
+    LLMTruncated 생성자에서 하므로 공급자가 늘어도 빠뜨릴 수 없다."""
+
+    def setUp(self):
+        llm.TRUNCATIONS.clear()
+        llm.LAST_DEVIATIONS.clear()
+        llm._openai_maxtok = "max_tokens"
+        llm._openai_no_temp = False
+
+    def test_truncation_is_counted_even_though_run_dies(self):
+        trunc = _Resp(200, {"choices": [{"message": {"content": "잘린 답"},
+                                         "finish_reason": "length"}]})
+        with self.assertRaises(llm.LLMTruncated):
+            _run_openai([trunc])
+        self.assertEqual(len(llm.TRUNCATIONS), 1)
+        # 편차 계약을 타고 산출물로 간다 — run_meta.settings.deviations (요한 7/31 확정,
+        # 그 칸만 실행 중 재기록 허용). 회차가 문자열에 박혀 중복 제거에 안 지워진다.
+        self.assertTrue(any("절단 1회째" in d for d in llm.LAST_DEVIATIONS))
+
+    def test_each_truncation_counts_separately(self):
+        llm.LLMTruncated("첫 절단")
+        llm.LLMTruncated("둘째 절단")
+        self.assertEqual(len(llm.TRUNCATIONS), 2)
+        self.assertTrue(any("절단 2회째" in d for d in llm.LAST_DEVIATIONS))
+
+    def test_counter_masks_keys_in_detail(self):
+        key = "sk-" + "q" * 60
+        with mock.patch.dict(os.environ, {"OPENAI_API_KEY": key}, clear=False):
+            llm.LLMTruncated(f"절단 본문에 키가 섞임 {key}")
+        self.assertNotIn(key, llm.TRUNCATIONS[0])   # 계수 기록에도 실키 평문 금지
