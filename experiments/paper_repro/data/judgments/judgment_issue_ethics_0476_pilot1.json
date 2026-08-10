@@ -1,0 +1,2153 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "modules.judge",
+  "created_at": "2026-08-10T10:10:13.056424+00:00",
+  "issue_id": "issue_ethics_0476",
+  "run_id": "pilot1",
+  "judge": {
+    "model": "gpt-5.4-mini",
+    "temperature": 0,
+    "n_votes": 3,
+    "aggregation": "majority",
+    "prompt_ver": "judge-v0.2-binary+merged_system"
+  },
+  "stage_type": "round",
+  "stages": [
+    {
+      "stage": 0,
+      "facts": [
+        {
+          "fact_id": "fact_ethics_0476_01",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "두 발화 모두 화자가 ‘big city’에서 ‘large homeless population’이 있는 곳에서 일한다고 직접 말해 팩트를 명시적으로 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_7"
+              ],
+              "reason": "여러 발화에서 화자가 ‘big city’에서 ‘large homeless population’이 있는 곳에서 일한다고 직접 말해 팩트를 명시적으로 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "모든 발화가 화자가 큰 도시에서 일하며 노숙자가 많은 환경에 있다는 점을 직접적으로 말하거나 그와 동등하게 표현한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_02",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "여러 발화에서 화자가 큰 도시에서 노숙인들에게 돈이나 음식으로 자주 접근받고, 그들을 많이 알아본다고 직접 말한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "여러 발화에서 화자가 큰 도시에서 노숙인에게 돈이나 음식 요청을 자주 받으며, 많은 사람을 알아본다고 직접 말해 팩트를 명시적으로 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_7"
+              ],
+              "reason": "이 발화들에서 화자가 큰 도시에서 노숙인들에게 돈이나 음식을 자주 요청받고, 많은 사람들을 알아본다고 직접 말해 팩트를 표현한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_03",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "These agents explicitly state that the poster had previously tried to be receptive or compassionate toward homeless people, which directly matches the fact."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "이들 발화는 화자가 과거에 노숙인들에게 친절하거나 수용적으로 대하려고 노력했다고 직접 말해 팩트를 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "이 발화들에서 화자가 과거에 노숙인들에게 수용적이려고 노력했고 도움을 주려 했다고 직접 언급하므로 팩트가 표현되어 있다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_04",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "여러 발화에서 과거의 개인적·목격한 사건들 때문에 더 조심하게 되었고, 상대의 공격적 반응을 예측할 수 없어서 불안/주의하게 되었다고 직접 말한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "agent_2, agent_7, and agent_8 all explicitly say that past personal and witnessed incidents made the poster more cautious because they could not predict aggressive reactions."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "agent_2, agent_7, and agent_8 all state that past personal and witnessed incidents made the poster more cautious because they could not predict aggressive reactions."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_2",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_05",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2"
+              ],
+              "reason": "agent_2 explicitly says that polite conversations more often than not turned into persistent requests for money, which matches the fact that the poster avoids engaging because conversations often lead to persistent requests for money."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2"
+              ],
+              "reason": "agent_2 explicitly says that polite conversations often turned into persistent requests for money, which matches the fact that the poster avoids engaging because conversations often lead to persistent requests for money."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2"
+              ],
+              "reason": "agent_2 explicitly says that polite conversations often turned into persistent requests for money, which matches the fact that the poster avoids engaging because conversations often lead to persistent requests for money."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_2"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_06",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_4"
+              ],
+              "reason": "agent_3와 agent_4가 모두 ‘at the train station’에서 ‘you and your boyfriend were waiting for your train’이라고 직접 서술해 팩트를 표현했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_4"
+              ],
+              "reason": "agent_3와 agent_4가 모두 ‘at the train station’에서 ‘waiting for your train / waiting for my train with my boyfriend’라고 명시해 팩트를 표현했다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6"
+              ],
+              "reason": "여러 발화에서 ‘기차역에서 본인과 남자친구가 자기 기차를 기다리고 있었다’는 상황이 직접적으로 언급된다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_07",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_8"
+              ],
+              "reason": "여러 발화에서 노숙인이 사람들에게 다가가 음식(또는 돈)을 요청했고, 이어서 화자에게 다가왔다고 직접 서술한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_8"
+              ],
+              "reason": "여러 발화에서 노숙인이 사람들에게 다가가 음식(또는 돈)을 구했고, 그 뒤 화자에게 다가왔다고 직접 말해 팩트를 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_8"
+              ],
+              "reason": "여러 발화에서 노숙인이 사람들에게 다가가 음식(또는 돈)을 구했고, 그 뒤 화자에게 다가왔다고 직접 말해 팩트를 명시적으로 표현한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_08",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "모든 발화가 ‘불편함을 느껴 그를 손사래치고 남자친구를 더 가까이 끌어당겼다’는 내용을 직접적으로 또는 바꿔 말해 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "모든 발화가 ‘불편함을 느껴 그를 손으로 쫓아내고(b waved him off) 남자친구를 더 가까이 끌어당겼다’는 내용을 명시적 또는 거의 동일하게 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "모든 발화가 ‘불편함을 느껴 그를 손사래치고 남자친구를 더 가까이 끌어당겼다’는 내용을 명시적으로 또는 바꿔 말해 표현한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_09",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "모든 발화가 남성이 욕설을 하고 그 뒤 세 사람 사이에 말다툼/언쟁이 벌어졌다고 직접 또는 동의어로 서술한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "모든 발화가 남성이 욕설을 하고 그 뒤 세 사람 사이에 말다툼/언쟁이 벌어졌다고 직접 또는 바꿔 말해 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "모든 발화가 남성이 욕설을 하고 그 뒤 세 사람 사이에 말다툼/언쟁이 벌어졌다고 직접 또는 동의어로 서술한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_10",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "모든 발화가 ‘you lost my temper / I definitely lost my temper / I ended up losing my temper’처럼 충돌 후 화를 잃었다는 내용을 직접적으로 말한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "모든 발화가 ‘waved him off’ 이후 ‘lost my temper’ 또는 ‘temper’/‘heated verbal exchange’로 상황이 격화되었다고 직접 말해, 대치가 화를 내게 했음을 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "모든 발화가 ‘lost my temper’ 또는 ‘lost your temper’처럼 충돌 후 화를 참지 못하고 격해졌다고 직접 언급하거나 그에 준하는 표현으로 서술한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_11",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_4"
+              ],
+              "reason": "두 발화에서 모두 이후에 남자친구가 화자의 행동이 잘못됐고 그 행동이 남자를 'less than human'처럼 느끼게 했다고 직접 언급한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_4",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "여러 발화에서 이후에 boyfriend가 화자의 행동이 잘못됐고 남자를 덜 인간적으로 느끼게 했다고 직접 언급한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_4"
+              ],
+              "reason": "두 발화 모두 이후에 boyfriend가 화자의 행동이 잘못됐고 남자를 'less than human'처럼 느끼게 했다고 직접 말한다고 서술한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_3",
+            "agent_4",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_12",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2",
+                "agent_7"
+              ],
+              "reason": "agent_2 explicitly says they came to Reddit for a verdict and then gives their judgment, and agent_7 directly says “You asked for a verdict,” matching the fact that the poster asked Reddit whether they were wrong."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2"
+              ],
+              "reason": "agent_2 explicitly says, 'Honestly, I don’t think I’m the a-hole for ignoring a homeless person,' which directly indicates the poster asked Reddit for a verdict on whether they were wrong."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "이 라운드에서 여러 발화가 ‘Reddit에 판단을 구했다/판결을 요청했다’는 취지로 직접 언급하며, 특히 agent_7은 “You came to Reddit for a verdict”라고 명시한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_2",
+            "agent_7",
+            "agent_8"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 1,
+      "facts": [
+        {
+          "fact_id": "fact_ethics_0476_01",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "agent_1과 agent_2가 모두 ‘busy city’/‘big city’에서의 반복적 접근과 불안감을 언급하며, 도시에서 이런 일이 자주 일어난다고 말해 화자가 큰 도시에서 산다는 점을 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "발화들에서 화자가 ‘busy/big city’에 살거나 일하며 반복적으로 접근을 받는다고 말해 대도시 맥락은 드러나지만, 대규모 노숙인 인구가 있다는 내용은 직접적으로 표현되지 않았다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 ‘busy/big city’와 ‘often approached’, ‘living in a big city’처럼 도시 환경과 반복적으로 마주치는 상황이 함께 언급되어, 큰 노숙인 인구가 있는 대도시에서 일한다는 취지가 표현된다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_02",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "발화들은 낯선 사람에게서 반복적으로 접근받는 상황과 음식 요청, 그리고 일부를 알아본다는 내용은 없고, 오히려 처음 보는 ‘homeless man’에 대한 단일 사건만 다룬다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "발화들에는 홈리스 사람들이 돈이나 음식을 구하러 자주 다가오고 그들을 많이 알아본다는 내용이 직접적으로 나오지 않는다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "발화들은 주로 낯선 사람에게서 음식이나 돈을 요청받는 상황과 그에 대한 반응만 다루며, 화자가 노숙자들을 자주 만나고 그들 중 많은 사람을 알아본다는 내용은 직접적으로나 암묵적으로도 나타나지 않는다."
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0476_03",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "모든 발화가 과거의 부정적 경험과 경계 설정, 안전 우선은 언급하지만, 홈리스 개인에게 이전에 수용적이었거나 친절하게 응대한 적이 있었다는 내용은 직접적으로도 암시적으로도 나오지 않는다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "여러 발화에서 화자가 이전에 낯선 사람/노숙인에게 더 공손하게 응대하거나 도움을 주려는 태도(예: “Sorry, I can’t help”, 인정하고 존중하기)를 보였다고 언급해, 노숙인에게 수용적이려 했던 과거 시도를 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "여러 에이전트가 모두 과거의 부정적 경험이나 도시에서의 경계심을 언급하며, 이전에 노숙인/도움이 필요한 사람에게 더 공감적이거나 정중하게 대응했어야 했다고 말해 이 팩트를 암묵적으로 표현했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_04",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 과거의 부정적/위험한 경험 때문에 스스로를 조심하거나 경계하게 되었고, 낯선 사람의 반응을 예측할 수 없어 불안하다는 취지가 직접적으로 표현된다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 과거의 부정적/불쾌한 경험 때문에 경계하거나 조심하게 되며, 낯선 사람의 반응을 예측할 수 없어 안전을 우선한다는 취지가 명시되어 있다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 과거의 부정적/위험한 경험 때문에 스스로를 조심하거나 경계하게 되었고, 낯선 사람의 반응을 예측할 수 없어 안전을 우선한다는 취지가 직접 또는 바꿔 말해 표현되었다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_05",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "발화들에는 안전·불편함 때문에 무시하거나 거리를 둔다는 내용은 있으나, 대화가 돈을 지속적으로 요구하게 된다는 이유로 피한다는 표현은 없다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "발화들에는 불편함, 안전, 경계 설정, 무시/회피가 언급되지만, 대화가 반복적인 금전 요구로 이어진다는 내용은 직접적으로 표현되지 않았다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "발화들에는 반복 요청이나 돈에 대한 지속적 요구 때문에 피했다는 내용이 없고, 주로 안전·경계·무시/응대 방식에 대한 언급만 있다."
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0476_06",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "모든 발화는 안전, 경계, 식사 요청, 반응의 적절성에 대해 논하지만, 역이나 기차를 기다리는 상황 및 포스터와 남자친구가 포스터의 기차를 기다리고 있었다는 내용은 직접적으로도 암묵적으로도 나타나지 않는다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "모든 발화는 안전, 경계, 식사 요청, 반응의 수위에 대해 말할 뿐, 기차역에서 포스터와 남자친구가 포스터의 기차를 기다리고 있었다는 사실은 언급하지 않는다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "모든 발화는 안전, 경계, 반응 방식에 대한 논의만 있으며, 기차역에서 포스터와 남자친구가 포스터의 기차를 기다리고 있었다는 사실은 직접적·간접적으로도 언급되지 않았다."
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0476_07",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_5",
+                "agent_6",
+                "agent_8"
+              ],
+              "reason": "여러 발화에서 남성이 처음에 food를 구하며 사람들에게 다가왔고, 이후 poster에게 접근했다는 취지로 직접 언급하거나 그 상황을 전제로 반응하고 있다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_3",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 남성이 처음에 food를 구하며 사람들에게 다가갔고, 그 뒤 poster에게 접근했다는 취지가 직접적으로 언급된다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_1",
+                "agent_2",
+                "agent_5",
+                "agent_8"
+              ],
+              "reason": "여러 발화에서 남성이 처음에 food를 구하러 다가왔고 그 뒤 poster에게 접근했다는 취지로, ‘asking for food’, ‘asking for help’, ‘approached the poster/you’가 명시 또는 동의어로 표현되었다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_5",
+            "agent_6",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_08",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_6",
+                "agent_3"
+              ],
+              "reason": "여러 발화에서 불편함을 느껴 상대를 손짓으로 물리치고( wave him off ) 남자친구를 더 가까이 끌어당겼다는 동일한 행동이 직접 언급된다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_6"
+              ],
+              "reason": "agent_6 explicitly says their reaction was “waving the man off and pulling my boyfriend closer,” which matches the fact’s actions."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_6",
+                "agent_3"
+              ],
+              "reason": "두 발화 모두 불편함을 느껴 그를 손짓으로 물리치고(또는 밀어내고) 남자친구를 더 가까이 끌어당겼다는 취지의 행동을 직접 언급한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_3",
+            "agent_6"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_09",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_3"
+              ],
+              "reason": "agent_5와 agent_3가 모두 남자가 먼저 욕설(cursed)한 뒤 말싸움이 벌어졌다고 직접 언급한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_3"
+              ],
+              "reason": "agent_5와 agent_3가 모두 남자가 욕설(cursed)한 뒤 말싸움이 벌어졌다고 직접 언급한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_3"
+              ],
+              "reason": "agent_5와 agent_3가 남자가 욕설을 했고 그 뒤에 말싸움/대립이 이어졌다고 직접 언급한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_3",
+            "agent_5"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_10",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 ‘반응이 더 거칠어졌고 상황이 악화되었다’, ‘escalation’, ‘confrontation’, ‘things escalating’처럼 충돌이 화자의 감정 폭발 또는 격앙된 반응으로 이어졌음을 직접 또는 암묵적으로 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 ‘반응이 더 거칠어졌고/상황이 escalated 되었다’거나 ‘confrontation’이 언급되어, 그 대립이 화를 내게 했다는 취지가 표현된다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "모든 발화에서 반응이 상황을 악화시키거나 더 부정적으로 만들었다는 취지로 말해, 그 대립이 화자를 화나게 했다는 사실을 암묵적으로 표현한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_11",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_3",
+                "agent_1"
+              ],
+              "reason": "세 발화 모두 남자가 음식만 요청했는데도 포스터의 반응이 잘못되었고 그를 비인간적으로 느끼게 했다고 직접 언급한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 상대가 poster의 행동을 wrong/YTA라고 보며, 그 행동이 남자를 dehumanizing하게 만들거나 dignity를 해쳤다고 직접 언급한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 남자를 무시하거나 비인간적으로 대했다는 점과, 그 행동이 잘못이었으며 더 인간적으로/정중하게 대했어야 했다는 취지가 직접적으로 표현된다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_12",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "발화들은 모두 반응의 적절성이나 YTA/NTA 판단을 논할 뿐, 원문에 Reddit에 ‘판결(verdict)’을 요청했다는 사실을 명시적으로 표현하지는 않는다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "모든 발화가 ‘내가 잘못했는지/TA인지’에 대한 판단을 언급하며 Reddit의 반응을 바탕으로 자신의 행동을 평가하고 있어, 포스터가 Reddit에 판결을 요청했다는 사실이 표현되어 있다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 화자가 다른 사람들의 반응을 읽고 자신의 행동이 잘못됐는지, 즉 YTA/TA 여부를 논의하며 Reddit의 판단을 구한 맥락이 드러난다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "facts": [
+        {
+          "fact_id": "fact_ethics_0476_01",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 모두 ‘big city/in the city’와 ‘homelessness/asking for food’ 또는 노숙자에 대한 언급이 함께 나타나, 화자가 큰 도시에서 노숙 인구가 많은 환경에 있음을 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 ‘big city’와 노숙인/홈리스가 많은 상황(예: homelessness, being approached by strangers in the city)이 함께 언급되어, 화자가 큰 도시에서 노숙인 인구가 많은 환경에 있음을 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 ‘big city’와 ‘homelessness/people asking for food’가 함께 언급되어, 화자가 큰 도시에서 노숙인이 많은 환경에 있음을 암시한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_02",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "모든 발화는 낯선 노숙인에게 어떻게 반응했는지와 경계·안전·예의에 대한 논의만 담고 있으며, 화자가 노숙인들에게 자주 돈이나 음식을 요청받고 그들 중 많은 사람을 알아본다는 내용은 직접적으로나 암묵적으로도 나타나지 않는다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "모든 발화는 주로 한 사람이 반복적으로 접근했다는 상황과 그에 대한 반응만 다루며, 포스터가 노숙자들에게 자주 돈이나 음식을 요청받고 그들 중 많은 사람을 알아본다는 내용은 직접적으로나 암묵적으로도 나타나지 않는다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "모든 발화는 홈리스에게 돈이나 음식을 자주 요청받고 그들을 많이 알아본다는 내용이 아니라, 특정 상황에서의 대응과 경계 설정만 다룬다."
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0476_03",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 과거의 부정적 경험과 별개로, 상대에게 짧게라도 정중히 응답하거나 기본적인 존중을 보였어야 했다고 하며 이전에 노숙인/도움 요청자에게 더 수용적이었어야 했다는 취지로 표현한다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "발화들은 주로 무례하게 반응했다는 점과 다음에는 더 공손하게 하겠다는 내용만 담고 있으며, 포스터가 이전에 노숙인들에게 수용적으로 대하려고 시도했다는 사실은 직접적으로나 암묵적으로도 나타나지 않는다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 과거의 부정적 경험과 안전 우려를 언급하면서도, 이번에는 더 공손하게 반응했어야 했다고 하여 이전에 노숙인에게도 기본적인 존중으로 응대하려는 시도가 있었음을 암묵적으로 드러낸다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_04",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_6",
+                "agent_2"
+              ],
+              "reason": "agent_6와 agent_2가 모두 과거의 불쾌하거나 예측 불가능한 도시 내 경험 때문에 경계와 자기보호를 더 중시하게 되었다고 직접 말해, 과거 개인적·목격된 사건이 잠재적 공격을 예측할 수 없어 조심하게 되었다는 취지를 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 과거의 부정적/불편한 경험 때문에 낯선 사람의 접근에 조심하거나 경계하게 되었다고 명시하며, 그 이유를 안전을 위해 상대의 잠재적 공격성이나 상황 전개를 예측할 수 없기 때문이라는 취지로 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 과거의 부정적/불편한 경험 때문에 자기 보호와 경계가 필요하다고 말하며, 낯선 사람의 잠재적 공격성이나 상황의 불확실성을 우려해 조심하게 된다고 직접 표현한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_05",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "모든 발화는 음식 요청, 무시, 경계 설정, 안전 우려를 말할 뿐이며, 대화가 돈을 반복적으로 요구하게 된다는 내용은 직접적·암묵적으로도 나타나지 않는다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "발화들은 주로 음식 요청에 대한 무시/경계 설정과 예의 있는 응답을 논할 뿐, 대화가 돈을 요구하는 지속적 요청으로 이어진다는 내용은 직접적으로 표현하지 않는다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "모든 발화는 음식 요청에 대한 무시, 경계 설정, 안전 우려를 말할 뿐이며, 대화가 돈을 요구하는 요청으로 이어진다는 내용은 직접적으로나 암묵적으로도 나타나지 않는다."
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0476_06",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "모든 발화는 거리에서의 대화와 반응에 관한 내용만 담고 있으며, 기차역에서 포스터와 남자친구가 포스터의 기차를 기다리고 있었다는 사실은 언급되지 않았다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "모든 발화는 거리에서의 대화와 반응에 관한 내용만 다루며, 기차역에서 포스터와 남자친구가 포스터의 기차를 기다리고 있었다는 사실은 언급되지 않는다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "모든 발화는 역이나 기차를 기다리는 상황이 아니라, 거리에서의 만남과 반응에 대한 논의만 담고 있다."
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0476_07",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 남자가 처음에 food를 요청했고 이후 poster에게 다가왔다는 취지로 직접 언급한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 남자가 먼저 음식(food)을 요청했고 이후 포스터에게 다가왔다는 사실을 직접 언급하거나 그에 준하는 표현으로 재진술하고 있다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 남자가 처음에 food를 구하며 다가왔고 이후 poster에게 접근했다는 취지로 직접 언급한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_08",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "agent_7와 agent_8이 모두 ‘waving him off’와 불편함/거절 반응을 언급하며, agent_8은 그가 가까이 끌어당긴 대상이 ‘my boundaries’라고만 말해 팩트의 핵심 행동을 직접적으로 완전히 재현하지는 않지만, 주어진 원문 중 이 팩트를 가장 가깝게 표현한 발화는 이 둘이다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2",
+                "agent_4",
+                "agent_5"
+              ],
+              "reason": "여러 발화가 ‘waving him off/ waved him off’, ‘pulled their boyfriend closer’에 해당하는 dismissive 반응과 불편함을 직접 언급하거나 그와 같은 상황을 설명한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 ‘waving him off/ waved him off’와 ‘pulled their boyfriend closer’에 해당하는 장면을 직접 언급하거나, 불편함 속에서 상대를 손짓으로 물리치고 파트너를 더 가까이 끌어당겼다는 동일한 상황을 패러프레이즈로 표현한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_09",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_6",
+                "agent_7",
+                "agent_8",
+                "agent_1",
+                "agent_2",
+                "agent_5"
+              ],
+              "reason": "여러 발화에서 남자가 처음엔 음식만 요청했고, 이후 무시당하거나 손짓으로 거절된 뒤 상황이 악화되거나 ‘escalation’이 있었다고 직접 말해 남자의 욕설과 세 사람 사이의 말다툼을 암시한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 남자가 처음에는 음식만 요청했고, 이후 무시당한 뒤에야 공격적으로 변하거나 상황이 악화되었다고 서술해, 그가 욕설을 했고 세 사람 사이에 말싸움이 벌어졌다는 취지를 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_6",
+                "agent_7",
+                "agent_8",
+                "agent_1",
+                "agent_2",
+                "agent_5"
+              ],
+              "reason": "여러 발화에서 남자가 처음엔 음식만 요청했고, 이후 무시/손짓 같은 반응 뒤에 상황이 악화되거나 대립이 생겼다고 서술해 사실상 언쟁의 발생을 표현한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_10",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 ‘waving him off’, ‘dismissive/dehumanizing’, ‘things escalated after your initial reaction’처럼 초기 반응이 상황을 악화시켰다고 직접 말해, 그 반응이 분노를 잃게 했다는 취지를 암묵적으로 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 ‘waving him off’, ‘dismissive’, ‘escalation’, ‘set things off on the wrong foot’처럼 반응이 상황을 악화시켰다고 말해 사실상 감정을 잃고 격해졌음을 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 ‘waving him off’, ‘dismissive’, ‘dehumanizing’, ‘escalation’ 등으로 그 상황이 상대를 무시한 반응을 낳았다고 직접 말해, confrontation이 poster의 감정 폭발/격앙된 반응을 유발했다는 취지가 표현되어 있다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_11",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "모든 발화가 남자의 요청을 무시하거나 손을 내젓는 반응이 무례·비인간적이었다고 말하며, 그 행동이 잘못됐고 남자의 존엄을 해쳤다는 취지를 명시적으로 또는 패러프레이즈로 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "모든 발화가 남자의 요청을 무시하거나 차갑게 대응한 점이 무례·비인간적이었다고 말하며, 여러 에이전트가 그 행동이 잘못됐다고 평가해 팩트를 명시적 또는 암묵적으로 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "여러 에이전트가 남자가 음식만 요청했고, 무시하거나 손짓으로 거절한 반응이 무례하거나 비인간적으로 느껴졌으며, 정중한 인정이 필요했다고 말해 사실의 핵심인 ‘행동이 잘못되었고 남자를 덜 인간적으로 느끼게 했다’를 표현했다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_12",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "모든 발화가 원글 작성자가 상황에 대해 판단을 구했고, 다수는 YTA/you were in the wrong처럼 그 판단에 응답했다고 명시하거나 암묵적으로 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "여러 발화에서 원글 작성자가 ‘YTA/you were in the wrong’인지, 즉 자신이 잘못했는지에 대한 판단을 논의하고 있어 Reddit에 verdict를 구한 상황이 명시적·암묵적으로 표현된다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "모든 발화가 원래 상황을 ‘당신이 잘못했는지(YTA/TA 여부)’에 대해 Reddit의 판단을 구한 맥락으로 직접 언급하거나 그에 준하는 표현을 사용한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "facts": [
+        {
+          "fact_id": "fact_ethics_0476_01",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "발화들에는 도시에서의 불편함이나 과거 부정적 경험은 나오지만, 포스터가 '큰 도시에서 대규모 노숙자 인구가 있는 곳에서 일한다'는 사실은 명시되거나 충분히 뒷받침되지 않는다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 ‘in the city’, ‘past negative experiences in the city’, ‘frequent city encounters’처럼 도시에서의 경험을 전제하고 있어 큰 도시에서 일한다는 점이 암묵적으로 드러나며, ‘homeless man’이 등장해 노숙자가 많은 도시 맥락도 함께 표현된다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 ‘in the city’, ‘past negative experiences in the city’, ‘frequent city encounters’처럼 도시에서의 경험을 전제하고 있어, 화자가 큰 도시에서 일한다는 점이 암묵적으로 표현된다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_02",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "모든 발화는 남성이 음식만 요청했고 무시당한 뒤 상황이 악화됐다는 점만 언급하며, 포스터가 노숙자들에게 돈이나 음식을 자주 요청받고 그들 중 많은 사람을 알아본다는 내용은 나오지 않는다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "모든 발화는 남성이 음식만 요청했고 무시당한 뒤 상황이 악화됐다는 점만 다루며, 화자가 노숙자들에게 자주 돈이나 음식을 요청받고 그들 중 많은 사람을 알아본다는 내용은 없다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "모든 발화는 남성이 음식만 요청했고 무시당한 뒤 상황이 악화됐다는 점만 언급하며, 포스터가 노숙자들에게 돈이나 음식을 자주 요청받고 그들 중 많은 사람을 알아본다는 내용은 없다."
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0476_03",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "어느 발화도 포스터가 이전에 노숙인들에게 수용적이려고 시도했다는 과거 행동을 직접적으로 언급하지 않고, 대신 이번 상황에서의 경계 설정과 공감 여부만 다룬다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "The round discusses the poster’s reaction to a homeless man asking for food and whether they were dismissive, but it does not say the poster had previously tried to be receptive to homeless individuals."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "어느 발화도 포스터가 이전에 노숙인들에게 수용적이려고 시도했다는 과거 행동을 직접적으로 말하지 않고, 대신 이번 상황에서의 경계 설정과 공감 부족만 언급한다."
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0476_04",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "모든 발화가 과거 부정적 경험이나 안전 우려로 인해 경계하게 되었다고 말하며, 상대의 공격성은 없었지만 잠재적 위험을 우려해 조심했다는 취지를 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "모든 발화가 과거 부정적 경험이나 안전 우려로 인해 경계하게 되었다고 말하며, 특히 상대의 공격성 여부를 즉시 예측할 수 없다는 취지로 조심스러웠음을 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "모든 발화가 과거 부정적 경험이나 안전 본능 때문에 경계하게 되었다고 말하며, 상대의 공격성은 처음엔 없었고 이후 반응을 통해 상황이 악화되었다고 서술해 ‘과거 개인적·목격 경험이 예측 불가능한 공격성 때문에 조심하게 만들었다’는 취지를 표현한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_05",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "모든 발화는 안전, 경계 설정, 무례한 반응, 그리고 상대가 음식만 요청했다는 점을 말하지만, 대화가 돈에 대한 지속적인 요청으로 이어진다는 내용은 직접적으로나 암묵적으로도 표현하지 않는다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "모든 발화는 안전, 경계, 무례한 반응, 그리고 사과나 짧은 응답의 필요성을 말할 뿐, 대화가 돈에 대한 지속적인 요청으로 이어져서 피했다는 내용은 직접적으로나 암묵적으로도 표현하지 않는다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "모든 발화는 음식 요청, 무시한 반응, 안전/경계, 공손한 응답의 필요성을 말하지만 대화가 돈을 지속적으로 요구하게 된다는 내용은 직접적·암묵적으로도 나타나지 않는다."
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0476_06",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "모든 발화는 식사 요청, 무시한 반응, 안전/경계 설정만 다루며 기차역에서 포스터와 남자친구가 포스터의 기차를 기다리고 있었다는 내용은 직접적·간접적으로도 나타나지 않는다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "모든 발화는 음식 요청, 무시한 반응, 안전/경계에 대해서만 말하며 기차역에서 포스터와 남자친구가 포스터의 기차를 기다리고 있었다는 내용은 없다."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "모든 발화는 식사 요청, 안전, 무시한 반응과 그에 따른 평가만 다루며, 역이나 기차를 기다리는 상황은 직접적으로도 암묵적으로도 언급하지 않는다."
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0476_07",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "모든 발화가 남성이 처음에는 음식(food)을 요청했고 이후 포스터에게 접근/반응이 이어졌다는 취지를 명시적으로 말하고 있다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 ‘the man just asked for food’, ‘the homeless man’s initial request was for food’, ‘asked for food and then approached/waved off’처럼 남성이 먼저 음식 요청을 했고 이후 poster에게 접근하거나 반응을 받았다는 점이 직접적으로 표현된다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 ‘the man just asked for food’, ‘the homeless man’s initial request was for food’, 또는 ‘asked for food and then approached/waved off’처럼 노숙인이 먼저 음식(식량)을 구하러 다가왔고 이후 poster에게 접근했다는 내용이 직접적으로 표현된다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_08",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 ‘waving him off/ the man off’와 ‘pulling their boyfriend closer’에 해당하는 반응이 함께 언급되며, 특히 agent_4가 ‘waving him off’와 함께 상대를 더 가까이 끌어당겼다는 취지로 서술해 팩트를 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "모든 발화가 ‘불편함/경계심 때문에 그를 손짓으로 물리치고( waved him off ) 아무런 인정 없이 대응했다’는 취지로, 팩트의 핵심 행동인 그를 물리치고 남자친구를 더 가까이 끌어당겼다는 점을 직접적으로 뒷받침한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "모든 발화가 ‘불편함/경계심 때문에 그를 손짓으로 물리치고( waved him off ) 남자친구를 더 가까이 끌어당겼다’는 취지의 반응을 직접 또는 사실상 동일하게 언급한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_09",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_6",
+                "agent_7",
+                "agent_8",
+                "agent_1",
+                "agent_2",
+                "agent_5",
+                "agent_4"
+              ],
+              "reason": "여러 발화에서 남자가 먼저 음식만 요청했고, 이후 무시당한 반응 뒤에 상황이 악화되었다고 말해 사실상 언쟁의 전개를 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 남자가 먼저 음식만 요청했고, 이후 화자의 반응 때문에 상황이 더 격해졌다고 말해 사실상 언쟁의 전개를 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8",
+                "agent_1",
+                "agent_2",
+                "agent_4"
+              ],
+              "reason": "여러 발화에서 남자가 먼저 음식만 요청했고, 이후 화자의 반응(무시/손짓) 뒤에 상황이 악화되었다고 말해 사실상 언쟁의 전개를 표현한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_10",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "모든 발화가 남성이 음식만 요청한 뒤 무시당한 반응 이후에 상황이 악화되었다고 서술해, 그 충돌이 화를 내게 했거나 감정을 격화시켰음을 암묵적으로 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 ‘그가 내 반응/무시 이후에만 화를 내거나 상황이 악화됐다’고 직접 말해, 대치가 포스터의 감정 폭발을 유발했음을 표현한다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8",
+                "agent_3",
+                "agent_6",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "모든 발화가 남성이 음식만 요청한 뒤 화자의 무시/손짓 이후에 상황이 악화되었다고 서술해, 그 충돌이 화자의 반응을 격화시켰음을 표현한다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_11",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_6"
+              ],
+              "reason": "여러 발화에서 남자가 무시당해 비인간적으로 느꼈거나 인간다움/존엄이 훼손됐다고 직접 언급해, 남편이 행동이 잘못되었다는 취지가 표현되었다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_6",
+                "agent_7",
+                "agent_8",
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "여러 발화에서 반응이 무례하거나 비인간적으로 느껴졌고 상대의 인간성/존엄을 해쳤다고 직접 언급하지만, 'boyfriend'가 그 행동이 잘못됐다고 주장했다는 내용은 원문에 없다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3"
+              ],
+              "reason": "agent_3 explicitly says the reaction was 'dehumanizing,' which directly expresses that the man was made to feel less than human, and also states it was wrong/YTA for how it was handled."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0476_12",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "라운드 발화들은 모두 ‘남자를 어떻게 대했는지’와 그에 대한 YTA/경계 설정을 논할 뿐, Reddit에 판정을 구했다는 사실은 직접적으로나 암묵적으로도 표현하지 않는다."
+            },
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "All listed agents explicitly refer to the poster’s reaction to the man’s request and judge how the poster handled it, which directly implies the poster asked Reddit for a verdict on whether they were wrong."
+            },
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "모든 발화는 남성이 음식만 요청했고 무시당한 뒤 상황이 악화되었다는 점과 응답 방식의 적절성만 다루며, 원문 어디에도 ‘Reddit에 자신이 틀렸는지’ 물었다는 내용은 없다."
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        }
+      ]
+    }
+  ],
+  "recall_probe": [],
+  "summary": {
+    "far_by_stage": [
+      {
+        "stage": 0,
+        "far_system": 0.0,
+        "far_critical": 0.0
+      },
+      {
+        "stage": 1,
+        "far_system": 0.25,
+        "far_critical": 0.2
+      },
+      {
+        "stage": 2,
+        "far_system": 0.25,
+        "far_critical": 0.2
+      },
+      {
+        "stage": 3,
+        "far_system": 0.4167,
+        "far_critical": 0.3
+      }
+    ],
+    "far_system": 0.4167,
+    "far_agent_mean": null,
+    "far_critical": 0.3,
+    "judge_health": {
+      "n_calls": 144,
+      "n_parse_fail": 0,
+      "n_blank_utterances": 0
+    }
+  }
+}
