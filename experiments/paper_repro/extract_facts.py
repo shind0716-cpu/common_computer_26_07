@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import contextlib
+import hashlib
 import io
 import json
 import sys
@@ -42,16 +43,31 @@ def obtain_json(data: str):
         return data
 
 
+class CheckpointMismatch(RuntimeError):
+    """캐시 행의 실행 좌표가 현재 실행과 다르다 — 낡은 응답 재사용 금지(즉사)."""
+
+
 class CallCheckpoint:
-    """tag 단위 원문 체크포인트와 이번 실행의 전역 신규 호출 상한."""
+    """tag 단위 원문 체크포인트와 이번 실행의 전역 신규 호출 상한.
+
+    캐시 행은 자기 실행 좌표(model·temperature·n·prompt_ver·prompt_sha256)를 지니고,
+    적중 시 현재 좌표와 대조해 불일치면 즉사한다(PR#34 리뷰: tag 동일·좌표 상이의
+    낡은 응답 재사용 차단). prompt_sha256 부재는 구 기록(1차 트랜치 79콜) 호환으로
+    허용하되 부재=모름 — 있는 좌표(model·temperature·n·prompt_ver)는 전부 대조한다.
+    """
 
     def __init__(self, path: Path, max_calls: int,
                  responder: Callable[[str], str] | None = None,
-                 prompt_ver: str | None = None):
+                 prompt_ver: str | None = None,
+                 model: str = MODEL, temperature: float = TEMPERATURE, n: int = N):
         self.path = Path(path)
         self.max_calls = max_calls
+        self.model = model
+        self.temperature = temperature
+        self.n = n
         self.responder = responder or (
-            lambda prompt: llm.obtain_response(prompt, model=MODEL, temperature=TEMPERATURE))
+            lambda prompt: llm.obtain_response(prompt, model=self.model,
+                                               temperature=self.temperature))
         self.prompt_ver = prompt_ver or authors_prompts.version_tag()
         self.calls_this_run = 0
         self.records: dict[str, dict] = {}
@@ -61,19 +77,37 @@ class CallCheckpoint:
                     rec = json.loads(line)
                     self.records[rec["tag"]] = rec
 
+    def _verify_identity(self, rec: dict, prompt: str, tag: str) -> None:
+        current = {"model": self.model, "temperature": self.temperature,
+                   "n": self.n, "prompt_ver": self.prompt_ver}
+        mismatch = {k: {"cached": rec.get(k), "current": v}
+                    for k, v in current.items() if rec.get(k) != v}
+        if "prompt_sha256" in rec:
+            want = hashlib.sha256(prompt.encode("utf-8")).hexdigest()
+            if rec["prompt_sha256"] != want:
+                mismatch["prompt_sha256"] = {"cached": rec["prompt_sha256"], "current": want}
+        if mismatch:
+            raise CheckpointMismatch(
+                f"체크포인트 좌표 불일치({tag}): {json.dumps(mismatch, ensure_ascii=False)} "
+                f"— 파일 확인: {self.path}")
+
     def call(self, prompt: str, tag: str) -> str:
         if tag in self.records:
+            self._verify_identity(self.records[tag], prompt, tag)
             return self.records[tag]["raw"]
         if self.calls_this_run >= self.max_calls:
             raise RuntimeError(
                 f"전역 호출 상한 {self.max_calls} 도달 — 중단(호출 원문 체크포인트 보존됨)")
         raw = self.responder(prompt)
         self.calls_this_run += 1
-        rec = {"tag": tag, "model": MODEL, "temperature": TEMPERATURE, "n": N,
-               "prompt_ver": self.prompt_ver, "raw": raw}
+        rec = {"tag": tag, "model": self.model, "temperature": self.temperature,
+               "n": self.n, "prompt_ver": self.prompt_ver,
+               "prompt_sha256": hashlib.sha256(prompt.encode("utf-8")).hexdigest(),
+               "raw": raw}
         self.path.parent.mkdir(parents=True, exist_ok=True)
         with self.path.open("a", encoding="utf-8") as fh:
             fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
+            fh.flush()
         self.records[tag] = rec
         return raw
 

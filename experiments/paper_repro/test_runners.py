@@ -66,7 +66,9 @@ class ExtractFactsTests(unittest.TestCase):
             self.assertEqual(calls.call("prompt", "x|initial"), '["ok"]')
             resumed = extract.CallCheckpoint(path, max_calls=0,
                                              responder=lambda prompt: self.fail("must resume"))
-            self.assertEqual(resumed.call("ignored", "x|initial"), '["ok"]')
+            # 같은 프롬프트로 재개해야 한다 — 다른 프롬프트 적중은 이제 좌표 불일치로 즉사
+            # (PR#34 리뷰 반영, CheckpointIdentityTests 참조).
+            self.assertEqual(resumed.call("prompt", "x|initial"), '["ok"]')
             record = json.loads(path.read_text(encoding="utf-8").strip())
             self.assertEqual(record["raw"], '["ok"]')
             self.assertEqual(seen, ["prompt"])
@@ -95,12 +97,17 @@ class ExtractFactsTests(unittest.TestCase):
                 (data_root / "issues" / f"{issue_id}.json").write_text(
                     json.dumps(issue), encoding="utf-8")
 
+            # 실제 원장 형식대로 좌표를 지닌 레코드 — 좌표 없는 행은 이제 재사용이
+            # 거부되므로(PR#34 리뷰) 픽스처도 현실 형식을 따른다.
+            coords = {"model": extract.MODEL, "temperature": extract.TEMPERATURE,
+                      "n": extract.N,
+                      "prompt_ver": extract.authors_prompts.version_tag()}
             records = [
-                {"tag": "issue_ethics_0001|initial", "raw": "not json"},
-                {"tag": "issue_ethics_0002|initial", "raw": '["raw fact"]'},
-                {"tag": "issue_ethics_0002|refine", "raw":
+                {"tag": "issue_ethics_0001|initial", **coords, "raw": "not json"},
+                {"tag": "issue_ethics_0002|initial", **coords, "raw": '["raw fact"]'},
+                {"tag": "issue_ethics_0002|refine", **coords, "raw":
                  '["one", "two", "three", "four", "five"]'},
-                {"tag": "issue_ethics_0002|select", "raw": "[1, 0, 0, 0, 0]"},
+                {"tag": "issue_ethics_0002|select", **coords, "raw": "[1, 0, 0, 0, 0]"},
             ]
             raw_path = data_root / "raw_calls" / "extract_facts_calls.jsonl"
             raw_path.write_text(
@@ -163,3 +170,139 @@ class AssignPerspectiveTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class CheckpointIdentityTests(unittest.TestCase):
+    """PR#34 리뷰 회귀 — 캐시 행은 자기 실행 좌표를 지니고, 적중 시 불일치면 즉사."""
+
+    def test_hit_rejects_stale_coordinates(self):
+        # 리뷰 재현 시나리오 그대로: prompt_ver=old·model=old 행을 새 좌표로 적중
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "calls.jsonl"
+            stale = {"tag": "x|initial", "model": "old-model", "temperature": 0.7,
+                     "n": 1, "prompt_ver": "old", "raw": "STALE"}
+            path.write_text(json.dumps(stale) + "\n", encoding="utf-8")
+            cp = extract.CallCheckpoint(path, max_calls=0, prompt_ver="new",
+                                        responder=lambda p: self.fail("호출 금지"))
+            with self.assertRaises(extract.CheckpointMismatch):
+                cp.call("prompt", "x|initial")
+
+    def test_hit_rejects_changed_prompt_when_hash_present(self):
+        # 변형: 좌표는 전부 같고 프롬프트만 다름 — prompt_sha256 으로 걸린다
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "calls.jsonl"
+            cp = extract.CallCheckpoint(path, max_calls=1, prompt_ver="v",
+                                        responder=lambda p: "FRESH")
+            cp.call("prompt A", "x|initial")
+            resumed = extract.CallCheckpoint(path, max_calls=0, prompt_ver="v",
+                                             responder=lambda p: self.fail("호출 금지"))
+            with self.assertRaises(extract.CheckpointMismatch):
+                resumed.call("prompt B", "x|initial")
+
+    def test_hit_accepts_legacy_record_without_prompt_hash(self):
+        # 1차 트랜치 79콜 형식(prompt_sha256 부재) — 있는 좌표가 다 맞으면 재사용 허용
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "calls.jsonl"
+            legacy = {"tag": "x|initial", "model": extract.MODEL,
+                      "temperature": extract.TEMPERATURE, "n": extract.N,
+                      "prompt_ver": "v", "raw": "KEPT"}
+            path.write_text(json.dumps(legacy) + "\n", encoding="utf-8")
+            cp = extract.CallCheckpoint(path, max_calls=0, prompt_ver="v",
+                                        responder=lambda p: self.fail("호출 금지"))
+            self.assertEqual(cp.call("any prompt", "x|initial"), "KEPT")
+
+
+class ProbeCheckpointTests(unittest.TestCase):
+    """PR#34 리뷰 회귀 — probe dry/live 격리·매 콜 flush·좌표 대조."""
+
+    def setUp(self):
+        import probe_extract
+        self.probe = probe_extract
+        self.probe._calls = 0
+        self.probe._cap = 0
+        self._old_ck = self.probe._ck_path
+        self.probe._ck_path = None
+
+    def tearDown(self):
+        self.probe._ck_path = self._old_ck
+
+    def test_dry_record_is_flushed_immediately_and_marked(self):
+        with tempfile.TemporaryDirectory() as td:
+            self.probe._ck_path = Path(td) / "probe_calls_dry.jsonl"
+            ckpt = {}
+            self.probe.call("P", "gpt-5", "id|gpt-5|initial", ckpt, dry=True)
+            rec = json.loads(self.probe._ck_path.read_text(encoding="utf-8").strip())
+            self.assertEqual(rec["mode"], "dry")
+            self.assertEqual(rec["raw"], '["dry"]')
+
+    def test_live_hit_on_dry_record_dies(self):
+        # 리뷰 재현 시나리오: dry 잔재를 live 가 캐시 적중 — API 0회 재사용 대신 즉사
+        ver = self.probe.authors_prompts.version_tag()
+        ckpt = {"t": {"tag": "t", "mode": "dry", "prompt_ver": ver, "raw": '["dry"]'}}
+        with self.assertRaises(SystemExit):
+            self.probe.call("P", "gpt-5", "t", ckpt, dry=False)
+
+    def test_legacy_live_record_without_mode_is_reused(self):
+        # 프로브 40콜 구 기록(mode 부재=live) — prompt_ver 일치 시 재사용 허용
+        ver = self.probe.authors_prompts.version_tag()
+        ckpt = {"t": {"tag": "t", "prompt_ver": ver, "raw": "KEPT"}}
+        self.assertEqual(self.probe.call("P", "gpt-5", "t", ckpt, dry=False), "KEPT")
+
+    def test_hit_rejects_prompt_ver_drift(self):
+        ckpt = {"t": {"tag": "t", "prompt_ver": "delibtrace@old", "raw": "STALE"}}
+        with self.assertRaises(SystemExit):
+            self.probe.call("P", "gpt-5", "t", ckpt, dry=False)
+
+
+class ReuseGateTests(unittest.TestCase):
+    """PR#34 리뷰 회귀 — rehearse_splice 재사용 관문 3종(좌표 증명 없이는 재사용 금지)."""
+
+    @classmethod
+    def setUpClass(cls):
+        import rehearse_splice
+        cls.rs = rehearse_splice
+
+    def _debate(self, td: Path, cfg_sha: str | None) -> Path:
+        dp = td / "debate.jsonl"
+        lines = []
+        if cfg_sha is not None:
+            lines.append(json.dumps({"event": "run_meta",
+                                     "config_ref": {"name": "c.yaml", "sha256": cfg_sha}}))
+        lines.append(json.dumps({"event": "utterance"}))
+        dp.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        return dp
+
+    def test_debate_gate_accepts_match_rejects_mismatch_and_missing_meta(self):
+        import hashlib as _hl
+        with tempfile.TemporaryDirectory() as td:
+            td = Path(td)
+            cfg = td / "c.yaml"
+            cfg.write_text("rounds: 3\n", encoding="utf-8")
+            sha = _hl.sha256(cfg.read_bytes()).hexdigest()
+            self.rs.check_debate_provenance(self._debate(td, sha), cfg)  # 일치 — 통과
+            cfg.write_text("rounds: 4\n", encoding="utf-8")  # 조건 변경 = 다른 지문
+            with self.assertRaises(SystemExit):
+                self.rs.check_debate_provenance(self._debate(td, sha), cfg)
+            with self.assertRaises(SystemExit):  # run_meta 부재 = 모름 → 재사용 거부
+                self.rs.check_debate_provenance(self._debate(td, None), cfg)
+
+    def test_judgment_gate_checks_all_four_coordinates(self):
+        jd = {"issue_id": "i", "run_id": "r",
+              "stages": [{"facts": [{"fact_id": "f1"}, {"fact_id": "f2"}]}] * 4}
+        self.rs.check_judgment_provenance(jd, "i", "r", 4, {"f1", "f2"})  # 통과
+        for bad in (dict(jd, issue_id="other"), dict(jd, run_id="other")):
+            with self.assertRaises(SystemExit):
+                self.rs.check_judgment_provenance(bad, "i", "r", 4, {"f1", "f2"})
+        with self.assertRaises(SystemExit):  # rounds 상이
+            self.rs.check_judgment_provenance(jd, "i", "r", 5, {"f1", "f2"})
+        with self.assertRaises(SystemExit):  # 팩트 집합 상이
+            self.rs.check_judgment_provenance(jd, "i", "r", 4, {"f1", "f3"})
+
+    def test_row_identity_gate(self):
+        ok = {"round": 0, "agent_id": "a", "model": "gpt-5", "temperature": 0.0,
+              "axis": "author_evaluate_fact"}
+        self.rs.check_row_identity(ok, "gpt-5", 0.0, "author_evaluate_fact", Path("x"))
+        for bad in (dict(ok, model="gpt-4.1"), dict(ok, temperature=1.0),
+                    dict(ok, axis="author_evaluate_stance"), {"round": 0, "agent_id": "a"}):
+            with self.assertRaises(SystemExit):
+                self.rs.check_row_identity(bad, "gpt-5", 0.0, "author_evaluate_fact", Path("x"))

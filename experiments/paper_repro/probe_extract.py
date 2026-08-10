@@ -62,13 +62,27 @@ Q_EN_UNIFORM = "Is the author in the wrong in this situation?"       # 영어 �
 MODELS = ["gpt-5", "gpt-mini"]          # gpt-mini -> gpt-5.4-mini
 _calls = 0
 _cap = 0
+_ck_path: Path | None = None            # main 에서 지정 — dry/live 별도 파일
 
 
 def call(inputs: str, model: str, tag: str, ckpt, dry: bool) -> str:
+    """PR#34 리뷰 반영: dry/live 네임스페이스 격리(별도 파일) + 매 성공 호출 직후
+    append+flush(항목 중간 실패 시 유료 결과 유실 방지) + 적중 시 좌표 대조."""
     global _calls
     key = tag
+    mode = "dry" if dry else "live"
     if key in ckpt:
-        return ckpt[key]["raw"]
+        rec = ckpt[key]
+        # 부재=모름: mode/prompt_ver 없는 구 기록(프로브 40콜)은 live 실측으로 허용.
+        if rec.get("mode", "live") != mode:
+            raise SystemExit(
+                f"체크포인트 모드 오염({tag}): 기록={rec.get('mode')} 현재={mode} — "
+                f"dry 잔재가 live 캐시에 섞임. 파일 확인: {_ck_path}")
+        if "prompt_ver" in rec and rec["prompt_ver"] != authors_prompts.version_tag():
+            raise SystemExit(
+                f"체크포인트 prompt_ver 불일치({tag}): 기록={rec['prompt_ver']} "
+                f"현재={authors_prompts.version_tag()} — 낡은 캐시 재사용 금지")
+        return rec["raw"]
     if dry:
         raw = '["dry"]'
     else:
@@ -76,9 +90,15 @@ def call(inputs: str, model: str, tag: str, ckpt, dry: bool) -> str:
             raise RuntimeError(f"전역 호출 상한 {_cap} 도달 — 중단(체크포인트 저장됨)")
         raw = llm.obtain_response(inputs, model=model, temperature=0.0)
         _calls += 1
-    ckpt[key] = {"tag": tag, "model": model, "temperature": 0.0, "n": 1,
-                 "prompt_ver": authors_prompts.version_tag(),
-                 "raw": raw}          # 규약 5 — 원문 그대로
+    rec = {"tag": tag, "model": model, "temperature": 0.0, "n": 1,
+           "prompt_ver": authors_prompts.version_tag(), "mode": mode,
+           "raw": raw}          # 규약 5 — 원문 그대로
+    if _ck_path is not None:
+        _ck_path.parent.mkdir(parents=True, exist_ok=True)
+        with _ck_path.open("a", encoding="utf-8") as fh:
+            fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
+            fh.flush()
+    ckpt[key] = rec
     return raw
 
 
@@ -127,12 +147,19 @@ def main() -> None:
 
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
-    ck_path = out_dir / "probe_calls.jsonl"
+    # dry 는 별도 파일 — live 캐시(probe_calls.jsonl)를 읽지도 쓰지도 않는다(PR#34 리뷰).
+    ck_path = out_dir / ("probe_calls_dry.jsonl" if args.dry else "probe_calls.jsonl")
+    global _ck_path
+    _ck_path = ck_path
     ckpt = {}
     if ck_path.exists():
         for line in ck_path.read_text(encoding="utf-8").splitlines():
             if line.strip():
                 r = json.loads(line)
+                if not args.dry and r.get("mode", "live") != "live":
+                    raise SystemExit(
+                        f"live 체크포인트에 dry 잔재 발견(tag={r['tag']}): {ck_path} — "
+                        "오염 행을 제거하거나 파일을 격리한 뒤 재실행하라")
                 ckpt[r["tag"]] = r
     n_before = len(ckpt)
 
@@ -182,9 +209,7 @@ def main() -> None:
                 r = call(p3, "gpt-5", f"{it['id']}|gpt-5|select|{label}", ckpt, args.dry)
                 rec[f"important_{label}"] = obtain_json(r) if isinstance(obtain_json(r), list) else None
         results.append(rec)
-        with ck_path.open("w", encoding="utf-8") as fh:
-            for v in ckpt.values():
-                fh.write(json.dumps(v, ensure_ascii=False) + "\n")
+        # 파일 기록은 call() 안에서 매 성공 호출 직후 append+flush 로 이미 끝났다.
         print(f"[probe] {it['id'][:28]}… 완료 · 누적 호출 {_calls}/{_cap}")
 
     meta = {"deviations": [f"P-1 max_tokens {_MAX_TOKENS_PROBE} (llm.MAX_TOKENS 2048 완화 — "

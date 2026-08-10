@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import argparse
 import contextlib
+import hashlib
 import io
 import json
 import shutil
@@ -80,6 +81,69 @@ def _validate(path: Path) -> None:
         except SystemExit:
             print(buf.getvalue(), file=sys.stderr, end="")
             raise
+
+
+# --- 재사용 관문 (PR#34 리뷰: 발화 수·파일 존재만으로 다른 조건의 산출물을 조용히
+#     소비하는 결함 차단 — 좌표 대조 후 불일치 즉사) ---------------------------------
+
+def check_debate_provenance(debate_path: Path, cfg_path: Path) -> None:
+    """기존 debate 재사용 전 run_meta.config_ref.sha256 을 현재 config 와 대조한다.
+    run_meta 부재(구 로그)는 '모름'이므로 재사용을 거부한다 — 재사용은 좌표가
+    증명될 때만 허용(부재≠일치)."""
+    first = None
+    for line in debate_path.read_text(encoding="utf-8").splitlines():
+        if line.strip():
+            first = json.loads(line)
+            break
+    if not first or first.get("event") != "run_meta":
+        raise SystemExit(
+            f"debate 재사용 거부: run_meta 부재 — 조건 좌표를 검증할 수 없다: {debate_path}\n"
+            "  다른 run_id 를 쓰거나 파일을 .incomplete-<ts> 로 밀어낸 뒤 재실행하라.")
+    cfg_sha = hashlib.sha256(Path(cfg_path).read_bytes()).hexdigest()
+    ref = first.get("config_ref") or {}
+    if ref.get("sha256") != cfg_sha:
+        raise SystemExit(
+            f"debate 재사용 거부: config 지문 불일치 — 기존 판={ref.get('name')}"
+            f"({str(ref.get('sha256'))[:12]}…) 현재={Path(cfg_path).name}({cfg_sha[:12]}…)\n"
+            "  같은 run_id 로 다른 조건을 돌리려 한 것 — 조건 변경 = 새 run_id/새 yaml.")
+
+
+def check_judgment_provenance(jd: dict, issue_id: str, run_id: str,
+                              expected_stages: int, fact_ids: set[str]) -> None:
+    """기존 judgment 재사용 전 좌표(issue·run·stage 수·팩트 집합)를 대조한다."""
+    problems = []
+    if jd.get("issue_id") != issue_id:
+        problems.append(f"issue_id {jd.get('issue_id')}≠{issue_id}")
+    if jd.get("run_id") != run_id:
+        problems.append(f"run_id {jd.get('run_id')}≠{run_id}")
+    stages = jd.get("stages") or []
+    if len(stages) != expected_stages:
+        problems.append(f"stage 수 {len(stages)}≠{expected_stages}")
+    if stages:
+        got = {f["fact_id"] for f in stages[0].get("facts", [])}
+        if got != fact_ids:
+            problems.append(f"팩트 집합 상이(기존 {len(got)}개/현재 {len(fact_ids)}개)")
+    if problems:
+        raise SystemExit(
+            "judgment 재사용 거부: " + " · ".join(problems) +
+            " — 다른 조건의 판정을 조용히 소비하지 않는다. 파일을 밀어내고 재실행하라.")
+
+
+def check_row_identity(rec: dict, model: str, temperature: float, axis: str,
+                       path: Path) -> None:
+    """축/입장 체크포인트 행 재사용 전 좌표 대조. 기존 원장(pilot1)부터 세 필드가
+    전부 있으므로 부재도 불일치로 처리한다(재사용은 좌표가 증명될 때만)."""
+    mismatch = []
+    if rec.get("model") != model:
+        mismatch.append(f"model {rec.get('model')}≠{model}")
+    if rec.get("temperature") != temperature:
+        mismatch.append(f"temperature {rec.get('temperature')}≠{temperature}")
+    if rec.get("axis") != axis:
+        mismatch.append(f"axis {rec.get('axis')}≠{axis}")
+    if mismatch:
+        raise SystemExit(
+            f"체크포인트 행 좌표 불일치({rec.get('round')},{rec.get('agent_id')}): "
+            + " · ".join(mismatch) + f" — 파일 확인: {path}")
 
 
 def main() -> None:
@@ -153,8 +217,9 @@ def main() -> None:
                     _n = sum(1 for l in _dp.read_text(encoding="utf-8").splitlines()
                              if l.strip() and json.loads(l).get("event") == "utterance")
                     if _n == _expected:
+                        check_debate_provenance(_dp, cfg_path)  # 좌표 불일치면 즉사
                         debate_path = _dp
-                        print(f"① 기존 debate 재사용({_n}발화) — 재생성 방지 가드, 콜 0")
+                        print(f"① 기존 debate 재사용({_n}발화) — 재생성 방지 가드+config 지문 일치, 콜 0")
                     else:
                         raise SystemExit(
                             f"debate 파일이 부분 상태({_n}/{_expected}발화): {_dp}\n"
@@ -178,8 +243,13 @@ def main() -> None:
             jp = paths.judgment(issue_id, run_id)
             if args.live and jp.exists():
                 # 재판정 방지 가드 — judge 단계엔 자체 체크포인트가 없다(같은 실사고).
+                # PR#34 리뷰: 존재만으로 재사용하지 않고 좌표를 대조한다.
                 jd_ours = json.loads(jp.read_text(encoding="utf-8"))
-                print("② 기존 judgment 재사용 — 재판정 방지 가드, 콜 0")
+                check_judgment_provenance(
+                    jd_ours, issue_id, run_id,
+                    expected_stages=n_utt // len(assignment["agents"]),
+                    fact_ids=set(facts_by_id))
+                print("② 기존 judgment 재사용 — 재판정 방지 가드+좌표 일치, 콜 0")
             else:
                 cfg = judge_mod._load_config(cfg_path)
                 jd_ours = judge_mod.judge_debate(issue_id, run_id, cfg, offline=not args.live)
@@ -223,6 +293,8 @@ def main() -> None:
                     for u in utts:
                         key = (u["round"], u["agent_id"])
                         if key in done:
+                            check_row_identity(done[key], "gpt-5", 0.0,
+                                               "author_evaluate_fact", ck)
                             rows.append(done[key])
                             continue
                         raw = llm.obtain_response(
@@ -283,6 +355,8 @@ def main() -> None:
                     for u in utts:
                         key = (u["round"], u["agent_id"])
                         if key in sdone:
+                            check_row_identity(sdone[key], "gpt-5", 0.0,
+                                               "author_evaluate_stance", sck)
                             srows.append(sdone[key])
                             continue
                         prompt = (authors_prompts.load("evaluate_stance")
