@@ -553,3 +553,59 @@ default, 모델)은 확장 시 좌표 재검 대상. 논문의 "입장 불변"�
   강제하지 못한다. 승인 시 (a) 공유 tranche counter로 346을 강제하거나 (b) 이슈별 상한
   합 348을 정본으로 명시해 어느 상한이 승인 경계인지 하나로 고정해야 한다.
 - 갱신된 상대 리뷰 상태: **C-1~C-4·R-1 및 M-2 해소 전 live 금지**.
+
+## 2026-08-11 | Claude(요한) | 재검수 6건 처리 — 우리 판 러너 신설(compare_ours.py)·재재검수 요청 (실호출 0)
+
+- 등급: 차단급 4건·회귀 1건·중간 1건 전부 수용. **처리 방식 전환(요한 결정 8/11):
+  리허설 러너(rehearse_splice) 편집을 중단하고 비교 실험 전용 러너를 신설**했다 —
+  C-1~C-4·R-1 이 전부 "리허설용으로 만든 파일을 편집해 live 경로를 늘린" 데서 나온
+  유산 결함이라, 자리를 옮겨 하나씩 고치는 대신 유산이 없는 자리에서 다시 지었다.
+- 산출: `compare_ours.py` 신설 · `rehearse_splice.py` 리허설 지위 복원(24f5ed4 로 revert
+  — --author-only 제거) + 소수정 2건 · `test_compare_ours.py` 13종(재검수 6건이 각각
+  회귀 테스트) · PREREG §7 정정 append(명령 정본·M-2 확정).
+
+### 건별 해소 (G2 — 주장마다 코드 줄)
+
+- **C-1 (깨끗한 루트 완주)**: 신설 러너는 모든 쓰기 전 부모 생성 —
+  `compare_ours.py:347`(judgment)·`:387`(stance)·CallGate 생성자(`:104`)·체크포인트는
+  `paths.raw_calls` 반환 경로에 gate 가 먼저 mkdir. **수용 기준의 통합 테스트**: 필수
+  입력 3종만 있는 빈 temp 루트에서 발화→judgment→stance→validate 완주
+  (`test_compare_ours.py:57-73` — debate·judgment·stance·체크포인트 2종·원장 실존 확인).
+- **C-2 (원자료 자동 삭제)**: 구조적으로 제거 — 신설 러너에 TemporaryDirectory·사본
+  경로가 아예 없다. 항상 `--source-data` 에 직접 산출(보존), 기본 모드는 계획(0콜·
+  무기록)이라 "실행했더니 지워졌다"가 불가능. **복사 가능한 전체 명령 3건**은 PREREG §7
+  정본으로 append(run_id `compare2_{issue}` — 새 config 의 새 run identity 포함).
+  계획 모드가 실행 전 출력 경로 6종·기존 체크포인트 행 수를 열거한다(수용 기준).
+- **C-3 (FAR=1.0 폐기)**: 신설 러너에 퇴화 assert 없음 — 극단값은 G5 표시와 함께
+  보고만 한다(`compare_ours.py:353-356`). **회귀 테스트**: 전 발화 `matched_fact_ids=[]`
+  → far_by_stage 전부 1.0 으로 완주·judgment 작성(`test_compare_ours.py:90-101`).
+  rehearse 쪽 같은 계열 assert 2개는 스텁 모드 한정으로 축소(`rehearse_splice.py:267,336`
+  — 스텁은 팩트 2개를 되뇌므로 전부 소실=접합 실패가 맞고, live 는 검사하지 않는다).
+- **C-4 (체크포인트 정체성)**: 파일명에 issue 포함(`compare_axis_{issue}_{run}.jsonl` ·
+  `compare_stance_…`, `compare_ours.py:209-210`) + 행마다 좌표 10종(issue_id·run_id·
+  model·temperature·n·axis·prompt_ver·prompt_sha256·facts_sha256·config_sha256) 저장,
+  재사용은 전 좌표 일치 시에만 — 부재도 불일치(`check_full_identity`, `:126-138`;
+  레거시 허용 없음 — 이 형식은 태어날 때부터 전 좌표). **회귀 테스트**: 완주 후
+  행의 issue_id 를 바꿔 재실행 → 즉사(`test_compare_ours.py:166-183`).
+- **R-1 (기존 경로 NameError)**: rehearse_splice 를 24f5ed4 로 revert — `jp` 초기화
+  복원(`rehearse_splice.py:243`). **canonical 테스트**: 기본 픽스처 CLI(main()) 완주를
+  suite 에 고정(`test_compare_ours.py:195-202`) — "suite 통과가 CLI 실행을 대변하지
+  못한다"는 재검수 지적의 이행으로, 이제 기본 경로·비교 경로 모두 CLI 수준 회귀가 있다.
+- **M-2 (상한 불일치)**: **승인 경계 = 블록 346 확정**(PREREG §7). 강제 장치 =
+  append 전용 콜 원장 `raw_calls/compare_ours_call_ledger.jsonl`, 프로세스 간 공유 —
+  예약(원장 append)이 호출보다 먼저이고 346 도달 시 API 전 즉사(`compare_ours.py:107-124`),
+  실행 전 사전 검사(잔액+계획>346 즉사, `:265-269`)도 있다. 이슈별 116 은 보조 상한
+  (`:258-260`). **테스트**: 원장 300 사전 기입 → 계획 96 과 합이 346 초과 → 스텁 호출
+  0 으로 즉사(`test_compare_ours.py:139-152`) + reserve 단위 2종.
+
+### 검증 증거 (실호출 0)
+
+- 트랙 **70종**(기존 57 + 신규 13) 전건 통과 · 리포 run_smoke **311종** 전건 통과 ·
+  `py_compile` 3파일 통과 · `git diff --check` 통과.
+- **계획 실측(0콜)**: 비교 3건 각각 `발화 32 + 저자 축 32 + stance 32 = 96 (상한 116)` ·
+  블록 원장 0/346 → 96/346 예상 · 기록 0 · debate absent·체크포인트 0행 정상 인식.
+- 스텁 실행 96콜 경로: 발화·판정·stance 전 콜이 gate 를 경유(원장 96행 실측,
+  `test_compare_ours.py:57-73`) — 재개 시 신규 0콜·원장 불변(`:75-88`).
+- 상대 리뷰 상태: **GPT-sol 재재검수 요청** — 신설 러너 관점: ① 96콜 좌표가 저자
+  판(발화 gpt-4.1/1.2, 판정 gpt-5/0/n1)과 §1-2 대로 정합한지 ② gate 우회 경로가
+  없는지(엔진 내부 호출 포함) ③ 계획/실행 모드 경계. 통과 시 실호출 승인 관문으로.

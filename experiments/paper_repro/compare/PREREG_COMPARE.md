@@ -124,3 +124,46 @@ initial` ③ `python evaluation.py --dataset scruples --model gpt --structure fu
 (4시점 판정은 initial·full 두 번 실행이 필요 — evaluation.py:63-78). 각 단계 후 산출물
 수 확인, 재개 전 manifest sha·index 0/1/2 재대조(저자 코드 재개는 길이 기반 —
 좌표 지문 없음).
+
+---
+
+## 7. 정정 append — 재검수(C-1~C-4·R-1·M-2) 반영: 우리 판 실행기 교체 (2026-08-11)
+
+**경로 정정**: §6 B-1 의 `rehearse_splice --author-only` 경로는 재검수에서 차단급 4건
+(C-1 산출물 쓰기 실패·C-2 원자료 자동 삭제·C-3 극단값 폐기·C-4 체크포인트 이슈 미구분)
++ 회귀 1건(R-1)이 확인되어 폐기한다. 우리 판 실행기는 **`compare_ours.py` 신설**
+(비교 실험 전용 — 리허설 러너 편집 중단, 요한 방향 결정 8/11). rehearse_splice 는
+리허설 지위로 복원(--author-only 제거·R-1 해소)했다. 실행 계획·좌표는 변경 없음:
+①발화 + ⑤저자 축 + ⑤′stance = 96콜/건, config v2, run_id 는 `compare2_{issue}`
+(v2 config 의 새 run identity — 재검수 C-2 수용 기준).
+
+**실행 명령 정본 (복사 가능 전문 — C-2 수용 기준)**: cwd = 리포 루트.
+
+계획 확인(0콜·무기록 — 실행 전 의무):
+```
+PYTHONUTF8=1 python experiments/paper_repro/compare_ours.py --issue issue_ethics_0543 --run-id compare2_0543 --config experiments/paper_repro/configs/compare_v2.yaml --source-data experiments/paper_repro/data
+```
+실호출(요한 승인 후 · 이슈별 1회, 0543 → 0248 → 0262 순):
+```
+PYTHONUTF8=1 python experiments/paper_repro/compare_ours.py --issue issue_ethics_0543 --run-id compare2_0543 --config experiments/paper_repro/configs/compare_v2.yaml --source-data experiments/paper_repro/data --live --max-calls 116
+```
+```
+PYTHONUTF8=1 python experiments/paper_repro/compare_ours.py --issue issue_ethics_0248 --run-id compare2_0248 --config experiments/paper_repro/configs/compare_v2.yaml --source-data experiments/paper_repro/data --live --max-calls 116
+```
+```
+PYTHONUTF8=1 python experiments/paper_repro/compare_ours.py --issue issue_ethics_0262 --run-id compare2_0262 --config experiments/paper_repro/configs/compare_v2.yaml --source-data experiments/paper_repro/data --live --max-calls 116
+```
+러너는 임시 디렉터리·사본 없이 `--source-data` 에 직접 산출한다(자동 삭제 경로 부재).
+계획 모드가 실행 전 출력 경로 6종과 기존 체크포인트 행 수를 열거한다. 재개 시 debate 는
+config 지문, 체크포인트 행은 전 좌표(issue·run·model·temp·n·axis·prompt_ver·
+prompt_sha256·facts_sha256·config_sha256) 일치 시에만 재사용된다(C-4).
+
+**M-2 확정 — 승인 경계는 블록 상한 346** (`ceil(288×1.2)`, §4·§6 표의 우리 판 블록 그대로).
+이슈별 116 은 보조 상한이다. 강제 장치: append 전용 콜 원장
+`data/raw_calls/compare_ours_call_ledger.jsonl` (행 1줄 = 예약 1콜, 프로세스 간 공유) —
+매 콜 예약이 호출보다 먼저이며 원장 346 도달 시 API 호출 전 즉사, 실행 전 사전 검사
+(원장 잔액 + 계획 > 346 즉사)도 수행한다. 이로써 "116×3=348 우회"는 성립하지 않는다.
+
+**계획 실측 (2026-08-11 · 실호출 0)**: 3건 각각 `발화 32 + 저자 축 32 + stance 32 = 96
+(이슈 상한 116)` · 블록 원장 0/346 → 실행 후 96/346 예상 · 기록 0. G1 합계는 §6 정본
+(696/상한 836, 매핑 TBD) 변경 없음.

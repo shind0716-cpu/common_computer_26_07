@@ -158,10 +158,6 @@ def main() -> None:
                     help="config yaml (조건 변경 = 새 yaml)")
     ap.add_argument("--live", action="store_true",
                     help="스텁 대신 실호출(발화·판정 양축). --max-calls 필수, 승인 후에만")
-    ap.add_argument("--author-only", action="store_true",
-                    help="비교 실험 전용(역리뷰 B-1): ②우리 축 판정·③ledger·④창을 건너뛰고 "
-                         "①발화+⑤저자 축+⑤′stance만 — 건당 96콜(발화32+판정32+stance32), "
-                         "상한 116/건 강제")
     ap.add_argument("--in-place", action="store_true",
                     help="사본 없이 --source-data 에 직접 산출(실호출 정식 실행용, 규약 8)")
     ap.add_argument("--max-calls", type=int, default=0)
@@ -172,11 +168,6 @@ def main() -> None:
     if args.live:
         if args.max_calls <= 0:
             raise SystemExit("--live 는 --max-calls(전역 상한) 명시 필수 — 승인된 예산만큼만")
-        if args.author_only and args.max_calls > 116:
-            # 역리뷰 B-1: 이 러너는 이슈 1건 단위라 '전역 상한'이 이슈별로 곱해진다.
-            # author-only 계획은 96콜/건(발화32+저자축32+stance32) — 1.2배 상한을 강제.
-            raise SystemExit(f"--author-only 상한 초과: --max-calls {args.max_calls} > 116 "
-                             "(계획 96/건 × 1.2 — PREREG G1)")
         # 편차 P-1: 저자는 상한 미전송 — 러너에서만 완화(llm.py 무수정)
         llm.MAX_TOKENS = 8192
         real_call = llm.obtain_response
@@ -249,14 +240,8 @@ def main() -> None:
             print(f"① debate 완주: 발화 {n_utt} · seating {n_seating} · {mode} · validate OK")
 
             # ② 우리 축 judgment (3표 — live 면 실판정, 아니면 offline)
-            # 역리뷰 B-1: author-only(비교 실험)는 ②~④를 건너뛴다 — ② 는 사전고정에
-            # 없는 판정 콜(stage×팩트×n_votes)을 쓰며 비교 축(§1-2)이 아니다.
-            if args.author_only:
-                per_issue = n_utt + 2 * n_utt  # 발화 + (저자 축 + stance) 각 발화당 1콜
-                print(f"② ~ ④ 건너뜀 (--author-only) · [G1] 이 이슈 계획 콜: 발화 {n_utt} "
-                      f"+ 저자 축 {n_utt} + stance {n_utt} = {per_issue} (상한 116)")
-                jd_ours = None
-            elif args.live and jp.exists():
+            jp = paths.judgment(issue_id, run_id)
+            if args.live and jp.exists():
                 # 재판정 방지 가드 — judge 단계엔 자체 체크포인트가 없다(같은 실사고).
                 # PR#34 리뷰: 존재만으로 재사용하지 않고 좌표를 대조한다.
                 jd_ours = json.loads(jp.read_text(encoding="utf-8"))
@@ -271,26 +256,29 @@ def main() -> None:
                 jp.parent.mkdir(parents=True, exist_ok=True)
                 jp.write_text(json.dumps(jd_ours, ensure_ascii=False, indent=2),
                               encoding="utf-8")
-            n = len(facts)
-            if not args.author_only:
-                _validate(jp)
-                print(f"② 우리 축 judgment: stages {len(jd_ours['stages'])} · "
-                      f"far_by_stage {[s['far_system'] for s in jd_ours['summary']['far_by_stage']]} · validate OK")
+            _validate(jp)
+            print(f"② 우리 축 judgment: stages {len(jd_ours['stages'])} · "
+                  f"far_by_stage {[s['far_system'] for s in jd_ours['summary']['far_by_stage']]} · validate OK")
 
-                # ③ ledger — fact_id 경로
-                last_stage = jd_ours["stages"][-1]["stage"]
-                missing_ours = ledger.missing_facts(jd_ours, last_stage)
+            # ③ ledger — fact_id 경로
+            last_stage = jd_ours["stages"][-1]["stage"]
+            missing_ours = ledger.missing_facts(jd_ours, last_stage)
+            n = len(facts)
+            if not args.live:
+                # 스텁 전건 검증용 — 스텁은 팩트 2개를 되뇌므로 전부 소실이면 접합 실패다.
+                # live 에서는 검사하지 않는다: FAR=1.0 은 유효한 극단값이며(재검수 C-3)
+                # 결과에 따라 실행을 죽이는 것은 선택 편향이다. G5 로 원문 확인만 의무.
                 assert 0 <= len(missing_ours) < n, \
                     f"ledger 퇴화: 소실 {len(missing_ours)}/{n} (전부/음수는 접합 실패)"
-                print(f"③ ledger(우리 축): 마지막 stage 소실 {len(missing_ours)}/{n} — 오판 없음")
+            print(f"③ ledger(우리 축): 마지막 stage 소실 {len(missing_ours)}/{n} — 오판 없음")
 
-                # ④ access_window
-                rep = access_window.report(jd_ours, assignment, events, facts_by_id)
-                assert rep["status"] == "ok", f"access_window status={rep['status']}"
-                assert not rep["meta"]["window"]["edges"].get("assumed_full"), \
-                    "seating 미인식 — 접합 실패"
-                print(f"④ access_window: status=ok · records {len(rep['records'])} · "
-                      f"rounds {rep['meta']['rounds']}")
+            # ④ access_window
+            rep = access_window.report(jd_ours, assignment, events, facts_by_id)
+            assert rep["status"] == "ok", f"access_window status={rep['status']}"
+            assert not rep["meta"]["window"]["edges"].get("assumed_full"), \
+                "seating 미인식 — 접합 실패"
+            print(f"④ access_window: status=ok · records {len(rep['records'])} · "
+                  f"rounds {rep['meta']['rounds']}")
 
             # ⑤ 저자 축 → bridge 변환 → ledger
             utts = [e for e in events if e.get("event") == "utterance"]
@@ -341,11 +329,14 @@ def main() -> None:
                 rows_for_bridge, facts_doc, issue_id=issue_id,
                 run_id=f"{run_id}_author", prompt_ver=author_prompt_ver)
             jpa = paths.judgment(issue_id, f"{run_id}_author")
+            jpa.parent.mkdir(parents=True, exist_ok=True)  # 재검수 C-1 계열: 쓰기 전 부모 보장
             jpa.write_text(json.dumps(jd_author, ensure_ascii=False, indent=2), encoding="utf-8")
             _validate(jpa)
             missing_author = ledger.missing_facts(jd_author, jd_author["stages"][-1]["stage"])
-            assert 0 <= len(missing_author) < n, \
-                f"저자 축 ledger 퇴화: 소실 {len(missing_author)}/{n} — 변환 실패"
+            if not args.live:
+                # 스텁 전용 검증 — live 의 FAR=1.0 은 유효 극단값(재검수 C-3, 위 ③ 주석 참조).
+                assert 0 <= len(missing_author) < n, \
+                    f"저자 축 ledger 퇴화: 소실 {len(missing_author)}/{n} — 변환 실패"
             health = jd_author["summary"]["judge_health"]
             print(f"⑤ 저자 축 변환: rows {health['n_rows']} (parse_fail {health['n_parse_fail']}) · "
                   f"validate OK · ledger 소실 {len(missing_author)}/{n} — 차단 해소")
