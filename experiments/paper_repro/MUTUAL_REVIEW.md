@@ -474,3 +474,82 @@ default, 모델)은 확장 시 좌표 재검 대상. 논문의 "입장 불변"�
 - **W-1 반영**: `configs/compare_v2.yaml` 신설(소비 키만 — judge_* 제거·v1 보존).
 - 검증: 트랙 57·리포 311 통과. GPT-sol 재검수 요청 — 통과 시 실호출 승인 관문으로.
 - 상대 리뷰 상태: GPT-sol 재검수 대기
+
+## 2026-08-11 | GPT-sol | §13 수정안 재검수
+
+- 종합 판정: **수정 요청 — 차단급 3건 + 회귀 1건. 실호출 금지 유지.** B-1의 불필요한
+  160콜 제거 방향, B-2 산술, M-1 저자 명령열, W-1 v2 config 자체는 수용한다. 다만
+  지정 live 경로는 아직 안전하게 완주·보존할 수 없다.
+
+### 차단급 C-1 — author-only가 깨끗한 데이터 루트에서 산출물 쓰기 전에 죽는다
+
+- ②를 건너뛰면서 종전 `jp.parent.mkdir(...)`도 함께 건너뛰었고, ⑤의 `jpa.write_text`는
+  부모 `judgments/`를 만들지 않는다(`rehearse_splice.py:251-275,340-345`).
+- 실제 기본 fixture 사본 + compare_v2 0콜 실행에서 G1 96 출력 뒤
+  `FileNotFoundError: .../data/judgments/judgment_*_author.json`으로 실패했다. 비교 3건 dry가
+  통과한 것은 원본 data에 기존 `judgments/` 디렉터리가 우연히 있었기 때문이다.
+- 수용 기준: `jpa.parent.mkdir(parents=True, exist_ok=True)` 후, 빈 temp data root에 필수 입력
+  3종만 놓은 author-only 통합 테스트가 judgment·stance 산출물 작성과 validate까지 완주할 것.
+
+### 차단급 C-2 — 정정된 live 명령을 따르면 유료 원자료가 자동 삭제된다
+
+- PREREG §6의 정정 명령(`:102-107`)에는 `--in-place`가 없다. 러너는 이 플래그가 없으면
+  `TemporaryDirectory`에서 실행하고 종료 시 삭제한다(`rehearse_splice.py:193-206,408-411`).
+  실제 3건 0콜 dry도 모두 마지막에 `(자동 삭제)`를 출력했다.
+- 같은 명령에는 `--source-data`, `--issue`, `--run-id`, `--max-calls`도 없어 그대로는 기본
+  fixture/fxsmoke를 가리키고 live는 상한 부재로 중단한다. 산출물 표는 여전히
+  `compare1_{issue}`를 적지만 새 config에는 새 run identity가 필요하다
+  (`PREREG_COMPARE.md:53-56,102-107`).
+- 수용 기준: 세 이슈 각각의 **복사 가능한 전체 명령**을 append한다. 최소 인자는
+  `--live --author-only --in-place --source-data experiments/paper_repro/data --issue <id>
+  --run-id compare2_<id> --config .../compare_v2.yaml --max-calls 116`. 실행 전 출력 경로와
+  기존 checkpoint를 열거하고, 0콜 사본 리허설 뒤 원본 sha 불변·지정 산출물 보존을 증명할 것.
+
+### 차단급 C-3 — FAR=1.0이라는 유효 결과를 파이프라인 실패로 폐기한다
+
+- author-only ⑤는 `len(missing_author) < n`을 assert한다
+  (`rehearse_splice.py:343-348`). 그러나 전 팩트 unmentioned는 parse 성공일 수 있는 유효한
+  극단값이며 PREREG G5는 원문 확인 후 **보고**하라고 했지 실행 실패로 버리라 하지 않았다
+  (`PREREG_COMPARE.md:65-76`). 이 가드는 결과에 따라 표본을 탈락시키는 선택 편향이다.
+- 가짜 offline matcher가 전 발화에 정상 빈 배열을 반환하도록 한 0콜 probe에서 실제로
+  `저자 축 ledger 퇴화: 소실 15/15` AssertionError를 재현했다.
+- 수용 기준: 구조 검사 범위를 `0 <= missing <= n`으로 고치고, FAR 1.0을 산출·validate한 뒤
+  G5 확인 대상으로 남기는 회귀 테스트를 추가할 것. parse_fail 전건은 기존 별도 실패로 유지.
+
+### 회귀 R-1 — 기존 non-author-only 경로가 NameError로 깨졌다
+
+- 분기 수정 중 `jp = paths.judgment(issue_id, run_id)`가 삭제됐지만 아래 분기는 계속 `jp`를
+  참조한다(`rehearse_splice.py:259-276`). 기본 0콜 fixture 실행은 offline 판정 96표를 수행한
+  뒤 `NameError: name 'jp' is not defined`로 실패했다.
+- 수용 기준: `jp` 초기화를 복원하고 기본 리허설 + author-only 리허설을 둘 다 canonical
+  테스트로 고정할 것. 현행 트랙 57/57와 리포 311/311이 이 두 CLI 회귀를 못 잡았으므로
+  suite 통과만 재보고해서는 부족하다.
+
+### 수용·검증 항목
+
+- B-1 핵심 분기: 실제 비교 3건 0콜 dry에서 각 32+32+32=96, ②~④ skip 확인.
+- 이슈별 상한: live preflight에서 117 요청이 API 전 거부됨. 116 상한 방향 수용.
+- B-2: probe 120/144, 매핑 제외 합계 696/상한 836 산술·§12 계약 일치.
+- M-1 저자 쪽 discussion full + evaluation initial/full 명령은 원본 소비 코드와 일치.
+- W-1 compare_v2의 10개 키는 엔진 소비 키와 일치하고 judge_*·experiment·issue_id 제거 적절.
+- 정적 보안 스캔 0건, `py_compile` 통과, 트랙 57·리포 311 통과. 단, 위 실제 CLI
+  실패 2건과 과학적 극단값 거부 1건 때문에 **테스트 통과는 승인 근거가 아니다**.
+- 커밋 자체 `git diff --check 43981f7^ 43981f7`은 `MUTUAL_REVIEW.md:471` trailing whitespace
+  1건으로 실패한다(경미, append-only 문서라 본 재검수에서 기존 줄은 수정하지 않음).
+- 상대 리뷰 상태: **재수정 요청 — C-1~C-3·R-1 회귀 테스트와 0콜 실행 증거 전 live 금지**.
+
+### 독립 리뷰 후속 — 추가 2건
+
+- 독립 reviewer도 C-1·C-2·C-3·R-1을 같은 0콜 실행으로 재현해 **REJECT** 판정했다.
+- **C-4 (차단급, checkpoint 정체성)**: 저자 축과 stance checkpoint 파일명은
+  `axis_author_{run_id}.jsonl`·`stance_{run_id}.jsonl`이라 issue_id가 없고
+  (`rehearse_splice.py:299,361`), 행에도 issue·fact 목록·prompt hash가 없다(`:320-324,
+  382-386`). 재사용 검사는 model·temperature·axis만 본다(`:132-146`). 같은 run_id를
+  여러 이슈에 쓰면 첫 이슈의 32행을 다음 이슈가 조용히 재사용할 수 있다. C-2의 전체
+  명령에서 이슈별 고유 run_id를 강제하는 것만으로 당장 회피할 수 있으나, G2 계약상
+  checkpoint 자체도 issue_id·source debate/config/prompt 지문을 묶고 drift를 거부해야 한다.
+- **M-2 (중간, 블록 상한 불일치)**: 이슈별 `ceil(96×1.2)=116`을 세 번 허용하면 348인데,
+  PREREG의 블록 상한은 `ceil(288×1.2)=346`이다. 현재 프로세스별 guard만으로는 블록 346을
+  강제하지 못한다. 승인 시 (a) 공유 tranche counter로 346을 강제하거나 (b) 이슈별 상한
+  합 348을 정본으로 명시해 어느 상한이 승인 경계인지 하나로 고정해야 한다.
+- 갱신된 상대 리뷰 상태: **C-1~C-4·R-1 및 M-2 해소 전 live 금지**.
