@@ -746,3 +746,127 @@ CLI 는 트랜치 1명령(`--issues 쉼표구분 --run-prefix compare2`)으로 3
   감싸는지·복원 누수 ② 단일 잠금이 실제 Windows 동시 실행에서 배타적인지 ③ manifest
   지문 집합에 빠진 입력이 없는지 ④ 트랜치 중단·재개 시 원장/체크포인트 정합.
   통과 시 실호출 승인 관문(696콜/$7 + 퓨즈 좌표)으로.
+
+## 2026-08-11 | GPT-sol(요한) | C-5~C-8 수정 재검수 — REJECT (실호출 0)
+
+- 범위: `c64bddb`의 `compare_ours.py`·회귀 24종·PREREG §8과 상류
+  `modules/llm.py` 실제 전송 경계를 함께 검사했다. 기존 비동기 독립 리뷰에서 도착한
+  N-2(중복·불완전 key 집합)도 이번 판에 포함했다.
+- 판정: **C-6·C-7 수용, C-5·C-8 부분 미해소, N-2 미해소 — live 금지 유지.**
+- 비용 표현 정정 유지: 아래 C-5 재현은 비용 증가를 증명하지 않는다. 400 파라미터 거부는
+  통상 성공 응답이 아니며, 확인된 결함은 실제 전송 시도 계기판/퓨즈의 누락이다.
+
+### 수용 — C-6 지속 상한
+
+- `compare_ours.py:145-214`가 시작 시 append 원장을 다시 읽고, 같은 `issue_id`의 누적과
+  계획을 116에 합산한다. 기존 21예약+새 계획96은 첫 호출 전에 거부하는 회귀가 있다.
+- 파손 JSONL도 보수적으로 즉사한다. 재시작 초기화 재현은 더 이상 성립하지 않는다.
+
+### 수용 — C-7 단일 실행 잠금·직렬 트랜치
+
+- `compare_ours.py:102-142,571-598`의 OS 잠금과 직렬 트랜치를 확인했다.
+- 현재 Windows에서 **별도 자식 프로세스**가 잠금을 보유한 동안 부모의 두 번째 획득이
+  거부됐고, 해제 후 재획득됐다. 정본 CLI(`main:601-618`)는 live를 `run_tranche`로만
+  진입시킨다. 따라서 같은 data root의 공식 실행 경로에서는 원장 TOCTOU가 해소됐다.
+
+### C-5 부분 미해소 — OpenAI 내부 파라미터 폴백 전송은 1행으로만 센다
+
+- 위치: `compare_ours.py:216-223,429-435`; 상류 `modules/llm.py:344-401`.
+- `_wrap_dispatch`는 공급자 dispatch **호출 직전** 한 번 예약한다. 그러나 OpenAI dispatch
+  함수 `_call_openai` 자체가 `requests.post`를 최대 4회 수행하면서 400 응답에 따라
+  `max_tokens`·`temperature` 등을 바꿔 다시 전송한다. 이 내부 전송은 wrapper 아래라
+  추가 예약이 없다.
+- 최소 0콜 fault injection: `requests.post`를
+  `400(max_tokens) → 400(temperature) → 200`으로 스텁했다. 결과는
+  **실제 POST 3회 / attempt 원장 1행 / 논리 응답 OK**였다. 새 회귀의
+  `timeout 2회 후 성공 = 원장 3행`은 바깥 `obtain_response` 재시도만 검증해 이 경로를
+  덮지 않는다.
+- 영향: PREREG §8의 “전송 시도마다 1행”과 232/692 퓨즈가 OpenAI에서 참이 아니다.
+  다만 이 재현만으로 비용 증가를 주장하지 않는다.
+- 수용 기준: 실제 `requests.post`/SDK create 바로 앞에서 예약하거나, OpenAI dispatch에
+  attempt callback을 주입해 파라미터 폴백 각각을 센다. canonical fault test에서
+  `POST 횟수 == attempt 원장 행 수`여야 한다.
+
+### C-8 부분 미해소 — manifest가 완료 debate 바이트의 불변성을 증명하지 않는다
+
+- 위치: `compare_ours.py:249-288,328-339,439-467`; 체크포인트 결합 `:483-488,
+  526-531`.
+- manifest는 생성 **입력** SHA를 잘 고정하지만, 완성된 debate SHA를 manifest에 확정하지
+  않는다. 재사용 관문은 발화 개수와 config SHA만 보고, `_validate(dp)`도 deep prompt
+  재조립 검사가 아니다. `debate_sha256`은 그때 읽힌 현재 바이트를 새 checkpoint에 쓰므로,
+  판정 시작 전 변조된 debate도 새 정본처럼 승격된다.
+- 최소 0콜 fault injection: 스텁 debate 32발화가 완성된 직후 첫 axis 응답에서 강제
+  크래시(논리 원장 33행) → debate의 첫 `response_text`를 변경 → 같은 manifest로 재개.
+  결과는 **변조 debate 수용, 판정 64콜 스텁 완주, 블록 원장 97행**이었다.
+- 영향: 입력 파일은 그대로여도 발화 원문이 바뀐 결과를 정상 비교 결과로 판정할 수 있다.
+- 수용 기준: debate 완주 직후 그 SHA를 원자적으로 manifest에 확정하고 재사용 전 대조하거나,
+  `python -m modules.validate <debate> --deep` 상당의 prompt/input 재조립을 live 관문에 넣는다.
+  완주 후 한 바이트 변조는 판정 0콜로 거부되어야 한다.
+
+### N-2 미해소 — 중복·누락·extra key 집합을 완전 결과로 수용한다
+
+- 위치: `compare_ours.py:239-246,249-270,341-353,461-465`.
+- `_load_rows`는 동일 `(round, agent_id)`를 dict의 마지막 행으로 조용히 덮어쓰며 물리 행
+  수·중복·extra를 검사하지 않는다. `debate_status`와 live 관문은 utterance **개수**만
+  검사하고 기대 `(round, agent)` 집합과 set-equal을 하지 않는다.
+- 현재 HEAD 0콜 재현: 정상 axis checkpoint 32행에 동일 행 1개를 추가한 뒤 재개하자
+  **물리 33행을 호출 0회로 완주**했다. 앞선 독립 fault injection에서도 발화 32개 중
+  unique key 31개인 debate를 `complete`로 판정해 후속 64 스텁 판정을 완주했다.
+- 영향: 발화 하나가 빠지고 다른 발화가 중복된 토론, 중복/예상 밖 행이 든 checkpoint가
+  검증 완료 결과로 승격될 수 있다.
+- 수용 기준: assignment×rounds로 기대 key set을 만들고 debate/axis/stance 각각에 대해
+  `물리 행 수 == unique key 수 == 기대 수` 및 실제 set-equal을 검사한다. duplicate·missing·
+  extra·conflicting duplicate·truncated JSONL canonical 회귀가 모두 호출 전 거부되어야 한다.
+
+### 검증 증거·다음 관문
+
+- 실제 외부 API 호출 **0**.
+- `test_compare_ours`: **24/24**, paper_repro 트랙 **81/81**, 리포 smoke **311/311** 통과.
+- 현재 Windows 별도 프로세스 잠금 배타성 통과; `py_compile`·`git diff --check` 통과.
+- 3이슈 정본 트랜치 계획은 합계 288콜이고, 실행 전후 Git status SHA가 동일해 0콜·무기록.
+- 테스트 통과는 위 fault injection 세 경로를 포함하지 않으므로 승인 근거가 되지 않는다.
+  **C-5 실제 POST 계수 + C-8 debate 출력 결합 + N-2 set-equal 회귀 전 live 금지.**
+
+## 2026-08-11 | GPT-sol 독립 reviewer 후속 — C-7 수용 판정 정정 (실호출 0)
+
+- 독립 reviewer가 같은 `c64bddb`를 별도 fault injection한 결과, 앞 절의 C-7 수용은
+  **공식 CLI 경로에만 한정**해야 한다. 공개 `run(..., live=True)`는 잠금을 획득하지 않아
+  live 진입점 전체 관점에서는 C-7이 미해소다.
+- 위치: `compare_ours.py:291-300`의 `run()`은 곧바로 live 실행에 들어가고, 잠금은
+  `run_tranche():571-598`에만 있다. 회귀도 `test_compare_ours.py:316-331`의 tranche만 본다.
+- Windows 0콜 재현: `SingleInstanceLock`을 한 프로세스가 보유한 상태에서 다른 경로가
+  스텁을 주입해 `run(..., live=True)`를 직접 호출했다. 결과는
+  **직접 run 완주=true · 논리 96콜 · responder 64콜**이었다. 잠금은 전혀 검사되지 않았다.
+- 영향: 직접 run 두 개 또는 tranche+직접 run이 동시에 `CallGate`의 시작 시 1회 원장
+  읽기 이후 경쟁할 수 있어 C-6·블록 상한도 단일 기록자 전제가 깨진다.
+- 정정 판정: **C-7 잠금 구현 자체와 정본 CLI는 수용, 모든 live 진입점 강제는 미해소.**
+  따라서 C-6도 단일 기록자 조건부 수용이다.
+- 수용 기준: 잠금 보유 토큰 없이는 `run(live=True)`를 거부하거나 잠금 획득을 run 내부로
+  옮긴다. `잠금 보유 중 직접 run → 스텁 호출 0·원장 기록 0` canonical 회귀가 필요하다.
+- 독립 reviewer도 C-5 OpenAI 내부 POST 누락과 N-2를 동일하게 재현했다. C-8의 입력
+  manifest/최초 생성 크래시 재개는 수용했지만, 앞 절에서 별도로 재현한 **완성 debate
+  바이트 변조** 경로는 검사하지 않았으므로 C-8 출력 불변성 차단은 유지한다.
+
+### 최종 관문 정정
+
+- **C-5 실제 POST 계수 + C-7 모든 live 진입점 잠금 + C-8 완성 debate 결합 + N-2
+  set-equal 회귀 전 live 금지.**
+
+## 2026-08-11 | 요한 | 결정 — 수정-재검수 루프 종료·탐색적 파일럿 GO (확정은 사람)
+
+- **결정**: C-5 잔여(내부 폴백 계수)·C-7 잔여(run 직접 호출)·C-8 잔여(완주 후 사람
+  변조)·N-2(중복/extra 행)는 이번 파일럿의 **live 차단이 아니라** 후속 정식 검증
+  러너의 개선 목록이다. 이번 판은 **탐색적 파일럿**(목적: 비교 관찰 + probe·수첩에서
+  후속 검증 후보 지표 발굴)으로 재분류 — 확정적 재현 결론을 내지 않으며 보고 표현을
+  제한한다(PREREG §9). 코드 방어 대신 운영 규칙(정본 CLI 단일 실행·실행 중 수정
+  금지·중단 시 사람 확인) + 실행 후 0콜 일회성 검사(`compare_postcheck.py`)로 대체.
+- 근거: 1시간+ 의 수정-재검수 루프가 "자연 단일 실행에서 발생 확률이 낮은 fault
+  injection 방어"로 확장됨 — 목적(좋은 수치 탐색) 대비 과잉. "완벽한 요새 건설은
+  그 수치가 실제로 나왔을 때".
+- GPT-sol 재검수 기록(직전 append)의 발견 자체는 유효하며 보존된다 — 재분류는
+  검토 재료에 대한 사람의 확정이다(팀 규칙 4: 확정은 사람만). 후속 정식 러너
+  설계 시 C-5/C-8/N-2 수용 기준을 그대로 개선 목록 입력으로 쓴다.
+- 이행(Claude): §13 이후 진행 중이던 C-5/C-8/N-2 코드 수정은 폐기(동결 = 검수·테스트
+  통과 커밋 c64bddb), `compare_postcheck.py` 신설(0콜 검사 6항 — 스텁 완주분 OK 판정
+  + 중복 주입 폐기 판정 실증), 동결 지문·운영 규칙 PREREG §9 append.
+- 다음: 실호출(저자 판 3단계 → 우리 판 트랜치 → probe 120) — PREREG §5·§6·§8 순서.
