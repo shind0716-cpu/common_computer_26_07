@@ -271,3 +271,36 @@ default, 모델)은 확장 시 좌표 재검 대상. 논문의 "입장 불변"�
 - 검증: 리포 300종(+3)·트랙 48종(+20) 통과 · 0콜 리허설 3종 완주 · 실원장 143행
   오거부 0. 신규 콜 표(G1): 예상 0 · 실측 0.
 - 상대 리뷰 상태: GPT-sol 대기(다음 지시 시 관문 5 준수 의무 유지)
+
+## 2026-08-11 | GPT-sol | §11 이원 recall probe 구현·검수 요청 (실호출 0)
+
+- 등급: 구현 완료 · Claude 검수 대기 · **실호출 미승인**
+- 산출: `recall_probe.py`, `test_recall_probe.py`, `modules/paths.py` 경로 함수 2종.
+  팔별 문안 A/B 두 안을 코드에 고정하고 A안을 활성화했다. `probe_full`은
+  `{statement,source,heard_from}` 배열을 엄격 파싱하고, `probe_note`는 기존
+  `note_slot.parse_note_only` + `apply_budget(500)`을 그대로 쓴다.
+- 동일 입력: 각 에이전트의 마지막 `prompt_assembly`를 `validate.reassemble_prompt`로
+  재조립하고 sha256을 대조한다(`recall_probe.py:145-181`). 출처 귀속용 View→agent_id
+  대응을 붙인 **같은 shared_input**을 양 팔에 글자 그대로 1회 삽입한다.
+
+### 관문 5 이행
+
+| 관문 | 구현·근거 | 상태 |
+|---|---|---|
+| G1 신규 콜 표 | 3건 × 8명 × 2팔 = **48 신규 논리콜**. 상한 `ceil(48×1.2)=58`; 러너가 더 큰 `--max-calls`를 거부(`recall_probe.py:226-236`). 팩트 매핑 판정 콜은 **0/미승인** | 통과 |
+| G2 재사용 강제 | debate config 지문 대조 `:150-151`; 마지막 입력 재조립+hash `:175-181`; raw 재사용은 CallCheckpoint의 model/temp/n/prompt_ver/prompt_sha256 대조 후에만 `:261` | 통과 |
+| G3 temp>0 재생성 차단 | 러너는 debate_engine 호출 경로가 없는 읽기 전용 사후 러너다. 기존 debate가 완주·config 일치하지 않으면 호출 전 실패(`:145-181`). 발화 재생성 0 | 통과 |
+| G4 프레임 경계 | `assigned`=처음 배정, `heard`=타 에이전트 발화, `inferred`=입력에서 자기 도출을 활성 문안에 원문 정의. 저자 축 matched fact와 합치지 않고 `observational_unmapped`로 격리 | 통과(매핑은 별도) |
+| G5 첫 수치 원문 대조 | 이번 작업은 dry만 실행해 연구 수치 0. 실호출 후 최소 full/note 각 3건과 0/1 극단값을 raw 원문 대조하기 전 집계 보고 금지 | 실행 후 대기 |
+
+- `judgment.recall_probe[]` 구분 키 제안: `{agent_id, arm, source_round,
+  input_sha256, checkpoint_tag, self_report_status, recalled_fact_ids, extra_lines}`.
+  `arm=probe_full|probe_note`를 명시하고, 팩트 매핑 전에는 `recalled_fact_ids=[]`로 거짓 0을
+  만들지 않는다. 현재는 별도 `recall_probe_pre_mapping_*.json`에
+  `mapping_status=pending_separate_approval`로 저장하고 judgment를 수정하지 않는다.
+  이 키 채택·팩트 매핑 판정은 **요한 제안 승인 대상**이다.
+- RED→GREEN 증거: 최초 테스트는 `ModuleNotFoundError: recall_probe`로 실패 확인 후 구현.
+  집중 6종 통과, 트랙 54종 통과, 리포 스모크 311종 통과, `py_compile`·`git diff --check`
+  통과. pilot1 dry: 계획 16·실제 0·파싱 16·파일 작성 0,
+  `prompt_ver=paper_repro_recall_v1@93961ba41950`.
+- 상대 리뷰 상태: 대기 (Claude 검수 → 요한 승인 전 live 금지)

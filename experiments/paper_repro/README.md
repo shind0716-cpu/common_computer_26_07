@@ -177,3 +177,16 @@ yes 는 행동 비난(AITA) — 극성이 반대라 **pro→NO / con→YES** 가
   200건은 내부 연구용, 리포 밖 재배포 금지. 공개 전환이 논의되면 그 시점에 원문
   제거 + 재생성 스크립트(각자 원본에서 재적재) 방식을 재검토한다.
 - 근거 위치: 원본 지문 sha256=019dc134…(MUTUAL_REVIEW §3), 표본 고정 seed 20260810.
+
+---
+
+## 편차 P-9 — 토론 후 이원 recall probe (2026-08-11 append)
+
+| # | 내용 |
+|---|---|
+| P-9 | **저자 코드에 없는 사후 관측 2팔.** `probe_full`은 무예산 전체 회고+자기보고 출처 귀속, `probe_note`는 같은 마지막 rolling 입력을 `note_slot.apply_budget(500)`으로 압축한다. 두 출력은 토론에 되돌아가지 않으며 결과 변수가 아니다. 팩트 매핑 전 산출은 `mapping_status=pending_separate_approval`로 격리하고, 별도 승인 전 `judgment.recall_probe[]`에 넣지 않는다. |
+
+- 구현: `recall_probe.py` — 팔별 문안 A/B 두 안, 활성 A안 지문, 마지막 입력 `--deep`
+  재조립·hash 확인, CallCheckpoint 좌표 지문, 호출별 raw append+flush, `--dry` 0콜.
+- 경계: source(`assigned|heard|inferred`)는 모델의 **자기보고 관찰값**이며 사실 판정이나
+  전달률 결과가 아니다. 팩트 매핑 판정은 별도 승인·콜 표가 필요하다.
