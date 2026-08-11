@@ -609,3 +609,89 @@ default, 모델)은 확장 시 좌표 재검 대상. 논문의 "입장 불변"�
 - 상대 리뷰 상태: **GPT-sol 재재검수 요청** — 신설 러너 관점: ① 96콜 좌표가 저자
   판(발화 gpt-4.1/1.2, 판정 gpt-5/0/n1)과 §1-2 대로 정합한지 ② gate 우회 경로가
   없는지(엔진 내부 호출 포함) ③ 계획/실행 모드 경계. 통과 시 실호출 승인 관문으로.
+
+## 2026-08-11 | GPT-sol | §13 재재검수 — 기존 5건 수용, 신규 차단 4건
+
+- 종합 판정: **REJECT — 실호출 금지 유지.** C-1·C-2·C-3·C-4·R-1의 직접 수용 기준은
+  신설 러너에서 충족됐다. 그러나 비용 관문이 HTTP 재시도를 세지 않고, 이슈 상한이 재시작
+  누적 상한이 아니며, 공유 블록 원장이 원자적이지 않고, 완료 debate가 source 입력 지문 없이
+  재사용된다. M-2의 “프로세스 간 346 강제”는 이 의미에서 아직 해소되지 않았다.
+
+### 수용 — C-1·C-2·C-3·C-4·R-1
+
+- C-1: 필수 입력 3종만 있는 깨끗한 temp root에서 96 스텁 콜 경로가 debate·author
+  judgment·stance·체크포인트 2종·블록 원장을 쓰고 validate까지 완주했다.
+- C-2: `compare_ours.py`에는 사본/TemporaryDirectory/자동 삭제 경로가 없고, 정본 명령은
+  `--source-data`·issue·run-id·config·live·max-calls를 전부 명시한다. 실제 계획 명령은
+  96콜과 출력 6종을 표시하고 source tree에 기록하지 않았다.
+- C-3: 정상 빈 `matched_fact_ids=[]` 스텁에서 FAR 1.0×4 stage를 산출·validate하고 G5만
+  표시한 채 완주했다.
+- C-4: axis/stance 행의 10좌표 관문과 issue 포함 파일명은 기존 이슈 간 오재사용을 막는다.
+  단, 아래 C-8의 **상류 debate source identity**는 별도 미해소다.
+- R-1: `rehearse_splice.main()` 기본 fixture 경로가 0콜로 완주했다.
+- 검증: 신규 13종, paper_repro 트랙 70종, 리포 smoke 311종, py_compile, 정적 보안 스캔,
+  `git diff --check` 전부 통과. 실제 API 호출 0.
+
+### 차단 C-5 — `CallGate`가 논리 호출 1회만 예약하고 내부 HTTP 재시도 5회를 허용한다
+
+- 위치: `compare_ours.py:282-286,313-317`; 내부 재시도 `modules/llm.py:441-469`.
+- `gated()`는 `gate.reserve()` 한 번 뒤 `llm.obtain_response()`를 부른다. 그 함수는 일시 실패 시
+  공급자 전송을 최대 5회 한다. 원장·상한·완주 보고는 1콜로만 센다.
+- 최소 0콜 fault injection: OpenAI dispatch를 timeout 스텁으로 바꾸자
+  `ledger_rows=1`, `logical=1`, `transport_attempts=5`, fallback 반환이 동시에 나왔다.
+- 영향: “상한 116/346”은 논리 프롬프트 수일 뿐 실제 전송 시도·실패 비용 상한이 아니다.
+  최악 전송 시도는 이슈 580, 블록 1,730이며, 완료 보고도 이를 드러내지 않는다.
+- 수용 기준: 논리 호출·HTTP attempt를 분리 기록하고 승인 경계가 어느 것인지 PREREG에 고정한다.
+  비용 안전 경계가 attempt라면 **각 공급자 전송 직전** 원자적으로 예약한다. 상한 1 + timeout
+  회귀에서 전송도 1회여야 한다. 논리 상한을 유지한다면 attempt hard cap과 retry/failed-attempt
+  계기판을 별도로 두고 요한 승인을 다시 받아야 한다.
+
+### 차단 C-6 — 이슈별 116이 프로세스 재시작마다 초기화된다
+
+- 위치: `compare_ours.py:94-123,214-220,255-271`.
+- `CallGate.n=0`은 매 프로세스에서 시작하고, live 사전 검사는 전체 블록 행 수만 본다. 원장의
+  동일 `(issue_id, run_id)` 과거 예약을 이슈 상한에서 차감하지 않는다.
+- 최소 0콜 재현: 같은 issue/run의 기존 예약 21행을 둔 깨끗한 root에서 계획 96콜을 실행하자
+  정상 완주했고 동일 이슈 원장이 **117행**이 됐다(`process_calls=96`, `issue_cap=116`).
+- 실제 중단 경로에서도 예약 후 체크포인트 전 크래시나 부분 debate를 archive한 재시작이 이
+  형태를 만든다. “이슈별 상한 116” 주장은 지속 상한이 아니다.
+- 수용 기준: 이슈 상한은 원장의 tranche+issue(+run 정책) 누적 예약에서 계산하고
+  `spent_issue + planned > 116`을 첫 호출 전에 거부한다. 기존 21행+계획96 회귀는 0콜로
+  실패해야 하며, 재개는 완료 tag만 계획에서 빼되 예약 이력은 삭제하지 않는다.
+
+### 차단 C-7 — 블록 원장의 read-check-append가 원자적이지 않아 동시 프로세스가 346을 넘긴다
+
+- 위치: `compare_ours.py:101-123`.
+- `block_spent()`로 읽은 뒤 별도 `open("a")`로 쓴다. 파일 잠금/단일 실행 lock/원자적 counter가
+  없어 두 프로세스가 같은 345를 보고 둘 다 예약할 수 있다.
+- 최소 0콜 동시 fault injection: 345행 원장에 두 gate를 barrier로 동시에 진입시키자 오류 없이
+  둘 다 append하여 **347행**이 됐다(`before=345, after=347, errors=[]`).
+- 영향: PREREG §7과 주석의 “프로세스 간 블록 346 강제”가 사실이 아니다. 정본 명령이 순서를
+  권고해도 별도 터미널·중복 실행·자동화 실수는 관문 자체가 막아야 한다.
+- 수용 기준: Windows에서도 작동하는 inter-process exclusive lock 아래에서 count+append를 한
+  임계구역으로 묶거나, 세 이슈를 하나의 단일 프로세스 tranche runner가 직렬 실행하도록 한다.
+  345행 동시 2예약 회귀에서 정확히 하나만 성공하고 최종 346이어야 한다.
+
+### 차단 C-8 — 완료 debate 재사용이 config SHA만 보고 issue/facts/assignment drift를 허용한다
+
+- 위치: `compare_ours.py:149-169,193-208,288-310`; 상류 `modules/debate_engine.py:286-295,
+  426-472`.
+- `debate_status()`는 발화 수와 `run_meta.config_ref.sha256`만 대조한다. debate 생성 입력인
+  issue/facts/assignment 전문 또는 SHA는 `run_meta`에도 없고 재사용 관문에도 없다.
+- 최소 0콜 재현: 스텁으로 96콜 완주 후 axis/stance checkpoint만 제거하고 facts 첫 텍스트를
+  바꾼 뒤 같은 issue/run/config로 재실행했다. 기존 debate SHA는 byte 동일하게 재사용됐고,
+  새 facts SHA로 axis+stance 64콜이 정상 완주했다(`debate_reused=True`). 즉 **옛 입력으로 만든
+  발화 + 새 팩트 판정**이 한 결과로 섞였다.
+- 영향: §1의 공통 주입 팩트·배분 고정과 C-4의 source identity 수용 기준을 fail-closed로
+  보장하지 못한다. 현 파일이 우연히 안 바뀌었다는 사실은 실행 관문을 대체하지 않는다.
+- 수용 기준: debate 생성 시 issue/facts/assignment 전체 SHA-256과 resolved model·prompt version을
+  run_meta/immutable manifest에 저장하고 재사용 전 모두 대조한다. 현재 엔진 계약을 못 바꾸면
+  compare 전용 sidecar manifest를 debate 최초 생성 직전에 고정하고, 완료 파일 SHA도 axis/stance
+  checkpoint identity에 묶는다. facts/assignment/issue 중 한 바이트 변경 회귀는 API 0콜로
+  재사용을 거부해야 한다.
+
+### 다음 관문
+
+- C-5~C-8 수정 + canonical 회귀 4종 + 트랙/리포 smoke 재통과 전 **live 금지**.
+- 수정 후 계획 모드는 세 정본 이슈에서 다시 0콜·무기록이어야 하며, 공유 원장·source 파일 SHA가
+  계획 전후 불변이어야 한다.
