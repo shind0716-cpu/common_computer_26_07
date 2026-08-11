@@ -1,0 +1,156 @@
+[
+  {
+    "facts": [
+      {
+        "matched_fact_ids": [
+          7
+        ]
+      },
+      {
+        "matched_fact_ids": [
+          6
+        ]
+      },
+      {
+        "matched_fact_ids": [
+          7
+        ]
+      },
+      {
+        "matched_fact_ids": [
+          7
+        ]
+      },
+      {
+        "matched_fact_ids": [
+          7
+        ]
+      },
+      {
+        "matched_fact_ids": []
+      },
+      {
+        "matched_fact_ids": [
+          7
+        ]
+      },
+      {
+        "matched_fact_ids": []
+      }
+    ],
+    "stance": [
+      "YES",
+      "NO",
+      "YES",
+      "YES",
+      "YES",
+      "YES",
+      "YES",
+      "YES"
+    ]
+  },
+  {
+    "facts": [
+      {
+        "matched_fact_ids": [
+          0,
+          1,
+          11
+        ]
+      },
+      {
+        "matched_fact_ids": [
+          0,
+          12
+        ]
+      },
+      {
+        "matched_fact_ids": [
+          0,
+          11,
+          12
+        ]
+      },
+      {
+        "matched_fact_ids": [
+          0,
+          11
+        ]
+      },
+      {
+        "matched_fact_ids": [
+          0
+        ]
+      },
+      {
+        "matched_fact_ids": [
+          0,
+          12
+        ]
+      },
+      {
+        "matched_fact_ids": [
+          0
+        ]
+      },
+      {
+        "matched_fact_ids": [
+          0,
+          11
+        ]
+      }
+    ],
+    "stance": [
+      "NO",
+      "YES",
+      "YES",
+      "NO",
+      "YES",
+      "YES",
+      "NO",
+      "NO"
+    ]
+  },
+  {
+    "facts": [
+      {
+        "matched_fact_ids": []
+      },
+      {
+        "matched_fact_ids": [
+          1
+        ]
+      },
+      {
+        "matched_fact_ids": []
+      },
+      {
+        "matched_fact_ids": [
+          7
+        ]
+      },
+      {
+        "matched_fact_ids": []
+      },
+      {
+        "matched_fact_ids": []
+      },
+      {
+        "matched_fact_ids": []
+      },
+      {
+        "matched_fact_ids": []
+      }
+    ],
+    "stance": [
+      "YES",
+      "YES",
+      "NO",
+      "NO",
+      "NO",
+      "NO",
+      "YES",
+      "NO"
+    ]
+  }
+]
