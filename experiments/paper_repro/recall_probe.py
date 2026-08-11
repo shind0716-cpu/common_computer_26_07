@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-"""논문 재현 §11 — 토론 후 이원 recall probe (전체 회고 + 500자 저장소).
+"""논문 재현 §12 — 토론 후 이원 recall probe (시계열 회고 + 500자 저장소).
 
-범위: 완주 debate를 읽기만 하고 각 에이전트의 마지막 rolling 입력을 재조립한 뒤,
-같은 입력으로 probe_full/probe_note를 독립 호출한다. 어떤 출력도 토론에 되돌리지 않는다.
+범위: 완주 debate를 읽기만 하고 각 에이전트의 rolling 입력을 시점별로 재조립한다.
+probe_full은 전 시점, probe_note는 마지막 시점만 호출하며 어떤 출력도 토론에 되돌리지 않는다.
 저자 코드·debate_engine.py는 수정하지 않는다.
 
 실호출 전제:
@@ -49,8 +49,8 @@ ARMS = ("probe_full", "probe_note")
 # 두 팔 모두 <===shared_input===> 자리에 같은 문자열을 글자 그대로 한 번 삽입한다.
 PROMPT_OPTIONS = {
     "probe_full": {
-        "A": """당신은 방금 한 토론을 마친 참가자입니다. 아래에는 마지막 발언 직전에 당신이 실제로 본 입력이 그대로 있습니다. 다른 자료를 보거나 다른 참가자와 다시 대화하지 마세요.\n\n당신이 현재 알고 있다고 생각하는 사실을 빠짐없이 적으세요. 요약문이나 결론을 쓰지 말고, 사실 하나를 statement 하나로 분리하세요. 각 사실이 처음 배정받은 정보면 assigned, 다른 참가자에게서 들었으면 heard, 입력을 바탕으로 스스로 추론했으면 inferred로 표시하세요. heard일 때만 heard_from에 발화자 agent_id를 쓰고, 나머지는 null을 쓰세요. 확실하지 않은 것을 새 사실로 만들지 마세요.\n\n다음 JSON 배열만 출력하세요:\n[{\"statement\": \"...\", \"source\": \"assigned|heard|inferred\", \"heard_from\": \"agent_id 또는 null\"}]\n\n[마지막 시점 입력]\n<===shared_input===>""",
-        "B": """토론은 끝났고 지금부터의 답은 토론에 전달되지 않습니다. 아래 마지막 시점 입력만 근거로, 당신의 머릿속에 남아 있는 사실 원장을 작성하세요. 결론·권고·설명문이 아니라 독립적인 사실 문장들을 모두 적으세요. 출처는 처음 배정=assigned, 타인의 발언=heard, 스스로 도출=inferred 중 하나입니다. heard만 heard_from에 agent_id를 쓰고 다른 경우 null로 두세요.\n\nJSON 배열 외에는 쓰지 마세요:\n[{\"statement\": \"...\", \"source\": \"assigned|heard|inferred\", \"heard_from\": null}]\n\n[마지막 시점 입력]\n<===shared_input===>""",
+        "A": """당신은 한 토론에 참여 중인 참가자입니다. 아래에는 해당 시점 발언 직전에 당신이 실제로 본 입력이 그대로 있습니다. 다른 자료를 보거나 다른 참가자와 다시 대화하지 마세요.\n\n이 시점에 당신이 알고 있다고 생각하는 사실을 빠짐없이 적으세요. 요약문이나 결론을 쓰지 말고, 사실 하나를 statement 하나로 분리하세요. 각 사실이 처음 배정받은 정보면 assigned, 다른 참가자에게서 들었으면 heard, 입력을 바탕으로 스스로 추론했으면 inferred로 표시하세요. heard일 때만 heard_from에 발화자 agent_id를 쓰고, 나머지는 null을 쓰세요. 확실하지 않은 것을 새 사실로 만들지 마세요.\n\n다음 JSON 배열만 출력하세요:\n[{\"statement\": \"...\", \"source\": \"assigned|heard|inferred\", \"heard_from\": \"agent_id 또는 null\"}]\n\n[해당 시점 입력]\n<===shared_input===>""",
+        "B": """지금부터의 답은 토론에 전달되지 않습니다. 아래 해당 시점 입력만 근거로, 이 시점에 당신의 머릿속에 남아 있는 사실 원장을 작성하세요. 결론·권고·설명문이 아니라 독립적인 사실 문장들을 모두 적으세요. 출처는 처음 배정=assigned, 타인의 발언=heard, 스스로 도출=inferred 중 하나입니다. heard만 heard_from에 agent_id를 쓰고 다른 경우 null로 두세요.\n\nJSON 배열 외에는 쓰지 마세요:\n[{\"statement\": \"...\", \"source\": \"assigned|heard|inferred\", \"heard_from\": null}]\n\n[해당 시점 입력]\n<===shared_input===>""",
     },
     "probe_note": {
         "A": """당신은 방금 한 토론을 마친 참가자입니다. 아래에는 마지막 발언 직전에 당신이 실제로 본 입력이 그대로 있습니다. 다른 자료를 보거나 다른 참가자와 다시 대화하지 마세요.\n\n이 입력을 다시 볼 수 없고, 이후의 당신에게 남는 것은 지금 쓰는 저장소뿐입니다. 다음에 꼭 기억해야 한다고 판단하는 내용을 500자 이내로 적으세요. 무엇을 남길지는 전적으로 당신의 판단입니다. 출처 표기는 요구하지 않습니다.\n\n다음 JSON 형식으로만 답하세요:\n{\"note\": \"저장소 내용\"}\n\n[마지막 시점 입력]\n<===shared_input===>""",
@@ -127,6 +127,19 @@ def parse_note(raw: str, budget: int = NOTE_BUDGET) -> tuple[str, bool]:
     return note_slot.apply_budget(text, budget)
 
 
+def parse_payload(raw: str, arm: str, agent_ids: set[str]) -> dict:
+    """한 raw를 제3상태로 파싱한다. 실패 raw도 호출 좌표 행을 막지 않는다."""
+    try:
+        if arm == "probe_full":
+            return {"parse_status": "ok", "statements": parse_full(raw, agent_ids)}
+        if arm == "probe_note":
+            note_text, truncated = parse_note(raw)
+            return {"parse_status": "ok", "note_text": note_text, "truncated": truncated}
+        raise KeyError(f"미지원 recall arm: {arm}")
+    except ProbeParseError as exc:
+        return {"parse_status": "parse_fail", "parse_error": str(exc)}
+
+
 def build_prompt(arm: str, shared_input: str) -> str:
     if arm not in ARMS:
         raise KeyError(f"미지원 recall arm: {arm}")
@@ -142,8 +155,9 @@ def _read_events(path: Path) -> list[dict]:
             if line.strip()]
 
 
-def load_shared_inputs(data_root: Path, target: Target, config_path: Path) -> tuple[dict[str, str], int]:
-    """완주 토론의 마지막 rolling prompt를 8명 각각 재조립하고 발화자 ID 대응을 붙인다."""
+def load_shared_inputs(data_root: Path, target: Target,
+                       config_path: Path) -> tuple[dict[str, dict[int, str]], int]:
+    """완주 토론의 모든 rolling prompt를 에이전트×시점으로 재조립한다."""
     old_data = paths.DATA
     paths.DATA = Path(data_root).resolve()
     try:
@@ -165,25 +179,31 @@ def load_shared_inputs(data_root: Path, target: Target, config_path: Path) -> tu
         ctx = validate_mod.replay_context(events, issue_doc=issue_doc, facts_doc=facts_doc)
         pas = {(e.get("round"), e.get("agent_id")): e for e in events
                if e.get("event") == "prompt_assembly"}
-        shared = {}
+        shared = {agent_id: {} for agent_id in sorted(agent_ids)}
         for agent_id in sorted(agent_ids):
-            pa = pas.get((final_round, agent_id))
-            if pa is None:
-                raise SystemExit(f"{target.issue_id}/{target.run_id}: final prompt_assembly 부재({agent_id})")
-            if pa.get("slots", {}).get("window", "rolling") != "rolling":
-                raise SystemExit(f"{target.issue_id}/{target.run_id}: §11은 rolling 입력만 허용")
-            exact = validate_mod.reassemble_prompt(
-                pa, ctx, where=f"recall {target.issue_id}/{target.run_id}/{agent_id}")
-            digest = hashlib.sha256(exact.encode("utf-8")).hexdigest()
-            if digest != pa["prompt_hash"]:
-                raise SystemExit(f"{target.issue_id}/{target.run_id}/{agent_id}: 재조립 hash 불일치")
-            refs = pa.get("slots", {}).get("others", [])
-            source_map = "\n".join(
-                f"View {idx + 1} = {ref['agent_id']}" for idx, ref in enumerate(refs))
-            shared[agent_id] = (
-                f"[발화자 ID 대응 — 출처 귀속용, 양 팔 공통]\n{source_map or '(이웃 없음)'}\n\n"
-                f"[재조립 검증된 마지막 입력 · sha256={digest}]\n{exact}"
-            )
+            for probe_round in rounds:
+                pa = pas.get((probe_round, agent_id))
+                if pa is None:
+                    raise SystemExit(
+                        f"{target.issue_id}/{target.run_id}: prompt_assembly 부재"
+                        f"({agent_id}, r{probe_round})")
+                if pa.get("slots", {}).get("window", "rolling") != "rolling":
+                    raise SystemExit(f"{target.issue_id}/{target.run_id}: §12는 rolling 입력만 허용")
+                exact = validate_mod.reassemble_prompt(
+                    pa, ctx,
+                    where=f"recall {target.issue_id}/{target.run_id}/{agent_id}/r{probe_round}")
+                digest = hashlib.sha256(exact.encode("utf-8")).hexdigest()
+                if digest != pa["prompt_hash"]:
+                    raise SystemExit(
+                        f"{target.issue_id}/{target.run_id}/{agent_id}/r{probe_round}: "
+                        "재조립 hash 불일치")
+                refs = pa.get("slots", {}).get("others", [])
+                source_map = "\n".join(
+                    f"View {idx + 1} = {ref['agent_id']}" for idx, ref in enumerate(refs))
+                shared[agent_id][probe_round] = (
+                    f"[발화자 ID 대응 — 출처 귀속용]\n{source_map or '(이웃 없음)'}\n\n"
+                    f"[재조립 검증된 r{probe_round} 입력 · sha256={digest}]\n{exact}"
+                )
         return shared, final_round
     finally:
         paths.DATA = old_data
@@ -197,7 +217,7 @@ def make_checkpoint(path: Path, max_calls: int,
 
 
 def _pre_mapping_path(target: Target) -> Path:
-    """계약 judgment와 같은 파일 루트에 두되, 별도 승인 전 judgment 자체는 수정하지 않는다."""
+    """계약 judgment 폴더와 분리하고, 별도 승인 전 judgment 자체는 수정하지 않는다."""
     return paths.recall_probe_pre_mapping(target.issue_id, target.run_id)
 
 
@@ -227,53 +247,65 @@ def run(data_root: Path, targets: list[Target], config_path: Path, *, dry: bool,
         max_calls: int, responder: Callable[[str], str] | None = None) -> dict:
     if not targets:
         raise ValueError("target이 하나 이상 필요")
-    planned = len(targets) * 8 * len(ARMS)
-    if not dry:
-        if max_calls <= 0:
-            raise SystemExit("live는 --max-calls 필수")
-        hard_ceiling = math.ceil(planned * 1.2)
-        if max_calls > hard_ceiling:
-            raise SystemExit(f"G1 상한 초과: --max-calls {max_calls} > {hard_ceiling}")
-        llm.preflight(MODEL, temperature=TEMPERATURE, reasoning="default")
-
     old_data = paths.DATA
     paths.DATA = Path(data_root).resolve()
     parsed_total = 0
+    parse_failed = 0
     written = []
     try:
-        checkpoint_path = paths.raw_calls("recall_probe_calls.jsonl")
-        checkpoint = None if dry else make_checkpoint(checkpoint_path, max_calls, responder=responder)
+        loaded = []
+        planned = 0
         for target in targets:
             shared_by_agent, final_round = load_shared_inputs(paths.DATA, target, config_path)
+            loaded.append((target, shared_by_agent, final_round))
+            planned += sum(len(by_round) + 1 for by_round in shared_by_agent.values())
+        if not dry:
+            if max_calls <= 0:
+                raise SystemExit("live는 --max-calls 필수")
+            hard_ceiling = math.ceil(planned * 1.2)
+            if max_calls > hard_ceiling:
+                raise SystemExit(f"G1 상한 초과: --max-calls {max_calls} > {hard_ceiling}")
+            llm.preflight(MODEL, temperature=TEMPERATURE, reasoning="default")
+
+        checkpoint_path = paths.raw_calls("recall_probe_calls.jsonl")
+        checkpoint = None if dry else make_checkpoint(checkpoint_path, max_calls, responder=responder)
+        for target, shared_by_agent, final_round in loaded:
             agent_ids = set(shared_by_agent)
             rows = []
             for agent_id in sorted(shared_by_agent):
-                shared = shared_by_agent[agent_id]
-                input_sha = hashlib.sha256(shared.encode("utf-8")).hexdigest()
-                for arm in ARMS:
+                coordinates = [
+                    ("probe_full", probe_round, shared_by_agent[agent_id][probe_round])
+                    for probe_round in sorted(shared_by_agent[agent_id])
+                ]
+                coordinates.append(("probe_note", final_round,
+                                    shared_by_agent[agent_id][final_round]))
+                for arm, probe_round, shared in coordinates:
+                    input_sha = hashlib.sha256(shared.encode("utf-8")).hexdigest()
                     prompt = build_prompt(arm, shared)
-                    tag = f"{target.issue_id}|{target.run_id}|{agent_id}|{arm}"
+                    tag = (f"{target.issue_id}|{target.run_id}|{agent_id}|"
+                           f"r{probe_round}|{arm}")
                     if dry:
                         raw = (json.dumps([{"statement": "DRY fact", "source": "inferred",
                                            "heard_from": None}]) if arm == "probe_full"
                                else json.dumps({"note": "DRY note"}))
                     else:
                         raw = checkpoint.call(prompt, tag)
-                    base = {"agent_id": agent_id, "arm": arm, "source_round": final_round,
+                    base = {"agent_id": agent_id, "arm": arm, "probe_round": probe_round,
                             "input_sha256": input_sha, "checkpoint_tag": tag,
+                            "raw_checkpoint": str(checkpoint_path),
                             "self_report_status": "observational_unmapped"}
-                    if arm == "probe_full":
-                        base["statements"] = parse_full(raw, agent_ids)
-                    else:
-                        note_text, truncated = parse_note(raw)
-                        base.update({"note_text": note_text, "truncated": truncated})
+                    base.update(parse_payload(raw, arm, agent_ids))
                     rows.append(base)
-                    parsed_total += 1
+                    if base["parse_status"] == "ok":
+                        parsed_total += 1
+                    else:
+                        parse_failed += 1
             if not dry:
                 written.append(str(_write_pre_mapping(target, final_round, rows)))
         return {"dry": dry, "targets": len(targets), "planned_calls": planned,
                 "actual_calls": 0 if dry else checkpoint.calls_this_run,
-                "parsed_rows": parsed_total, "written": written,
+                "parsed_rows": parsed_total, "parse_failed_rows": parse_failed,
+                "written": written,
                 "prompt_ver": PROMPT_VER}
     finally:
         paths.DATA = old_data

@@ -190,3 +190,18 @@ yes 는 행동 비난(AITA) — 극성이 반대라 **pro→NO / con→YES** 가
   재조립·hash 확인, CallCheckpoint 좌표 지문, 호출별 raw append+flush, `--dry` 0콜.
 - 경계: source(`assigned|heard|inferred`)는 모델의 **자기보고 관찰값**이며 사실 판정이나
   전달률 결과가 아니다. 팩트 매핑 판정은 별도 승인·콜 표가 필요하다.
+
+---
+
+## §12 recall probe 재작업 (2026-08-11 append)
+
+- `probe_full`: 각 에이전트의 r0..최종 rolling 입력을 `validate.reassemble_prompt`로
+  재조립·hash 확인한 뒤 시점별 독립 호출. 행과 checkpoint tag에 `probe_round`를 싣는다.
+- `probe_note`: 최종 시점만 1회. 시점별 note는 협력 트랙 수첩 실험과의 경계를 위해 만들지 않는다.
+- G1: 비교 3건 기준 full 96 + note 24 = **120콜**, 허용 상한 **144**. dry는 외부 호출 0.
+- 파싱 실패는 `parse_status: parse_fail` 제3상태와 raw checkpoint 참조로 행 단위 보존하며
+  다른 좌표와 pre-mapping 파일 작성을 막지 않는다.
+- pre-mapping 산출물은 계약 `judgments/`와 분리된 `data/recall_probe/`에 둔다.
+- `modules.llm.obtain_response`는 현재 `response_format`/`json_schema`를 지원하지 않는다.
+  `modules/llm.py`는 동범 소관이므로 이번 변경에서 수정하지 않았고, 구체 인계안은
+  `MUTUAL_REVIEW.md` §12 재검수 요청에 기록했다.

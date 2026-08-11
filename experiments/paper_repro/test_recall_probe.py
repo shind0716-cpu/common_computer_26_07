@@ -26,7 +26,7 @@ class RecallProbePathTests(unittest.TestCase):
                              Path("root/raw_calls/recall_probe_calls.jsonl"))
             self.assertEqual(
                 paths.recall_probe_pre_mapping("issue_x", "run_y"),
-                Path("root/judgments/recall_probe_pre_mapping_issue_x_run_y.json"),
+                Path("root/recall_probe/recall_probe_pre_mapping_issue_x_run_y.json"),
             )
         finally:
             paths.DATA = old
@@ -56,6 +56,31 @@ class RecallProbeParserTests(unittest.TestCase):
         self.assertEqual(text, "가" * 500)
         self.assertTrue(truncated)
 
+    def test_one_parse_failure_in_48_rows_is_recorded_without_blocking_file_write(self):
+        good = json.dumps([
+            {"statement": "fact", "source": "inferred", "heard_from": None},
+        ])
+        rows = []
+        for idx in range(48):
+            payload = rp.parse_payload("not-json" if idx == 17 else good,
+                                       "probe_full", {"agent_1"})
+            rows.append({"agent_id": "agent_1", "arm": "probe_full",
+                         "probe_round": idx, "checkpoint_tag": f"tag-{idx}", **payload})
+
+        self.assertEqual(sum(row["parse_status"] == "ok" for row in rows), 47)
+        self.assertEqual(sum(row["parse_status"] == "parse_fail" for row in rows), 1)
+        with tempfile.TemporaryDirectory() as td:
+            old = paths.DATA
+            try:
+                paths.DATA = Path(td)
+                output = rp._write_pre_mapping(rp.Target("issue_x", "run_y"), 3, rows)
+            finally:
+                paths.DATA = old
+            saved = json.loads(output.read_text(encoding="utf-8"))
+        self.assertEqual(len(saved["rows"]), 48)
+        failed = [row for row in saved["rows"] if row["parse_status"] == "parse_fail"]
+        self.assertEqual(failed[0]["checkpoint_tag"], "tag-17")
+
 
 class RecallProbePromptTests(unittest.TestCase):
     def test_each_arm_has_two_wording_options_and_active_prompts_share_input_verbatim(self):
@@ -73,7 +98,7 @@ class RecallProbePromptTests(unittest.TestCase):
 
 
 class RecallProbeDryIntegrationTests(unittest.TestCase):
-    def test_pilot1_dry_completes_16_planned_calls_with_zero_external_calls_and_no_writes(self):
+    def test_pilot1_dry_completes_full_timeseries_and_final_note_with_zero_external_calls(self):
         data_root = HERE / "data"
         checkpoint = data_root / "raw_calls" / "recall_probe_calls.jsonl"
         before = checkpoint.read_bytes() if checkpoint.exists() else None
@@ -86,10 +111,22 @@ class RecallProbeDryIntegrationTests(unittest.TestCase):
             responder=lambda prompt: self.fail("dry에서 외부 호출 금지"),
         )
         after = checkpoint.read_bytes() if checkpoint.exists() else None
-        self.assertEqual(result["planned_calls"], 16)
+        self.assertEqual(result["planned_calls"], 40)
         self.assertEqual(result["actual_calls"], 0)
-        self.assertEqual(result["parsed_rows"], 16)
+        self.assertEqual(result["parsed_rows"], 40)
+        self.assertEqual(result["parse_failed_rows"], 0)
         self.assertEqual(before, after)
+
+    def test_shared_inputs_cover_every_round_for_every_agent(self):
+        shared, final_round = rp.load_shared_inputs(
+            HERE / "data",
+            rp.Target("issue_ethics_0476", "pilot1"),
+            HERE / "configs" / "pilot1_gpt41.yaml",
+        )
+        self.assertEqual(final_round, 3)
+        self.assertEqual(set(shared), {f"agent_{idx}" for idx in range(1, 9)})
+        self.assertTrue(all(set(by_round) == {0, 1, 2, 3}
+                            for by_round in shared.values()))
 
     def test_checkpoint_reentry_reuses_same_prompt_and_rejects_prompt_drift(self):
         with tempfile.TemporaryDirectory() as td:

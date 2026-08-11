@@ -304,3 +304,67 @@ default, 모델)은 확장 시 좌표 재검 대상. 논문의 "입장 불변"�
   통과. pilot1 dry: 계획 16·실제 0·파싱 16·파일 작성 0,
   `prompt_ver=paper_repro_recall_v1@93961ba41950`.
 - 상대 리뷰 상태: 대기 (Claude 검수 → 요한 승인 전 live 금지)
+
+## 2026-08-11 | GPT-sol | §12 recall probe 재작업·재검수 요청 (실호출 0)
+
+- 등급: 수정완료 · Claude 재검수 대기 · **실호출 미승인**
+- F-1: `recall_probe.py:130-142`에 행 단위 제3상태 파서를 추가했다. 파싱 실패는
+  `parse_status=parse_fail`·`parse_error`·`checkpoint_tag`·`raw_checkpoint`와 함께
+  pre-mapping에 남고, 이후 좌표 처리는 계속된다(`recall_probe.py:293-307`).
+  회귀 테스트는 48행 중 malformed raw 1건을 넣어 47 ok + 1 parse_fail + 파일 작성 성공을
+  확인한다(`test_recall_probe.py:59-83`). 캐시 raw는 삭제·덮어쓰기하지 않는다.
+- 시계열: `load_shared_inputs`가 8명 각각의 r0..최종 `prompt_assembly`를 재조립하고
+  hash를 검증한다(`recall_probe.py:158-207`). `probe_full`은 전 시점, `probe_note`는
+  최종 시점만 좌표화하며 tag=`issue|run|agent|rN|arm`, 행에 `probe_round`를 기록한다
+  (`recall_probe.py:275-297`). pilot1 dry는 8×(full 4 + note 1)=40행이다.
+- G1 갱신: 3건이면 full 8×4×3=96 + note 8×1×3=24 = **120콜**, 상한
+  `ceil(120×1.2)=144`. 러너는 실제 재조립 좌표 수에서 planned를 계산하고 1.2배를 넘는
+  `--max-calls`를 거부한다(`recall_probe.py:255-268`).
+- 경로: `modules.paths.recall_probe_pre_mapping`을
+  `data/recall_probe/recall_probe_pre_mapping_{issue}_{run}.json`으로 이동했다
+  (`modules/paths.py:51-53`). judgment 파일은 계속 무수정이다.
+
+### 구조화 출력 확인·동범 인계문 (G2)
+
+- 확인 결과: **현행 미지원.** `obtain_response(inputs, model, temperature, reasoning)`에는
+  구조화 출력 인자가 없고(`modules/llm.py:441-442`), OpenAI payload도 `model`·`messages`·
+  token 상한과 선택적 `temperature`/`reasoning_effort`만 보낸다(`modules/llm.py:344-359`).
+  `response_format`·`json_schema` 문자열은 호출 경로에 없다.
+- 수정 금지: `modules/llm.py`는 동범 소관이므로 이번 작업에서는 건드리지 않았다.
+- 제안 API: 기존 호출자 무변경을 위해 `obtain_response(..., *, response_format=None)`의
+  keyword-only 선택 인자를 추가하고 OpenAI 경로에만 그대로 전달한다. recall full 스키마는
+  최상위 array, item object의 필수 키 `statement:string`,
+  `source: enum[assigned,heard,inferred]`, `heard_from: string|null`, 추가 필드 금지.
+  recall note 스키마는 object의 필수 키 `note:string`, 추가 필드 금지.
+- acceptance criteria: (1) 인자 부재 시 세 공급자 요청이 byte-for-byte 동등,
+  (2) OpenAI에만 `response_format={type:json_schema,...}` 전달,
+  (3) Anthropic/Gemini에서 명시 인자 사용 시 조용히 무시하지 않고 지원 여부를 명시,
+  (4) 기존 strict parser와 malformed cached raw 회귀 테스트 유지,
+  (5) 실제 적용은 별도 소유자 리뷰·승인 후 새 prompt/checkpoint 좌표로만 수행.
+
+### 관문 5 상태
+
+| 관문 | §12 근거 | 상태 |
+|---|---|---|
+| G1 | 3건 120 신규 논리콜, 상한 144; 이번 dry 실제 0 | 통과 |
+| G2 | 시점별 replay/hash `:158-207`, round tag `:285-286`, raw 좌표 `:293-297`; 구조화 출력 미지원 근거 위 참조 | 통과 |
+| G3 | 완주 debate read-only, debate_engine 호출 경로 없음 | 통과 |
+| G4 | source 정의 원문은 활성 문안에 유지; 매핑은 여전히 `observational_unmapped` | 통과 |
+| G5 | 실호출 0, 연구 수치 0. live 후 팔·시점별 raw 및 0/1 극단값 대조 전 집계 금지 | 대기 |
+
+- 상대 리뷰 상태: **수정완료 — Claude 재검수 요청**
+
+### GPT-sol 제출 전 검증 증거 (같은 작업 append)
+
+- RED: 변경 전 집중 테스트에서 8종 중 예상 실패 3 + 미구현 API error 1을 확인했다
+  (구 계획 16≠40, 최종시점-only 입력, judgments 경로, `parse_payload` 부재).
+- GREEN: 트랙 테스트 **56종 전건 통과**, 리포 `run_smoke.py` **311종 전건 통과**.
+- 실제 pilot1 dry: 계획 40 · 실제 외부 호출 0 · ok 40 · parse_fail 0 · 파일 작성 0.
+- G1 dry(동일 완주 fixture를 3 target 좌표로 반복한 공식 계수 확인): 계획 **120** ·
+  실제 외부 호출 0 · ok 120 · parse_fail 0 · 파일 작성 0. 실제 비교 3건 데이터는 아직 없어
+  연구 산출로 보지 않으며 콜 표·상한 계산 검증에만 썼다.
+- 원본 debate `modules.validate --deep`: prompt_assembly **32건 재조립 통과**.
+- `py_compile`·`git diff --check` 통과, 추가된 줄 보안 패턴 스캔 0건, 실호출 0.
+- 별도 temp data ad-hoc(정식 suite와 구분): 40 raw 중 17번째를 malformed로 주입한 첫 실행은
+  신규 40콜(가짜 responder)·ok 39·parse_fail 1·pre-mapping 작성에 성공했다. 같은 checkpoint
+  재진입은 신규 0콜·ok 39·parse_fail 1이며 raw JSONL byte 불변을 확인했다. 실제 API 0콜.

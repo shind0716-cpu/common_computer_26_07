@@ -49,5 +49,5 @@ def raw_calls(filename: str) -> Path:
 
 
 def recall_probe_pre_mapping(issue_id: str, run_id: str) -> Path:
-    """팩트 매핑 승인 전 recall 자기보고 파생물. judgment와 같은 산출물 폴더에 둔다."""
-    return DATA / "judgments" / f"recall_probe_pre_mapping_{issue_id}_{run_id}.json"
+    """팩트 매핑 승인 전 recall 자기보고 파생물. 계약 judgment와 분리해 둔다."""
+    return DATA / "recall_probe" / f"recall_probe_pre_mapping_{issue_id}_{run_id}.json"
