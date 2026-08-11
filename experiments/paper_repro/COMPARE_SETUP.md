@@ -63,3 +63,35 @@ VIEWER_DATA=experiments/paper_repro/data   # 뷰어로 우리 판 확인 시
 2. GPT-sol §11 회신(probe 설계) → Claude 검수 → 요한 승인
 3. 편차 P-9 등재 + 판정 규칙 사전고정(결과 보기 전: "비슷하다"의 기준을 먼저 적는다)
 4. G1 콜 표 확정 → 실호출 승인 → 실행(체크포인트·재개) → G2~G5 → 집계 → 검토 문서
+
+---
+
+## 6. 결정 반영 (2026-08-10 요한 — append)
+
+**비교 단위 = (ii) 팩트 고정** 확정. 근거(요한): 추출 사양이 양쪽 동일(프롬프트 직독·
+gpt-5·temp 0 — 프로브 실측 근거)하므로 추출 구현 차이까지 비교에 넣는 실익이 없다 —
+실리 우선. 파생 이득: 분모(팩트·배분)가 같아져 FAR 을 경향이 아니라 **절대값·팩트
+단위로 직접 비교**할 수 있다.
+
+검토 문서 명시 의무: "논문 코드를 돌렸다"의 범위는 **토론·판정 구간**(discussion.py·
+evaluation.py)이다 — 추출·배분은 저자 사양의 우리 산출물을 공통 주입(과대 표현 금지).
+
+### 주입 계획 (저자 판 데이터 파일 3종 — 코드·프롬프트 무수정)
+
+| 저자 경로 | 내용 | 출처 |
+|---|---|---|
+| `datasets/scruples.json` | 대상 3건 (question·background 등 저자 필드) | 우리 issues (원본 682건 풀의 원형 필드) |
+| `data/facts_scruples.json` | 팩트 (저자 위치 배열 형식) | 우리 facts — `origin_index` 로 위치 복원 (bridge 계약 H1) |
+| `data/perspective_scruples.json` | 관점 4배열 (위치 인덱스) | 우리 assignment 의 `perspective_sets.sets` — **원형 보존분 그대로** (접합 계층 설계 목적의 실현) |
+
+`data/random_index_scruples.json` 은 저자 `discussion_preprocess()`(seed 20260601)가
+생성 — 우리가 만들지 않는다(저자 절차 그대로). 변환기는 우리 리포
+(`experiments/paper_repro/compare/`)에 두고 저자 리포에는 **산출 파일만** 놓는다.
+실행 후 저자 리포 원상 복구·산출 전량 회수는 §3 그대로.
+
+### 콜 표 갱신 (n=3, (ii) 기준 — G1 에서 최종 확정)
+
+저자 판: 발화 96 + evaluate_fact 96 + evaluate_stance 96 = **288** (추출·배분 0)
+우리 판: 발화 96 + 저자 축 96 + stance 96 = **288** · probe 2팔 96 → **총 ~672콜 ≈ $7**
+
+잔여 확인: 발화 온도 1.2 (§1 — 요한 확인 대기 유지)
