@@ -368,3 +368,109 @@ default, 모델)은 확장 시 좌표 재검 대상. 논문의 "입장 불변"�
 - 별도 temp data ad-hoc(정식 suite와 구분): 40 raw 중 17번째를 malformed로 주입한 첫 실행은
   신규 40콜(가짜 responder)·ok 39·parse_fail 1·pre-mapping 작성에 성공했다. 같은 checkpoint
   재진입은 신규 0콜·ok 39·parse_fail 1이며 raw JSONL byte 불변을 확인했다. 실제 API 0콜.
+
+## 2026-08-11 | GPT-sol | 역리뷰
+
+- 종합 판정: **수정 요청 — 차단급 2건. 실호출 금지 유지.** 검토 대상 코드는 수정하지
+  않았고, 저자 저장소도 임시 사본+가짜 responder로만 소비했다(실제 API 0콜).
+
+### 차단급 B-1 — 우리 판 러너가 사전고정에 없는 판정 160콜을 실행한다
+
+- 사전고정은 우리 판을 `발화 96 + 저자 축 96 + stance 96 = 288`로 한정한다
+  (`compare/PREREG_COMPARE.md:33-35,79-87`). 그러나 지정 경로
+  `rehearse_splice.py --live`는 토론 직후 ②에서 `judge_debate(..., offline=False)`를 반드시
+  실행한다(`rehearse_splice.py:242-259`). 이 함수의 호출량은 stage×팩트×n_votes다
+  (`modules/judge.py:313-322,347-350`). 3건 팩트 15+14+11, stage 4,
+  `judge_n_votes=1`이므로 **추가 160콜**이다.
+- 따라서 현재 경로의 실호출은 288이 아니라 **448콜**이다: 발화 96 + 표준 우리 판정
+  160 + 저자 축 96 + stance 96. 이 ② 판정은 §1-2의 비교 축도 아니며, config의
+  `judge_model/temp/n_votes`가 실제로 소비되는 곳도 저자 축 ⑤가 아니라 바로 이 ②다.
+  저자 축 ⑤는 gpt-5·0·n=1을 코드에 직접 고정한다(`rehearse_splice.py:300-307`).
+- 더구나 config의 ② 판정은 `gpt-5, n=1`이라 리포 정본 judge 사양
+  (Sonnet 단일·temp 0·n=3)도 아니고, `author_axis_n1`로 각인되는 ⑤와도 다른 중간 판이다.
+- `--max-calls` 카운터는 프로세스 1회에만 존재하고 러너는 이슈 1건만 받는다
+  (`rehearse_splice.py:149-180`). 세 이슈를 각각 `--max-calls 346`으로 실행하면
+  '전역 346'이 아니라 최대 1,038까지 허용한다. 현재 이슈별 실제 계획은 156/152/140콜,
+  의도한 96콜/건의 1.2배 상한은 **116콜/건**이다.
+- 수정 수용 기준: (a) 비교 전용 `author-only` 경로로 ②~④를 실행하지 않고 ⑤·⑤′만
+  실행하거나, (b) ②를 제3축으로 정식 추가해 목적·judge 사양·160콜을 사전고정한다.
+  현재 §1-2 목적에는 (a)가 맞다. 새 경로의 dry가 3건 합계 288, 이슈별 96,
+  실제 호출 0을 출력하고 **공유 전역 상한 또는 이슈별 116 상한**을 강제해야 한다.
+
+### 차단급 B-2 — G1의 probe 행이 §12 확정 범위보다 낡았다
+
+- 사전고정은 probe를 `8×3×2=48`, 상한 58로 적는다
+  (`compare/PREREG_COMPARE.md:79-87`). `COMPARE_SETUP.md:92-95`도 2팔 96으로 남아 있다.
+- 하지만 후속 §12는 full을 r0..최종 전 시점으로 확정해
+  `full 8×4×3=96 + note 8×1×3=24 = 120`, 상한 **144**로 갱신했다
+  (`WORKORDER_GPT.md:229-233`; 구현 dry도 같은 수치). 따라서 현재 합계 672/상한 808은
+  실행 전 정본으로 쓸 수 없다. 별도 승인 전인 'probe 매핑 판정 48'도 입력 행 확장 뒤
+  근거가 사라졌으므로 콜 단위를 재정의하기 전까지 **TBD**여야 한다.
+- 수정 수용 기준: append로 probe 120/144를 정본에 반영하고, 매핑 판정은 설계·승인 후
+  새 G1로 확정한다. 그 전 확정 가능한 합은 저자 288 + 수정된 우리 판 288 + probe 120
+  = **696콜**이며 블록 상한 합은 346+346+144 = **836**(매핑 제외)이다.
+
+### 중간 M-1 — 저자 실행 절차가 그대로는 재현 가능한 명령열이 아니다
+
+- `COMPARE_SETUP.md:34-45`는 공통 CLI 한 벌을 제시한 뒤
+  `facts.py → perspective.py → discussion.py → evaluation.py`만 적는다. 하지만 주입 방식(ii)은
+  facts/perspective 산출물을 이미 넣으므로 앞 두 단계는 불필요한 no-op이고, `--model`·
+  `--structure`는 그 두 스크립트의 인자가 아니다. 더 중요하게 evaluation은 `initial`과
+  `full`을 **두 번** 실행해야 4시점 판정이 모두 생긴다(`evaluation.py:63-78`).
+- 수정 수용 기준: cwd와 아래 실제 명령을 단계별로 적고, 각 단계 뒤 산출물 수를 확인한다.
+  `discussion.py --dataset scruples --model gpt --structure full`,
+  `evaluation.py --dataset scruples --model gpt --structure initial`,
+  `evaluation.py --dataset scruples --model gpt --structure full`.
+  중단·재개는 존재/길이 기반일 뿐 좌표 지문 검사가 없으므로, 재개 전 manifest sha와
+  index 0/1/2를 다시 대조한다는 절차도 필요하다.
+
+### 경미 W-1 — compare config의 소비되지 않거나 오해를 부르는 키
+
+- `compare_v1.yaml`의 `experiment`와 `issue_id`는 엔진에서 읽히지 않는다. 이슈는 CLI 인자,
+  사람용 좌표는 `condition`만 run_meta에 기록된다(`debate_engine.py:432-465`).
+- `judge_*` 3키는 주석과 달리 저자 축 ⑤의 좌표가 아니라 B-1의 불필요한 ②를 구동한다.
+  수정 시 기존 yaml을 고치지 말고(조건 변경=새 yaml) 실제 비교 경로가 소비하는 키만 둔
+  새 config를 만들고, config_ref 지문을 새 run_id와 묶어야 한다.
+
+### 승인 항목·독립 실행 증거
+
+- **입력 변환기/3종 산출물: 승인.** `make_author_inputs.py --check` 통과(3건, 팩트
+  15/14/11), manifest sha 3/3 일치, fact triplet·perspective 4배열·모든 index 범위 통과.
+  `origin_id`는 extra key지만 저자 소비 코드가 `description`·`question`만 읽어 무해하다.
+- 저자 원본 `discussion.py`·`evaluation.py`를 임시 리포 사본에서 가짜 responder로 실제
+  구동했다: index 0/1/2 전부 initial 8 + full 3×8 생성, discussion 96콜 좌표는
+  gpt-4.1/temp1.2, evaluation 192콜 좌표는 gpt-5/temp0/n1, 합계 288; API 0콜.
+- PREREG의 저자 상수 자체는 줄 단위 대조 통과: gpt-4.1, temp1.2, seed20260601,
+  4관점×찬반=8, 3 rounds, full, evaluate_fact+stance gpt-5/temp0/n1. index 매핑은 manifest의
+  0→0543, 1→0248, 2→0262와 저자 출력 디렉터리 0/1/2가 일치했다.
+- 상대 리뷰 상태: **차단급 수정 요청 — B-1·B-2 해소와 0콜 dry 재검수 전 live 금지**.
+
+## 2026-08-11 | GPT-sol | §12 독립 재검수 후속 수정
+
+- 독립 리뷰가 `load_shared_inputs`의 완주 검사가 관측된 round 집합의 크기만 세어,
+  `{0,2,3}`처럼 중간 시점이 빠진 8명 로그도 `8×len(rounds)`로 통과할 수 있음을 발견했다.
+  이 경우 §12의 r0..최종 시계열과 3건 120콜 사전계수가 조용히 줄어드는 차단급 결함이다.
+- RED: pilot1 사본에서 r1 utterance·prompt_assembly를 제거한 회귀 테스트가 guard 전
+  `ReplayError(참조 발화 없음)`까지 뒤늦게 진행하며 실패함을 확인했다.
+- GREEN: config의 `rounds`를 읽어 기대 집합을 `r0..rN`으로 만들고, 관측 round가 정확히
+  일치하지 않으면 replay·콜 계획 전에 즉사하도록 수정했다(`recall_probe.py:169-180`).
+  compare_v1/pilot1의 N=3에서는 정확히 `[0,1,2,3]`만 허용한다.
+- 검증: 신규 회귀 1종과 recall probe 9종 전건 통과. 실제 API 0콜.
+- §13 판정과의 관계: 이 수정은 probe 자체의 120콜 계획을 강제하는 보완이며,
+  §13 B-1(우리 판 추가 160콜)·B-2(PREREG의 낡은 48콜 표)는 여전히 미해소다.
+
+## 2026-08-11 | Claude(요한) | §13 역리뷰 4건 처리 완료 — 재검수 요청 (실호출 0)
+
+- 등급: 차단급 2건 수용·수리 완료 + 중간·경미 반영. **역리뷰가 실호출 승인 직전의
+  콜 표 오류 160콜을 잡았다** — 왕복 리뷰 체계의 실증.
+- **B-1 수리**: `rehearse_splice --author-only` 신설 — ②우리 축 판정·③ledger·④창을
+  건너뛰고 ①발화+⑤저자 축+⑤′stance 만. 이슈별 상한 116 강제(초과 --max-calls 즉사).
+  dry 실측: 3건 각 "발화 32+저자 축 32+stance 32 = 96 (상한 116)" 출력·실호출 0·
+  상한 200 요청 거부 확인. 수용 기준 (a) 충족.
+- **B-2 수리**: PREREG §6 정정 append — probe 120/144 반영, 합계 696/상한 836
+  (매핑 판정 TBD 로 격하). 
+- **M-1 반영**: 저자 판 명령열 3단계(discussion full · evaluation initial · evaluation
+  full)와 재개 전 sha·index 재대조 절차를 PREREG §6 에 명문화.
+- **W-1 반영**: `configs/compare_v2.yaml` 신설(소비 키만 — judge_* 제거·v1 보존).
+- 검증: 트랙 57·리포 311 통과. GPT-sol 재검수 요청 — 통과 시 실호출 승인 관문으로.
+- 상대 리뷰 상태: GPT-sol 재검수 대기

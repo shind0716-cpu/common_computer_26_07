@@ -94,3 +94,33 @@ compare/RESULT.md             집계 — 이 문서의 §3 규칙대로만 작�
 ① 이 문서 커밋(사전고정) → ② GPT-sol §11 회신·검수·승인(probe) → ③ **실호출 승인(요한)**
 → ④ 저자 판 실행(단계별)·산출 즉시 회수 → ⑤ 우리 판 실행(체크포인트) → ⑥ probe →
 ⑦ G2~G5 통과 → ⑧ RESULT.md (§3 규칙만으로) → ⑨ 검토 문서(멘토·퍼실용, 수요일 공유)
+
+---
+
+## 6. 정정 append — 역리뷰 반영 (2026-08-11, GPT-sol §13 차단급 2건)
+
+**B-1 (실행 경로)**: §5 의 우리 판 실행 경로를 `rehearse_splice.py --live --author-only
+--config configs/compare_v2.yaml` 로 정정한다. 종전 경로는 사전고정에 없는 ② 우리 축
+판정 160콜(중간 판 — 정본 judge 사양도 저자 축도 아님)을 실행했다. author-only 는
+②~④를 건너뛰고 ①발화+⑤저자 축+⑤′stance 만 실행하며, **이슈별 상한 116**(계획
+96×1.2)을 러너가 강제한다(dry 실측: 3건 각 96, 실호출 0). config 는 v2(소비 키만 —
+v1 은 보존·미사용).
+
+**B-2 (G1 콜 표 정정)**: §4 의 probe 행(48/58)은 §12 시계열 확정 전 수치다. 정본 갱신:
+
+| 블록 | 예상 | 상한 |
+|---|---|---|
+| 저자 판 (발화 96 + evaluate_fact 96 + evaluate_stance 96) | 288 | 346 |
+| 우리 판 author-only (발화 96 + 저자 축 96 + stance 96) | 288 | 346 (116/건) |
+| probe (full 8×4시점×3 + note 8×1×3) | 120 | 144 |
+| **합계 (매핑 판정 제외)** | **696** | **836** |
+| probe 매핑 판정 | **TBD** — §12 시계열 행 확장으로 종전 48콜 근거 소멸, 설계·승인 후 새 G1 | — |
+
+**M-1 (저자 판 명령열)**: §5 실행 순서의 저자 판 단계를 다음으로 구체화한다 —
+(ii) 주입으로 facts.py·perspective.py 는 **실행하지 않는다**(산출물 주입됨).
+cwd=DelibTrace-main 에서: ① `python discussion.py --dataset scruples --model gpt
+--structure full` ② `python evaluation.py --dataset scruples --model gpt --structure
+initial` ③ `python evaluation.py --dataset scruples --model gpt --structure full`
+(4시점 판정은 initial·full 두 번 실행이 필요 — evaluation.py:63-78). 각 단계 후 산출물
+수 확인, 재개 전 manifest sha·index 0/1/2 재대조(저자 코드 재개는 길이 기반 —
+좌표 지문 없음).

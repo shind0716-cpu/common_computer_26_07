@@ -169,6 +169,12 @@ def load_shared_inputs(data_root: Path, target: Target,
         rounds = sorted({e["round"] for e in utterances})
         if len(agent_ids) != 8 or not rounds:
             raise SystemExit(f"{target.issue_id}/{target.run_id}: 8명 완주 토론 아님")
+        cfg = yaml.safe_load(Path(config_path).read_text(encoding="utf-8")) or {}
+        expected_rounds = list(range(int(cfg.get("rounds", 3)) + 1))
+        if rounds != expected_rounds:
+            raise SystemExit(
+                f"{target.issue_id}/{target.run_id}: 연속 라운드 "
+                f"r0..r{expected_rounds[-1]} 필요 — 실제 {rounds}")
         final_round = rounds[-1]
         expected = len(agent_ids) * len(rounds)
         if len(utterances) != expected:

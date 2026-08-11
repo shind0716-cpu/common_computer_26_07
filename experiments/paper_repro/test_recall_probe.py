@@ -98,6 +98,38 @@ class RecallProbePromptTests(unittest.TestCase):
 
 
 class RecallProbeDryIntegrationTests(unittest.TestCase):
+    def test_shared_inputs_reject_noncontiguous_rounds_before_replay(self):
+        with tempfile.TemporaryDirectory() as td:
+            data_root = Path(td)
+            issue_id = "issue_ethics_0476"
+            run_id = "pilot1"
+            source_root = HERE / "data"
+            for source, destination in (
+                (source_root / "issues" / f"{issue_id}.json",
+                 data_root / "issues" / f"{issue_id}.json"),
+                (source_root / "facts" / f"facts_{issue_id}.json",
+                 data_root / "facts" / f"facts_{issue_id}.json"),
+                (source_root / "debates" / f"debate_{issue_id}_{run_id}.jsonl",
+                 data_root / "debates" / f"debate_{issue_id}_{run_id}.jsonl"),
+            ):
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                destination.write_bytes(source.read_bytes())
+            debate = data_root / "debates" / f"debate_{issue_id}_{run_id}.jsonl"
+            events = [json.loads(line) for line in debate.read_text(encoding="utf-8").splitlines()
+                      if line.strip()]
+            events = [event for event in events
+                      if not (event.get("round") == 1 and
+                              event.get("event") in {"utterance", "prompt_assembly"})]
+            debate.write_text("".join(json.dumps(event, ensure_ascii=False) + "\n"
+                                      for event in events), encoding="utf-8")
+
+            with self.assertRaisesRegex(SystemExit, "연속.*r0"):
+                rp.load_shared_inputs(
+                    data_root,
+                    rp.Target(issue_id, run_id),
+                    HERE / "configs" / "pilot1_gpt41.yaml",
+                )
+
     def test_pilot1_dry_completes_full_timeseries_and_final_note_with_zero_external_calls(self):
         data_root = HERE / "data"
         checkpoint = data_root / "raw_calls" / "recall_probe_calls.jsonl"
