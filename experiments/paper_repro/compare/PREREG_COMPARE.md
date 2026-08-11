@@ -167,3 +167,45 @@ prompt_sha256·facts_sha256·config_sha256) 일치 시에만 재사용된다(C-4
 **계획 실측 (2026-08-11 · 실호출 0)**: 3건 각각 `발화 32 + 저자 축 32 + stance 32 = 96
 (이슈 상한 116)` · 블록 원장 0/346 → 실행 후 96/346 예상 · 기록 0. G1 합계는 §6 정본
 (696/상한 836, 매핑 TBD) 변경 없음.
+
+---
+
+## 8. 정정 append — 재재검수(C-5~C-8) 반영: 상한 의미론 확정·트랜치 실행 (2026-08-11)
+
+**C-5 방침 (요한 동의 8/11)**: **승인 경계 = 논리 콜**(질문 수 — §6 정본 696/836 의 단위,
+비용 산술과 동일 단위). llm 내부 HTTP 재시도(최대 5회)는 **별도 전송 시도 퓨즈**로
+강제한다: 전송 원장 `data/raw_calls/compare_ours_attempt_ledger.jsonl` 에 시도마다 1행
+기록(계기판 — 사후 "재시도 몇 회"를 사실로 보고), 상한 = 논리의 2배(**이슈 232 ·
+블록 692**). 정상 시 논리 1=전송 1 이라 이 퓨즈는 보이지 않고, 재시도 폭주 시에만
+실행을 중단한다(SystemExit — llm 재시도 루프가 삼킬 수 없음). llm.py 는 무수정(동범
+소관) — 러너가 공급자 전송 함수를 감싼다.
+
+**C-6**: 이슈별 상한 116 은 **원장 누적 기준의 지속 상한**이다 — 프로세스 재시작으로
+초기화되지 않으며, `원장 누적 + 계획 > 116` 이면 첫 호출 전에 거부한다.
+
+**C-7**: live 는 **단일 실행만** — OS 파일 잠금(`raw_calls/compare_ours.lock`, 프로세스
+사망 시 자동 해제)으로 두 번째 live 를 시작 전에 거부하고, 이슈 3건은 **한 프로세스가
+직렬 실행**(트랜치)한다. 유일 기록자 전제가 성립해 원장 경쟁 자체가 없다.
+
+**C-8**: debate 재사용은 config 지문만이 아니라 **입력 전부의 지문** —
+issue·facts·assignment 파일 sha256 + debate_model·temperature·prompt_ver — 을 debate
+최초 생성 직전 manifest(`raw_calls/compare_manifest_{issue}_{run}.json`)로 고정하고,
+한 바이트라도 다르면 0콜로 거부한다(debate 존재 + manifest 부재도 거부 — 부재≠일치).
+저자 축·stance 체크포인트 행은 debate 파일 sha256 에도 묶인다(좌표 11종).
+
+**실행 명령 정본 (§7 의 이슈별 3명령을 대체 — 트랜치 1명령)**: cwd = 리포 루트.
+
+계획 확인(0콜·무기록 — 실행 전 의무):
+```
+PYTHONUTF8=1 python experiments/paper_repro/compare_ours.py --issues issue_ethics_0543,issue_ethics_0248,issue_ethics_0262 --run-prefix compare2 --config experiments/paper_repro/configs/compare_v2.yaml --source-data experiments/paper_repro/data
+```
+실호출(요한 승인 후 · 1명령이 3건 직렬):
+```
+PYTHONUTF8=1 python experiments/paper_repro/compare_ours.py --issues issue_ethics_0543,issue_ethics_0248,issue_ethics_0262 --run-prefix compare2 --config experiments/paper_repro/configs/compare_v2.yaml --source-data experiments/paper_repro/data --live --max-calls 116
+```
+(run_id 는 `compare2_{끝자리}` 로 유도 — §7 의 compare2_0543/0248/0262 와 동일.
+`--max-calls` 는 이슈별 프로세스 상한이며 지속 상한 116·블록 346 은 원장이 별도 강제.)
+
+**계획 실측 (2026-08-11 · 실호출 0)**: 트랜치 3건 직렬 각 96 = **합계 288** · 블록 원장
+0/346 → 288/346 · 전송 계기판 0/692 · manifest 통과 · 기록 0. G1 합계는 §6 정본
+(696/상한 836, 매핑 TBD) 변경 없음.
