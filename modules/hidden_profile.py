@@ -105,6 +105,47 @@ def fact_trace(events: list[dict], assignment: dict, facts_doc: dict, *,
     return rows
 
 
+def lineage(events: list[dict], assignment: dict, facts_doc: dict, fact_id: str) -> dict:
+    """팩트 1개의 원형이 통과했을 수 있는 경로 전체를 시간순 좌표에 나란히 놓는다(§3-5).
+
+    판정 0 — 변형 여부·정도·방향을 계기가 말하지 않는다. 보유자 특정은 배분표
+    설계값이라 판정이 아니다. 비보유자 발화는 싣지 않는다(§3-5 — 전달 여부는
+    등장 좌표가 라벨된 뒤의 질문). inputs_ref 는 참조다 — 전문 재조립은
+    화면·validate --deep 몫(조립 코드 단일 소스 원칙)."""
+    fact = next((f for f in facts_doc["facts"] if f["fact_id"] == fact_id), None)
+    if fact is None:
+        raise ValueError(f"미지 fact_id {fact_id!r} — facts_doc 에 없음")
+    holders = [ag["agent_id"] for ag in assignment["agents"]
+               if fact_id in ag.get("assigned_fact_ids", [])]
+    holder_set = set(holders)
+
+    def _key(e):
+        return (e.get("round", -1), e.get("agent_id", ""))
+
+    utterances = [{"round": e.get("round"), "agent_id": e.get("agent_id"),
+                   "response_text": e.get("response_text", "")}  # 원문 전량
+                  for e in sorted(_events_of(events, "utterance"), key=_key)
+                  if e.get("agent_id") in holder_set]
+    notes = [{"round": e.get("round"), "agent_id": e.get("agent_id"),
+              "source": e.get("source"), "note_text": e.get("note_text", ""),
+              "n_chars": len(e.get("note_text", ""))}
+             for e in sorted(_events_of(events, "note_update"), key=_key)
+             if e.get("agent_id") in holder_set]
+    inputs_ref = [{"round": e.get("round"), "agent_id": e.get("agent_id"),
+                   "prompt_hash": e.get("prompt_hash"), "slots": e.get("slots")}
+                  for e in sorted(_events_of(events, "prompt_assembly"), key=_key)
+                  if e.get("agent_id") in holder_set]
+    return {
+        "fact": {"fact_id": fact_id, "text": fact.get("text"),
+                 "share": fact.get("share"), "favors": fact.get("favors"),
+                 "requirement": fact.get("requirement"), "apparent": fact.get("apparent")},
+        "holders": holders,
+        "utterances": utterances,
+        "notes": notes,
+        "inputs_ref": inputs_ref,
+    }
+
+
 def note_trace(events: list[dict]) -> list[dict]:
     """에이전트별 수첩 판본을 원문 그대로 좌표에 건다. n_chars 는 길이만 —
     "얼마나 줄었나"는 화면(사람) 몫이다(§5-3)."""
