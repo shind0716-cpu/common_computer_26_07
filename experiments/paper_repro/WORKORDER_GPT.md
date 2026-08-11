@@ -240,3 +240,30 @@ G4 프레임 경계 매핑은 양끝 정의 원문 병기. G5 첫 수치는 원�
    **`data/recall_probe/`** 로 이동(계약 폴더 순도 — paths 함수도 갱신).
 
 관문 G1~G5 종전대로 의무. 실호출은 여전히 별도 승인.
+
+# §13. 역리뷰 요청 — Claude 비교 실험 준비물 4건 (2026-08-11 요한 지시, append)
+
+§12 재작업과 별개 과업. **저자 충실 계층의 눈**으로 Claude(접합 계층) 산출물을 검토하라.
+산출자와 검증자가 같은 오해를 두 번 통과시키지 않기 위한 왕복이다(verify_bridge 전례).
+파일 수정 금지 — 발견은 MUTUAL_REVIEW append 로 보고(등급: 차단/경고/제안).
+
+## 검토 대상과 관점
+
+1. **`compare/make_author_inputs.py` + `author_inputs/` 3종** — 저자 파이프라인이 이
+   입력을 실제로 소화하는가: `datasets/scruples.json` 필드가 저자 코드가 읽는 필드
+   (`description`·`question`)와 정확히 일치하는가, `facts_scruples.json` 3중 구조가
+   `discussion.py:97`(`_, refined_facts, _`)·`evaluation.py:59` 언팩과 맞는가,
+   perspective 4배열이 `check_available`(len==4)·인덱스 범위를 통과하는가.
+   **여분 키(origin_id)가 저자 코드 어느 경로에서든 문제를 일으키지 않는지** 확인.
+2. **`compare/PREREG_COMPARE.md` §1 좌표표** — 저자 코드 상수와 전건 대조:
+   발화 모델·온도 1.2·라운드 3·구조 full·discussion_preprocess seed 20260601 등.
+   표가 틀리면 조건 정본이 틀린 것이다 — 한 칸씩 코드 줄 번호로 확인(G2 방식).
+3. **`COMPARE_SETUP.md` §3 저자 판 실행 절차** — 단계 순서·상대경로·재개 동작
+   (`out[len(out):]` 이어받기)·"3건 입력 파일 = 상한" 주장이 실제 코드 동작과 맞는지.
+   특히 **discussion.py 가 datasets 파일에서 3건만 돌 때 index 매핑이 우리
+   mapping_manifest 와 일치하는지**(0-기반 위치).
+4. **`configs/compare_v1.yaml`** — 엔진이 실제로 읽는 키만 있는지, 저자 좌표와
+   어긋난 칸이 없는지.
+
+거짓 안심 금지: "통과"로 끝내지 말고 각 항목에 근거(코드 줄·실측)를 달 것.
+발견이 0건이면 그 확인 경로 자체를 보고하라.
