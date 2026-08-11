@@ -12,9 +12,9 @@ persona: default
 window: rolling
 memory: none
 debate_model: gpt-4.1           # 저자 discussion.py 상수 동일
-debate_temperature: 1.2         # ★저자 상수 채택 (pilot1 의 1.0 과 다름 — 비교 목적상
-                                #  저자 좌표 정합이 우선. P-7 편차의 이 판 한정 해소.
-                                #  요한 확인 대기)
+debate_temperature: 1.2         # 저자 상수 채택 — 요한 확정 8/10 (pilot1 1.0 과 다름:
+                                #  비교 목적상 저자 좌표 정합 우선. 보고 시 pilot1 수치와
+                                #  직접 비교 불가·온도 상이 명시 의무)
 judge_model: gpt-5              # 저자 축 판정(발화×팩트목록) — 축 확정 8/10 (논문 데이터 한정)
 judge_temperature: 0
 judge_n_votes: 1                # 저자 축 n=1 (aggregation: author_axis_n1 각인)

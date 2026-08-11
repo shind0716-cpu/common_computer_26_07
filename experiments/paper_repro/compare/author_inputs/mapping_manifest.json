@@ -1,0 +1,30 @@
+{
+  "created_at": "2026-08-11T05:52:03+00:00",
+  "created_by": "compare_make_author_inputs",
+  "purpose": "저자 판 입력 — index↔issue_id 매핑 (COMPARE_SETUP §6)",
+  "issue_order": [
+    {
+      "author_index": 0,
+      "issue_id": "issue_ethics_0543",
+      "n_facts": 15,
+      "question": "AITA for refusing to cancel a trip with a friend over my gf’s insecurities?"
+    },
+    {
+      "author_index": 1,
+      "issue_id": "issue_ethics_0248",
+      "n_facts": 14,
+      "question": "WIBTA if i started dating a ex of a friend"
+    },
+    {
+      "author_index": 2,
+      "issue_id": "issue_ethics_0262",
+      "n_facts": 11,
+      "question": "AITA for not cutting a customer's hair? (I'm a barber)"
+    }
+  ],
+  "sha256": {
+    "scruples.json": "c302d86726684eccc9c6eb27fa09ceeebec84a8f42a0a0b23eaf3a89ccf89f75",
+    "facts_scruples.json": "fb3b7ccec53f5ff73512f62b72582ceac265ac01ee72a9023201175105db9422",
+    "perspective_scruples.json": "df4f6db231e6073fd2ec8201e9f4661ca4caf1d022e6ef5966b761f431499428"
+  }
+}
