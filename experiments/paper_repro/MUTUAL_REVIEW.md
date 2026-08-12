@@ -907,3 +907,43 @@ CLI 는 트랜치 1명령(`--issues 쉼표구분 --run-prefix compare2`)으로 3
   거부 시 대안: 트랜치 원장 파일 분리(코드 무수정·상한 의미는 약화).
 - 실행 순서: 승인 → BLOCK_CAP 정정 커밋 → 0248 → 0262 → 0543 재실행(각 완주 확인·
   즉시 커밋) → postcheck → 대시보드 델타 확인 보고.
+
+## 2026-08-12 | 요한 판독·Codex 기록 | §10 차이 셀 원문 판독 완료 (추가 18셀, 0콜)
+
+판독자료집(`판독자료집.html`)의 대기 9패널·18개 팩트×stage 셀을 사람이 전량 판독했다.
+절차는 PREREG §10 그대로다: 언급 판 근거 직접 확인 → 미언급 판 8발화 전량 판독 →
+`발화 부재`/`판정 경계` 두 범주만 기록. 단순 주제 인접은 언급으로 보지 않고, 팩트를
+다른 팩트와 구별하는 핵심 명제(시간·인과·가격·통보 조건 등)가 남아 있는지를 기준으로
+삼았다. 아래 fact 번호는 자료집 표시 끝자리다.
+
+| 이슈·stage·fact | 방향 | 언급 판 직접 근거 | 미언급 판 판독 근거 | 범주 |
+|---|---|---|---|---|
+| 0543 initial …09 | 저자만 | 저자 발화1 `two-night, three-day date`·`betrayed her trust`·`like cheating` | 우리 agent_6 `two-night, three-day "date"`·`equate it to cheating` | **판정 경계** |
+| 0543 R2 …07 | 저자만 | 저자 발화4 `my hesitation to immediately fill her in`; 발화5 `I didn't instantly update her` | 우리 agent_1~8: 제3자 이탈은 있으나 **즉시 알리지 않음**은 없음 | **발화 부재** |
+| 0543 R2 …13 | 저자만 | 저자 발화8 `evolving trip dynamic ... evoked fresh insecurity` | 우리 agent_1·3 등에 현재 discomfort는 있으나 **이전에는 없었다**는 시간 비교 없음 | **발화 부재** |
+| 0543 R2 …14 | 우리만 | 우리 agent_2 `holding to my plans` | 저자 발화1 `stand by my decision to keep the trip`; 발화4 `keep my plans` | **판정 경계** |
+| 0543 R3 …07 | 저자만 | 저자 발화2 `I didn't update her right away` | 우리 agent_1~8: 계획 변화는 있으나 통지 지연 명제 없음 | **발화 부재** |
+| 0543 R3 …10 | 우리만 | 우리 agent_3 `setting uncompromising "rules"` | 저자 발화1 `blanket restrictions on my friendship`; 발화3 `bans on solo hangs` | **판정 경계** |
+| 0248 R1 …10 | 저자만 | 저자 발화2 `risk of fuelling drama`·`I'm not trying to be shady` | 우리 agent_3 `not ... out to cause drama`; agent_6 `didn't ... mean for that to happen` | **판정 경계** |
+| 0248 R1 …03 | 우리만 | 우리 agent_3·6: HR과의 closeness/old feelings + 교제 중 boundary 존중 | 저자 발화8 `previously had feelings for HR, even if I never acted on them` | **판정 경계** |
+| 0248 R2 …02 | 우리만 | 우리 agent_6 `close-knit group ... processing the secret breakup` | 저자 발화1 `hurt and confusion can spread in a close group`; 발화2 `friend group dynamic` | **판정 경계** |
+| 0248 R2 …04 | 우리만 | 우리 agent_4 `didn't make a move until after HR and GB had already broken up` | 저자 발화3 `lack of wrongdoing during their relationship`; 발화8 `didn't act ... until it was genuinely over` | **판정 경계** |
+| 0248 R2 …13 | 우리만 | 우리 agent_1·7 `would be the asshole ... dating HR right now` | 저자 발화1 `if I started dating HR right now ... I probably would be the asshole` | **판정 경계** |
+| 0248 R3 …04 | 우리만 | 우리 agent_4 `feelings for HR only became a factor after ... GB had ended` | 저자 발화3 `didn't cross ... overlap or deceit`; 발화4 `no overlap or secretive scheming` | **판정 경계** |
+| 0248 R3 …06 | 우리만 | 우리 agent_2 `hidden breakup`·`out of the loop`; agent_6 `secrecy of the breakup` | 저자 발화3 `fresh and private`; 발화8 `news was shared—or not shared—with the group` | **판정 경계** |
+| 0262 R1 …03 | 저자만 | 저자 발화2 `policy in all its communications`; 발화5 `posted everywhere` | 우리 agent_4 `extremely clear on all their platforms`; agent_7 `posted everywhere` | **판정 경계** |
+| 0262 R1 …06 | 저자만 | 저자 발화5 `religious boundaries` + `lack of training or supplies` | 우리 agent_3 `differing haircut techniques`; agent_8 `training focus is men's cuts` (제품·도구 세부는 미출현) | **판정 경계** |
+| 0262 R2 …05 | 저자만 | 저자 발화7 `scheduling with the female stylist` | 우리 agent_2 `appointment with the appropriate stylist`; agent_4 `wait for the female stylist` | **판정 경계** |
+| 0262 R2 …09 | 저자만 | 저자 발화6 `trained female stylist on short notice, same price` | 우리 agent_1~8: 여성 스타일리스트 예약·대기만 있고 **같은 가격+사전 통보** 명제 없음 | **발화 부재** |
+| 0262 R3 …05 | 우리만 | 우리 agent_7 `later appointment with a female stylist` | 저자 발화2 `seeing the female stylist by appointment`; 발화4 `appointed female stylist` | **판정 경계** |
+
+### 집계·기술 한정
+
+- 이번 추가 18셀: **판정 경계 14 · 발화 부재 4**.
+- 기존 완료 0543 R1 2셀(판정 경계 1 · 발화 부재 1) 포함 전체 20셀:
+  **판정 경계 15 · 발화 부재 5**.
+- `판정 경계`는 판정기 오류 확정이 아니라, 미언급 판 원문에도 언급 판과 동등하거나
+  핵심 명제를 보존한 표현이 존재한다는 사람 판독 범주다. n=1 판정의 경계 사례 후보로만
+  기술한다.
+- `발화 부재`도 엔진의 체계적 차이 확정이 아니다. temp 1.2 단일 실행에서 해당 명제가
+  미언급 판 8발화에 없었다는 관찰이며, 분산 실측 전에는 생성기 효과로 일반화하지 않는다.
