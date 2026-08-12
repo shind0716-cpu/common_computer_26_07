@@ -1,0 +1,48 @@
+{
+  "logical_calls": 97,
+  "transport_attempts": 97,
+  "est_cost_usd": 0.97,
+  "checked_at": "2026-08-12T02:53:46.510933+00:00",
+  "issues": [
+    {
+      "issue_id": "issue_ethics_0543",
+      "run_id": "compare2_0543",
+      "problems": [],
+      "debate_keys": {
+        "physical": 32,
+        "unique": 32,
+        "expected": 32,
+        "duplicates": [],
+        "missing": [],
+        "unexpected": []
+      },
+      "axis_keys": {
+        "physical": 32,
+        "unique": 32,
+        "expected": 32,
+        "duplicates": [],
+        "missing": [],
+        "unexpected": []
+      },
+      "axis_parse_fail": 0,
+      "axis_rows_without_raw": 0,
+      "stance_keys": {
+        "physical": 32,
+        "unique": 32,
+        "expected": 32,
+        "duplicates": [],
+        "missing": [],
+        "unexpected": []
+      },
+      "stance_parse_fail": 0,
+      "stance_rows_without_raw": 0,
+      "sha256": {
+        "debate": "a33d245e0417c570d08ccf37b1d4489e33f4c46ac46b4511d46a55d9558a0558",
+        "judgment_author": "14f8065efb225d5758384db399f441562fce1750ca9eb919315e37b0cb9c9c23",
+        "stance_summary": "d8f09ca1d34dac8c00be43128265e0ca05495fdd1d135563c178f24c1ac320ee",
+        "manifest": "3f26fc7bcf0bd4bd005646be7cfc49b575cd56d73be2337ff077bd1c6b9abc47"
+      },
+      "verdict": "ok"
+    }
+  ]
+}

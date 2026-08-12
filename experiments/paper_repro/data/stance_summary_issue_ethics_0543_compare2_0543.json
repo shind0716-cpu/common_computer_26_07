@@ -1,0 +1,244 @@
+{
+  "schema_ver": "0.3",
+  "created_by": "paper_repro_bridge",
+  "created_at": "2026-08-12T02:53:23.949793+00:00",
+  "issue_id": "issue_ethics_0543",
+  "run_id": "compare2_0543",
+  "_note": "입장 이탈 관찰 계기 — 지시된 입장의 기대 판정(교정 매핑 pro→NO/con→YES, 2026-08-10: 엔진 yes=행동 비난 vs 저자 YES=행동 지지, 같은 토큰 반대 뜻) vs 발화가 실제 취한 입장(저자 evaluate_stance). §1 결과 변수가 아니며 계약 파일 5종 밖의 보조 산출물이다(manifests 전례).",
+  "per_utterance": [
+    {
+      "round": 0,
+      "agent_id": "agent_1",
+      "expected": "no",
+      "judged": "no",
+      "match": true
+    },
+    {
+      "round": 0,
+      "agent_id": "agent_2",
+      "expected": "yes",
+      "judged": "yes",
+      "match": true
+    },
+    {
+      "round": 0,
+      "agent_id": "agent_3",
+      "expected": "no",
+      "judged": "no",
+      "match": true
+    },
+    {
+      "round": 0,
+      "agent_id": "agent_4",
+      "expected": "yes",
+      "judged": "yes",
+      "match": true
+    },
+    {
+      "round": 0,
+      "agent_id": "agent_5",
+      "expected": "no",
+      "judged": "no",
+      "match": true
+    },
+    {
+      "round": 0,
+      "agent_id": "agent_6",
+      "expected": "yes",
+      "judged": "yes",
+      "match": true
+    },
+    {
+      "round": 0,
+      "agent_id": "agent_7",
+      "expected": "no",
+      "judged": "no",
+      "match": true
+    },
+    {
+      "round": 0,
+      "agent_id": "agent_8",
+      "expected": "yes",
+      "judged": "yes",
+      "match": true
+    },
+    {
+      "round": 1,
+      "agent_id": "agent_1",
+      "expected": "no",
+      "judged": "yes",
+      "match": false
+    },
+    {
+      "round": 1,
+      "agent_id": "agent_2",
+      "expected": "yes",
+      "judged": "yes",
+      "match": true
+    },
+    {
+      "round": 1,
+      "agent_id": "agent_3",
+      "expected": "no",
+      "judged": "no",
+      "match": true
+    },
+    {
+      "round": 1,
+      "agent_id": "agent_4",
+      "expected": "yes",
+      "judged": "yes",
+      "match": true
+    },
+    {
+      "round": 1,
+      "agent_id": "agent_5",
+      "expected": "no",
+      "judged": "no",
+      "match": true
+    },
+    {
+      "round": 1,
+      "agent_id": "agent_6",
+      "expected": "yes",
+      "judged": "yes",
+      "match": true
+    },
+    {
+      "round": 1,
+      "agent_id": "agent_7",
+      "expected": "no",
+      "judged": "no",
+      "match": true
+    },
+    {
+      "round": 1,
+      "agent_id": "agent_8",
+      "expected": "yes",
+      "judged": "yes",
+      "match": true
+    },
+    {
+      "round": 2,
+      "agent_id": "agent_1",
+      "expected": "no",
+      "judged": "no",
+      "match": true
+    },
+    {
+      "round": 2,
+      "agent_id": "agent_2",
+      "expected": "yes",
+      "judged": "yes",
+      "match": true
+    },
+    {
+      "round": 2,
+      "agent_id": "agent_3",
+      "expected": "no",
+      "judged": "no",
+      "match": true
+    },
+    {
+      "round": 2,
+      "agent_id": "agent_4",
+      "expected": "yes",
+      "judged": "yes",
+      "match": true
+    },
+    {
+      "round": 2,
+      "agent_id": "agent_5",
+      "expected": "no",
+      "judged": "yes",
+      "match": false
+    },
+    {
+      "round": 2,
+      "agent_id": "agent_6",
+      "expected": "yes",
+      "judged": "yes",
+      "match": true
+    },
+    {
+      "round": 2,
+      "agent_id": "agent_7",
+      "expected": "no",
+      "judged": "no",
+      "match": true
+    },
+    {
+      "round": 2,
+      "agent_id": "agent_8",
+      "expected": "yes",
+      "judged": "yes",
+      "match": true
+    },
+    {
+      "round": 3,
+      "agent_id": "agent_1",
+      "expected": "no",
+      "judged": "yes",
+      "match": false
+    },
+    {
+      "round": 3,
+      "agent_id": "agent_2",
+      "expected": "yes",
+      "judged": "yes",
+      "match": true
+    },
+    {
+      "round": 3,
+      "agent_id": "agent_3",
+      "expected": "no",
+      "judged": "yes",
+      "match": false
+    },
+    {
+      "round": 3,
+      "agent_id": "agent_4",
+      "expected": "yes",
+      "judged": "yes",
+      "match": true
+    },
+    {
+      "round": 3,
+      "agent_id": "agent_5",
+      "expected": "no",
+      "judged": "yes",
+      "match": false
+    },
+    {
+      "round": 3,
+      "agent_id": "agent_6",
+      "expected": "yes",
+      "judged": "yes",
+      "match": true
+    },
+    {
+      "round": 3,
+      "agent_id": "agent_7",
+      "expected": "no",
+      "judged": "yes",
+      "match": false
+    },
+    {
+      "round": 3,
+      "agent_id": "agent_8",
+      "expected": "yes",
+      "judged": "yes",
+      "match": true
+    }
+  ],
+  "summary": {
+    "match_rate_by_round": {
+      "0": 1.0,
+      "1": 0.875,
+      "2": 0.875,
+      "3": 0.5
+    },
+    "n_rows": 32,
+    "n_parse_fail": 0
+  }
+}
