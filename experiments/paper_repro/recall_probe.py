@@ -272,6 +272,11 @@ def run(data_root: Path, targets: list[Target], config_path: Path, *, dry: bool,
             if max_calls > hard_ceiling:
                 raise SystemExit(f"G1 상한 초과: --max-calls {max_calls} > {hard_ceiling}")
             llm.preflight(MODEL, temperature=TEMPERATURE, reasoning="default")
+            # 편차 P-1 계열(2026-08-12 실측 2회): gpt-5 사고 토큰이 기본 상한 2048을 잠식해
+            # 3번째 콜 절단 → 8192 완화 후에도 12번째 콜 절단(후반 라운드 입력이 큼).
+            # 상한은 천장이라 미도달 콜 비용에 무영향 — 반복 절단 낭비를 피해 24576.
+            # llm.py 무수정 원칙 유지(러너 한정), 절단 검출은 그대로 살아 있다.
+            llm.MAX_TOKENS = 24576
 
         checkpoint_path = paths.raw_calls("recall_probe_calls.jsonl")
         checkpoint = None if dry else make_checkpoint(checkpoint_path, max_calls, responder=responder)
