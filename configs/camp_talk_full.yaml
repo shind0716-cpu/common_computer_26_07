@@ -1,0 +1,23 @@
+# 조건: ③ talk-full (전체 기억) — 기억 구조 1단(담화전진) 대조군
+# PREREG(기억 구조와 정보 집합, 초안 v0) §2. ④(camp_talk_note)와의 차이는 기억 축뿐.
+# window: cumulative 는 8/11 결정 로그 확정(7/29 "③=전체 기억" 정정의 반영 — 새 결정 아님).
+# 배분: 전원 전체(assignment_issue_camp.json) — 접근을 설계상 보장해 선택 관문만 남긴다.
+# 판정: 8/11 확정 사양 — 한 비교 묶음 안에서 단일 모델 + 산출물에 실제 전송값, temp 0·n=3·votes 보존.
+#   ⚠ Anthropic 키 자리표시자(7/30 실측)로 judge 도 gpt-mini — 토론자=채점자 동일 모델 한계는
+#   PREREG 한계 절에 명기. Sonnet 키 확보 시 새 yaml 로 (기존 config 수정 금지).
+experiment: camp_talk_full
+condition: talk-full
+issue_id: issue_camp
+run_id: run001
+seed: 42
+agents: 4
+rounds: 3
+window: cumulative
+memory: none
+final_poll: true
+debate_model: gpt-mini
+debate_temperature: 1.0
+judge_model: gpt-mini
+judge_temperature: 0
+judge_n_votes: 3
+ledger_mode: "off"

@@ -1,0 +1,25 @@
+# 조건: ④ talk-note (개인 수첩 500자) — 기억 구조 1단(담화전진) 실험군
+# PREREG(기억 구조와 정보 집합, 초안 v0) §2. ③(camp_talk_full)과의 차이는 기억 축뿐.
+# 배정 팩트는 라운드 0에 1회만 제시(B판) — 이후엔 수첩에 적어야 생존. previous 슬롯 제거(7/30 확정).
+# note_call: dedicated — 요한 7/29 지적("발화에 얹으면 '남길 것 선택'이 발화 전략과 교락") 수용,
+#   "파일럿은 얹어서, 본실험 전에 옮긴다" 절충의 이행. 파일럿(hire_talk_note)은 utterance 였음 —
+#   수치 직접 비교 금지(note_call 이 다른 조건).
+# 팩트 총량 409자 < 예산 500자 — 수첩 탈락은 물리적 불가가 아니라 선택(팩트 스펙 v0 §2).
+experiment: camp_talk_note
+condition: talk-note
+issue_id: issue_camp
+run_id: run001
+seed: 42
+agents: 4
+rounds: 3
+window: rolling
+memory: note
+note_budget: 500
+note_call: dedicated
+final_poll: true
+debate_model: gpt-mini
+debate_temperature: 1.0
+judge_model: gpt-mini
+judge_temperature: 0
+judge_n_votes: 3
+ledger_mode: "off"
