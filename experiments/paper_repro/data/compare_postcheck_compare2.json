@@ -1,12 +1,12 @@
 {
-  "logical_calls": 97,
-  "transport_attempts": 97,
-  "est_cost_usd": 0.97,
-  "checked_at": "2026-08-12T02:53:46.510933+00:00",
+  "logical_calls": 193,
+  "transport_attempts": 193,
+  "est_cost_usd": 1.93,
+  "checked_at": "2026-08-12T04:39:33.275804+00:00",
   "issues": [
     {
-      "issue_id": "issue_ethics_0543",
-      "run_id": "compare2_0543",
+      "issue_id": "issue_ethics_0248",
+      "run_id": "compare2_0248",
       "problems": [],
       "debate_keys": {
         "physical": 32,
@@ -37,10 +37,10 @@
       "stance_parse_fail": 0,
       "stance_rows_without_raw": 0,
       "sha256": {
-        "debate": "a33d245e0417c570d08ccf37b1d4489e33f4c46ac46b4511d46a55d9558a0558",
-        "judgment_author": "14f8065efb225d5758384db399f441562fce1750ca9eb919315e37b0cb9c9c23",
-        "stance_summary": "d8f09ca1d34dac8c00be43128265e0ca05495fdd1d135563c178f24c1ac320ee",
-        "manifest": "3f26fc7bcf0bd4bd005646be7cfc49b575cd56d73be2337ff077bd1c6b9abc47"
+        "debate": "e84a2d65aface5f4181d25055ad46d034e13ccf9f0b9792f64d3c52966c74a8f",
+        "judgment_author": "69bfa9ba882e920ef049fbf88d68450dffeea5da1ccf2355a0345fa9cb5c4793",
+        "stance_summary": "a9cf04be2f69fbd3c6448aad787b1722168506874aa29ef27e4226591deef2fa",
+        "manifest": "3ef05cb9dfedfb69bf9facc5a9de8bb00efc2fd2b821a16b02c1ee094b808451"
       },
       "verdict": "ok"
     }
