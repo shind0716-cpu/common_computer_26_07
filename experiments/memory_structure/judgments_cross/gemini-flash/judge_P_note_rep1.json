@@ -1,0 +1,1431 @@
+{
+  "schema": "solo_judgment_cross_v1",
+  "run_id": "P_note_rep1",
+  "run_model": "gemini-flash",
+  "judge": {
+    "model": "gemini-flash",
+    "model_id": "gemini-3-flash-preview",
+    "temperature": 0,
+    "n_votes": 3,
+    "prompt_ver": "judge-v0.2-binary+merged_system",
+    "judged_at": "2026-08-11T13:58:33.487010+00:00"
+  },
+  "records": {
+    "essay_r0": [
+      {
+        "fact_id": "fact_camp_01",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 주말 이용료가 51,000원이라는 내용만 언급되어 있을 뿐, 1인 38,000원 평일 패키지에 대한 내용은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 주말 이용료(51,000원)만 언급되어 있을 뿐, 1인 38,000원 평일 패키지에 대한 내용은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 주말 이용료(51,000원)만 언급되어 있을 뿐, 1인 38,000원 평일 패키지에 대한 내용은 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_02",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 강당 배관 공사로 인한 사용 불가 사실만 언급될 뿐, 홈페이지에 명시된 최대 60명 수용 정보는 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 강당 배관 공사로 인한 사용 불가 사실만 언급될 뿐, 홈페이지에 명시된 최대 60명 수용 정보는 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 강당 배관 공사로 인한 사용 불가 사실만 언급될 뿐, 홈페이지에 명시된 최대 60명 수용 정보는 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_03",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 무레온 캠프의 비용, 시설, 보험 가입 여부만 언급되어 있을 뿐 9월 예약 문의 회신 소요 시간에 대한 내용은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 무레온 캠프의 비용, 시설, 보험 가입 여부만 언급되어 있을 뿐 9월 예약 문의 회신 소요 시간에 대한 내용은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 무레온 캠프의 비용, 시설, 보험 가입 여부만 언급되어 있을 뿐 9월 예약 문의 회신 소요 시간에 대한 내용은 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_04",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 내용에 두 시설의 견적서 제출 여부나 제출 기한(10월 2일)에 관한 언급이 전혀 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 내용에 두 시설의 견적서 제출 여부나 제출 기한(10월 2일)에 관한 언급이 전혀 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 내용에 두 시설의 견적서 제출 여부나 제출 기한(10월 2일)에 관한 언급이 전혀 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_05",
+        "status": "mentioned",
+        "votes": [
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화에서 다림재 수련원의 주말 이용료가 1인당 51,000원이라는 점을 명시하여 팩트의 핵심 내용을 포함하고 있다."
+          },
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화에서 다림재 수련원의 주말 이용료가 1인당 51,000원임을 명시하여 해당 팩트의 핵심 내용을 포함하고 있다."
+          },
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화에서 다림재 수련원의 주말 이용료가 1인당 51,000원임을 명시하여 해당 팩트의 핵심 내용을 포함하고 있다."
+          }
+        ],
+        "agents_mentioning": [
+          "solo"
+        ]
+      },
+      {
+        "fact_id": "fact_camp_06",
+        "status": "mentioned",
+        "votes": [
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화 내에 무레온 캠프의 비용이 1인당 39,500원이라는 수치가 명시적으로 언급되어 있다."
+          },
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화 내에 무레온 캠프의 비용이 1인당 39,500원이라는 수치가 명시적으로 언급되어 있다."
+          },
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화 내에 무레온 캠프의 비용이 1인당 39,500원이라는 수치가 명시적으로 언급되어 있다."
+          }
+        ],
+        "agents_mentioning": [
+          "solo"
+        ]
+      },
+      {
+        "fact_id": "fact_camp_07",
+        "status": "mentioned",
+        "votes": [
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화에서 다림재 수련원이 강당 배관 공사로 인해 실내 공간 사용이 불가능하다고 명시적으로 언급하고 있다."
+          },
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화에서 다림재 수련원이 강당 배관 공사로 인해 실내 공간 사용이 불가능하다고 명시하고 있다."
+          },
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화에서 다림재 수련원이 강당 배관 공사로 인해 실내 공간 사용이 불가능하다고 명시하고 있다."
+          }
+        ],
+        "agents_mentioning": [
+          "solo"
+        ]
+      },
+      {
+        "fact_id": "fact_camp_08",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 40인 수용 가능한 세미나실의 정상 운영은 언급되었으나, 세미나실이 '두 곳'이라는 점과 '10월'에 운영된다는 구체적인 정보가 누락되어 팩트 전체를 뒷받침하지 못한다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 40인 수용 가능한 세미나실의 정상 운영은 언급되었으나, 세미나실이 '두 곳'이라는 점과 '10월'에 운영된다는 구체적인 정보가 누락되어 팩트 전체를 뒷받침하지 못한다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 40인 수용 가능한 세미나실의 정상 운영은 언급되었으나, 세미나실이 '두 곳'이라는 점과 '10월'에 운영된다는 구체적인 정보가 누락되어 팩트 전체를 뒷받침하지 못한다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_09",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 예산 초과, 시설 이용 불가, 보험 미가입 문제만 언급되어 있을 뿐 예약 가능 확인서 발급 여부에 대한 내용은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재의 예산 초과, 시설 문제, 보험 미가입 등 부정적인 정보만 언급되어 있을 뿐, 예약 가능 확인서 발급에 대한 내용은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재의 예산 초과, 시설 문제, 보험 미가입 등 부정적인 정보만 언급되어 있을 뿐, 예약 가능 확인서 발급에 대한 내용은 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_10",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프가 10월 17~18일 조건을 충족하지 못한다고만 언급했을 뿐, 구체적인 마감 사실이나 24~25일 가능 여부에 대한 내용은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프가 10월 17~18일 조건을 충족하지 못한다고만 언급했을 뿐, 구체적인 마감 사실이나 24~25일 가능 여부는 명시되지 않았다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프가 10월 17~18일 조건을 충족하지 못한다고만 언급했을 뿐, 구체적인 마감 사실이나 24~25일 가능 여부에 대한 내용은 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_11",
+        "status": "mentioned",
+        "votes": [
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화에서 다림재 수련원이 배상책임보험에 가입되어 있지 않다고 명시적으로 언급하고 있다."
+          },
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화에서 다림재 수련원이 배상책임보험에 가입되어 있지 않다고 명시적으로 언급하고 있다."
+          },
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화에서 다림재 수련원이 배상책임보험에 가입되어 있지 않다고 명시적으로 언급하고 있다."
+          }
+        ],
+        "agents_mentioning": [
+          "solo"
+        ]
+      },
+      {
+        "fact_id": "fact_camp_12",
+        "status": "mentioned",
+        "votes": [
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화 마지막 부분에서 무레온 캠프에 대해 보험 가입 증서가 확인되었다고 명시하고 있다."
+          },
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화 마지막 부분에서 무레온 캠프에 대해 보험 가입 증서가 확인되었다고 명시하고 있다."
+          },
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화 마지막 부분에서 무레온 캠프에 대해 보험 가입 증서가 확인되었다고 명시하고 있다."
+          }
+        ],
+        "agents_mentioning": [
+          "solo"
+        ]
+      }
+    ],
+    "essay_r1": [
+      {
+        "fact_id": "fact_camp_01",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 비용이 예산을 상회한다는 언급만 있을 뿐, 1인 38,000원 평일 패키지에 대한 구체적인 수치나 안내문 내용은 포함되어 있지 않습니다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 비용이 예산을 상회한다는 언급만 있을 뿐, 1인 38,000원 평일 패키지에 대한 구체적인 수치나 안내문 내용은 포함되어 있지 않습니다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 비용이 예산을 상회한다는 언급만 있을 뿐, 1인 38,000원 평일 패키지에 대한 구체적인 수치나 안내문 내용은 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_02",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 다림재 수련원의 강당 사용 불능 상태를 언급할 뿐, 홈페이지에 명시된 수용 인원(60명)에 대한 정보는 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 다림재 수련원의 강당 사용 불능 상태를 언급할 뿐, 홈페이지에 명시된 수용 인원(60명)에 대한 정보는 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 다림재 수련원의 강당 사용 불능 상태를 언급할 뿐, 홈페이지에 명시된 수용 인원(60명)에 대한 정보는 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_03",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 무레온 캠프의 예산 절감, 보험 가입, 시설 환경에 대한 언급만 있을 뿐 9월 예약 문의 회신 소요 시간에 대한 내용은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 무레온 캠프의 예산 절감, 보험 가입, 시설 환경에 대한 언급만 있을 뿐 9월 예약 문의 회신 소요 시간에 대한 내용은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 무레온 캠프의 예산 절감, 보험 가입, 시설 환경에 대한 언급만 있을 뿐 9월 예약 문의 회신 소요 시간에 대한 내용은 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_04",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 내용 중 두 시설의 견적서 제출 여부나 마감일 준수에 관한 구체적인 언급이 포함되어 있지 않습니다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 내용 중 두 시설의 견적서 제출 여부나 10월 2일이라는 구체적인 마감 기한에 대한 언급이 전혀 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 내용 중 두 시설의 견적서 제출 여부나 10월 2일이라는 구체적인 마감 기한에 대한 언급이 전혀 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_05",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 다림재의 비용이 예산을 상회한다는 점은 언급되었으나, 38,000원 패키지의 평일 기준 및 주말 51,000원이라는 구체적인 가격 정보는 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 다림재의 비용이 예산을 상회한다는 점은 언급되었으나, 38,000원 패키지의 평일 기준 및 주말 51,000원이라는 구체적인 가격 정보는 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 다림재의 비용이 예산을 상회한다는 점은 언급되었으나, 38,000원 패키지의 평일 기준 및 주말 51,000원이라는 구체적인 가격 정보는 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_06",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 예산 절감 효과는 언급되었으나, 구체적인 주말 견적 금액(39,500원)에 대한 명시적 또는 암묵적 수치는 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 예산 절감 효과는 언급되었으나, 1인당 39,500원이라는 구체적인 금액과 식비 포함 여부는 명시되지 않았다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 예산 절감 효과는 언급되었으나, 1인당 39,500원이라는 구체적인 금액과 식비 포함 여부는 명시되지 않았다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_07",
+        "status": "mentioned",
+        "votes": [
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화에서 다림재 수련원의 실내 강당을 사용할 수 없는 불능 상태라고 명시하여 팩트의 핵심 내용을 포함하고 있습니다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 강당 사용이 불가능하다는 점은 언급되었으나, 그 구체적인 원인이 배관 공사라는 점과 10월 한 달간이라는 기간 정보가 누락되어 팩트 전체를 뒷받침하지 못한다."
+          },
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화에서 다림재 수련원의 실내 강당을 사용할 수 없는 불능 상태라고 명시하여 팩트의 핵심 내용을 포함하고 있습니다."
+          }
+        ],
+        "agents_mentioning": [
+          "solo"
+        ]
+      },
+      {
+        "fact_id": "fact_camp_08",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 세미나 환경을 언급하고 있으나, 40인 세미나실 두 곳의 10월 정상 운영 여부에 대한 구체적인 정보는 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 세미나 환경을 언급하고 있으나, 40인 세미나실 두 곳의 10월 정상 운영 여부에 대한 구체적인 정보는 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 세미나 환경을 언급하고 있으나, 40인 세미나실 두 곳의 10월 정상 운영 여부에 대한 구체적인 수치나 일정 정보는 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_09",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재의 비용 문제와 시설 불능 상태만 언급되어 있을 뿐, 10월 17~18일 예약 가능 확인서 발급에 대한 내용은 포함되어 있지 않습니다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재의 비용 문제와 시설 불능 상태만 언급되어 있을 뿐, 10월 17~18일 예약 가능 확인서 발급에 대한 내용은 포함되어 있지 않습니다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재의 비용 문제와 시설 불능 상태만 언급되어 있을 뿐, 10월 17~18일 예약 가능 확인서 발급에 대한 내용은 포함되어 있지 않습니다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_10",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 일정 조율 필요성은 언급되었으나, 구체적인 마감 날짜나 가능한 날짜에 대한 정보는 포함되어 있지 않습니다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 일정 조율 필요성은 언급되었으나, 구체적인 마감 날짜나 가능한 날짜에 대한 정보는 포함되어 있지 않습니다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 일정 조율 필요성은 언급되었으나, 구체적인 마감 날짜나 가능한 날짜에 대한 정보는 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_11",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 보험 가입 사실은 언급되었으나, 다림재가 보험 가입 명단에 없다는 구체적인 사실은 명시되거나 암묵적으로 표현되지 않았습니다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 보험 가입 사실은 언급되었으나, 다림재가 보험 가입 명단에 없다는 구체적인 사실은 명시되거나 암묵적으로 표현되지 않았습니다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 보험 가입 사실은 언급되었으나, 다림재가 보험 가입 명단에 없다는 구체적인 사실은 명시되거나 암묵적으로 표현되지 않았습니다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_12",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프가 보험 가입 시설임을 언급하고 있으나, 배상책임보험 가입 증서를 견적서에 첨부했다는 구체적인 사실은 명시되지 않았다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프가 보험 가입 시설임을 언급하고 있으나, 배상책임보험 가입 증서를 견적서에 첨부했다는 구체적인 사실은 명시되지 않았습니다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프가 보험 가입 시설임을 언급하고 있으나, 배상책임보험 가입 증서를 견적서에 첨부했다는 구체적인 사실은 명시되지 않았다."
+          }
+        ],
+        "agents_mentioning": []
+      }
+    ],
+    "essay_r2": [
+      {
+        "fact_id": "fact_camp_01",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "제시된 발화에는 다림재 수련원의 패키지 가격이나 단체 안내문 내용에 대한 언급이 전혀 포함되어 있지 않습니다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 부적격성과 시설 문제만 언급되어 있을 뿐, 1인 38,000원 평일 패키지에 대한 구체적인 금액이나 안내문 내용은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "제시된 발화에는 다림재 수련원의 패키지 가격이나 단체 안내문 내용에 대한 언급이 전혀 포함되어 있지 않습니다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_02",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 부적격성과 시설 미비에 대한 비판만 있을 뿐, 홈페이지의 강당 수용 인원에 대한 구체적인 언급이 없다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 부적격성과 시설 미비에 대한 비판만 있을 뿐, 홈페이지의 강당 수용 인원에 대한 구체적인 언급이 전혀 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 부적격성과 시설 미비에 대한 비판만 있을 뿐, 홈페이지의 강당 수용 인원에 대한 구체적인 언급이 없다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_03",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 무레온 캠프의 인프라와 안전성에 대한 언급만 있을 뿐, 9월 예약 문의 회신 소요 시간에 대한 내용은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 무레온 캠프의 인프라와 안전성에 대한 언급만 있을 뿐, 9월 예약 문의 회신 소요 시간에 대한 내용은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "제시된 발화에는 무레온 캠프의 예약 문의 회신 소요 시간에 대한 구체적인 언급이 포함되어 있지 않습니다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_04",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 내용 중 두 시설이 10월 2일까지 견적서를 제출했다는 구체적인 날짜나 제출 사실에 대한 언급이 전혀 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 내용 중 두 시설이 10월 2일까지 견적서를 제출했다는 구체적인 날짜나 제출 사실에 대한 언급이 전혀 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 내용 중 두 시설이 10월 2일까지 견적서를 제출했다는 구체적인 날짜나 제출 사실에 대한 언급이 전혀 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_05",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재의 부적격성과 무레온 캠프의 장점만 언급될 뿐, 다림재의 구체적인 패키지 가격이나 요일별 요금 차이에 대한 정보는 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재의 부적격성과 무레온 캠프의 장점만 언급될 뿐, 다림재의 구체적인 패키지 가격이나 요일별 요금 차이에 대한 정보는 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재의 부적격성과 무레온 캠프의 장점만 언급될 뿐, 다림재의 구체적인 패키지 가격이나 요일별 요금 차이에 대한 정보는 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_06",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 내용 중 무레온 캠프의 인프라와 안전성에 대한 언급은 있으나, 구체적인 주말 견적 비용(39,500원)에 대한 정보는 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 무레온 캠프의 시설 우수성과 일정 조정의 필요성만 언급되어 있을 뿐, 구체적인 견적 비용(39,500원)에 대한 정보는 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 내용 중 무레온 캠프의 인프라와 안전성에 대한 언급은 있으나, 구체적인 주말 견적 비용(39,500원)에 대한 정보는 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_07",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 실내 공간 사용이 불가능하다는 점은 언급되었으나, 그 원인이 다림재 강당의 배관 공사 때문이라거나 기간이 10월 한 달간이라는 구체적인 팩트 정보는 명시되지 않았습니다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 실내 공간 사용이 불가능하다는 점은 언급되었으나, 그 원인이 다림재 강당의 배관 공사 때문이라거나 기간이 10월 한 달간이라는 구체적인 팩트 정보는 명시되지 않았습니다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 실내 공간 사용이 불가능하다는 점은 언급되었으나, 그 원인이 다림재 강당의 배관 공사 때문이라거나 기간이 10월 한 달간이라는 구체적인 팩트 정보는 명시되지 않았습니다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_08",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 인프라가 완비되었다고 언급했으나, 40인 세미나실 두 곳의 10월 정상 운영에 대한 구체적인 정보는 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 인프라가 완비되었다고 언급했으나, 40인 세미나실 두 곳의 10월 정상 운영에 대한 구체적인 정보는 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 인프라가 완비되었다고 언급했으나, 40인 세미나실 두 곳의 10월 정상 운영에 대한 구체적인 정보는 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_09",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재의 부적격성과 무레온 캠프의 장점만 언급되어 있을 뿐, 다림재의 예약 가능 확인서 발급 여부에 대한 내용은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재의 부적격성과 무레온 캠프의 장점만 언급되어 있을 뿐, 다림재의 예약 가능 확인서 발급 여부에 대한 내용은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재의 부적격성과 무레온 캠프의 장점만 언급되어 있을 뿐, 다림재의 예약 가능 확인서 발급 여부에 대한 내용은 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_10",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 우수성과 일정 조정의 필요성을 언급하고 있으나, 특정 날짜의 마감 여부나 예약 가능 일자에 대한 구체적인 정보는 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 우수성과 일정 조정의 필요성을 언급하고 있으나, 특정 날짜(10월 17~18일 마감 및 24~25일 가능 여부)에 대한 구체적인 정보는 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 우수성과 일정 조정의 필요성을 언급하고 있으나, 특정 날짜(10월 17~18일 마감 및 24~25일 가능 여부)에 대한 구체적인 정보는 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_11",
+        "status": "mentioned",
+        "votes": [
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화 중 다림재를 '보험조차 없는 위험한 장소'라고 지칭하여 해당 시설이 보험 가입 명단에 없음을 명시적으로 표현하고 있다."
+          },
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화 중 다림재를 '보험조차 없는 위험한 장소'라고 지칭하여 보험 가입 명단에 없다는 사실을 명시적으로 표현함"
+          },
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화 중 다림재를 '보험조차 없는 위험한 장소'라고 지칭하여 보험 가입 명단에 없다는 사실을 명시적으로 표현함"
+          }
+        ],
+        "agents_mentioning": [
+          "solo"
+        ]
+      },
+      {
+        "fact_id": "fact_camp_12",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 인프라와 안전권 보장을 언급하고 있으나, 배상책임보험 가입 증서를 견적서에 첨부했다는 구체적인 사실은 명시되지 않았다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 인프라와 안전권 보장을 언급하고 있으나, 배상책임보험 가입 증서를 견적서에 첨부했다는 구체적인 사실은 명시되지 않았다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 인프라와 안전권 보장을 언급하고 있으나, 배상책임보험 가입 증서를 견적서에 첨부했다는 구체적인 사실은 명시되지 않았다."
+          }
+        ],
+        "agents_mentioning": []
+      }
+    ],
+    "essay_r3": [
+      {
+        "fact_id": "fact_camp_01",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 안전 결함과 예산 초과 문제만 언급되어 있을 뿐, 1인 38,000원 평일 패키지에 대한 구체적인 금액이나 안내문 내용은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 안전 결함과 예산 초과 문제만 언급되어 있을 뿐, 1인 38,000원 평일 패키지에 대한 구체적인 금액이나 안내문 내용은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 안전 결함과 예산 초과 문제만 언급되어 있을 뿐, 1인 38,000원 평일 패키지에 대한 구체적인 금액이나 안내문 내용은 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_02",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "제시된 발화에는 다림재 수련원의 강당 수용 인원에 대한 구체적인 언급이 포함되어 있지 않습니다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 안전 결함, 예산 초과, 실내 행사 불가능 등이 언급되었으나 홈페이지의 강당 수용 인원(60명)에 대한 구체적인 정보는 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "제시된 발화에는 다림재 수련원의 강당 수용 인원에 대한 구체적인 언급이 포함되어 있지 않습니다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_03",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 무레온 캠프의 안전성과 시설 장점만 언급되어 있을 뿐, 9월 예약 문의 회신 소요 시간에 대한 내용은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 무레온 캠프의 예약 문의 회신 소요 시간에 대한 언급이 전혀 포함되어 있지 않습니다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 무레온 캠프의 안전성과 시설 장점만 언급되어 있을 뿐, 9월 예약 문의 회신 소요 시간에 대한 내용은 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_04",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 내용에 두 시설의 견적서 제출 여부나 마감일 준수에 관한 언급이 전혀 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 내용에 두 시설의 견적서 제출 여부나 마감일 준수에 관한 언급이 전혀 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 내용에 두 시설의 견적서 제출 여부나 마감일 준수에 관한 언급이 전혀 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_05",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재의 안전 결함과 예산 초과 문제만 언급되었을 뿐, 구체적인 패키지 가격이나 평일/주말 요금 차이에 대한 내용은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재의 안전 결함과 예산 초과 문제만 언급되었을 뿐, 구체적인 패키지 가격이나 평일/주말 요금 차이에 대한 내용은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 내용에 다림재의 가격 체계나 주말 요금에 대한 구체적인 언급이 포함되어 있지 않습니다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_06",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프를 대안으로 제시하고 있으나, 구체적인 주말 견적 비용(39,500원)에 대한 언급은 전혀 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프를 대안으로 제시하고 있으나, 구체적인 주말 견적 비용(39,500원)에 대한 언급은 전혀 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프를 대안으로 제시하고 있으나, 구체적인 주말 견적 비용(39,500원)에 대한 언급은 전혀 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_07",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 다림재 수련원의 안전 결함과 예산 문제를 언급하고 있으나, 강당 배관 공사로 인한 10월 사용 중단 사실은 명시되지 않았다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 보험 미가입, 예산 초과, 실내 행사 불가능 등의 문제만 언급되었을 뿐, 10월 한 달간 배관 공사로 인해 강당 사용이 중단된다는 구체적인 사실은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 보험 미가입, 예산 초과, 실내 행사 불가능 등의 문제만 언급되었을 뿐, 10월 한 달간 배관 공사로 인해 강당 사용이 중단된다는 구체적인 사실은 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_08",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 일정 조정 가능성과 시설의 우수성을 언급하고 있으나, 40인 세미나실 두 곳의 10월 정상 운영 여부에 대한 구체적인 정보는 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 일정 조정 가능성과 시설의 우수성을 언급하고 있으나, 40인 세미나실 두 곳의 10월 정상 운영 여부에 대한 구체적인 정보는 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 일정 조정 가능성과 시설의 우수성을 언급하고 있으나, 40인 세미나실 두 곳의 10월 정상 운영 여부에 대한 구체적인 정보는 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_09",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재의 안전 결함과 예산 문제만 언급되어 있을 뿐, 예약 가능 확인서 발급 여부에 대한 내용은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재의 안전 결함과 예산 문제만 언급되어 있을 뿐, 10월 17~18일 예약 가능 확인서 발급에 대한 내용은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재의 안전 결함과 예산 문제만 언급되어 있을 뿐, 10월 17~18일 예약 가능 확인서 발급에 대한 내용은 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_10",
+        "status": "mentioned",
+        "votes": [
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화에서 무레온 캠프가 일주일의 일정 조정을 통해 조건을 충족할 수 있다고 언급한 점은 10월 17~18일이 불가하여 24~25일로 조정해야 한다는 팩트의 내용을 암묵적으로 포함하고 있습니다."
+          },
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화에서 무레온 캠프가 일주일의 일정 조정을 통해 조건을 충족할 수 있다고 언급한 점은 10월 17~18일이 불가하여 24~25일로 조정해야 한다는 팩트의 내용을 암묵적으로 포함하고 있습니다."
+          },
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화에서 무레온 캠프가 일주일의 일정 조정을 통해 조건을 충족할 수 있다고 언급한 것은 기존 일정(17~18일)이 불가하여 다음 주인 24~25일만 가능하다는 팩트를 암묵적으로 포함하고 있습니다."
+          }
+        ],
+        "agents_mentioning": [
+          "solo"
+        ]
+      },
+      {
+        "fact_id": "fact_camp_11",
+        "status": "mentioned",
+        "votes": [
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화에서 다림재 수련원이 배상책임보험 미가입 상태임을 명시적으로 언급하고 있다."
+          },
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화에서 다림재 수련원이 배상책임보험 미가입 상태임을 명시적으로 언급하고 있다."
+          },
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화에서 다림재 수련원이 배상책임보험 미가입 상태임을 명시적으로 언급하며 팩트의 내용을 포함하고 있다."
+          }
+        ],
+        "agents_mentioning": [
+          "solo"
+        ]
+      },
+      {
+        "fact_id": "fact_camp_12",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 안전성과 적합성을 강조하고 있으나, 배상책임보험 가입 증서를 견적서에 첨부했다는 구체적인 사실은 언급되지 않았습니다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프가 안전하다는 점은 언급되었으나, 배상책임보험 가입 증서를 견적서에 첨부했다는 구체적인 사실은 명시되지 않았다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 안전성과 적합성을 강조하고 있으나, 배상책임보험 가입 증서를 견적서에 첨부했다는 구체적인 사실은 언급되지 않았습니다."
+          }
+        ],
+        "agents_mentioning": []
+      }
+    ],
+    "carrier": [
+      {
+        "fact_id": "fact_camp_01",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 비용이 1인당 51,000원으로 명시되어 있을 뿐, 38,000원 평일 패키지에 대한 언급은 전혀 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 비용이 1인당 51,000원으로 명시되어 있을 뿐, 38,000원 평일 패키지에 대한 언급은 전혀 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 비용이 1인당 51,000원으로 명시되어 있을 뿐, 38,000원 평일 패키지에 대한 언급은 전혀 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_02",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 예산, 시설 결함, 안전 보험 미가입에 대한 내용만 있을 뿐 강당 수용 인원에 대한 언급은 전혀 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 예산, 시설 결함, 안전 보험 미가입에 대한 내용만 있을 뿐 강당 수용 인원에 대한 언급은 전혀 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재 수련원의 예산, 시설 결함, 안전 보험 미가입에 대한 내용만 있을 뿐 강당 수용 인원에 대한 언급은 전혀 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_03",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 무레온 캠프의 예산, 공간, 안전성 및 일정 조정에 대한 내용만 있을 뿐, 9월 예약 문의 회신 지연에 관한 언급은 전혀 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 무레온 캠프의 예산, 공간, 안전성 및 일정 조정 필요성만 언급되어 있을 뿐, 9월 예약 문의 회신 지연에 관한 내용은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 무레온 캠프의 예산, 공간, 안전성 및 일정 조정 필요성만 언급되어 있을 뿐, 9월 예약 문의 회신 지연에 관한 내용은 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_04",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 두 시설의 예산, 시설 상태, 안전 보험 가입 여부만 언급되어 있을 뿐, 견적서 제출 여부나 제출 마감일에 대한 내용은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 두 시설의 예산, 시설 상태, 안전 보험 가입 여부만 언급되어 있을 뿐, 견적서 제출 여부나 제출 마감일에 대한 내용은 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 두 시설의 예산, 시설 상태, 안전 보험 등에 대한 비교만 있을 뿐, 견적서 제출 여부나 제출 마감일에 대한 언급이 전혀 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_05",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화문에 다림재의 비용이 51,000원이라는 점은 명시되어 있으나, 이것이 주말 기준이라거나 평일 패키지가 38,000원이라는 비교 정보는 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화문에 다림재의 비용이 51,000원이라는 점은 명시되어 있으나, 이것이 주말 기준이라거나 평일 패키지 가격이 38,000원이라는 구체적인 비교 정보는 포함되어 있지 않다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화문에 다림재의 비용이 51,000원이라는 점은 명시되어 있으나, 이것이 주말 기준이라거나 평일 패키지 가격이 38,000원이라는 구체적인 비교 정보는 포함되어 있지 않다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_06",
+        "status": "mentioned",
+        "votes": [
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화 원문 3번 항목에서 무레온 캠프의 예산이 39,500원임을 명시하고 있으며, 이는 팩트의 금액 정보와 일치한다."
+          },
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화 원문 3번 항목에서 무레온 캠프의 예산이 39,500원임을 명시하고 있으며, 이는 팩트의 금액 정보와 일치한다."
+          },
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화 원문에서 무레온 캠프의 예산이 39,500원임을 명시하고 있으며, 이는 팩트의 금액 정보와 일치한다."
+          }
+        ],
+        "agents_mentioning": [
+          "solo"
+        ]
+      },
+      {
+        "fact_id": "fact_camp_07",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 배관 공사로 인한 실내 이용 불가 사실은 언급되었으나, '10월 한 달간'이라는 구체적인 중단 기간에 대한 정보가 누락되어 팩트가 부분적으로만 뒷받침된다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 배관 공사로 인한 실내 이용 불가 사실은 언급되었으나, '10월 한 달간'이라는 구체적인 중단 기간에 대한 정보가 누락되어 팩트가 부분적으로만 뒷받침된다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 배관 공사로 인한 실내 이용 불가 사실은 언급되었으나, '10월 한 달간'이라는 구체적인 중단 기간에 대한 정보가 누락되어 팩트가 부분적으로만 뒷받침된다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_08",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화문에는 무레온 캠프의 40인실 공간 조건은 언급되어 있으나, 세미나실 두 곳이 10월에 정상 운영된다는 구체적인 정보는 포함되어 있지 않습니다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화문에는 무레온 캠프의 40인실 공간 조건은 언급되어 있으나, 세미나실 두 곳이 10월에 정상 운영된다는 구체적인 정보는 포함되어 있지 않습니다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화문에는 40인실 공간이 있다는 점만 언급되었을 뿐, 세미나실이 두 곳이라는 점과 10월 중 정상 운영된다는 구체적인 사실은 명시되지 않았습니다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_09",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재의 예산, 시설, 안전 결함에 대한 내용만 포함되어 있을 뿐, 10월 17~18일 예약 가능 확인서 발급 여부에 대한 언급은 전혀 없다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재의 예산, 시설, 안전 결함에 대한 내용만 있을 뿐 10월 17~18일 예약 가능 확인서 발급 여부에 대한 언급이 없다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화 원문에는 다림재의 예산, 시설, 안전 결함에 대한 내용만 포함되어 있을 뿐, 10월 17~18일 예약 가능 확인서 발급 여부에 대한 언급은 전혀 없다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_10",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 일정 조정 필요성은 언급되었으나, 10월 17~18일이 마감되었다는 구체적인 사유는 명시되지 않았습니다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 일정 조정 필요성은 언급되었으나, 10월 17~18일이 마감되었다는 구체적인 사유는 명시되지 않았습니다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화에서 무레온 캠프의 일정 조정 필요성은 언급되었으나, 10월 17~18일이 마감되었다는 구체적인 사유는 명시되지 않았습니다."
+          }
+        ],
+        "agents_mentioning": []
+      },
+      {
+        "fact_id": "fact_camp_11",
+        "status": "mentioned",
+        "votes": [
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화 내용 중 다림재 수련원의 결격 사유로 배상책임보험 미가입 상태를 명시적으로 언급하고 있다."
+          },
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화 내용 중 다림재 수련원의 결격 사유로 배상책임보험 미가입 상태를 명시적으로 언급하고 있다."
+          },
+          {
+            "status": "mentioned",
+            "agents_mentioning": [
+              "solo"
+            ],
+            "reason": "발화 내용 중 다림재 수련원의 결격 사유로 배상책임보험 미가입 상태를 명시적으로 언급하고 있다."
+          }
+        ],
+        "agents_mentioning": [
+          "solo"
+        ]
+      },
+      {
+        "fact_id": "fact_camp_12",
+        "status": "unmentioned",
+        "votes": [
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화문에는 무레온 캠프가 보험에 가입되어 있다는 사실만 언급되었을 뿐, 가입 증서를 견적서에 첨부했다는 구체적인 행위는 명시되지 않았다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "무레온 캠프가 보험에 가입했다는 사실은 언급되었으나, 가입 증서를 견적서에 첨부했다는 구체적인 행위는 명시되지 않았다."
+          },
+          {
+            "status": "unmentioned",
+            "agents_mentioning": [],
+            "reason": "발화문에는 무레온 캠프가 보험에 가입되어 있다는 사실만 언급되었을 뿐, 가입 증서를 견적서에 첨부했다는 구체적인 행위는 명시되지 않았다."
+          }
+        ],
+        "agents_mentioning": []
+      }
+    ]
+  }
+}
