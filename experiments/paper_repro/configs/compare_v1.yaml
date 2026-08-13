@@ -1,0 +1,21 @@
+# 논문 재현 트랙 — 비교 실험 우리 판 좌표 (2026-08-10 설계, 대상: 0543·0248·0262)
+# 지위: 사전고정 대상 — 실행 전 요한 승인 필요. 조건 변경 = 새 yaml (이 파일 수정 금지).
+# 목적: 저자 코드 실행 판과 같은 좌표에서 우리 파이프라인을 돌려 결과 정합 확인
+#       (금주 기초실험 — 회의 8/10). run_meta.config_ref 로 뷰어·보고서가 이 좌표를 소비한다.
+experiment: paper_repro_compare
+condition: compare-v1
+issue_id: __per_run__           # 러너 인자로 지정 (0543·0248·0262 각각 별도 run)
+seed: 42
+rounds: 3
+structure: full
+persona: default
+window: rolling
+memory: none
+debate_model: gpt-4.1           # 저자 discussion.py 상수 동일
+debate_temperature: 1.2         # 저자 상수 채택 — 요한 확정 8/10 (pilot1 1.0 과 다름:
+                                #  비교 목적상 저자 좌표 정합 우선. 보고 시 pilot1 수치와
+                                #  직접 비교 불가·온도 상이 명시 의무)
+judge_model: gpt-5              # 저자 축 판정(발화×팩트목록) — 축 확정 8/10 (논문 데이터 한정)
+judge_temperature: 0
+judge_n_votes: 1                # 저자 축 n=1 (aggregation: author_axis_n1 각인)
+ledger_mode: "off"

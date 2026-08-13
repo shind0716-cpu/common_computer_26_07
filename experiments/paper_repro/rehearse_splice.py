@@ -264,8 +264,12 @@ def main() -> None:
             last_stage = jd_ours["stages"][-1]["stage"]
             missing_ours = ledger.missing_facts(jd_ours, last_stage)
             n = len(facts)
-            assert 0 <= len(missing_ours) < n, \
-                f"ledger 퇴화: 소실 {len(missing_ours)}/{n} (전부/음수는 접합 실패)"
+            if not args.live:
+                # 스텁 전건 검증용 — 스텁은 팩트 2개를 되뇌므로 전부 소실이면 접합 실패다.
+                # live 에서는 검사하지 않는다: FAR=1.0 은 유효한 극단값이며(재검수 C-3)
+                # 결과에 따라 실행을 죽이는 것은 선택 편향이다. G5 로 원문 확인만 의무.
+                assert 0 <= len(missing_ours) < n, \
+                    f"ledger 퇴화: 소실 {len(missing_ours)}/{n} (전부/음수는 접합 실패)"
             print(f"③ ledger(우리 축): 마지막 stage 소실 {len(missing_ours)}/{n} — 오판 없음")
 
             # ④ access_window
@@ -325,11 +329,14 @@ def main() -> None:
                 rows_for_bridge, facts_doc, issue_id=issue_id,
                 run_id=f"{run_id}_author", prompt_ver=author_prompt_ver)
             jpa = paths.judgment(issue_id, f"{run_id}_author")
+            jpa.parent.mkdir(parents=True, exist_ok=True)  # 재검수 C-1 계열: 쓰기 전 부모 보장
             jpa.write_text(json.dumps(jd_author, ensure_ascii=False, indent=2), encoding="utf-8")
             _validate(jpa)
             missing_author = ledger.missing_facts(jd_author, jd_author["stages"][-1]["stage"])
-            assert 0 <= len(missing_author) < n, \
-                f"저자 축 ledger 퇴화: 소실 {len(missing_author)}/{n} — 변환 실패"
+            if not args.live:
+                # 스텁 전용 검증 — live 의 FAR=1.0 은 유효 극단값(재검수 C-3, 위 ③ 주석 참조).
+                assert 0 <= len(missing_author) < n, \
+                    f"저자 축 ledger 퇴화: 소실 {len(missing_author)}/{n} — 변환 실패"
             health = jd_author["summary"]["judge_health"]
             print(f"⑤ 저자 축 변환: rows {health['n_rows']} (parse_fail {health['n_parse_fail']}) · "
                   f"validate OK · ledger 소실 {len(missing_author)}/{n} — 차단 해소")

@@ -1,0 +1,1054 @@
+{
+  "schema_ver": "0.3",
+  "created_by": "paper_repro_bridge",
+  "created_at": "2026-08-12T04:00:43.259224+00:00",
+  "issue_id": "issue_ethics_0248",
+  "run_id": "compare2_0248_author",
+  "judge": {
+    "model": "gpt-5",
+    "temperature": 0,
+    "n_votes": 1,
+    "aggregation": "author_axis_n1",
+    "prompt_ver": "delibtrace@afce3595"
+  },
+  "stage_type": "round",
+  "stages": [
+    {
+      "stage": 0,
+      "facts": [
+        {
+          "fact_id": "fact_ethics_0248_01",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_02",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_7"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_03",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_8"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_04",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_8"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_05",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_4"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_4"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_06",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_07",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_8"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_2",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_08",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_4"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_4"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_09",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_8"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_10",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_4",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_4",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_11",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_12",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_2"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_13",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_5",
+                "agent_6"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_5",
+            "agent_6"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_14",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 1,
+      "facts": [
+        {
+          "fact_id": "fact_ethics_0248_01",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_02",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4",
+                "agent_8"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_4",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_03",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_3",
+                "agent_6"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_3",
+            "agent_6"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_04",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_4"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_05",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0248_06",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2",
+                "agent_4",
+                "agent_6",
+                "agent_7"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_2",
+            "agent_4",
+            "agent_6",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_07",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0248_08",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0248_09",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0248_10",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0248_11",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0248_12",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_8"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_13",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_5",
+                "agent_7"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_5",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_14",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": []
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "facts": [
+        {
+          "fact_id": "fact_ethics_0248_01",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_02",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_6"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_6"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_03",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0248_04",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_4"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_05",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0248_06",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_07",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0248_08",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0248_09",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0248_10",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0248_11",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0248_12",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_8"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_13",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_7"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_7"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_14",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": []
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "facts": [
+        {
+          "fact_id": "fact_ethics_0248_01",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_2",
+                "agent_3",
+                "agent_4",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_2",
+            "agent_3",
+            "agent_4",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_02",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_2"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_03",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0248_04",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_4"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_4"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_05",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0248_06",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2",
+                "agent_3",
+                "agent_5",
+                "agent_6",
+                "agent_7",
+                "agent_8"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_2",
+            "agent_3",
+            "agent_5",
+            "agent_6",
+            "agent_7",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_07",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0248_08",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0248_09",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0248_10",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0248_11",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": []
+        },
+        {
+          "fact_id": "fact_ethics_0248_12",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_2",
+                "agent_4",
+                "agent_8"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_2",
+            "agent_4",
+            "agent_8"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_13",
+          "status": "mentioned",
+          "votes": [
+            {
+              "status": "mentioned",
+              "agents_mentioning": [
+                "agent_1",
+                "agent_3"
+              ],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": [
+            "agent_1",
+            "agent_3"
+          ]
+        },
+        {
+          "fact_id": "fact_ethics_0248_14",
+          "status": "unmentioned",
+          "votes": [
+            {
+              "status": "unmentioned",
+              "agents_mentioning": [],
+              "reason": "author_axis evaluate_fact n=1"
+            }
+          ],
+          "agents_mentioning": []
+        }
+      ]
+    }
+  ],
+  "recall_probe": [],
+  "summary": {
+    "far_by_stage": [
+      {
+        "stage": 0,
+        "far_system": 0.0,
+        "far_critical": 0.0,
+        "n_rows_ok": 8,
+        "n_parse_fail": 0
+      },
+      {
+        "stage": 1,
+        "far_system": 0.5,
+        "far_critical": 0.5,
+        "n_rows_ok": 8,
+        "n_parse_fail": 0
+      },
+      {
+        "stage": 2,
+        "far_system": 0.5714,
+        "far_critical": 0.6,
+        "n_rows_ok": 8,
+        "n_parse_fail": 0
+      },
+      {
+        "stage": 3,
+        "far_system": 0.5714,
+        "far_critical": 0.6,
+        "n_rows_ok": 8,
+        "n_parse_fail": 0
+      }
+    ],
+    "far_system": 0.5714,
+    "far_agent_mean": null,
+    "far_critical": 0.6,
+    "judge_health": {
+      "n_rows": 32,
+      "n_parse_fail": 0,
+      "n_calls": 32
+    }
+  }
+}

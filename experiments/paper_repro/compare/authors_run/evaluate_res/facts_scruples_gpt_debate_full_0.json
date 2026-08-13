@@ -1,0 +1,182 @@
+[
+  {
+    "facts": [
+      {
+        "matched_fact_ids": [
+          9,
+          12
+        ]
+      },
+      {
+        "matched_fact_ids": []
+      },
+      {
+        "matched_fact_ids": []
+      },
+      {
+        "matched_fact_ids": [
+          3,
+          6,
+          7
+        ]
+      },
+      {
+        "matched_fact_ids": [
+          13
+        ]
+      },
+      {
+        "matched_fact_ids": []
+      },
+      {
+        "matched_fact_ids": []
+      },
+      {
+        "matched_fact_ids": [
+          6,
+          12
+        ]
+      }
+    ],
+    "stance": [
+      "YES",
+      "NO",
+      "YES",
+      "YES",
+      "YES",
+      "NO",
+      "NO",
+      "YES"
+    ]
+  },
+  {
+    "facts": [
+      {
+        "matched_fact_ids": [
+          0,
+          3
+        ]
+      },
+      {
+        "matched_fact_ids": [
+          0,
+          5,
+          9,
+          11
+        ]
+      },
+      {
+        "matched_fact_ids": [
+          0,
+          3
+        ]
+      },
+      {
+        "matched_fact_ids": [
+          0,
+          3,
+          5,
+          11
+        ]
+      },
+      {
+        "matched_fact_ids": [
+          0,
+          3,
+          5
+        ]
+      },
+      {
+        "matched_fact_ids": [
+          0,
+          3,
+          5
+        ]
+      },
+      {
+        "matched_fact_ids": [
+          0,
+          12
+        ]
+      },
+      {
+        "matched_fact_ids": [
+          0,
+          1,
+          3
+        ]
+      }
+    ],
+    "stance": [
+      "YES",
+      "YES",
+      "NO",
+      "YES",
+      "YES",
+      "NO",
+      "NO",
+      "YES"
+    ]
+  },
+  {
+    "facts": [
+      {
+        "matched_fact_ids": [
+          6,
+          7
+        ]
+      },
+      {
+        "matched_fact_ids": [
+          2,
+          6,
+          7
+        ]
+      },
+      {
+        "matched_fact_ids": [
+          6
+        ]
+      },
+      {
+        "matched_fact_ids": [
+          7
+        ]
+      },
+      {
+        "matched_fact_ids": [
+          2,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "matched_fact_ids": []
+      },
+      {
+        "matched_fact_ids": [
+          4,
+          6
+        ]
+      },
+      {
+        "matched_fact_ids": [
+          4,
+          6,
+          7
+        ]
+      }
+    ],
+    "stance": [
+      "YES",
+      "YES",
+      "NO",
+      "NO",
+      "NO",
+      "YES",
+      "YES",
+      "YES"
+    ]
+  }
+]

@@ -1,0 +1,128 @@
+{
+  "logical_calls": 289,
+  "transport_attempts": 290,
+  "est_cost_usd": 2.89,
+  "checked_at": "2026-08-12T05:08:28.972347+00:00",
+  "issues": [
+    {
+      "issue_id": "issue_ethics_0543",
+      "run_id": "compare2_0543",
+      "problems": [],
+      "debate_keys": {
+        "physical": 32,
+        "unique": 32,
+        "expected": 32,
+        "duplicates": [],
+        "missing": [],
+        "unexpected": []
+      },
+      "axis_keys": {
+        "physical": 32,
+        "unique": 32,
+        "expected": 32,
+        "duplicates": [],
+        "missing": [],
+        "unexpected": []
+      },
+      "axis_parse_fail": 0,
+      "axis_rows_without_raw": 0,
+      "stance_keys": {
+        "physical": 32,
+        "unique": 32,
+        "expected": 32,
+        "duplicates": [],
+        "missing": [],
+        "unexpected": []
+      },
+      "stance_parse_fail": 0,
+      "stance_rows_without_raw": 0,
+      "sha256": {
+        "debate": "a33d245e0417c570d08ccf37b1d4489e33f4c46ac46b4511d46a55d9558a0558",
+        "judgment_author": "14f8065efb225d5758384db399f441562fce1750ca9eb919315e37b0cb9c9c23",
+        "stance_summary": "d8f09ca1d34dac8c00be43128265e0ca05495fdd1d135563c178f24c1ac320ee",
+        "manifest": "3f26fc7bcf0bd4bd005646be7cfc49b575cd56d73be2337ff077bd1c6b9abc47"
+      },
+      "verdict": "ok"
+    },
+    {
+      "issue_id": "issue_ethics_0248",
+      "run_id": "compare2_0248",
+      "problems": [],
+      "debate_keys": {
+        "physical": 32,
+        "unique": 32,
+        "expected": 32,
+        "duplicates": [],
+        "missing": [],
+        "unexpected": []
+      },
+      "axis_keys": {
+        "physical": 32,
+        "unique": 32,
+        "expected": 32,
+        "duplicates": [],
+        "missing": [],
+        "unexpected": []
+      },
+      "axis_parse_fail": 0,
+      "axis_rows_without_raw": 0,
+      "stance_keys": {
+        "physical": 32,
+        "unique": 32,
+        "expected": 32,
+        "duplicates": [],
+        "missing": [],
+        "unexpected": []
+      },
+      "stance_parse_fail": 0,
+      "stance_rows_without_raw": 0,
+      "sha256": {
+        "debate": "e84a2d65aface5f4181d25055ad46d034e13ccf9f0b9792f64d3c52966c74a8f",
+        "judgment_author": "69bfa9ba882e920ef049fbf88d68450dffeea5da1ccf2355a0345fa9cb5c4793",
+        "stance_summary": "a9cf04be2f69fbd3c6448aad787b1722168506874aa29ef27e4226591deef2fa",
+        "manifest": "3ef05cb9dfedfb69bf9facc5a9de8bb00efc2fd2b821a16b02c1ee094b808451"
+      },
+      "verdict": "ok"
+    },
+    {
+      "issue_id": "issue_ethics_0262",
+      "run_id": "compare2_0262",
+      "problems": [],
+      "debate_keys": {
+        "physical": 32,
+        "unique": 32,
+        "expected": 32,
+        "duplicates": [],
+        "missing": [],
+        "unexpected": []
+      },
+      "axis_keys": {
+        "physical": 32,
+        "unique": 32,
+        "expected": 32,
+        "duplicates": [],
+        "missing": [],
+        "unexpected": []
+      },
+      "axis_parse_fail": 0,
+      "axis_rows_without_raw": 0,
+      "stance_keys": {
+        "physical": 32,
+        "unique": 32,
+        "expected": 32,
+        "duplicates": [],
+        "missing": [],
+        "unexpected": []
+      },
+      "stance_parse_fail": 0,
+      "stance_rows_without_raw": 0,
+      "sha256": {
+        "debate": "16fef92e486cd41b32fd1da75628f9cf3ed496fe22c83f6498ca2388a275ebd6",
+        "judgment_author": "6c761c2ff8d4a5692c3e5e2f66ca160a8b9ef4bd0985365d6f6aa74bee88fa21",
+        "stance_summary": "24e8e2d22063523e8d4514865bc52ccd4b79f45c24ca9d0ea152fbe53ffd7d67",
+        "manifest": "ffbcc7597ea68ab139a51932491b9fadeccb1c3e074b3a84f57919f74d43b949"
+      },
+      "verdict": "ok"
+    }
+  ]
+}

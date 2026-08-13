@@ -39,3 +39,15 @@ def debate(issue_id: str, run_id: str) -> Path:
 def judgment(issue_id: str, run_id: str) -> Path:
     """팩트별 생존 판정 결과. judge 산출물, analysis·ledger 입력. debate 와 같은 run_id 로 짝짓는다."""
     return DATA / "judgments" / f"judgment_{issue_id}_{run_id}.json"
+
+
+def raw_calls(filename: str) -> Path:
+    """호출 단위 원문 체크포인트. 파일명은 러너가 정하고 위치는 이 모듈이 유도한다."""
+    if Path(filename).name != filename:
+        raise ValueError(f"raw_calls filename은 basename이어야 함: {filename}")
+    return DATA / "raw_calls" / filename
+
+
+def recall_probe_pre_mapping(issue_id: str, run_id: str) -> Path:
+    """팩트 매핑 승인 전 recall 자기보고 파생물. 계약 judgment와 분리해 둔다."""
+    return DATA / "recall_probe" / f"recall_probe_pre_mapping_{issue_id}_{run_id}.json"

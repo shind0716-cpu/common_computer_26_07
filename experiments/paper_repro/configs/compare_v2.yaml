@@ -1,0 +1,16 @@
+# 논문 재현 트랙 — 비교 실험 우리 판 좌표 v2 (2026-08-11, 역리뷰 W-1·B-1 반영)
+# 지위: 사전고정 — 실행 전 요한 승인 필요. v1 은 수정하지 않고 보존(조건 변경 = 새 yaml).
+# v1 과의 차이: --author-only 경로가 실제로 소비하는 키만 남김 — judge_* 3키 제거
+#   (v1 의 judge_* 는 사전고정에 없는 ② 우리 축 판정 160콜을 구동했다 — 역리뷰 B-1.
+#    저자 축 ⑤ 는 gpt-5·temp0·n1 을 코드에 고정하므로 config 키가 필요 없다),
+#   엔진이 읽지 않는 experiment·issue_id 제거(이슈는 러너 인자 — 역리뷰 W-1).
+condition: compare-v2
+seed: 42
+rounds: 3
+structure: full
+persona: default
+window: rolling
+memory: none
+debate_model: gpt-4.1           # 저자 discussion.py 상수 동일
+debate_temperature: 1.2         # 저자 상수 — 요한 확정 8/11
+ledger_mode: "off"

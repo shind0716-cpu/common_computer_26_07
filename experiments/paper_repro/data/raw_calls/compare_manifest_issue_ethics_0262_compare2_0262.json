@@ -1,0 +1,13 @@
+{
+  "issue_id": "issue_ethics_0262",
+  "run_id": "compare2_0262",
+  "config_name": "compare_v2.yaml",
+  "config_sha256": "77f155a30a58679cda2818c4338749e4469365c23a6e87f6f6029bb2772afd57",
+  "issue_sha256": "86aebbc26ce9a19bab7d47c1db24e9c22ddd38a3612544f07c77030e3c0e1040",
+  "facts_sha256": "e9605189043e47cfed4fb3f735fc3ee8577cb55eeb3aef6e35011b837e764fd0",
+  "assignment_sha256": "ac8edd36a43ada49f776d52ac1e793c6e83e2b1148f8ada3186dfb96a2aec403",
+  "debate_model": "gpt-4.1",
+  "debate_temperature": 1.2,
+  "prompt_ver": "delibtrace@afce3595",
+  "created_at": "2026-08-12T04:45:37.723184+00:00"
+}
