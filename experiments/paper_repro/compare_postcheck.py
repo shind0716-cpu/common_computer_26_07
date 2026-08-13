@@ -12,6 +12,9 @@
   4. parse failure 계수와 raw response 전량 보존 확인
   5. 논리 호출·전송 시도 원장 계수 (+콜당 $0.01 실측 기준 비용 추정)
   6. 산출물 sha256 기록
+  7. axis·stance 각 행의 debate_sha256 == 현재 debate 파일 sha256 (8/13 추가 —
+     판정 행이 지금 이 debate 원문 위에서 난 것인지의 결합 검사. 종전에는 판정 후
+     debate 가 바뀌어도 OK 가 나왔다: C-8 출력 불변성의 실행 후 검사판)
 
 사용 (live 완주 직후):
   PYTHONUTF8=1 python experiments/paper_repro/compare_postcheck.py \
@@ -81,7 +84,8 @@ def check_issue(issue_id: str, run_id: str, rounds: int) -> dict:
             or kr["unexpected"]:
         prob(f"debate 좌표 집합 불일치: {kr}")
 
-    # 3·4. axis·stance 체크포인트 행·좌표·parse·raw 보존
+    # 3·4·7. axis·stance 체크포인트 행·좌표·parse·raw 보존 + debate 결합(sha)
+    debate_sha = _sha(dp)  # 행의 debate_sha256 은 compare_ours 가 판정 시점에 박은 값
     for name, arm in (("axis", f"compare_axis_{issue_id}_{run_id}.jsonl"),
                       ("stance", f"compare_stance_{issue_id}_{run_id}.jsonl")):
         rows = _rows(paths.raw_calls(arm))
@@ -89,14 +93,19 @@ def check_issue(issue_id: str, run_id: str, rounds: int) -> dict:
         n_noraw = sum(1 for r in rows if not r.get("raw_response"))
         n_pf = (sum(1 for r in rows if r.get("parse") == "parse_fail") if name == "axis"
                 else sum(1 for r in rows if r.get("parsed") not in ("yes", "no")))
+        n_badsha = sum(1 for r in rows if r.get("debate_sha256") != debate_sha)
         out[f"{name}_keys"] = kr
         out[f"{name}_parse_fail"] = n_pf
         out[f"{name}_rows_without_raw"] = n_noraw
+        out[f"{name}_debate_sha_mismatch"] = n_badsha
         if not (kr["physical"] == kr["unique"] == kr["expected"]) or kr["missing"] \
                 or kr["unexpected"]:
             prob(f"{name} 좌표 집합 불일치: {kr}")
         if n_noraw:
             prob(f"{name} raw_response 미보존 {n_noraw}행 (규약 5 위반)")
+        if n_badsha:
+            prob(f"{name} debate_sha256 불일치 {n_badsha}행 — 판정이 현재 debate "
+                 f"원문과 다른 판 위에서 났다(부재 행 포함, C-8 결합 검사)")
 
     # 6. 산출물 sha 기록 (부재는 문제로)
     outputs = {"debate": dp,
