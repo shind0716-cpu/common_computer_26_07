@@ -67,3 +67,13 @@ h_acq 가 age 3 에서만 발화(0.1053). ② prior_suspect 방어선이 stance_
 
 debate_{issue}_{tp1}.jsonl · judgment_{issue}_{tp1}.json · prior_·question_scan_·
 transmission_report_{issue}_{tp1}.json (레이더 사건 원장 + 집계 뷰 전문).
+
+## 지위 갱신 (2026-08-13 append — 결과 표를 읽기 전에 볼 것)
+
+이 README의 결과 표(TSR·음영·생명표)는 tp1 judgment(판정기 n=1) 위에 서 있다.
+그 판정은 7/29 계기 점검에서 경계면 불안정이 실측됐고(fact_car_04 s0 재판정
+n=5에서 5:0 뒤집힘 — WORKLOG 7/29), **`data/STATUS.md`가 `access_report_*`를
+인용 금지, `transmission_report_*`를 재검토 대상으로 강등**했다. 뒤집힘이
+사실이면 TSR 분모가 달라지고, 위 표의 "fact_car_04 음영 첫 실측"은 바로 그
+뒤집힌 셀에 걸려 있다. 결과 표 원문은 append-only 규칙상 남겨 두며, 수치를
+인용하려면 `data/STATUS.md`의 지위를 먼저 확인하라.
