@@ -110,10 +110,16 @@ def main() -> None:
     emit("run_meta", issue_id=issue_id, condition=cfg.get("condition"),
          config_ref={"name": args.config.name,
                      "sha256": sha256(args.config.read_text(encoding="utf-8"))},
+         # 설정 사전 8축 — 엔진 run_meta 와 같은 칸을 채운다. validate 의 debate 계약이
+         # window·memory·rounds·structure·stance·overlap_k·ledger_mode·seed 를 요구한다.
          settings={"window": "none", "memory": "none", "rounds": 0,
                    "note_budget": None, "note_call": None, "note_parse_ver": None,
                    "final_poll": True, "ledger_mode": "off",
                    "structure": None, "seed": cfg["seed"],
+                   "stance": "none",                       # 협력(무입장) — 배분표 계승
+                   "persona": None,
+                   "overlap_k": assign_doc.get("overlap_k"),
+                   "assignment_mode": assign_doc.get("created_by"),
                    "reasoning": reasoning, "deviations": []},
          model=llm.resolve_model(model), temperature=temp,
          prompt_ver=our_prompts.version_tag() + SOLO_PROMPT_VER_SUFFIX)
