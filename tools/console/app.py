@@ -28,6 +28,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import subprocess
 import sys
 import threading
@@ -863,3 +864,332 @@ def index():
     return HTMLResponse(
         (HERE / "index.html").read_text(encoding="utf-8"),
         headers={"Cache-Control": "no-store, must-revalidate"})
+
+
+# ═══ 단독 실험 (experiments/memory_structure) — WORKORDER_SOLO_TAB 2026-08-18 ═══
+# 이 아래는 전부 **추가**다 — 기존 debate 라우트·동작은 건드리지 않는다(워크오더 §2-1).
+# 콘솔은 러너(run_solo.py)를 서브프로세스로 부르고 산출물을 **읽기만** 한다(§2-2).
+# 러너 인터페이스가 부족하면 여기서 고치지 말고 보고한다.
+
+# solo 산출물 경로 — 상수 한 곳(§2-4: paths.py 무수정, 콘솔 로컬 상수).
+# 함수가 아니라 모듈 변수인 이유: 테스트가 임시 폴더로 갈아끼운다(paths.DATA 전례).
+SOLO_DIR = ROOT / "experiments" / "memory_structure"
+
+SOLO_MODELS = ("gpt", "gemini-flash")            # run_solo.py --model 값 (llm.py 별칭)
+SOLO_ARMS = {"A": "반복", "P": "전진(A′)", "B": "숙의"}
+SOLO_MEMS = {"full": "전체", "note": "수첩", "prev": "직전만"}
+SOLO_BUDGETS = (500, 250, 125, 60)               # 수첩 예산 스윕 후보 (500 = v1 기본)
+SOLO_DEFAULT_BUDGET = 500                        # run_solo.DEFAULT_NOTE_BUDGET 미러
+SOLO_STAGES = ("essay_r0", "essay_r1", "essay_r2", "essay_r3", "carrier")
+
+
+def _solo_runs_dir(dry: bool) -> Path:
+    d = SOLO_DIR / "runs"
+    return d / "_dry" if dry else d
+
+
+def _solo_judgments_dir() -> Path:
+    return SOLO_DIR / "judgments"
+
+
+class SoloRunReq(BaseModel):
+    model: str = "gpt"
+    arms: list[str] = ["A", "P", "B"]
+    memories: list[str] = ["full", "note", "prev"]
+    reps: list[int] = [1, 2, 3]
+    note_budget: int = SOLO_DEFAULT_BUDGET
+    facts_reverse: bool = False
+    # --no-stance --final-poll 묶음 토글. 러너가 final_poll 단독을 즉사시키므로
+    # (입장 고정 상태의 최종 판단은 설계상 무의미) 폼도 같은 제약을 한 칸으로 집행한다.
+    ns_final_poll: bool = False
+    dry: bool = False
+    # "PROMPTS_v2·PREREG_v2 를 로컬 커밋했다"는 **사람의 확인**. UI 가 자동으로 켜면
+    # 사전등록 관문이 장식이 된다 — 기본 False, 체크 시에만 --allow-v2 가 붙는다(§1·§2-3).
+    prereg_confirmed: bool = False
+
+
+def _solo_v2_reasons(req: SoloRunReq) -> list[str]:
+    """v2 사유 목록 — 비면 v1 기본 조건. 러너의 is_v2 판정(run_solo.main)과 같은 식."""
+    reasons = []
+    if req.note_budget != SOLO_DEFAULT_BUDGET:
+        reasons.append(f"수첩 예산 {req.note_budget}")
+    if req.facts_reverse:
+        reasons.append("사실 역순")
+    if req.ns_final_poll:
+        reasons.append("입장 해제+최종 판단")
+    return reasons
+
+
+def _solo_suffix(req: SoloRunReq) -> str:
+    """산출물 run_id 접미사 미리보기 — run_solo._variant_suffix 와 같은 규칙."""
+    parts = []
+    if req.note_budget != SOLO_DEFAULT_BUDGET:
+        parts.append(f"b{req.note_budget}")
+    if req.facts_reverse:
+        parts.append("rev")
+    if req.ns_final_poll:
+        parts.append("ns")
+    return ("_" + "_".join(parts)) if parts else ""
+
+
+def _solo_validate(req: SoloRunReq) -> None:
+    if req.model not in SOLO_MODELS:
+        raise HTTPException(400, f"모르는 모델: {req.model} (가능: {', '.join(SOLO_MODELS)})")
+    if not (req.arms and req.memories and req.reps):
+        raise HTTPException(400, "진행/기억/반복을 하나 이상 고르세요.")
+    bad = ([a for a in req.arms if a not in SOLO_ARMS]
+           + [m for m in req.memories if m not in SOLO_MEMS])
+    if bad:
+        raise HTTPException(400, f"모르는 조건: {bad}")
+
+
+@app.get("/api/solo/meta")
+def api_solo_meta():
+    """폼의 단일 소스 — 조건 어휘 + 모델 키 실재 여부(_models 와 같은 기준: 24자 미만
+    은 자리표시자). 러너 파일 존재도 함께 — 없으면 실행 버튼이 눌리기 전에 안다."""
+    models = []
+    for key in SOLO_MODELS:
+        try:
+            provider = llm.resolve_provider(key)
+        except KeyError:
+            continue
+        env = llm.PROVIDER_KEY_ENV[provider]
+        val = os.environ.get(env, "")
+        models.append({"key": key, "model_id": llm.resolve_model(key),
+                       "provider": provider, "key_env": env,
+                       "ready": len(val) >= 24,
+                       "reason": ("" if len(val) >= 24 else
+                                  (f"{env} 없음" if not val
+                                   else f"{env} 가 너무 짧음({len(val)}자 — 자리표시자)"))})
+    return {"models": models, "arms": SOLO_ARMS, "memories": SOLO_MEMS,
+            "budgets": SOLO_BUDGETS, "default_budget": SOLO_DEFAULT_BUDGET,
+            "runner_exists": (SOLO_DIR / "run_solo.py").exists()}
+
+
+@app.post("/api/solo/estimate")
+def api_solo_estimate(req: SoloRunReq):
+    """실행 전 견적 — 워크오더 §1 산식: 런 수 × (full/prev 5콜, note 8콜)
+    + final_poll 시 런당 1콜. (수첩 예산 초과 반려 재호출은 런타임 변동이라 '약'이다.)"""
+    _solo_validate(req)
+    n_runs = len(req.arms) * len(req.memories) * len(req.reps)
+    per_mem = sum((8 if m == "note" else 5) for m in req.memories)
+    calls = per_mem * len(req.arms) * len(req.reps)
+    if req.ns_final_poll:
+        calls += n_runs
+    reasons = _solo_v2_reasons(req)
+    return {"runs": n_runs, "calls": calls,
+            "is_v2": bool(reasons), "v2_reasons": reasons,
+            "suffix": _solo_suffix(req)}
+
+
+@app.post("/api/solo/run")
+def api_solo_run(req: SoloRunReq):
+    """run_solo.py 서브프로세스 실행 — 기존 _proc/_log 골격 재사용(동시 실행 1개 원칙).
+
+    사전등록 관문(§2-3): v2 조건 실호출은 prereg_confirmed(사람 확인) 없이는 400 이고,
+    확인된 경우에만 --allow-v2 를 붙인다. v1 조건엔 확인 여부와 무관하게 절대 안 붙는다.
+    드라이런(0콜)은 러너와 같은 이유로 관문 밖 — 확인 없이 허용한다."""
+    global _proc, _log, _current
+    if _proc is not None and _proc.poll() is None:
+        raise HTTPException(409, "이미 실행 중 — 끝나거나 중단한 뒤에 다시.")
+    _solo_validate(req)
+    reasons = _solo_v2_reasons(req)
+    is_v2 = bool(reasons)
+    if is_v2 and not req.dry and not req.prereg_confirmed:
+        raise HTTPException(400,
+                            "v2 조건 실호출 차단 — PROMPTS_v2·PREREG_v2 로컬 커밋 확인 체크가 "
+                            f"필요하다 (v2 사유: {', '.join(reasons)}). 드라이런(0콜)은 확인 없이 가능.")
+    if not req.dry:
+        # 키 관문만 여기서 — 온도·프롬프트·상한은 전부 러너 소관(러너도 preflight 를 한다.
+        # 여기서 먼저 보면 스택트레이스가 아니라 400 문장으로 안다 — /api/run 전례).
+        try:
+            llm.preflight(req.model)
+        except SystemExit as e:
+            raise HTTPException(400, str(e))
+        except KeyError as e:
+            raise HTTPException(400, str(e))
+    runner = SOLO_DIR / "run_solo.py"
+    if not runner.exists():
+        raise HTTPException(500, f"러너 없음: {runner}")
+    # 워크오더 §1: sys.executable -X utf8 <경로> <인자들>. -u 는 파이프 버퍼링 해제 —
+    # 없으면 자식 print 가 8KB 씩 뭉쳐 나와 로그가 실시간으로 안 흐른다.
+    cmd = [sys.executable, "-X", "utf8", "-u", str(runner),
+           "--model", req.model,
+           "--arms", *req.arms,
+           "--memories", *req.memories,
+           "--reps", *[str(n) for n in req.reps]]
+    if req.note_budget != SOLO_DEFAULT_BUDGET:
+        cmd += ["--note-budget", str(req.note_budget)]
+    if req.facts_reverse:
+        cmd.append("--facts-reverse")
+    if req.ns_final_poll:
+        cmd += ["--no-stance", "--final-poll"]
+    if req.dry:
+        cmd.append("--dry")
+    elif is_v2:
+        cmd.append("--allow-v2")     # 사람 확인(prereg_confirmed)을 통과한 경우만 여기 도달
+    with _log_lock:
+        _log = [f"$ {' '.join(cmd)}"]
+    _current = {"kind": "solo", "model": req.model, "dry": req.dry}
+    _proc = subprocess.Popen(cmd, cwd=str(ROOT), stdout=subprocess.PIPE,
+                             stderr=subprocess.STDOUT, text=True, encoding="utf-8",
+                             errors="replace", bufsize=1)
+    threading.Thread(target=_tail_reader, args=(_proc,), daemon=True).start()
+    return {"ok": True, "cmd": cmd, "dry": req.dry, "v2": is_v2}
+
+
+def _solo_scan() -> list[dict]:
+    """runs/<model>/ + runs/_dry/<model>/ 스캔 → 런 목록(최신순).
+
+    v1 산출물엔 facts_order·stance·final_poll 메타가 없다(손잡이 자체가 없던 시절).
+    부재를 기본값과 뭉치지 않는다 — None 으로 보내고 화면이 'v1'로 적는다(스키마 §4⁗
+    의 "부재는 모름" 원칙). 결과 없이 체크포인트(.partial)만 있는 런은 중단/진행 중 —
+    숨기면 "돌렸는데 어디 갔지"가 되므로 partial 표시로 드러낸다."""
+    out = []
+    jroot = _solo_judgments_dir()
+    for dry in (False, True):
+        base = _solo_runs_dir(dry)
+        if not base.exists():
+            continue
+        for mdir in sorted(base.iterdir()):
+            if not mdir.is_dir() or mdir.name.startswith("_"):
+                continue
+            done_ids = set()
+            for p in sorted(mdir.glob("run_*.json")):
+                try:
+                    doc = json.loads(p.read_text(encoding="utf-8"))
+                except Exception:
+                    continue     # 깨진 파일 하나가 목록 전체를 죽이면 안 된다
+                rid = doc.get("run_id") or p.stem[len("run_"):]
+                done_ids.add(rid)
+                meta = doc.get("meta") or {}
+                pv = doc.get("prompts_ver")
+                out.append({
+                    "model": mdir.name, "run_id": rid, "file": p.name, "dry": dry,
+                    "arm": doc.get("arm"), "memory": doc.get("memory"),
+                    "rep": doc.get("rep"),
+                    "prompts_ver": pv,
+                    "version": ("v1" if pv == "solo-v1" else ("v2" if pv else "?")),
+                    "note_budget": meta.get("note_budget"),
+                    "facts_order": meta.get("facts_order"),
+                    "stance": meta.get("stance"),
+                    "final_poll": meta.get("final_poll"),
+                    "model_id": meta.get("model_id"),
+                    "finished_at": meta.get("finished_at"),
+                    "judged": (not dry) and (jroot / mdir.name / f"judge_{rid}.json").exists(),
+                    "partial": False,
+                    "mtime": p.stat().st_mtime,
+                })
+            for p in sorted(mdir.glob("run_*.partial.jsonl")):
+                rid = p.name[len("run_"):-len(".partial.jsonl")]
+                if rid in done_ids:
+                    continue     # 완주 런의 체크포인트 잔존물 — 목록엔 완주본만
+                out.append({"model": mdir.name, "run_id": rid, "file": p.name,
+                            "dry": dry, "partial": True, "judged": False,
+                            "mtime": p.stat().st_mtime})
+    out.sort(key=lambda r: r.get("mtime") or 0, reverse=True)
+    return out
+
+
+@app.get("/api/solo/runs")
+def api_solo_runs():
+    return {"runs": _solo_scan()}
+
+
+@app.get("/api/solo/detail")
+def api_solo_detail(model: str, run_id: str, dry: bool = False):
+    """런 한 벌 원문 — 라운드별 발화·수첩(글자 수·여백)·회고·최종 판단.
+
+    여백 = 예산 − 글자 수. 발견 ④(자리가 남는데 버린다)가 화면에서 바로 보이게
+    수첩마다 병기한다(워크오더 §1 탭 2)."""
+    p = _solo_runs_dir(dry) / model / f"run_{run_id}.json"
+    if not p.exists():
+        raise HTTPException(404, f"런 없음: {p.name}")
+    doc = json.loads(p.read_text(encoding="utf-8"))
+    meta = doc.get("meta") or {}
+    budget = meta.get("note_budget") or SOLO_DEFAULT_BUDGET
+    essays = [{"round": i, "text": t, "len": len(t or "")}
+              for i, t in enumerate(doc.get("essays") or [])]
+    notes = [{"round": i, "text": t, "len": len(t or ""),
+              "margin": budget - len(t or "")}
+             for i, t in enumerate(doc.get("notes") or [])]
+    pv = doc.get("prompts_ver")
+    return {"model": model, "run_id": run_id, "dry": dry,
+            "prompts_ver": pv,
+            "version": ("v1" if pv == "solo-v1" else ("v2" if pv else "?")),
+            "arm": doc.get("arm"), "arm_name": doc.get("arm_name"),
+            "memory": doc.get("memory"), "rep": doc.get("rep"),
+            "meta": meta, "note_budget": budget,
+            "essays": essays, "notes": notes,
+            "recall": doc.get("recall"),
+            # v1 산출물엔 final_poll 키 자체가 없다 — None 이면 화면이 칸을 생략한다.
+            "final_poll": doc.get("final_poll"),
+            "judged": (not dry) and
+                      (_solo_judgments_dir() / model / f"judge_{run_id}.json").exists()}
+
+
+def _solo_grid_cells(records: dict, stages: list[str]) -> dict:
+    cells = {}
+    for s in stages:
+        for row in records.get(s) or []:
+            votes = [v.get("status") for v in (row.get("votes") or [])]
+            cells[(row["fact_id"], s)] = {
+                "status": row.get("status"),
+                # 표 분열 = 3표 불일치. judge 신뢰도의 직접 관측이라 격자에 병기한다.
+                "split": len(set(votes)) > 1,
+                "votes": votes,
+            }
+    return cells
+
+
+@app.get("/api/solo/grid")
+def api_solo_grid(model: str, run_id: str):
+    """생존 격자 — 사실 × 시점(essay_r0~r3·carrier). LLM 호출 0, judgments 재독만(§1 탭 3).
+
+    같은 조건의 다른 반복(rep)이 채점돼 있으면 겹침 농도(셀 = 반복 중 mentioned 수)를
+    함께 돌려준다 — 생존리포트 HTML 과 같은 읽기("셀 값 = 반복 3 중 생존 판정 수")."""
+    jp = _solo_judgments_dir() / model / f"judge_{run_id}.json"
+    if not jp.exists():
+        raise HTTPException(404, f"채점 없음: {jp.name} — 채점 실행은 judge_solo.py CLI "
+                                 "(콘솔 채점 UI 는 워크오더 §4 범위 밖)")
+    doc = json.loads(jp.read_text(encoding="utf-8"))
+    records = doc.get("records") or {}
+    stages = ([s for s in SOLO_STAGES if s in records]
+              + [s for s in records if s not in SOLO_STAGES])
+    # 행 라벨 = 팩트 원문. 판정 파일이 자기 이슈를 안다(issue_id) — 콘솔이 추측하지 않는다.
+    try:
+        facts = json.loads(paths.facts(doc.get("issue_id", ""))
+                           .read_text(encoding="utf-8"))["facts"]
+        row_ids = [f["fact_id"] for f in facts]
+        text_by_id = {f["fact_id"]: f["text"] for f in facts}
+    except (FileNotFoundError, KeyError):
+        row_ids, text_by_id = [], {}
+    if not row_ids:      # 팩트 파일이 없으면 판정 기록의 등장 순서로라도 그린다
+        for s in stages:
+            for row in records.get(s) or []:
+                if row["fact_id"] not in row_ids:
+                    row_ids.append(row["fact_id"])
+    cells = _solo_grid_cells(records, stages)
+    rows = [{"fact_id": fid, "text": text_by_id.get(fid, ""),
+             "cells": [cells.get((fid, s)) for s in stages]} for fid in row_ids]
+    # 조건 겹침 — run_id 에서 _rep<k> 만 뗀 것이 조건 키(v2 접미사는 조건의 일부).
+    cond = re.sub(r"_rep\d+$", "", run_id)
+    sib = sorted(q.name[len("judge_"):-len(".json")]
+                 for q in (_solo_judgments_dir() / model).glob(f"judge_{cond}_rep*.json"))
+    agg = None
+    if len(sib) > 1:
+        counts: dict = {}
+        for sid in sib:
+            jd = json.loads((_solo_judgments_dir() / model / f"judge_{sid}.json")
+                            .read_text(encoding="utf-8"))
+            for s in stages:
+                for row in (jd.get("records") or {}).get(s) or []:
+                    if row.get("status") == "mentioned":
+                        key = (row["fact_id"], s)
+                        counts[key] = counts.get(key, 0) + 1
+        agg = {"n_runs": len(sib), "run_ids": sib, "condition": cond,
+               "rows": [{"fact_id": fid, "text": text_by_id.get(fid, ""),
+                         "cells": [counts.get((fid, s), 0) for s in stages]}
+                        for fid in row_ids]}
+    return {"model": model, "run_id": run_id, "issue_id": doc.get("issue_id"),
+            "judge": doc.get("judge") or {}, "stages": stages, "rows": rows, "agg": agg}
