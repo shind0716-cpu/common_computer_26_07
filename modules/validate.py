@@ -186,13 +186,16 @@ def reassemble_prompt(pa: dict, ctx: dict, *, where: str = "prompt_assembly") ->
     if template == "coop_initial":
         return debate_engine.assemble_coop_initial(
             question, body, fact_lines(slots.get("assigned_fact_ids")))
-    if template == "coop_continue":
+    if template in ("coop_continue", "coop_continue_nofacts"):
         # 누적 창이면 참조 목록에 과거 라운드가 들어있고 라운드 표시가 붙는다 —
         # 수첩 조건과 같은 조립기를 쓴다(엔진도 같은 분기 하나로 만든다).
+        # nofacts 판(facts_reinject=round0_only)은 my_facts 슬롯이 없는 파일을 쓰고
+        # assigned_fact_ids 가 빈 목록으로 기록된다 — 조립기는 하나로 둔다.
         incoming = _assemble_incoming(utts, slots, injects, where)
         ptxt = _assembly_ref_text(utts, slots["previous"], where)
         return debate_engine.assemble_coop_continue(
-            question, body, fact_lines(slots.get("assigned_fact_ids")), ptxt or "", incoming)
+            question, body, fact_lines(slots.get("assigned_fact_ids")), ptxt or "", incoming,
+            template=template)
     if template in ("coop_continue_note", "coop_continue_note_say"):
         # 수첩 조건 발화. 슬롯이 coop_continue 와 다르다 — my_facts·previous 없음,
         # note 있음(스키마 v0.3 §3). others 목록 순서가 곧 조립 순서다: 누적 창이면

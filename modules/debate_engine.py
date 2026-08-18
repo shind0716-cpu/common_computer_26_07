@@ -66,6 +66,12 @@ SUPPORTED_LEDGER_MODES = ("off", "v0")
 SUPPORTED_WINDOWS = ("rolling", "cumulative")   # 받은 발화의 창: 직전만 / 누적 전량
 SUPPORTED_MEMORY = ("none", "note")             # 개인 수첩 사용 여부
 SUPPORTED_NOTE_CALLS = ("utterance", "dedicated")  # 수첩 갱신 호출 방식 (§5)
+# 배정 팩트 재주입 (2026-08-14 · 요한). 협력 조건 전용 축이다.
+#   always      = 매 라운드 원문 재주입 (종전 동작 · 기본값이라 옛 run 은 무변)
+#   round0_only = 라운드 0 에만 제시. 이후엔 자기 직전 발언에 적혀야 산다
+#                 = 저자 템플릿(discussion_continue)의 구조. 설정 사전 v0.1 변경 1 이
+#                   직전만 좌표를 "논문 세팅·재현 트랙 전용"이라 규정한 것을 집행하는 칸.
+SUPPORTED_FACTS_REINJECT = ("always", "round0_only")
 
 
 def now() -> str:
@@ -147,9 +153,15 @@ def assemble_coop_initial(question: str, body: str, fact_text: str) -> str:
 
 
 def assemble_coop_continue(question: str, body: str, fact_text: str,
-                           previous: str, incoming: str) -> str:
-    """coop_continue 조립(순수). incoming = 이웃 발화(+재주입 블록이 있으면 그 뒤에)."""
-    t = our_prompts.load("coop_continue")
+                           previous: str, incoming: str,
+                           *, template: str = "coop_continue") -> str:
+    """coop_continue 조립(순수). incoming = 이웃 발화(+재주입 블록이 있으면 그 뒤에).
+
+    template 인자(2026-08-14): facts_reinject=round0_only 면 `coop_continue_nofacts`.
+    그 판에는 `{{my_facts}}` 슬롯이 없어 fact_text 치환이 무효타가 된다 — 호출자는
+    빈 문자열을 넘긴다. 조립기를 하나로 두는 이유는 note 쌍과 같다(validate 가
+    template 이름으로 같은 함수를 다시 불러 재조립한다)."""
+    t = our_prompts.load(template)
     t = t.replace("{{question}}", question)
     t = t.replace("{{body}}", body)
     t = t.replace("{{my_facts}}", fact_text)
@@ -265,6 +277,7 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
     memory = cfg.get("memory", "none")
     note_budget = int(cfg.get("note_budget", 500))
     note_call = cfg.get("note_call", "utterance")
+    facts_reinject = cfg.get("facts_reinject", "always")
 
     # 최종 폴링(coop_final): 벌거벗은 판단 {"recommend"} 한 필드. 코어 5종의 채점
     # 원자료 — LLM judge 불사용이므로 이 폴링 결과가 곧 정답 여부다(설정 사전 §4).
@@ -281,7 +294,13 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
         raise KeyError(f"미지원 memory: {memory} (지원: {SUPPORTED_MEMORY})")
     if note_call not in SUPPORTED_NOTE_CALLS:
         raise KeyError(f"미지원 note_call: {note_call} (지원: {SUPPORTED_NOTE_CALLS})")
+    if facts_reinject not in SUPPORTED_FACTS_REINJECT:
+        raise KeyError(f"미지원 facts_reinject: {facts_reinject} "
+                       f"(지원: {SUPPORTED_FACTS_REINJECT})")
     use_note = memory == "note"
+    # 협력 조건 발화 템플릿 — 팩트 재주입 축이 여기서 파일을 고른다(note 쌍과 같은 방식).
+    _coop_continue_template = ("coop_continue" if facts_reinject == "always"
+                               else "coop_continue_nofacts")
 
     facts_doc = json.loads(paths.facts(issue_id).read_text(encoding="utf-8"))
     assign_doc = json.loads(paths.assignment(issue_id).read_text(encoding="utf-8"))
@@ -314,6 +333,14 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
             raise KeyError("memory=note 는 협력(무입장) 조건 전용 — 저자 템플릿엔 수첩 슬롯이 없다")
         if window != "rolling":
             raise KeyError(f"window={window} 는 협력 조건 전용 — 재현 트랙은 rolling 고정")
+        if facts_reinject != "always":
+            raise KeyError("facts_reinject 는 협력 조건 전용 — 저자 템플릿엔 팩트 슬롯이 "
+                           "없어 이미 round0_only 와 같다")
+    elif use_note and facts_reinject != "always":
+        # 수첩 조건은 설정 사전 변경 3(B판)에서 이미 라운드 0 1회로 확정돼 있다.
+        # 같은 것을 두 칸으로 적으면 로그가 조건을 두 번 말하게 된다.
+        raise KeyError("memory=note 는 이미 배정 팩트를 라운드 0 에만 준다(B판) — "
+                       "facts_reinject 를 함께 지정하지 마라")
 
     respond = utterance_fn  # None 이면 initial/continue 가 llm.obtain_response 사용
 
@@ -445,6 +472,9 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
             "note_call": note_call if use_note else None,
             "note_parse_ver": (note_slot.NOTE_PARSE_VER
                                if use_note and note_call == "utterance" else None),
+            # 배정 팩트 재주입 (2026-08-14). 수첩 조건은 B판이라 값이 고정이므로
+            # 협력·비수첩 조건에서만 의미가 있다 — 그 밖에서는 null 로 적는다.
+            "facts_reinject": (facts_reinject if coop and not use_note else None),
             "final_poll": final_poll,
             "rounds": rounds,                    # ③
             "structure": structure,              # ④ 연결 모양
@@ -674,12 +704,16 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
                 else:
                     resp = raw
             elif coop:
-                # 협력 조건: 배정 팩트는 에이전트의 정체라 매 라운드 유지(설정 사전 §2-2ⓒ).
+                # 협력 조건 기본(facts_reinject=always): 배정 팩트를 매 라운드 유지한다.
+                # round0_only 면 저자 템플릿과 같은 구조가 된다 — 팩트가 라운드 0 이후
+                # 안 들어오므로 자기 직전 발언에 적힌 것만 산다(논문 정합 좌표).
                 _ft = ""
-                for _fid in seated[i]["assigned_fact_ids"]:
-                    _ft += f"{fact_by_id[_fid]}\n"
+                if facts_reinject == "always":
+                    for _fid in seated[i]["assigned_fact_ids"]:
+                        _ft += f"{fact_by_id[_fid]}\n"
                 inputs = assemble_coop_continue(question, body, _ft,
-                                                previous[i] or "", others + inject_block)
+                                                previous[i] or "", others + inject_block,
+                                                template=_coop_continue_template)
                 resp = _fn(inputs, model=model, temperature=temp)
             else:
                 inputs, resp = continue_utterance(
@@ -705,7 +739,7 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
                 _tmpl_name = ("coop_continue_note" if note_call == "utterance"
                               else "coop_continue_note_say")
             elif coop:
-                _tmpl_name = "coop_continue"
+                _tmpl_name = _coop_continue_template
             else:
                 _tmpl_name = "discussion_continue"
             emit(
@@ -715,7 +749,8 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
                 prompt_ver=prompt_ver,
                 setting_key=setting_key,
                 slots={"assigned_fact_ids": (list(seated[i]["assigned_fact_ids"])
-                                             if coop and not use_note else []),
+                                             if coop and not use_note
+                                             and facts_reinject == "always" else []),
                        "others": others_refs,
                        # 수첩 조건은 previous 슬롯이 없다(자기 직전 발언도 기억이다).
                        "previous": (None if use_note else
