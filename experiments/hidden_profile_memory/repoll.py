@@ -43,7 +43,7 @@ from modules import debate_engine, llm, our_prompts, paths  # noqa: E402
 DISCUSSED = "당신은 한 논의에 참석한 구성원이었습니다. 논의가 끝났습니다."
 SOLO = "당신은 아래 안건을 결정하는 자리에 참석했습니다. 아직 논의는 없었습니다."
 
-CONTEXTS = ("self_utterance", "assigned_facts")
+CONTEXTS = ("self_utterance", "assigned_facts", "last_utterances")
 INTROS = ("discussed", "solo")
 
 
@@ -65,6 +65,20 @@ def last_utterances(events: list[dict]) -> dict[str, dict]:
         if cur is None or e.get("round", 0) >= cur.get("round", 0):
             out[e["agent_id"]] = e
     return out
+
+
+def neighbor_order(events: list[dict]) -> dict[str, list[str]]:
+    """에이전트별 이웃 목록을 **엔진과 같은 순서로** 복원한다.
+
+    순서도 계약이다 — 엔진은 이웃을 `edges[i]`(좌석 인덱스) 순서로 붙이고 재조립 검증도
+    그 순서를 따른다. 좌석은 seed 로 섞이므로 agent_id 순으로 붙이면 같은 정보를 다른
+    순서로 준 run 이 된다. `seating` 이벤트가 그 배열의 정본이다."""
+    seat = [e for e in events if e.get("event") == "seating"]
+    if not seat:
+        raise SystemExit("source run 에 seating 이벤트가 없다 — 이웃 순서를 복원할 수 없다")
+    order = seat[0]["order"]                       # 좌석 인덱스 → agent_id
+    edges = debate_engine.build_edges(seat[0].get("structure", "full"), len(order))
+    return {order[i]: [order[j] for j in edges[i]] for i in range(len(order))}
 
 
 def main() -> None:
@@ -101,17 +115,19 @@ def main() -> None:
     fact_by_id = {f["fact_id"]: f["text"] for f in facts_doc["facts"]}
 
     source_ref = None
-    if context_mode == "self_utterance":
+    lasts: dict[str, dict] = {}
+    neighbors: dict[str, list[str]] = {}
+    if context_mode in ("self_utterance", "last_utterances"):
         if not args.source_run:
-            raise SystemExit("poll_context=self_utterance 는 --source-run 이 필요하다")
+            raise SystemExit(f"poll_context={context_mode} 는 --source-run 이 필요하다")
         src = paths.debate(issue_id, args.source_run)
         src_text = src.read_text(encoding="utf-8")
         src_events = [json.loads(l) for l in src_text.splitlines() if l.strip()]
         lasts = last_utterances(src_events)
+        if context_mode == "last_utterances":
+            neighbors = neighbor_order(src_events)
         source_ref = {"run_id": args.source_run, "file": src.name,
                       "sha256": sha256(src_text)}
-    else:
-        lasts = {}
 
     out_path = paths.debate(issue_id, args.run)
     if out_path.exists():
@@ -156,6 +172,21 @@ def main() -> None:
                 raise SystemExit(f"{args.source_run} 에 {aid} 발화가 없다")
             final_context = f"[당신의 마지막 발언]\n{src_e['response_text']}\n"
             slot = {"source_round": src_e.get("round")}
+        elif context_mode == "last_utterances":
+            # 엔진의 비수첩 폴링과 **글자 그대로 같은 형식**이어야 한다 — 이 컨텍스트는
+            # 전 팔 공통 잣대(폴링 B)이고, 형식이 어긋나면 팔 간 비교가 그 차이를 탄다.
+            src_e = lasts.get(aid)
+            if src_e is None:
+                raise SystemExit(f"{args.source_run} 에 {aid} 발화가 없다")
+            final_context = (f"[당신의 마지막 발언]\n{src_e['response_text']}\n\n"
+                             f"[참석자들의 마지막 발언]\n")
+            for k, nb in enumerate(neighbors.get(aid, [])):
+                nb_e = lasts.get(nb)
+                if nb_e is None:
+                    raise SystemExit(f"{args.source_run} 에 {nb} 발화가 없다")
+                final_context += f"참석자{k + 1}: {nb_e['response_text']}\n"
+            slot = {"source_round": src_e.get("round"),
+                    "others": list(neighbors.get(aid, []))}
         else:
             lines = "\n".join(f"- {fact_by_id[i]}" for i in ag["assigned_fact_ids"])
             final_context = f"[당신이 받은 자료]\n{lines}"
@@ -187,10 +218,19 @@ def main() -> None:
              model=llm.resolve_model(model), temperature=temp, response_text=resp)
 
     if fh is not None:
-        emit("run_deviations", deviations=list(llm.LAST_DEVIATIONS))
+        emit("run_deviations", deviations=list(llm.LAST_DEVIATIONS),
+             n_fallback=n_fallback)
         fh.close()
-        print(f"[OK] {out_path.name} — 폴링 {n_calls}/{cap}, "
+        tag = "[OK]" if n_fallback == 0 else "[무효]"
+        print(f"{tag} {out_path.name} — 폴링 {n_calls}/{cap}, 폴백 {n_fallback}건, "
               f"편차 {list(llm.LAST_DEVIATIONS) or '없음'}")
+        if n_fallback:
+            # 사전등록 §6-7: 폴백이 0 이 아니면 그 런은 무효다. 조용히 넘기면 빈 응답이
+            # 채점에 섞이고, 러너는 성공으로 찍는다(리뷰 중대 6 의 구멍).
+            # 파일은 남긴다 — 장애의 기록이고, 원자료는 지우지 않는다(규약 8).
+            raise SystemExit(
+                f"폴백 {n_fallback}건 — 이 런은 무효다. 엔드포인트를 확인하고 "
+                f"새 run_id 로 다시 돌려라. 파일은 남긴다: {out_path.name}")
     else:
         print(f"[dry OK] 조립 {len(assign_doc['agents'])}건 · 실호출 0 · 파일 안 씀")
 
