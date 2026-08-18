@@ -659,6 +659,18 @@ async function poll(){
   let alive=false;
   try{
     const d = await (await fetch('/api/log?since='+cursor)).json();
+    // [2026-08-19 · 적대적 리뷰 ③ — 민옥 승인 수정] 단독 실험(kind=solo) 실행은 이
+    // 화면 소관이 아니다: 로그를 덮지도, 완료를 보고하지도 않는다(커서만 따라간다).
+    // 이 가드가 없으면 solo 실행이 debate 로그를 지우고 "수첩 매트릭스 탭에서 확인"
+    // 이라는 거짓 완료 문구를 띄운다 — 추가된 kind 가 기존 이분법(judge/그 외)을 깼던 자리.
+    const soloRun = d.current && d.current.kind === 'solo';
+    if(soloRun){
+      cursor = d.next;
+      alive = d.alive;
+      window._done = true;   // solo 완료를 debate 완료로 보고하지 않는다
+      // 실행 슬롯은 공유이므로 solo 가 도는 동안 debate 실행 버튼은 잠근다(종전과 동일 효과).
+      $('#btnRun').disabled = d.alive || window._blocked === true;
+    } else {
     // 새 실행이 시작되면 서버가 _log 를 새 리스트로 갈아치우므로 총 길이가 커서보다
     // 작아진다. 커서를 되돌리지 않으면 _log[커서:] 가 영구히 빈 배열이라 **두 번째
     // 실행부터 로그가 화면에 안 나오고, 직전 실행의 로그가 그대로 남아 있는다** —
@@ -687,6 +699,7 @@ async function poll(){
       if(d.returncode===0){ await refreshRuns(); }
     }
     if(d.alive) window._done = false;
+    }
   }catch(e){}
   idle = alive ? 0 : Math.min(idle+1, 10);
   setTimeout(poll, alive ? 1200 : 1200 + idle*1500);   // 유휴면 최대 ~16초로 늘린다
@@ -868,13 +881,25 @@ async function sEstimate(){
   if(!r.ok){ $('#s_est').innerHTML='<span class="warn">'+(d.detail||'견적 실패')+'</span>';
              S.est=null; $('#s_v2gate').style.display='none'; sButtons(); return; }
   S.est=d;
-  let h='<b>총 '+d.runs+'런 · 약 '+d.calls+'콜</b>';
+  // [리뷰 ⑪] 조건 묶음(접미사)이 바뀌면 사전등록 확인을 다시 받는다 — 250 스윕에 한
+  // 체크가 나중의 역순 실험에 잔존 승계되면 "실행 시 사람 확인"이 세션 1회 체크로 희석된다.
+  const sig=d.is_v2?d.suffix:'';
+  if(S.v2sig!==undefined && sig!==S.v2sig && $('#s_confirm').checked)
+    $('#s_confirm').checked=false;
+  S.v2sig=sig;
+  // [리뷰 ⑤] 과금이 견적을 넘는 유일한 경로(수첩 반려 재호출)를 상한 범위로 보인다.
+  const callsTxt = d.calls_max>d.calls ? (d.calls+'~'+d.calls_max) : String(d.calls);
+  let h='<b>총 '+d.runs+'런 · 약 '+callsTxt+'콜</b>';
   if(d.is_v2) h+=' — <span class="warn">v2 조건: '+d.v2_reasons.join(', ')
     +' (run_id 접미사 <code>'+d.suffix+'</code>)</span>';
   else h+=' <span style="color:var(--dim)">— v1 기본 조건</span>';
   h+='<br><span style="color:var(--dim)">산식: 런 수 × (full/prev 5콜 · note 8콜)'
     +(d.is_v2&&d.v2_reasons.some(x=>x.includes('최종'))?' + final_poll 런당 1콜':'')
-    +' · 이미 결과가 있는 런은 러너가 건너뜁니다([skip])</span>';
+    +(d.note_retry_max?' · 수첩이 예산을 초과하면 반려 재호출이 note 런당 최대 +3콜(상한 '+d.calls_max+'콜)':'')
+    +'</span>';
+  if(d.existing && d.existing.length)
+    h+='<br><span class="warn">⚠ 이미 결과가 있는 런 '+d.existing.length+'개는 러너가 건너뜁니다([skip]) — 실제 콜은 그만큼 적습니다: '
+      +d.existing.join(', ')+'</span>';
   $('#s_est').innerHTML=h;
   $('#s_v2gate').style.display=d.is_v2?'block':'none';
   sButtons();
@@ -888,20 +913,43 @@ function sButtons(){
 }
 
 async function sRun(dry){
+  // [리뷰 ①] 클릭 즉시 잠근다 — 폴 주기(유휴 시 최대 ~16초)를 기다리면 더블클릭
+  // 두 요청이 관문을 지나 실호출 러너 2개가 뜬다(debate btnRun 과 같은 패턴).
+  $('#s_btnDry').disabled=true; $('#s_btnRun').disabled=true;
   const p={...sPayload(), dry:dry, prereg_confirmed:$('#s_confirm').checked};
   $('#s_msg').textContent=dry?'드라이런 시작 중…':'실행 시작 중…';
-  const r=await fetch('/api/solo/run',{method:'POST',
-    headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});
-  const d=await r.json();
-  $('#s_msg').textContent=r.ok
-    ? (dry?'드라이런 시작 (0콜) — 산출물은 runs/_dry/':'실행 시작 — 실호출')
-    : '✗ '+(d.detail||'');
+  try{
+    const r=await fetch('/api/solo/run',{method:'POST',
+      headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});
+    const d=await r.json();
+    if(r.ok){
+      // [리뷰 ⑥] 시작 이벤트에서 커서·완료 감지를 리셋한다. 폴러의 축소 감지(d.next<scur)
+      // 에만 기대면 빠른 실행(전-[skip] 재실행, 즉답 드라이런)이 화면에 안 보인다.
+      scur=0; S.done=false; S.alive=true;
+      $('#s_log').textContent='';
+      $('#s_msg').textContent=dry?'드라이런 시작 (0콜) — 산출물은 runs/_dry/':'실행 시작 — 실호출';
+    } else {
+      $('#s_msg').textContent='✗ '+(d.detail||'');
+      sButtons();   // 실패 — 잠금 복원
+    }
+  }catch(e){
+    $('#s_msg').textContent='✗ 요청 실패 — 서버가 떠 있는지 확인';
+    sButtons();
+  }
 }
 $('#s_btnDry').onclick=()=>sRun(true);
 $('#s_btnRun').onclick=()=>sRun(false);
 $('#s_btnStop').onclick=async()=>{
+  // [리뷰 ②] 실행 슬롯은 공유다 — 지금 도는 것이 solo 가 아니면 여기서 죽이지 않는다.
+  // 특히 채점은 체크포인트가 없어 중단 = 그때까지의 유료 호출 전량 증발이다.
+  if(S.alive && S.current && S.current.kind && S.current.kind!=='solo'){
+    $('#s_msg').textContent='지금 도는 것은 '+(S.current.kind==='judge'?'채점':'debate')
+      +' — 그쪽 탭에서 중단하세요 (채점은 체크포인트가 없어 중단하면 처음부터입니다).';
+    return;
+  }
   const d=await (await fetch('/api/stop',{method:'POST'})).json();
-  $('#s_msg').textContent=d.msg+' (체크포인트까지는 보존 — 재실행하면 이어감)';
+  // 보존 문구는 정말 보존되는 경우(solo 중단 성공)에만 붙인다 — 채점엔 거짓말이 된다.
+  $('#s_msg').textContent=d.msg+(d.ok?' (solo 는 호출 단위 체크포인트가 있어 재실행하면 이어감)':'');
 };
 
 // ─── 로그 폴링 (기존 poll 과 같은 /api/log 를 별도 커서로 — 기존 화면 무수정) ───
@@ -910,24 +958,37 @@ async function sPoll(){
   let alive=false;
   try{
     const d=await (await fetch('/api/log?since='+scur)).json();
-    if(d.next<scur){ scur=0; $('#s_log').textContent='(새 실행 — 로그 다시 받는 중)'; }
-    if(d.lines.length){
-      const p=$('#s_log');
-      if(scur===0) p.textContent='';
-      p.textContent+=d.lines.join('\n')+'\n';
-      p.scrollTop=p.scrollHeight; scur=d.next;
-    }
-    alive=d.alive; S.alive=alive;
-    if(!alive && d.returncode!==null && scur>0 && !S.done){
-      S.done=true;
-      if(d.current && d.current.kind==='solo'){
+    S.current=d.current||{};
+    // [리뷰 ⑥] 남의 실행(debate·채점)의 로그를 이 창에 흘리지 않는다 — 단독 실험이
+    // 도는 것처럼 읽힌다. 커서만 따라가고, 무엇이 도는지는 한 줄로 알린다.
+    const mine=S.current.kind==='solo';
+    if(!mine){
+      scur=d.next; alive=d.alive; S.alive=alive;
+      if(d.alive){
+        $('#s_log').textContent='(지금 도는 것은 '+(S.current.kind==='judge'?'채점':'debate')
+          +' — 해당 탭에서 확인하세요. 실행 슬롯은 1개라 단독 실행은 그동안 잠깁니다)';
+      } else if($('#s_log').textContent.startsWith('(지금 도는 것은')){
+        $('#s_log').textContent='(대기)';
+      }
+      S.done=true;   // 남의 완료를 내 완료로 보고하지 않는다
+    } else {
+      if(d.next<scur){ scur=0; $('#s_log').textContent='(새 실행 — 로그 다시 받는 중)'; }
+      if(d.lines.length){
+        const p=$('#s_log');
+        if(scur===0) p.textContent='';
+        p.textContent+=d.lines.join('\n')+'\n';
+        p.scrollTop=p.scrollHeight; scur=d.next;
+      }
+      alive=d.alive; S.alive=alive;
+      if(!alive && d.returncode!==null && scur>0 && !S.done){
+        S.done=true;
         $('#s_msg').textContent=d.returncode===0
           ? '완료 (종료코드 0) — 단독 결과 탭에서 확인'
           : '✗ 종료코드 '+d.returncode+' — 로그를 확인하세요 (체크포인트까지는 보존)';
         if(d.returncode===0) sRefreshRuns();
       }
+      if(alive) S.done=false;
     }
-    if(alive) S.done=false;
   }catch(e){}
   sButtons();
   sidle=alive?0:Math.min(sidle+1,10);
@@ -954,9 +1015,14 @@ function sRenderRuns(){
     const tr=el('tr');
     if(S.sel && S.sel.run_id===r.run_id && S.sel.model===r.model && S.sel.dry===r.dry)
       tr.classList.add('sel');
-    if(r.partial){
-      [r.run_id, r.model, r.dry?'dry':'', '체크포인트만 (중단/진행 중)','','','','','','','']
-        .forEach(v=>tr.append(el('td',null,String(v))));
+    if(r.partial||r.broken){
+      // 깨진 결과 파일(리뷰 ④)은 partial 과 다르다 — partial 은 재실행하면 이어받지만,
+      // 깨진 .json 은 러너가 "결과 존재"로 [skip] 하므로 파일을 치워야 다시 돈다.
+      const label=r.broken?'깨진 결과 파일 — 열 수 없음 (치워야 재실행됨)':'체크포인트만 (중단/진행 중)';
+      [r.run_id, r.model, r.dry?'dry':'', label,'','','','','','','']
+        .forEach((v,i)=>{ const td=el('td',null,String(v));
+          if(r.broken&&i===3) td.className='warn'; tr.append(td); });
+      tr.onclick=()=>{ S.sel=r; sRenderRuns(); sLoadDetail(r); };
       t.append(tr); return;
     }
     [r.run_id, r.model, r.dry?'dry':r.version,
@@ -987,6 +1053,10 @@ function block(title, badges, text){
 
 async function sLoadDetail(r){
   const box=$('#s_detail'); box.innerHTML='';
+  if(r.broken){ box.append(el('span','warn',
+    '깨진 결과 파일('+r.file+') — 열 수 없습니다. 러너는 깨진 .json 도 "결과 존재"로 '
+    +'[skip] 하므로, 파일을 치운 뒤 재실행해야 다시 돕니다(.partial 이 남아 있으면 이어받습니다).'));
+    return; }
   if(r.partial){ box.append(el('span','empty',
     '체크포인트(.partial)만 있는 런 — 재실행하면 이어받아 완주합니다.')); return; }
   const rr=await fetch('/api/solo/detail?model='+encodeURIComponent(r.model)
@@ -1092,7 +1162,9 @@ async function sLoadGridBy(model, runId){
     const h=el('h2',null,'조건 겹침 — '+d.agg.condition+' (반복 '+d.agg.n_runs+'런)');
     h.style.cssText='font-size:13px;margin:18px 0 4px'; box.append(h);
     box.append(el('p','foot','셀 값 = 반복 '+d.agg.n_runs+'런 중 mentioned 판정 수 '
-      +'(생존리포트 HTML 과 같은 읽기) · 대상: '+d.agg.run_ids.join(', ')));
+      +'(생존리포트 HTML 과 같은 읽기) · 대상: '+d.agg.run_ids.join(', ')
+      +((d.agg.skipped_run_ids&&d.agg.skipped_run_ids.length)
+        ?' · ⚠ 깨진 판정 제외: '+d.agg.skipped_run_ids.join(', ')+' (농도 분모에서 빠짐)':'')));
     box.append(gridTable(d.stages, d.agg.rows, v=>{
       const td=el('td'); td.style.cssText='text-align:center;padding:4px 7px;font-size:11px';
       const n=v||0, a=n/d.agg.n_runs;
