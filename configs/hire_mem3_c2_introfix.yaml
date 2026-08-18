@@ -1,0 +1,24 @@
+# 통제 C2: 기준선 문면 (mem3-c2-introfix)
+# 적대적 리뷰 v1 치명 2 — 단독 기준선 팔(S)은 coop_final 도입 2문장을 "아직 논의는
+# 없었습니다"로 바꿔 돌렸다. 그 문면이 "정보가 부족하다"는 신호를 줘 판단을 보수적으로
+# 만들었다면 기준선 8/20 은 과소평가이고, 거기서 뺀 "취합의 몫"은 과대평가다.
+#
+# 이 팔은 S 와 **문면 한 칸만** 다르다: 입력은 똑같이 자기 배정 팩트 6개, 도입부는
+# 원래대로 "논의가 끝났습니다". 논의가 없었는데 끝났다고 말하는 거짓 전제이며,
+# 그 거짓이 답을 움직이는지가 여기서 재는 것이다.
+#
+# 읽는 법: 8/20 보다 유의하게 오르면 S 의 기준선은 문면 탓으로 낮았던 것이다.
+experiment: hire_mem3_c2_introfix
+condition: mem3-c2-introfix
+issue_id: issue_hire
+seed: 42
+agents: 4
+rounds: 0
+window: none
+poll_context: assigned_facts
+poll_intro: discussed
+debate_model: glm         # = glm-5.2 (S 팔과 동일)
+debate_temperature: 1.0
+reasoning: "off"
+ledger_mode: "off"
+max_llm_calls: 4
