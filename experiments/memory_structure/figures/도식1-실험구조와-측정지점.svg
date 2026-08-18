@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" font-family="'Malgun Gothic', 'NanumGothic', 'Apple SD Gothic Neo', system-ui, sans-serif">
+  <rect width="960" height="600" fill="#fcfcfb"/>
+
+  <!-- 제목 -->
+  <text x="40" y="44" font-size="21" font-weight="700" fill="#0b0b0b">도식 1 — 실험 한 판의 구조와 측정 지점</text>
+  <text x="40" y="68" font-size="13" fill="#52514e">기억 구조 본실험 54런의 공통 구조 (2모델 × 진행 3종 × 기억 3단 × 반복 3회)</text>
+
+  <!-- 시작 재료 -->
+  <rect x="40" y="100" width="200" height="96" rx="8" fill="#ffffff" stroke="#c3c2b7"/>
+  <text x="56" y="126" font-size="13" font-weight="700" fill="#0b0b0b">시작 재료</text>
+  <text x="56" y="148" font-size="12.5" fill="#52514e">사실 12개 (원문 총 409자)</text>
+  <text x="56" y="166" font-size="12.5" fill="#52514e">입장 고정: "무레온 캠프,</text>
+  <text x="56" y="182" font-size="12.5" fill="#52514e">끝까지 유지한다"</text>
+
+  <!-- 화살표: 재료 -> 라운드 -->
+  <line x1="240" y1="148" x2="292" y2="148" stroke="#898781" stroke-width="1.6"/>
+  <path d="M292 148 l-9 -5 v10 z" fill="#898781"/>
+
+  <!-- 라운드 루프 컨테이너 -->
+  <rect x="300" y="92" width="620" height="270" rx="10" fill="none" stroke="#e1e0d9" stroke-width="1.5"/>
+  <text x="318" y="116" font-size="13" font-weight="700" fill="#52514e">라운드 (4회 반복: r0 → r3)</text>
+
+  <!-- A. 보고 있는 기억 -->
+  <rect x="326" y="140" width="164" height="88" rx="8" fill="#ffffff" stroke="#2a78d6" stroke-width="1.8"/>
+  <text x="342" y="166" font-size="13.5" font-weight="700" fill="#0b0b0b">보고 있는 기억</text>
+  <text x="342" y="186" font-size="12" fill="#52514e">조건에 따라 셋 중 하나</text>
+  <text x="342" y="204" font-size="12" fill="#52514e">(아래 기억 3단)</text>
+
+  <!-- B. 주장 글 쓰기 -->
+  <rect x="546" y="140" width="164" height="88" rx="8" fill="#ffffff" stroke="#eb6834" stroke-width="1.8"/>
+  <text x="562" y="166" font-size="13.5" font-weight="700" fill="#0b0b0b">주장 글 쓰기</text>
+  <text x="562" y="186" font-size="12" fill="#52514e">한 문단</text>
+  <text x="562" y="204" font-size="12" fill="#52514e">진행 지시 3종 중 하나</text>
+
+  <!-- C. 수첩 쓰기 -->
+  <rect x="746" y="140" width="152" height="88" rx="8" fill="#ffffff" stroke="#1baf7a" stroke-width="1.8"/>
+  <text x="762" y="166" font-size="13.5" font-weight="700" fill="#0b0b0b">수첩 쓰기</text>
+  <text x="762" y="186" font-size="12" fill="#52514e">500자 이내</text>
+  <text x="762" y="204" font-size="12" fill="#52514e">(② 수첩 조건만)</text>
+
+  <!-- 화살표 A->B, B->C -->
+  <line x1="490" y1="184" x2="538" y2="184" stroke="#898781" stroke-width="1.6"/>
+  <path d="M538 184 l-9 -5 v10 z" fill="#898781"/>
+  <line x1="710" y1="184" x2="738" y2="184" stroke="#898781" stroke-width="1.6"/>
+  <path d="M738 184 l-9 -5 v10 z" fill="#898781"/>
+
+  <!-- 루프 화살표: C -> A (다음 라운드) -->
+  <path d="M822 228 v62 h-414 v-52" fill="none" stroke="#898781" stroke-width="1.6" stroke-dasharray="none"/>
+  <path d="M408 238 l-5 9 h10 z" fill="#898781"/>
+  <text x="500" y="308" font-size="12" fill="#52514e">다음 라운드의 "보고 있는 기억"으로 넘어감 (①은 자료 전체가 다시 공급됨)</text>
+
+  <!-- 기억 3단 -->
+  <rect x="300" y="386" width="620" height="76" rx="8" fill="#ffffff" stroke="#e1e0d9"/>
+  <text x="318" y="410" font-size="12.5" font-weight="700" fill="#52514e">기억 3단 (조건)</text>
+  <text x="318" y="434" font-size="12.5" fill="#0b0b0b">① 자료 전체 — 사실 12개를 매번 다시 봄</text>
+  <text x="318" y="452" font-size="12.5" fill="#0b0b0b">② 수첩 — 자기가 쓴 500자 수첩만 봄　　③ 직전 — 직전에 쓴 글 하나만 봄</text>
+
+  <!-- 측정 지점 태그 -->
+  <g font-size="12">
+    <rect x="326" y="238" width="164" height="46" rx="6" fill="#f0f6fd" stroke="#2a78d6" stroke-dasharray="4 3"/>
+    <text x="338" y="257" font-weight="700" fill="#1c5cab">측정 ⓐ 갖고 있었나</text>
+    <text x="338" y="274" fill="#52514e">투입 화면 기록 직접 확인</text>
+
+    <rect x="546" y="238" width="164" height="46" rx="6" fill="#fdf3ee" stroke="#eb6834" stroke-dasharray="4 3"/>
+    <text x="558" y="257" font-weight="700" fill="#a33d15">측정 ⓑ 말했나</text>
+    <text x="558" y="274" fill="#52514e">앵커 스캔 (기계 검색)</text>
+
+    <rect x="746" y="238" width="152" height="46" rx="6" fill="#eefaf5" stroke="#1baf7a" stroke-dasharray="4 3"/>
+    <text x="758" y="257" font-weight="700" fill="#0b6e4c">측정 ⓒ 무엇을 버렸나</text>
+    <text x="758" y="274" fill="#52514e">수첩 원문 판독</text>
+  </g>
+
+  <!-- 두 갈래 정의 -->
+  <rect x="40" y="492" width="880" height="72" rx="8" fill="#ffffff" stroke="#c3c2b7"/>
+  <text x="58" y="518" font-size="13" font-weight="700" fill="#0b0b0b">"사라졌다"를 두 갈래로 가른다</text>
+  <text x="58" y="542" font-size="12.5" fill="#52514e">잃음 = 기억에서 지워짐 (ⓐ에 없음)　·　안 말함 = 갖고 있는데 글에 없음 (ⓐ에 있고 ⓑ에 없음)　→　원인도 대책도 서로 다르다</text>
+
+  <!-- 재료 -> 기억3단 연결 보조선 -->
+  <line x1="140" y1="196" x2="140" y2="424" stroke="#e1e0d9" stroke-width="1.4"/>
+  <line x1="140" y1="424" x2="292" y2="424" stroke="#e1e0d9" stroke-width="1.4"/>
+  <path d="M292 424 l-9 -5 v10 z" fill="#e1e0d9"/>
+  <text x="58" y="420" font-size="11.5" fill="#898781">사실 12개는 ①에만</text>
+  <text x="58" y="436" font-size="11.5" fill="#898781">매 라운드 재공급</text>
+</svg>
