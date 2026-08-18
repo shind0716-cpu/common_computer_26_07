@@ -66,7 +66,7 @@ SUPPORTED_LEDGER_MODES = ("off", "v0")
 SUPPORTED_WINDOWS = ("rolling", "cumulative")   # 받은 발화의 창: 직전만 / 누적 전량
 SUPPORTED_MEMORY = ("none", "note")             # 개인 수첩 사용 여부
 SUPPORTED_NOTE_CALLS = ("utterance", "dedicated")  # 수첩 갱신 호출 방식 (§5)
-# 배정 팩트 재주입 (2026-08-14 · 요한). 협력 조건 전용 축이다.
+# 배정 팩트 재주입 (2026-08-18 · 요한). 협력 조건 전용 축이다.
 #   always      = 매 라운드 원문 재주입 (종전 동작 · 기본값이라 옛 run 은 무변)
 #   round0_only = 라운드 0 에만 제시. 이후엔 자기 직전 발언에 적혀야 산다
 #                 = 저자 템플릿(discussion_continue)의 구조. 설정 사전 v0.1 변경 1 이
@@ -157,7 +157,7 @@ def assemble_coop_continue(question: str, body: str, fact_text: str,
                            *, template: str = "coop_continue") -> str:
     """coop_continue 조립(순수). incoming = 이웃 발화(+재주입 블록이 있으면 그 뒤에).
 
-    template 인자(2026-08-14): facts_reinject=round0_only 면 `coop_continue_nofacts`.
+    template 인자(2026-08-18): facts_reinject=round0_only 면 `coop_continue_nofacts`.
     그 판에는 `{{my_facts}}` 슬롯이 없어 fact_text 치환이 무효타가 된다 — 호출자는
     빈 문자열을 넘긴다. 조립기를 하나로 두는 이유는 note 쌍과 같다(validate 가
     template 이름으로 같은 함수를 다시 불러 재조립한다)."""
@@ -472,7 +472,7 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
             "note_call": note_call if use_note else None,
             "note_parse_ver": (note_slot.NOTE_PARSE_VER
                                if use_note and note_call == "utterance" else None),
-            # 배정 팩트 재주입 (2026-08-14). 수첩 조건은 B판이라 값이 고정이므로
+            # 배정 팩트 재주입 (2026-08-18). 수첩 조건은 B판이라 값이 고정이므로
             # 협력·비수첩 조건에서만 의미가 있다 — 그 밖에서는 null 로 적는다.
             "facts_reinject": (facts_reinject if coop and not use_note else None),
             "final_poll": final_poll,

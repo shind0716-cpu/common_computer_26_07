@@ -23,7 +23,7 @@ TEMPLATES = ("coop_initial", "coop_continue", "coop_continue_note", "coop_final"
              #   note_call=dedicated  → coop_continue_note_say  (발화만)
              #                        + coop_note_update        (수첩만, 별도 호출)
              "coop_continue_note_say", "coop_note_update",
-             # 논문 정합 좌표(2026-08-14 · 요한) — coop_continue 에서 my_facts 블록만 뺀 판.
+             # 논문 정합 좌표(2026-08-18 · 요한) — coop_continue 에서 my_facts 블록만 뺀 판.
              # 설정 사전 v0.1 변경 1 의 "직전만 = 논문 세팅·재현 트랙 전용"을 실제로
              # 집행하려면 배정 팩트를 라운드 0 이후 끊어야 한다(저자 템플릿
              # discussion_continue 에는 팩트 재주입 슬롯이 아예 없다).
