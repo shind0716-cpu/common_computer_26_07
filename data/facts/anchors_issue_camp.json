@@ -1,0 +1,22 @@
+{
+  "_comment": "정본 계승: experiments/memory_structure/analyze_solo.py 의 ANCHORS(드라이런 정본 계승분, dryrun_all_arms_seed1.json anchors)를 2026-08-19 문면 그대로 옮긴 사본. analyze_solo.py 가 여전히 정본이며, 불일치 발견 시 이 파일이 아니라 analyze_solo.py 를 따르고 어긋남을 사용자에게 보고할 것. 형식: {fact_id: [정규식, ...]} + _allowlist (스키마 무변경 임시안 — 작업 요청 2026-08-19). 소비자: tools/material_lint.py",
+  "fact_camp_01": ["38[,.]?000"],
+  "fact_camp_02": ["60\\s*명|60명"],
+  "fact_camp_03": ["사흘|회신에.*걸"],
+  "fact_camp_04": ["10월\\s*2일|마감일.*견적"],
+  "fact_camp_05": ["51[,.]?000"],
+  "fact_camp_06": ["39[,.]?500"],
+  "fact_camp_07": ["배관"],
+  "fact_camp_08": ["40\\s*인|40인"],
+  "fact_camp_09": ["확인서"],
+  "fact_camp_10": ["24\\s*[~\\-]\\s*25|24~25"],
+  "fact_camp_11": ["명단에\\s*없|미가입"],
+  "fact_camp_12": ["증서"],
+  "_allowlist": [
+    {
+      "anchor_fact": "fact_camp_01",
+      "hits_fact": "fact_camp_05",
+      "reason": "f05 원문('다림재의 38,000원 패키지는 평일 기준이라…')이 f01의 수치 38,000원을 의도적으로 인용해 두 사실을 잇는 설계(팩트스펙의 의도적 중복) — f05 발화가 f01 앵커로도 잡히는 것은 정본 앵커의 알려진 공유 수치"
+    }
+  ]
+}
