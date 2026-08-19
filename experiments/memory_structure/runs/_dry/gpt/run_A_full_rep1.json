@@ -1,0 +1,34 @@
+{
+  "schema": "solo_run_v1",
+  "issue_id": "issue_camp",
+  "prompts_ver": "solo-v1",
+  "run_id": "A_full_rep1",
+  "arm": "A",
+  "arm_name": "repeat",
+  "memory": "full",
+  "rep": 1,
+  "meta": {
+    "model_key": "gpt",
+    "provider": "api",
+    "model_id": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "rounds": 4,
+    "note_budget": 500,
+    "note_truncated": false,
+    "dry": true,
+    "facts_order": "original",
+    "stance": true,
+    "final_poll": false,
+    "deviations": [],
+    "finished_at": "2026-08-18T16:06:25.046620+00:00"
+  },
+  "essays": [
+    "[DRY essay_r0]",
+    "[DRY essay_r1]",
+    "[DRY essay_r2]",
+    "[DRY essay_r3]"
+  ],
+  "notes": [],
+  "recall": "[DRY recall]",
+  "final_poll": null
+}

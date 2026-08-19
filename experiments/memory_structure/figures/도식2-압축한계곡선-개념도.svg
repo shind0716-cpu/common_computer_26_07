@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" font-family="'Malgun Gothic', 'NanumGothic', 'Apple SD Gothic Neo', system-ui, sans-serif">
+  <rect width="960" height="560" fill="#fcfcfb"/>
+
+  <!-- 제목 -->
+  <text x="40" y="44" font-size="21" font-weight="700" fill="#0b0b0b">도식 2 — 압축 한계 곡선 (계획 개념도)</text>
+  <text x="40" y="68" font-size="13" fill="#52514e">§6 2단계에서 실측할 대상. 아래 곡선은 가상의 예시이며 실측 데이터가 아닙니다.</text>
+
+  <!-- 플롯 영역: x 80~880, y 120~420 -->
+  <!-- "줄여도 되는 구간" 음영 (두 곡선이 갈라지는 구간) -->
+  <rect x="400" y="120" width="280" height="300" fill="#f0f6fd"/>
+  <text x="540" y="146" font-size="12.5" font-weight="700" fill="#1c5cab" text-anchor="middle">줄여도 되는 구간(예시)</text>
+  <text x="540" y="164" font-size="11.5" fill="#52514e" text-anchor="middle">사실은 꽤 사라졌는데 결론은 멀쩡</text>
+
+  <!-- 격자 -->
+  <g stroke="#e1e0d9" stroke-width="1">
+    <line x1="80" y1="180" x2="880" y2="180"/>
+    <line x1="80" y1="260" x2="880" y2="260"/>
+    <line x1="80" y1="340" x2="880" y2="340"/>
+  </g>
+  <!-- 축 -->
+  <line x1="80" y1="120" x2="80" y2="420" stroke="#c3c2b7" stroke-width="1.4"/>
+  <line x1="80" y1="420" x2="880" y2="420" stroke="#c3c2b7" stroke-width="1.4"/>
+
+  <!-- y축 라벨 -->
+  <text x="76" y="130" font-size="11.5" fill="#898781" text-anchor="end">100%</text>
+  <text x="76" y="424" font-size="11.5" fill="#898781" text-anchor="end">0%</text>
+  <text x="40" y="270" font-size="12.5" fill="#52514e" transform="rotate(-90 40 270)" text-anchor="middle">유지율</text>
+
+  <!-- x축 눈금: 수첩 크기 (오른쪽으로 갈수록 줄어듦) -->
+  <g font-size="12" fill="#52514e" text-anchor="middle">
+    <text x="160" y="444">500자</text>
+    <text x="400" y="444">250자</text>
+    <text x="640" y="444">125자</text>
+    <text x="840" y="444">60자</text>
+  </g>
+  <text x="480" y="472" font-size="12.5" fill="#52514e" text-anchor="middle">수첩 크기 (→ 압축이 세짐)　※ 원문 409자이므로 500자는 비구속 기준점</text>
+
+  <!-- 곡선 1: 사실 생존 (파랑) — 먼저 떨어짐 -->
+  <path d="M160 140 C 300 150, 360 200, 460 265 C 560 330, 700 375, 840 395"
+        fill="none" stroke="#2a78d6" stroke-width="2.4" stroke-linecap="round"/>
+  <!-- 곡선 2: 결론 유지 (주황) — 버티다가 늦게 무너짐 -->
+  <path d="M160 132 C 340 134, 520 140, 640 168 C 730 192, 790 300, 840 372"
+        fill="none" stroke="#eb6834" stroke-width="2.4" stroke-linecap="round"/>
+
+  <!-- 직접 라벨 -->
+  <text x="330" y="196" font-size="12.5" font-weight="700" fill="#1c5cab">사실 생존 곡선</text>
+  <text x="330" y="212" font-size="11.5" fill="#52514e">살아남은 사실의 비율</text>
+  <text x="200" y="120" font-size="12.5" font-weight="700" fill="#a33d15">결론 유지 곡선</text>
+
+  <!-- 압축 한계점 -->
+  <circle cx="680" cy="185" r="5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+  <line x1="680" y1="192" x2="680" y2="420" stroke="#898781" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <text x="692" y="220" font-size="12.5" font-weight="700" fill="#0b0b0b">압축 한계(예시)</text>
+  <text x="692" y="238" font-size="11.5" fill="#52514e">여기부터 결론이 무너짐</text>
+
+  <!-- 읽는 법 -->
+  <rect x="40" y="492" width="880" height="52" rx="8" fill="#ffffff" stroke="#c3c2b7"/>
+  <text x="58" y="514" font-size="12.5" font-weight="700" fill="#0b0b0b">읽는 법</text>
+  <text x="58" y="534" font-size="12" fill="#52514e">수첩 크기를 500 → 250 → 125 → 60자로 줄이며(24런) 두 곡선을 실측해 겹친다. 두 곡선이 갈라지는 폭이 "무엇이 사라져도 되는가"의 측정값이고, 결론 곡선이 꺾이는 지점이 압축 한계다.</text>
+</svg>
