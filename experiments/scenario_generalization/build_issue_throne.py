@@ -108,6 +108,17 @@ STUB = (
     "이상의 서명 ④ 대주교청의 성별식 자격 인정."
 )
 
+# 입장 고정 문면 — camp 의 STANCE 와 글자 짜임을 맞춘다(정답 쪽을 입장으로 주는 것도 camp 계승).
+STANCE = f"너의 입장은 '{ANSWER}이 왕위를 이어야 한다'이다. 이 입장은 끝까지 유지한다."
+
+# 최종 폴링 — camp 의 FINAL_POLL_INSTR 짜임 계승(두 후보 이름 중 하나만 출력).
+FINAL_POLL_INSTR = ("지금까지의 검토를 바탕으로 이 사안에 대한 너의 최종 결론을 정하라. "
+                    f"'{DECOY}' 또는 '{ANSWER}' 중 하나만 출력하라.")
+
+# 단독 러너가 쓰는 묶음 — 프롬프트 문면의 단일 출처(래퍼가 이것만 읽는다).
+SOLO_PROMPTS = {"issue_id": IID, "stub": STUB, "stances": {"fixed": STANCE},
+                "final_poll": FINAL_POLL_INSTR}
+
 
 def fid(n: int) -> str:
     return f"fact_throne_{n:02d}"

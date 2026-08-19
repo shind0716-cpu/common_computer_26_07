@@ -1,0 +1,38 @@
+{
+  "schema": "solo_run_v1",
+  "issue_id": "issue_exile",
+  "prompts_ver": "solo-v1",
+  "run_id": "A_note_rep1",
+  "arm": "A",
+  "arm_name": "repeat",
+  "memory": "note",
+  "rep": 1,
+  "meta": {
+    "model_key": "gpt",
+    "provider": "api",
+    "model_id": "gpt-5.4-mini",
+    "temperature": 0.7,
+    "rounds": 4,
+    "note_budget": 500,
+    "note_truncated": false,
+    "dry": true,
+    "facts_order": "original",
+    "stance": true,
+    "final_poll": false,
+    "deviations": [],
+    "finished_at": "2026-08-19T07:01:05.597506+00:00"
+  },
+  "essays": [
+    "[DRY essay_r0]",
+    "[DRY essay_r1]",
+    "[DRY essay_r2]",
+    "[DRY essay_r3]"
+  ],
+  "notes": [
+    "[DRY note_r0]",
+    "[DRY note_r1]",
+    "[DRY note_r2]"
+  ],
+  "recall": "[DRY recall]",
+  "final_poll": null
+}
