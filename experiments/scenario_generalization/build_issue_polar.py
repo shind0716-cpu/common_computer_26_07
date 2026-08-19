@@ -120,6 +120,9 @@ SOLO_PROMPTS = {"issue_id": IID, "stub": STUB,
                 "stances": {PRO: STANCE_TEXT[PRO], CON: STANCE_TEXT[CON]},
                 "final_poll": FINAL_POLL_INSTR}
 
+# 앵커 사전 — 팩트 하나당 검색 패턴 하나. 채점기(anchor_scan)가 이것만 읽는다.
+ANCHORS = {f"fact_polar_{n:02d}": a for (n, *_rest, a) in FACTS}
+
 # 토론용 배분 — 에이전트마다 [자기 불리 1 + 상대 불리 1 + 중립·양쪽 1]. 전 팩트 고립.
 ASSIGN = {
     "agent_1": ("비행", PRO, [1, 2, 9]),     # 자기 불리 01 · 상대 불리 02 · 중립 09

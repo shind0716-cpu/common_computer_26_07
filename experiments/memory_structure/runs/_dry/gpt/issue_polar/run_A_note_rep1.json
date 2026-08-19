@@ -1,10 +1,10 @@
 {
   "schema": "solo_run_v1",
-  "issue_id": "issue_throne",
+  "issue_id": "issue_polar",
   "prompts_ver": "solo-v1",
-  "run_id": "P_note_rep1",
-  "arm": "P",
-  "arm_name": "progress",
+  "run_id": "A_note_rep1",
+  "arm": "A",
+  "arm_name": "repeat",
   "memory": "note",
   "rep": 1,
   "meta": {
@@ -20,7 +20,7 @@
     "stance": true,
     "final_poll": false,
     "deviations": [],
-    "finished_at": "2026-08-19T07:00:56.806385+00:00"
+    "finished_at": "2026-08-19T07:18:43.294087+00:00"
   },
   "essays": [
     "[DRY essay_r0]",

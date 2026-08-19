@@ -119,6 +119,9 @@ FINAL_POLL_INSTR = ("지금까지의 검토를 바탕으로 이 사안에 대한
 SOLO_PROMPTS = {"issue_id": IID, "stub": STUB, "stances": {"fixed": STANCE},
                 "final_poll": FINAL_POLL_INSTR}
 
+# 앵커 사전 — 팩트 하나당 검색 패턴 하나. 채점기(anchor_scan)가 이것만 읽는다.
+ANCHORS = {f"fact_throne_{n:02d}": a for (n, *_rest, a) in FACTS}
+
 
 def fid(n: int) -> str:
     return f"fact_throne_{n:02d}"

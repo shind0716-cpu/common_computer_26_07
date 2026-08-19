@@ -222,6 +222,10 @@
        부른다. 콘솔은 러너를 호출하고 산출물을 <b>읽기만</b> 한다 — 프롬프트·사전등록
        관문·체크포인트는 전부 러너 소관. 이미 결과가 있는 런은 러너가 [skip] 으로 건너뛴다.</p>
     <div class="grid">
+      <div><label>재료(이슈)<span class="h">기본 issue_camp = 종전 실험. 다른 재료는 산출물이 runs/&lt;모델&gt;/&lt;이슈&gt;/ 로 갈립니다</span></label>
+        <select id="s_issue"></select></div>
+      <div id="s_stanceBox" style="display:none"><label>입장<span class="h">입장 대립형 재료 — 같은 재료를 입장별로 각각 돌립니다</span></label>
+        <select id="s_stance"></select></div>
       <div><label>모델<span class="h" id="s_modelHelp">키가 있는 모델만 실행됩니다</span></label>
         <select id="s_model"></select></div>
       <div><label>진행 (다중 선택)<span class="h">A 반복 · P 전진(A′) · B 숙의</span></label>
@@ -864,9 +868,23 @@ function ckVals(group){
 }
 
 function sPayload(){
-  return {model:$('#s_model').value, arms:ckVals('arm'), memories:ckVals('mem'),
+  const iss=$('#s_issue').value;
+  const many=((S.meta.issues||{})[iss]||[]).length>1;
+  return {model:$('#s_model').value, issue:iss,
+          stance_key: many ? $('#s_stance').value : null,
+          arms:ckVals('arm'), memories:ckVals('mem'),
           reps:ckVals('rep').map(Number), note_budget:+$('#s_budget').value,
           facts_reverse:$('#s_rev').checked, ns_final_poll:$('#s_ns').checked};
+}
+
+// 재료를 고르면 입장 칸을 켜고 끈다 — 입장이 하나뿐인 재료는 고를 게 없다.
+function sSyncStance(){
+  const list=(S.meta.issues||{})[$('#s_issue').value]||['fixed'];
+  const box=$('#s_stanceBox'), sel=$('#s_stance');
+  if(list.length>1){
+    sel.innerHTML=''; list.forEach(k=>{ const o=el('option',null,k); o.value=k; sel.append(o); });
+    box.style.display='';
+  } else { sel.innerHTML=''; box.style.display='none'; }
 }
 
 async function sEstimate(){
@@ -1201,7 +1219,15 @@ async function sboot(){
     o.value=b; bs.append(o);
   });
   bs.value=S.meta.default_budget;
-  ['#s_model','#s_budget','#s_rev','#s_ns'].forEach(sel=>{ $(sel).onchange=sEstimate; });
+  const is=$('#s_issue'); is.innerHTML='';
+  Object.keys(S.meta.issues||{'issue_camp':['fixed']}).forEach(k=>{
+    const o=el('option',null, k+(k===S.meta.default_issue?' (종전 실험)':''));
+    o.value=k; is.append(o);
+  });
+  is.value=S.meta.default_issue||'issue_camp';
+  sSyncStance();
+  is.addEventListener('change', sSyncStance);
+  ['#s_issue','#s_stance','#s_model','#s_budget','#s_rev','#s_ns'].forEach(sel=>{ $(sel).onchange=sEstimate; });
   document.querySelectorAll('input[data-sg]').forEach(c=>c.onchange=sEstimate);
   $('#s_confirm').onchange=sButtons;
   $('#s_refresh').onclick=sRefreshRuns;

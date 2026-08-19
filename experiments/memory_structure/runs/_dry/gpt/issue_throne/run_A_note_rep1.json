@@ -1,6 +1,6 @@
 {
   "schema": "solo_run_v1",
-  "issue_id": "issue_exile",
+  "issue_id": "issue_throne",
   "prompts_ver": "solo-v1",
   "run_id": "A_note_rep1",
   "arm": "A",
@@ -20,7 +20,7 @@
     "stance": true,
     "final_poll": false,
     "deviations": [],
-    "finished_at": "2026-08-19T07:01:05.597506+00:00"
+    "finished_at": "2026-08-19T07:18:42.474467+00:00"
   },
   "essays": [
     "[DRY essay_r0]",

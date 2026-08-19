@@ -30,14 +30,58 @@ from modules.judge import SURVIVING  # noqa: E402
 
 ISSUE_ID = "issue_camp"
 HERE = Path(__file__).resolve().parent
-ANCHORS = {  # 드라이런 정본 계승 (dryrun_all_arms_seed1.json anchors)
-    "fact_camp_01": r"38[,.]?000", "fact_camp_02": r"60\s*명|60명",
-    "fact_camp_03": r"사흘|회신에.*걸", "fact_camp_04": r"10월\s*2일|마감일.*견적",
-    "fact_camp_05": r"51[,.]?000", "fact_camp_06": r"39[,.]?500",
-    "fact_camp_07": r"배관", "fact_camp_08": r"40\s*인|40인", "fact_camp_09": r"확인서",
-    "fact_camp_10": r"24\s*[~\-]\s*25|24~25", "fact_camp_11": r"명단에\s*없|미가입",
-    "fact_camp_12": r"증서",
+# ── 앵커 사전 (2026-08-19 이슈별 분리) ──────────────────────────────────────
+# camp 문면은 정본이라 한 글자도 바꾸지 않았다 — 아래 issue_camp 항목은 종전 ANCHORS 를
+# 그대로 옮긴 것이고, 모듈 끝의 `ANCHORS` 별칭이 종전 참조를 계속 가리킨다.
+#
+# camp 밖의 앵커는 **요한 측이 만든 정의를 그대로 가져온 것**이다. 임의로 새로 만들지 않는다.
+#   출처: experiments/scenario_generalization/build_issue_throne.py 의 ANCHORS
+#         experiments/scenario_generalization/build_issue_polar.py  의 ANCHORS
+#         experiments/scenario_generalization/build_issue_exile.py  의 ANCHORS
+#   (그 파일들이 정본 — 앵커를 고치려면 거기부터 고치고 자체 검사를 다시 돌린다)
+ANCHORS_BY_ISSUE = {
+    "issue_camp": {  # 드라이런 정본 계승 (dryrun_all_arms_seed1.json anchors)
+        "fact_camp_01": r"38[,.]?000", "fact_camp_02": r"60\s*명|60명",
+        "fact_camp_03": r"사흘|회신에.*걸", "fact_camp_04": r"10월\s*2일|마감일.*견적",
+        "fact_camp_05": r"51[,.]?000", "fact_camp_06": r"39[,.]?500",
+        "fact_camp_07": r"배관", "fact_camp_08": r"40\s*인|40인", "fact_camp_09": r"확인서",
+        "fact_camp_10": r"24\s*[~\-]\s*25|24~25", "fact_camp_11": r"명단에\s*없|미가입",
+        "fact_camp_12": r"증서",
+    },
+    "issue_throne": {
+        "fact_throne_01": r"친딸", "fact_throne_02": r"열여섯", "fact_throne_03": r"회신",
+        "fact_throne_04": r"거부를\s*통보", "fact_throne_05": r"서약서",
+        "fact_throne_06": r"적자", "fact_throne_07": r"스물하나", "fact_throne_08": r"파종제",
+        "fact_throne_09": r"봉인", "fact_throne_10": r"넷뿐", "fact_throne_11": r"이단",
+        "fact_throne_12": r"파문\s*명부",
+    },
+    "issue_polar": {
+        "fact_polar_01": r"영하\s*52", "fact_polar_02": r"혈색소",
+        "fact_polar_03": r"여섯\s*시간", "fact_polar_04": r"두\s*팩",
+        "fact_polar_05": r"이륙\s*직후", "fact_polar_06": r"백열흘",
+        "fact_polar_07": r"흔들림", "fact_polar_08": r"수련", "fact_polar_09": r"열넷",
+        "fact_polar_10": r"세\s*번째", "fact_polar_11": r"설상차", "fact_polar_12": r"일임",
+    },
+    "issue_exile": {
+        "fact_exile_01": r"서른한", "fact_exile_02": r"아홉\s*배", "fact_exile_03": r"우두머리",
+        "fact_exile_04": r"삼분의\s*일", "fact_exile_05": r"통행이\s*막",
+        "fact_exile_06": r"진입을\s*거부", "fact_exile_07": r"구호\s*조약",
+        "fact_exile_08": r"예순둘", "fact_exile_09": r"세\s*해\s*전",
+        "fact_exile_10": r"열한\s*자리", "fact_exile_11": r"넉\s*달",
+        "fact_exile_12": r"따로\s*송환",
+    },
 }
+
+# 하위 호환 — 종전 `from analyze_solo import ANCHORS` 는 camp 사전을 계속 가리킨다.
+ANCHORS = ANCHORS_BY_ISSUE["issue_camp"]
+
+
+def anchors_for(issue_id: str) -> dict[str, str]:
+    """이슈의 앵커 사전. 없는 이슈면 즉사한다 — 빈 사전으로 조용히 0점을 주지 않는다."""
+    if issue_id not in ANCHORS_BY_ISSUE:
+        raise SystemExit(f"[analyze_solo] 앵커 사전이 없는 이슈: {issue_id} — "
+                         f"등록된 것: {', '.join(ANCHORS_BY_ISSUE)}")
+    return ANCHORS_BY_ISSUE[issue_id]
 
 
 def bigrams(s: str) -> set[str]:
