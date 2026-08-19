@@ -1,0 +1,12 @@
+{"fact_id": "fact_polar_01", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문구가 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별할 수 없고, 해당 진술을 이미 알고 있다고 말할 근거가 없습니다.\"}"}
+{"fact_id": "fact_polar_02", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"맥락 문서 없이 이 문장이 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별할 수 없고, 해당 사실을 이미 알고 있다고 말할 수 없습니다.\"}"}
+{"fact_id": "fact_polar_03", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문구가 어떤 특정 사건·인물·수치를 가리키는지 제 사전 지식만으로는 식별할 수 없으며, 해당 사실을 이미 알고 있다고 말할 근거가 없습니다.\"}"}
+{"fact_id": "fact_polar_04", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문장이 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별할 수 없고, 일반적인 표현일 뿐이라서 이미 알고 있다고 말할 수 없습니다.\"}"}
+{"fact_id": "fact_polar_05", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 진술이 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별할 수 없고, 맥락 없이 이미 알고 있다고 말할 수 없습니다.\"}"}
+{"fact_id": "fact_polar_06", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"맥락 없이 '다음 정기 보급편은 백열흘 뒤다'가 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별할 수 없습니다.\"}"}
+{"fact_id": "fact_polar_07", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문장이 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별하거나 확인할 수 없습니다.\"}"}
+{"fact_id": "fact_polar_08", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"‘기지 의무관’이 누구를 가리키는지 특정할 수 없고, 그 사람이 외과 수련을 받지 않았다는 구체 사실을 제 사전 지식만으로는 알고 있다고 말할 수 없습니다.\"}"}
+{"fact_id": "fact_polar_09", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문장이 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별하거나 이미 알고 있다고 말할 수 없습니다.\"}"}
+{"fact_id": "fact_polar_10", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"문맥 없이 '환자는 이번이 세 번째 월동이다'가 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별하거나 이미 알고 있다고 말할 수 없습니다.\"}"}
+{"fact_id": "fact_polar_11", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문구가 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별할 수 없으며, 맥락 없이 이미 알고 있다고 말할 근거가 없습니다.\"}"}
+{"fact_id": "fact_polar_12", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문장이 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별할 수 없으며, 맥락 없이 그 사실을 이미 안다고 말할 수 없습니다.\"}"}
