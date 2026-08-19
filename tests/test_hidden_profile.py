@@ -48,6 +48,23 @@ class OutcomeTests(unittest.TestCase):
         self.assertEqual(out["n_correct"], 0)
         self.assertTrue(all(p["correct"] is None for p in out["picks"]))
 
+    def test_wrapped_json_is_read_but_prose_is_not(self):
+        """v2 규칙 R2 — JSON 을 감싼 껍데기는 벗기되 자연어는 읽지 않는다(§5-6)."""
+        events = [
+            _poll("agent_1", '```json\n{"recommend":"유지완"}\n```'),   # 코드펜스
+            _poll("agent_2", '결론입니다 {"recommend":"한도영"} 이상'),  # 앞뒤 산문
+            _poll("agent_3", "저는 유지완을 추천합니다"),                # JSON 아님
+        ]
+        out = hp.outcome(events, answer="유지완")
+        by = {p["agent_id"]: p for p in out["picks"]}
+        self.assertTrue(by["agent_1"]["correct"])
+        self.assertFalse(by["agent_2"]["correct"])
+        self.assertEqual(by["agent_2"]["recommend"], "한도영")
+        # 이름이 문면에 있어도 JSON 이 아니면 제3상태다 — 의미를 읽지 않는다
+        self.assertFalse(by["agent_3"]["parse_ok"])
+        self.assertIsNone(by["agent_3"]["correct"])
+        self.assertEqual(out["parse_ver"], hp.OUTCOME_PARSE_VER)
+
 
 def _fixture_docs():
     facts_doc = {"facts": [

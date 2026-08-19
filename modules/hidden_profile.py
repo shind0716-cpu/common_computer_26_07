@@ -21,9 +21,48 @@ from __future__ import annotations
 
 import json
 
+# ─────────────────────────────────────────────────────────────────────────────
+# OUTCOME_PARSE_VER — 폴링 원문에서 선택지를 꺼내는 규칙의 버전.
+# note_slot.NOTE_PARSE_VER 과 같은 자리·같은 이유다: 규칙을 한 글자라도 바꾸면 과거
+# run 의 수치가 조용히 달라지므로, 바꿀 때 이 상수를 올리고 산출물에 실어 보낸다.
+#
+# v1 (암묵) : json.loads(원문) 이 dict 이고 recommend 가 str 이면 그 값. 그 외 파싱 실패.
+# v2 (2026-08-14 고정):
+#   R1. v1 규칙 그대로.
+#   R2. 실패 시 원문에서 첫 '{' 부터 마지막 '}' 까지를 잘라 json.loads 재시도.
+#       모델이 JSON 을 ```json 펜스나 산문으로 감싸는 흔한 실패 모드를 위한 것이며,
+#       note_slot 의 R2 와 같은 규칙이다.
+#   R3. 그래도 실패하면 parse_ok=False — 제3상태다. 자연어에서 후보 이름을 찾지
+#       않는다(계약 §5-6: 정답도 선택지도 추론하지 않는다). R2 는 **JSON 을 찾는**
+#       규칙이지 의미를 읽는 규칙이 아니다.
+#
+# v2 로 올린 계기(정직하게 남긴다): 단독 기준선 팔 20단위 중 6단위가 v1 에서 파싱
+# 실패로 떨어졌고, 원문을 읽어보니 전부 ```json 펜스에 싸인 정상 JSON 이었다. 즉
+# **결과를 본 뒤의 규칙 변경**이다. 복구된 6건의 방향은 한도영 4 · 유지완 2 로 정답
+# 쪽으로 기울지 않는다(수치를 유리하게 만드는 변경이 아님을 함께 기록한다).
+OUTCOME_PARSE_VER = "hp_outcome_v2"
+
 
 def _events_of(events: list[dict], kind: str) -> list[dict]:
     return [e for e in events if e.get("event") == kind]
+
+
+def _recommend_of(raw) -> str | None:
+    """폴링 원문 → recommend 문자열. 규칙은 OUTCOME_PARSE_VER 주석이 정본."""
+    if not isinstance(raw, str):
+        return None
+    candidates = [raw]
+    i, j = raw.find("{"), raw.rfind("}")
+    if i >= 0 and j > i and raw[i:j + 1] != raw:
+        candidates.append(raw[i:j + 1])
+    for text in candidates:
+        try:
+            obj = json.loads(text)
+        except (json.JSONDecodeError, TypeError):
+            continue
+        if isinstance(obj, dict) and isinstance(obj.get("recommend"), str):
+            return obj["recommend"]
+    return None
 
 
 def outcome(events: list[dict], *, answer: str) -> dict:
@@ -37,15 +76,8 @@ def outcome(events: list[dict], *, answer: str) -> dict:
     picks = []
     for e in _events_of(events, "final_poll"):
         raw = e.get("response_text", "")
-        recommend = None
-        parse_ok = False
-        try:
-            obj = json.loads(raw)
-            if isinstance(obj, dict) and isinstance(obj.get("recommend"), str):
-                recommend = obj["recommend"]
-                parse_ok = True
-        except (json.JSONDecodeError, TypeError):
-            pass
+        recommend = _recommend_of(raw)
+        parse_ok = recommend is not None
         picks.append({
             "agent_id": e.get("agent_id"),
             "round": e.get("round"),
@@ -55,6 +87,7 @@ def outcome(events: list[dict], *, answer: str) -> dict:
         })
     return {
         "answer": answer,
+        "parse_ver": OUTCOME_PARSE_VER,   # 어느 규칙으로 읽었는지 산출물이 들고 다닌다
         "picks": picks,
         "n_agents": len({p["agent_id"] for p in picks}),
         "n_correct": sum(1 for p in picks if p["correct"] is True),

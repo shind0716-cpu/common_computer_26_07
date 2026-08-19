@@ -1,0 +1,28 @@
+# 조건: 수첩 250자 (talk-note-250) — 사전등록 v2 예산 스윕.
+# hire_mem3_note.yaml(500자)과 note_budget 한 칸만 다르다. v1 에서 수첩 60판본의
+# 글자수 중앙값이 303자·절단 0 이라 500 예산이 눌리지 않았고, 그래서 기억 축이
+# 천장에 붙었다. 이 팔은 압축 압력을 실제로 거는 칸이다.
+#
+# 설정 사전 좌표: 협력(무입장)·4에이전트·직전 창·개인 수첩 250자·장부 끔·최종 폴링 켬.
+# 배정 팩트는 라운드 0 에 1회만 제시된다(B판) — 수첩 조건의 기본 동작이며
+# facts_reinject 를 따로 적지 않는다(엔진이 중복 지정을 거부한다).
+#
+# 수첩 갱신은 발화 호출에 얹는다(note_call: utterance, +0콜). 라운드 0의 첫 수첩만
+# 에이전트당 1콜 별도로 든다.
+experiment: hire_mem3_note250
+condition: talk-note-250
+issue_id: issue_hire
+run_id: rep1              # 정본은 CLI --run. 이 키는 참고용이다.
+seed: 42
+agents: 4
+rounds: 3
+window: rolling           # 직전 발화만
+memory: note              # 개인 수첩
+note_budget: 250
+note_call: utterance
+final_poll: true          # 이 팔의 폴링 입력은 자기 수첩뿐이다 (엔진 §최종폴링)
+debate_model: glm         # = glm-5.2 (자체 호스팅 · .env 의 GLM_BASE_URL)
+debate_temperature: 1.0
+reasoning: "off"       # GLM 사고 끄기(enable_thinking=false) — 켜면 본문 예산 잠식·절단
+ledger_mode: "off"
+max_llm_calls: 24         # 발화 16 + 라운드0 수첩 4 + 최종폴링 4

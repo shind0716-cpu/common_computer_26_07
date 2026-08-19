@@ -161,6 +161,16 @@ def _issue_rows() -> list[dict]:
 # 숨기는 게 아니라 **기본은 접고 눌러서 펴게** 한다 — 검수할 땐 봐야 하니까.
 ANSWER_KEY_FIELDS = ("favors", "requirement", "side")
 
+# 2026-08-19 — 필드 하나를 더하는 땜질 대신 **밑줄로 시작하는 메타 필드 전부**를 가린다.
+# 계기: 요한 측 재료의 팩트에 `_unfavorable_to`(어느 입장에 불리한가)가 있는데 위 목록에
+# 없어 그대로 노출됐다. 이름을 하나씩 쫓아다니면 새 재료가 올 때마다 같은 구멍이 난다.
+#
+# 밑줄 필드가 설계 메모라는 근거(실측): `issue_camp.json` 의 `_note` 에
+# "정답=무레온(요건 3/4 충족)" 이 적혀 있다 — 팩트 필드보다 이쪽이 더 직접적인 누설이었다.
+# 그래서 팩트 필드뿐 아니라 **이슈 `_note`** 도 reveal 일 때만 내보낸다.
+def _is_answer_key(field: str) -> bool:
+    return field in ANSWER_KEY_FIELDS or field.startswith("_")
+
 
 def _scenario(issue_id: str, *, reveal: bool = False) -> dict:
     """시나리오 한 벌(원문 + 팩트 + 배분)을 열람용으로 조립한다. 읽기 전용.
@@ -183,10 +193,12 @@ def _scenario(issue_id: str, *, reveal: bool = False) -> dict:
     except FileNotFoundError:
         asg = {"agents": []}
 
-    hidden = [k for k in ANSWER_KEY_FIELDS if any(k in f for f in facts)]
+    hidden = sorted({k for f in facts for k in f if _is_answer_key(k)})
+    if iss.get("_note") is not None and not reveal:
+        hidden.append("issue._note")
     out_facts = []
     for f in facts:
-        row = {k: v for k, v in f.items() if reveal or k not in ANSWER_KEY_FIELDS}
+        row = {k: v for k, v in f.items() if reveal or not _is_answer_key(k)}
         out_facts.append(row)
 
     # 배분 요약: 누가 몇 개를 쥐고, 공유/미공유가 어떻게 갈리나.
@@ -212,7 +224,8 @@ def _scenario(issue_id: str, *, reveal: bool = False) -> dict:
         "body": iss.get("body"), "options": iss.get("options"),
         "source": iss.get("source"),
         "usage_approved": (iss.get("source_meta") or {}).get("usage_approved"),
-        "note": iss.get("_note"),
+        # 이슈 _note 는 설계 메모라 정답이 적혀 있다(camp: "정답=무레온") — reveal 일 때만.
+        "note": (iss.get("_note") if reveal else None),
         "n_facts": len(facts),
         "n_critical": sum(1 for f in facts if f.get("critical")),
         "share_counts": {v: sum(1 for f in facts if f.get("share") == v)
@@ -880,6 +893,15 @@ SOLO_ARMS = {"A": "반복", "P": "전진(A′)", "B": "숙의"}
 SOLO_MEMS = {"full": "전체", "note": "수첩", "prev": "직전만"}
 SOLO_BUDGETS = (500, 250, 125, 60)               # 수첩 예산 스윕 후보 (500 = v1 기본)
 SOLO_DEFAULT_BUDGET = 500                        # run_solo.DEFAULT_NOTE_BUDGET 미러
+SOLO_DEFAULT_ISSUE = "issue_camp"                # run_solo.DEFAULT_ISSUE 미러
+# 재료 이슈와 그 입장 목록 — run_solo.ISSUE_PROMPTS 미러(그쪽이 정본).
+# 입장이 하나뿐이면 폼에서 입장 칸을 감춘다.
+SOLO_ISSUES = {
+    "issue_camp": ["fixed"],
+    "issue_throne": ["fixed"],
+    "issue_polar": ["후송", "대기"],
+    "issue_exile": ["추방", "잔류"],
+}
 SOLO_STAGES = ("essay_r0", "essay_r1", "essay_r2", "essay_r3", "carrier")
 
 # 실행 슬롯 락 (적대적 리뷰 ① 2026-08-19 · 치명). 409 검사와 _proc 대입 사이가
@@ -911,6 +933,10 @@ def _solo_judgments_dir() -> Path:
 
 class SoloRunReq(BaseModel):
     model: str = "gpt"
+    # 재료 이슈 (2026-08-19) — run_solo.py --issue 와 연결. 기본값이면 종전과 동일 동작.
+    # 입장 대립형 재료(issue_polar·issue_exile)는 stance_key 가 있어야 러너가 받는다.
+    issue: str = SOLO_DEFAULT_ISSUE
+    stance_key: str | None = None
     arms: list[str] = ["A", "P", "B"]
     memories: list[str] = ["full", "note", "prev"]
     reps: list[int] = [1, 2, 3]
@@ -949,9 +975,24 @@ def _solo_suffix(req: SoloRunReq) -> str:
     return ("_" + "_".join(parts)) if parts else ""
 
 
+def _solo_run_base(req: SoloRunReq, dry: bool = False) -> Path:
+    """이 요청의 산출물이 놓이는 폴더 — 러너 run_one 의 out_dir 규칙과 같다.
+    camp 은 종전 경로, 그 외는 이슈 하위 폴더(run_id 에 이슈가 없어 안 나누면 파일명이 겹친다)."""
+    d = _solo_runs_dir(dry) / req.model
+    return d if req.issue == SOLO_DEFAULT_ISSUE else d / req.issue
+
+
 def _solo_validate(req: SoloRunReq) -> None:
     if req.model not in SOLO_MODELS:
         raise HTTPException(400, f"모르는 모델: {req.model} (가능: {', '.join(SOLO_MODELS)})")
+    # 이슈·입장 어휘 검사 — 러너도 즉사시키지만, 실행 버튼을 누른 뒤가 아니라 여기서 알린다.
+    if req.issue not in SOLO_ISSUES:
+        raise HTTPException(400, f"모르는 이슈: {req.issue} (가능: {', '.join(SOLO_ISSUES)})")
+    stances = SOLO_ISSUES[req.issue]
+    if len(stances) > 1 and req.stance_key not in stances:
+        raise HTTPException(400, f"{req.issue} 는 입장을 골라야 합니다 (가능: {', '.join(stances)})")
+    if len(stances) == 1 and req.stance_key not in (None, stances[0]):
+        raise HTTPException(400, f"{req.issue} 는 입장이 하나뿐입니다 — stance_key 를 비워두세요")
     if not (req.arms and req.memories and req.reps):
         raise HTTPException(400, "진행/기억/반복을 하나 이상 고르세요.")
     bad = ([a for a in req.arms if a not in SOLO_ARMS]
@@ -993,6 +1034,7 @@ def api_solo_meta():
                                    else f"{env} 가 너무 짧음({len(val)}자 — 자리표시자)"))})
     return {"models": models, "arms": SOLO_ARMS, "memories": SOLO_MEMS,
             "budgets": SOLO_BUDGETS, "default_budget": SOLO_DEFAULT_BUDGET,
+            "issues": SOLO_ISSUES, "default_issue": SOLO_DEFAULT_ISSUE,
             "runner_exists": (SOLO_DIR / "run_solo.py").exists()}
 
 
@@ -1013,7 +1055,7 @@ def api_solo_estimate(req: SoloRunReq):
         calls += n_runs
     n_note_runs = (len(req.arms) * len(req.reps)
                    * sum(1 for m in req.memories if m == "note"))
-    base = _solo_runs_dir(False) / req.model
+    base = _solo_run_base(req)
     existing = [rid for rid in _solo_planned_ids(req)
                 if (base / f"run_{rid}.json").exists()]
     reasons = _solo_v2_reasons(req)
@@ -1051,7 +1093,7 @@ def api_solo_run(req: SoloRunReq):
             # §2-2 보고 대상). CLI 로 --no-stance 단독 런을 이미 만들었다면 run_id 가 같아
             # 러너가 [skip] — "최종 판단" 실행이 조용히 무효가 되고 데이터는 끝내 안 모인다.
             # 그 조용한 무효를 여기서 시끄럽게 만든다.
-            base = _solo_runs_dir(False) / req.model
+            base = _solo_run_base(req)
             clash = []
             for rid in _solo_planned_ids(req):
                 p = base / f"run_{rid}.json"
@@ -1084,9 +1126,12 @@ def api_solo_run(req: SoloRunReq):
         # 없으면 자식 print 가 8KB 씩 뭉쳐 나와 로그가 실시간으로 안 흐른다.
         cmd = [sys.executable, "-X", "utf8", "-u", str(runner),
                "--model", req.model,
+               "--issue", req.issue,
                "--arms", *req.arms,
                "--memories", *req.memories,
                "--reps", *[str(n) for n in req.reps]]
+        if req.stance_key:
+            cmd += ["--stance-key", req.stance_key]
         if req.note_budget != SOLO_DEFAULT_BUDGET:
             cmd += ["--note-budget", str(req.note_budget)]
         if req.facts_reverse:

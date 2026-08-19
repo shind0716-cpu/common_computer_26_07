@@ -31,6 +31,14 @@ Anthropic 전용이라 `debate_model`에 무엇을 적어도 Anthropic 으로 �
 절단 감지는 참조 러너의 finishReason 검사를 3공급자로 이식(편차 D1 재발 방지).
 예외·경고 문자열은 _mask() 로 키를 가린다(키가 URL·본문에 실려 로그로 새는 경로 차단).
 
+[2026-08-14 · 요한] **GLM 공급자 추가 (자체 호스팅 · OpenAI 호환).**
+계기: 히든 프로필 기억 축 실험(340콜)을 자체 엔드포인트로 돌리기로 함. 종전 구조에서
+`glm-5.2` 는 `resolve_provider` 가 접두사를 못 찾아 즉사했다(설계 원칙 1이 의도한 동작).
+주소가 고정이 아니므로 키와 함께 `.env`(`GLM_BASE_URL`)를 정본으로 두고, `preflight`
+에서 주소 부재도 키 부재와 같이 시작 전에 죽인다. 사고 끄기는 OpenAI 의
+`reasoning_effort` 가 아니라 `chat_template_kwargs.enable_thinking` 이라 공급자별
+추론 사전(`REASONING_PARAM`)에 값 형태만 다르게 등재했다 — 호출 계약은 불변.
+
 편차 기록: OpenAI 신형 모델은 `max_tokens` 를 거부하고 `max_completion_tokens` 를
 요구하며, 일부는 `temperature` 를 아예 안 받는다. 두 경우 다 파라미터를 갈아 재시도하고
 무엇을 갈았는지 `LAST_DEVIATIONS` 에 남긴다 — 조용한 파라미터 변경은 재현성을 깬다.
@@ -57,6 +65,8 @@ MODEL_ALIASES = {
     # Gemini
     "gemini-flash": os.environ.get("GEMINI_MODEL", "gemini-3-flash-preview"),
     "gemini": os.environ.get("GEMINI_MODEL", "gemini-3-flash-preview"),
+    # GLM (OpenAI 호환 자체 엔드포인트) — 주소는 .env 의 GLM_BASE_URL.
+    "glm": os.environ.get("GLM_MODEL", "glm-5.2"),
 }
 
 # 공급자 판별 — 해석된 실제 모델 ID의 접두사로 정한다.
@@ -67,12 +77,16 @@ PROVIDER_PREFIXES = (
     ("o3", "openai"),
     ("o4", "openai"),
     ("gemini", "gemini"),
+    ("glm", "glm"),
 )
 PROVIDER_KEY_ENV = {
     "anthropic": "ANTHROPIC_API_KEY",
     "openai": "OPENAI_API_KEY",
     "gemini": "GEMINI_API_KEY",
+    "glm": "GLM_API_KEY",
 }
+# GLM 은 자체 호스팅이라 주소가 고정이 아니다 — 키와 함께 .env 가 정본이다.
+GLM_BASE_URL_ENV = "GLM_BASE_URL"
 
 # 공급자별 temperature 허용 범위 (2026-07-30 · 민옥 — 온도 관문).
 # 범위 밖 값은 API 가 400 을 돌려주고, 400 은 재시도해도 400 이다. 그런데
@@ -85,6 +99,7 @@ TEMPERATURE_RANGE = {
     "anthropic": (0.0, 1.0),
     "openai": (0.0, 2.0),
     "gemini": (0.0, 2.0),
+    "glm": (0.0, 2.0),
 }
 
 # ⑨ 추론(사고) 모드 — 공급자별 값 사전 (2026-07-30 · 민옥).
@@ -111,6 +126,10 @@ REASONING_PARAM = {
     "openai": {"off": "minimal", "on": "high"},
     # Gemini 3 thinkingLevel. 종전 하드코딩 값(minimal)이 곧 off 였다.
     "gemini": {"off": "minimal", "on": "high"},
+    # GLM 은 채팅 템플릿 인자로 사고를 켜고 끈다(chat_template_kwargs.enable_thinking).
+    # 끄지 않으면 <think> 가 본문 예산(MAX_TOKENS)을 먹어 finish_reason=length 로
+    # 절단된다 — 이 모듈은 절단을 성공으로 넘기지 않으므로 그대로 즉사한다.
+    "glm": {"off": False, "on": True},
 }
 
 MAX_TOKENS = 2048
@@ -190,6 +209,7 @@ TRUNCATIONS: list[str] = []
 _clients: dict = {}
 _openai_maxtok = "max_tokens"    # 한 번 폴백하면 이후 호출은 처음부터 새 이름 사용
 _openai_no_temp = False          # temperature 미지원 모델로 판명되면 이후 생략
+_glm_no_temp = False             # 같은 이유 — GLM 서버가 온도를 거부하면 이후 생략
 
 
 def _load_env() -> None:
@@ -289,6 +309,12 @@ def preflight(model: str, temperature: float | None = None,
         raise SystemExit(
             f"[llm] {env} 가 너무 짧습니다(길이 {len(key)}) — 자리표시자로 보입니다. "
             f"실제 키를 넣으세요.")
+    # 자체 호스팅 공급자는 주소도 시작 전에 본다 — 주소가 비면 requests 가 던지는
+    # MissingSchema 가 폴백 경로로 새서 빈 발화로 위장될 수 있다(키 부재와 같은 구멍).
+    if provider == "glm" and not os.environ.get(GLM_BASE_URL_ENV, "").strip():
+        raise SystemExit(
+            f"[llm] {GLM_BASE_URL_ENV} 없음 — GLM 은 자체 엔드포인트라 .env 에 "
+            f"주소가 있어야 합니다.")
     # 의존성 관문 (무음 실패 ⓐ): 키가 멀쩡해도 SDK 가 없으면 호출 시점
     # ModuleNotFoundError 가 나고, 종전엔 그게 재시도 5회 뒤 공백으로 위장됐다 —
     # 401 위장 경로와 이름만 다른 같은 구멍. 시작 전에 알 수 있는 실패는 시작 전에.
@@ -434,8 +460,63 @@ def _call_gemini(model_id: str, inputs: str, temperature: float,
                    for p in cand.get("content", {}).get("parts", [])).strip()
 
 
+def _call_glm(model_id: str, inputs: str, temperature: float,
+              reasoning: str = "default") -> str:
+    """OpenAI 호환 자체 엔드포인트(GLM). 주소는 .env 의 GLM_BASE_URL 이 정본.
+
+    _call_openai 에 분기를 더하지 않고 함수를 나눈 이유 둘: ① 주소가 고정이 아니다
+    (자체 호스팅이라 실행 때마다 바뀔 수 있다) ② 사고를 끄는 방법이 reasoning_effort 가
+    아니라 chat_template_kwargs.enable_thinking 이다. 한 함수 안에서 갈라놓으면
+    "이 run 이 어디로 갔나"가 코드에서 안 보인다."""
+    global _glm_no_temp
+    import requests
+    _load_env()
+    key = os.environ["GLM_API_KEY"]
+    base = os.environ.get(GLM_BASE_URL_ENV, "").strip().rstrip("/")
+    if not base:
+        raise SystemExit(f"[llm] {GLM_BASE_URL_ENV} 없음 — .env 에 엔드포인트 주소를 넣으세요.")
+    url = f"{base}/chat/completions"
+    payload = {"model": model_id,
+               "messages": [{"role": "user", "content": inputs}],
+               "max_tokens": MAX_TOKENS}
+    if not _glm_no_temp:
+        payload["temperature"] = temperature
+    think = REASONING_PARAM["glm"].get(reasoning)
+    if think is not None:
+        payload["chat_template_kwargs"] = {"enable_thinking": think}
+        if think:
+            # 사고를 켜면 <think> 가 본문 예산을 먹는다 — 켤 때 상한을 함께 올린다
+            # (OpenAI reasoning_effort=high 와 같은 처리·같은 이유).
+            payload["max_tokens"] = MAX_TOKENS * 3
+    for _ in range(3):
+        r = requests.post(url, headers={"Authorization": f"Bearer {key}"},
+                          json=payload, timeout=180)
+        if r.status_code == 200:
+            choice = r.json()["choices"][0]
+            if choice.get("finish_reason") == "length":
+                raise LLMTruncated(
+                    f"GLM 출력 절단(finish_reason=length) — reasoning={reasoning}. "
+                    f"사고가 켜진 채 돌았을 수 있습니다(enable_thinking).")
+            return (choice["message"].get("content") or "").strip()
+        body = r.text[:400]
+        if r.status_code == 400 and "temperature" in body and "temperature" in payload:
+            payload.pop("temperature")
+            _glm_no_temp = True
+            _note_deviation("glm temperature 미지원 — 제거됨(보고서에 명기할 것)")
+            continue
+        if (r.status_code == 400 and "chat_template_kwargs" in body
+                and "chat_template_kwargs" in payload):
+            # 서버가 이 인자를 모르면 사고가 켜진 채로 돈다 — 조건이 달라진 것이므로
+            # 편차로 남긴다. 절단이 나면 위의 LLMTruncated 가 잡는다.
+            payload.pop("chat_template_kwargs")
+            _note_deviation("glm chat_template_kwargs 미지원 — 제거됨(사고 켜진 채 호출)")
+            continue
+        raise LLMCallError("glm", r.status_code, body)
+    raise LLMCallError("glm", 400, "파라미터 폴백 3회 소진 — 같은 400이 반복됨")
+
+
 _DISPATCH = {"anthropic": _call_anthropic, "openai": _call_openai,
-             "gemini": _call_gemini}
+             "gemini": _call_gemini, "glm": _call_glm}
 
 
 def obtain_response(inputs: str, model: str, temperature: float = 0.0,

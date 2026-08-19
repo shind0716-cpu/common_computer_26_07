@@ -1,0 +1,12 @@
+{"fact_id": "fact_throne_01", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문구가 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별할 수 없으며, 일반 상식으로도 확인되지 않습니다.\"}"}
+{"fact_id": "fact_throne_02", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"제 사전 지식만으로는 ‘궁정 연대기’, ‘베스카’, ‘아르넬’ 및 그 나이 기록이 가리키는 특정 사건이나 인물을 확인할 수 없습니다.\"}"}
+{"fact_id": "fact_throne_03", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"제 사전 지식만으로는 ‘아르넬’, ‘제후들’, 해당 서신과 두 달째 회신이 없다는 이 특정 사건을 확인할 수 없습니다.\"}"}
+{"fact_id": "fact_throne_04", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문구가 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별할 수 없으며, 해당 사실을 이미 알고 있다고 말할 수 없습니다.\"}"}
+{"fact_id": "fact_throne_05", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"제 사전 지식만으로는 ‘선왕의 계승 서약서’, ‘아르넬’이라는 인물, 그리고 그 문구가 가리키는 특정 사건을 확인할 수 없습니다.\"}"}
+{"fact_id": "fact_throne_06", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문구가 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별하거나 확인할 수 없습니다.\"}"}
+{"fact_id": "fact_throne_07", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"사전 지식만으로는 ‘아르넬의 세례 기록’, 출생을 다섯 해 앞서 적었다는 사정, 그리고 실제 나이가 스물하나라는 이 특정 사건·인물·수치를 알고 있다고 말할 근거가 없습니다.\"}"}
+{"fact_id": "fact_throne_08", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"‘베스카’, ‘파종제’, 그리고 해당 시점의 성년 도달이라는 구체 조합은 제 사전 지식에 없는 특정 설정으로, 이 진술이 가리키는 사건·인물·수치를 이미 알고 있다고 말할 수 없습니다.\"}"}
+{"fact_id": "fact_throne_09", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문구가 가리키는 구체 사건·인물·수치를 제 사전 지식만으로는 특정할 수 없으며, 해당 표현을 이미 알고 있다고 말할 근거가 없습니다.\"}"}
+{"fact_id": "fact_throne_10", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"‘아르넬’, ‘제후’, ‘정족수 일곱’이 결합된 이 특정 사건·인물·수치를 제 사전 지식만으로는 확인할 수 없습니다.\"}"}
+{"fact_id": "fact_throne_11", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"사전 지식만으로는 ‘베스카’, ‘이단 재판’, ‘성별식 자격 정지’가 가리키는 구체 사건·인물·수치를 특정해 알고 있다고 말할 수 없습니다.\"}"}
+{"fact_id": "fact_throne_12", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"사전 지식만으로는 ‘아르넬’과 ‘대주교청 파문 명부’가 가리키는 특정 사건·인물·수치를 확인할 수 없으며, 이 진술의 구체 사실을 이미 알고 있다고 말할 수 없습니다.\"}"}

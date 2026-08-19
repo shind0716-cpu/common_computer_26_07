@@ -1,0 +1,12 @@
+{"fact_id": "fact_exile_01", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문구가 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별하거나 확인할 수 없습니다.\"}"}
+{"fact_id": "fact_exile_02", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문구가 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별할 수 없고, 정확한 출처나 맥락 없이 이미 알고 있다고 말할 수 없습니다.\"}"}
+{"fact_id": "fact_exile_03", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문구가 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 확정적으로 식별할 수 없습니다.\"}"}
+{"fact_id": "fact_exile_04", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문구가 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별할 수 없으며, 정확히 알고 있다고 말할 근거가 없습니다.\"}"}
+{"fact_id": "fact_exile_05", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"‘팔로르’와 해당 통행 차단·귀환 불가 상황을 가리키는 특정 사건을 제 사전 지식만으로는 식별할 수 없습니다.\"}"}
+{"fact_id": "fact_exile_06", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문구가 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별할 수 없으며, 해당 사실을 이미 알고 있다고 말할 수 없습니다.\"}"}
+{"fact_id": "fact_exile_07", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"‘메르반’과 그가 인접 세 도시와 맺은 구호 조약, 그리고 협정 파기 시 제명된다는 구체 사건은 제 사전 지식에 없는 특정 사실입니다.\"}"}
+{"fact_id": "fact_exile_08", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문구가 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 확인할 수 없으며, 정확히 알고 있다고 말할 근거가 없습니다.\"}"}
+{"fact_id": "fact_exile_09", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"맥락 없이 '정착지가 세워진 것은 세 해 전 겨울이다'라는 표현이 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별할 수 없습니다.\"}"}
+{"fact_id": "fact_exile_10", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"맥락 없이 이 문장이 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별할 수 없습니다.\"}"}
+{"fact_id": "fact_exile_11", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문구가 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별하거나 이미 알고 있다고 말할 수 없습니다.\"}"}
+{"fact_id": "fact_exile_12", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 진술이 가리키는 구체적인 협정·사건·인물·수치를 제 사전 지식만으로는 특정해 알지 못합니다.\"}"}

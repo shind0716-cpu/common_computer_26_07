@@ -1,0 +1,30 @@
+# 조건: 논문 정합 (mem3-paper) — ③′ 좌표.
+# 설정 사전 좌표: 협력(무입장)·4에이전트·직전 창·수첩 없음·**배정 팩트 라운드 0 1회**·장부 끔.
+#
+# 왜 이 팔이 필요한가: 설정 사전 v0.1 변경 1 은 직전만을 "실물 대응 없음 — 논문 세팅,
+# 재현 트랙 전용"으로 규정한다. 그런데 엔진의 협력 분기는 배정 팩트를 매 라운드 원문으로
+# 다시 넣어왔다(hire_mem3_prev.yaml 로 돌린 8/14 판이 그것이다). 저자 템플릿
+# discussion_continue 에는 팩트 재주입 슬롯이 아예 없으므로, 그 판은 논문보다 헐거웠다.
+# 이 config 는 팩트를 라운드 0 에서 끊어 논문의 구조 — 자기 기억이 매 라운드 발화 한 편으로
+# 재압축되고 거기 적히지 않은 것은 사라지는 형태 — 를 히든 프로필 시나리오 안에 세운다.
+#
+# 진짜 논문을 재현하는 것이 아니다. 같은 재료·같은 채점 위에서 논문과 정합하는 조건을
+# 한 칸 만드는 것이며, 팀 안건으로 이미 승인된 사항이다(요한 2026-08-18).
+#
+# hire_mem3_prev.yaml 과의 차이는 facts_reinject 한 칸뿐이다.
+experiment: hire_mem3_paper
+condition: mem3-paper
+issue_id: issue_hire
+run_id: rep1              # 정본은 CLI --run. 이 키는 참고용이다.
+seed: 42
+agents: 4
+rounds: 3
+window: rolling           # 직전 발화만
+memory: none              # 수첩 없음
+facts_reinject: round0_only   # ← 이 팔의 정의. 기본값은 always(종전 동작)
+final_poll: true
+debate_model: glm         # = glm-5.2 (본 팔들과 동일)
+debate_temperature: 1.0
+reasoning: "off"
+ledger_mode: "off"
+max_llm_calls: 20         # 발화 16 + 최종폴링 4

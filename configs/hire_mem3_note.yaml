@@ -1,0 +1,26 @@
+# 조건: 수첩 (mem3-note) — 기억 축 3점 대조의 ② 좌표.
+# 설정 사전 좌표: 협력(무입장)·4에이전트·직전 창·개인 수첩 500자·장부 끔·최종 폴링 켬.
+#
+# configs/hire_talk_note.yaml 과 좌표가 같다(window·memory·note_budget·note_call·
+# final_poll·모델·온도). 새 파일을 두는 이유는 세 팔의 config 를 한 세대로 묶어
+# 호출 상한을 명시하기 위해서다 — 기존 파일은 수정하지 않는다.
+#
+# 수첩 갱신은 발화 호출에 얹는다(note_call: utterance, +0콜). 라운드 0의 첫 수첩만
+# 에이전트당 1콜 별도로 든다.
+experiment: hire_mem3_note
+condition: mem3-note
+issue_id: issue_hire
+run_id: rep1              # 정본은 CLI --run. 이 키는 참고용이다.
+seed: 42
+agents: 4
+rounds: 3
+window: rolling           # 직전 발화만
+memory: note              # 개인 수첩
+note_budget: 500
+note_call: utterance
+final_poll: true          # 이 팔의 폴링 입력은 자기 수첩뿐이다 (엔진 §최종폴링)
+debate_model: glm         # = glm-5.2 (자체 호스팅 · .env 의 GLM_BASE_URL)
+debate_temperature: 1.0
+reasoning: "off"       # GLM 사고 끄기(enable_thinking=false) — 켜면 본문 예산 잠식·절단
+ledger_mode: "off"
+max_llm_calls: 24         # 발화 16 + 라운드0 수첩 4 + 최종폴링 4

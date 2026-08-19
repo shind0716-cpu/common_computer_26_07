@@ -1,0 +1,20 @@
+# 조건: 직전만 (mem3-prev) — 기억 축 3점 대조의 ③ 좌표.
+# 설정 사전 좌표: 협력(무입장)·4에이전트·직전 창·수첩 없음·장부 끔·최종 폴링 켬.
+#
+# ②에서 수첩 한 칸만 뺀 팔이다. ①과는 라운드 중 입력(누적 vs 직전)만 다르고
+# 최종 폴링 입력은 ①과 동일하다(양쪽 다 마지막 라운드 발언들) — 해석 시 주의.
+experiment: hire_mem3_prev
+condition: mem3-prev
+issue_id: issue_hire
+run_id: rep1              # 정본은 CLI --run. 이 키는 참고용이다.
+seed: 42
+agents: 4
+rounds: 3
+window: rolling           # 직전 발화만
+memory: none              # 수첩 없음
+final_poll: true
+debate_model: glm         # = glm-5.2 (자체 호스팅 · .env 의 GLM_BASE_URL)
+debate_temperature: 1.0
+reasoning: "off"       # GLM 사고 끄기(enable_thinking=false) — 켜면 본문 예산 잠식·절단
+ledger_mode: "off"
+max_llm_calls: 20         # 발화 16 + 최종폴링 4

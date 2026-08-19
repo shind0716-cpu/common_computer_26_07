@@ -1,0 +1,26 @@
+# 조건: 단독 기준선 (mem3-solo) — 기억 축 3점 대조의 분모.
+# 토론 없음. 각 에이전트에게 자기 배정 팩트만 주고 최종 폴링 프롬프트를 1회 던진다.
+#
+# 왜 필요한가: 히든 프로필 보고서 v0(7/28)이 "배분 v1 에서는 4명 중 3명이 혼자서
+# 이미 정답을 안다(단독 기준선 75%)"를 실측했고, 그 처방으로 배분 v2(split_pairs)가
+# 나왔다. 그 배분 위에서 기준선을 다시 잰 기록은 WORKLOG 에 예정만 있고 결과가 없다.
+# 기준선 없이는 토론 팔의 정답 수가 "취합의 몫"인지 "원래 알던 것"인지 갈리지 않는다.
+#
+# 엔진(debate_engine)에는 라운드 0 팔이 없다. rounds: 0 으로 돌리면 최종 폴링이
+# 이웃의 초기 발화를 보므로 단독이 아니다. 그래서 별도 러너를 쓰되 프롬프트는
+# 엔진의 coop_final 템플릿을 그대로 재사용한다(문안 차이가 팔 간 차이로 새지 않게).
+experiment: hire_mem3_solo
+condition: mem3-solo
+issue_id: issue_hire
+run_id: rep1              # 정본은 CLI --run. 이 키는 참고용이다.
+seed: 42
+agents: 4
+rounds: 0
+window: none              # 받은 발화 자체가 없음
+memory: none
+final_poll: true
+debate_model: glm         # = glm-5.2 (네 팔 동일 · 자체 호스팅, .env 의 GLM_BASE_URL)
+debate_temperature: 1.0
+reasoning: "off"       # GLM 사고 끄기(enable_thinking=false) — 켜면 본문 예산 잠식·절단
+ledger_mode: "off"
+max_llm_calls: 4          # 최종폴링 4 (에이전트당 1콜)

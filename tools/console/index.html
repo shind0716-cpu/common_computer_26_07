@@ -222,6 +222,10 @@
        부른다. 콘솔은 러너를 호출하고 산출물을 <b>읽기만</b> 한다 — 프롬프트·사전등록
        관문·체크포인트는 전부 러너 소관. 이미 결과가 있는 런은 러너가 [skip] 으로 건너뛴다.</p>
     <div class="grid">
+      <div><label>재료(이슈)<span class="h">기본 issue_camp = 종전 실험. 다른 재료는 산출물이 runs/&lt;모델&gt;/&lt;이슈&gt;/ 로 갈립니다</span></label>
+        <select id="s_issue"></select></div>
+      <div id="s_stanceBox" style="display:none"><label>입장<span class="h">입장 대립형 재료 — 같은 재료를 입장별로 각각 돌립니다</span></label>
+        <select id="s_stance"></select></div>
       <div><label>모델<span class="h" id="s_modelHelp">키가 있는 모델만 실행됩니다</span></label>
         <select id="s_model"></select></div>
       <div><label>진행 (다중 선택)<span class="h">A 반복 · P 전진(A′) · B 숙의</span></label>
@@ -407,8 +411,21 @@ function renderScnDetail(){
       const td=el('td','cell'); td.append(el('div','txt',f.text||'')); tr.append(td);
       keys.forEach(k=>{
         const v=f[k];
-        tr.append(el('td',null, v===undefined?'—':
-          (Array.isArray(v)?v.join(','):String(v))));
+        // 값이 객체면 String(v) 가 [object Object] 를 찍는다 — 2026-08-19 실측:
+        // prior 프로브를 돌린 뒤 prior 가 {score, probe_model, ...} 로 바뀌면서
+        // 검수자가 제일 보고 싶은 칸(모델이 이미 아는 사실인가)이 통째로 가려졌다.
+        // score 를 앞에 보이고 나머지는 마우스를 올리면 나오게 한다.
+        let txt, tip=null;
+        if(v===undefined || v===null) txt='—';
+        else if(Array.isArray(v)) txt=v.join(',');
+        else if(typeof v==='object'){
+          txt = ('score' in v) ? String(v.score) : JSON.stringify(v);
+          tip = JSON.stringify(v);
+        }
+        else txt=String(v);
+        const cell=el('td',null,txt);
+        if(tip) cell.title=tip;
+        tr.append(cell);
       });
       tb.append(tr);
     });
@@ -864,9 +881,23 @@ function ckVals(group){
 }
 
 function sPayload(){
-  return {model:$('#s_model').value, arms:ckVals('arm'), memories:ckVals('mem'),
+  const iss=$('#s_issue').value;
+  const many=((S.meta.issues||{})[iss]||[]).length>1;
+  return {model:$('#s_model').value, issue:iss,
+          stance_key: many ? $('#s_stance').value : null,
+          arms:ckVals('arm'), memories:ckVals('mem'),
           reps:ckVals('rep').map(Number), note_budget:+$('#s_budget').value,
           facts_reverse:$('#s_rev').checked, ns_final_poll:$('#s_ns').checked};
+}
+
+// 재료를 고르면 입장 칸을 켜고 끈다 — 입장이 하나뿐인 재료는 고를 게 없다.
+function sSyncStance(){
+  const list=(S.meta.issues||{})[$('#s_issue').value]||['fixed'];
+  const box=$('#s_stanceBox'), sel=$('#s_stance');
+  if(list.length>1){
+    sel.innerHTML=''; list.forEach(k=>{ const o=el('option',null,k); o.value=k; sel.append(o); });
+    box.style.display='';
+  } else { sel.innerHTML=''; box.style.display='none'; }
 }
 
 async function sEstimate(){
@@ -1201,7 +1232,15 @@ async function sboot(){
     o.value=b; bs.append(o);
   });
   bs.value=S.meta.default_budget;
-  ['#s_model','#s_budget','#s_rev','#s_ns'].forEach(sel=>{ $(sel).onchange=sEstimate; });
+  const is=$('#s_issue'); is.innerHTML='';
+  Object.keys(S.meta.issues||{'issue_camp':['fixed']}).forEach(k=>{
+    const o=el('option',null, k+(k===S.meta.default_issue?' (종전 실험)':''));
+    o.value=k; is.append(o);
+  });
+  is.value=S.meta.default_issue||'issue_camp';
+  sSyncStance();
+  is.addEventListener('change', sSyncStance);
+  ['#s_issue','#s_stance','#s_model','#s_budget','#s_rev','#s_ns'].forEach(sel=>{ $(sel).onchange=sEstimate; });
   document.querySelectorAll('input[data-sg]').forEach(c=>c.onchange=sEstimate);
   $('#s_confirm').onchange=sButtons;
   $('#s_refresh').onclick=sRefreshRuns;

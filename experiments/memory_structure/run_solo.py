@@ -20,8 +20,17 @@
   v2 조건 실호출 금지** — 코드가 --allow-v2 없는 v2 실호출을 즉사시킨다(--dry 는 허용).
   v2 조건의 run_id 에는 접미사가 붙어 v1 산출물과 절대 섞이지 않는다(b250·rev·ns).
 
+[2026-08-19 · 민옥 트랙] **--issue 손잡이 추가 (재료 확장용 — 기본값이면 종전과 동일).**
+  --issue ISSUE      재료 이슈 (기본 issue_camp). 문면은 ISSUE_PROMPTS 표에서 고른다.
+  --stance-key KEY   입장 대립형 재료에서 어느 입장으로 돌릴지(issue_polar: 후송|대기 등)
+  **인자를 안 주면 프롬프트 문면·run_id·산출물 경로가 전부 종전과 바이트 동일하다.**
+  camp 밖의 재료는 산출물이 runs/<model>/<issue>/ 로 갈린다 — run_id 에 이슈가 없어서
+  안 나누면 다른 재료의 A_note_rep1 이 camp 것과 같은 파일명이 되어 조용히 스킵된다.
+
 사용례:
   PYTHONUTF8=1 python experiments/memory_structure/run_solo.py --dry                 # 0콜 조립 리허설(전 81런)
+  PYTHONUTF8=1 python experiments/memory_structure/run_solo.py --issue issue_throne --reps 1 --dry
+  PYTHONUTF8=1 python experiments/memory_structure/run_solo.py --issue issue_polar --stance-key 후송 --reps 1 --dry
   PYTHONUTF8=1 python experiments/memory_structure/run_solo.py --model gpt --reps 1  # GPT rep1 (9런 54콜)
   PYTHONUTF8=1 python experiments/memory_structure/run_solo.py --provider hermes --model claude-hermes --reps 1
   # v2 예시 (사전등록 커밋 후):
@@ -44,7 +53,7 @@ sys.path.insert(0, str(ROOT))
 from modules import paths  # noqa: E402
 from modules import llm  # noqa: E402
 
-ISSUE_ID = "issue_camp"
+DEFAULT_ISSUE = "issue_camp"
 PROMPTS_VER_V1 = "solo-v1"        # PROMPTS_v1.md
 PROMPTS_VER_V2 = "solo-v2-draft"  # PROMPTS_v2.md (사전고정 전 — 커밋 시 'solo-v2'로 올릴 것)
 ROUNDS = 4                        # r0~r3
@@ -99,6 +108,79 @@ R0_TASK_FREE = "위 사안을 검토하여 너의 판단을 밝히는 글을 한
 FINAL_POLL_INSTR = ("지금까지의 검토를 바탕으로 이 사안에 대한 너의 최종 결론을 정하라. "
                     "'다림재 수련원' 또는 '무레온 캠프' 중 하나만 출력하라.")
 
+# ── 이슈별 프롬프트 문면 (2026-08-19 · --issue 배관) ─────────────────────────
+# camp 은 위 상수를 그대로 가리킨다 — 문면 한 글자도 안 바뀌므로 --issue 없이 돌리면
+# 종전과 바이트 동일하다.
+#
+# camp 밖의 문면은 **요한 측이 만든 정의를 그대로 옮긴 것**이다. 임의로 새로 쓰지 않는다.
+#   출처: experiments/scenario_generalization/build_issue_{throne,polar,exile}.py 의
+#         SOLO_PROMPTS (그 파일이 정본 — 문면을 고치려면 거기부터 고친다)
+#
+# stances 는 그 이슈가 가진 입장 목록이다. camp·throne 처럼 입장이 하나뿐인 재료는
+# "fixed" 키 하나, polar·exile 처럼 입장 대립형은 두 키를 갖는다(--stance-key 로 고른다).
+ISSUE_PROMPTS = {
+    "issue_camp": {
+        "stub": STUB,
+        "stances": {"fixed": STANCE},
+        "final_poll": FINAL_POLL_INSTR,
+    },
+    "issue_throne": {
+        "stub": ("카른라드 왕국의 왕위를 선왕의 딸 베스카와 선왕의 조카 아르넬 중 누가 이을지 "
+                 "정하는 문제를 논의 중이다. 계승법이 정한 조건은 네 가지다. ① 선왕의 인장이 찍힌 "
+                 "계승 서약에 이름이 오를 것 ② 성년인 스무 살에 이를 것 ③ 열두 제후 가운데 일곱 "
+                 "이상의 서명 ④ 대주교청의 성별식 자격 인정."),
+        "stances": {"fixed": "너의 입장은 '아르넬이 왕위를 이어야 한다'이다. 이 입장은 끝까지 유지한다."},
+        "final_poll": ("지금까지의 검토를 바탕으로 이 사안에 대한 너의 최종 결론을 정하라. "
+                       "'베스카' 또는 '아르넬' 중 하나만 출력하라."),
+    },
+    "issue_polar": {
+        "stub": ("월동 중인 하르뫼 기지에서 대원 한 사람이 밤사이 위중해졌다. 기지장은 항공편으로 "
+                 "바깥 병원까지 후송할지, 기지에 두고 버틸지를 오늘 안에 정해야 한다. 어느 쪽도 "
+                 "안전하지 않다."),
+        "stances": {
+            "후송": "너의 입장은 '환자를 항공편으로 후송해야 한다'이다. 이 입장은 끝까지 유지한다.",
+            "대기": "너의 입장은 '후송하지 말고 기지에서 버텨야 한다'이다. 이 입장은 끝까지 유지한다.",
+        },
+        "final_poll": ("지금까지의 검토를 바탕으로 이 사안에 대한 너의 최종 결론을 정하라. "
+                       "'후송한다' 또는 '후송하지 않는다' 중 하나만 출력하라."),
+    },
+    "issue_exile": {
+        "stub": ("강 건너에서 온 사람들이 메르반 시 외곽 정착지에 살고 있다. 그 정착지를 근거로 한 "
+                 "조직이 밀수와 갈취로 적발되자, 시의회는 정착 협정을 파기하고 정착민을 돌려보낼지를 "
+                 "정해야 한다. 협정을 파기하면 그 대상은 정착민 전원이 된다."),
+        "stances": {
+            "추방": "너의 입장은 '정착 협정을 파기하고 정착민을 돌려보내야 한다'이다. 이 입장은 끝까지 유지한다.",
+            "잔류": "너의 입장은 '협정을 유지하고 정착민을 돌려보내서는 안 된다'이다. 이 입장은 끝까지 유지한다.",
+        },
+        "final_poll": ("지금까지의 검토를 바탕으로 이 사안에 대한 너의 최종 결론을 정하라. "
+                       "'협정을 파기한다' 또는 '협정을 유지한다' 중 하나만 출력하라."),
+    },
+}
+
+# 지금 조립에 쓰이는 문면. 기본이 camp 이라 --issue 를 안 주면 종전과 같다.
+_ACTIVE = {"stub": STUB, "stance": STANCE, "final_poll": FINAL_POLL_INSTR}
+
+
+def select_issue(issue_id: str, stance_key: str | None = None) -> str:
+    """_ACTIVE 를 그 이슈의 문면으로 맞춘다. 고른 입장 키를 돌려준다."""
+    if issue_id not in ISSUE_PROMPTS:
+        raise SystemExit(f"[run_solo] 프롬프트 문면이 없는 이슈: {issue_id} — "
+                         f"등록된 것: {', '.join(ISSUE_PROMPTS)}")
+    p = ISSUE_PROMPTS[issue_id]
+    stances = p["stances"]
+    if stance_key is None:
+        if len(stances) > 1:
+            raise SystemExit(f"[run_solo] --stance-key 필요 — {issue_id} 의 입장: "
+                             f"{', '.join(stances)}")
+        stance_key = next(iter(stances))
+    elif stance_key not in stances:
+        raise SystemExit(f"[run_solo] 모르는 입장 '{stance_key}' — {issue_id} 의 입장: "
+                         f"{', '.join(stances)}")
+    _ACTIVE["stub"] = p["stub"]
+    _ACTIVE["stance"] = stances[stance_key]
+    _ACTIVE["final_poll"] = p["final_poll"]
+    return stance_key
+
 
 def instr(arm: str, mem: str, stance: bool) -> str:
     table = INSTR if stance else INSTR_FREE
@@ -115,8 +197,8 @@ RECALL_INSTR = ("이 사안과 관련해 네가 알고 있는 구체적 사실�
                 "확실하지 않은 것은 적지 마라. 목록만 출력하라.")
 
 
-def load_facts_block(reverse: bool = False) -> str:
-    doc = json.loads(paths.facts(ISSUE_ID).read_text(encoding="utf-8"))
+def load_facts_block(reverse: bool = False, issue_id: str = DEFAULT_ISSUE) -> str:
+    doc = json.loads(paths.facts(issue_id).read_text(encoding="utf-8"))
     facts = list(doc["facts"])
     if reverse:
         facts = list(reversed(facts))
@@ -128,18 +210,18 @@ def _sec(title: str, body: str) -> str:
 
 
 def _stance_block(stance: bool) -> str:
-    return (STANCE + "\n\n") if stance else ""
+    return (_ACTIVE["stance"] + "\n\n") if stance else ""
 
 
 def prompt_r0(facts_block: str, stance: bool) -> str:
     task = R0_TASK_STANCE if stance else R0_TASK_FREE
-    return ("다음 사안을 검토하라.\n\n" + _sec("사안", STUB) + "\n\n" +
+    return ("다음 사안을 검토하라.\n\n" + _sec("사안", _ACTIVE["stub"]) + "\n\n" +
             _sec("알게 된 사실", facts_block) + "\n\n" + _stance_block(stance) + task)
 
 
 def prompt_round(arm: str, mem: str, facts_block: str, essays: list[str],
                  note: str | None, stance: bool) -> str:
-    head = "다음 사안을 검토하라.\n\n" + _sec("사안", STUB) + "\n\n"
+    head = "다음 사안을 검토하라.\n\n" + _sec("사안", _ACTIVE["stub"]) + "\n\n"
     if mem == "full":
         hist = "\n\n".join(f"[라운드 {i} 글]\n{t}" for i, t in enumerate(essays))
         mid = _sec("알게 된 사실", facts_block) + "\n\n" + _stance_block(stance) + \
@@ -155,7 +237,7 @@ def prompt_note(r: int, facts_block: str, note_prev: str | None, essay_r: str,
                 stance: bool, budget: int) -> str:
     carrier = (_sec("알게 된 사실", facts_block) if r == 0
                else _sec("너의 수첩", note_prev or ""))
-    return ("다음 사안을 검토하라.\n\n" + _sec("사안", STUB) + "\n\n" + _stance_block(stance) +
+    return ("다음 사안을 검토하라.\n\n" + _sec("사안", _ACTIVE["stub"]) + "\n\n" + _stance_block(stance) +
             carrier + "\n\n" + _sec("이번 라운드에 쓴 글", essay_r) + "\n\n" + note_instr(budget))
 
 
@@ -174,13 +256,13 @@ def _carrier_sec(mem: str, facts_block: str, essays: list[str], note: str | None
 
 
 def prompt_recall(mem: str, facts_block: str, essays: list[str], note: str | None) -> str:
-    return ("다음 사안을 검토하라.\n\n" + _sec("사안", STUB) + "\n\n" +
+    return ("다음 사안을 검토하라.\n\n" + _sec("사안", _ACTIVE["stub"]) + "\n\n" +
             _carrier_sec(mem, facts_block, essays, note) + "\n\n" + RECALL_INSTR)
 
 
 def prompt_final_poll(mem: str, facts_block: str, essays: list[str], note: str | None) -> str:
-    return ("다음 사안을 검토하라.\n\n" + _sec("사안", STUB) + "\n\n" +
-            _carrier_sec(mem, facts_block, essays, note) + "\n\n" + FINAL_POLL_INSTR)
+    return ("다음 사안을 검토하라.\n\n" + _sec("사안", _ACTIVE["stub"]) + "\n\n" +
+            _carrier_sec(mem, facts_block, essays, note) + "\n\n" + _ACTIVE["final_poll"])
 
 
 # ── 호출 계층 ────────────────────────────────────────────────────────────────
@@ -256,12 +338,30 @@ def _variant_suffix(note_budget: int, facts_reverse: bool, stance: bool) -> str:
 def run_one(model_key: str, provider: str, arm: str, mem: str, rep: int,
             facts_block: str, max_calls: int, dry: bool,
             note_budget: int = DEFAULT_NOTE_BUDGET, facts_reverse: bool = False,
-            stance: bool = True, final_poll: bool = False) -> Path:
+            stance: bool = True, final_poll: bool = False,
+            issue_id: str = DEFAULT_ISSUE) -> Path:
+    # 재료 불일치 관문 (2026-08-19 적대적 리뷰 치명 1) — _ACTIVE 는 모듈 전역이라
+    # select_issue() 를 안 부르고 run_one 을 직접 부르면 **다른 재료의 팩트에 camp 사안문이
+    # 붙은 채 조용히 돈다**. 산출물 meta 에는 issue_id 가 제대로 찍혀 나중에 못 알아챈다.
+    # CLI 는 main() 이 select_issue 를 부르지만 import 해서 쓰는 도구가 걸린다.
+    want = ISSUE_PROMPTS.get(issue_id)
+    if want is None:
+        raise SystemExit(f"[run_solo] 프롬프트 문면이 없는 이슈: {issue_id}")
+    if _ACTIVE["stub"] != want["stub"] or _ACTIVE["stance"] not in want["stances"].values():
+        raise SystemExit(
+            f"[run_solo] 재료 불일치 — issue_id={issue_id} 인데 조립 문면이 그 재료의 것이 "
+            f"아니다. run_one 전에 select_issue({issue_id!r}) 를 부르라.")
+
     suffix = _variant_suffix(note_budget, facts_reverse, stance)
     run_id = f"{arm}_{mem}{suffix}_rep{rep}"
     is_v2 = bool(suffix) or final_poll
     # 드라이런은 별도 폴더 — 실런이 드라이런 산출물을 "결과 존재"로 오인해 스킵하는 사고 방지
     out_dir = (RUNS_DIR / "_dry" if dry else RUNS_DIR) / model_key
+    # 이슈별 분리 (2026-08-19) — run_id 에 이슈가 없어서, 안 나누면 다른 재료의 A_note_rep1 이
+    # camp 것과 같은 파일명이 되어 "[skip] 결과 존재"로 조용히 아무것도 안 하게 된다.
+    # camp 은 종전 경로 그대로 — 기존 54런 산출물의 자리가 안 바뀐다.
+    if issue_id != DEFAULT_ISSUE:
+        out_dir = out_dir / issue_id
     out_dir.mkdir(parents=True, exist_ok=True)
     dst = out_dir / f"run_{run_id}.json"
     if dst.exists():
@@ -313,7 +413,7 @@ def run_one(model_key: str, provider: str, arm: str, mem: str, rep: int,
             if final_poll else None)
 
     out = {
-        "schema": "solo_run_v1", "issue_id": ISSUE_ID,
+        "schema": "solo_run_v1", "issue_id": issue_id,
         "prompts_ver": (PROMPTS_VER_V2 if is_v2 else PROMPTS_VER_V1),
         "run_id": run_id, "arm": arm, "arm_name": ARMS[arm], "memory": mem, "rep": rep,
         "meta": {
@@ -357,13 +457,24 @@ def main() -> None:
                     help="라운드 종료 후 최종 판단 1필드 수집 (판정기 불사용, 원문 저장)")
     ap.add_argument("--allow-v2", action="store_true",
                     help="v2 조건 실호출 허용 — PROMPTS_v2·PREREG_v2 로컬 커밋 후에만 켤 것")
+    # 이슈 손잡이 (2026-08-19) — 기본값이면 종전과 문면·경로 전부 동일
+    ap.add_argument("--issue", default=DEFAULT_ISSUE, choices=sorted(ISSUE_PROMPTS),
+                    help=f"재료 이슈 (기본 {DEFAULT_ISSUE}). camp 외에는 runs/<model>/<issue>/ 로 갈린다")
+    ap.add_argument("--stance-key", default=None,
+                    help="입장 대립형 재료에서 어느 입장으로 돌릴지 "
+                         "(issue_polar: 후송|대기, issue_exile: 추방|잔류)")
     args = ap.parse_args()
 
+    stance_key = select_issue(args.issue, args.stance_key)
+
+    # 사전등록 관문 (2026-08-19 적대적 리뷰 치명 2 반영) — 종전엔 예산 한 칸 바꾸는 것은
+    # 막으면서 **PREREG_v1 에 없는 재료로 도는 것은 안 막았다**. 관문의 취지는 "사전등록에
+    # 없는 조건으로 실호출이 나가지 않게"이고, 새 재료는 예산 변경보다 더 먼 조건이다.
     is_v2 = (args.note_budget != DEFAULT_NOTE_BUDGET or args.facts_reverse
-             or args.no_stance or args.final_poll)
+             or args.no_stance or args.final_poll or args.issue != DEFAULT_ISSUE)
     if is_v2 and not args.dry and not args.allow_v2:
-        raise SystemExit("v2 조건 실호출 차단: PROMPTS_v2·PREREG_v2 커밋 후 --allow-v2 로 실행하라 "
-                         "(--dry 는 상한 없이 허용).")
+        raise SystemExit("사전등록 밖 조건 실호출 차단: 해당 사전등록 문서를 커밋한 뒤 "
+                         "--allow-v2 로 실행하라 (--dry 는 상한 없이 허용).")
     if args.final_poll and not args.no_stance:
         raise SystemExit("--final-poll 은 --no-stance 와 함께 써라 — 입장 고정 상태의 최종 판단은 "
                          "결론이 설계상 고정이라 측정이 무의미하다 (§6 1단계 정정 참조).")
@@ -371,14 +482,15 @@ def main() -> None:
     if not args.dry and args.provider == "api":
         llm.preflight(args.model, temperature=GEN_TEMPERATURE)
 
-    facts_block = load_facts_block(reverse=args.facts_reverse)
+    facts_block = load_facts_block(reverse=args.facts_reverse, issue_id=args.issue)
     planned = [(a, m, r) for a in args.arms for m in args.memories for r in args.reps]
-    print(f"[plan] {args.model} ({args.provider}) — {len(planned)}런"
-          f" · dry={args.dry}" + (" · v2" if is_v2 else ""))
+    print(f"[plan] {args.issue} · 입장 {stance_key} · {args.model} ({args.provider}) — "
+          f"{len(planned)}런 · dry={args.dry}" + (" · v2" if is_v2 else ""))
     for a, m, r in planned:
         run_one(args.model, args.provider, a, m, r, facts_block, args.max_calls, args.dry,
                 note_budget=args.note_budget, facts_reverse=args.facts_reverse,
-                stance=not args.no_stance, final_poll=args.final_poll)
+                stance=not args.no_stance, final_poll=args.final_poll,
+                issue_id=args.issue)
 
 
 if __name__ == "__main__":
