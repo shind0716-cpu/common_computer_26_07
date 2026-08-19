@@ -35,10 +35,12 @@ sys.path.insert(0, str(ROOT))
 
 from modules.llm import obtain_response, preflight  # noqa: E402
 
-ISSUES = ("issue_throne", "issue_polar", "issue_exile")
+# issue_award 추가(2026-08-19). 앞선 셋은 prior_<이슈>.json 이 이미 있어 아래 루프가
+# 건너뛴다 — 그래서 이번 실행은 award 12콜만 나간다. 재실행해도 같다.
+ISSUES = ("issue_throne", "issue_polar", "issue_exile", "issue_award")
 PROBE_MODEL = "gpt-mini"
 PROBE_PROMPT_VER = "camp-prior-v0.2"      # 문면 계승 — 버전도 그대로 둔다
-MAX_CALLS = 45                            # 팩트 36 + 여유. 초과 시 즉사
+MAX_CALLS = 15                            # award 12팩트 + 여유. 초과 시 즉사
 TEMPERATURE = 0.0
 
 # ── 아래 두 개는 memory_structure/probe_prior.py 에서 글자 단위로 옮긴 것 ──
