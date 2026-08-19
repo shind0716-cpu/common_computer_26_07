@@ -103,9 +103,20 @@ def main() -> None:
                       f"팩트·배분·앵커는 원본과 글자 하나 안 다르므로 prior 프로브 재실행이 "
                       f"필요 없다(복사한 prior 칸이 원본의 known 결과를 들고 간다). "
                       f"두 판본의 차이가 이 한 대목뿐이라 결과 차이를 여기에 돌릴 수 있다. "
+                      f"⚠ 이 판본은 원본과 fact_id 가 같다 — 두 판본의 산출물을 합칠 때는 "
+                      f"반드시 (issue_id, fact_id) 쌍을 키로 잡아라. fact_id 만으로 세면 "
+                      f"두 조건이 한 칸으로 합쳐진다. "
                       f"원본 메모: {issue.get('_note', '')}")
     facts["issue_id"] = dst
-    facts["_note"] = f"본문 판본 {tag} — 팩트는 {src} 와 동일. " + facts.get("_note", "")
+    # 원본 메모에는 "prior 값이 null 이면 아직 안 돈 것" 같은 안내가 들어 있는데 판본에는
+    # 안 맞는다 — 판본은 원본의 프로브 결과를 그대로 들고 오기 때문이다. 그 문장을 찾아
+    # 갈아 끼우면 원본 문면이 바뀔 때 조용히 깨지므로, 앞에 덮어쓰는 문장을 둔다.
+    facts["_note"] = (
+        f"본문 판본 {tag} — 팩트는 {src} 와 글자 하나 안 다르고, prior 도 {src} 의 "
+        f"프로브 결과를 그대로 들고 왔다(재실행 불필요). fact_id 도 원본과 같으므로 "
+        f"산출물을 합칠 때는 (issue_id, fact_id) 쌍을 키로 잡아라. "
+        f"아래는 원본 메모이며, 그 안의 prior 안내 문장은 이 판본에 해당하지 않는다. "
+        + facts.get("_note", ""))
     assign["issue_id"] = dst
 
     out = {HERE / f"{dst}.json": issue,
@@ -139,6 +150,10 @@ def main() -> None:
     line("새 본문에 앵커 누출 0", not leak, str(leak) if leak else f"본문 {len(new_body)}자")
     line("본문이 실제로 바뀌었다", new_body != body,
          f"{len(body)}자 → {len(new_body)}자")
+    # fact_id 는 일부러 원본과 같게 둔다 — 판본 비교가 이 도구의 목적이라 이름이 달라지면
+    # 나란히 못 놓는다. 대신 합칠 때의 키 약속을 메모에 못 박았는지 검사한다.
+    line("합칠 때의 키 약속이 메모에 있다",
+         "(issue_id, fact_id)" in issue["_note"] and "(issue_id, fact_id)" in facts["_note"])
 
     print(f"\n원본 대목: {spec['cut'][:40]}…")
     print(f"바뀐 대목: {spec['put'][:40]}…")
