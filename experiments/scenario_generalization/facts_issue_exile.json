@@ -1,0 +1,205 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "manual(요한 측 Claude 초안 — 팀 검수 전 후보 지위)",
+  "created_at": "2026-08-19T00:00:00+09:00",
+  "issue_id": "issue_exile",
+  "_note": "후보 초안(팀 검수 전). 불리 대칭 추방 4 : 잔류 4, 중립 2, 양쪽 2, 교대 배치. 팩트 01(이천 명 중 서른한 명)은 의도적으로 추방 쪽에 불리한 자리에 둔다 — 추방 입장을 맡은 에이전트가 스스로 꺼내야 하는 사실이고, 이 재료로 재려는 것이 그것이다. requirement·share 없음(손배분). ⚠ prior 프로브 미실행 · 팩트 문면의 사람 검토 필요.",
+  "extractor": {
+    "name": "manual",
+    "ver": "1"
+  },
+  "facts": [
+    {
+      "fact_id": "fact_exile_01",
+      "text": "검은 갈대에 이름이 오른 자는 정착민 이천 명 가운데 서른한 명이다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "추방",
+      "_perspective": "치안"
+    },
+    {
+      "fact_id": "fact_exile_02",
+      "text": "지난 한 해 밀수 적발 건수가 정착 이전의 아홉 배다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "잔류",
+      "_perspective": "치안"
+    },
+    {
+      "fact_id": "fact_exile_03",
+      "text": "조직의 우두머리 넷은 이미 강을 건너 달아났다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "추방",
+      "_perspective": "치안"
+    },
+    {
+      "fact_id": "fact_exile_04",
+      "text": "정착지 순찰에 드는 비용이 시 치안 예산의 삼분의 일을 넘겼다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "잔류",
+      "_perspective": "재정"
+    },
+    {
+      "fact_id": "fact_exile_05",
+      "text": "팔로르는 아직 통행이 막혀 있어 돌아갈 길이 없다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "추방",
+      "_perspective": "외무"
+    },
+    {
+      "fact_id": "fact_exile_06",
+      "text": "시 경비대가 정착지 안에서 두 차례 진입을 거부당했다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "잔류",
+      "_perspective": "치안"
+    },
+    {
+      "fact_id": "fact_exile_07",
+      "text": "협정을 파기하면 메르반은 인접 세 도시와 맺은 구호 조약에서 제명된다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "추방",
+      "_perspective": "외무"
+    },
+    {
+      "fact_id": "fact_exile_08",
+      "text": "갈취 피해를 신고한 상인 예순둘 가운데 열아홉이 문을 닫았다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "잔류",
+      "_perspective": "재정"
+    },
+    {
+      "fact_id": "fact_exile_09",
+      "text": "정착지가 세워진 것은 세 해 전 겨울이다",
+      "tags": [
+        "condition"
+      ],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": null,
+      "_perspective": "등록"
+    },
+    {
+      "fact_id": "fact_exile_10",
+      "text": "시의회 의석은 열한 자리이고 표결은 단순 과반으로 정한다",
+      "tags": [
+        "condition"
+      ],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": null,
+      "_perspective": "등록"
+    },
+    {
+      "fact_id": "fact_exile_11",
+      "text": "등록부는 도착 당시 한 번 작성된 뒤 갱신되지 않아 신원 확인에 넉 달이 걸린다",
+      "tags": [
+        "exception"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "both",
+      "_perspective": "등록"
+    },
+    {
+      "fact_id": "fact_exile_12",
+      "text": "협정에는 조직 관련자만 따로 송환하는 조항이 있으나 쓰인 적이 없다",
+      "tags": [
+        "exception"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "both",
+      "_perspective": "외무"
+    }
+  ]
+}
