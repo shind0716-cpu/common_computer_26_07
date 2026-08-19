@@ -1,7 +1,11 @@
 """[민옥 트랙 · 토론 배역 미니테스트] 2인 맞토론 러너 — 배역(natural/stubborn/advance) × 2모델.
 
 지시문: WORKORDER_2026-08-19.md (이 폴더 — 프롬프트 축자 정본. 불일치 시 지시문이 정본).
-지위: 탐색 미니테스트 — 사전등록 없음, n=1/셀, 결과 수치는 어떤 주장의 증거로도 인용 금지.
+확장(MT2): WORKORDER2_2026-08-19.md — revision 팔(수정형 장르, 각 2런) + nostance 실행.
+  revision = 양측 입장 고정·배역 없음. 첫 발화(S0·O0)만 성명서형(고칠 직전 글이 없음),
+  이후(S1~S3·O1~O2)는 입장 문장 그대로 두고 마지막 지시만 수정형으로 교체.
+  실행: --mt2 (revision×2모델×각2런 + nostance×2모델×각1런 = 6판 42콜).
+지위: 탐색 미니테스트 — 사전등록 없음, n=1~2/셀, 결과 수치는 어떤 주장의 증거로도 인용 금지.
 
 왜 독립 스크립트인가 (지시문 §3 판단 기준 이행, 2026-08-19 확인):
   modules/debate_engine.py 의 persona 슬롯은 저자 저장소(DelibTrace) settings 파일의
@@ -31,6 +35,8 @@
   PYTHONUTF8=1 python experiments/debate_role_minitest/run_minitest.py --dry   # 0콜 조립 리허설
   PYTHONUTF8=1 python experiments/debate_role_minitest/run_minitest.py         # 본 6판 42콜
   PYTHONUTF8=1 python experiments/debate_role_minitest/run_minitest.py --arms nostance  # 선택 팔
+  PYTHONUTF8=1 python experiments/debate_role_minitest/run_minitest.py --mt2 --dry      # MT2 리허설
+  PYTHONUTF8=1 python experiments/debate_role_minitest/run_minitest.py --mt2            # MT2 6판 42콜
 """
 from __future__ import annotations
 
@@ -56,8 +62,9 @@ HERE = Path(__file__).resolve().parent
 RUNS_DIR = HERE / "runs"
 
 MODELS = ("gpt-mini", "gemini-flash")     # llm.py 별칭 → gpt-5.4-mini / gemini-3-flash-preview
-ARMS = ("natural", "stubborn", "advance", "nostance")
-DEFAULT_ARMS = ("natural", "stubborn", "advance")   # nostance 는 선택 팔 (민옥 결정 대기)
+ARMS = ("natural", "stubborn", "advance", "nostance", "revision")
+DEFAULT_ARMS = ("natural", "stubborn", "advance")   # 1호 기본 팔 (완주분 — 재실행 시 [skip])
+MT2_REVISION_RUNS = 2                     # WORKORDER2 §1: revision 은 모델당 2런
 
 # ── 프롬프트 축자 (WORKORDER §2 미러 — 수정 금지. 화면은 PROMPTS_v1 §1 계승) ──
 
@@ -76,11 +83,14 @@ ROLE_EXTRA = {
     "advance": ("매 라운드, 이전 라운드까지 나오지 않은 새로운 논거로 너의 입장을 "
                 "주장하라. 같은 논거를 반복하지 마라."),
     "nostance": None,
+    "revision": None,                     # WORKORDER2: 배역 없음 — 장르만 다르다
 }
 
 TASK_STANCE = "위 사안에 대한 너의 입장을 밝히는 글을 한 문단으로 써라. 글 본문만 출력하라."
 TASK_NOSTANCE = ("위 사안을 검토하고, 두 후보 중 어느 쪽이 좋다고 판단하는지 너의 판단을 "
                  "밝히는 글을 한 문단으로 써라. 글 본문만 출력하라.")
+TASK_REVISION = ("상대의 글을 참고하여, 직전에 네가 쓴 글을 고쳐 써라. "
+                 "고쳐 쓴 글 본문만 출력하라.")   # WORKORDER2 §2 축자 — S1~S3·O1~O2 만
 
 
 def load_facts_block() -> str:
@@ -107,8 +117,18 @@ def history_block(history: list[tuple[str, str]], viewer: str) -> str:
                        for spk, text in history)
 
 
+def task_line(arm: str, rnd: int) -> str:
+    """마지막 지시문. revision 은 첫 발화(r0)만 성명서형 — 고칠 직전 글이 없기 때문
+    (WORKORDER2 §2). 입장 문장·화면 구조는 그대로, 이 줄만 교체된다."""
+    if arm == "nostance":
+        return TASK_NOSTANCE
+    if arm == "revision" and rnd >= 1:
+        return TASK_REVISION
+    return TASK_STANCE
+
+
 def build_prompt(speaker: str, arm: str, facts_block: str,
-                 history: list[tuple[str, str]]) -> str:
+                 history: list[tuple[str, str]], rnd: int) -> str:
     parts = ["다음 사안을 검토하라.",
              f"[사안]\n{STUB}",
              f"[알게 된 사실]\n{facts_block}"]
@@ -116,7 +136,7 @@ def build_prompt(speaker: str, arm: str, facts_block: str,
     if sb is not None:
         parts.append(sb)
     parts.append(f"[지금까지의 토론]\n{history_block(history, speaker)}")
-    parts.append(TASK_NOSTANCE if arm == "nostance" else TASK_STANCE)
+    parts.append(task_line(arm, rnd))
     return "\n\n".join(parts)
 
 
@@ -167,8 +187,10 @@ class GlobalGate:
 # ── 판 하나 ──────────────────────────────────────────────────────────────────
 
 def run_one(arm: str, model_key: str, facts_block: str, gate: GlobalGate,
-            dry: bool) -> Path:
+            dry: bool, run_idx: int | None = None) -> Path:
     run_id = f"{arm}_{model_key.replace('-', '')}"
+    if run_idx is not None:               # revision 팔: 모델당 2런 (WORKORDER2 §1)
+        run_id += f"_run{run_idx}"
     out_dir = (RUNS_DIR / "_dry") if dry else RUNS_DIR
     out_dir.mkdir(parents=True, exist_ok=True)
     dst = out_dir / f"debate_{run_id}.jsonl"
@@ -186,7 +208,9 @@ def run_one(arm: str, model_key: str, facts_block: str, gate: GlobalGate,
         "order": "S0 O0 S1 O1 S2 O2 S3 (O3 생략)", "dry": dry,
         "subject_stance": (None if arm == "nostance" else "무레온"),
         "opponent_stance": (None if arm == "nostance" else "다림재"),
-        "opponent_role": arm,
+        "opponent_role": ("none" if arm == "revision" else arm),
+        "genre": ("revision" if arm == "revision" else "statement"),  # MT2 추가 필드
+        "run_idx": run_idx,
     }]
     history: list[tuple[str, str]] = []   # (speaker, text) 시간순
 
@@ -195,13 +219,14 @@ def run_one(arm: str, model_key: str, facts_block: str, gate: GlobalGate,
             if speaker == "O" and r == ROUNDS - 1:
                 continue                  # O3 생략 (지시문 §1)
             tag = f"{speaker}{r}"
-            prompt = build_prompt(speaker, arm, facts_block, history)
+            prompt = build_prompt(speaker, arm, facts_block, history, r)
             row = gate.call(tag, prompt, model_key)
             history.append((speaker, row["response"]))
             events.append({
                 "event": "utterance", "run_id": run_id, "round": r,
                 "speaker": speaker,
                 "role": (arm if speaker == "O" and ROLE_EXTRA[arm] else None),
+                "task": ("revise" if arm == "revision" and r >= 1 else "statement"),
                 "model_key": model_key, "model_id": llm.resolve_model(model_key),
                 "temperature": GEN_TEMPERATURE,
                 "prompt": prompt, "response": row["response"], "ts": row["at"],
@@ -217,9 +242,11 @@ def run_one(arm: str, model_key: str, facts_block: str, gate: GlobalGate,
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="토론 배역 미니테스트 러너 (WORKORDER 2026-08-19)")
+    ap = argparse.ArgumentParser(description="토론 배역 미니테스트 러너 (WORKORDER 2026-08-19 · WORKORDER2)")
     ap.add_argument("--arms", nargs="*", default=list(DEFAULT_ARMS), choices=list(ARMS))
     ap.add_argument("--models", nargs="*", default=list(MODELS), choices=list(MODELS))
+    ap.add_argument("--mt2", action="store_true",
+                    help="WORKORDER2 계획: revision×2모델×각2런 + nostance×2모델×각1런")
     ap.add_argument("--dry", action="store_true", help="0콜 조립 리허설 (runs/_dry/)")
     args = ap.parse_args()
 
@@ -228,15 +255,20 @@ def main() -> None:
             llm.preflight(m, temperature=GEN_TEMPERATURE)
 
     facts_block = load_facts_block()
-    planned = [(a, m) for a in args.arms for m in args.models]
+    if args.mt2:                          # (arm, model, run_idx) — revision 만 run_idx 부여
+        planned = [("revision", m, i + 1) for m in args.models
+                   for i in range(MT2_REVISION_RUNS)]
+        planned += [("nostance", m, None) for m in args.models]
+    else:
+        planned = [(a, m, None) for a in args.arms for m in args.models]
     per_run = ROUNDS * 2 - 1
     print(f"[plan] {len(planned)}판 × 판당 {per_run}콜 = {len(planned) * per_run}콜 "
           f"(상한 {MAX_TOTAL_CALLS}) · dry={args.dry}")
     for m in args.models:
         print(f"  모델 {m} → {llm.resolve_model(m)}")
     gate = GlobalGate(MAX_TOTAL_CALLS, args.dry)
-    for arm, model_key in planned:
-        run_one(arm, model_key, facts_block, gate, args.dry)
+    for arm, model_key, run_idx in planned:
+        run_one(arm, model_key, facts_block, gate, args.dry, run_idx=run_idx)
     print(f"[end] 신규 호출 합계 {gate.n_calls}")
 
 
