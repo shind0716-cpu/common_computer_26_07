@@ -16,6 +16,11 @@ MT2 확장(WORKORDER2 — append 모드): 기존 scan_result.json 행·scan_tabl
   수정하지 않고 신규 런만 스캔해 아래에 덧붙인다. 신규 행 한정 추가 지표 —
   피험자 신규 = S_r 적중 중 자기 이전 발화(S_0..S_{r-1})에 없던 것 (revision 전진 판독)
   탈락       = 직전 자기 발화 대비 빠진 fact_id (수정을 거치며 사실이 빠지는가)
+MT3 확장(WORKORDER3 §3 — LLM 0콜 유지): note/prev 런(run_meta 에 memory 필드) 한정 —
+  수첩 생존 = 라운드별 수첩(adopted) 내 앵커, favors·critical 태그 병기
+  복귀 사건 = f 가 내 수첩·발화(라운드 보유 = 그 라운드 발화 ∪ 수첩)에서 사라진 뒤,
+              상대 발화에 f 등장, 그 뒤 내 수첩/발화에 f 재등장 — 전수 나열 (0건이면 0건)
+  수첩 오염 = 상대 입장 우호(favors) 사실이 내 수첩에 등장한 자리 전수 (논거 오염은 육안)
 주의: 탐색 · 사전등록 없음 · n=1~2/셀 — 수치는 어떤 주장의 증거로도 인용 금지.
 
 실행: PYTHONUTF8=1 python experiments/debate_role_minitest/scan_minitest.py
@@ -31,13 +36,95 @@ ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(ROOT))
 
 from experiments.memory_structure.analyze_solo import ANCHORS  # noqa: E402 — 앵커 정본
+from modules import paths  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
 ROUNDS = 4
+ISSUE_ID = "issue_camp"
 
 
 def hits(text: str) -> set[str]:
     return {fid for fid, pat in ANCHORS.items() if re.search(pat, text)}
+
+
+def load_fact_tags() -> dict[str, dict]:
+    doc = json.loads(paths.facts(ISSUE_ID).read_text(encoding="utf-8"))
+    return {f["fact_id"]: {"favors": f.get("favors"), "critical": f.get("critical")}
+            for f in doc["facts"]}
+
+
+def mt3_extras(rows: list[dict], meta: dict) -> dict:
+    """WORKORDER3 §3 지표 — 수첩 생존·복귀 사건·수첩 오염. 시간축은 파일 기록 순서.
+
+    라운드 보유 hold(X,r) = X 의 r 발화 앵커 ∪ r 수첩(adopted) 앵커 (prev 팔은 발화만).
+    복귀 사건: hold 에서 f 소멸(드롭 시점 = 그 라운드 X 의 마지막 이벤트) → 이후 상대
+    발화에 f → 그 뒤 X 의 발화/수첩에 f 재등장. 상태기계로 전수 나열, 재드롭 후 재사건 허용.
+    """
+    tags = load_fact_tags()
+    timeline = []                               # (t, speaker, kind, round, hitset)
+    for r in rows:
+        if r["event"] == "utterance":
+            timeline.append((len(timeline), r["speaker"], "utterance", r["round"],
+                             hits(r["response"])))
+        elif r["event"] == "note":
+            timeline.append((len(timeline), r["speaker"], "note", r["round"],
+                             hits(r["adopted"])))
+
+    notes_grid = [
+        {"round": rnd, "speaker": spk, "fact_ids": sorted(h),
+         "n": len(h),
+         "favors": {fid: tags[fid]["favors"] for fid in sorted(h)},
+         "critical": sorted(fid for fid in h if tags[fid]["critical"]),
+         "chars": None}                          # chars 는 아래서 채움 (원문 길이)
+        for _, spk, kind, rnd, h in timeline if kind == "note"]
+    note_rows = [r for r in rows if r["event"] == "note"]
+    for g, nr in zip(notes_grid, note_rows):
+        g["chars"] = len(nr["adopted"])
+        g["truncated"] = nr["truncated"]
+        g["retried"] = nr["retry"] is not None
+
+    comebacks = []
+    for x in ("S", "O"):
+        own = [(t, kind, rnd, h) for t, spk, kind, rnd, h in timeline if spk == x]
+        opp = [(t, rnd, h) for t, spk, kind, rnd, h in timeline
+               if spk != x and kind == "utterance"]
+        x_rounds = sorted({rnd for _, _, rnd, _ in own})
+        hold = {rnd: set().union(*(h for _, _, r2, h in own if r2 == rnd))
+                for rnd in x_rounds}
+        utt_hits = {rnd: next(h for t, k, r2, h in own if r2 == rnd and k == "utterance")
+                    for rnd in x_rounds}
+        end_t = {rnd: max(t for t, _, r2, _ in own if r2 == rnd) for rnd in x_rounds}
+        utt_t = {rnd: next(t for t, k, r2, _ in own if r2 == rnd and k == "utterance")
+                 for rnd in x_rounds}
+        for f in ANCHORS:
+            state, drop_t, drop_r, opp_r = "never", None, None, None
+            for rnd in x_rounds:
+                if state == "dropped":
+                    for t, ornd, h in opp:
+                        if drop_t < t < utt_t[rnd] and f in h:
+                            state, opp_r = "opp_seen", ornd
+                            break
+                if f in hold[rnd]:
+                    if state == "opp_seen":
+                        via = "utterance" if f in utt_hits[rnd] else "note"
+                        comebacks.append({
+                            "speaker": x, "fact_id": f, "dropped_round": drop_r,
+                            "opp_round": opp_r, "reappeared_round": rnd, "via": via,
+                            "favors": tags[f]["favors"], "critical": tags[f]["critical"]})
+                    state = "held"
+                elif state in ("held",):
+                    state, drop_t, drop_r = "dropped", end_t[rnd], rnd
+
+    contamination = []
+    for g in notes_grid:
+        rival = "다림재" if g["speaker"] == "S" else "무레온"
+        foreign = [fid for fid in g["fact_ids"] if tags[fid]["favors"] == rival]
+        if foreign:
+            contamination.append({"round": g["round"], "speaker": g["speaker"],
+                                  "fact_ids": foreign})
+
+    return {"memory": meta["memory"], "note_survival": notes_grid,
+            "comeback_events": comebacks, "note_contamination": contamination}
 
 
 def scan_run(path: Path) -> dict:
@@ -78,7 +165,7 @@ def scan_run(path: Path) -> dict:
     dropped_s = [sorted(s_hits[r - 1] - s_hits[r]) for r in range(1, len(s_hits))]
     dropped_o = [sorted(o_hits[r - 1] - o_hits[r]) for r in range(1, len(o_hits))]
 
-    return {
+    result = {
         "run_id": meta["run_id"], "arm": meta["arm"], "model_key": meta["model_key"],
         "model_id": meta["model_id"], "per_utterance": per_utt,
         "personal_S": [len(h) for h in s_hits],
@@ -91,6 +178,9 @@ def scan_run(path: Path) -> dict:
         "dropped_vs_prev_S": dropped_s,   # r1..r3 — 직전 자기 발화 대비 빠진 fact_id
         "dropped_vs_prev_O": dropped_o,   # r1..r2
     }
+    if "memory" in meta:                  # MT3 런 (note/prev) — WORKORDER3 §3 지표
+        result.update(mt3_extras(rows, meta))
+    return result
 
 
 def main() -> None:
@@ -112,28 +202,56 @@ def main() -> None:
                         encoding="utf-8")
 
     table = HERE / "scan_table.md"
-    lines = ["",
-             "## MT2 추가분 (WORKORDER2 2026-08-19) — 기존 행 무수정, 아래 덧붙임",
-             "",
-             "> 탐색 · 사전등록 없음 · n=1~2/셀 · **수치 인용 금지**.",
-             "> revision = 수정형 장르(첫 발화만 성명서형) · nostance = 성명서형·양측 입장 없음.",
-             "> 신규 컬럼 — S/O 신규 = 그 화자의 자기 이전 발화 대비 신규 앵커 수 ·",
-             "> 탈락 = 직전 자기 발화 대비 빠진 앵커 수 (fact_id 목록은 scan_result.json).",
-             "",
-             "| 런 | 모델 | 개인 S r0→r3 | 개인 O r0→r2 | 채널 r0→r3 | O 신규 r0→r2 "
-             "| S 신규 r0→r3 | S 탈락 r1→r3 | O 탈락 r1→r2 |",
-             "|---|---|---|---|---|---|---|---|---|"]
-    for r in new:
-        s = "→".join(str(n) for n in r["personal_S"])
-        o = "→".join(str(n) for n in r["personal_O"])
-        c = "→".join(str(n) for n in r["channel"])
-        onw = "→".join(str(len(x)) for x in r["opponent_new_anchors_vs_self"])
-        snw = "→".join(str(len(x)) for x in r["subject_new_anchors_vs_self"])
-        sdr = "→".join(str(len(x)) for x in r["dropped_vs_prev_S"])
-        odr = "→".join(str(len(x)) for x in r["dropped_vs_prev_O"])
-        lines.append(f"| {r['run_id']} | {r['model_key']} | {s} | {o} | {c} "
-                     f"| {onw} | {snw} | {sdr} | {odr} |")
-    lines.append("")
+    plain = [r for r in new if "memory" not in r]
+    mt3 = [r for r in new if "memory" in r]
+    lines: list[str] = []
+    if plain:
+        lines += ["",
+                  "## MT2 추가분 (WORKORDER2 2026-08-19) — 기존 행 무수정, 아래 덧붙임",
+                  "",
+                  "> 탐색 · 사전등록 없음 · n=1~2/셀 · **수치 인용 금지**.",
+                  "> revision = 수정형 장르(첫 발화만 성명서형) · nostance = 성명서형·양측 입장 없음.",
+                  "> 신규 컬럼 — S/O 신규 = 그 화자의 자기 이전 발화 대비 신규 앵커 수 ·",
+                  "> 탈락 = 직전 자기 발화 대비 빠진 앵커 수 (fact_id 목록은 scan_result.json).",
+                  "",
+                  "| 런 | 모델 | 개인 S r0→r3 | 개인 O r0→r2 | 채널 r0→r3 | O 신규 r0→r2 "
+                  "| S 신규 r0→r3 | S 탈락 r1→r3 | O 탈락 r1→r2 |",
+                  "|---|---|---|---|---|---|---|---|---|"]
+        for r in plain:
+            s = "→".join(str(n) for n in r["personal_S"])
+            o = "→".join(str(n) for n in r["personal_O"])
+            c = "→".join(str(n) for n in r["channel"])
+            onw = "→".join(str(len(x)) for x in r["opponent_new_anchors_vs_self"])
+            snw = "→".join(str(len(x)) for x in r["subject_new_anchors_vs_self"])
+            sdr = "→".join(str(len(x)) for x in r["dropped_vs_prev_S"])
+            odr = "→".join(str(len(x)) for x in r["dropped_vs_prev_O"])
+            lines.append(f"| {r['run_id']} | {r['model_key']} | {s} | {o} | {c} "
+                         f"| {onw} | {snw} | {sdr} | {odr} |")
+        lines.append("")
+    if mt3:
+        lines += ["",
+                  "## MT3 추가분 (WORKORDER3 2026-08-19) — 기존 행 무수정, 아래 덧붙임",
+                  "",
+                  "> 탐색 · 사전등록 없음 · n=2/셀 · **수치 인용 금지**.",
+                  "> note = 수첩 500자+상대 직전 글 · prev = 자기 직전 글+상대 직전 글 —",
+                  "> r0 이후 사실 12개·토론 전문 화면 소멸. 수첩 = 라운드별 수첩(adopted) 내",
+                  "> 앵커 수(S r0→r3 · O r0→r2, prev 팔은 —) · 복귀 = 복귀 사건 수(내 보유",
+                  "> 소멸→상대 발화 등장→내 재등장) · 오염 = 상대 우호 사실의 내 수첩 등장 자리",
+                  "> 수. fact_id·favors·critical 상세는 scan_result.json.",
+                  "",
+                  "| 런 | 기억 | 개인 S r0→r3 | 개인 O r0→r2 | 채널 r0→r3 "
+                  "| 수첩 S r0→r3 | 수첩 O r0→r2 | 복귀 | 오염 |",
+                  "|---|---|---|---|---|---|---|---|---|"]
+        for r in mt3:
+            s = "→".join(str(n) for n in r["personal_S"])
+            o = "→".join(str(n) for n in r["personal_O"])
+            c = "→".join(str(n) for n in r["channel"])
+            ns = "→".join(str(g["n"]) for g in r["note_survival"] if g["speaker"] == "S")
+            no = "→".join(str(g["n"]) for g in r["note_survival"] if g["speaker"] == "O")
+            lines.append(f"| {r['run_id']} | {r['memory']} | {s} | {o} | {c} "
+                         f"| {ns or '—'} | {no or '—'} | {len(r['comeback_events'])} "
+                         f"| {len(r['note_contamination'])} |")
+        lines.append("")
     with table.open("a", encoding="utf-8") as fp:
         fp.write("\n".join(lines))
     print(f"[scan] 신규 {len(new)}판 덧붙임 (기존 {len(existing)}판 무수정) "
