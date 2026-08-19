@@ -411,8 +411,21 @@ function renderScnDetail(){
       const td=el('td','cell'); td.append(el('div','txt',f.text||'')); tr.append(td);
       keys.forEach(k=>{
         const v=f[k];
-        tr.append(el('td',null, v===undefined?'—':
-          (Array.isArray(v)?v.join(','):String(v))));
+        // 값이 객체면 String(v) 가 [object Object] 를 찍는다 — 2026-08-19 실측:
+        // prior 프로브를 돌린 뒤 prior 가 {score, probe_model, ...} 로 바뀌면서
+        // 검수자가 제일 보고 싶은 칸(모델이 이미 아는 사실인가)이 통째로 가려졌다.
+        // score 를 앞에 보이고 나머지는 마우스를 올리면 나오게 한다.
+        let txt, tip=null;
+        if(v===undefined || v===null) txt='—';
+        else if(Array.isArray(v)) txt=v.join(',');
+        else if(typeof v==='object'){
+          txt = ('score' in v) ? String(v.score) : JSON.stringify(v);
+          tip = JSON.stringify(v);
+        }
+        else txt=String(v);
+        const cell=el('td',null,txt);
+        if(tip) cell.title=tip;
+        tr.append(cell);
       });
       tb.append(tr);
     });

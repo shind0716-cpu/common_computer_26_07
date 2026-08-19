@@ -54,7 +54,6 @@ from modules import paths  # noqa: E402
 from modules import llm  # noqa: E402
 
 DEFAULT_ISSUE = "issue_camp"
-ISSUE_ID = DEFAULT_ISSUE          # 하위 호환 — 종전 참조가 가리키던 이름
 PROMPTS_VER_V1 = "solo-v1"        # PROMPTS_v1.md
 PROMPTS_VER_V2 = "solo-v2-draft"  # PROMPTS_v2.md (사전고정 전 — 커밋 시 'solo-v2'로 올릴 것)
 ROUNDS = 4                        # r0~r3
@@ -341,6 +340,18 @@ def run_one(model_key: str, provider: str, arm: str, mem: str, rep: int,
             note_budget: int = DEFAULT_NOTE_BUDGET, facts_reverse: bool = False,
             stance: bool = True, final_poll: bool = False,
             issue_id: str = DEFAULT_ISSUE) -> Path:
+    # 재료 불일치 관문 (2026-08-19 적대적 리뷰 치명 1) — _ACTIVE 는 모듈 전역이라
+    # select_issue() 를 안 부르고 run_one 을 직접 부르면 **다른 재료의 팩트에 camp 사안문이
+    # 붙은 채 조용히 돈다**. 산출물 meta 에는 issue_id 가 제대로 찍혀 나중에 못 알아챈다.
+    # CLI 는 main() 이 select_issue 를 부르지만 import 해서 쓰는 도구가 걸린다.
+    want = ISSUE_PROMPTS.get(issue_id)
+    if want is None:
+        raise SystemExit(f"[run_solo] 프롬프트 문면이 없는 이슈: {issue_id}")
+    if _ACTIVE["stub"] != want["stub"] or _ACTIVE["stance"] not in want["stances"].values():
+        raise SystemExit(
+            f"[run_solo] 재료 불일치 — issue_id={issue_id} 인데 조립 문면이 그 재료의 것이 "
+            f"아니다. run_one 전에 select_issue({issue_id!r}) 를 부르라.")
+
     suffix = _variant_suffix(note_budget, facts_reverse, stance)
     run_id = f"{arm}_{mem}{suffix}_rep{rep}"
     is_v2 = bool(suffix) or final_poll
@@ -456,11 +467,14 @@ def main() -> None:
 
     stance_key = select_issue(args.issue, args.stance_key)
 
+    # 사전등록 관문 (2026-08-19 적대적 리뷰 치명 2 반영) — 종전엔 예산 한 칸 바꾸는 것은
+    # 막으면서 **PREREG_v1 에 없는 재료로 도는 것은 안 막았다**. 관문의 취지는 "사전등록에
+    # 없는 조건으로 실호출이 나가지 않게"이고, 새 재료는 예산 변경보다 더 먼 조건이다.
     is_v2 = (args.note_budget != DEFAULT_NOTE_BUDGET or args.facts_reverse
-             or args.no_stance or args.final_poll)
+             or args.no_stance or args.final_poll or args.issue != DEFAULT_ISSUE)
     if is_v2 and not args.dry and not args.allow_v2:
-        raise SystemExit("v2 조건 실호출 차단: PROMPTS_v2·PREREG_v2 커밋 후 --allow-v2 로 실행하라 "
-                         "(--dry 는 상한 없이 허용).")
+        raise SystemExit("사전등록 밖 조건 실호출 차단: 해당 사전등록 문서를 커밋한 뒤 "
+                         "--allow-v2 로 실행하라 (--dry 는 상한 없이 허용).")
     if args.final_poll and not args.no_stance:
         raise SystemExit("--final-poll 은 --no-stance 와 함께 써라 — 입장 고정 상태의 최종 판단은 "
                          "결론이 설계상 고정이라 측정이 무의미하다 (§6 1단계 정정 참조).")

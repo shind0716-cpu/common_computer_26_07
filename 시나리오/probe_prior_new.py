@@ -28,7 +28,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parent.parent
+# 리포 최상위. 이 파일이 시나리오/ 로 옮겨져 한 칸 얕아졌다(2026-08-19) —
+# 종전 HERE.parent.parent 를 그대로 두면 리포 밖을 가리켜 modules 를 못 찾는다.
+ROOT = HERE.parent
 sys.path.insert(0, str(ROOT))
 
 from modules.llm import obtain_response, preflight  # noqa: E402

@@ -3,7 +3,7 @@
   "created_by": "manual(요한 측 Claude 초안 — 팀 검수 전 후보 지위)",
   "created_at": "2026-08-19T00:00:00+09:00",
   "issue_id": "issue_polar",
-  "_note": "후보 초안(팀 검수 전). 불리 대칭 후송 4 : 대기 4, 중립 2, 양쪽 2. 불리한 사실을 목록 앞뒤로 교대 배치해 camp 의 순서 교락을 뺐다. requirement·share 없음 — split_pairs 가 아니라 손배분이다. ⚠ prior 프로브 미실행.",
+  "_note": "후보 초안(팀 검수 전). 불리 대칭 후송 4 : 대기 4, 중립 2, 양쪽 2. 불리한 사실을 목록 앞뒤로 교대 배치해 camp 의 순서 교락을 뺐다. requirement·share 없음 — split_pairs 가 아니라 손배분이다. prior 프로브 완료(2026-08-19 · gpt-mini · known 0/12).",
   "extractor": {
     "name": "manual",
     "ver": "1"

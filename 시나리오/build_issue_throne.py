@@ -30,9 +30,9 @@
 
 ## 아직 안 한 것
 
-**prior 프로브 미실행.** camp 은 팩트 12개를 모델에 물어 "이미 아는 것 0/12"를 확인한 뒤
-사연을 썼다(`_note` 의 ms1). 여기 이름·수치는 전부 지어낸 것이지만 그 확인은 실호출이
-필요하므로 `prior` 는 null 로 둔다. **실행 전에 프로브를 돌려야 한다.**
+**prior 프로브는 `probe_prior_new.py` 가 돈다.** camp 은 팩트 12개를 모델에 물어 "이미 아는 것
+0/12"를 확인한 뒤 사연을 썼고(ms1), 여기도 같은 문면으로 돌려 **known 0/12** 를 받았다
+(2026-08-19, 실호출 12콜). 값은 facts 파일의 `prior` 에 들어 있다.
 
 실행: `python experiments/scenario_generalization/build_issue_throne.py`
 산출: 같은 폴더에 issue / facts / assignment 3종 + 자체 검사 출력
@@ -46,7 +46,9 @@ from collections import Counter
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parent.parent
+# 리포 최상위. 이 파일이 시나리오/ 로 옮겨져 한 칸 얕아졌다(2026-08-19) —
+# 종전 HERE.parent.parent 를 그대로 두면 리포 밖을 가리켜 modules 를 못 찾는다.
+ROOT = HERE.parent
 sys.path.insert(0, str(ROOT))
 
 from modules import assignment_gen  # noqa: E402
@@ -123,6 +125,21 @@ SOLO_PROMPTS = {"issue_id": IID, "stub": STUB, "stances": {"fixed": STANCE},
 ANCHORS = {f"fact_throne_{n:02d}": a for (n, *_rest, a) in FACTS}
 
 
+def _guard_prior(path: Path) -> None:
+    """이미 prior 가 채워진 facts 파일을 덮어쓰지 않는다 (적대적 리뷰 중대 3).
+    프로브는 실호출이다. 앵커 한 줄 고치려고 재빌드했다가 36콜 결과가 조용히 지워지면 안 된다."""
+    if not path.exists():
+        return
+    try:
+        cur = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return
+    if any((f.get("prior") or {}).get("score") is not None for f in cur.get("facts", [])):
+        raise SystemExit(
+            f"[build] {path.name} 에 prior 프로브 결과가 있다 — 덮어쓰면 실호출 결과가 사라진다. "
+            f"정말 다시 만들려면 그 파일을 먼저 옮기고 프로브를 다시 돌려라.")
+
+
 def fid(n: int) -> str:
     return f"fact_throne_{n:02d}"
 
@@ -149,7 +166,7 @@ def build_docs() -> dict:
                   f"공유 4 중 3이 오답({DECOY}) 쪽으로 기우는 함정, 미공유 favors {ANSWER} 6 : {DECOY} 2, "
                   f"미공유 전량 critical. 정답={ANSWER}(요건 1·2·4 충족, 3 미충족 = 3/4), "
                   f"{DECOY} 는 요건 3만 충족(1/4). 인명·지명·수치 전부 허구. "
-                  f"⚠ prior 프로브 미실행 — 실행 전 확인 필요."),
+                  f"prior 는 probe_prior_new.py 가 채운다 — 값이 null 이면 아직 안 돈 것이다."),
         "extractor": {"name": "manual", "ver": "1"},
         "facts": facts,
     }
@@ -225,6 +242,7 @@ def main() -> None:
         HERE / f"facts_{IID}.json": docs["facts"],
         HERE / f"assignment_{IID}.json": assign_doc,
     }
+    _guard_prior(HERE / f"facts_{IID}.json")
     for p, doc in paths.items():
         p.write_text(json.dumps(doc, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"[생성] {', '.join(p.name for p in paths)}\n")

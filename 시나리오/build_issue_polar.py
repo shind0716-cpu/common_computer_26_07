@@ -37,7 +37,7 @@ camp 계열은 **요건 N개 충족 개수**로 정답이 정해진다. 입장�
 
 ## 아직 안 한 것
 
-**prior 프로브 미실행.** 기지명·수치는 전부 지어낸 것이지만 확인은 실호출이 필요하다.
+**prior 프로브 완료** — `probe_prior_new.py`, 2026-08-19, known 0/12(실호출 12콜).
 
 실행: `python experiments/scenario_generalization/build_issue_polar.py`
 """
@@ -50,7 +50,9 @@ from collections import Counter
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parent.parent
+# 리포 최상위. 이 파일이 시나리오/ 로 옮겨져 한 칸 얕아졌다(2026-08-19) —
+# 종전 HERE.parent.parent 를 그대로 두면 리포 밖을 가리켜 modules 를 못 찾는다.
+ROOT = HERE.parent
 sys.path.insert(0, str(ROOT))
 
 IID = "issue_polar"
@@ -132,6 +134,21 @@ ASSIGN = {
 }
 
 
+def _guard_prior(path: Path) -> None:
+    """이미 prior 가 채워진 facts 파일을 덮어쓰지 않는다 (적대적 리뷰 중대 3).
+    프로브는 실호출이다. 앵커 한 줄 고치려고 재빌드했다가 36콜 결과가 조용히 지워지면 안 된다."""
+    if not path.exists():
+        return
+    try:
+        cur = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return
+    if any((f.get("prior") or {}).get("score") is not None for f in cur.get("facts", [])):
+        raise SystemExit(
+            f"[build] {path.name} 에 prior 프로브 결과가 있다 — 덮어쓰면 실호출 결과가 사라진다. "
+            f"정말 다시 만들려면 그 파일을 먼저 옮기고 프로브를 다시 돌려라.")
+
+
 def fid(n: int) -> str:
     return f"fact_polar_{n:02d}"
 
@@ -163,7 +180,7 @@ def build_docs() -> dict:
             "_note": (f"후보 초안(팀 검수 전). 불리 대칭 {PRO} 4 : {CON} 4, 중립 2, 양쪽 2. "
                       "불리한 사실을 목록 앞뒤로 교대 배치해 camp 의 순서 교락을 뺐다. "
                       "requirement·share 없음 — split_pairs 가 아니라 손배분이다. "
-                      "⚠ prior 프로브 미실행."),
+                      "prior 는 probe_prior_new.py 가 채운다 — 값이 null 이면 아직 안 돈 것이다."),
             "extractor": {"name": "manual", "ver": "1"},
             "facts": facts,
         },
@@ -231,6 +248,7 @@ def main() -> None:
     out = {HERE / f"{IID}.json": docs["issue"],
            HERE / f"facts_{IID}.json": docs["facts"],
            HERE / f"assignment_{IID}.json": docs["assignment"]}
+    _guard_prior(HERE / f"facts_{IID}.json")
     for p, d in out.items():
         p.write_text(json.dumps(d, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"[생성] {', '.join(p.name for p in out)}\n")

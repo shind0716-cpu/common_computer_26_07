@@ -36,8 +36,9 @@ polar 은 둘 다 "위험을 줄이려는" 판단이라 도덕적 무게가 한�
 
 ## 아직 안 한 것
 
-prior 프로브 미실행. 그리고 이 재료는 다른 셋보다 **사람 검토가 더 필요하다** — 팩트
-문면이 특정 집단에 대한 일반화로 읽히지 않는지 사람이 한 번 읽어야 한다.
+prior 프로브는 끝났다(2026-08-19, known 0/12). 남은 것은 **사람 검토**다 — 이 재료는 다른
+셋보다 검토가 더 필요하다. 팩트 문면이 특정 집단에 대한 일반화로 읽히지 않는지 사람이
+한 번 읽어야 한다.
 
 실행: `python experiments/scenario_generalization/build_issue_exile.py`
 """
@@ -50,7 +51,9 @@ from collections import Counter
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parent.parent
+# 리포 최상위. 이 파일이 시나리오/ 로 옮겨져 한 칸 얕아졌다(2026-08-19) —
+# 종전 HERE.parent.parent 를 그대로 두면 리포 밖을 가리켜 modules 를 못 찾는다.
+ROOT = HERE.parent
 sys.path.insert(0, str(ROOT))
 
 IID = "issue_exile"
@@ -129,6 +132,21 @@ ASSIGN = {
 }
 
 
+def _guard_prior(path: Path) -> None:
+    """이미 prior 가 채워진 facts 파일을 덮어쓰지 않는다 (적대적 리뷰 중대 3).
+    프로브는 실호출이다. 앵커 한 줄 고치려고 재빌드했다가 36콜 결과가 조용히 지워지면 안 된다."""
+    if not path.exists():
+        return
+    try:
+        cur = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return
+    if any((f.get("prior") or {}).get("score") is not None for f in cur.get("facts", [])):
+        raise SystemExit(
+            f"[build] {path.name} 에 prior 프로브 결과가 있다 — 덮어쓰면 실호출 결과가 사라진다. "
+            f"정말 다시 만들려면 그 파일을 먼저 옮기고 프로브를 다시 돌려라.")
+
+
 def fid(n: int) -> str:
     return f"fact_exile_{n:02d}"
 
@@ -161,7 +179,7 @@ def build_docs() -> dict:
                       "팩트 01(이천 명 중 서른한 명)은 의도적으로 추방 쪽에 불리한 자리에 둔다 — "
                       "추방 입장을 맡은 에이전트가 스스로 꺼내야 하는 사실이고, 이 재료로 재려는 "
                       "것이 그것이다. requirement·share 없음(손배분). "
-                      "⚠ prior 프로브 미실행 · 팩트 문면의 사람 검토 필요."),
+                      "prior 는 probe_prior_new.py 가 채운다(null 이면 미실행). 팩트 문면의 사람 검토 필요."),
             "extractor": {"name": "manual", "ver": "1"},
             "facts": facts,
         },
@@ -229,6 +247,7 @@ def main() -> None:
     out = {HERE / f"{IID}.json": docs["issue"],
            HERE / f"facts_{IID}.json": docs["facts"],
            HERE / f"assignment_{IID}.json": docs["assignment"]}
+    _guard_prior(HERE / f"facts_{IID}.json")
     for p, d in out.items():
         p.write_text(json.dumps(d, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"[생성] {', '.join(p.name for p in out)}\n")
