@@ -1,0 +1,37 @@
+$ python tools/material_lint.py --facts data/facts/facts_issue_esa.json --issue data/issues/issue_esa.json --anchors <스크래치>/anchors_empty_esa.json
+==== material_lint v0 — 시나리오 재료 검사 ====
+재료: 사실 12개 · 앵커 0개(표기 확장 적용 0개) · issue 텍스트 필드 2개(title, body)
+
+[1] 자기 적중   FAIL  0/12
+    - fact_esa_01: 앵커 없음
+    - fact_esa_02: 앵커 없음
+    - fact_esa_03: 앵커 없음
+    - fact_esa_04: 앵커 없음
+    - fact_esa_05: 앵커 없음
+    - fact_esa_06: 앵커 없음
+    - fact_esa_07: 앵커 없음
+    - fact_esa_08: 앵커 없음
+    - fact_esa_09: 앵커 없음
+    - fact_esa_10: 앵커 없음
+    - fact_esa_11: 앵커 없음
+    - fact_esa_12: 앵커 없음
+[2] 교차 오발   PASS  0건 — 검사할 앵커가 0개인 공허한 통과
+[3] 본문 누출   PASS  0건 — 검사할 앵커가 0개인 공허한 통과 (검사 필드: title, body)
+[4] 예산        PASS  사실 원문 총 288자 < 수첩 예산 500자
+[5] 태그 완비   FAIL  favors/critical/share 0/12 기입
+    - fact_esa_01: favors, share 키 없음
+    - fact_esa_02: favors, share 키 없음
+    - fact_esa_03: favors, share 키 없음
+    - fact_esa_04: favors, share 키 없음
+    - fact_esa_05: favors, share 키 없음
+    - fact_esa_06: favors, share 키 없음
+    - fact_esa_07: favors, share 키 없음
+    - fact_esa_08: favors, share 키 없음
+    - fact_esa_09: favors, share 키 없음
+    - fact_esa_10: favors, share 키 없음
+    - fact_esa_11: favors, share 키 없음
+    - fact_esa_12: favors, share 키 없음
+[6] 위치 편향   보고  favors 분포 앞절반/뒤절반 — 중립 6/6
+
+==== 결과: 실패 2개 항목 (종료 코드 1) ====
+(종료 코드 1)

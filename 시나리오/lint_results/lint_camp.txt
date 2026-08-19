@@ -1,0 +1,15 @@
+$ python tools/material_lint.py --facts data/facts/facts_issue_camp.json --issue data/issues/issue_camp.json --anchors data/facts/anchors_issue_camp.json
+==== material_lint v0 — 시나리오 재료 검사 ====
+재료: 사실 12개 · 앵커 12개(표기 확장 적용 4개) · issue 텍스트 필드 3개(title, question, body)
+
+[1] 자기 적중   PASS  12/12
+[2] 교차 오발   PASS  오발 1건 — 전부 허용 목록 처리
+    - 허용: fact_camp_01 앵커 '38[,.]?000' -> fact_camp_05 원문 "다림재의 38,000원 패키지는 평일 기준이라 주말엔 1인 51,000원이다"
+      (사유: f05 원문('다림재의 38,000원 패키지는 평일 기준이라…')이 f01의 수치 38,000원을 의도적으로 인용해 두 사실을 잇는 설계(팩트스펙의 의도적 중복) — f05 발화가 f01 앵커로도 잡히는 것은 정본 앵커의 알려진 공유 수치)
+[3] 본문 누출   PASS  0건 (검사 필드: title, question, body)
+[4] 예산        PASS  사실 원문 총 409자 < 수첩 예산 500자
+[5] 태그 완비   PASS  favors/critical/share 12/12 기입 (favors null=중립 1개: fact_camp_04)
+[6] 위치 편향   보고  favors 분포 앞절반/뒤절반 — 다림재 3/2 · 무레온 2/4 · 중립 1/0
+
+==== 결과: 통과 (종료 코드 0) ====
+(종료 코드 0)

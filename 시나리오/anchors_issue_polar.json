@@ -1,0 +1,39 @@
+{
+  "_comment": "정본 계승: 시나리오/build_issue_polar.py 의 ANCHORS(FACTS 튜플 마지막 원소)를 2026-08-19 문면 그대로 기계 추출한 사본. 정본은 빌드 스크립트이며, 불일치 발견 시 이 파일이 아니라 빌드 스크립트를 따르고 어긋남을 사용자에게 보고할 것. 형식: data/facts/anchors_issue_camp.json 과 동일({fact_id: [정규식, ...]}). 소비자: tools/material_lint.py (작업 요청 2026-08-19 전 재료 일괄 린트)",
+  "fact_polar_01": [
+    "영하\\s*52"
+  ],
+  "fact_polar_02": [
+    "혈색소"
+  ],
+  "fact_polar_03": [
+    "여섯\\s*시간"
+  ],
+  "fact_polar_04": [
+    "두\\s*팩"
+  ],
+  "fact_polar_05": [
+    "이륙\\s*직후"
+  ],
+  "fact_polar_06": [
+    "백열흘"
+  ],
+  "fact_polar_07": [
+    "흔들림"
+  ],
+  "fact_polar_08": [
+    "수련"
+  ],
+  "fact_polar_09": [
+    "열넷"
+  ],
+  "fact_polar_10": [
+    "세\\s*번째"
+  ],
+  "fact_polar_11": [
+    "설상차"
+  ],
+  "fact_polar_12": [
+    "일임"
+  ]
+}

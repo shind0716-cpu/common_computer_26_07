@@ -1,0 +1,25 @@
+$ python tools/material_lint.py --facts data/facts/facts_issue_hire_a6.json --issue data/issues/issue_hire_a6.json --anchors <스크래치>/anchors_empty_hire_a6.json
+==== material_lint v0 — 시나리오 재료 검사 ====
+재료: 사실 12개 · 앵커 0개(표기 확장 적용 0개) · issue 텍스트 필드 3개(title, question, body)
+
+[1] 자기 적중   FAIL  0/12
+    - fact_hire_01: 앵커 없음
+    - fact_hire_02: 앵커 없음
+    - fact_hire_03: 앵커 없음
+    - fact_hire_04: 앵커 없음
+    - fact_hire_05: 앵커 없음
+    - fact_hire_06: 앵커 없음
+    - fact_hire_07: 앵커 없음
+    - fact_hire_08: 앵커 없음
+    - fact_hire_09: 앵커 없음
+    - fact_hire_10: 앵커 없음
+    - fact_hire_11: 앵커 없음
+    - fact_hire_12: 앵커 없음
+[2] 교차 오발   PASS  0건 — 검사할 앵커가 0개인 공허한 통과
+[3] 본문 누출   PASS  0건 — 검사할 앵커가 0개인 공허한 통과 (검사 필드: title, question, body)
+[4] 예산        PASS  사실 원문 총 427자 < 수첩 예산 500자
+[5] 태그 완비   PASS  favors/critical/share 12/12 기입 (favors null=중립 1개: fact_hire_04)
+[6] 위치 편향   보고  favors 분포 앞절반/뒤절반 — 유지완 2/4 · 한도영 3/2 · 중립 1/0
+
+==== 결과: 실패 1개 항목 (종료 코드 1) ====
+(종료 코드 1)
