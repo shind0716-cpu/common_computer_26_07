@@ -1,0 +1,206 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "manual(session-claude-draft, 팀 검수 전 후보 지위)",
+  "created_at": "2026-08-20T01:56:07.246976+00:00",
+  "issue_id": "issue_outreach",
+  "_note": "12팩트. 관점 4분할(관점당 3). 불리 pro:con 대칭. _unfavorable_to/_perspective는 스키마 밖 보조 필드.",
+  "extractor": {
+    "model": "manual",
+    "temperature": 0,
+    "prompt_ver": "scenario-cand-v5-12"
+  },
+  "facts": [
+    {
+      "fact_id": "fact_outreach_01",
+      "text": "류원은 지원 담당자에게 방문을 원치 않는다고 밝혔다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "당사자·자기결정"
+    },
+    {
+      "fact_id": "fact_outreach_02",
+      "text": "류원은 최근 상담 연락에 한 차례 자발적으로 응답한 적이 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "당사자·자기결정"
+    },
+    {
+      "fact_id": "fact_outreach_03",
+      "text": "류원은 성년이며 스스로 결정할 능력에 제한이 없다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "당사자·자기결정"
+    },
+    {
+      "fact_id": "fact_outreach_04",
+      "text": "류원의 가족은 즉각적인 방문을 강하게 요청하고 있다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "가족·주변"
+    },
+    {
+      "fact_id": "fact_outreach_05",
+      "text": "이웃이 최근 인기척이 없다고 여러 차례 알려 왔다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "가족·주변"
+    },
+    {
+      "fact_id": "fact_outreach_06",
+      "text": "가족은 류원과 오랫동안 직접 연락이 닿지 않는 상태다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "가족·주변"
+    },
+    {
+      "fact_id": "fact_outreach_07",
+      "text": "지원 지침은 본인 동의를 개입의 원칙적 전제로 둔다",
+      "tags": [
+        "condition"
+      ],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": null,
+      "_perspective": "지원·행정"
+    },
+    {
+      "fact_id": "fact_outreach_08",
+      "text": "동의 없는 방문은 향후 신뢰 형성을 어렵게 한다는 현장 의견이 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "지원·행정"
+    },
+    {
+      "fact_id": "fact_outreach_09",
+      "text": "지원 절차상 개입 시점이 늦으면 이번 지원 대상에서 제외된다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "지원·행정"
+    },
+    {
+      "fact_id": "fact_outreach_10",
+      "text": "지침에는 위급 징후가 있으면 동의 없이도 방문할 수 있는 예외가 있다",
+      "tags": [
+        "exception"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "both",
+      "_perspective": "위험·안전"
+    },
+    {
+      "fact_id": "fact_outreach_11",
+      "text": "현재까지 확인된 정보로는 급박한 위험 징후는 보이지 않는다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "위험·안전"
+    },
+    {
+      "fact_id": "fact_outreach_12",
+      "text": "동의 없는 접촉 대신 단계적 접촉이라는 완충 경로가 있다",
+      "tags": [
+        "exception"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "위험·안전"
+    }
+  ]
+}
