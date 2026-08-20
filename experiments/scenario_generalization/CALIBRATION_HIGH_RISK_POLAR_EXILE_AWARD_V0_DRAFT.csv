@@ -1,0 +1,31 @@
+case_id,issue_id,fact_id,text,expected_preservation,relation_engaged,mention_mode,distortion_flags,chain_expectation,reason,dataset_role
+polar_001,issue_polar,fact_polar_01,활주로는 -52°C로 항공유 결빙 허용 한계를 벗어났다,faithful,True,asserted,,,값과 한계 비교를 보존,independent_calibration_draft
+polar_002,issue_polar,fact_polar_01,활주로가 영하 52도지만 항공유 결빙 한계 안이다,contradicted,True,asserted,polarity_flip,,숫자는 같지만 한계 관계 반전,independent_calibration_draft
+polar_003,issue_polar,fact_polar_02,환자의 헤모글로빈은 사흘 사이 이전의 절반이 됐다,faithful,True,asserted,,,동의어와 기간·비율 보존,independent_calibration_draft
+polar_004,issue_polar,fact_polar_03,가장 가까운 대체 공항까지 편도 여섯 시간이 걸린다,partial,True,asserted,compound_slot_loss,,중간 급유지 부재 누락,independent_calibration_draft
+polar_005,issue_polar,fact_polar_05,지난겨울 동일 기종이 비슷한 상황에서 뜨자마자 회항한 전례가 있으니 이번 비행도 반드시 실패한다,faithful,True,asserted,historical_case_to_universal,,원 사례 보존과 과잉 결론을 별도 기록,independent_calibration_draft
+polar_006,issue_polar,fact_polar_06,다음 정기 보급기는 110일 뒤지만 비정기 구조편 여부는 알 수 없다,faithful,True,asserted,,,정기편 범위를 보존,independent_calibration_draft
+polar_007,issue_polar,fact_polar_07,의무관은 이동 충격이 출혈을 악화할 우려가 있다고 소견에 적었다,faithful,True,attributed,,,출처와 가능성 보존,independent_calibration_draft
+polar_008,issue_polar,fact_polar_07,흔들림은 출혈을 반드시 키운다,partial,True,asserted,probability_to_certainty;source_dropped,,관계 일부와 양태·출처 왜곡,independent_calibration_draft
+polar_009,issue_polar,fact_polar_11,200km 떨어진 이웃 기지에 외과의가 있지만 왕래 수단은 설상차뿐이다,faithful,True,asserted,,,외과의·거리·유일 수단 보존,independent_calibration_draft
+polar_010,issue_polar,fact_polar_12,본부가 후송을 승인했다,absent,True,asserted,authority_overreach,,위임·비지시를 보존하지 않고 강한 승인으로 대체,independent_calibration_draft
+exile_001,issue_exile,fact_exile_01,수사 명단에 이름이 오른 사람은 정착민 2천 명 중 31명이며 유죄 여부는 확정되지 않았다,faithful,True,asserted,,,부분-전체와 증거 경계 보존,independent_calibration_draft
+exile_002,issue_exile,fact_exile_01,정착민 2천 명이 모두 검은 갈대 조직원이다,contradicted,True,asserted,group_scope_expansion,,하위집단을 전체로 확대,independent_calibration_draft
+exile_003,issue_exile,fact_exile_02,최근 1년 밀수 적발은 정착 전의 아홉 배였지만 원인은 확정되지 않았다,faithful,True,asserted,,,적발 비교와 인과 경계 보존,independent_calibration_draft
+exile_004,issue_exile,fact_exile_02,정착민 유입 때문에 밀수가 아홉 배 늘었다,partial,True,asserted,correlation_to_causation,,배수는 남고 적발/인과가 왜곡,independent_calibration_draft
+exile_005,issue_exile,fact_exile_06,경비대는 정착지 진입을 두 번 저지당했지만 누가 막았는지는 알려지지 않았다,faithful,True,asserted,,,수동태와 actor unknown 보존,independent_calibration_draft
+exile_006,issue_exile,fact_exile_06,정착민 전원이 두 차례 경비대 진입을 막았다,partial,True,asserted,unknown_actor_filled;group_scope_expansion,,횟수·사건은 남고 주어 창작,independent_calibration_draft
+exile_007,issue_exile,fact_exile_08,갈취 피해를 신고한 62명 가운데 19명이 이후 폐업했으나 직접 원인은 확인되지 않았다,faithful,True,asserted,,,부분집합과 인과 경계 보존,independent_calibration_draft
+exile_008,issue_exile,fact_exile_08,정착민의 갈취 때문에 상인 19명이 문을 닫았다,partial,True,asserted,victim_status_to_cause;group_scope_expansion,,폐업 수만 남고 가해자·인과 창작,independent_calibration_draft
+exile_009,issue_exile,fact_exile_10,시의회는 11석이다,partial,True,asserted,compound_slot_loss,,단순 과반 규칙 누락,independent_calibration_draft
+exile_010,issue_exile,fact_exile_12,조직 관련자만 따로 송환하는 조항은 이미 여러 번 활용됐다,contradicted,True,asserted,unused_to_used,,조항 존재는 남지만 사용 이력 반전,independent_calibration_draft
+award_001,issue_award,fact_award_05,석호의 계단 신고서에는 자동 생성 도구를 사용하지 않았다고 적혀 있다,faithful,True,asserted,,lagoon_disqualification=unknown,신고 내용만 보존,independent_calibration_draft
+award_002,issue_award,fact_award_05,신고서가 도구 사용을 부인했으므로 실제로도 도구를 쓰지 않았다,faithful,True,asserted,declaration_use_conflation,lagoon_disqualification=unknown,원 신고 보존과 실제 사용 추론 분리,independent_calibration_draft
+award_003,issue_award,fact_award_06,대표는 인터뷰에서 자동 생성 도구로 배경 초안을 만들어 참고했다고 말했다,faithful,True,attributed,,lagoon_disqualification=unknown,출처·사용 범위 보존,independent_calibration_draft
+award_004,issue_award,fact_award_06,석호의 계단 전체는 자동 생성 도구가 만들었다,partial,True,asserted,use_scope_expansion;source_dropped,lagoon_disqualification=unknown,참고용 배경 초안을 작품 전체로 확대,independent_calibration_draft
+award_005,issue_award,fact_award_08,사무국은 종이 낚시의 부문 이관을 알렸고 후보 목록은 그전에 인쇄됐다,faithful,True,asserted,,paper_category=blocked,old 정본의 방향 없는 이관을 그대로 보존,independent_calibration_draft
+award_006,issue_award,fact_award_08,종이 낚시는 올해의 작품에서 신인 창작 부문으로 최종 이관됐다,partial,True,asserted,transfer_direction_invented,paper_category=blocked,old 정본에 없는 방향·효력 창작,independent_calibration_draft
+award_007,issue_award,fact_award_09,밤길 안내인은 연출 예비 점수에서 세 작품 중 유일하게 만점이었다,faithful,True,asserted,,night_direction=preliminary_evidence,예비 단계 보존,independent_calibration_draft
+award_008,issue_award,fact_award_09,밤길 안내인은 최종 연출 심사에서 유일 만점으로 우승했다,partial,True,asserted,preliminary_to_final,night_direction=unsupported,예비를 최종으로 승격,independent_calibration_draft
+award_009,issue_award,fact_award_11,밤길 안내인은 출시 후 네 달 동안 치명 결함 보고가 0건이었다,faithful,True,asserted,,night_completeness=proxy,보고 부재의 기간·대상 보존,independent_calibration_draft
+award_010,issue_award,fact_award_11,밤길 안내인에는 치명 결함이 하나도 없으므로 완성도 1위다,partial,True,asserted,no_report_to_no_defect;proxy_to_official_score,night_completeness=unsupported,보고 없음→결함 없음→항목 승리로 이중 확대,independent_calibration_draft

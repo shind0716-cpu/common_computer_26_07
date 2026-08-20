@@ -1,0 +1,423 @@
+{
+  "issue_id": "issue_throne_v2",
+  "spec_id": "throne-semantic-detection",
+  "spec_version": "0.1",
+  "material_sha256": "a53cccd5f2db47247eb96d91210f00de0c6ccbc90e614261c43cafb69960b932",
+  "calibration_version": "cal-0.1",
+  "lexical_is_primary": false,
+  "_note": "시나리오가 소유하는 의미 판독 계약. lexical_probes 는 후보 span 탐색·누출 검사용 보조지표이며 의미 보존 판정에 쓰지 않는다. 정본: THRONE_CANONICAL_DECISIONS.md (요한 승인 2026-08-20, A/A/A).",
+  "candidates": [
+    "아르넬",
+    "베스카"
+  ],
+  "requirements": {
+    "1": {
+      "아르넬": {
+        "satisfied": true,
+        "evidence": [
+          "fact_throne_v2_05",
+          "fact_throne_v2_06"
+        ],
+        "note": "서약서 유일 등재 + 베스카 적자 표기 취소"
+      },
+      "베스카": {
+        "satisfied": false,
+        "evidence": [
+          "fact_throne_v2_05",
+          "fact_throne_v2_06"
+        ],
+        "note": "서약서에 이름 없음 · 적자 표기 취소"
+      }
+    },
+    "2": {
+      "아르넬": {
+        "satisfied": true,
+        "evidence": [
+          "fact_throne_v2_07"
+        ],
+        "note": "실제 21세"
+      },
+      "베스카": {
+        "satisfied": false,
+        "evidence": [
+          "fact_throne_v2_08"
+        ],
+        "note": "이듬해 파종제 전까지 미성년"
+      }
+    },
+    "3": {
+      "아르넬": {
+        "satisfied": true,
+        "evidence": [
+          "fact_throne_v2_10"
+        ],
+        "note": "제후 7명 서명 접수"
+      },
+      "베스카": {
+        "satisfied": true,
+        "evidence": [
+          "fact_throne_v2_09"
+        ],
+        "note": "제후 8명 서명 접수"
+      }
+    },
+    "4": {
+      "아르넬": {
+        "satisfied": true,
+        "evidence": [
+          "fact_throne_v2_04",
+          "fact_throne_v2_12"
+        ],
+        "note": "자격 인정 확인서 + 파문 명부 부재"
+      },
+      "베스카": {
+        "satisfied": false,
+        "evidence": [
+          "fact_throne_v2_11"
+        ],
+        "note": "성별식 자격 정지"
+      }
+    }
+  },
+  "facts": {
+    "fact_throne_v2_01": {
+      "proposition": "베스카는 선왕의 유일한 친딸로 궁정 명부에 올라 있다",
+      "slots": {
+        "subject": "베스카",
+        "relation": "선왕의 친딸로 등재",
+        "qualifier": "유일",
+        "source": "궁정 명부",
+        "polarity": "positive",
+        "modality": "recorded"
+      },
+      "required_slots": [
+        "subject",
+        "relation",
+        "qualifier",
+        "source"
+      ],
+      "accepted_paraphrase": [
+        "친딸/친자녀/딸 로 표기 변형",
+        "명부/기록부 로 출처 표현 변형"
+      ],
+      "contradiction_policy": [
+        "유일성을 빼면 partial",
+        "아르넬을 친딸로 두면 wrong_subject"
+      ],
+      "lexical_probes": [
+        "친딸"
+      ],
+      "note": "「선왕의 딸」만 있으면 유일성과 명부 출처가 빠져 partial 이다."
+    },
+    "fact_throne_v2_02": {
+      "proposition": "궁정 연대기는 베스카를 열아홉 살, 아르넬을 열여섯 살로 적었다",
+      "slots": {
+        "subject": "궁정 연대기",
+        "relation": "두 후보의 나이 기재",
+        "value_a": "베스카 19",
+        "value_b": "아르넬 16",
+        "unit": "세",
+        "polarity": "positive",
+        "modality": "recorded"
+      },
+      "required_slots": [
+        "subject",
+        "value_a",
+        "value_b"
+      ],
+      "accepted_paraphrase": [
+        "열아홉/19, 열여섯/16 숫자 표기 변형"
+      ],
+      "contradiction_policy": [
+        "fact_07 의 실제 21세로 대체하면 wrong_value",
+        "한 쌍만 있으면 partial"
+      ],
+      "lexical_probes": [
+        "열여섯"
+      ],
+      "atomicity": "compound",
+      "note": "실제 나이 21세는 fact_07 이지 이 팩트의 대체물이 아니다."
+    },
+    "fact_throne_v2_03": {
+      "proposition": "아르넬이 제후들에게 보낸 서신이 두 달째 회신을 받지 못했다는 말이 돈다",
+      "slots": {
+        "subject": "아르넬의 서신",
+        "relation": "회신 없음",
+        "duration": "두 달",
+        "polarity": "negative",
+        "modality": "rumor"
+      },
+      "required_slots": [
+        "subject",
+        "relation",
+        "duration",
+        "modality"
+      ],
+      "accepted_paraphrase": [
+        "두 달/2개월",
+        "소문·풍문·말이 돈다 로 양태 유지"
+      ],
+      "contradiction_policy": [
+        "「제후들이 답하지 않았다」로 확정하면 modality_strengthening",
+        "지지 부족의 원인으로 쓰면 unsupported_causal_link"
+      ],
+      "lexical_probes": [
+        "회신"
+      ],
+      "note": "소문 양태를 잃으면 필수 슬롯 미충족이다."
+    },
+    "fact_throne_v2_04": {
+      "proposition": "대주교청은 아르넬에게 성별식 자격을 인정한다는 확인서를 발급했다",
+      "slots": {
+        "subject": "대주교청",
+        "object": "아르넬",
+        "relation": "성별식 자격 인정 확인서 발급",
+        "polarity": "positive",
+        "modality": "documented"
+      },
+      "required_slots": [
+        "subject",
+        "object",
+        "relation",
+        "polarity"
+      ],
+      "accepted_paraphrase": [
+        "확인서/증서/문서 발급",
+        "자격 인정/자격 확인"
+      ],
+      "contradiction_policy": [
+        "두 후보 모두에게 발급했다고 하면 wrong_object",
+        "거부하지 않았다 수준으로 낮추면 modality_weakening"
+      ],
+      "lexical_probes": [
+        "확인서"
+      ],
+      "note": "v2 변경. v1 은 「어느 쪽에도 거부를 통보하지 않았다」였고 그것은 긍정 인정과 동치가 아니었다 — 그 혼동을 없애려고 바꾼 팩트다."
+    },
+    "fact_throne_v2_05": {
+      "proposition": "선왕의 계승 서약서에는 아르넬의 이름만 인장과 함께 올라 있다",
+      "slots": {
+        "subject": "선왕의 계승 서약서",
+        "object": "아르넬",
+        "relation": "유일 등재",
+        "authentication": "선왕의 인장",
+        "polarity": "positive",
+        "modality": "documented"
+      },
+      "required_slots": [
+        "subject",
+        "object",
+        "relation",
+        "authentication"
+      ],
+      "accepted_paraphrase": [
+        "인장/옥새/봉인된 인장",
+        "유일하게/오직/만"
+      ],
+      "contradiction_policy": [
+        "「선왕이 아르넬을 지정했다」는 추론이지 서약서 사실이 아니다 — 보존은 인정하되 unsupported_causal_link 를 함께 단다",
+        "베스카 이름도 있다고 하면 polarity_flip"
+      ],
+      "lexical_probes": [
+        "서약서"
+      ]
+    },
+    "fact_throne_v2_06": {
+      "proposition": "베스카는 생모와 선왕이 정식으로 혼인하기 전에 태어난 소생으로 기록되어, 베스카의 적자 표기가 취소됐다",
+      "slots": {
+        "subject": "베스카",
+        "context": "생모와 선왕의 정식 혼인 전 출생",
+        "relation": "적자 표기 취소",
+        "polarity": "negative",
+        "modality": "recorded"
+      },
+      "required_slots": [
+        "subject",
+        "context",
+        "relation"
+      ],
+      "accepted_paraphrase": [
+        "혼외 출생/혼인 전 소생",
+        "적자 표기 취소/적자 지위 상실"
+      ],
+      "contradiction_policy": [
+        "취소 대상을 생모로 읽으면 wrong_subject — v1 의 모호성이 바로 이것이었다",
+        "아르넬의 지위로 옮기면 wrong_subject"
+      ],
+      "lexical_probes": [
+        "적자\\s*표기"
+      ],
+      "note": "v2 변경. v1 문면은 주어가 모호해 r0 9런 전부 blocked 였다."
+    },
+    "fact_throne_v2_07": {
+      "proposition": "아르넬의 세례 기록은 출생을 다섯 해 앞서 적어 실제 나이는 스물하나다",
+      "slots": {
+        "subject": "아르넬",
+        "source": "세례 기록",
+        "recorded_error": "출생 5년 앞당김",
+        "corrected_value": "21",
+        "unit": "세",
+        "polarity": "positive",
+        "modality": "recorded"
+      },
+      "required_slots": [
+        "subject",
+        "source",
+        "recorded_error",
+        "corrected_value"
+      ],
+      "accepted_paraphrase": [
+        "스물하나/21",
+        "다섯 해/5년"
+      ],
+      "contradiction_policy": [
+        "「아르넬은 21세」만 있으면 오류 슬롯이 빠져 partial",
+        "16세로 되돌리면 wrong_value"
+      ],
+      "lexical_probes": [
+        "스물하나"
+      ]
+    },
+    "fact_throne_v2_08": {
+      "proposition": "베스카가 성년인 스무 살이 되는 것은 이듬해 파종제 이후다",
+      "slots": {
+        "subject": "베스카",
+        "threshold": "20",
+        "unit": "세",
+        "relation": "성년 도달",
+        "time": "이듬해 파종제 이후",
+        "implied": "현재 미성년",
+        "polarity": "positive",
+        "modality": "asserted"
+      },
+      "required_slots": [
+        "subject",
+        "threshold",
+        "relation",
+        "time"
+      ],
+      "accepted_paraphrase": [
+        "스무 살/20세",
+        "이듬해/내년"
+      ],
+      "contradiction_policy": [
+        "「현재 19세」만 있으면 시점 슬롯이 빠져 partial",
+        "이미 성년이라 하면 polarity_flip"
+      ],
+      "lexical_probes": [
+        "파종제"
+      ]
+    },
+    "fact_throne_v2_09": {
+      "proposition": "베스카를 지지한 제후 여덟의 서명이 봉인되어 대주교청에 접수됐다",
+      "slots": {
+        "beneficiary": "베스카",
+        "supporters": "제후 8",
+        "artifact": "서명",
+        "state": "봉인·대주교청 접수 완료",
+        "polarity": "positive",
+        "modality": "documented"
+      },
+      "required_slots": [
+        "beneficiary",
+        "supporters",
+        "artifact",
+        "state"
+      ],
+      "accepted_paraphrase": [
+        "여덟/8명",
+        "접수/제출"
+      ],
+      "contradiction_policy": [
+        "봉인을 강압·담합의 증거로 읽으면 unsupported_causal_link",
+        "수를 바꾸면 wrong_value"
+      ],
+      "lexical_probes": [
+        "여덟"
+      ]
+    },
+    "fact_throne_v2_10": {
+      "proposition": "아르넬을 지지한 제후 일곱의 서명이 봉인되어 대주교청에 접수됐다",
+      "slots": {
+        "beneficiary": "아르넬",
+        "supporters": "제후 7",
+        "artifact": "서명",
+        "state": "봉인·대주교청 접수 완료",
+        "threshold_status": "정족수 충족",
+        "polarity": "positive",
+        "modality": "documented"
+      },
+      "required_slots": [
+        "beneficiary",
+        "supporters",
+        "artifact",
+        "state"
+      ],
+      "accepted_paraphrase": [
+        "일곱/7명",
+        "접수/제출"
+      ],
+      "contradiction_policy": [
+        "정족수 미달로 쓰면 polarity_flip — v1 의 사실이 그것이었다",
+        "수를 넷으로 되돌리면 wrong_value"
+      ],
+      "lexical_probes": [
+        "아르넬을\\s*지지한"
+      ],
+      "note": "v2 변경. v1 은 「넷뿐이라 정족수 일곱에 못 미친다」였다. 본문에 「일곱 이상의 서명」이 있어 숫자 계열 probe 는 누출된다."
+    },
+    "fact_throne_v2_11": {
+      "proposition": "베스카는 세 해 전 이단 재판에 연루돼 성별식 자격이 정지됐다",
+      "slots": {
+        "subject": "베스카",
+        "event": "이단 재판 연루",
+        "time": "세 해 전",
+        "consequence": "성별식 자격 정지",
+        "polarity": "negative",
+        "modality": "asserted"
+      },
+      "required_slots": [
+        "subject",
+        "event",
+        "time",
+        "consequence"
+      ],
+      "accepted_paraphrase": [
+        "세 해 전/3년 전",
+        "정지/효력 정지"
+      ],
+      "contradiction_policy": [
+        "자격 정지를 파문과 동치로 두면 condition_relabeling",
+        "이미 해제됐다고 하면 modality_weakening"
+      ],
+      "lexical_probes": [
+        "이단"
+      ]
+    },
+    "fact_throne_v2_12": {
+      "proposition": "아르넬의 이름은 대주교청 파문 명부 어디에도 없다",
+      "slots": {
+        "subject": "아르넬",
+        "source": "대주교청 파문 명부",
+        "relation": "등재",
+        "polarity": "negative",
+        "modality": "recorded"
+      },
+      "required_slots": [
+        "subject",
+        "source",
+        "polarity"
+      ],
+      "accepted_paraphrase": [
+        "없다/올라 있지 않다/부재"
+      ],
+      "contradiction_policy": [
+        "명부 부재를 성별식 자격의 긍정 인정으로 강화하면 modality_strengthening — 조건④의 근거는 fact_04 다",
+        "이름이 있다고 하면 polarity_flip"
+      ],
+      "lexical_probes": [
+        "파문\\s*명부"
+      ]
+    }
+  }
+}

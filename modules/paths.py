@@ -51,3 +51,18 @@ def raw_calls(filename: str) -> Path:
 def recall_probe_pre_mapping(issue_id: str, run_id: str) -> Path:
     """팩트 매핑 승인 전 recall 자기보고 파생물. 계약 judgment와 분리해 둔다."""
     return DATA / "recall_probe" / f"recall_probe_pre_mapping_{issue_id}_{run_id}.json"
+
+
+def detection_spec(issue_id: str) -> Path:
+    """시나리오별 의미 판독 명세. 재료가 소유하고 analyzer 는 소비만 한다.
+
+    2026-08-20 추가. camp 식 「대표 문자열 하나 = 팩트 생존」 계약이 throne 에 안 맞는다는
+    감사 결과에서 나왔다 — 시나리오마다 의미 골격이 달라 판독 규칙을 공통 analyzer 가
+    소유하면 시나리오 차이를 재는 게 아니라 지운다. 공통 층은 로딩·검증·기록만 맡는다."""
+    return DATA / "detection_specs" / f"{issue_id}.json"
+
+
+def calibration_set(issue_id: str) -> Path:
+    """판독 명세의 독립 교정 사례. 관측 출력과 계보를 갈라 두려고 파일을 나눈다 —
+    같은 출력으로 규칙을 만들고 같은 출력에서 성능을 주장하는 것을 막는다."""
+    return DATA / "detection_specs" / f"calibration_{issue_id}.json"

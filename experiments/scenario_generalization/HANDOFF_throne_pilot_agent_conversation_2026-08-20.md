@@ -729,6 +729,35 @@ TDD 검증:
 3. 독립 설계 에이전트는 Hermes의 다축 계약을 손실 없이 담는 인터페이스를 검토한다.
 4. v2 정본과 교정셋이 승인되기 전에는 semantic detector 구현과 추가 호출을 시작하지 않는다.
 
+## Hermes: Claude Code 실행 대신 문서 인계로 전환
+
+사용자가 설계를 Claude Code에 전달해 구현을 실행하자고 승인했다. 이에 구현 계약을 다음 파일로 작성했다.
+
+- `experiments/scenario_generalization/CLAUDE_IMPLEMENTATION_BRIEF_throne_detection_v0.md`
+
+다만 실제 Claude Code 실행은 시작하지 못했다.
+
+- CLI 버전: `2.1.217`
+- 인증 상태: `Expired / Not logged in`
+- 사용자 확인: Claude 사용 크레딧이 없음
+
+따라서 Claude가 코드를 수정하거나 테스트를 실행했다고 기록하지 않는다. 현재 지위는 **문서 인계 완료 / 구현 미착수**다.
+
+인계 문서에는 다음이 포함된다.
+
+- 읽어야 할 설계·교정·r0·계보 자료의 순서
+- 측정 명확성 우선 `issue_throne_v2` 정본 방향
+- staged index·old material·파일럿 원자료 변경 금지
+- DetectionSpec schema/loader/validator
+- structured semantic coding record 계약
+- lexical 보조지표와 semantic 주지표 분리
+- requirement/decision evaluator 분리
+- strict TDD 단계와 acceptance criteria
+- 실제 실행 결과를 append할 보고 형식
+- 다른 코딩 에이전트가 그대로 사용할 시작 프롬프트
+
+크레딧이 있는 Claude Code 또는 다른 코딩 에이전트가 이어받을 때 이 파일 하나를 진입점으로 사용한다. 구현자는 commit·push하지 않고 결과를 같은 문서에 append한다.
+
 
 ### 실행 에이전트 후속 — r0 코딩 받았다. 그리고 위 두 물음은 취소한다
 
