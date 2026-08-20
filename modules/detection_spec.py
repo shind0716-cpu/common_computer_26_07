@@ -69,7 +69,7 @@ DISTORTION_FLAGS = (
 SEMANTIC_JUDGE_KINDS = ("human", "independent-judge", "adjudicated")
 
 REQUIRED_RECORD_FIELDS = (
-    "issue_id", "fact_id", "preservation_status", "mention_mode",
+    "issue_id", "spec_version", "fact_id", "preservation_status", "mention_mode",
     "relation_engaged", "provenance_class",
 )
 
@@ -153,8 +153,21 @@ def load_calibration(issue_id: str) -> CalibrationSet:
                           cases=doc["cases"])
 
 
-def read_coding_csv(path) -> list:
-    """구조화된 사람/독립판정 코딩 기록을 읽는다. 검증은 validate_record 가 따로 한다."""
+def read_coding_csv(path, *, issue_id: str, spec_version: str) -> list:
+    """구조화된 사람/독립판정 코딩 기록을 읽는다. 검증은 validate_record 가 따로 한다.
+
+    `issue_id`·`spec_version` 은 **키워드 필수**다. 기본값을 두지 않는 이유가 있다.
+
+    첫 실물(2026-08-20 r0 코딩 CSV)에는 두 칸이 아예 없다. 사람이 v1 재료를 보고 손으로
+    적은 표이고 그때는 명세가 없었다. 그 파일을 읽히게 하려고 검증을 느슨하게 하면
+    **판본 표시 없는 레코드가 아무 명세로나 통과한다** — 처음에 그렇게 짰다가 되돌렸다.
+
+    그래서 읽는 쪽이 "이 표는 어느 재료·어느 명세의 것인가"를 선언하게 한다. 추측하지
+    않는다. 명세가 없던 시절 자료라면 `spec_version="pre-spec"` 처럼 그 사실을 적으면 되고,
+    그러면 어떤 명세로 검증해도 버전 불일치로 막힌다. 그것이 맞는 동작이다.
+
+    파일에 이미 값이 있는데 인자와 다르면 죽는다 — 조용히 덮어쓰지 않는다.
+    """
     p = Path(path)
     if not p.exists():
         raise SpecError(f"코딩 기록 없음: {p}")
@@ -162,7 +175,14 @@ def read_coding_csv(path) -> list:
         rows = list(csv.DictReader(fp))
     if not rows:
         raise SpecError(f"코딩 기록이 비었다: {p}")
-    for r in rows:
+    for i, r in enumerate(rows, 1):
+        for key, declared in (("issue_id", issue_id), ("spec_version", spec_version)):
+            have = (r.get(key) or "").strip()
+            if have and have != declared:
+                raise SpecError(
+                    f"{p.name}:{i} {key} 충돌 — 파일 {have!r} / 선언 {declared!r}. "
+                    f"덮어쓰지 않는다.")
+            r[key] = declared
         r["relation_engaged"] = _as_bool(r.get("relation_engaged"))
         r["lexical_hit"] = _as_bool(r.get("lexical_hit"))
         flags = (r.get("distortion_flags") or "").strip()
@@ -187,9 +207,10 @@ def validate_record(spec: DetectionSpec, record: dict) -> None:
     if record["issue_id"] != spec.issue_id:
         raise SpecError(f"이슈 불일치: 레코드 {record['issue_id']} / 명세 {spec.issue_id}")
 
-    ver = record.get("spec_version")
-    if ver is not None and ver != spec.spec_version:
-        raise SpecError(f"명세 버전 불일치: 레코드 {ver} / 명세 {spec.spec_version}")
+    # 버전은 필수다. 「없으면 통과」로 두면 판본 표시 없는 레코드가 아무 명세로나 통과한다.
+    ver = record["spec_version"]
+    if ver != spec.spec_version:
+        raise SpecError(f"명세 버전 불일치: 레코드 {ver!r} / 명세 {spec.spec_version!r}")
 
     if record["fact_id"] not in spec.facts:
         raise SpecError(

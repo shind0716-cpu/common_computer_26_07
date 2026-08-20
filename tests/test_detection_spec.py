@@ -6,6 +6,7 @@
 
 import copy
 import json
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -151,27 +152,76 @@ class RecordValidationTests(unittest.TestCase):
 class CodingRecordFileTests(unittest.TestCase):
     """기존 r0 코딩 CSV 를 읽어 검증할 수 있어야 한다 (브리프 §5D).
 
-    그 CSV 는 **v1 재료** 기준이므로 v2 spec 으로 검증하면 fact_id 불일치로 실패해야 한다.
-    이것이 판본 혼동을 막는 장치다.
+    **이 절의 테스트 이름은 실제 거부 사유와 같아야 한다.** 처음에는
+    `test_v1_records_rejected_against_v2_spec` 하나로 두고 "판본 격리가 된다"고 읽었는데,
+    실제 거부 사유는 CSV 에 `issue_id` 칼럼이 없다는 것이었다 — fact_id 검사에 닿지도
+    못했다. 통과하는데 무엇이 통과했는지 모르는 테스트라 아래처럼 갈랐다.
     """
 
     CSV = Path("experiments/scenario_generalization/THRONE_R0_SEMANTIC_CODING_DRAFT.csv")
+    # 이 표는 v1 재료를 보고 손으로 적었고, 그때는 명세가 없었다.
+    V1_DECL = {"issue_id": "issue_throne", "spec_version": "pre-spec"}
+
+    def rows(self):
+        return ds.read_coding_csv(self.CSV, **self.V1_DECL)
 
     def test_v1_coding_csv_is_readable(self):
-        rows = ds.read_coding_csv(self.CSV)
+        rows = self.rows()
         self.assertEqual(len(rows), 108)
         self.assertEqual({r["text_role"] for r in rows}, {"essay_r0"})
 
-    def test_v1_records_rejected_against_v2_spec(self):
-        rows = ds.read_coding_csv(self.CSV)
+    def test_reader_requires_explicit_version_declaration(self):
+        """기본값이 있으면 판본 없는 표가 아무 명세로나 통과한다."""
+        with self.assertRaises(TypeError):
+            ds.read_coding_csv(self.CSV)
+
+    def test_reader_stamps_declared_identity(self):
+        r = self.rows()[0]
+        self.assertEqual(r["issue_id"], "issue_throne")
+        self.assertEqual(r["spec_version"], "pre-spec")
+
+    def test_v1_records_rejected_by_issue_mismatch(self):
+        """진짜 거부 사유. v1 표를 v2 명세에 대면 이슈가 다르다."""
         spec = ds.load(ISSUE)
+        with self.assertRaises(ds.SpecError) as cm:
+            ds.validate_record(spec, self.rows()[0])
+        self.assertIn("이슈 불일치", str(cm.exception))
+
+    def test_v1_fact_id_rejected_even_when_issue_is_stamped_v2(self):
+        """fact_id 판본 격리를 **따로** 잰다. 이슈를 v2 로 찍어도 v1 fact_id 는 막혀야 한다."""
+        spec = ds.load(ISSUE)
+        rec = dict(self.rows()[0], issue_id=ISSUE, spec_version=spec.spec_version,
+                   judge_kind="human")
+        self.assertTrue(rec["fact_id"].startswith("fact_throne_0"))   # v1 이름
+        with self.assertRaises(ds.SpecError) as cm:
+            ds.validate_record(spec, rec)
+        self.assertIn("명세에 없는 fact_id", str(cm.exception))
+
+    def test_missing_spec_version_fails_closed(self):
+        """「없으면 통과」 구멍이 다시 생기지 않게 못 박는다."""
+        spec = ds.load(ISSUE)
+        rec = base_record()
+        del rec["spec_version"]
         with self.assertRaises(ds.SpecError):
-            ds.validate_record(spec, rows[0])
+            ds.validate_record(spec, rec)
+
+    def test_reader_refuses_to_overwrite_conflicting_identity(self):
+        """파일에 이미 판본이 적혀 있는데 다르게 선언하면 죽는다 — 조용히 덮지 않는다."""
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d) / "coding.csv"
+            p.write_text(
+                "issue_id,spec_version,fact_id,preservation_status,mention_mode,"
+                "relation_engaged,provenance_class\n"
+                "issue_throne,pre-spec,fact_throne_01,faithful,asserted,true,obs\n",
+                encoding="utf-8")
+            ds.read_coding_csv(p, issue_id="issue_throne", spec_version="pre-spec")  # 일치 OK
+            with self.assertRaises(ds.SpecError) as cm:
+                ds.read_coding_csv(p, issue_id="issue_throne_v2", spec_version="pre-spec")
+            self.assertIn("충돌", str(cm.exception))
 
     def test_dataset_role_is_preserved(self):
-        rows = ds.read_coding_csv(self.CSV)
         self.assertTrue(all(r["provenance_class"] == "observed/development-only"
-                            for r in rows))
+                            for r in self.rows()))
 
 
 class CalibrationFixtureTests(unittest.TestCase):
