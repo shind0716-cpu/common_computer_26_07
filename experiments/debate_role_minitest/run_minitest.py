@@ -10,6 +10,12 @@
   [사안]+(note:[너의 수첩]/prev:[직전에 네가 쓴 글])+[상대의 직전 글]+입장+기억 중립형 수정
   지시. 수첩 갱신=매 발화 직후 별도 콜(PROMPTS_v1 §4 축자 — 500자·1회 반려·재초과 절단),
   수첩 화면=방금 그 발화 화면+[이번 라운드에 쓴 글]. 실행: --mt3 (8판 84콜, 상한 128).
+확장(MT4): WORKORDER4_2026-08-20.md — 기억 조임 × 상대 성격 (민옥 승인: 기본안 채택).
+  비대칭 기억: S(무레온) = MT3 note 팔과 축자 동일(수첩 500자·매 발화 직후 수첩 콜),
+  O(다림재) = 전체 기억(1호 배역 판 화면 — 사실 12개 전문 + [지금까지의 토론] 전문,
+  매 라운드 성명서형 지시) + 배역. stubborn 문구 = 대조분석 §3-1 수정 문안(승인 —
+  1호에서 GPT가 원문의 "논거 하나" 조항을 못 지킨 실측 반영), advance = 1호 축자.
+  실행: --mt4 (8판 = 판당 발화 7 + S 수첩 4 = 88콜, 상한 128).
 지위: 탐색 미니테스트 — 사전등록 없음, n=1~2/셀, 결과 수치는 어떤 주장의 증거로도 인용 금지.
 
 왜 독립 스크립트인가 (지시문 §3 판단 기준 이행, 2026-08-19 확인):
@@ -44,6 +50,8 @@
   PYTHONUTF8=1 python experiments/debate_role_minitest/run_minitest.py --mt2            # MT2 6판 42콜
   PYTHONUTF8=1 python experiments/debate_role_minitest/run_minitest.py --mt3 --dry      # MT3 리허설
   PYTHONUTF8=1 python experiments/debate_role_minitest/run_minitest.py --mt3            # MT3 8판 84콜
+  PYTHONUTF8=1 python experiments/debate_role_minitest/run_minitest.py --mt4 --dry      # MT4 리허설
+  PYTHONUTF8=1 python experiments/debate_role_minitest/run_minitest.py --mt4            # MT4 8판 88콜
 """
 from __future__ import annotations
 
@@ -78,6 +86,10 @@ MT3_RUNS = 2                              # 모델당 2런
 MT3_MAX_TOTAL_CALLS = 128                 # WORKORDER3 §1 축자 (본 84콜 + 수첩 반려 여지)
 NOTE_BUDGET = 500                         # PROMPTS_v1 §4 (파이썬 len, 공백·문장부호 포함)
 
+MT4_ARMS = ("stubborn_note", "advance_note")   # WORKORDER4 §1: 기억 조임 × 상대 성격
+MT4_RUNS = 2                              # 모델당 2런
+MT4_MAX_TOTAL_CALLS = 128                 # WORKORDER4 §1 축자 (본 88콜 + 수첩 반려 여유)
+
 # ── 프롬프트 축자 (WORKORDER §2 미러 — 수정 금지. 화면은 PROMPTS_v1 §1 계승) ──
 
 STUB = ("대학 연합 동아리(회원 33명)의 가을 합숙지를 다림재 수련원과 무레온 캠프 중 "
@@ -103,6 +115,16 @@ TASK_NOSTANCE = ("위 사안을 검토하고, 두 후보 중 어느 쪽이 좋�
                  "밝히는 글을 한 문단으로 써라. 글 본문만 출력하라.")
 TASK_REVISION = ("상대의 글을 참고하여, 직전에 네가 쓴 글을 고쳐 써라. "
                  "고쳐 쓴 글 본문만 출력하라.")   # WORKORDER2 §2 축자 — S1~S3·O1~O2 만
+
+# ── MT4 축자 (WORKORDER4 §1 — O 배역 문구. 승인된 기본안) ──────────────────────
+# stubborn = 대조분석 §3-1 수정 문안 축자(WORKORDER4 §1 인용문 그대로 — 1호 원문의
+# "논거 하나" 조항을 GPT가 못 지킨 실측 반영). advance = 1호 축자 재사용.
+
+MT4_ROLE_TEXT = {
+    "stubborn_note": ("첫 라운드에 낸 논거들을 이후 라운드에서 새 논거 추가 없이 "
+                      "그대로 반복하라."),
+    "advance_note": ROLE_EXTRA["advance"],
+}
 
 # ── MT3 축자 (WORKORDER3 §2 — 기억 중립형 수정 지시 + PROMPTS_v1 §4 수첩 계승) ──
 
@@ -211,6 +233,22 @@ def mt3_note_prompt(speaker: str, facts_block: str, rnd: int,
     return "\n\n".join(
         mt3_context(speaker, "note", facts_block, rnd, history_before, my_note)
         + [f"[이번 라운드에 쓴 글]\n{essay}", NOTE_INSTR])
+
+
+# ── MT4 화면 조립 (WORKORDER4 §1 — O 쪽만. S 쪽은 MT3 note 조립을 그대로 쓴다) ──
+
+def mt4_opp_prompt(arm: str, facts_block: str,
+                   history: list[tuple[str, str]]) -> str:
+    """O(다림재) 화면 — 1호 배역 판과 동일한 전체 기억 화면(사실 12개 전문 +
+    [지금까지의 토론] 전문 + 매 라운드 성명서형 지시), 배역 문구만 MT4_ROLE_TEXT.
+    블록 구성·순서·연결(입장 문장 다음 줄에 배역)은 build_prompt 의 1호 경로와 동일."""
+    return "\n\n".join([
+        "다음 사안을 검토하라.",
+        f"[사안]\n{STUB}",
+        f"[알게 된 사실]\n{facts_block}",
+        STANCE_OPP + "\n" + MT4_ROLE_TEXT[arm],
+        f"[지금까지의 토론]\n{history_block(history, 'O')}",
+        TASK_STANCE])
 
 
 # ── 호출 계층 (run_solo.CallGate 계승 — 전역 상한판) ─────────────────────────
@@ -397,6 +435,99 @@ def run_one_mt3(mem: str, model_key: str, facts_block: str, gate: GlobalGate,
     return dst
 
 
+def run_one_mt4(arm: str, model_key: str, facts_block: str, gate: GlobalGate,
+                dry: bool, run_idx: int) -> Path:
+    """MT4 판 하나 — 비대칭 기억 (WORKORDER4 §1 승인 기본안).
+
+    S(무레온) = MT3 note 팔 축자: r0 사실 전문, r1 이후 수첩 500자 + 상대 직전 글,
+      매 발화 직후 수첩 갱신 콜(1회 반려·재초과 절단·원문 전량 보존).
+    O(다림재) = 전체 기억 + 배역(mt4_opp_prompt): 수첩 없음.
+    콜 순서: S0 → S0수첩 → O0 → S1 → S1수첩 → O1 → S2 → S2수첩 → O2 → S3 → S3수첩
+    = 판당 11콜 (발화 7 + S 수첩 4, 수첩 반려 시 +1/건).
+    """
+    run_id = f"{arm.replace('_', '')}_{model_key.replace('-', '')}_run{run_idx}"
+    out_dir = (RUNS_DIR / "_dry") if dry else RUNS_DIR
+    out_dir.mkdir(parents=True, exist_ok=True)
+    dst = out_dir / f"debate_{run_id}.jsonl"
+    if dst.exists():
+        print(f"[skip] {run_id} — 결과 존재")
+        return dst
+    ckpt = out_dir / f"debate_{run_id}.partial.jsonl"
+    gate.open_run(ckpt)
+
+    opp_role = arm.split("_")[0]          # stubborn / advance
+    events: list[dict] = [{
+        "event": "run_meta", "run_id": run_id, "ts": _now(),
+        "issue_id": ISSUE_ID, "prompts_ver": "debate-mt4-v1", "arm": arm,
+        "memory": "note",                 # S 쪽 기억 조건 — 스캔의 MT3 지표 경로 재사용
+        "opponent_memory": "full",        # WORKORDER4 §1 비대칭 기억 (승인 기본안)
+        "model_key": model_key, "model_id": llm.resolve_model(model_key),
+        "temperature": GEN_TEMPERATURE, "rounds": ROUNDS,
+        "order": ("S0 O0 S1 O1 S2 O2 S3 (O3 생략) · S 만 각 발화 직후 수첩 콜"),
+        "dry": dry, "subject_stance": "무레온", "opponent_stance": "다림재",
+        "opponent_role": opp_role,
+        "opponent_role_text": MT4_ROLE_TEXT[arm],   # 어느 문안인지 원문으로 정본화
+        "genre": "revision-neutral(S)/statement(O)",
+        "note_budget": NOTE_BUDGET, "run_idx": run_idx,
+    }]
+    history: list[tuple[str, str]] = []
+    s_notes: list[str] = []               # S 채택 수첩(시간순)
+
+    for r in range(ROUNDS):
+        for speaker in ("S", "O"):
+            if speaker == "O" and r == ROUNDS - 1:
+                continue                  # O3 생략
+            hist_before = list(history)
+            if speaker == "S":
+                my_note = s_notes[-1] if s_notes else None
+                prompt = mt3_utterance_prompt("S", "note", facts_block, r,
+                                              hist_before, my_note)
+            else:
+                prompt = mt4_opp_prompt(arm, facts_block, hist_before)
+            row = gate.call(f"{speaker}{r}", prompt, model_key)
+            history.append((speaker, row["response"]))
+            events.append({
+                "event": "utterance", "run_id": run_id, "round": r,
+                "speaker": speaker,
+                "role": (opp_role if speaker == "O" else None),
+                "task": ("statement" if speaker == "O" or r == 0 else "revise"),
+                "model_key": model_key, "model_id": llm.resolve_model(model_key),
+                "temperature": GEN_TEMPERATURE,
+                "prompt": prompt, "response": row["response"], "ts": row["at"],
+            })
+            if speaker != "S":
+                continue                  # 수첩은 S 만 (비대칭 기억)
+            nprompt = mt3_note_prompt("S", facts_block, r, hist_before,
+                                      my_note, row["response"])
+            nrow = gate.call(f"S{r}.note", nprompt, model_key)
+            adopted, retry_ev, truncated = nrow["response"], None, False
+            if len(adopted) > NOTE_BUDGET:      # PROMPTS_v1 §4: 1회 반려 → 절단
+                rrow = gate.call(f"S{r}.note_retry",
+                                 note_retry_prompt(adopted), model_key)
+                retry_ev = {"prompt": rrow["prompt"], "response": rrow["response"],
+                            "ts": rrow["at"]}
+                adopted = rrow["response"]
+                if len(adopted) > NOTE_BUDGET:
+                    adopted, truncated = adopted[:NOTE_BUDGET], True
+            s_notes.append(adopted)
+            events.append({
+                "event": "note", "run_id": run_id, "round": r, "speaker": "S",
+                "model_key": model_key, "model_id": llm.resolve_model(model_key),
+                "temperature": GEN_TEMPERATURE,
+                "prompt": nprompt, "response": nrow["response"],
+                "retry": retry_ev, "adopted": adopted, "truncated": truncated,
+                "ts": nrow["at"],
+            })
+
+    events[0]["deviations"] = list(getattr(llm, "LAST_DEVIATIONS", []))
+    with dst.open("w", encoding="utf-8") as fp:
+        for rec in events:
+            fp.write(json.dumps(rec, ensure_ascii=False) + "\n")
+    ckpt.unlink(missing_ok=True)
+    print(f"[done] {run_id} · 신규 호출 누계 {gate.n_calls}")
+    return dst
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="토론 배역 미니테스트 러너 (WORKORDER 2026-08-19 · WORKORDER2)")
     ap.add_argument("--arms", nargs="*", default=list(DEFAULT_ARMS), choices=list(ARMS))
@@ -405,10 +536,12 @@ def main() -> None:
                     help="WORKORDER2 계획: revision×2모델×각2런 + nostance×2모델×각1런")
     ap.add_argument("--mt3", action="store_true",
                     help="WORKORDER3 계획: {note,prev}×2모델×각2런 (84콜, 상한 128)")
+    ap.add_argument("--mt4", action="store_true",
+                    help="WORKORDER4 계획: {stubborn_note,advance_note}×2모델×각2런 (88콜, 상한 128)")
     ap.add_argument("--dry", action="store_true", help="0콜 조립 리허설 (runs/_dry/)")
     args = ap.parse_args()
-    if args.mt2 and args.mt3:
-        raise SystemExit("[ABORT] --mt2 와 --mt3 는 동시 지정 불가 — 따로 실행하라")
+    if sum((args.mt2, args.mt3, args.mt4)) > 1:
+        raise SystemExit("[ABORT] --mt2/--mt3/--mt4 는 동시 지정 불가 — 따로 실행하라")
 
     if not args.dry:
         for m in args.models:
@@ -416,6 +549,20 @@ def main() -> None:
 
     facts_block = load_facts_block()
     per_utt = ROUNDS * 2 - 1              # 판당 발화 콜 (O3 생략 = 7)
+
+    if args.mt4:                          # 기억 조임 × 상대 성격 — 비대칭 기억
+        planned4 = [(arm, m, i + 1) for arm in MT4_ARMS for m in args.models
+                    for i in range(MT4_RUNS)]
+        n_calls = len(planned4) * (per_utt + ROUNDS)   # 발화 7 + S 수첩 4 = 11
+        print(f"[plan] MT4 {len(planned4)}판 × 판당 {per_utt}+{ROUNDS}콜 = {n_calls}콜 "
+              f"(상한 {MT4_MAX_TOTAL_CALLS}, 수첩 반려 시 +1/건) · dry={args.dry}")
+        for m in args.models:
+            print(f"  모델 {m} → {llm.resolve_model(m)}")
+        gate = GlobalGate(MT4_MAX_TOTAL_CALLS, args.dry)
+        for arm, model_key, run_idx in planned4:
+            run_one_mt4(arm, model_key, facts_block, gate, args.dry, run_idx)
+        print(f"[end] 신규 호출 합계 {gate.n_calls}")
+        return
 
     if args.mt3:                          # 기억 축 — 콜 구성이 달라 별도 러너 경로
         planned3 = [(mem, m, i + 1) for mem in MT3_ARMS for m in args.models

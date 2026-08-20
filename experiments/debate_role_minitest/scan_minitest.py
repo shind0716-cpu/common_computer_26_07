@@ -21,6 +21,10 @@ MT3 확장(WORKORDER3 §3 — LLM 0콜 유지): note/prev 런(run_meta 에 memor
   복귀 사건 = f 가 내 수첩·발화(라운드 보유 = 그 라운드 발화 ∪ 수첩)에서 사라진 뒤,
               상대 발화에 f 등장, 그 뒤 내 수첩/발화에 f 재등장 — 전수 나열 (0건이면 0건)
   수첩 오염 = 상대 입장 우호(favors) 사실이 내 수첩에 등장한 자리 전수 (논거 오염은 육안)
+MT4 확장(WORKORDER4 §2 — LLM 0콜 유지): 신규 스캔 행 한정 추가 지표(기존 행 무수정) —
+  드롭 사건 전수 = f 가 보유에서 사라진 사건별로, 드롭 이후(재등장 전까지) 상대 발화에
+  f 가 등장한 라운드 목록(기회 크기) 병기 — §2-2 "기회 대비 복귀율"의 분모.
+  MT4 런은 run_meta 의 opponent_memory(비대칭 기억 표시)로 식별해 별도 표 절에 덧붙인다.
 주의: 탐색 · 사전등록 없음 · n=1~2/셀 — 수치는 어떤 주장의 증거로도 인용 금지.
 
 실행: PYTHONUTF8=1 python experiments/debate_role_minitest/scan_minitest.py
@@ -123,8 +127,49 @@ def mt3_extras(rows: list[dict], meta: dict) -> dict:
             contamination.append({"round": g["round"], "speaker": g["speaker"],
                                   "fact_ids": foreign})
 
+    # MT4 §2-2 — 드롭 사건 전수 + 기회 크기. comebacks 와 같은 timeline·hold 정의.
+    # 기회 = 드롭 시점(그 라운드 자기 마지막 이벤트) 이후 ~ 재등장 라운드 자기 발화
+    # 시점 전, 상대 발화에 f 가 등장한 라운드들 (재등장 없으면 판 끝까지).
+    drop_events = []
+    for x in ("S", "O"):
+        own = [(t, kind, rnd, h) for t, spk, kind, rnd, h in timeline if spk == x]
+        opp = [(t, rnd, h) for t, spk, kind, rnd, h in timeline
+               if spk != x and kind == "utterance"]
+        x_rounds = sorted({rnd for _, _, rnd, _ in own})
+        hold = {rnd: set().union(*(h for _, _, r2, h in own if r2 == rnd))
+                for rnd in x_rounds}
+        end_t = {rnd: max(t for t, _, r2, _ in own if r2 == rnd) for rnd in x_rounds}
+        utt_t = {rnd: next(t for t, k, r2, _ in own if r2 == rnd and k == "utterance")
+                 for rnd in x_rounds}
+        x_events = []
+        for f in ANCHORS:
+            open_ev, was_held = None, False
+            for rnd in x_rounds:
+                if f in hold[rnd]:
+                    if open_ev is not None:       # 재등장 — 열린 드롭 사건 닫기
+                        open_ev["reappeared_round"] = rnd
+                        open_ev["_until"] = utt_t[rnd]
+                        open_ev = None
+                    was_held = True
+                elif was_held:                    # 보유 → 소멸 = 드롭 사건 개시
+                    open_ev = {"speaker": x, "fact_id": f, "dropped_round": rnd,
+                               "favors": tags[f]["favors"],
+                               "critical": tags[f]["critical"],
+                               "reappeared_round": None,
+                               "_from": end_t[rnd], "_until": None}
+                    x_events.append(open_ev)
+                    was_held = False
+        for ev in x_events:
+            lo, hi = ev.pop("_from"), ev.pop("_until")
+            ev["opp_rounds_after"] = sorted(
+                {ornd for t, ornd, h in opp
+                 if t > lo and (hi is None or t < hi) and ev["fact_id"] in h})
+            ev["n_opportunity_rounds"] = len(ev["opp_rounds_after"])
+        drop_events += x_events
+
     return {"memory": meta["memory"], "note_survival": notes_grid,
-            "comeback_events": comebacks, "note_contamination": contamination}
+            "comeback_events": comebacks, "note_contamination": contamination,
+            "drop_events": drop_events}
 
 
 def scan_run(path: Path) -> dict:
@@ -178,8 +223,11 @@ def scan_run(path: Path) -> dict:
         "dropped_vs_prev_S": dropped_s,   # r1..r3 — 직전 자기 발화 대비 빠진 fact_id
         "dropped_vs_prev_O": dropped_o,   # r1..r2
     }
-    if "memory" in meta:                  # MT3 런 (note/prev) — WORKORDER3 §3 지표
+    if "memory" in meta:                  # MT3/MT4 런 — WORKORDER3 §3 지표 공유
         result.update(mt3_extras(rows, meta))
+        if "opponent_memory" in meta:     # MT4 런 (비대칭 기억) — WORKORDER4 §1
+            result["opponent_memory"] = meta["opponent_memory"]
+            result["opponent_role"] = meta["opponent_role"]
     return result
 
 
@@ -203,7 +251,8 @@ def main() -> None:
 
     table = HERE / "scan_table.md"
     plain = [r for r in new if "memory" not in r]
-    mt3 = [r for r in new if "memory" in r]
+    mt3 = [r for r in new if "memory" in r and "opponent_memory" not in r]
+    mt4 = [r for r in new if "opponent_memory" in r]
     lines: list[str] = []
     if plain:
         lines += ["",
@@ -251,6 +300,34 @@ def main() -> None:
             lines.append(f"| {r['run_id']} | {r['memory']} | {s} | {o} | {c} "
                          f"| {ns or '—'} | {no or '—'} | {len(r['comeback_events'])} "
                          f"| {len(r['note_contamination'])} |")
+        lines.append("")
+    if mt4:
+        lines += ["",
+                  "## MT4 추가분 (WORKORDER4 2026-08-20) — 기존 행 무수정, 아래 덧붙임",
+                  "",
+                  "> 탐색 · 사전등록 없음 · n=2/셀 · **수치 인용 금지**.",
+                  "> 비대칭 기억(승인 기본안): S = 수첩 500자+상대 직전 글(MT3 note 축자) ·",
+                  "> O = 전체 기억+배역(stubborn = 대조분석 §3-1 수정 문안 · advance = 1호",
+                  "> 축자). 드롭 S(기회) = S 드롭 사건 수(괄호 = 그중 상대가 이후 말해준",
+                  "> 사건 수 — §2-2 복귀율의 분모) · 복귀 = 복귀 사건 수 · 오염 = 상대 우호",
+                  "> 사실의 S 수첩 등장 자리 수 · O 신규 = 자기 이전 발화 대비 신규 앵커",
+                  "> (1호 방식 배역 이행 점검). 상세는 scan_result.json 의 drop_events.",
+                  "",
+                  "| 런 | 배역 | 개인 S r0→r3 | 개인 O r0→r2 | 채널 r0→r3 "
+                  "| 수첩 S r0→r3 | 드롭 S(기회) | 복귀 | 오염 | O 신규 r0→r2 |",
+                  "|---|---|---|---|---|---|---|---|---|---|"]
+        for r in mt4:
+            s = "→".join(str(n) for n in r["personal_S"])
+            o = "→".join(str(n) for n in r["personal_O"])
+            c = "→".join(str(n) for n in r["channel"])
+            ns = "→".join(str(g["n"]) for g in r["note_survival"] if g["speaker"] == "S")
+            sd = [e for e in r["drop_events"] if e["speaker"] == "S"]
+            sd_opp = sum(1 for e in sd if e["n_opportunity_rounds"] > 0)
+            onw = "→".join(str(len(x)) for x in r["opponent_new_anchors_vs_self"])
+            lines.append(f"| {r['run_id']} | {r['opponent_role']} | {s} | {o} | {c} "
+                         f"| {ns or '—'} | {len(sd)}({sd_opp}) "
+                         f"| {len(r['comeback_events'])} "
+                         f"| {len(r['note_contamination'])} | {onw} |")
         lines.append("")
     with table.open("a", encoding="utf-8") as fp:
         fp.write("\n".join(lines))

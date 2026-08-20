@@ -48,3 +48,24 @@
 | prev_geminiflash_run2 | prev | 6→5→1→0 | 1→0→1 | 7→5→1→0 | — | — | 0 | 0 |
 | prev_gptmini_run1 | prev | 9→10→10→10 | 5→8→9 | 10→10→10→10 | — | — | 0 | 0 |
 | prev_gptmini_run2 | prev | 8→8→8→9 | 5→8→9 | 9→9→9→9 | — | — | 0 | 0 |
+
+## MT4 추가분 (WORKORDER4 2026-08-20) — 기존 행 무수정, 아래 덧붙임
+
+> 탐색 · 사전등록 없음 · n=2/셀 · **수치 인용 금지**.
+> 비대칭 기억(승인 기본안): S = 수첩 500자+상대 직전 글(MT3 note 축자) ·
+> O = 전체 기억+배역(stubborn = 대조분석 §3-1 수정 문안 · advance = 1호
+> 축자). 드롭 S(기회) = S 드롭 사건 수(괄호 = 그중 상대가 이후 말해준
+> 사건 수 — §2-2 복귀율의 분모) · 복귀 = 복귀 사건 수 · 오염 = 상대 우호
+> 사실의 S 수첩 등장 자리 수 · O 신규 = 자기 이전 발화 대비 신규 앵커
+> (1호 방식 배역 이행 점검). 상세는 scan_result.json 의 drop_events.
+
+| 런 | 배역 | 개인 S r0→r3 | 개인 O r0→r2 | 채널 r0→r3 | 수첩 S r0→r3 | 드롭 S(기회) | 복귀 | 오염 | O 신규 r0→r2 |
+|---|---|---|---|---|---|---|---|---|---|
+| advancenote_geminiflash_run1 | advance | 3→4→5→4 | 2→3→0 | 5→7→5→4 | 6→5→5→5 | 1(0) | 0 | 4 | 2→1→0 |
+| advancenote_geminiflash_run2 | advance | 5→1→2→2 | 1→3→1 | 6→4→3→2 | 5→2→2→2 | 4(1) | 1 | 1 | 1→2→1 |
+| advancenote_gptmini_run1 | advance | 5→4→5→5 | 4→4→3 | 8→7→8→5 | 6→5→5→5 | 3(0) | 0 | 4 | 4→1→0 |
+| advancenote_gptmini_run2 | advance | 7→5→6→5 | 4→5→4 | 9→9→8→5 | 7→6→6→5 | 3(1) | 0 | 3 | 4→2→1 |
+| stubbornnote_geminiflash_run1 | stubborn | 4→4→5→5 | 4→4→4 | 8→8→8→5 | 5→5→6→4 | 1(0) | 0 | 4 | 4→0→0 |
+| stubbornnote_geminiflash_run2 | stubborn | 5→5→4→3 | 2→2→2 | 7→7→6→3 | 6→4→4→3 | 3(0) | 0 | 4 | 2→0→0 |
+| stubbornnote_gptmini_run1 | stubborn | 8→8→7→7 | 6→6→6 | 11→11→11→7 | 8→8→8→8 | 0(0) | 0 | 4 | 6→0→0 |
+| stubbornnote_gptmini_run2 | stubborn | 5→6→5→6 | 3→3→3 | 7→8→7→6 | 6→6→6→6 | 0(0) | 0 | 4 | 3→0→0 |
