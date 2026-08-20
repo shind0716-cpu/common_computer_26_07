@@ -1,0 +1,98 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "manual(session-claude-draft, 팀 검수 전 후보 지위)",
+  "created_at": "2026-08-19T09:42:32.383498+00:00",
+  "issue_id": "issue_outreach",
+  "_note": "8에이전트(관점 4 x 입장 2), 에이전트당 4팩트, 밀도 2.0, 자기2/타2, 각 자기입장 불리 1+, 고립 3.",
+  "seed": 42,
+  "agents": [
+    {
+      "agent_id": "agent_1",
+      "perspective": "당사자·자기결정",
+      "stance": "pro",
+      "assigned_fact_ids": [
+        "fact_outreach_03",
+        "fact_outreach_04",
+        "fact_outreach_11",
+        "fact_outreach_12"
+      ]
+    },
+    {
+      "agent_id": "agent_2",
+      "perspective": "당사자·자기결정",
+      "stance": "con",
+      "assigned_fact_ids": [
+        "fact_outreach_01",
+        "fact_outreach_02",
+        "fact_outreach_10",
+        "fact_outreach_16"
+      ]
+    },
+    {
+      "agent_id": "agent_3",
+      "perspective": "가족·주변",
+      "stance": "pro",
+      "assigned_fact_ids": [
+        "fact_outreach_07",
+        "fact_outreach_06",
+        "fact_outreach_03",
+        "fact_outreach_12"
+      ]
+    },
+    {
+      "agent_id": "agent_4",
+      "perspective": "가족·주변",
+      "stance": "con",
+      "assigned_fact_ids": [
+        "fact_outreach_08",
+        "fact_outreach_05",
+        "fact_outreach_13",
+        "fact_outreach_03"
+      ]
+    },
+    {
+      "agent_id": "agent_5",
+      "perspective": "지원·행정",
+      "stance": "pro",
+      "assigned_fact_ids": [
+        "fact_outreach_12",
+        "fact_outreach_10",
+        "fact_outreach_07",
+        "fact_outreach_01"
+      ]
+    },
+    {
+      "agent_id": "agent_6",
+      "perspective": "지원·행정",
+      "stance": "con",
+      "assigned_fact_ids": [
+        "fact_outreach_09",
+        "fact_outreach_11",
+        "fact_outreach_08",
+        "fact_outreach_13"
+      ]
+    },
+    {
+      "agent_id": "agent_7",
+      "perspective": "위험·안전",
+      "stance": "pro",
+      "assigned_fact_ids": [
+        "fact_outreach_15",
+        "fact_outreach_13",
+        "fact_outreach_04",
+        "fact_outreach_09"
+      ]
+    },
+    {
+      "agent_id": "agent_8",
+      "perspective": "위험·안전",
+      "stance": "con",
+      "assigned_fact_ids": [
+        "fact_outreach_15",
+        "fact_outreach_14",
+        "fact_outreach_05",
+        "fact_outreach_06"
+      ]
+    }
+  ]
+}

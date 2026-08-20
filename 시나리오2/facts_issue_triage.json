@@ -1,0 +1,270 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "manual(session-claude-draft, 팀 검수 전 후보 지위)",
+  "created_at": "2026-08-19T09:41:23.203780+00:00",
+  "issue_id": "issue_triage",
+  "_note": "16팩트. 관점 4분할. 불리 pro:con 대칭. _unfavorable_to/_perspective는 스키마 밖 보조 필드.",
+  "extractor": {
+    "model": "manual",
+    "temperature": 0,
+    "prompt_ver": "scenario-cand-v4-16"
+  },
+  "facts": [
+    {
+      "fact_id": "fact_triage_01",
+      "text": "환자 A는 B보다 40분 먼저 응급실에 도착해 접수됐다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "환자A측"
+    },
+    {
+      "fact_id": "fact_triage_02",
+      "text": "환자 A는 78세로 기저질환이 있어 회복 예후가 불확실하다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "환자A측"
+    },
+    {
+      "fact_id": "fact_triage_03",
+      "text": "환자 A의 보호자는 대기 중 상태 악화를 여러 차례 호소했다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "환자A측"
+    },
+    {
+      "fact_id": "fact_triage_04",
+      "text": "환자 A는 사전연명의료의향서에 연명치료 거부를 밝혀 두었다",
+      "tags": [
+        "condition"
+      ],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": null,
+      "_perspective": "환자A측"
+    },
+    {
+      "fact_id": "fact_triage_05",
+      "text": "환자 B는 26세로 같은 처치 시 생존 가능성이 통계적으로 더 높다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "환자B측"
+    },
+    {
+      "fact_id": "fact_triage_06",
+      "text": "환자 B는 접수 시점에 이미 의식 저하가 시작된 상태였다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "환자B측"
+    },
+    {
+      "fact_id": "fact_triage_07",
+      "text": "환자 B는 도착이 늦어 규정상 대기 순번이 뒤였다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "환자B측"
+    },
+    {
+      "fact_id": "fact_triage_08",
+      "text": "환자 B는 최근 유사 시술을 받은 이력이 있어 처치가 복잡하다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "환자B측"
+    },
+    {
+      "fact_id": "fact_triage_09",
+      "text": "해당 병상은 다음 이송까지 최소 6시간 다른 환자가 쓸 수 없다",
+      "tags": [
+        "condition"
+      ],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": null,
+      "_perspective": "의료·자원"
+    },
+    {
+      "fact_id": "fact_triage_10",
+      "text": "당직 의료진은 두 환자 모두 병상 없이는 위중하다고 판단했다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "의료·자원"
+    },
+    {
+      "fact_id": "fact_triage_11",
+      "text": "인근 병원 이송은 최소 90분이 걸려 두 환자 모두에게 위험하다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "의료·자원"
+    },
+    {
+      "fact_id": "fact_triage_12",
+      "text": "병원 자원배분 지침은 생존가능성을 최우선 기준으로 명시한다",
+      "tags": [
+        "exception"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "both",
+      "_perspective": "의료·자원"
+    },
+    {
+      "fact_id": "fact_triage_13",
+      "text": "응급의료법상 도착순서 원칙과 중증도 우선 원칙이 함께 규정돼 있다",
+      "tags": [
+        "exception"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "both",
+      "_perspective": "규범·책임"
+    },
+    {
+      "fact_id": "fact_triage_14",
+      "text": "먼저 온 환자를 후순위로 두면 민원·법적 분쟁 소지가 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "규범·책임"
+    },
+    {
+      "fact_id": "fact_triage_15",
+      "text": "생존가능성만으로 고령 환자를 배제하면 연령차별 논란이 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "규범·책임"
+    },
+    {
+      "fact_id": "fact_triage_16",
+      "text": "이 결정은 이후 유사 사례의 내부 판례로 기록된다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "규범·책임"
+    }
+  ]
+}
