@@ -1,0 +1,197 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "manual(요한 측 Claude 초안 — 팀 검수 전 후보 지위)",
+  "created_at": "2026-08-19T00:00:00+09:00",
+  "issue_id": "issue_throne",
+  "_note": "후보 초안(팀 검수 전). issue_camp 골격 이식 — 요건 4 × (공유 1 + 미공유 2), 공유 4 중 3이 오답(베스카) 쪽으로 기우는 함정, 미공유 favors 아르넬 6 : 베스카 2, 미공유 전량 critical. 정답=아르넬(요건 1·2·4 충족, 3 미충족 = 3/4), 베스카 는 요건 3만 충족(1/4). 인명·지명·수치 전부 허구. prior 프로브 완료(2026-08-19 · gpt-mini · known 0/12).",
+  "extractor": {
+    "name": "manual",
+    "ver": "1"
+  },
+  "facts": [
+    {
+      "fact_id": "fact_throne_01",
+      "text": "베스카는 선왕의 유일한 친딸로 궁정 명부에 올라 있다",
+      "tags": [],
+      "critical": false,
+      "share": "shared",
+      "favors": "베스카",
+      "requirement": 1,
+      "prior": {
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-19T06:37:38.444936+00:00"
+      },
+      "apparent": true
+    },
+    {
+      "fact_id": "fact_throne_02",
+      "text": "궁정 연대기는 베스카를 열아홉 살, 아르넬을 열여섯 살로 적었다",
+      "tags": [],
+      "critical": false,
+      "share": "shared",
+      "favors": "베스카",
+      "requirement": 2,
+      "prior": {
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-19T06:37:38.444936+00:00"
+      },
+      "apparent": true
+    },
+    {
+      "fact_id": "fact_throne_03",
+      "text": "아르넬이 제후들에게 보낸 서신이 두 달째 회신을 받지 못했다는 말이 돈다",
+      "tags": [],
+      "critical": false,
+      "share": "shared",
+      "favors": "베스카",
+      "requirement": 3,
+      "prior": {
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-19T06:37:38.444936+00:00"
+      },
+      "apparent": false
+    },
+    {
+      "fact_id": "fact_throne_04",
+      "text": "대주교청은 두 후보 어느 쪽에도 성별식 거부를 통보하지 않았다",
+      "tags": [],
+      "critical": false,
+      "share": "shared",
+      "favors": null,
+      "requirement": 4,
+      "prior": {
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-19T06:37:38.444936+00:00"
+      },
+      "apparent": true
+    },
+    {
+      "fact_id": "fact_throne_05",
+      "text": "선왕의 계승 서약서에는 아르넬의 이름만 인장과 함께 올라 있다",
+      "tags": [],
+      "critical": true,
+      "share": "unshared",
+      "favors": "아르넬",
+      "requirement": 1,
+      "prior": {
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-19T06:37:38.444936+00:00"
+      }
+    },
+    {
+      "fact_id": "fact_throne_06",
+      "text": "베스카의 생모는 정식 혼인 전 소생으로 기록돼 적자 표기가 취소됐다",
+      "tags": [],
+      "critical": true,
+      "share": "unshared",
+      "favors": "아르넬",
+      "requirement": 1,
+      "prior": {
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-19T06:37:38.444936+00:00"
+      }
+    },
+    {
+      "fact_id": "fact_throne_07",
+      "text": "아르넬의 세례 기록은 출생을 다섯 해 앞서 적어 실제 나이는 스물하나다",
+      "tags": [],
+      "critical": true,
+      "share": "unshared",
+      "favors": "아르넬",
+      "requirement": 2,
+      "prior": {
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-19T06:37:38.444936+00:00"
+      }
+    },
+    {
+      "fact_id": "fact_throne_08",
+      "text": "베스카가 성년인 스무 살이 되는 것은 이듬해 파종제 이후다",
+      "tags": [],
+      "critical": true,
+      "share": "unshared",
+      "favors": "아르넬",
+      "requirement": 2,
+      "prior": {
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-19T06:37:38.444936+00:00"
+      }
+    },
+    {
+      "fact_id": "fact_throne_09",
+      "text": "베스카를 지지한 제후 여덟의 서명이 봉인되어 대주교청에 접수됐다",
+      "tags": [],
+      "critical": true,
+      "share": "unshared",
+      "favors": "베스카",
+      "requirement": 3,
+      "prior": {
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-19T06:37:38.444936+00:00"
+      }
+    },
+    {
+      "fact_id": "fact_throne_10",
+      "text": "아르넬을 지지한 제후는 넷뿐이라 정족수 일곱에 못 미친다",
+      "tags": [],
+      "critical": true,
+      "share": "unshared",
+      "favors": "베스카",
+      "requirement": 3,
+      "prior": {
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-19T06:37:38.444936+00:00"
+      }
+    },
+    {
+      "fact_id": "fact_throne_11",
+      "text": "베스카는 세 해 전 이단 재판에 연루돼 성별식 자격이 정지됐다",
+      "tags": [],
+      "critical": true,
+      "share": "unshared",
+      "favors": "아르넬",
+      "requirement": 4,
+      "prior": {
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-19T06:37:38.444936+00:00"
+      }
+    },
+    {
+      "fact_id": "fact_throne_12",
+      "text": "아르넬의 이름은 대주교청 파문 명부 어디에도 없다",
+      "tags": [],
+      "critical": true,
+      "share": "unshared",
+      "favors": "아르넬",
+      "requirement": 4,
+      "prior": {
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-19T06:37:38.444936+00:00"
+      }
+    }
+  ]
+}

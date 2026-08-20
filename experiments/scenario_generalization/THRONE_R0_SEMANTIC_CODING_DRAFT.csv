@@ -1,0 +1,109 @@
+run_id,text_role,fact_id,lexical_hit,preservation_status,mention_mode,relation_engaged,distortion_flags,evidence,reason,provenance_class
+A_full_rep1,essay_r0,fact_throne_01,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+A_full_rep1,essay_r0,fact_throne_02,false,partial,asserted,true,source_dropped,베스카는 여전히 열아홉 살,연대기의 두 후보 나이 쌍 중 일부만 보존,observed/development-only
+A_full_rep1,essay_r0,fact_throne_03,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+A_full_rep1,essay_r0,fact_throne_04,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+A_full_rep1,essay_r0,fact_throne_05,false,faithful,asserted,true,unsupported_causal_link,"먼저 선왕의 인장이 찍힌 계승 서약에는 아르넬의 이름만 올라 있으며, 이는 선왕이 명확하게 의사 표시한 가장 직접적인 증거다.",서약서·아르넬 유일 등재·인장 관계를 보존,observed/development-only
+A_full_rep1,essay_r0,fact_throne_06,false,blocked,none,false,canonical_ambiguity,,적자 표기 대상이 정본에서 모호해 점수화 금지,observed/development-only
+A_full_rep1,essay_r0,fact_throne_07,true,partial,asserted,true,source_dropped,세례 기록상 실제 나이가 스물하나,실제 나이 결론은 보존; 5년 기록 오류 슬롯은 대부분 생략,observed/development-only
+A_full_rep1,essay_r0,fact_throne_08,true,faithful,asserted,true,,베스카는 ... 열아홉 살로 이듬해 파종제 이후에야 성년,시점·20세 기준·현재 상태 중 일부 또는 전부 보존,observed/development-only
+A_full_rep1,essay_r0,fact_throne_09,false,partial,asserted,true,,베스카가 여덟 제후의 지지를 받은 것은 사실,서명·봉인·접수 슬롯 생략,observed/development-only
+A_full_rep1,essay_r0,fact_throne_10,false,partial,asserted,true,,아르넬을 지지한 제후가 정족수에 못 미친다,4명과 7명 수치 생략,observed/development-only
+A_full_rep1,essay_r0,fact_throne_11,true,faithful,asserted,true,,이단 재판 연루로 성별식 자격이 정지,베스카·이단 재판·3년·자격 정지를 보존,observed/development-only
+A_full_rep1,essay_r0,fact_throne_12,true,faithful,asserted,true,modality_strengthening,아르넬의 이름은 대주교청의 파문 명부에 없어 종교적으로 명확한 자격,명부 부재는 보존했으나 긍정 자격으로 강화,observed/development-only
+A_note_rep1,essay_r0,fact_throne_01,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+A_note_rep1,essay_r0,fact_throne_02,false,partial,asserted,true,source_dropped,베스카는 아직 열아홉,연대기의 두 후보 나이 쌍 중 일부만 보존,observed/development-only
+A_note_rep1,essay_r0,fact_throne_03,true,partial,asserted,true,source_dropped;modality_strengthening;unsupported_causal_link,아르넬의 서신 미회신이라는 절차적 지연,두 달·소문 양태를 버리고 지지 부족의 원인으로 강화,observed/development-only
+A_note_rep1,essay_r0,fact_throne_04,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+A_note_rep1,essay_r0,fact_throne_05,true,faithful,asserted,true,,"첫째, 계승 서약서에 아르넬의 이름만 인장과 함께 기록되어 있으므로 조건 ①은 확실하다.",서약서·아르넬 유일 등재·인장 관계를 보존,observed/development-only
+A_note_rep1,essay_r0,fact_throne_06,true,blocked,asserted,true,canonical_ambiguity,베스카의 어머니가 정식 혼인 전 소생으로 기록되어 적자 표기가 취소,적자 표기 대상이 정본에서 모호해 점수화 금지,observed/development-only
+A_note_rep1,essay_r0,fact_throne_07,true,partial,asserted,true,source_dropped,세례 기록이 보여주는 실제 나이는 스물하나,실제 나이 결론은 보존; 5년 기록 오류 슬롯은 대부분 생략,observed/development-only
+A_note_rep1,essay_r0,fact_throne_08,true,faithful,asserted,true,,베스카는 아직 열아홉이며 성년에 도달하는 것은 내년 파종제 이후,시점·20세 기준·현재 상태 중 일부 또는 전부 보존,observed/development-only
+A_note_rep1,essay_r0,fact_throne_09,false,contradicted,asserted,true,wrong_value;polarity_flip,제후 서명은 현재 양쪽 모두 정족수에 못 미치는 상황,베스카 8명과 정족수 충족을 반대로 기술,observed/development-only
+A_note_rep1,essay_r0,fact_throne_10,false,partial,asserted,true,,제후 서명은 현재 양쪽 모두 정족수에 못 미치는 상황,아르넬 미달은 보존하나 수치 생략; 베스카에 대한 별도 오류 존재,observed/development-only
+A_note_rep1,essay_r0,fact_throne_11,true,faithful,asserted,true,,이단 재판 연루로 성별식 자격이 정지,베스카·이단 재판·3년·자격 정지를 보존,observed/development-only
+A_note_rep1,essay_r0,fact_throne_12,true,faithful,asserted,true,modality_strengthening,아르넬은 대주교청 파문 명부에 전혀 기록되지 않아 자격이 온전,명부 부재는 보존했으나 긍정 자격으로 강화,observed/development-only
+A_prev_rep1,essay_r0,fact_throne_01,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+A_prev_rep1,essay_r0,fact_throne_02,false,partial,asserted,true,source_dropped,베스카는 아직 열아홉 살,연대기의 두 후보 나이 쌍 중 일부만 보존,observed/development-only
+A_prev_rep1,essay_r0,fact_throne_03,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+A_prev_rep1,essay_r0,fact_throne_04,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+A_prev_rep1,essay_r0,fact_throne_05,true,faithful,asserted,true,,"선왕의 계승 서약서에 명시적으로 인장과 함께 기록된 이는 아르넬이며, 이는 계승법 제1조 요건을 명확히 충족한다.",서약서·아르넬 유일 등재·인장 관계를 보존,observed/development-only
+A_prev_rep1,essay_r0,fact_throne_06,false,blocked,none,false,canonical_ambiguity,,적자 표기 대상이 정본에서 모호해 점수화 금지,observed/development-only
+A_prev_rep1,essay_r0,fact_throne_07,true,partial,asserted,true,source_dropped,세례 기록상 실제 나이가 스물하나,실제 나이 결론은 보존; 5년 기록 오류 슬롯은 대부분 생략,observed/development-only
+A_prev_rep1,essay_r0,fact_throne_08,true,faithful,asserted,true,,베스카는 아직 열아홉 살로 이듬해 파종제 이후에야 성년,시점·20세 기준·현재 상태 중 일부 또는 전부 보존,observed/development-only
+A_prev_rep1,essay_r0,fact_throne_09,false,partial,asserted,true,,제후 서명은 베스카가 여덟으로 우위,봉인·접수 슬롯 생략,observed/development-only
+A_prev_rep1,essay_r0,fact_throne_10,false,absent,none,false,,,베스카의 8명 우위만 말하며 아르넬 4/7 미달 명제는 발화하지 않음,observed/development-only
+A_prev_rep1,essay_r0,fact_throne_11,true,faithful,asserted,true,,이단 재판 연루로 성별식 자격이 정지,베스카·이단 재판·3년·자격 정지를 보존,observed/development-only
+A_prev_rep1,essay_r0,fact_throne_12,true,faithful,asserted,true,modality_strengthening,아르넬은 대주교청 파문 명부에 기록되지 않아 제4조의 장애물이 없다,명부 부재는 보존했으나 긍정 자격으로 강화,observed/development-only
+B_full_rep1,essay_r0,fact_throne_01,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+B_full_rep1,essay_r0,fact_throne_02,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+B_full_rep1,essay_r0,fact_throne_03,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+B_full_rep1,essay_r0,fact_throne_04,true,partial,asserted,true,wrong_scope;modality_strengthening,대주교청이 아르넬에게 성별식 거부를 통보하지 않았으므로 자격이 있다,두 후보 범위를 아르넬로 축소하고 비통보를 자격 인정으로 강화,observed/development-only
+B_full_rep1,essay_r0,fact_throne_05,true,faithful,asserted,true,unsupported_causal_link,선왕의 계승 서약서에 인장과 함께 아르넬의 이름이 명시되어 있다는 사실이 계승 문제의 핵심이다.,서약서·아르넬 유일 등재·인장 관계를 보존,observed/development-only
+B_full_rep1,essay_r0,fact_throne_06,true,blocked,asserted,true,canonical_ambiguity,베스카는 생모의 정식 혼인 전 소생으로 적자 표기가 취소,적자 표기 대상이 정본에서 모호해 점수화 금지,observed/development-only
+B_full_rep1,essay_r0,fact_throne_07,true,partial,asserted,true,source_dropped,세례 기록의 오류를 바로잡으면 실제 나이는 스물하나,실제 나이 결론은 보존; 5년 기록 오류 슬롯은 대부분 생략,observed/development-only
+B_full_rep1,essay_r0,fact_throne_08,true,faithful,asserted,true,,성년 나이도 이듬해 파종제 이후에야 도달,20세 숫자는 생략했지만 베스카의 현재 미성년과 도달 시점을 충실히 보존,observed/development-only
+B_full_rep1,essay_r0,fact_throne_09,false,partial,asserted,true,,베스카가 여덟 명으로 정족수를 넘기고,서명·봉인·접수 슬롯 생략,observed/development-only
+B_full_rep1,essay_r0,fact_throne_10,false,partial,asserted,true,,아르넬은 넷에 그치지만,4명과 미달은 보존하나 7명 생략,observed/development-only
+B_full_rep1,essay_r0,fact_throne_11,true,faithful,asserted,true,,이단 재판 연루로 성별식 자격이 정지,베스카·이단 재판·3년·자격 정지를 보존,observed/development-only
+B_full_rep1,essay_r0,fact_throne_12,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+B_note_rep1,essay_r0,fact_throne_01,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+B_note_rep1,essay_r0,fact_throne_02,true,faithful,asserted,true,,궁정 연대기의 기록(열여섯 살) ... 베스카는 ... 현재 열아홉 살,문맥 안에서 연대기상 아르넬 16세와 베스카 19세를 함께 보존,observed/development-only
+B_note_rep1,essay_r0,fact_throne_03,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+B_note_rep1,essay_r0,fact_throne_04,false,partial,asserted,true,wrong_scope,아르넬은 대주교청으로부터 성별식 자격 거부를 받지 않았다,두 후보 범위를 아르넬로 축소,observed/development-only
+B_note_rep1,essay_r0,fact_throne_05,true,faithful,asserted,true,unsupported_causal_link,선왕의 인장이 찍힌 계승 서약서에 아르넬의 이름만 올라 있다는 사실이 가장 결정적이다.,서약서·아르넬 유일 등재·인장 관계를 보존,observed/development-only
+B_note_rep1,essay_r0,fact_throne_06,true,blocked,asserted,true,canonical_ambiguity,생모의 신분 문제로 적자 표기가 취소,적자 표기 대상이 정본에서 모호해 점수화 금지,observed/development-only
+B_note_rep1,essay_r0,fact_throne_07,true,faithful,asserted,true,,궁정 연대기의 기록(열여섯 살)과는 달리 세례 기록에 따르면 실제 나이는 스물하나,실제 나이 결론은 보존; 5년 기록 오류 슬롯은 대부분 생략,observed/development-only
+B_note_rep1,essay_r0,fact_throne_08,false,partial,asserted,true,source_dropped,현재 열아홉 살로 성년에 미치지 못하며,시점·20세 기준·현재 상태 중 일부 또는 전부 보존,observed/development-only
+B_note_rep1,essay_r0,fact_throne_09,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+B_note_rep1,essay_r0,fact_throne_10,false,partial,asserted,true,,아르넬이 필요한 수에 못 미치는 한계,4/7 수치 생략,observed/development-only
+B_note_rep1,essay_r0,fact_throne_11,true,faithful,asserted,true,,이단 재판 연루로 성별식 자격이 정지,베스카·이단 재판·3년·자격 정지를 보존,observed/development-only
+B_note_rep1,essay_r0,fact_throne_12,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+B_prev_rep1,essay_r0,fact_throne_01,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+B_prev_rep1,essay_r0,fact_throne_02,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+B_prev_rep1,essay_r0,fact_throne_03,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+B_prev_rep1,essay_r0,fact_throne_04,false,absent,asserted,true,modality_strengthening,대주교청의 성별식 자격도 문제가 없다,두 후보 비통보 명제는 없고 긍정적 자격 결론만 새로 주장,observed/development-only
+B_prev_rep1,essay_r0,fact_throne_05,true,faithful,asserted,true,unsupported_causal_link,"선왕의 계승 서약에는 아르넬의 이름이 인장과 함께 유일하게 기록되어 있으므로, 이는 왕위 계승의 가장 근본적인 법적 근거가 된다.",서약서·아르넬 유일 등재·인장 관계를 보존,observed/development-only
+B_prev_rep1,essay_r0,fact_throne_06,true,blocked,asserted,true,canonical_ambiguity,생모의 법적 지위 기록 취소로 인해 적자 표기가 박탈,적자 표기 대상이 정본에서 모호해 점수화 금지,observed/development-only
+B_prev_rep1,essay_r0,fact_throne_07,true,partial,asserted,true,source_dropped,세례 기록에 따르면 실제 나이는 스물하나,실제 나이 결론은 보존; 5년 기록 오류 슬롯은 대부분 생략,observed/development-only
+B_prev_rep1,essay_r0,fact_throne_08,false,partial,asserted,true,source_dropped,공식 기록상 아직 성년에 이르지 못했다,시점·20세 기준·현재 상태 중 일부 또는 전부 보존,observed/development-only
+B_prev_rep1,essay_r0,fact_throne_09,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+B_prev_rep1,essay_r0,fact_throne_10,false,partial,asserted,true,,아르넬이 제후들의 서명 정족수 면에서 미달,4/7 수치 생략,observed/development-only
+B_prev_rep1,essay_r0,fact_throne_11,true,faithful,asserted,true,,이단 재판 연루로 성별식 자격이 정지,베스카·이단 재판·3년·자격 정지를 보존,observed/development-only
+B_prev_rep1,essay_r0,fact_throne_12,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+P_full_rep1,essay_r0,fact_throne_01,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+P_full_rep1,essay_r0,fact_throne_02,false,partial,asserted,true,source_dropped,열아홉 살로 아직 성년이 아니라는 점,연대기의 두 후보 나이 쌍 중 일부만 보존,observed/development-only
+P_full_rep1,essay_r0,fact_throne_03,false,partial,asserted,true,source_dropped;modality_strengthening;unsupported_causal_link,아르넬의 서신에 대한 제후들의 미응답이라는 절차적 지연,두 달·소문 양태를 버리고 원인으로 강화,observed/development-only
+P_full_rep1,essay_r0,fact_throne_04,true,partial,asserted,true,wrong_scope;modality_strengthening,대주교청이 그에게 성별식 자격 거부를 통보하지 않았으므로 네 번째 조건도 충족,두 후보 범위를 축소하고 비통보를 충족으로 강화,observed/development-only
+P_full_rep1,essay_r0,fact_throne_05,false,faithful,asserted,true,unsupported_causal_link,"첫째, 선왕이 인장을 찍어 공식 계승 서약에 아르넬의 이름만을 명기한 것은 왕의 명확한 의사 표현이며, 이는 계승법의 첫 번째 조건을 충족한다.",서약서·아르넬 유일 등재·인장 관계를 보존,observed/development-only
+P_full_rep1,essay_r0,fact_throne_06,true,blocked,asserted,true,canonical_ambiguity,생모의 적자 표기 취소로 인한 신분 문제,적자 표기 대상이 정본에서 모호해 점수화 금지,observed/development-only
+P_full_rep1,essay_r0,fact_throne_07,true,partial,asserted,true,source_dropped,세례 기록상 스물하나 살,실제 나이 결론은 보존; 5년 기록 오류 슬롯은 대부분 생략,observed/development-only
+P_full_rep1,essay_r0,fact_throne_08,false,partial,asserted,true,source_dropped,열아홉 살로 아직 성년이 아니라는 점,시점·20세 기준·현재 상태 중 일부 또는 전부 보존,observed/development-only
+P_full_rep1,essay_r0,fact_throne_09,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+P_full_rep1,essay_r0,fact_throne_10,false,partial,asserted,true,unsupported_causal_link,제후 서명 수 차이는 아르넬의 서신에 대한 제후들의 미응답이라는 절차적 지연,아르넬의 서명 열세는 발화하나 4/7을 생략하고 비근거 원인을 부여,observed/development-only
+P_full_rep1,essay_r0,fact_throne_11,true,faithful,asserted,true,,이단 재판 연루로 성별식 자격이 정지,베스카·이단 재판·3년·자격 정지를 보존,observed/development-only
+P_full_rep1,essay_r0,fact_throne_12,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+P_note_rep1,essay_r0,fact_throne_01,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+P_note_rep1,essay_r0,fact_throne_02,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+P_note_rep1,essay_r0,fact_throne_03,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+P_note_rep1,essay_r0,fact_throne_04,false,absent,asserted,true,modality_strengthening;unsupported_concrete_extension,대주교청의 성별식 자격 인정,비통보 명제를 보존하지 않고 긍정 인정 사실을 새로 주장,observed/development-only
+P_note_rep1,essay_r0,fact_throne_05,false,faithful,asserted,true,unsupported_causal_link,선왕이 계승 서약에 아르넬의 이름을 인장과 함께 기록한 것은 왕위 계승에 대한 선왕의 명백하고 공식적인 의사 표현이다.,서약서·아르넬 유일 등재·인장 관계를 보존,observed/development-only
+P_note_rep1,essay_r0,fact_throne_06,false,blocked,none,false,canonical_ambiguity,,적자 표기 대상이 정본에서 모호해 점수화 금지,observed/development-only
+P_note_rep1,essay_r0,fact_throne_07,false,partial,asserted,true,source_dropped,실제 나이 21살,실제 나이 결론은 보존; 5년 기록 오류 슬롯은 대부분 생략,observed/development-only
+P_note_rep1,essay_r0,fact_throne_08,false,partial,asserted,true,source_dropped,아직 성년이 아니고,시점·20세 기준·현재 상태 중 일부 또는 전부 보존,observed/development-only
+P_note_rep1,essay_r0,fact_throne_09,false,partial,asserted,true,,베스카가 제후 여덟의 서명을 받았다는 점,봉인·대주교청 접수 슬롯 생략,observed/development-only
+P_note_rep1,essay_r0,fact_throne_10,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+P_note_rep1,essay_r0,fact_throne_11,true,partial,asserted,true,,이단 재판 연루로 성별식 자격이 정지,3년 전 시점 생략,observed/development-only
+P_note_rep1,essay_r0,fact_throne_12,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+P_prev_rep1,essay_r0,fact_throne_01,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+P_prev_rep1,essay_r0,fact_throne_02,false,partial,asserted,true,source_dropped,아직 열아홉 살로 성년에 이르지 못했으며,연대기의 두 후보 나이 쌍 중 일부만 보존,observed/development-only
+P_prev_rep1,essay_r0,fact_throne_03,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+P_prev_rep1,essay_r0,fact_throne_04,false,absent,asserted,true,modality_strengthening,성별식 자격도 인정된다,두 후보 비통보 명제는 없고 파문 명부 부재를 긍정 인정으로 강화,observed/development-only
+P_prev_rep1,essay_r0,fact_throne_05,true,faithful,asserted,true,unsupported_causal_link,"첫째, 선왕의 인장이 찍힌 계승 서약서에 아르넬의 이름만 명기되어 있다는 것은 선왕의 명백한 의지를 보여주는 가장 강력한 증거다.",서약서·아르넬 유일 등재·인장 관계를 보존,observed/development-only
+P_prev_rep1,essay_r0,fact_throne_06,false,blocked,none,false,canonical_ambiguity,,적자 표기 대상이 정본에서 모호해 점수화 금지,observed/development-only
+P_prev_rep1,essay_r0,fact_throne_07,true,partial,asserted,true,source_dropped,세례 기록을 정확히 읽으면 ... 스물하나 살,실제 나이 결론은 보존; 5년 기록 오류 슬롯은 대부분 생략,observed/development-only
+P_prev_rep1,essay_r0,fact_throne_08,false,partial,asserted,true,source_dropped,아직 열아홉 살로 성년에 이르지 못했으며,시점·20세 기준·현재 상태 중 일부 또는 전부 보존,observed/development-only
+P_prev_rep1,essay_r0,fact_throne_09,false,absent,none,false,,,r0 입장문에서 의미상 미발화; 기억 실패로 해석하지 않음,observed/development-only
+P_prev_rep1,essay_r0,fact_throne_10,false,partial,asserted,true,,제후 정족수의 미충족은 아르넬의 약점,4/7 수치 생략,observed/development-only
+P_prev_rep1,essay_r0,fact_throne_11,true,faithful,asserted,true,,이단 재판 연루로 성별식 자격이 정지,베스카·이단 재판·3년·자격 정지를 보존,observed/development-only
+P_prev_rep1,essay_r0,fact_throne_12,true,faithful,asserted,true,modality_strengthening,대주교청 파문 명부에 아르넬의 이름이 없으므로 성별식 자격도 인정,명부 부재는 보존했으나 긍정 자격으로 강화,observed/development-only
