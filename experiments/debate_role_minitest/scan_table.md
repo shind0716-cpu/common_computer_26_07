@@ -69,3 +69,23 @@
 | stubbornnote_geminiflash_run2 | stubborn | 5→5→4→3 | 2→2→2 | 7→7→6→3 | 6→4→4→3 | 3(0) | 0 | 4 | 2→0→0 |
 | stubbornnote_gptmini_run1 | stubborn | 8→8→7→7 | 6→6→6 | 11→11→11→7 | 8→8→8→8 | 0(0) | 0 | 4 | 6→0→0 |
 | stubbornnote_gptmini_run2 | stubborn | 5→6→5→6 | 3→3→3 | 7→8→7→6 | 6→6→6→6 | 0(0) | 0 | 4 | 3→0→0 |
+
+## MT5 추가분 (WORKORDER5 2026-08-20) — 기존 행 무수정, 아래 덧붙임
+
+> 탐색 · 사전등록 없음 · n=2/셀 · **수치 인용 금지**.
+> 직전 글 × 상대 성격(비대칭 유지): S = 자기 직전 글+상대 직전 글(MT3
+> prev 축자, 수첩 콜 없음) · O = 전체 기억+배역(MT4와 축자 동일).
+> 드롭 S(기회) = S 드롭 사건 수(괄호 = 그중 상대가 이후 말해준 사건 수) ·
+> 복귀 = 복귀 사건 수 · O 신규 = 자기 이전 발화 대비 신규 앵커(배역 이행
+> 점검). 상세는 scan_result.json 의 drop_events.
+
+| 런 | 배역 | 개인 S r0→r3 | 개인 O r0→r2 | 채널 r0→r3 | 드롭 S(기회) | 복귀 | O 신규 r0→r2 |
+|---|---|---|---|---|---|---|---|
+| advanceprev_geminiflash_run1 | advance | 3→2→3→1 | 1→2→2 | 4→4→4→1 | 3(0) | 0 | 1→1→2 |
+| advanceprev_geminiflash_run2 | advance | 6→1→3→1 | 2→4→2 | 7→5→5→1 | 7(0) | 0 | 2→3→0 |
+| advanceprev_gptmini_run1 | advance | 7→9→8→8 | 7→4→4 | 11→10→9→8 | 1(0) | 0 | 7→0→1 |
+| advanceprev_gptmini_run2 | advance | 6→7→6→7 | 7→4→5 | 10→10→9→7 | 1(1) | 0 | 7→1→1 |
+| stubbornprev_geminiflash_run1 | stubborn | 3→3→4→5 | 4→4→4 | 7→7→7→5 | 0(0) | 0 | 4→0→0 |
+| stubbornprev_geminiflash_run2 | stubborn | 3→1→1→1 | 1→1→1 | 4→2→2→1 | 3(0) | 0 | 1→0→0 |
+| stubbornprev_gptmini_run1 | stubborn | 9→9→9→9 | 5→5→5 | 10→10→10→9 | 0(0) | 0 | 5→0→0 |
+| stubbornprev_gptmini_run2 | stubborn | 7→7→7→7 | 4→4→4 | 9→9→9→7 | 0(0) | 0 | 4→0→0 |

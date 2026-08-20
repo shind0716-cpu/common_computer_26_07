@@ -25,6 +25,9 @@ MT4 확장(WORKORDER4 §2 — LLM 0콜 유지): 신규 스캔 행 한정 추가 
   드롭 사건 전수 = f 가 보유에서 사라진 사건별로, 드롭 이후(재등장 전까지) 상대 발화에
   f 가 등장한 라운드 목록(기회 크기) 병기 — §2-2 "기회 대비 복귀율"의 분모.
   MT4 런은 run_meta 의 opponent_memory(비대칭 기억 표시)로 식별해 별도 표 절에 덧붙인다.
+MT5 확장(WORKORDER5 §2): 지표는 MT4 계승 그대로(수첩·오염 컬럼 없음 — prev 팔이라 수첩
+  이벤트 자체가 없다). opponent_memory 있는 런을 memory 값(note→MT4 절 / prev→MT5 절)으로
+  갈라 표기한다.
 주의: 탐색 · 사전등록 없음 · n=1~2/셀 — 수치는 어떤 주장의 증거로도 인용 금지.
 
 실행: PYTHONUTF8=1 python experiments/debate_role_minitest/scan_minitest.py
@@ -252,7 +255,8 @@ def main() -> None:
     table = HERE / "scan_table.md"
     plain = [r for r in new if "memory" not in r]
     mt3 = [r for r in new if "memory" in r and "opponent_memory" not in r]
-    mt4 = [r for r in new if "opponent_memory" in r]
+    mt4 = [r for r in new if "opponent_memory" in r and r["memory"] == "note"]
+    mt5 = [r for r in new if "opponent_memory" in r and r["memory"] == "prev"]
     lines: list[str] = []
     if plain:
         lines += ["",
@@ -328,6 +332,31 @@ def main() -> None:
                          f"| {ns or '—'} | {len(sd)}({sd_opp}) "
                          f"| {len(r['comeback_events'])} "
                          f"| {len(r['note_contamination'])} | {onw} |")
+        lines.append("")
+    if mt5:
+        lines += ["",
+                  "## MT5 추가분 (WORKORDER5 2026-08-20) — 기존 행 무수정, 아래 덧붙임",
+                  "",
+                  "> 탐색 · 사전등록 없음 · n=2/셀 · **수치 인용 금지**.",
+                  "> 직전 글 × 상대 성격(비대칭 유지): S = 자기 직전 글+상대 직전 글(MT3",
+                  "> prev 축자, 수첩 콜 없음) · O = 전체 기억+배역(MT4와 축자 동일).",
+                  "> 드롭 S(기회) = S 드롭 사건 수(괄호 = 그중 상대가 이후 말해준 사건 수) ·",
+                  "> 복귀 = 복귀 사건 수 · O 신규 = 자기 이전 발화 대비 신규 앵커(배역 이행",
+                  "> 점검). 상세는 scan_result.json 의 drop_events.",
+                  "",
+                  "| 런 | 배역 | 개인 S r0→r3 | 개인 O r0→r2 | 채널 r0→r3 "
+                  "| 드롭 S(기회) | 복귀 | O 신규 r0→r2 |",
+                  "|---|---|---|---|---|---|---|---|"]
+        for r in mt5:
+            s = "→".join(str(n) for n in r["personal_S"])
+            o = "→".join(str(n) for n in r["personal_O"])
+            c = "→".join(str(n) for n in r["channel"])
+            sd = [e for e in r["drop_events"] if e["speaker"] == "S"]
+            sd_opp = sum(1 for e in sd if e["n_opportunity_rounds"] > 0)
+            onw = "→".join(str(len(x)) for x in r["opponent_new_anchors_vs_self"])
+            lines.append(f"| {r['run_id']} | {r['opponent_role']} | {s} | {o} | {c} "
+                         f"| {len(sd)}({sd_opp}) | {len(r['comeback_events'])} "
+                         f"| {onw} |")
         lines.append("")
     with table.open("a", encoding="utf-8") as fp:
         fp.write("\n".join(lines))

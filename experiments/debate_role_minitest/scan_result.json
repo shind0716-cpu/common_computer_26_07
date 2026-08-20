@@ -7586,5 +7586,1907 @@
     "drop_events": [],
     "opponent_memory": "full",
     "opponent_role": "stubborn"
+  },
+  {
+    "run_id": "advanceprev_geminiflash_run1",
+    "arm": "advance_prev",
+    "model_key": "gemini-flash",
+    "model_id": "gemini-3-flash-preview",
+    "per_utterance": [
+      {
+        "round": 0,
+        "speaker": "S",
+        "n": 3,
+        "fact_ids": [
+          "fact_camp_05",
+          "fact_camp_06",
+          "fact_camp_12"
+        ]
+      },
+      {
+        "round": 0,
+        "speaker": "O",
+        "n": 1,
+        "fact_ids": [
+          "fact_camp_09"
+        ]
+      },
+      {
+        "round": 1,
+        "speaker": "S",
+        "n": 2,
+        "fact_ids": [
+          "fact_camp_05",
+          "fact_camp_06"
+        ]
+      },
+      {
+        "round": 1,
+        "speaker": "O",
+        "n": 2,
+        "fact_ids": [
+          "fact_camp_03",
+          "fact_camp_09"
+        ]
+      },
+      {
+        "round": 2,
+        "speaker": "S",
+        "n": 3,
+        "fact_ids": [
+          "fact_camp_05",
+          "fact_camp_06",
+          "fact_camp_11"
+        ]
+      },
+      {
+        "round": 2,
+        "speaker": "O",
+        "n": 2,
+        "fact_ids": [
+          "fact_camp_10",
+          "fact_camp_11"
+        ]
+      },
+      {
+        "round": 3,
+        "speaker": "S",
+        "n": 1,
+        "fact_ids": [
+          "fact_camp_05"
+        ]
+      }
+    ],
+    "personal_S": [
+      3,
+      2,
+      3,
+      1
+    ],
+    "personal_O": [
+      1,
+      2,
+      2
+    ],
+    "channel": [
+      4,
+      4,
+      4,
+      1
+    ],
+    "channel_fact_ids": [
+      [
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_09",
+        "fact_camp_12"
+      ],
+      [
+        "fact_camp_03",
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_09"
+      ],
+      [
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_10",
+        "fact_camp_11"
+      ],
+      [
+        "fact_camp_05"
+      ]
+    ],
+    "opponent_new_anchors_vs_self": [
+      [
+        "fact_camp_09"
+      ],
+      [
+        "fact_camp_03"
+      ],
+      [
+        "fact_camp_10",
+        "fact_camp_11"
+      ]
+    ],
+    "opponent_new_anchors_vs_channel": [
+      [
+        "fact_camp_09"
+      ],
+      [
+        "fact_camp_03"
+      ],
+      [
+        "fact_camp_10"
+      ]
+    ],
+    "subject_new_anchors_vs_self": [
+      [
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_12"
+      ],
+      [],
+      [
+        "fact_camp_11"
+      ],
+      []
+    ],
+    "dropped_vs_prev_S": [
+      [
+        "fact_camp_12"
+      ],
+      [],
+      [
+        "fact_camp_06",
+        "fact_camp_11"
+      ]
+    ],
+    "dropped_vs_prev_O": [
+      [],
+      [
+        "fact_camp_03",
+        "fact_camp_09"
+      ]
+    ],
+    "memory": "prev",
+    "note_survival": [],
+    "comeback_events": [],
+    "note_contamination": [],
+    "drop_events": [
+      {
+        "speaker": "S",
+        "fact_id": "fact_camp_06",
+        "dropped_round": 3,
+        "favors": "무레온",
+        "critical": true,
+        "reappeared_round": null,
+        "opp_rounds_after": [],
+        "n_opportunity_rounds": 0
+      },
+      {
+        "speaker": "S",
+        "fact_id": "fact_camp_11",
+        "dropped_round": 3,
+        "favors": "무레온",
+        "critical": true,
+        "reappeared_round": null,
+        "opp_rounds_after": [],
+        "n_opportunity_rounds": 0
+      },
+      {
+        "speaker": "S",
+        "fact_id": "fact_camp_12",
+        "dropped_round": 1,
+        "favors": "무레온",
+        "critical": true,
+        "reappeared_round": null,
+        "opp_rounds_after": [],
+        "n_opportunity_rounds": 0
+      },
+      {
+        "speaker": "O",
+        "fact_id": "fact_camp_03",
+        "dropped_round": 2,
+        "favors": "다림재",
+        "critical": false,
+        "reappeared_round": null,
+        "opp_rounds_after": [],
+        "n_opportunity_rounds": 0
+      },
+      {
+        "speaker": "O",
+        "fact_id": "fact_camp_09",
+        "dropped_round": 2,
+        "favors": "다림재",
+        "critical": true,
+        "reappeared_round": null,
+        "opp_rounds_after": [],
+        "n_opportunity_rounds": 0
+      }
+    ],
+    "opponent_memory": "full",
+    "opponent_role": "advance"
+  },
+  {
+    "run_id": "advanceprev_geminiflash_run2",
+    "arm": "advance_prev",
+    "model_key": "gemini-flash",
+    "model_id": "gemini-3-flash-preview",
+    "per_utterance": [
+      {
+        "round": 0,
+        "speaker": "S",
+        "n": 6,
+        "fact_ids": [
+          "fact_camp_05",
+          "fact_camp_06",
+          "fact_camp_08",
+          "fact_camp_10",
+          "fact_camp_11",
+          "fact_camp_12"
+        ]
+      },
+      {
+        "round": 0,
+        "speaker": "O",
+        "n": 2,
+        "fact_ids": [
+          "fact_camp_09",
+          "fact_camp_10"
+        ]
+      },
+      {
+        "round": 1,
+        "speaker": "S",
+        "n": 1,
+        "fact_ids": [
+          "fact_camp_11"
+        ]
+      },
+      {
+        "round": 1,
+        "speaker": "O",
+        "n": 4,
+        "fact_ids": [
+          "fact_camp_02",
+          "fact_camp_03",
+          "fact_camp_04",
+          "fact_camp_09"
+        ]
+      },
+      {
+        "round": 2,
+        "speaker": "S",
+        "n": 3,
+        "fact_ids": [
+          "fact_camp_02",
+          "fact_camp_09",
+          "fact_camp_11"
+        ]
+      },
+      {
+        "round": 2,
+        "speaker": "O",
+        "n": 2,
+        "fact_ids": [
+          "fact_camp_03",
+          "fact_camp_04"
+        ]
+      },
+      {
+        "round": 3,
+        "speaker": "S",
+        "n": 1,
+        "fact_ids": [
+          "fact_camp_11"
+        ]
+      }
+    ],
+    "personal_S": [
+      6,
+      1,
+      3,
+      1
+    ],
+    "personal_O": [
+      2,
+      4,
+      2
+    ],
+    "channel": [
+      7,
+      5,
+      5,
+      1
+    ],
+    "channel_fact_ids": [
+      [
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_10",
+        "fact_camp_11",
+        "fact_camp_12"
+      ],
+      [
+        "fact_camp_02",
+        "fact_camp_03",
+        "fact_camp_04",
+        "fact_camp_09",
+        "fact_camp_11"
+      ],
+      [
+        "fact_camp_02",
+        "fact_camp_03",
+        "fact_camp_04",
+        "fact_camp_09",
+        "fact_camp_11"
+      ],
+      [
+        "fact_camp_11"
+      ]
+    ],
+    "opponent_new_anchors_vs_self": [
+      [
+        "fact_camp_09",
+        "fact_camp_10"
+      ],
+      [
+        "fact_camp_02",
+        "fact_camp_03",
+        "fact_camp_04"
+      ],
+      []
+    ],
+    "opponent_new_anchors_vs_channel": [
+      [
+        "fact_camp_09"
+      ],
+      [
+        "fact_camp_02",
+        "fact_camp_03",
+        "fact_camp_04"
+      ],
+      []
+    ],
+    "subject_new_anchors_vs_self": [
+      [
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_08",
+        "fact_camp_10",
+        "fact_camp_11",
+        "fact_camp_12"
+      ],
+      [],
+      [
+        "fact_camp_02",
+        "fact_camp_09"
+      ],
+      []
+    ],
+    "dropped_vs_prev_S": [
+      [
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_08",
+        "fact_camp_10",
+        "fact_camp_12"
+      ],
+      [],
+      [
+        "fact_camp_02",
+        "fact_camp_09"
+      ]
+    ],
+    "dropped_vs_prev_O": [
+      [
+        "fact_camp_10"
+      ],
+      [
+        "fact_camp_02",
+        "fact_camp_09"
+      ]
+    ],
+    "memory": "prev",
+    "note_survival": [],
+    "comeback_events": [],
+    "note_contamination": [],
+    "drop_events": [
+      {
+        "speaker": "S",
+        "fact_id": "fact_camp_02",
+        "dropped_round": 3,
+        "favors": "다림재",
+        "critical": false,
+        "reappeared_round": null,
+        "opp_rounds_after": [],
+        "n_opportunity_rounds": 0
+      },
+      {
+        "speaker": "S",
+        "fact_id": "fact_camp_05",
+        "dropped_round": 1,
+        "favors": "무레온",
+        "critical": true,
+        "reappeared_round": null,
+        "opp_rounds_after": [],
+        "n_opportunity_rounds": 0
+      },
+      {
+        "speaker": "S",
+        "fact_id": "fact_camp_06",
+        "dropped_round": 1,
+        "favors": "무레온",
+        "critical": true,
+        "reappeared_round": null,
+        "opp_rounds_after": [],
+        "n_opportunity_rounds": 0
+      },
+      {
+        "speaker": "S",
+        "fact_id": "fact_camp_08",
+        "dropped_round": 1,
+        "favors": "무레온",
+        "critical": true,
+        "reappeared_round": null,
+        "opp_rounds_after": [],
+        "n_opportunity_rounds": 0
+      },
+      {
+        "speaker": "S",
+        "fact_id": "fact_camp_09",
+        "dropped_round": 3,
+        "favors": "다림재",
+        "critical": true,
+        "reappeared_round": null,
+        "opp_rounds_after": [],
+        "n_opportunity_rounds": 0
+      },
+      {
+        "speaker": "S",
+        "fact_id": "fact_camp_10",
+        "dropped_round": 1,
+        "favors": "다림재",
+        "critical": true,
+        "reappeared_round": null,
+        "opp_rounds_after": [],
+        "n_opportunity_rounds": 0
+      },
+      {
+        "speaker": "S",
+        "fact_id": "fact_camp_12",
+        "dropped_round": 1,
+        "favors": "무레온",
+        "critical": true,
+        "reappeared_round": null,
+        "opp_rounds_after": [],
+        "n_opportunity_rounds": 0
+      },
+      {
+        "speaker": "O",
+        "fact_id": "fact_camp_02",
+        "dropped_round": 2,
+        "favors": "다림재",
+        "critical": false,
+        "reappeared_round": null,
+        "opp_rounds_after": [],
+        "n_opportunity_rounds": 0
+      },
+      {
+        "speaker": "O",
+        "fact_id": "fact_camp_09",
+        "dropped_round": 2,
+        "favors": "다림재",
+        "critical": true,
+        "reappeared_round": null,
+        "opp_rounds_after": [],
+        "n_opportunity_rounds": 0
+      },
+      {
+        "speaker": "O",
+        "fact_id": "fact_camp_10",
+        "dropped_round": 1,
+        "favors": "다림재",
+        "critical": true,
+        "reappeared_round": null,
+        "opp_rounds_after": [],
+        "n_opportunity_rounds": 0
+      }
+    ],
+    "opponent_memory": "full",
+    "opponent_role": "advance"
+  },
+  {
+    "run_id": "advanceprev_gptmini_run1",
+    "arm": "advance_prev",
+    "model_key": "gpt-mini",
+    "model_id": "gpt-5.4-mini",
+    "per_utterance": [
+      {
+        "round": 0,
+        "speaker": "S",
+        "n": 7,
+        "fact_ids": [
+          "fact_camp_05",
+          "fact_camp_06",
+          "fact_camp_07",
+          "fact_camp_08",
+          "fact_camp_09",
+          "fact_camp_11",
+          "fact_camp_12"
+        ]
+      },
+      {
+        "round": 0,
+        "speaker": "O",
+        "n": 7,
+        "fact_ids": [
+          "fact_camp_01",
+          "fact_camp_02",
+          "fact_camp_03",
+          "fact_camp_04",
+          "fact_camp_05",
+          "fact_camp_08",
+          "fact_camp_09"
+        ]
+      },
+      {
+        "round": 1,
+        "speaker": "S",
+        "n": 9,
+        "fact_ids": [
+          "fact_camp_01",
+          "fact_camp_02",
+          "fact_camp_05",
+          "fact_camp_06",
+          "fact_camp_07",
+          "fact_camp_08",
+          "fact_camp_09",
+          "fact_camp_11",
+          "fact_camp_12"
+        ]
+      },
+      {
+        "round": 1,
+        "speaker": "O",
+        "n": 4,
+        "fact_ids": [
+          "fact_camp_02",
+          "fact_camp_04",
+          "fact_camp_08",
+          "fact_camp_09"
+        ]
+      },
+      {
+        "round": 2,
+        "speaker": "S",
+        "n": 8,
+        "fact_ids": [
+          "fact_camp_02",
+          "fact_camp_05",
+          "fact_camp_06",
+          "fact_camp_07",
+          "fact_camp_08",
+          "fact_camp_09",
+          "fact_camp_11",
+          "fact_camp_12"
+        ]
+      },
+      {
+        "round": 2,
+        "speaker": "O",
+        "n": 4,
+        "fact_ids": [
+          "fact_camp_02",
+          "fact_camp_04",
+          "fact_camp_09",
+          "fact_camp_12"
+        ]
+      },
+      {
+        "round": 3,
+        "speaker": "S",
+        "n": 8,
+        "fact_ids": [
+          "fact_camp_02",
+          "fact_camp_05",
+          "fact_camp_06",
+          "fact_camp_07",
+          "fact_camp_08",
+          "fact_camp_09",
+          "fact_camp_11",
+          "fact_camp_12"
+        ]
+      }
+    ],
+    "personal_S": [
+      7,
+      9,
+      8,
+      8
+    ],
+    "personal_O": [
+      7,
+      4,
+      4
+    ],
+    "channel": [
+      11,
+      10,
+      9,
+      8
+    ],
+    "channel_fact_ids": [
+      [
+        "fact_camp_01",
+        "fact_camp_02",
+        "fact_camp_03",
+        "fact_camp_04",
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_07",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_11",
+        "fact_camp_12"
+      ],
+      [
+        "fact_camp_01",
+        "fact_camp_02",
+        "fact_camp_04",
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_07",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_11",
+        "fact_camp_12"
+      ],
+      [
+        "fact_camp_02",
+        "fact_camp_04",
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_07",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_11",
+        "fact_camp_12"
+      ],
+      [
+        "fact_camp_02",
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_07",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_11",
+        "fact_camp_12"
+      ]
+    ],
+    "opponent_new_anchors_vs_self": [
+      [
+        "fact_camp_01",
+        "fact_camp_02",
+        "fact_camp_03",
+        "fact_camp_04",
+        "fact_camp_05",
+        "fact_camp_08",
+        "fact_camp_09"
+      ],
+      [],
+      [
+        "fact_camp_12"
+      ]
+    ],
+    "opponent_new_anchors_vs_channel": [
+      [
+        "fact_camp_01",
+        "fact_camp_02",
+        "fact_camp_03",
+        "fact_camp_04"
+      ],
+      [],
+      []
+    ],
+    "subject_new_anchors_vs_self": [
+      [
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_07",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_11",
+        "fact_camp_12"
+      ],
+      [
+        "fact_camp_01",
+        "fact_camp_02"
+      ],
+      [],
+      []
+    ],
+    "dropped_vs_prev_S": [
+      [],
+      [
+        "fact_camp_01"
+      ],
+      []
+    ],
+    "dropped_vs_prev_O": [
+      [
+        "fact_camp_01",
+        "fact_camp_03",
+        "fact_camp_05"
+      ],
+      [
+        "fact_camp_08"
+      ]
+    ],
+    "memory": "prev",
+    "note_survival": [],
+    "comeback_events": [],
+    "note_contamination": [],
+    "drop_events": [
+      {
+        "speaker": "S",
+        "fact_id": "fact_camp_01",
+        "dropped_round": 2,
+        "favors": "다림재",
+        "critical": false,
+        "reappeared_round": null,
+        "opp_rounds_after": [],
+        "n_opportunity_rounds": 0
+      },
+      {
+        "speaker": "O",
+        "fact_id": "fact_camp_01",
+        "dropped_round": 1,
+        "favors": "다림재",
+        "critical": false,
+        "reappeared_round": null,
+        "opp_rounds_after": [],
+        "n_opportunity_rounds": 0
+      },
+      {
+        "speaker": "O",
+        "fact_id": "fact_camp_03",
+        "dropped_round": 1,
+        "favors": "다림재",
+        "critical": false,
+        "reappeared_round": null,
+        "opp_rounds_after": [],
+        "n_opportunity_rounds": 0
+      },
+      {
+        "speaker": "O",
+        "fact_id": "fact_camp_05",
+        "dropped_round": 1,
+        "favors": "무레온",
+        "critical": true,
+        "reappeared_round": null,
+        "opp_rounds_after": [
+          2,
+          3
+        ],
+        "n_opportunity_rounds": 2
+      },
+      {
+        "speaker": "O",
+        "fact_id": "fact_camp_08",
+        "dropped_round": 2,
+        "favors": "무레온",
+        "critical": true,
+        "reappeared_round": null,
+        "opp_rounds_after": [
+          3
+        ],
+        "n_opportunity_rounds": 1
+      }
+    ],
+    "opponent_memory": "full",
+    "opponent_role": "advance"
+  },
+  {
+    "run_id": "advanceprev_gptmini_run2",
+    "arm": "advance_prev",
+    "model_key": "gpt-mini",
+    "model_id": "gpt-5.4-mini",
+    "per_utterance": [
+      {
+        "round": 0,
+        "speaker": "S",
+        "n": 6,
+        "fact_ids": [
+          "fact_camp_05",
+          "fact_camp_06",
+          "fact_camp_07",
+          "fact_camp_08",
+          "fact_camp_09",
+          "fact_camp_12"
+        ]
+      },
+      {
+        "round": 0,
+        "speaker": "O",
+        "n": 7,
+        "fact_ids": [
+          "fact_camp_01",
+          "fact_camp_02",
+          "fact_camp_04",
+          "fact_camp_06",
+          "fact_camp_09",
+          "fact_camp_11",
+          "fact_camp_12"
+        ]
+      },
+      {
+        "round": 1,
+        "speaker": "S",
+        "n": 7,
+        "fact_ids": [
+          "fact_camp_05",
+          "fact_camp_06",
+          "fact_camp_07",
+          "fact_camp_08",
+          "fact_camp_09",
+          "fact_camp_11",
+          "fact_camp_12"
+        ]
+      },
+      {
+        "round": 1,
+        "speaker": "O",
+        "n": 4,
+        "fact_ids": [
+          "fact_camp_02",
+          "fact_camp_03",
+          "fact_camp_04",
+          "fact_camp_09"
+        ]
+      },
+      {
+        "round": 2,
+        "speaker": "S",
+        "n": 6,
+        "fact_ids": [
+          "fact_camp_05",
+          "fact_camp_06",
+          "fact_camp_07",
+          "fact_camp_08",
+          "fact_camp_09",
+          "fact_camp_12"
+        ]
+      },
+      {
+        "round": 2,
+        "speaker": "O",
+        "n": 5,
+        "fact_ids": [
+          "fact_camp_02",
+          "fact_camp_04",
+          "fact_camp_08",
+          "fact_camp_09",
+          "fact_camp_11"
+        ]
+      },
+      {
+        "round": 3,
+        "speaker": "S",
+        "n": 7,
+        "fact_ids": [
+          "fact_camp_02",
+          "fact_camp_05",
+          "fact_camp_06",
+          "fact_camp_07",
+          "fact_camp_08",
+          "fact_camp_09",
+          "fact_camp_12"
+        ]
+      }
+    ],
+    "personal_S": [
+      6,
+      7,
+      6,
+      7
+    ],
+    "personal_O": [
+      7,
+      4,
+      5
+    ],
+    "channel": [
+      10,
+      10,
+      9,
+      7
+    ],
+    "channel_fact_ids": [
+      [
+        "fact_camp_01",
+        "fact_camp_02",
+        "fact_camp_04",
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_07",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_11",
+        "fact_camp_12"
+      ],
+      [
+        "fact_camp_02",
+        "fact_camp_03",
+        "fact_camp_04",
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_07",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_11",
+        "fact_camp_12"
+      ],
+      [
+        "fact_camp_02",
+        "fact_camp_04",
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_07",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_11",
+        "fact_camp_12"
+      ],
+      [
+        "fact_camp_02",
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_07",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_12"
+      ]
+    ],
+    "opponent_new_anchors_vs_self": [
+      [
+        "fact_camp_01",
+        "fact_camp_02",
+        "fact_camp_04",
+        "fact_camp_06",
+        "fact_camp_09",
+        "fact_camp_11",
+        "fact_camp_12"
+      ],
+      [
+        "fact_camp_03"
+      ],
+      [
+        "fact_camp_08"
+      ]
+    ],
+    "opponent_new_anchors_vs_channel": [
+      [
+        "fact_camp_01",
+        "fact_camp_02",
+        "fact_camp_04",
+        "fact_camp_11"
+      ],
+      [
+        "fact_camp_03"
+      ],
+      []
+    ],
+    "subject_new_anchors_vs_self": [
+      [
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_07",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_12"
+      ],
+      [
+        "fact_camp_11"
+      ],
+      [],
+      [
+        "fact_camp_02"
+      ]
+    ],
+    "dropped_vs_prev_S": [
+      [],
+      [
+        "fact_camp_11"
+      ],
+      []
+    ],
+    "dropped_vs_prev_O": [
+      [
+        "fact_camp_01",
+        "fact_camp_06",
+        "fact_camp_11",
+        "fact_camp_12"
+      ],
+      [
+        "fact_camp_03"
+      ]
+    ],
+    "memory": "prev",
+    "note_survival": [],
+    "comeback_events": [],
+    "note_contamination": [],
+    "drop_events": [
+      {
+        "speaker": "S",
+        "fact_id": "fact_camp_11",
+        "dropped_round": 2,
+        "favors": "무레온",
+        "critical": true,
+        "reappeared_round": null,
+        "opp_rounds_after": [
+          2
+        ],
+        "n_opportunity_rounds": 1
+      },
+      {
+        "speaker": "O",
+        "fact_id": "fact_camp_01",
+        "dropped_round": 1,
+        "favors": "다림재",
+        "critical": false,
+        "reappeared_round": null,
+        "opp_rounds_after": [],
+        "n_opportunity_rounds": 0
+      },
+      {
+        "speaker": "O",
+        "fact_id": "fact_camp_03",
+        "dropped_round": 2,
+        "favors": "다림재",
+        "critical": false,
+        "reappeared_round": null,
+        "opp_rounds_after": [],
+        "n_opportunity_rounds": 0
+      },
+      {
+        "speaker": "O",
+        "fact_id": "fact_camp_06",
+        "dropped_round": 1,
+        "favors": "무레온",
+        "critical": true,
+        "reappeared_round": null,
+        "opp_rounds_after": [
+          2,
+          3
+        ],
+        "n_opportunity_rounds": 2
+      },
+      {
+        "speaker": "O",
+        "fact_id": "fact_camp_11",
+        "dropped_round": 1,
+        "favors": "무레온",
+        "critical": true,
+        "reappeared_round": 2,
+        "opp_rounds_after": [],
+        "n_opportunity_rounds": 0
+      },
+      {
+        "speaker": "O",
+        "fact_id": "fact_camp_12",
+        "dropped_round": 1,
+        "favors": "무레온",
+        "critical": true,
+        "reappeared_round": null,
+        "opp_rounds_after": [
+          2,
+          3
+        ],
+        "n_opportunity_rounds": 2
+      }
+    ],
+    "opponent_memory": "full",
+    "opponent_role": "advance"
+  },
+  {
+    "run_id": "stubbornprev_geminiflash_run1",
+    "arm": "stubborn_prev",
+    "model_key": "gemini-flash",
+    "model_id": "gemini-3-flash-preview",
+    "per_utterance": [
+      {
+        "round": 0,
+        "speaker": "S",
+        "n": 3,
+        "fact_ids": [
+          "fact_camp_06",
+          "fact_camp_08",
+          "fact_camp_11"
+        ]
+      },
+      {
+        "round": 0,
+        "speaker": "O",
+        "n": 4,
+        "fact_ids": [
+          "fact_camp_01",
+          "fact_camp_02",
+          "fact_camp_03",
+          "fact_camp_09"
+        ]
+      },
+      {
+        "round": 1,
+        "speaker": "S",
+        "n": 3,
+        "fact_ids": [
+          "fact_camp_06",
+          "fact_camp_08",
+          "fact_camp_11"
+        ]
+      },
+      {
+        "round": 1,
+        "speaker": "O",
+        "n": 4,
+        "fact_ids": [
+          "fact_camp_01",
+          "fact_camp_02",
+          "fact_camp_03",
+          "fact_camp_09"
+        ]
+      },
+      {
+        "round": 2,
+        "speaker": "S",
+        "n": 4,
+        "fact_ids": [
+          "fact_camp_01",
+          "fact_camp_06",
+          "fact_camp_08",
+          "fact_camp_11"
+        ]
+      },
+      {
+        "round": 2,
+        "speaker": "O",
+        "n": 4,
+        "fact_ids": [
+          "fact_camp_01",
+          "fact_camp_02",
+          "fact_camp_03",
+          "fact_camp_09"
+        ]
+      },
+      {
+        "round": 3,
+        "speaker": "S",
+        "n": 5,
+        "fact_ids": [
+          "fact_camp_01",
+          "fact_camp_06",
+          "fact_camp_08",
+          "fact_camp_09",
+          "fact_camp_11"
+        ]
+      }
+    ],
+    "personal_S": [
+      3,
+      3,
+      4,
+      5
+    ],
+    "personal_O": [
+      4,
+      4,
+      4
+    ],
+    "channel": [
+      7,
+      7,
+      7,
+      5
+    ],
+    "channel_fact_ids": [
+      [
+        "fact_camp_01",
+        "fact_camp_02",
+        "fact_camp_03",
+        "fact_camp_06",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_11"
+      ],
+      [
+        "fact_camp_01",
+        "fact_camp_02",
+        "fact_camp_03",
+        "fact_camp_06",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_11"
+      ],
+      [
+        "fact_camp_01",
+        "fact_camp_02",
+        "fact_camp_03",
+        "fact_camp_06",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_11"
+      ],
+      [
+        "fact_camp_01",
+        "fact_camp_06",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_11"
+      ]
+    ],
+    "opponent_new_anchors_vs_self": [
+      [
+        "fact_camp_01",
+        "fact_camp_02",
+        "fact_camp_03",
+        "fact_camp_09"
+      ],
+      [],
+      []
+    ],
+    "opponent_new_anchors_vs_channel": [
+      [
+        "fact_camp_01",
+        "fact_camp_02",
+        "fact_camp_03",
+        "fact_camp_09"
+      ],
+      [],
+      []
+    ],
+    "subject_new_anchors_vs_self": [
+      [
+        "fact_camp_06",
+        "fact_camp_08",
+        "fact_camp_11"
+      ],
+      [],
+      [
+        "fact_camp_01"
+      ],
+      [
+        "fact_camp_09"
+      ]
+    ],
+    "dropped_vs_prev_S": [
+      [],
+      [],
+      []
+    ],
+    "dropped_vs_prev_O": [
+      [],
+      []
+    ],
+    "memory": "prev",
+    "note_survival": [],
+    "comeback_events": [],
+    "note_contamination": [],
+    "drop_events": [],
+    "opponent_memory": "full",
+    "opponent_role": "stubborn"
+  },
+  {
+    "run_id": "stubbornprev_geminiflash_run2",
+    "arm": "stubborn_prev",
+    "model_key": "gemini-flash",
+    "model_id": "gemini-3-flash-preview",
+    "per_utterance": [
+      {
+        "round": 0,
+        "speaker": "S",
+        "n": 3,
+        "fact_ids": [
+          "fact_camp_05",
+          "fact_camp_08",
+          "fact_camp_10"
+        ]
+      },
+      {
+        "round": 0,
+        "speaker": "O",
+        "n": 1,
+        "fact_ids": [
+          "fact_camp_09"
+        ]
+      },
+      {
+        "round": 1,
+        "speaker": "S",
+        "n": 1,
+        "fact_ids": [
+          "fact_camp_05"
+        ]
+      },
+      {
+        "round": 1,
+        "speaker": "O",
+        "n": 1,
+        "fact_ids": [
+          "fact_camp_09"
+        ]
+      },
+      {
+        "round": 2,
+        "speaker": "S",
+        "n": 1,
+        "fact_ids": [
+          "fact_camp_11"
+        ]
+      },
+      {
+        "round": 2,
+        "speaker": "O",
+        "n": 1,
+        "fact_ids": [
+          "fact_camp_09"
+        ]
+      },
+      {
+        "round": 3,
+        "speaker": "S",
+        "n": 1,
+        "fact_ids": [
+          "fact_camp_11"
+        ]
+      }
+    ],
+    "personal_S": [
+      3,
+      1,
+      1,
+      1
+    ],
+    "personal_O": [
+      1,
+      1,
+      1
+    ],
+    "channel": [
+      4,
+      2,
+      2,
+      1
+    ],
+    "channel_fact_ids": [
+      [
+        "fact_camp_05",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_10"
+      ],
+      [
+        "fact_camp_05",
+        "fact_camp_09"
+      ],
+      [
+        "fact_camp_09",
+        "fact_camp_11"
+      ],
+      [
+        "fact_camp_11"
+      ]
+    ],
+    "opponent_new_anchors_vs_self": [
+      [
+        "fact_camp_09"
+      ],
+      [],
+      []
+    ],
+    "opponent_new_anchors_vs_channel": [
+      [
+        "fact_camp_09"
+      ],
+      [],
+      []
+    ],
+    "subject_new_anchors_vs_self": [
+      [
+        "fact_camp_05",
+        "fact_camp_08",
+        "fact_camp_10"
+      ],
+      [],
+      [
+        "fact_camp_11"
+      ],
+      []
+    ],
+    "dropped_vs_prev_S": [
+      [
+        "fact_camp_08",
+        "fact_camp_10"
+      ],
+      [
+        "fact_camp_05"
+      ],
+      []
+    ],
+    "dropped_vs_prev_O": [
+      [],
+      []
+    ],
+    "memory": "prev",
+    "note_survival": [],
+    "comeback_events": [],
+    "note_contamination": [],
+    "drop_events": [
+      {
+        "speaker": "S",
+        "fact_id": "fact_camp_05",
+        "dropped_round": 2,
+        "favors": "무레온",
+        "critical": true,
+        "reappeared_round": null,
+        "opp_rounds_after": [],
+        "n_opportunity_rounds": 0
+      },
+      {
+        "speaker": "S",
+        "fact_id": "fact_camp_08",
+        "dropped_round": 1,
+        "favors": "무레온",
+        "critical": true,
+        "reappeared_round": null,
+        "opp_rounds_after": [],
+        "n_opportunity_rounds": 0
+      },
+      {
+        "speaker": "S",
+        "fact_id": "fact_camp_10",
+        "dropped_round": 1,
+        "favors": "다림재",
+        "critical": true,
+        "reappeared_round": null,
+        "opp_rounds_after": [],
+        "n_opportunity_rounds": 0
+      }
+    ],
+    "opponent_memory": "full",
+    "opponent_role": "stubborn"
+  },
+  {
+    "run_id": "stubbornprev_gptmini_run1",
+    "arm": "stubborn_prev",
+    "model_key": "gpt-mini",
+    "model_id": "gpt-5.4-mini",
+    "per_utterance": [
+      {
+        "round": 0,
+        "speaker": "S",
+        "n": 9,
+        "fact_ids": [
+          "fact_camp_01",
+          "fact_camp_02",
+          "fact_camp_05",
+          "fact_camp_06",
+          "fact_camp_07",
+          "fact_camp_08",
+          "fact_camp_09",
+          "fact_camp_11",
+          "fact_camp_12"
+        ]
+      },
+      {
+        "round": 0,
+        "speaker": "O",
+        "n": 5,
+        "fact_ids": [
+          "fact_camp_01",
+          "fact_camp_02",
+          "fact_camp_04",
+          "fact_camp_09",
+          "fact_camp_11"
+        ]
+      },
+      {
+        "round": 1,
+        "speaker": "S",
+        "n": 9,
+        "fact_ids": [
+          "fact_camp_01",
+          "fact_camp_02",
+          "fact_camp_05",
+          "fact_camp_06",
+          "fact_camp_07",
+          "fact_camp_08",
+          "fact_camp_09",
+          "fact_camp_11",
+          "fact_camp_12"
+        ]
+      },
+      {
+        "round": 1,
+        "speaker": "O",
+        "n": 5,
+        "fact_ids": [
+          "fact_camp_01",
+          "fact_camp_02",
+          "fact_camp_04",
+          "fact_camp_09",
+          "fact_camp_11"
+        ]
+      },
+      {
+        "round": 2,
+        "speaker": "S",
+        "n": 9,
+        "fact_ids": [
+          "fact_camp_01",
+          "fact_camp_02",
+          "fact_camp_05",
+          "fact_camp_06",
+          "fact_camp_07",
+          "fact_camp_08",
+          "fact_camp_09",
+          "fact_camp_11",
+          "fact_camp_12"
+        ]
+      },
+      {
+        "round": 2,
+        "speaker": "O",
+        "n": 5,
+        "fact_ids": [
+          "fact_camp_01",
+          "fact_camp_02",
+          "fact_camp_04",
+          "fact_camp_09",
+          "fact_camp_11"
+        ]
+      },
+      {
+        "round": 3,
+        "speaker": "S",
+        "n": 9,
+        "fact_ids": [
+          "fact_camp_01",
+          "fact_camp_02",
+          "fact_camp_05",
+          "fact_camp_06",
+          "fact_camp_07",
+          "fact_camp_08",
+          "fact_camp_09",
+          "fact_camp_11",
+          "fact_camp_12"
+        ]
+      }
+    ],
+    "personal_S": [
+      9,
+      9,
+      9,
+      9
+    ],
+    "personal_O": [
+      5,
+      5,
+      5
+    ],
+    "channel": [
+      10,
+      10,
+      10,
+      9
+    ],
+    "channel_fact_ids": [
+      [
+        "fact_camp_01",
+        "fact_camp_02",
+        "fact_camp_04",
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_07",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_11",
+        "fact_camp_12"
+      ],
+      [
+        "fact_camp_01",
+        "fact_camp_02",
+        "fact_camp_04",
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_07",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_11",
+        "fact_camp_12"
+      ],
+      [
+        "fact_camp_01",
+        "fact_camp_02",
+        "fact_camp_04",
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_07",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_11",
+        "fact_camp_12"
+      ],
+      [
+        "fact_camp_01",
+        "fact_camp_02",
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_07",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_11",
+        "fact_camp_12"
+      ]
+    ],
+    "opponent_new_anchors_vs_self": [
+      [
+        "fact_camp_01",
+        "fact_camp_02",
+        "fact_camp_04",
+        "fact_camp_09",
+        "fact_camp_11"
+      ],
+      [],
+      []
+    ],
+    "opponent_new_anchors_vs_channel": [
+      [
+        "fact_camp_04"
+      ],
+      [],
+      []
+    ],
+    "subject_new_anchors_vs_self": [
+      [
+        "fact_camp_01",
+        "fact_camp_02",
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_07",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_11",
+        "fact_camp_12"
+      ],
+      [],
+      [],
+      []
+    ],
+    "dropped_vs_prev_S": [
+      [],
+      [],
+      []
+    ],
+    "dropped_vs_prev_O": [
+      [],
+      []
+    ],
+    "memory": "prev",
+    "note_survival": [],
+    "comeback_events": [],
+    "note_contamination": [],
+    "drop_events": [],
+    "opponent_memory": "full",
+    "opponent_role": "stubborn"
+  },
+  {
+    "run_id": "stubbornprev_gptmini_run2",
+    "arm": "stubborn_prev",
+    "model_key": "gpt-mini",
+    "model_id": "gpt-5.4-mini",
+    "per_utterance": [
+      {
+        "round": 0,
+        "speaker": "S",
+        "n": 7,
+        "fact_ids": [
+          "fact_camp_05",
+          "fact_camp_06",
+          "fact_camp_07",
+          "fact_camp_08",
+          "fact_camp_09",
+          "fact_camp_11",
+          "fact_camp_12"
+        ]
+      },
+      {
+        "round": 0,
+        "speaker": "O",
+        "n": 4,
+        "fact_ids": [
+          "fact_camp_01",
+          "fact_camp_02",
+          "fact_camp_09",
+          "fact_camp_11"
+        ]
+      },
+      {
+        "round": 1,
+        "speaker": "S",
+        "n": 7,
+        "fact_ids": [
+          "fact_camp_05",
+          "fact_camp_06",
+          "fact_camp_07",
+          "fact_camp_08",
+          "fact_camp_09",
+          "fact_camp_11",
+          "fact_camp_12"
+        ]
+      },
+      {
+        "round": 1,
+        "speaker": "O",
+        "n": 4,
+        "fact_ids": [
+          "fact_camp_01",
+          "fact_camp_02",
+          "fact_camp_09",
+          "fact_camp_11"
+        ]
+      },
+      {
+        "round": 2,
+        "speaker": "S",
+        "n": 7,
+        "fact_ids": [
+          "fact_camp_05",
+          "fact_camp_06",
+          "fact_camp_07",
+          "fact_camp_08",
+          "fact_camp_09",
+          "fact_camp_11",
+          "fact_camp_12"
+        ]
+      },
+      {
+        "round": 2,
+        "speaker": "O",
+        "n": 4,
+        "fact_ids": [
+          "fact_camp_01",
+          "fact_camp_02",
+          "fact_camp_09",
+          "fact_camp_11"
+        ]
+      },
+      {
+        "round": 3,
+        "speaker": "S",
+        "n": 7,
+        "fact_ids": [
+          "fact_camp_05",
+          "fact_camp_06",
+          "fact_camp_07",
+          "fact_camp_08",
+          "fact_camp_09",
+          "fact_camp_11",
+          "fact_camp_12"
+        ]
+      }
+    ],
+    "personal_S": [
+      7,
+      7,
+      7,
+      7
+    ],
+    "personal_O": [
+      4,
+      4,
+      4
+    ],
+    "channel": [
+      9,
+      9,
+      9,
+      7
+    ],
+    "channel_fact_ids": [
+      [
+        "fact_camp_01",
+        "fact_camp_02",
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_07",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_11",
+        "fact_camp_12"
+      ],
+      [
+        "fact_camp_01",
+        "fact_camp_02",
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_07",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_11",
+        "fact_camp_12"
+      ],
+      [
+        "fact_camp_01",
+        "fact_camp_02",
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_07",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_11",
+        "fact_camp_12"
+      ],
+      [
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_07",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_11",
+        "fact_camp_12"
+      ]
+    ],
+    "opponent_new_anchors_vs_self": [
+      [
+        "fact_camp_01",
+        "fact_camp_02",
+        "fact_camp_09",
+        "fact_camp_11"
+      ],
+      [],
+      []
+    ],
+    "opponent_new_anchors_vs_channel": [
+      [
+        "fact_camp_01",
+        "fact_camp_02"
+      ],
+      [],
+      []
+    ],
+    "subject_new_anchors_vs_self": [
+      [
+        "fact_camp_05",
+        "fact_camp_06",
+        "fact_camp_07",
+        "fact_camp_08",
+        "fact_camp_09",
+        "fact_camp_11",
+        "fact_camp_12"
+      ],
+      [],
+      [],
+      []
+    ],
+    "dropped_vs_prev_S": [
+      [],
+      [],
+      []
+    ],
+    "dropped_vs_prev_O": [
+      [],
+      []
+    ],
+    "memory": "prev",
+    "note_survival": [],
+    "comeback_events": [],
+    "note_contamination": [],
+    "drop_events": [],
+    "opponent_memory": "full",
+    "opponent_role": "stubborn"
   }
 ]
