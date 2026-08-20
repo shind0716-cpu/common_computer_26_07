@@ -85,6 +85,7 @@ class FactSpec:
     lexical_probes: list = field(default_factory=list)
     atomicity: str = "simple"
     note: str = ""
+    decision_role: str = ""
 
 
 @dataclass
@@ -98,6 +99,9 @@ class DetectionSpec:
     requirements: dict
     candidates: list
     lexical_is_primary: bool = False
+    distortion_vocabulary: list = field(default_factory=list)
+    decision_contract: dict = field(default_factory=dict)
+    material_artifacts: dict = field(default_factory=dict)
 
     def verify_material(self) -> None:
         """명세가 가리키는 재료가 그대로인지 본다. 다르면 집계하지 않는다."""
@@ -113,6 +117,8 @@ class CalibrationSet:
     issue_id: str
     version: str
     cases: list
+    spec_version: str = ""
+    chain_cases: list = field(default_factory=list)
 
 
 def sha256_of(path: Path) -> str:
@@ -141,7 +147,10 @@ def load(issue_id: str) -> DetectionSpec:
         calibration_version=doc.get("calibration_version", ""),
         facts=facts, requirements=doc.get("requirements", {}),
         candidates=doc.get("candidates", []),
-        lexical_is_primary=doc.get("lexical_is_primary", False))
+        lexical_is_primary=doc.get("lexical_is_primary", False),
+        distortion_vocabulary=doc.get("distortion_vocabulary", []),
+        decision_contract=doc.get("decision_contract", {}),
+        material_artifacts=doc.get("material_artifacts", {}))
 
 
 def load_calibration(issue_id: str) -> CalibrationSet:
@@ -149,8 +158,9 @@ def load_calibration(issue_id: str) -> CalibrationSet:
     if not p.exists():
         raise SpecError(f"교정셋 없음: {issue_id} ({p})")
     doc = json.loads(p.read_text(encoding="utf-8"))
-    return CalibrationSet(issue_id=doc["issue_id"], version=doc["version"],
-                          cases=doc["cases"])
+    return CalibrationSet(
+        issue_id=doc["issue_id"], version=doc["version"], cases=doc["cases"],
+        spec_version=doc.get("spec_version", ""), chain_cases=doc.get("chain_cases", []))
 
 
 def read_coding_csv(path, *, issue_id: str, spec_version: str) -> list:
@@ -225,8 +235,9 @@ def validate_record(spec: DetectionSpec, record: dict) -> None:
     if mode not in MENTION_MODES:
         raise SpecError(f"등록되지 않은 mention_mode: {mode!r}")
 
+    allowed_flags = set(DISTORTION_FLAGS) | set(spec.distortion_vocabulary)
     for f in record.get("distortion_flags") or []:
-        if f not in DISTORTION_FLAGS:
+        if f not in allowed_flags:
             raise SpecError(f"등록되지 않은 distortion_flag: {f!r}")
 
     if status == "blocked" and not (record.get("reason") or "").strip():
@@ -242,6 +253,29 @@ def validate_record(spec: DetectionSpec, record: dict) -> None:
         raise SpecError("provenance_class 가 비었다 — 관측 출력과 독립 사례를 섞지 않는다")
 
 
+def validate_judgments(spec: DetectionSpec, judgments: dict) -> None:
+    """의미 판정 사전이 평가기에 들어갈 자격이 있는지 본다.
+
+    평가기(요건형·사슬형)가 공유한다. **lexical 적중을 판정으로 부어 넣는 경로를 막는 것이
+    이 함수의 존재 이유다** — 불리언이나 미등록 문자열이면 죽는다. 빠진 팩트를 absent 로
+    채우지도 않는다. 「말 안 했다」와 「판정 안 했다」는 다르다.
+    """
+    if not isinstance(judgments, dict):
+        raise SpecError("judgments 는 fact_id -> preservation_status 사전이어야 한다")
+    for fid, status in judgments.items():
+        if fid not in spec.facts:
+            raise SpecError(
+                f"명세에 없는 fact_id: {fid} — 판본이 섞였을 수 있다 (명세 {spec.issue_id})")
+        if not isinstance(status, str) or status not in PRESERVATION_STATUSES:
+            raise SpecError(
+                f"{fid}: 판정값 {status!r} 은 semantic 상태가 아니다. lexical 적중으로 "
+                f"결론을 만들지 않는다. 허용: {', '.join(PRESERVATION_STATUSES)}")
+    missing = [f for f in spec.facts if f not in judgments]
+    if missing:
+        raise SpecError(
+            f"판정이 빠진 팩트 {len(missing)}개: {missing[:4]}… — 빈칸을 absent 로 채우지 않는다")
+
+
 def validate_calibration_case(spec: DetectionSpec, case: dict) -> None:
     """교정 사례 하나. 기대 상태가 닫힌 어휘 안이어야 하고 계보가 독립이어야 한다."""
     for k in ("fact_id", "text", "expected_status", "provenance_class"):
@@ -251,8 +285,9 @@ def validate_calibration_case(spec: DetectionSpec, case: dict) -> None:
         raise SpecError(f"명세에 없는 fact_id: {case['fact_id']}")
     if case["expected_status"] not in PRESERVATION_STATUSES:
         raise SpecError(f"등록되지 않은 expected_status: {case['expected_status']!r}")
+    allowed_flags = set(DISTORTION_FLAGS) | set(spec.distortion_vocabulary)
     for f in case.get("expected_flags") or []:
-        if f not in DISTORTION_FLAGS:
+        if f not in allowed_flags:
             raise SpecError(f"등록되지 않은 expected_flag: {f!r}")
     if case["provenance_class"] != "independent-from-observed-output":
         raise SpecError(

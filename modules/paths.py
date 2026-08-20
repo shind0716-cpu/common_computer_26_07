@@ -66,3 +66,18 @@ def calibration_set(issue_id: str) -> Path:
     """판독 명세의 독립 교정 사례. 관측 출력과 계보를 갈라 두려고 파일을 나눈다 —
     같은 출력으로 규칙을 만들고 같은 출력에서 성능을 주장하는 것을 막는다."""
     return DATA / "detection_specs" / f"calibration_{issue_id}.json"
+
+
+def detection_manifest(issue_id: str) -> Path:
+    """재료 3종·DetectionSpec·calibration 바이트 지문 manifest."""
+    return DATA / "detection_specs" / f"manifest_{issue_id}.json"
+
+
+def scenario_registry() -> Path:
+    """콘솔 승격 승인 원장. 파일 존재가 아니라 이 원장의 명시 항목이 입구가 된다."""
+    return DATA / "scenario_registry.json"
+
+
+def scenario_registry_schema() -> Path:
+    """승격 원장 JSON Schema. 운영자와 테스트가 같은 계약 파일을 가리킨다."""
+    return DATA / "scenario_registry.schema.json"

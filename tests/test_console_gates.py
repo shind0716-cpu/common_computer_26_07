@@ -18,6 +18,7 @@ from pathlib import Path
 from fastapi.testclient import TestClient
 
 from modules import llm, paths
+from tests.scenario_gate_helpers import approve_legacy_fixture
 from tests.test_note_slot import FakeLLM, _cfg, _write_fixture
 from modules import debate_engine
 
@@ -28,6 +29,7 @@ class GateBase(unittest.TestCase):
         self._orig = paths.DATA
         paths.DATA = self.tmp / "data"
         self.issue_id = _write_fixture(paths.DATA)
+        approve_legacy_fixture(self.issue_id)
         from tools.console import app as console_app
         self.mod = console_app
         self.c = TestClient(console_app.app)
@@ -256,11 +258,11 @@ class TestVariant(GateBase):
         self.assertEqual(r.status_code, 400)
         self.assertFalse(paths.assignment(f"{self.issue_id}_a1").exists())
 
-    def test_variant_appears_in_issue_list(self):
+    def test_variant_stays_hidden_until_explicit_registry_approval(self):
         self.c.post("/api/variant", json={
             "issue_id": self.issue_id, "suffix": "a5", "n_agents": 5})
         rows = self.c.get("/api/meta").json()["issue_rows"]
-        self.assertIn(f"{self.issue_id}_a5", [r["issue_id"] for r in rows])
+        self.assertNotIn(f"{self.issue_id}_a5", [r["issue_id"] for r in rows])
 
 
 class TestFar(GateBase):

@@ -27,7 +27,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from modules.detection_spec import EVIDENTIAL_STATUSES, PRESERVATION_STATUSES, SpecError
+from modules.detection_spec import EVIDENTIAL_STATUSES, SpecError, validate_judgments
 
 SATISFIED = "satisfied"
 UNSATISFIED = "unsatisfied"
@@ -101,17 +101,5 @@ def evaluate(spec, judgments: dict) -> DecisionResult:
 
 
 def _check_judgments(spec, judgments) -> None:
-    if not isinstance(judgments, dict):
-        raise SpecError("judgments 는 fact_id -> preservation_status 사전이어야 한다")
-    for fid, status in judgments.items():
-        if fid not in spec.facts:
-            raise SpecError(
-                f"명세에 없는 fact_id: {fid} — 판본이 섞였을 수 있다 (명세 {spec.issue_id})")
-        if not isinstance(status, str) or status not in PRESERVATION_STATUSES:
-            raise SpecError(
-                f"{fid}: 판정값 {status!r} 은 semantic 상태가 아니다. lexical 적중으로 "
-                f"조건 충족을 만들지 않는다. 허용: {', '.join(PRESERVATION_STATUSES)}")
-    missing = [f for f in spec.facts if f not in judgments]
-    if missing:
-        raise SpecError(
-            f"판정이 빠진 팩트 {len(missing)}개: {missing[:4]}… — 빈칸을 absent 로 채우지 않는다")
+    """판정 사전 검증은 detection_spec 이 한 벌로 갖는다 — 사슬형 평가기와 같은 규칙을 쓴다."""
+    validate_judgments(spec, judgments)

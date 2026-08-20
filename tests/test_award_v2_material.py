@@ -52,6 +52,49 @@ class AwardV2IdentityTests(unittest.TestCase):
         self.assertEqual(json.loads(paths.issue(V2).read_text(encoding="utf-8"))["issue_id"], V2)
         self.assertEqual(json.loads(paths.assignment(V2).read_text(encoding="utf-8"))["issue_id"], V2)
 
+    def test_builder_and_runtime_canonical_files_are_byte_identical(self):
+        pairs = (
+            (ROOT / "시나리오" / f"{V2}.json", paths.issue(V2)),
+            (ROOT / "시나리오" / f"facts_{V2}.json", paths.facts(V2)),
+            (ROOT / "시나리오" / f"assignment_{V2}.json", paths.assignment(V2)),
+        )
+        for source, runtime in pairs:
+            with self.subTest(file=source.name):
+                self.assertEqual(source.read_bytes(), runtime.read_bytes())
+
+    def test_v2_material_closes_the_four_audit_blockers(self):
+        builder = importlib.import_module("시나리오.build_issue_award_v2")
+        texts = {f["fact_id"]: f["text"] for f in
+                 json.loads(paths.facts(V2).read_text(encoding="utf-8"))["facts"]}
+
+        self.assertIn("적격 접수작", texts[builder.fid(4)])
+        self.assertIn("실제 외주·자동 생성 도구 사용 내역이 일치", texts[builder.fid(12)])
+        self.assertIn("제작 전 과정", texts[builder.fid(5)])
+        self.assertIn("최종 배경에 반영", texts[builder.fid(6)])
+        self.assertIn("올해의 작품 부문에서 신인 창작 부문으로 최종 이관", texts[builder.fid(8)])
+        self.assertIn("최종 연출 점수", texts[builder.fid(9)])
+        self.assertIn("공식 설계 지표", texts[builder.fid(10)])
+        self.assertIn("공식 완성도 평가 기간", texts[builder.fid(11)])
+
+        issue_body = json.loads(paths.issue(V2).read_text(encoding="utf-8"))["body"]
+        self.assertIn("초안을 참고한 것도 사용에 포함", issue_body)
+        self.assertIn("인터뷰는 확인 자료로 인정", issue_body)
+        self.assertIn("세 항목 모두에서 앞선 한 작품", issue_body)
+
+    def test_surface_impressions_are_excluded_from_normative_components(self):
+        builder = importlib.import_module("시나리오.build_issue_award_v2")
+        facts = json.loads(paths.facts(V2).read_text(encoding="utf-8"))["facts"]
+        surface_ids = {f["fact_id"] for f in facts if f["dataset_role"] == "surface_impression"}
+        self.assertEqual(surface_ids, {builder.fid(1), builder.fid(2), builder.fid(3)})
+        self.assertFalse(surface_ids & set(builder.NORMATIVE_REQUIRED_FACTS))
+
+    def test_each_agent_receives_two_isolated_facts(self):
+        assignment = json.loads(paths.assignment(V2).read_text(encoding="utf-8"))
+        for agent in assignment["agents"]:
+            isolated = [fid for fid in agent["assigned_fact_ids"] if fid.endswith(tuple(
+                f"_{n:02d}" for n in range(5, 13)))]
+            self.assertEqual(len(isolated), 2, agent["agent_id"])
+
 
 class AwardV2NormativeEvaluatorTests(unittest.TestCase):
     def setUp(self):

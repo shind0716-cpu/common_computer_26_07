@@ -1,6 +1,6 @@
 # polar · exile · award 정본 결정표
 
-상태: 독립 검토 대조 전 / 연구자 결정 후보
+상태: 독립 검토 대조 완료 / award v2 권고안 적용 / polar·exile 결정 대기
 
 ## 1. issue_polar
 
@@ -142,10 +142,82 @@
 
 권고: 모든 키는 `(issue_id,fact_id)`. 새 v2가 생기면 flat도 별도 issue identity/hash를 사용.
 
+### A8. 2026-08-20 `issue_award_v2` 적용 기록
+
+이번 v2 정본은 위 권고안을 다음처럼 적용했다.
+
+- 새 identity: `issue_award_v2`, `fact_award_v2_01`~`fact_award_v2_12`
+- fact 04: 밤길 안내인의 올해의 작품 부문 적격 접수를 긍정 기록으로 명시
+- fact 12: 밤길 안내인의 신고 내역과 확인된 실제 사용 내역 일치를 긍정 기록으로 명시
+- fact 05·06 + 본문 규정 해설: 제작 전 과정 신고 범위, 최종 작품용 생성 초안 참고도 사용,
+  제작사 대표 인터뷰도 확인 자료라는 계약을 명시
+- fact 08: 올해의 작품 부문→신인 창작 부문의 최종 이관 방향과 효력을 명시
+- fact 09·10·11 + 본문 rubric: 최종 연출 점수, 첫 관문 이탈률, 넉 달간 치명 결함 보고
+  건수를 공식 비교 지표로 고정하고, 세 항목 모두에서 앞선 한 작품을 선정
+- fact 01~03만 `surface_impression`; normative evaluator 입력에서 제외
+- 새 evaluator는 미확인 component를 `unknown`으로 유지하고 다른 후보 승리로 바꾸지 않음
+
+old `issue_award`, `issue_award_flat`, prior 파일럿 원자료는 수정하지 않는다. v2 prior는 null이며
+실호출 트랙 진입 전 별도 프로브가 필요하다.
+
 ## 4. 권고 우선순위
 
-1. award v2 정본 수정
+1. award v2 정본 수정 — **완료(2026-08-20)**
 2. exile 사람 검토·source/causal 문면 확정
 3. polar는 current material 유지 가능하되 detector 경계 고정
 4. 각 시나리오 독립 calibration set 작성
 5. 이후 공통 loader 구현
+
+
+---
+
+## A9. 2026-08-20 polar · exile 정본 결정 기입 (위임 서명)
+
+정본: `DECISION_PACKET_POLAR_EXILE_V2_2026-08-20.md` §6.
+**소유자 본인 체크가 아니라 요한의 구두 위임에 따라 실행 에이전트가 권고 묶음을 채택해
+기입한 것이다.** 개별 항목은 언제든 뒤집을 수 있고, 뒤집으면 이 아래에 append 한다.
+
+### 결정 열여섯 — 전부 「더 조심스러운 쪽」
+
+| 결정점 | 채택 |
+|---|---|
+| P-0 outcome policy | `descriptive_stance_only` · accuracy 금지 |
+| P-1 fact 03 | 후송 항로상의 대체 착륙장으로 명시 |
+| P-2 fact 05 | historical case 만 유지 (현재 위험 추론 금지) |
+| P-3 fact 11 | 접근 가능성 `unknown` · orientation `blocked` |
+| P-4 stance metadata | `_unfavorable_to` 는 truth 가 아니라 prereg metadata. 11·12 orientation blocked |
+| P-5 identity | `issue_polar_v2` + 전체 v2 fact namespace |
+| E-0 outcome policy | `descriptive_stance_only` · accuracy 금지 |
+| E-1 fact 01 | 수사 관련자 명단 / 유죄 **미확정** 분리 |
+| E-2 fact 02 | 적발 9배 / 원인 귀속 **미확정** 분리 |
+| E-3 fact 06 | refusal actor `unknown` 유지 |
+| E-4 fact 08 | 후속 폐업 / 직접 원인 **미확정** |
+| E-5 fact 10 | 과반 분모 미확정 · 6표 계산 `blocked` |
+| E-6 fact 11 | 내부 인과는 보존, 보편화 금지 |
+| E-7 fact 12 | 개별 송환 option 존재만, feasibility `unknown` |
+| E-8 윤리 sidecar | 분리는 채택 · **사람 책임자 지정은 미해결** |
+| E-9 identity | `issue_exile_v2` + 전체 v2 fact namespace |
+
+### 새 identity 표
+
+| v1 | v2 | fact namespace |
+|---|---|---|
+| `issue_polar` | `issue_polar_v2` | `fact_polar_v2_01` ~ `_12` |
+| `issue_exile` | `issue_exile_v2` | `fact_exile_v2_01` ~ `_12` |
+
+v1 material·파일럿·raw 는 덮어쓰거나 재라벨링하지 않는다. old prior·output 을 v2 로
+이전하지 않는다. v2 의 `prior` 는 `null` 이며, 문면 확정 뒤 독립 probe 를 별도 승인한다.
+throne v2 와 같은 처리다.
+
+### outcome policy 의 실무 귀결
+
+polar·exile 에는 정답이 없다. 정답률을 만들면 없는 것을 재게 된다. 콘솔 목록과 `/api/run`
+양쪽에서 `descriptive_stance_only` 재료에 accuracy 를 요청하면 fail-closed 여야 한다.
+
+### 남은 blocker
+
+- **exile: 윤리 sidecar 의 사람 coder·독립 adjudication 책임자 미지정.** 사람 이름을 정하는
+  일이라 에이전트가 대신할 수 없다. 실존 집단으로 읽힐 위험이 있는 재료라 비운 채 넘기지
+  않는다. **지정 전까지 exile v2 material 작성 착수 금지.**
+- polar 는 이 blocker 가 없어 v2 builder/material 초안부터 열린다.
+- 두 재료의 DetectionSpec·calibration 은 material hash 확정 뒤 별도 spec-engineer 몫이다.

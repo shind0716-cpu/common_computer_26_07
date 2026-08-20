@@ -1,0 +1,12 @@
+{
+  "issue_id": "issue_award_v2",
+  "spec_version": "0.1",
+  "calibration_version": "cal-0.1",
+  "sha256": {
+    "issue": "5aa0fcce2ec22903c934af10610f20a36e93e3122d44097804fbc4dbe5746e45",
+    "facts": "d023a085a902499bb55c08f31b0121caf07ea23d93ac9a1a39a1810aaec8a4d3",
+    "assignment": "33c0e222798250cb46ca41aff46c22125c3197ec04be5c5d07b1f9dec21e9562",
+    "spec": "cc71fe706a005d5b1fb395303b2e39252d6bd1c78bbaa0c26601b8ac5c7882aa",
+    "calibration": "7a02bdea084c9ff3f06c04f82b38ba098909970c7fd9b603c029436f99ce8db6"
+  }
+}

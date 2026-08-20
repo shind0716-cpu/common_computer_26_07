@@ -249,6 +249,8 @@ def check(facts_doc: dict, assignment_doc: dict) -> int:
     line("공유 4개 전원 보유", all(shared_ids <= set(a["assigned_fact_ids"]) for a in agents))
     line("미공유 고립 8개", sum(count == 1 for count in owned.values()) == 8)
     line("미배분 0", set(owned) == set(texts))
+    line("에이전트별 미공유 2개씩",
+         all(len(set(a["assigned_fact_ids"]) - shared_ids) == 2 for a in agents))
     line("혼자 정본 결론 완성 0명",
          not any(NORMATIVE_REQUIRED_FACTS <= set(a["assigned_fact_ids"]) for a in agents))
     return failures
@@ -257,7 +259,7 @@ def check(facts_doc: dict, assignment_doc: dict) -> int:
 def _serialized_outputs() -> tuple[dict[Path, str], dict]:
     docs = build_docs()
     assignment_doc = assignment_gen.generate_split_pairs(
-        docs["facts"], n_agents=4, seed=42, overlap_k=1)
+        docs["facts"], n_agents=4, seed=1, overlap_k=1)
     payloads = {
         HERE / f"{IID}.json": json.dumps(docs["issue"], ensure_ascii=False, indent=2),
         HERE / f"facts_{IID}.json": json.dumps(docs["facts"], ensure_ascii=False, indent=2),
