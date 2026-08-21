@@ -176,9 +176,14 @@ class ExileV2CanonicalDecisionTests(unittest.TestCase):
         self.assertEqual(self.issue["body"], v1_issue["body"])
         self.assertEqual(self.issue["question"], v1_issue["question"])
 
-    def test_prior_is_null_and_note_warns(self):
-        self.assertTrue(all(f["prior"]["score"] is None for f in self.facts.values()))
-        self.assertIn("prior 프로브 미실행", self.facts_doc["_note"])
+    def test_prior_is_probed_and_note_records_it(self):
+        """2026-08-21 prior 프로브 완료(gpt-mini·camp-prior-v0.2·known 0/12). 원 '미실행' 문장은 이력."""
+        for f in self.facts.values():
+            self.assertEqual(f["prior"]["score"], 0.0)
+            self.assertEqual(f["prior"]["probe_model"], "gpt-mini")
+            self.assertEqual(f["prior"]["probe_prompt_ver"], "camp-prior-v0.2")
+            self.assertIsNotNone(f["prior"]["probed_at"])
+        self.assertIn("prior 프로브 완료", self.facts_doc["_note"])
 
 
 class ExileV2EthicsSidecarTests(unittest.TestCase):
@@ -294,7 +299,8 @@ class ExileV2RegistryTests(unittest.TestCase):
         self.assertIsNotNone(self.entry, "issue_exile_v2 registry 항목이 없다")
         self.assertEqual(self.entry["state"], "candidate")
         self.assertEqual(self.entry["outcome_policy"], "descriptive_stance_only")
-        self.assertEqual(self.entry["prior"], {"required": True, "status": "pending"})
+        # 2026-08-21 prior 프로브 완료 — completed 이지만 state 는 여전히 candidate(사람 승인 전).
+        self.assertEqual(self.entry["prior"], {"required": True, "status": "completed"})
         self.assertIsNone(self.entry["approved_by"])
         self.assertIsNone(self.entry["approved_at"])
         self.assertEqual(self.entry["material"]["issue_sha256"], sha(paths.issue(V2)))

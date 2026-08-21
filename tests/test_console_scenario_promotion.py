@@ -449,7 +449,7 @@ class TestConsoleIntegration(PromotionBase):
 
 
 class TestRepositoryRegistryIntegration(unittest.TestCase):
-    """실제 award_v2 package는 의미 패키지까지 동기화됐지만 승인·prior 전에는 막힌다."""
+    """실제 v2 package는 의미 패키지·prior까지 동기화됐지만 사람 승인(state) 전에는 막힌다."""
 
     def test_award_v2_registry_matches_package_but_remains_non_executable(self):
         from modules import scenario_gate
@@ -459,7 +459,9 @@ class TestRepositoryRegistryIntegration(unittest.TestCase):
         self.assertEqual(result.state, "candidate")
         joined = " | ".join(result.blocking_reasons)
         self.assertIn("promotion state not executable: candidate", joined)
-        self.assertIn("prior not completed", joined)
+        # 2026-08-21 prior 프로브 완료(known 0/12, 48콜) — 이제 prior 는 막지 않는다.
+        self.assertNotIn("prior not completed", joined)
+        self.assertNotIn("facts hash mismatch", joined)
         for stale_error in (
             "spec hash mismatch", "spec version mismatch",
             "calibration hash mismatch", "calibration version mismatch",
@@ -475,7 +477,9 @@ class TestRepositoryRegistryIntegration(unittest.TestCase):
         self.assertEqual(result.state, "candidate")
         joined = " | ".join(result.blocking_reasons)
         self.assertIn("promotion state not executable: candidate", joined)
-        self.assertIn("prior not completed", joined)
+        # 2026-08-21 prior 프로브 완료(known 0/12, 48콜) — 이제 prior 는 막지 않는다.
+        self.assertNotIn("prior not completed", joined)
+        self.assertNotIn("facts hash mismatch", joined)
         self.assertIn("accuracy forbidden for descriptive_stance_only scenario", joined)
         for stale_error in (
             "spec hash mismatch", "spec version mismatch",
@@ -492,7 +496,9 @@ class TestRepositoryRegistryIntegration(unittest.TestCase):
         self.assertEqual(result.state, "candidate")
         joined = " | ".join(result.blocking_reasons)
         self.assertIn("promotion state not executable: candidate", joined)
-        self.assertIn("prior not completed", joined)
+        # 2026-08-21 prior 프로브 완료(known 0/12, 48콜) — 이제 prior 는 막지 않는다.
+        self.assertNotIn("prior not completed", joined)
+        self.assertNotIn("facts hash mismatch", joined)
         self.assertIn("accuracy forbidden for descriptive_stance_only scenario", joined)
         for stale_error in (
             "spec hash mismatch", "spec version mismatch",

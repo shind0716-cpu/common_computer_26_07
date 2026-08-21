@@ -3,7 +3,7 @@
   "created_by": "manual(Hermes 의미 감사·독립 검토 조정·정본 결정표 반영 v2)",
   "created_at": "2026-08-20T00:00:00+09:00",
   "issue_id": "issue_award_v2",
-  "_note": "issue_award_v2 의미 정본. v1/flat/prior 원자료를 덮지 않으며 fact_id도 fact_award_v2_NN으로 분리한다. 04는 밤길의 부문 적격, 12는 신고·실사용 일치의 긍정 기록이다. 05+06은 석호 결격, 07+08은 종이의 타 부문 최종 이관, 09·10·11은 공식 세 항목 우위다. surface_impression은 01~03뿐이며 normative 선정에 넣지 않는다. prior 프로브 미실행 — 실호출 전 필수.",
+  "_note": "issue_award_v2 의미 정본. v1/flat/prior 원자료를 덮지 않으며 fact_id도 fact_award_v2_NN으로 분리한다. 04는 밤길의 부문 적격, 12는 신고·실사용 일치의 긍정 기록이다. 05+06은 석호 결격, 07+08은 종이의 타 부문 최종 이관, 09·10·11은 공식 세 항목 우위다. surface_impression은 01~03뿐이며 normative 선정에 넣지 않는다. prior 프로브 미실행 — 실호출 전 필수. → (2026-08-21 정정) prior 프로브 완료: gpt-mini · 온도 0 · camp-prior-v0.2 · known 0/12 · 요한 승인 48콜 중 12 · 원문 시나리오/prior_<issue>.json. 위 '미실행' 문장은 이력으로 남긴다.",
   "extractor": {
     "name": "manual",
     "ver": "1"

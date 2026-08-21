@@ -44,6 +44,20 @@ prior 프로브는 시나리오당 12콜 — 네 벌이면 48콜. 과금 결정 
 - **파일럿(pilot_unvetted, 30콜 상한, 집계·보고 제외)**: v2 네 벌, camp·esa·hire·hire_a6, 시나리오2 세 벌(반입 후).
 - **확증(confirmatory)**: 없음. 가장 가까운 것은 v2 네 벌 → prior 48콜 + 승인.
 
+## 3-1. 추기 (같은 날 오후) — v2 prior 프로브 48콜 집행
+
+요한 승인으로 `시나리오/probe_prior_new.py` 에 v2 네 벌을 더해 돌렸다. gpt-mini · 온도 0 · 문면 camp-prior-v0.2 ·
+상한 51(48+재시도 3) · 실호출 48 · 파싱 실패 0. **네 벌 모두 known 0/12** — 교체할 팩트 없음. 원문은
+`시나리오/prior_issue_*_v2.json` + `.partial.jsonl`, 원자료 커밋 7320519.
+
+프로브가 facts 에 점수를 써 넣으면서 재료 해시가 바뀌었고 사슬을 따라 재계산했다: polar_v2·exile_v2 spec 빌더의
+동결 상수 → spec 4개(`material_sha256`·`material_artifacts.facts_sha256` 두 칸만) → manifest 3개 → registry
+(`facts_sha256`·`spec.sha256`·`prior.status: completed`). calibration 은 한 바이트도 안 바뀌었다. facts `_note` 의
+"프로브 미실행" 문장은 지우지 않고 뒤에 정정 문장을 붙였다.
+
+확증 문 재실측: v2 네 벌 모두 막는 이유가 **`promotion state not executable: candidate` 하나**. 남은 건 사람 승인
+(state 전환 + `approved_by/at`)이고, 그건 코드가 아니라 보드 결정이다.
+
 ## 4. 이 표가 말하지 않는 것
 
 게이트는 파일 정합성만 본다. 재료가 실험 질문에 맞는지(시나리오2 의 "12팩트 눈금" 이 분모만 맞추는지 태그 분포까지
