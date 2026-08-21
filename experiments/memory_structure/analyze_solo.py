@@ -70,6 +70,15 @@ ANCHORS_BY_ISSUE = {
         "fact_exile_10": r"열한\s*자리", "fact_exile_11": r"넉\s*달",
         "fact_exile_12": r"따로\s*송환",
     },
+    # 2026-08-20 추가. 출처: 시나리오/build_issue_award.py 의 ANCHORS (그 파일이 정본).
+    "issue_award": {
+        "fact_award_01": r"표지", "fact_award_02": r"평점",
+        "fact_award_03": r"소개가\s*거의", "fact_award_04": r"연기",
+        "fact_award_05": r"쓴\s*적이\s*없다고", "fact_award_06": r"인터뷰",
+        "fact_award_07": r"접수\s*번호", "fact_award_08": r"인쇄",
+        "fact_award_09": r"만점", "fact_award_10": r"이탈률",
+        "fact_award_11": r"넉\s*달", "fact_award_12": r"무료\s*배포",
+    },
 }
 
 # 하위 호환 — 종전 `from analyze_solo import ANCHORS` 는 camp 사전을 계속 가리킨다.
@@ -82,6 +91,11 @@ def anchors_for(issue_id: str) -> dict[str, str]:
         raise SystemExit(f"[analyze_solo] 앵커 사전이 없는 이슈: {issue_id} — "
                          f"등록된 것: {', '.join(ANCHORS_BY_ISSUE)}")
     return ANCHORS_BY_ISSUE[issue_id]
+
+
+def lexical_anchor_hits(issue_id: str, text: str) -> set[str]:
+    """이슈별 lexical 후보 적중. 의미 보존 판정이 아닌 보조지표다."""
+    return {fid for fid, pat in anchors_for(issue_id).items() if re.search(pat, text)}
 
 
 def bigrams(s: str) -> set[str]:
@@ -126,6 +140,13 @@ def main() -> None:
             continue
         for rp in sorted(md.glob("run_*.json")):
             run = json.loads(rp.read_text(encoding="utf-8"))
+            run_issue_id = run.get("issue_id", ISSUE_ID)
+            if run_issue_id != ISSUE_ID:
+                raise SystemExit(
+                    f"[analyze_solo] 분석 이슈 불일치: configured={ISSUE_ID}, "
+                    f"run={run_issue_id}, path={rp}"
+                )
+            run_anchors = anchors_for(run_issue_id)
             jp = HERE / "judgments" / md.name / f"judge_{run['run_id']}.json"  # 실판정만 (_offline 제외)
             if not jp.exists():
                 print(f"[warn] 판정 없음 — {md.name}/{run['run_id']} 건너뜀")
@@ -157,13 +178,13 @@ def main() -> None:
                     for i in range(1, 4)]
             new_loss = [len(rounds[i - 1] - rounds[i]) for i in range(1, 4)]
             # 회상 (앵커 일치 필수)
-            recall_hits = {fid for fid, pat in ANCHORS.items() if re.search(pat, run["recall"])}
+            recall_hits = lexical_anchor_hits(run_issue_id, run["recall"])
             recall_correct = len(recall_hits & carrier) if run["memory"] != "full" else len(recall_hits)
             recall_excess = len(recall_hits - carrier) if run["memory"] != "full" else 0
             # 앵커 스캔 vs 판정 불일치 (발화 4편 × 12팩트)
             mismatch = 0
             for i in range(4):
-                for fid, pat in ANCHORS.items():
+                for fid, pat in run_anchors.items():
                     a = bool(re.search(pat, run["essays"][i]))
                     j = fid in rounds[i]
                     if a != j:

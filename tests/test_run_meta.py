@@ -59,6 +59,19 @@ class TestRunMeta(RunMetaBase):
         events2, _, _ = self._events_with()          # config 에 condition 없음
         self.assertIsNone(events2[0]["condition"])
 
+    def test_pilot_eligibility_labels_are_durable_in_run_meta(self):
+        events, _, _ = self._events_with(
+            condition="pilot/coop",
+            promotion_tier="pilot_unvetted",
+            aggregate_eligible=False,
+            report_eligible=False,
+        )
+        meta = events[0]
+        self.assertEqual(meta["promotion_tier"], "pilot_unvetted")
+        self.assertFalse(meta["aggregate_eligible"])
+        self.assertFalse(meta["report_eligible"])
+        self.assertTrue(meta["condition"].startswith("pilot/"))
+
     def test_config_ref_is_a_fingerprint(self):
         """조건 파일이 바뀌면 해시가 달라진다 — 통제를 사람 기억이 아니라 지문으로 고정."""
         events, _, cfg_path = self._events_with(condition="talk-full")

@@ -1,0 +1,650 @@
+{
+  "issue_id": "issue_award_v2",
+  "version": "cal-0.1",
+  "spec_version": "0.1",
+  "_note": "observed 파일럿 출력과 독립적으로 award_v2 정본 명제에서 새로 작성했다.",
+  "cases": [
+    {
+      "case_id": "award_cal_01_01",
+      "fact_id": "fact_award_v2_01",
+      "text": "석호의 계단은 올해 다운로드 1위이며 주요 매체 표지를 장식했다",
+      "expected_status": "exact",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_01_02",
+      "fact_id": "fact_award_v2_01",
+      "text": "올해 가장 많이 내려받은 작품은 석호였고 대표 매체의 표지에도 실렸다",
+      "expected_status": "faithful",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_01_03",
+      "fact_id": "fact_award_v2_01",
+      "text": "석호의 계단은 다운로드가 많았다",
+      "expected_status": "partial",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_01_04",
+      "fact_id": "fact_award_v2_01",
+      "text": "다운로드 1위이므로 석호가 공식 연출 항목에서도 1위다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "surface_to_normative_inference"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_02_05",
+      "fact_id": "fact_award_v2_02",
+      "text": "종이 낚시는 세 작품 중 비평 매체 평점이 가장 높다",
+      "expected_status": "exact",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_02_06",
+      "fact_id": "fact_award_v2_02",
+      "text": "비평지들이 매긴 점수는 종이 낚시가 셋 중 최고였다",
+      "expected_status": "faithful",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_02_07",
+      "fact_id": "fact_award_v2_02",
+      "text": "종이 낚시는 평이 좋았다",
+      "expected_status": "partial",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_02_08",
+      "fact_id": "fact_award_v2_02",
+      "text": "비평 평점 최고이므로 종이 낚시가 올해의 작품 공식 심사 1위다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "surface_to_normative_inference"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_03_09",
+      "fact_id": "fact_award_v2_03",
+      "text": "밤길 안내인은 셋 중 다운로드가 가장 적고 매체 소개도 거의 없다",
+      "expected_status": "exact",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_03_10",
+      "fact_id": "fact_award_v2_03",
+      "text": "세 후보 가운데 밤길은 내려받은 수가 최저였고 언론 노출도 드물었다",
+      "expected_status": "faithful",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_03_11",
+      "fact_id": "fact_award_v2_03",
+      "text": "밤길 안내인은 매체 소개가 드물었다",
+      "expected_status": "partial",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_03_12",
+      "fact_id": "fact_award_v2_03",
+      "text": "다운로드 최저이니 밤길은 작품성도 가장 낮다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "surface_to_normative_inference"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_04_13",
+      "fact_id": "fact_award_v2_04",
+      "text": "사무국 최종 접수대장은 밤길 안내인을 올해의 작품 부문 적격 접수작으로 기록한다",
+      "expected_status": "exact",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_04_14",
+      "fact_id": "fact_award_v2_04",
+      "text": "최종 접수 기록상 밤길은 해당 작품 부문 심사 자격을 갖췄다",
+      "expected_status": "faithful",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_04_15",
+      "fact_id": "fact_award_v2_04",
+      "text": "인쇄된 후보 목록에 밤길 안내인이 있다",
+      "expected_status": "partial",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_04_16",
+      "fact_id": "fact_award_v2_04",
+      "text": "최종 접수대장에는 밤길 안내인이 부적격이라고 적혀 있다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "polarity_flip"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_05_17",
+      "fact_id": "fact_award_v2_05",
+      "text": "석호의 제작 전 과정 신고서에는 자동 생성 도구를 쓴 적이 없다고 적혀 있다",
+      "expected_status": "exact",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_05_18",
+      "fact_id": "fact_award_v2_05",
+      "text": "석호는 전 제작 과정 신고 문서에서 생성 도구 사용을 부정했다",
+      "expected_status": "faithful",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_05_19",
+      "fact_id": "fact_award_v2_05",
+      "text": "석호의 최종본 신고서에는 생성 도구가 적혀 있지 않다",
+      "expected_status": "partial",
+      "expected_flags": [
+        "scope_narrowing"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_05_20",
+      "fact_id": "fact_award_v2_05",
+      "text": "석호는 제작 전 과정 신고서에 자동 생성 도구 사용을 신고했다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "polarity_flip"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_06_21",
+      "fact_id": "fact_award_v2_06",
+      "text": "기슭 대표는 자동 생성한 초안을 석호의 최종 배경에 반영하려고 참고했다고 인터뷰했다",
+      "expected_status": "exact",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_06_22",
+      "fact_id": "fact_award_v2_06",
+      "text": "제작사 대표 인터뷰에 따르면 생성 도구 초안이 최종 배경 작업의 참고 자료였다",
+      "expected_status": "faithful",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_06_23",
+      "fact_id": "fact_award_v2_06",
+      "text": "기슭 대표는 자동 생성 도구에 관해 생각해 본 적이 있다고 말했다",
+      "expected_status": "partial",
+      "expected_flags": [
+        "modality_weakening"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_06_24",
+      "fact_id": "fact_award_v2_06",
+      "text": "기슭 대표는 자동 생성 도구를 작품에 전혀 참고하지 않았다고 인터뷰했다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "polarity_flip"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_07_25",
+      "fact_id": "fact_award_v2_07",
+      "text": "종이 낚시의 접수 번호는 신인 창작 부문 코드로 시작한다",
+      "expected_status": "exact",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_07_26",
+      "fact_id": "fact_award_v2_07",
+      "text": "종이 낚시에 부여된 번호의 머리글자는 신인 부문 코드다",
+      "expected_status": "faithful",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_07_27",
+      "fact_id": "fact_award_v2_07",
+      "text": "종이 낚시에 접수 번호가 있다",
+      "expected_status": "partial",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_07_28",
+      "fact_id": "fact_award_v2_07",
+      "text": "종이 낚시의 접수 번호는 올해의 작품 부문 코드다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "category_substitution"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_08_29",
+      "fact_id": "fact_award_v2_08",
+      "text": "사무국은 목록 인쇄 뒤 종이 낚시를 올해의 작품에서 신인 창작 부문으로 최종 이관한다고 알렸다",
+      "expected_status": "exact",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_08_30",
+      "fact_id": "fact_award_v2_08",
+      "text": "후보 목록이 먼저 인쇄됐지만 종이는 최종적으로 올해의 작품 부문에서 신인 부문으로 옮겨졌다",
+      "expected_status": "faithful",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_08_31",
+      "fact_id": "fact_award_v2_08",
+      "text": "사무국은 종이 낚시의 부문을 이관한다고 통보했다",
+      "expected_status": "partial",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_08_32",
+      "fact_id": "fact_award_v2_08",
+      "text": "사무국은 종이 낚시를 신인 창작에서 올해의 작품 부문으로 최종 이관했다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "category_substitution"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_09_33",
+      "fact_id": "fact_award_v2_09",
+      "text": "밤길은 최종 연출 점수에서 셋 중 유일한 만점으로 연출 1위다",
+      "expected_status": "exact",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_09_34",
+      "fact_id": "fact_award_v2_09",
+      "text": "세 후보의 공식 최종 연출 평가에서 만점은 밤길 하나뿐이었다",
+      "expected_status": "faithful",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_09_35",
+      "fact_id": "fact_award_v2_09",
+      "text": "밤길의 연출 점수가 좋았다",
+      "expected_status": "partial",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_09_36",
+      "fact_id": "fact_award_v2_09",
+      "text": "밤길은 예비 연출 점수에서만 만점을 받았고 최종 순위는 모른다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "modality_weakening"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_10_37",
+      "fact_id": "fact_award_v2_10",
+      "text": "공식 설계 지표인 첫 관문 이탈률은 밤길이 셋 중 최저여서 설계 1위다",
+      "expected_status": "exact",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_10_38",
+      "fact_id": "fact_award_v2_10",
+      "text": "세 작품의 공식 설계 비교에서 첫 구간 이탈이 가장 적은 밤길이 앞섰다",
+      "expected_status": "faithful",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_10_39",
+      "fact_id": "fact_award_v2_10",
+      "text": "밤길의 첫 관문 이탈률이 낮았다",
+      "expected_status": "partial",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_10_40",
+      "fact_id": "fact_award_v2_10",
+      "text": "밤길의 첫 관문 이탈률은 셋 중 가장 높아 설계 최하위다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "polarity_flip"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_11_41",
+      "fact_id": "fact_award_v2_11",
+      "text": "공식 완성도 기간 넉 달 동안 밤길만 치명 결함 보고 0건으로 완성도 1위다",
+      "expected_status": "exact",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_11_42",
+      "fact_id": "fact_award_v2_11",
+      "text": "출시 뒤 4개월의 공식 비교에서 치명 결함 신고가 하나도 없는 작품은 밤길뿐이었다",
+      "expected_status": "faithful",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_11_43",
+      "fact_id": "fact_award_v2_11",
+      "text": "밤길에서 치명 결함이 보고되지 않았다",
+      "expected_status": "partial",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_11_44",
+      "fact_id": "fact_award_v2_11",
+      "text": "밤길은 출시 뒤 넉 달 동안 치명 결함 보고가 가장 많았다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "polarity_flip"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_12_45",
+      "fact_id": "fact_award_v2_12",
+      "text": "밤길 제작 검증 기록은 신고와 실제 외주·자동 생성 도구 사용 내역이 일치한다고 확인한다",
+      "expected_status": "exact",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_12_46",
+      "fact_id": "fact_award_v2_12",
+      "text": "검증 문서상 밤길이 신고한 외주와 생성 도구 내역은 확인된 실제 사용과 맞았다",
+      "expected_status": "faithful",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_12_47",
+      "fact_id": "fact_award_v2_12",
+      "text": "밤길에는 미신고 사용이 언급되지 않았다",
+      "expected_status": "partial",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_cal_12_48",
+      "fact_id": "fact_award_v2_12",
+      "text": "검증 기록은 밤길의 실제 생성 도구 사용이 신고 내용과 다르다고 확인한다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "disclosure_use_mismatch"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    }
+  ],
+  "chain_cases": [
+    {
+      "case_id": "award_chain_cal_01",
+      "known_fact_ids": [],
+      "expected_components": {
+        "night_category_eligible": "unknown",
+        "night_disclosure_compliant": "unknown",
+        "lagoon_disqualified": "unknown",
+        "paper_ineligible": "unknown",
+        "night_directing_winner": "unknown",
+        "night_design_winner": "unknown",
+        "night_completeness_winner": "unknown"
+      },
+      "expected_decision_state": "unknown",
+      "expected_winner": null,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_chain_cal_02",
+      "known_fact_ids": [
+        "fact_award_v2_01",
+        "fact_award_v2_02",
+        "fact_award_v2_03"
+      ],
+      "expected_components": {
+        "night_category_eligible": "unknown",
+        "night_disclosure_compliant": "unknown",
+        "lagoon_disqualified": "unknown",
+        "paper_ineligible": "unknown",
+        "night_directing_winner": "unknown",
+        "night_design_winner": "unknown",
+        "night_completeness_winner": "unknown"
+      },
+      "expected_decision_state": "unknown",
+      "expected_winner": null,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_chain_cal_03",
+      "known_fact_ids": [
+        "fact_award_v2_05"
+      ],
+      "expected_components": {
+        "night_category_eligible": "unknown",
+        "night_disclosure_compliant": "unknown",
+        "lagoon_disqualified": "unknown",
+        "paper_ineligible": "unknown",
+        "night_directing_winner": "unknown",
+        "night_design_winner": "unknown",
+        "night_completeness_winner": "unknown"
+      },
+      "expected_decision_state": "unknown",
+      "expected_winner": null,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_chain_cal_04",
+      "known_fact_ids": [
+        "fact_award_v2_05",
+        "fact_award_v2_06"
+      ],
+      "expected_components": {
+        "night_category_eligible": "unknown",
+        "night_disclosure_compliant": "unknown",
+        "lagoon_disqualified": "true",
+        "paper_ineligible": "unknown",
+        "night_directing_winner": "unknown",
+        "night_design_winner": "unknown",
+        "night_completeness_winner": "unknown"
+      },
+      "expected_decision_state": "unknown",
+      "expected_winner": null,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_chain_cal_05",
+      "known_fact_ids": [
+        "fact_award_v2_07"
+      ],
+      "expected_components": {
+        "night_category_eligible": "unknown",
+        "night_disclosure_compliant": "unknown",
+        "lagoon_disqualified": "unknown",
+        "paper_ineligible": "unknown",
+        "night_directing_winner": "unknown",
+        "night_design_winner": "unknown",
+        "night_completeness_winner": "unknown"
+      },
+      "expected_decision_state": "unknown",
+      "expected_winner": null,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_chain_cal_06",
+      "known_fact_ids": [
+        "fact_award_v2_07",
+        "fact_award_v2_08"
+      ],
+      "expected_components": {
+        "night_category_eligible": "unknown",
+        "night_disclosure_compliant": "unknown",
+        "lagoon_disqualified": "unknown",
+        "paper_ineligible": "true",
+        "night_directing_winner": "unknown",
+        "night_design_winner": "unknown",
+        "night_completeness_winner": "unknown"
+      },
+      "expected_decision_state": "unknown",
+      "expected_winner": null,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_chain_cal_07",
+      "known_fact_ids": [
+        "fact_award_v2_09",
+        "fact_award_v2_10"
+      ],
+      "expected_components": {
+        "night_category_eligible": "unknown",
+        "night_disclosure_compliant": "unknown",
+        "lagoon_disqualified": "unknown",
+        "paper_ineligible": "unknown",
+        "night_directing_winner": "true",
+        "night_design_winner": "true",
+        "night_completeness_winner": "unknown"
+      },
+      "expected_decision_state": "unknown",
+      "expected_winner": null,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_chain_cal_08",
+      "known_fact_ids": [
+        "fact_award_v2_04",
+        "fact_award_v2_05",
+        "fact_award_v2_06",
+        "fact_award_v2_07",
+        "fact_award_v2_08",
+        "fact_award_v2_09",
+        "fact_award_v2_10",
+        "fact_award_v2_12"
+      ],
+      "expected_components": {
+        "night_category_eligible": "true",
+        "night_disclosure_compliant": "true",
+        "lagoon_disqualified": "true",
+        "paper_ineligible": "true",
+        "night_directing_winner": "true",
+        "night_design_winner": "true",
+        "night_completeness_winner": "unknown"
+      },
+      "expected_decision_state": "unknown",
+      "expected_winner": null,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "award_chain_cal_09",
+      "known_fact_ids": [
+        "fact_award_v2_04",
+        "fact_award_v2_05",
+        "fact_award_v2_06",
+        "fact_award_v2_07",
+        "fact_award_v2_08",
+        "fact_award_v2_09",
+        "fact_award_v2_10",
+        "fact_award_v2_11",
+        "fact_award_v2_12"
+      ],
+      "expected_components": {
+        "night_category_eligible": "true",
+        "night_disclosure_compliant": "true",
+        "lagoon_disqualified": "true",
+        "paper_ineligible": "true",
+        "night_directing_winner": "true",
+        "night_design_winner": "true",
+        "night_completeness_winner": "true"
+      },
+      "expected_decision_state": "selected",
+      "expected_winner": "밤길 안내인",
+      "provenance_class": "independent-from-observed-output"
+    }
+  ]
+}

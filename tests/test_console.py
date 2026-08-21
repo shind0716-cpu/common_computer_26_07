@@ -16,6 +16,7 @@ from unittest import mock
 from fastapi.testclient import TestClient
 
 from modules import debate_engine, llm, paths
+from tests.scenario_gate_helpers import approve_legacy_fixture
 from tests.test_note_slot import FakeLLM, _cfg, _write_fixture
 
 
@@ -25,6 +26,7 @@ class ConsoleBase(unittest.TestCase):
         self._orig = paths.DATA
         paths.DATA = self.tmp / "data"
         self.issue_id = _write_fixture(paths.DATA)
+        approve_legacy_fixture(self.issue_id)
         from tools.console import app as console_app
         self.mod = console_app
         self.c = TestClient(console_app.app)
@@ -197,6 +199,8 @@ class TestRunBlocking(ConsoleBase):
         for i, ag in enumerate(doc["agents"]):
             ag["stance"] = "pro" if i % 2 else "con"
         aj.write_text(json.dumps(doc, ensure_ascii=False), encoding="utf-8")
+        # 이 테스트는 변경된 배분표 자체를 명시 승인한 뒤 하위 실행 가드를 검증한다.
+        approve_legacy_fixture(self.issue_id)
 
     def test_run_rejects_note_on_repro_track(self):
         self._make_repro_track()

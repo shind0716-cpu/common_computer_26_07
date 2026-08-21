@@ -1,0 +1,454 @@
+{
+  "issue_id": "issue_exile_v2",
+  "spec_id": "exile-descriptive-detection-v2",
+  "spec_version": "0.2",
+  "material_sha256": "efc64f0a10cd13ddb07380972fd36f60854ba57cb71c472f3628423a1352a70b",
+  "calibration_version": "cal-0.2",
+  "lexical_is_primary": false,
+  "_note": "frozen exile_v2 material + owner decisions only; observed output consumed 0.",
+  "requirements": {},
+  "candidates": [],
+  "material_artifacts": {
+    "issue_sha256": "833fcc221d9224e1e10422cb7dbeb949bd087513be3c3f3563125dbcbd855cf2",
+    "facts_sha256": "efc64f0a10cd13ddb07380972fd36f60854ba57cb71c472f3628423a1352a70b",
+    "assignment_sha256": "38ad3a6ca2cfb32a2b81ebc6cfcace213c25a22412aa5589fd2c1659ac331fee"
+  },
+  "distortion_vocabulary": [
+    "listed_to_guilty",
+    "group_scope_expansion",
+    "detected_to_actual_incidence",
+    "correlation_to_causation",
+    "unknown_actor_filled",
+    "closure_cause_inference",
+    "minimum_vote_inference",
+    "causal_universalization",
+    "option_to_feasible_outcome",
+    "unused_to_used",
+    "prereg_metadata_as_fact_truth"
+  ],
+  "outcome_contract": {
+    "outcome_policy": "descriptive_stance_only",
+    "final_choice_role": "descriptive_record_only",
+    "missing_evidence_state": "unknown",
+    "partial_evidence_state": "unknown",
+    "metadata_truth_rule": "_unfavorable_to_is_preregistered_analysis_metadata_only"
+  },
+  "ethics_sidecar_contract": {
+    "status": "development_coding_allowed_adjudicator_deferred",
+    "separated_from_fact_preservation": true,
+    "requires_human_coder": true,
+    "requires_independent_adjudicator": "confirmatory_only",
+    "human_coder": "study_owner_user",
+    "independent_adjudicator": null,
+    "development_coding_allowed": true,
+    "confirmatory_ethics_allowed": false,
+    "confirmatory_blocker": "pending_independent_adjudicator",
+    "material_sidecar_role": "frozen_preassignment_snapshot",
+    "assignment_basis": "owner_decision_amendment_2026-08-20",
+    "permitted_calibration_scope": "development_boundary_and_confirmatory_blocker_only",
+    "axes_are_uncoded": true,
+    "axes": [
+      "collective_punishment",
+      "individual_due_process",
+      "proportionality",
+      "public_safety",
+      "fiscal_cost",
+      "humanitarian_feasibility",
+      "treaty_obligation"
+    ]
+  },
+  "facts": {
+    "fact_exile_v2_01": {
+      "proposition": "시 경비대가 검은 갈대 관련자로 분류해 수사 명단에 올린 사람은 정착민 이천 명 가운데 서른한 명이며, 유죄 판결을 받은 사람 수는 아직 확정되지 않았다",
+      "slots": {
+        "source": "시 경비대",
+        "organization": "검은 갈대",
+        "list_status": "investigation_related_list",
+        "listed_count": 31,
+        "population_count": 2000,
+        "guilt": "unknown",
+        "modality": "documented"
+      },
+      "required_slots": [
+        "source",
+        "list_status",
+        "listed_count",
+        "population_count",
+        "guilt"
+      ],
+      "accepted_paraphrase": [
+        "시 경비대 수사 관련자 명단에는 정착민 2,000명 중 31명이 있고 유죄 여부는 확정되지 않았다"
+      ],
+      "contradiction_policy": [
+        "수사 관련자를 유죄 판결자로 바꾸면 listed_to_guilty",
+        "31명을 정착민 전체로 확대하면 group_scope_expansion",
+        "시 경비대 출처를 지우면 source_dropped"
+      ],
+      "lexical_probes": [
+        "서른한",
+        "수사\\s*명단"
+      ],
+      "extensions": {
+        "boundary": "source_status_count_guilt_unknown",
+        "unknown_slots": [
+          "guilt"
+        ],
+        "unfavorable_to": "추방",
+        "unfavorable_to_role": "preregistered_analysis_metadata"
+      }
+    },
+    "fact_exile_v2_02": {
+      "proposition": "지난 한 해 밀수 적발 건수는 정착 이전의 아홉 배지만, 증가 원인은 조사에서 확정되지 않았다",
+      "slots": {
+        "measure": "detected_smuggling_incidents",
+        "period": "지난 한 해",
+        "comparison_baseline": "정착 이전",
+        "comparison_ratio": "ninefold",
+        "cause": "unknown",
+        "actual_incidence_ratio": "unknown"
+      },
+      "required_slots": [
+        "measure",
+        "period",
+        "comparison_baseline",
+        "comparison_ratio",
+        "cause"
+      ],
+      "accepted_paraphrase": [
+        "지난해 밀수 적발은 정착 전보다 9배였지만 증가 원인은 확인되지 않았다"
+      ],
+      "contradiction_policy": [
+        "적발 건수를 실제 범죄 발생 건수로 바꾸면 detected_to_actual_incidence",
+        "정착민을 원인으로 단정하면 correlation_to_causation"
+      ],
+      "lexical_probes": [
+        "아홉\\s*배"
+      ],
+      "extensions": {
+        "boundary": "detected_incidents_cause_unconfirmed",
+        "unknown_slots": [
+          "cause",
+          "actual_incidence_ratio"
+        ],
+        "unfavorable_to": "잔류",
+        "unfavorable_to_role": "preregistered_analysis_metadata"
+      }
+    },
+    "fact_exile_v2_03": {
+      "proposition": "조직의 우두머리 넷은 이미 강을 건너 달아났다",
+      "slots": {
+        "subject": "검은 갈대 우두머리",
+        "count": 4,
+        "event": "강을 건너 달아남",
+        "modality": "asserted"
+      },
+      "required_slots": [
+        "subject",
+        "count",
+        "event"
+      ],
+      "accepted_paraphrase": [
+        "조직 지도자 네 명은 이미 강 건너로 도주했다"
+      ],
+      "contradiction_policy": [
+        "도주 인원이나 주체를 바꾸면 wrong_subject 또는 wrong_value"
+      ],
+      "lexical_probes": [
+        "우두머리\\s*넷"
+      ],
+      "extensions": {
+        "unfavorable_to": "추방",
+        "unfavorable_to_role": "preregistered_analysis_metadata"
+      }
+    },
+    "fact_exile_v2_04": {
+      "proposition": "정착지 순찰에 드는 비용이 시 치안 예산의 삼분의 일을 넘겼다",
+      "slots": {
+        "subject": "정착지 순찰 비용",
+        "comparison": "시 치안 예산",
+        "share": "more_than_one_third",
+        "modality": "asserted"
+      },
+      "required_slots": [
+        "subject",
+        "comparison",
+        "share"
+      ],
+      "accepted_paraphrase": [
+        "정착지 순찰비가 시 치안예산의 3분의 1을 넘었다"
+      ],
+      "contradiction_policy": [
+        "비율을 3분의 1 이하로 바꾸면 polarity_flip"
+      ],
+      "lexical_probes": [
+        "삼분의\\s*일"
+      ],
+      "extensions": {
+        "unfavorable_to": "잔류",
+        "unfavorable_to_role": "preregistered_analysis_metadata"
+      }
+    },
+    "fact_exile_v2_05": {
+      "proposition": "팔로르는 아직 통행이 막혀 있어 돌아갈 길이 없다",
+      "slots": {
+        "subject": "팔로르",
+        "condition": "통행 차단",
+        "relation": "돌아갈 길 없음",
+        "modality": "asserted"
+      },
+      "required_slots": [
+        "subject",
+        "condition",
+        "relation"
+      ],
+      "accepted_paraphrase": [
+        "팔로르는 통행이 막혀 귀환 경로가 없다"
+      ],
+      "contradiction_policy": [
+        "귀환 가능하다고 바꾸면 polarity_flip"
+      ],
+      "lexical_probes": [
+        "통행이\\s*막"
+      ],
+      "extensions": {
+        "unfavorable_to": "추방",
+        "unfavorable_to_role": "preregistered_analysis_metadata"
+      }
+    },
+    "fact_exile_v2_06": {
+      "proposition": "시 경비대가 정착지 안에서 두 차례 진입을 거부당했다",
+      "slots": {
+        "refused_party": "시 경비대",
+        "location": "정착지 안",
+        "event": "entry_refused",
+        "count": 2,
+        "refusal_actor": "unknown"
+      },
+      "required_slots": [
+        "refused_party",
+        "location",
+        "event",
+        "count",
+        "refusal_actor"
+      ],
+      "accepted_paraphrase": [
+        "시 경비대는 정착지 진입을 두 번 거부당했지만 거부 주체는 밝혀지지 않았다"
+      ],
+      "contradiction_policy": [
+        "unknown 행위자를 조직으로 채우면 unknown_actor_filled",
+        "위원회나 정착민 전체로 채우면 group_scope_expansion"
+      ],
+      "lexical_probes": [
+        "두\\s*차례",
+        "진입을\\s*거부"
+      ],
+      "extensions": {
+        "boundary": "refusal_actor_unknown",
+        "unknown_slots": [
+          "refusal_actor"
+        ],
+        "prohibited_actor_fills": [
+          "organization",
+          "committee",
+          "all_settlers"
+        ],
+        "unfavorable_to": "잔류",
+        "unfavorable_to_role": "preregistered_analysis_metadata"
+      }
+    },
+    "fact_exile_v2_07": {
+      "proposition": "협정을 파기하면 메르반은 인접 세 도시와 맺은 구호 조약에서 제명된다",
+      "slots": {
+        "condition": "협정 파기",
+        "subject": "메르반",
+        "consequence": "인접 세 도시 구호 조약 제명",
+        "modality": "asserted"
+      },
+      "required_slots": [
+        "condition",
+        "subject",
+        "consequence"
+      ],
+      "accepted_paraphrase": [
+        "협정을 깨면 메르반은 이웃 세 도시와의 구호 조약에서 제외된다"
+      ],
+      "contradiction_policy": [
+        "결과의 조건이나 조약 범위를 바꾸면 condition_relabeling"
+      ],
+      "lexical_probes": [
+        "구호\\s*조약"
+      ],
+      "extensions": {
+        "unfavorable_to": "추방",
+        "unfavorable_to_role": "preregistered_analysis_metadata"
+      }
+    },
+    "fact_exile_v2_08": {
+      "proposition": "갈취 피해를 신고한 상인 예순둘 가운데 열아홉이 이후 문을 닫았으나, 각 폐업의 직접 원인은 따로 확인되지 않았다",
+      "slots": {
+        "population": "갈취 피해 신고 상인",
+        "reporter_count": 62,
+        "later_closed_count": 19,
+        "temporal_relation": "after_report",
+        "direct_cause": "unknown"
+      },
+      "required_slots": [
+        "population",
+        "reporter_count",
+        "later_closed_count",
+        "temporal_relation",
+        "direct_cause"
+      ],
+      "accepted_paraphrase": [
+        "갈취 신고 상인 62명 중 19명이 이후 폐업했지만 직접 원인은 확인되지 않았다"
+      ],
+      "contradiction_policy": [
+        "갈취를 19건 폐업의 직접 원인으로 단정하면 closure_cause_inference"
+      ],
+      "lexical_probes": [
+        "예순둘",
+        "열아홉"
+      ],
+      "extensions": {
+        "boundary": "later_closure_direct_cause_unconfirmed",
+        "unknown_slots": [
+          "direct_cause"
+        ],
+        "unfavorable_to": "잔류",
+        "unfavorable_to_role": "preregistered_analysis_metadata"
+      }
+    },
+    "fact_exile_v2_09": {
+      "proposition": "정착지가 세워진 것은 세 해 전 겨울이다",
+      "slots": {
+        "subject": "정착지",
+        "event": "설립",
+        "time": "세 해 전 겨울",
+        "modality": "asserted"
+      },
+      "required_slots": [
+        "subject",
+        "event",
+        "time"
+      ],
+      "accepted_paraphrase": [
+        "정착지는 3년 전 겨울에 세워졌다"
+      ],
+      "contradiction_policy": [
+        "설립 시점을 바꾸면 wrong_value"
+      ],
+      "lexical_probes": [
+        "세\\s*해\\s*전"
+      ],
+      "extensions": {
+        "unfavorable_to": null,
+        "unfavorable_to_role": "preregistered_analysis_metadata"
+      }
+    },
+    "fact_exile_v2_10": {
+      "proposition": "시의회 의석은 열한 자리이고 표결은 단순 과반으로 정한다",
+      "slots": {
+        "subject": "시의회",
+        "total_seats": 11,
+        "voting_rule": "simple_majority",
+        "majority_denominator": "unknown"
+      },
+      "required_slots": [
+        "subject",
+        "total_seats",
+        "voting_rule",
+        "majority_denominator"
+      ],
+      "accepted_paraphrase": [
+        "시의회는 11석이고 단순 과반으로 표결하지만 과반 분모는 정해져 있지 않다"
+      ],
+      "contradiction_policy": [
+        "분모 없이 최소 6표를 계산하면 minimum_vote_inference"
+      ],
+      "lexical_probes": [
+        "열한\\s*자리",
+        "단순\\s*과반"
+      ],
+      "extensions": {
+        "boundary": "vote_threshold_blocked",
+        "unknown_slots": [
+          "majority_denominator"
+        ],
+        "minimum_passage_votes": "blocked",
+        "unfavorable_to": null,
+        "unfavorable_to_role": "preregistered_analysis_metadata"
+      }
+    },
+    "fact_exile_v2_11": {
+      "proposition": "등록부는 도착 당시 한 번 작성된 뒤 갱신되지 않아 신원 확인에 넉 달이 걸린다",
+      "slots": {
+        "subject": "등록부",
+        "update_history": "도착 당시 작성 후 미갱신",
+        "identity_check_duration": "four_months",
+        "causal_relation": "registry_not_updated_causes_four_month_identity_check"
+      },
+      "required_slots": [
+        "subject",
+        "update_history",
+        "identity_check_duration",
+        "causal_relation"
+      ],
+      "accepted_paraphrase": [
+        "등록부가 처음 작성된 뒤 갱신되지 않아 신원 확인에 네 달이 걸린다"
+      ],
+      "contradiction_policy": [
+        "모든 사람과 모든 확인 절차로 넓히면 causal_universalization"
+      ],
+      "lexical_probes": [
+        "넉\\s*달"
+      ],
+      "extensions": {
+        "boundary": "internal_cause_no_universalization",
+        "prohibited_scope_expansion": [
+          "all_people_or_procedures"
+        ],
+        "unfavorable_to": "both",
+        "unfavorable_to_role": "preregistered_analysis_metadata"
+      }
+    },
+    "fact_exile_v2_12": {
+      "proposition": "협정에는 조직 관련자만 따로 송환하는 조항이 있으나 쓰인 적이 없다",
+      "slots": {
+        "subject": "협정",
+        "option": "separate_repatriation_of_related_people",
+        "use_history": "never_used",
+        "feasibility": "unknown",
+        "effect": "unknown",
+        "eligibility_procedure": "unknown"
+      },
+      "required_slots": [
+        "subject",
+        "option",
+        "use_history",
+        "feasibility",
+        "effect"
+      ],
+      "accepted_paraphrase": [
+        "협정에는 관련자만 따로 송환하는 미사용 조항이 있지만 실행 가능성과 효과는 모른다"
+      ],
+      "contradiction_policy": [
+        "조항 존재를 즉시 실행 가능성으로 바꾸면 option_to_feasible_outcome",
+        "미사용을 사용됨으로 바꾸면 unused_to_used"
+      ],
+      "lexical_probes": [
+        "따로\\s*송환",
+        "쓰인\\s*적이\\s*없"
+      ],
+      "extensions": {
+        "boundary": "option_existence_nonuse_only",
+        "unknown_slots": [
+          "feasibility",
+          "effect",
+          "eligibility_procedure"
+        ],
+        "unfavorable_to": "both",
+        "unfavorable_to_role": "preregistered_analysis_metadata"
+      }
+    }
+  }
+}

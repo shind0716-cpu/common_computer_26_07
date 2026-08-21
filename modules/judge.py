@@ -231,6 +231,58 @@ def judge_stage(stage_utterances: list[dict], facts: list[dict], *, vote_fn,
 
 
 # ---------------------------------------------------------------------------
+# same-parent A/B/C 사후 판정 adapter
+# ---------------------------------------------------------------------------
+def make_same_parent_bundle_evaluator(model_config: dict):
+    """단일 parent + 단일 bundle을 기존 ``modules.llm`` 경계로 판정한다.
+
+    provider SDK, API key, retry/backoff를 이 모듈에 복제하지 않는다. factory에서 기존
+    preflight를 한 번 실행하고, 반환 callable은 coordinate마다 obtain_response를 정확히
+    한 번 호출해 **raw 문자열 그대로** runner에 돌려준다. 파싱·append/fsync·resume은
+    :mod:`modules.abc_same_parent_runner`의 소관이다.
+    """
+    if not isinstance(model_config, dict):
+        raise ValueError("model_config must be an object")
+    model = model_config.get("model")
+    if not isinstance(model, str) or not model.strip():
+        raise KeyError("model_config.model is required")
+    temperature = model_config.get("temperature", JUDGE_TEMPERATURE)
+    if isinstance(temperature, bool) or float(temperature) != float(JUDGE_TEMPERATURE):
+        raise ValueError(f"same-parent judge temperature must be {JUDGE_TEMPERATURE}")
+    reasoning = model_config.get("reasoning", "default")
+    if reasoning != "default":
+        raise ValueError("same-parent judge reasoning must be 'default'")
+    _llm.preflight(model, temperature=float(JUDGE_TEMPERATURE), reasoning=reasoning)
+
+    def evaluate(parent_r0: bytes, bundle: dict, coordinate: dict) -> str:
+        # strict decode: replacement characters would mean the model did not receive the frozen
+        # parent represented by parent_r0 bytes. Fail before provider invocation instead.
+        parent_text = parent_r0.decode("utf-8", errors="strict")
+        if not isinstance(bundle, dict) or bundle.get("role") != "posthoc_judge":
+            raise ValueError("posthoc_judge bundle required")
+        if not isinstance(coordinate, dict):
+            raise ValueError("coordinate object required")
+        prompt = (
+            "[COMMON SEMANTIC JUDGE PROTOCOL]\n"
+            + str(bundle.get("common_protocol") or "")
+            + "\n\n[COORDINATE JSON]\n"
+            + json.dumps(coordinate, ensure_ascii=False, sort_keys=True,
+                         separators=(",", ":"))
+            + "\n\n[POSTHOC BUNDLE JSON]\n"
+            + json.dumps(bundle, ensure_ascii=False, sort_keys=True,
+                         separators=(",", ":"))
+            + "\n\n[FROZEN PARENT R0 — UTF-8, EXACT TEXT]\n"
+            + parent_text
+            + "\n[END FROZEN PARENT R0]\n"
+        )
+        return _llm.obtain_response(
+            prompt, model=model, temperature=float(JUDGE_TEMPERATURE),
+            reasoning=reasoning)
+
+    return evaluate
+
+
+# ---------------------------------------------------------------------------
 # FAR 집계 (잠정 — 수식 확정 시 교체)
 # ---------------------------------------------------------------------------
 def far(fact_records: list[dict], facts_by_id: dict[str, dict], *, critical_only: bool = False) -> float | None:
@@ -250,12 +302,15 @@ def far(fact_records: list[dict], facts_by_id: dict[str, dict], *, critical_only
 # 오케스트레이터 + CLI 래퍼
 # ---------------------------------------------------------------------------
 def _load_config(config_path: Path | None) -> dict:
-    cfg = {"judge_model": "claude-sonnet", "judge_temperature": 0, "judge_n_votes": 3}
+    cfg = {"judge_model": "claude-sonnet", "judge_temperature": 0, "judge_n_votes": 3,
+           "max_llm_calls": None, "promotion_tier": "confirmatory",
+           "aggregate_eligible": True, "report_eligible": True}
     if config_path:
         import yaml  # requirements.txt
 
+        allowed = set(cfg)
         cfg.update({k: v for k, v in yaml.safe_load(config_path.read_text(encoding="utf-8")).items()
-                    if k in cfg or k.startswith("judge")})
+                    if k in allowed or k.startswith("judge")})
     return cfg
 
 
@@ -279,6 +334,18 @@ def judge_debate(issue_id: str, run_id: str, cfg: dict, *, offline: bool = False
     facts_by_id = {f["fact_id"]: f for f in facts}
     stages_utt = group_by_stage(load_utterances(paths.debate(issue_id, run_id)))
     n_votes = int(cfg.get("judge_n_votes", 3))
+    expected_calls = len(facts) * len(stages_utt) * n_votes
+    if cfg.get("promotion_tier") == "pilot_unvetted" and not offline:
+        max_calls = cfg.get("max_llm_calls")
+        if not isinstance(max_calls, int) or isinstance(max_calls, bool) or max_calls <= 0:
+            raise SystemExit("[judge] pilot_unvetted requires positive max_llm_calls")
+        if max_calls > 30:
+            raise SystemExit(f"[judge] pilot max_llm_calls={max_calls} exceeds hard limit 30")
+        if expected_calls > max_calls:
+            raise SystemExit(
+                f"[judge] pilot expected calls {expected_calls} exceed max_llm_calls={max_calls}")
+        if cfg.get("aggregate_eligible") is not False or cfg.get("report_eligible") is not False:
+            raise SystemExit("[judge] pilot_unvetted must be aggregate/report ineligible")
     cfg_temp = cfg.get("judge_temperature", JUDGE_TEMPERATURE)
     if float(cfg_temp) != float(JUDGE_TEMPERATURE):
         # 조용히 무시하지 않는다 — cfg 에 다른 값을 적은 사람은 그 값이 쓰였다고 믿는다.
@@ -361,6 +428,11 @@ def judge_debate(issue_id: str, run_id: str, cfg: dict, *, offline: bool = False
         "created_at": datetime.now(timezone.utc).isoformat(),
         "issue_id": issue_id,
         "run_id": run_id,
+        "promotion_tier": cfg.get("promotion_tier", "confirmatory"),
+        "aggregate_eligible": bool(cfg.get("aggregate_eligible", True)),
+        "report_eligible": bool(cfg.get("report_eligible", True)),
+        "expected_llm_calls": 0 if offline else expected_calls,
+        "max_llm_calls": 0 if offline else cfg.get("max_llm_calls"),
         "judge": {
             "model": model_id,
             # 실제 전송값을 적는다 — cfg 값이 아니라(7/30 보드 회신 ② 불일치 수정).

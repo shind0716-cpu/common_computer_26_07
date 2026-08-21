@@ -1,0 +1,51 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "manual(요한 승인 정본 결정 P-0A~P-5A — 독립 결정 패킷 반영 v2, 팀 검수 전)",
+  "created_at": "2026-08-20T00:00:00+09:00",
+  "issue_id": "issue_polar_v2",
+  "seed": 42,
+  "overlap_k": 1,
+  "_note": "4에이전트(관점 × 입장), 에이전트당 3팩트, 밀도 1.0(전 팩트 고립). 제약: 모든 에이전트가 자기 입장 불리 1 + 상대 입장 불리 1 을 대칭으로 보유한다. 아무도 12팩트 전량을 혼자 갖지 않는다(취합 없이는 전체 그림이 안 잡힌다). descriptive 재료라 정답 사슬은 없지만 v1 의 대칭 배분을 유지한다. ⚠ stance 가 none 이 아니라 현행 콘솔은 재현 트랙으로 판정할 수 있다 — 토론 실행 경로는 게이트와 합의 후 연다.",
+  "agents": [
+    {
+      "agent_id": "agent_1",
+      "perspective": "비행",
+      "stance": "후송",
+      "assigned_fact_ids": [
+        "fact_polar_v2_01",
+        "fact_polar_v2_02",
+        "fact_polar_v2_09"
+      ]
+    },
+    {
+      "agent_id": "agent_2",
+      "perspective": "의무",
+      "stance": "후송",
+      "assigned_fact_ids": [
+        "fact_polar_v2_07",
+        "fact_polar_v2_04",
+        "fact_polar_v2_11"
+      ]
+    },
+    {
+      "agent_id": "agent_3",
+      "perspective": "비행",
+      "stance": "대기",
+      "assigned_fact_ids": [
+        "fact_polar_v2_06",
+        "fact_polar_v2_03",
+        "fact_polar_v2_10"
+      ]
+    },
+    {
+      "agent_id": "agent_4",
+      "perspective": "보급",
+      "stance": "대기",
+      "assigned_fact_ids": [
+        "fact_polar_v2_08",
+        "fact_polar_v2_05",
+        "fact_polar_v2_12"
+      ]
+    }
+  ]
+}

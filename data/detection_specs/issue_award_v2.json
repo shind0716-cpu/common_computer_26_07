@@ -1,0 +1,393 @@
+{
+  "issue_id": "issue_award_v2",
+  "spec_id": "award-normative-detection-v2",
+  "spec_version": "0.1",
+  "material_sha256": "dff21deeffd1d515cea04cdf139a74455fe2ed573d5b531100de49f7b0749658",
+  "calibration_version": "cal-0.1",
+  "lexical_is_primary": false,
+  "_note": "award_v2 시나리오 소유 의미 계약. old verdict와 observed 파일럿 출력은 입력이 아니다.",
+  "candidates": [
+    "석호의 계단",
+    "밤길 안내인",
+    "종이 낚시"
+  ],
+  "requirements": {},
+  "material_artifacts": {
+    "issue_sha256": "a43b198466153a99b13037627385a510757ca172fd016dc4ffddc202f9e0bb87",
+    "facts_sha256": "dff21deeffd1d515cea04cdf139a74455fe2ed573d5b531100de49f7b0749658",
+    "assignment_sha256": "f9fb873e6a7dd5fc76e4f471b0956fd94c4eb834b42c7c60e1b7a03d28f4a433"
+  },
+  "distortion_vocabulary": [
+    "surface_to_normative_inference",
+    "scope_narrowing",
+    "category_substitution",
+    "criterion_substitution",
+    "disclosure_use_mismatch"
+  ],
+  "decision_contract": {
+    "evaluator": "normative_award_evaluator_v2",
+    "component_states": [
+      "true",
+      "false",
+      "unknown",
+      "blocked"
+    ],
+    "components": {
+      "night_category_eligible": [
+        "fact_award_v2_04"
+      ],
+      "night_disclosure_compliant": [
+        "fact_award_v2_12"
+      ],
+      "lagoon_disqualified": [
+        "fact_award_v2_05",
+        "fact_award_v2_06"
+      ],
+      "paper_ineligible": [
+        "fact_award_v2_07",
+        "fact_award_v2_08"
+      ],
+      "night_directing_winner": [
+        "fact_award_v2_09"
+      ],
+      "night_design_winner": [
+        "fact_award_v2_10"
+      ],
+      "night_completeness_winner": [
+        "fact_award_v2_11"
+      ]
+    },
+    "surface_fact_ids": [
+      "fact_award_v2_01",
+      "fact_award_v2_02",
+      "fact_award_v2_03"
+    ],
+    "selection_rule": "all_components_true",
+    "selected_winner": "밤길 안내인",
+    "incomplete_state": "unknown"
+  },
+  "facts": {
+    "fact_award_v2_01": {
+      "proposition": "석호의 계단은 올해 다운로드량 1위이고 주요 매체가 표지에 실었다",
+      "slots": {
+        "subject": "석호의 계단",
+        "relation": "다운로드량 1위·주요 매체 표지",
+        "scope": "올해",
+        "polarity": "positive",
+        "modality": "asserted"
+      },
+      "required_slots": [
+        "subject",
+        "relation",
+        "scope"
+      ],
+      "accepted_paraphrase": [
+        "다운로드 1위/가장 많이 내려받음",
+        "주요 매체 표지/대표 매체 표지"
+      ],
+      "contradiction_policy": [
+        "판매량으로 바꾸면 wrong_value",
+        "normative 항목 우위로 쓰면 surface_to_normative_inference"
+      ],
+      "lexical_probes": [
+        "표지"
+      ],
+      "decision_role": "surface_impression"
+    },
+    "fact_award_v2_02": {
+      "proposition": "종이 낚시는 비평 매체 평점이 셋 가운데 가장 높다",
+      "slots": {
+        "subject": "종이 낚시",
+        "relation": "비평 매체 평점 최고",
+        "comparison_set": "세 작품",
+        "polarity": "positive",
+        "modality": "asserted"
+      },
+      "required_slots": [
+        "subject",
+        "relation",
+        "comparison_set"
+      ],
+      "accepted_paraphrase": [
+        "비평 매체 점수가 셋 중 가장 높음"
+      ],
+      "contradiction_policy": [
+        "올해의 작품 공식 점수로 바꾸면 surface_to_normative_inference"
+      ],
+      "lexical_probes": [
+        "평점"
+      ],
+      "decision_role": "surface_impression"
+    },
+    "fact_award_v2_03": {
+      "proposition": "밤길 안내인은 다운로드량이 셋 가운데 가장 낮고 매체 소개가 거의 없다",
+      "slots": {
+        "subject": "밤길 안내인",
+        "relation": "다운로드량 최저·매체 소개 거의 없음",
+        "comparison_set": "세 작품",
+        "polarity": "negative",
+        "modality": "asserted"
+      },
+      "required_slots": [
+        "subject",
+        "relation",
+        "comparison_set"
+      ],
+      "accepted_paraphrase": [
+        "셋 중 다운로드가 가장 적고 언론 노출도 드묾"
+      ],
+      "contradiction_policy": [
+        "작품성 열위로 바꾸면 surface_to_normative_inference"
+      ],
+      "lexical_probes": [
+        "소개가\\s*거의"
+      ],
+      "decision_role": "surface_impression"
+    },
+    "fact_award_v2_04": {
+      "proposition": "사무국의 최종 접수대장에는 밤길 안내인이 올해의 작품 부문 적격 접수작으로 등재돼 있다",
+      "slots": {
+        "subject": "사무국 최종 접수대장",
+        "object": "밤길 안내인",
+        "relation": "올해의 작품 부문 적격 접수작 등재",
+        "polarity": "positive",
+        "modality": "documented"
+      },
+      "required_slots": [
+        "subject",
+        "object",
+        "relation",
+        "polarity"
+      ],
+      "accepted_paraphrase": [
+        "최종 접수 기록상 밤길은 해당 부문 적격"
+      ],
+      "contradiction_policy": [
+        "후보 목록 등재만 말하면 partial",
+        "부적격이라 하면 polarity_flip"
+      ],
+      "lexical_probes": [
+        "적격\\s*접수작"
+      ],
+      "decision_role": "night_category_eligible"
+    },
+    "fact_award_v2_05": {
+      "proposition": "석호의 계단의 제작 전 과정 신고서에는 자동 생성 도구를 사용한 적이 없다고 기재돼 있다",
+      "slots": {
+        "subject": "석호의 계단 제작 전 과정 신고서",
+        "relation": "자동 생성 도구 사용 부정 기재",
+        "scope": "제작 전 과정",
+        "polarity": "negative",
+        "modality": "documented"
+      },
+      "required_slots": [
+        "subject",
+        "relation",
+        "scope",
+        "polarity"
+      ],
+      "accepted_paraphrase": [
+        "전 과정 신고서에 생성 도구를 쓰지 않았다고 적음"
+      ],
+      "contradiction_policy": [
+        "신고서 범위를 최종본만으로 줄이면 scope_narrowing",
+        "사용을 신고했다고 하면 polarity_flip"
+      ],
+      "lexical_probes": [
+        "사용한\\s*적이\\s*없다고"
+      ],
+      "decision_role": "lagoon_disqualification_part"
+    },
+    "fact_award_v2_06": {
+      "proposition": "기슭 스튜디오 대표는 최종 배경에 반영한 초안을 자동 생성 도구로 만들어 참고했다고 인터뷰에서 밝혔다",
+      "slots": {
+        "subject": "기슭 스튜디오 대표",
+        "object": "석호의 계단 최종 배경",
+        "relation": "자동 생성 초안 제작·참고",
+        "source": "대표 인터뷰",
+        "polarity": "positive",
+        "modality": "attributed"
+      },
+      "required_slots": [
+        "subject",
+        "object",
+        "relation",
+        "source"
+      ],
+      "accepted_paraphrase": [
+        "대표가 생성 도구 초안을 최종 배경에 참고했다고 인터뷰함"
+      ],
+      "contradiction_policy": [
+        "아이디어만 논의했다고 줄이면 modality_weakening",
+        "실제 최종 배경을 도구가 완성했다고 강화하면 unsupported_concrete_extension"
+      ],
+      "lexical_probes": [
+        "최종\\s*배경"
+      ],
+      "decision_role": "lagoon_disqualification_part"
+    },
+    "fact_award_v2_07": {
+      "proposition": "종이 낚시의 접수 번호는 신인 창작 부문 코드로 시작한다",
+      "slots": {
+        "subject": "종이 낚시 접수 번호",
+        "relation": "신인 창작 부문 코드",
+        "polarity": "positive",
+        "modality": "documented"
+      },
+      "required_slots": [
+        "subject",
+        "relation"
+      ],
+      "accepted_paraphrase": [
+        "접수번호가 신인 부문 코드로 시작"
+      ],
+      "contradiction_policy": [
+        "올해의 작품 부문 코드라 하면 category_substitution"
+      ],
+      "lexical_probes": [
+        "접수\\s*번호"
+      ],
+      "decision_role": "paper_category_ineligibility_part"
+    },
+    "fact_award_v2_08": {
+      "proposition": "사무국은 종이 낚시를 올해의 작품 부문에서 신인 창작 부문으로 최종 이관한다고 통보했으나 후보 목록은 그전에 인쇄됐다",
+      "slots": {
+        "subject": "사무국",
+        "object": "종이 낚시",
+        "relation": "올해의 작품에서 신인 창작으로 최종 이관",
+        "timing": "후보 목록 인쇄 후 통보",
+        "polarity": "positive",
+        "modality": "documented"
+      },
+      "required_slots": [
+        "subject",
+        "object",
+        "relation",
+        "timing"
+      ],
+      "accepted_paraphrase": [
+        "목록 인쇄 뒤 종이를 신인 부문으로 최종 옮긴다고 알림"
+      ],
+      "contradiction_policy": [
+        "이관 방향을 뒤집으면 category_substitution",
+        "인쇄 목록이 최종 효력이라고 하면 condition_relabeling"
+      ],
+      "lexical_probes": [
+        "목록은\\s*그전에"
+      ],
+      "decision_role": "paper_category_ineligibility_part"
+    },
+    "fact_award_v2_09": {
+      "proposition": "밤길 안내인은 최종 연출 점수에서 셋 가운데 유일하게 만점을 받아 연출 항목 1위다",
+      "slots": {
+        "subject": "밤길 안내인",
+        "criterion": "연출",
+        "official_measure": "최종 연출 점수",
+        "relation": "유일 만점·항목 1위",
+        "comparison_set": "세 작품",
+        "polarity": "positive"
+      },
+      "required_slots": [
+        "subject",
+        "criterion",
+        "official_measure",
+        "relation",
+        "comparison_set"
+      ],
+      "accepted_paraphrase": [
+        "최종 연출 점수 유일 만점으로 세 작품 중 1위"
+      ],
+      "contradiction_policy": [
+        "예비 점수로 낮추면 modality_weakening",
+        "설계 항목으로 옮기면 criterion_substitution"
+      ],
+      "lexical_probes": [
+        "유일하게\\s*만점"
+      ],
+      "decision_role": "night_directing_winner"
+    },
+    "fact_award_v2_10": {
+      "proposition": "공식 설계 지표인 첫 관문 이탈률에서 밤길 안내인이 셋 가운데 가장 낮아 설계 항목 1위다",
+      "slots": {
+        "subject": "밤길 안내인",
+        "criterion": "설계",
+        "official_measure": "첫 관문 이탈률",
+        "relation": "셋 중 최저·항목 1위",
+        "comparison_set": "세 작품",
+        "polarity": "positive"
+      },
+      "required_slots": [
+        "subject",
+        "criterion",
+        "official_measure",
+        "relation",
+        "comparison_set"
+      ],
+      "accepted_paraphrase": [
+        "공식 설계 지표 이탈률이 가장 낮아 1위"
+      ],
+      "contradiction_policy": [
+        "인기 지표로 바꾸면 criterion_substitution",
+        "이탈률이 높다고 하면 polarity_flip"
+      ],
+      "lexical_probes": [
+        "공식\\s*설계\\s*지표"
+      ],
+      "decision_role": "night_design_winner"
+    },
+    "fact_award_v2_11": {
+      "proposition": "공식 완성도 평가 기간 넉 달 동안 밤길 안내인만 치명 결함 보고가 0건이어서 완성도 항목 1위다",
+      "slots": {
+        "subject": "밤길 안내인",
+        "criterion": "완성도",
+        "official_measure": "출시 후 넉 달 치명 결함 보고",
+        "relation": "유일 0건·항목 1위",
+        "comparison_set": "세 작품",
+        "polarity": "positive"
+      },
+      "required_slots": [
+        "subject",
+        "criterion",
+        "official_measure",
+        "relation",
+        "comparison_set"
+      ],
+      "accepted_paraphrase": [
+        "공식 완성도 기간 4개월 동안 밤길만 치명 결함 보고 0건"
+      ],
+      "contradiction_policy": [
+        "결함이 절대 없다고 강화하면 modality_strengthening",
+        "연출 항목으로 옮기면 criterion_substitution"
+      ],
+      "lexical_probes": [
+        "완성도\\s*평가\\s*기간"
+      ],
+      "decision_role": "night_completeness_winner"
+    },
+    "fact_award_v2_12": {
+      "proposition": "밤길 안내인의 제작 검증 기록은 신고 내역과 실제 외주·자동 생성 도구 사용 내역이 일치한다고 확인한다",
+      "slots": {
+        "subject": "밤길 안내인 제작 검증 기록",
+        "relation": "신고와 실제 외주·자동 생성 도구 사용 내역 일치 확인",
+        "polarity": "positive",
+        "modality": "documented"
+      },
+      "required_slots": [
+        "subject",
+        "relation",
+        "polarity"
+      ],
+      "accepted_paraphrase": [
+        "검증 기록상 신고 내용과 실제 도구·외주 사용이 맞음"
+      ],
+      "contradiction_policy": [
+        "미신고 사용이 있다고 하면 disclosure_use_mismatch",
+        "위반 언급이 없다는 말만 하면 partial"
+      ],
+      "lexical_probes": [
+        "제작\\s*검증\\s*기록"
+      ],
+      "decision_role": "night_disclosure_compliant"
+    }
+  }
+}

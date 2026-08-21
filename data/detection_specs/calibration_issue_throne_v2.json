@@ -1,0 +1,476 @@
+{
+  "issue_id": "issue_throne_v2",
+  "version": "cal-0.1",
+  "spec_version": "0.1",
+  "_note": "파일럿 출력을 보지 않고 원 명제에서 새로 쓴 사례다. 관측 출력으로 규칙을 만들고 같은 출력에서 성능을 주장하지 않기 위한 계보 분리다.",
+  "cases": [
+    {
+      "case_id": "cal_01_1",
+      "fact_id": "fact_throne_v2_01",
+      "text": "궁정 명부에는 베스카가 선왕의 유일한 친딸로 올라 있다",
+      "expected_status": "exact",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_01_2",
+      "fact_id": "fact_throne_v2_01",
+      "text": "명부 기록상 선왕의 친자녀는 베스카 하나뿐이다",
+      "expected_status": "faithful",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_01_3",
+      "fact_id": "fact_throne_v2_01",
+      "text": "베스카는 선왕의 딸이다",
+      "expected_status": "partial",
+      "expected_flags": [
+        "source_dropped"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_01_4",
+      "fact_id": "fact_throne_v2_01",
+      "text": "궁정 명부에는 아르넬이 선왕의 유일한 친아들로 올라 있다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "wrong_subject"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_02_5",
+      "fact_id": "fact_throne_v2_02",
+      "text": "궁정 연대기는 베스카 열아홉, 아르넬 열여섯으로 적고 있다",
+      "expected_status": "exact",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_02_6",
+      "fact_id": "fact_throne_v2_02",
+      "text": "연대기 기록은 두 사람을 각각 19세와 16세로 남겼다",
+      "expected_status": "faithful",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_02_7",
+      "fact_id": "fact_throne_v2_02",
+      "text": "연대기에 베스카는 열아홉으로 적혀 있다",
+      "expected_status": "partial",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_02_8",
+      "fact_id": "fact_throne_v2_02",
+      "text": "연대기는 아르넬을 스물하나로 적었다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "wrong_value"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_03_9",
+      "fact_id": "fact_throne_v2_03",
+      "text": "아르넬의 서신이 두 달째 회신을 못 받았다는 말이 돈다",
+      "expected_status": "exact",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_03_10",
+      "fact_id": "fact_throne_v2_03",
+      "text": "아르넬이 제후들에게 보낸 편지에 두 달 동안 답이 없다는 소문이 있다",
+      "expected_status": "faithful",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_03_11",
+      "fact_id": "fact_throne_v2_03",
+      "text": "제후들은 아르넬의 서신에 두 달째 답하지 않았다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "modality_strengthening"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_03_12",
+      "fact_id": "fact_throne_v2_03",
+      "text": "제후들이 답하지 않았으므로 아르넬은 지지를 잃었다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "modality_strengthening",
+        "unsupported_causal_link"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_04_13",
+      "fact_id": "fact_throne_v2_04",
+      "text": "대주교청은 아르넬에게 성별식 자격을 인정한다는 확인서를 발급했다",
+      "expected_status": "exact",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_04_14",
+      "fact_id": "fact_throne_v2_04",
+      "text": "아르넬은 대주교청으로부터 성별식 자격 인정 문서를 받았다",
+      "expected_status": "faithful",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_04_15",
+      "fact_id": "fact_throne_v2_04",
+      "text": "대주교청은 아르넬의 자격을 거부하지는 않았다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "modality_weakening"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_04_16",
+      "fact_id": "fact_throne_v2_04",
+      "text": "대주교청은 두 후보 모두에게 자격 인정 확인서를 발급했다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "wrong_object"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_05_17",
+      "fact_id": "fact_throne_v2_05",
+      "text": "선왕의 계승 서약서에는 아르넬의 이름만 인장과 함께 올라 있다",
+      "expected_status": "exact",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_05_18",
+      "fact_id": "fact_throne_v2_05",
+      "text": "인장이 찍힌 계승 서약서에 오른 이름은 아르넬뿐이다",
+      "expected_status": "faithful",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_05_19",
+      "fact_id": "fact_throne_v2_05",
+      "text": "서약서에 아르넬의 이름이 있다",
+      "expected_status": "partial",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_05_20",
+      "fact_id": "fact_throne_v2_05",
+      "text": "계승 서약서에는 베스카의 이름도 인장과 함께 올라 있다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "polarity_flip"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_06_21",
+      "fact_id": "fact_throne_v2_06",
+      "text": "베스카는 부모의 정식 혼인 전에 태어나 적자 표기가 취소됐다",
+      "expected_status": "faithful",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_06_22",
+      "fact_id": "fact_throne_v2_06",
+      "text": "기록상 베스카는 생모와 선왕이 혼인하기 전에 난 소생이며 적자 표기가 지워졌다",
+      "expected_status": "exact",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_06_23",
+      "fact_id": "fact_throne_v2_06",
+      "text": "베스카의 생모가 혼인 전 소생이라 생모의 적자 표기가 취소됐다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "wrong_subject"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_06_24",
+      "fact_id": "fact_throne_v2_06",
+      "text": "베스카의 적자 표기가 취소됐다",
+      "expected_status": "partial",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_07_25",
+      "fact_id": "fact_throne_v2_07",
+      "text": "아르넬의 세례 기록이 출생을 다섯 해 앞서 적어 실제 나이는 스물하나다",
+      "expected_status": "exact",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_07_26",
+      "fact_id": "fact_throne_v2_07",
+      "text": "세례부가 5년 이르게 기록돼 아르넬은 실제로 21세다",
+      "expected_status": "faithful",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_07_27",
+      "fact_id": "fact_throne_v2_07",
+      "text": "아르넬은 스물한 살이다",
+      "expected_status": "partial",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_07_28",
+      "fact_id": "fact_throne_v2_07",
+      "text": "아르넬의 세례 기록은 출생을 다섯 해 늦게 적었다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "polarity_flip"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_08_29",
+      "fact_id": "fact_throne_v2_08",
+      "text": "베스카가 스무 살 성년이 되는 것은 이듬해 파종제 이후다",
+      "expected_status": "exact",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_08_30",
+      "fact_id": "fact_throne_v2_08",
+      "text": "베스카는 내년 파종제가 지나야 성년 20세에 이른다",
+      "expected_status": "faithful",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_08_31",
+      "fact_id": "fact_throne_v2_08",
+      "text": "베스카는 아직 미성년이다",
+      "expected_status": "partial",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_08_32",
+      "fact_id": "fact_throne_v2_08",
+      "text": "베스카는 이미 성년에 이르렀다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "polarity_flip"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_09_33",
+      "fact_id": "fact_throne_v2_09",
+      "text": "베스카를 지지한 제후 여덟의 서명이 봉인되어 대주교청에 접수됐다",
+      "expected_status": "exact",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_09_34",
+      "fact_id": "fact_throne_v2_09",
+      "text": "제후 8명이 베스카 지지 서명을 봉인해 대주교청에 냈다",
+      "expected_status": "faithful",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_09_35",
+      "fact_id": "fact_throne_v2_09",
+      "text": "베스카를 지지하는 제후들이 있다",
+      "expected_status": "partial",
+      "expected_flags": [
+        "source_dropped"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_09_36",
+      "fact_id": "fact_throne_v2_09",
+      "text": "봉인된 것은 제후들이 강요당했다는 뜻이다",
+      "expected_status": "absent",
+      "expected_flags": [
+        "unsupported_causal_link"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_10_37",
+      "fact_id": "fact_throne_v2_10",
+      "text": "아르넬을 지지한 제후 일곱의 서명이 봉인되어 대주교청에 접수됐다",
+      "expected_status": "exact",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_10_38",
+      "fact_id": "fact_throne_v2_10",
+      "text": "제후 7명이 아르넬 지지 서명을 봉인해 대주교청에 제출했다",
+      "expected_status": "faithful",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_10_39",
+      "fact_id": "fact_throne_v2_10",
+      "text": "아르넬을 지지한 제후는 넷뿐이라 정족수에 못 미친다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "wrong_value",
+        "polarity_flip"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_10_40",
+      "fact_id": "fact_throne_v2_10",
+      "text": "아르넬도 제후들의 서명을 받았다",
+      "expected_status": "partial",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_11_41",
+      "fact_id": "fact_throne_v2_11",
+      "text": "베스카는 세 해 전 이단 재판에 연루돼 성별식 자격이 정지됐다",
+      "expected_status": "exact",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_11_42",
+      "fact_id": "fact_throne_v2_11",
+      "text": "3년 전 이단 재판에 얽혀 베스카의 성별식 자격이 효력을 잃었다",
+      "expected_status": "faithful",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_11_43",
+      "fact_id": "fact_throne_v2_11",
+      "text": "베스카는 이단 재판으로 파문됐다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "condition_relabeling"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_11_44",
+      "fact_id": "fact_throne_v2_11",
+      "text": "베스카의 성별식 자격이 정지된 적이 있다",
+      "expected_status": "partial",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_12_45",
+      "fact_id": "fact_throne_v2_12",
+      "text": "아르넬의 이름은 대주교청 파문 명부 어디에도 없다",
+      "expected_status": "exact",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_12_46",
+      "fact_id": "fact_throne_v2_12",
+      "text": "파문 명부를 뒤져도 아르넬은 나오지 않는다",
+      "expected_status": "faithful",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_12_47",
+      "fact_id": "fact_throne_v2_12",
+      "text": "파문 명부에 없으니 대주교청이 아르넬의 자격을 인정한 것이다",
+      "expected_status": "absent",
+      "expected_flags": [
+        "modality_strengthening"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "cal_12_48",
+      "fact_id": "fact_throne_v2_12",
+      "text": "아르넬의 이름이 파문 명부에 올라 있다",
+      "expected_status": "contradicted",
+      "expected_flags": [
+        "polarity_flip"
+      ],
+      "expected_relation_engaged": true,
+      "provenance_class": "independent-from-observed-output"
+    }
+  ]
+}
