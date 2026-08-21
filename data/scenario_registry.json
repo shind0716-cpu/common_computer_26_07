@@ -19,7 +19,7 @@
     },
     {
       "issue_id": "issue_throne_v2",
-      "state": "candidate",
+      "state": "console_approved",
       "outcome_policy": "normative_decision",
       "material": {
         "issue_sha256": "c15922850187aef17cacc0cd1ab2b0151dfccd152f0c7d66a96dfbcce6453426",
@@ -29,8 +29,8 @@
       "spec": {"required": true, "version": "0.1", "sha256": "15f39356c6dd6748ec4032ea521da49d19c865475ee3852227fc34f8d7230007"},
       "calibration": {"required": true, "version": "cal-0.1", "sha256": "9c6592284b42179ac8163185bafdf6f1f146d4f17c4305951bf0ed33a51b53b4"},
       "prior": {"required": true, "status": "completed"},
-      "approved_by": null,
-      "approved_at": null
+      "approved_by": "김요한 (owner, 2026-08-21 구두 승인 — 보드 결정 로그 게시 예정)",
+      "approved_at": "2026-08-21T16:46:17+09:00"
     },
     {
       "issue_id": "issue_award",
@@ -49,7 +49,7 @@
     },
     {
       "issue_id": "issue_award_v2",
-      "state": "candidate",
+      "state": "console_approved",
       "outcome_policy": "normative_decision",
       "material": {
         "issue_sha256": "a43b198466153a99b13037627385a510757ca172fd016dc4ffddc202f9e0bb87",
@@ -59,8 +59,8 @@
       "spec": {"required": true, "version": "0.1", "sha256": "ab1a8904b6549ba63ad9eaf23c99e7ac33d24152ffde1462fca49d117ab6f74b"},
       "calibration": {"required": true, "version": "cal-0.1", "sha256": "4ec16f69a63614870020fa7a80331326427bf6e9b2430f683c70b78aa493065f"},
       "prior": {"required": true, "status": "completed"},
-      "approved_by": null,
-      "approved_at": null
+      "approved_by": "김요한 (owner, 2026-08-21 구두 승인 — 보드 결정 로그 게시 예정)",
+      "approved_at": "2026-08-21T16:46:17+09:00"
     },
     {
       "issue_id": "issue_polar",
@@ -79,7 +79,7 @@
     },
     {
       "issue_id": "issue_polar_v2",
-      "state": "candidate",
+      "state": "console_approved",
       "outcome_policy": "descriptive_stance_only",
       "material": {
         "issue_sha256": "1ecd7ac7bdb9cc1b7c778c94e3ee449d540c29e1a4ea2b53f3d6589086cc1b88",
@@ -89,8 +89,8 @@
       "spec": {"required": true, "version": "0.2", "sha256": "bf454becd221441221a46b9a91a42fc34f33e37b9bda56c095ce1dc4c3c10bcd"},
       "calibration": {"required": true, "version": "cal-0.2", "sha256": "2781f6c2011db0e8fbd64724fcbb43e1260a795ee5348c28e7072954bc7f972b"},
       "prior": {"required": true, "status": "completed"},
-      "approved_by": null,
-      "approved_at": null
+      "approved_by": "김요한 (owner, 2026-08-21 구두 승인 — 보드 결정 로그 게시 예정)",
+      "approved_at": "2026-08-21T16:46:17+09:00"
     },
     {
       "issue_id": "issue_exile",
@@ -109,7 +109,7 @@
     },
     {
       "issue_id": "issue_exile_v2",
-      "state": "candidate",
+      "state": "console_approved",
       "outcome_policy": "descriptive_stance_only",
       "material": {
         "issue_sha256": "833fcc221d9224e1e10422cb7dbeb949bd087513be3c3f3563125dbcbd855cf2",
@@ -119,8 +119,8 @@
       "spec": {"required": true, "version": "0.2", "sha256": "a3d54db1620d093fe2aef75df770ed4453dff71f4aeddbde1d5bb9807db7c666"},
       "calibration": {"required": true, "version": "cal-0.2", "sha256": "e6d5cc8b850d2f93d2c9ba8d9b87ccdcd0f77f6c5078461977720091b20210a6"},
       "prior": {"required": true, "status": "completed"},
-      "approved_by": null,
-      "approved_at": null
+      "approved_by": "김요한 (owner, 2026-08-21 구두 승인 — 보드 결정 로그 게시 예정)",
+      "approved_at": "2026-08-21T16:46:17+09:00"
     }
   ]
 }

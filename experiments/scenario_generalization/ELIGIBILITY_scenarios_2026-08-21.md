@@ -58,6 +58,15 @@ prior 프로브는 시나리오당 12콜 — 네 벌이면 48콜. 과금 결정 
 확증 문 재실측: v2 네 벌 모두 막는 이유가 **`promotion state not executable: candidate` 하나**. 남은 건 사람 승인
 (state 전환 + `approved_by/at`)이고, 그건 코드가 아니라 보드 결정이다.
 
+## 3-2. 추기 (같은 날 16:46) — v2 네 벌 승인
+
+요한이 네 벌 전부 승인. registry `state: console_approved`, `approved_by`·`approved_at` 기입. 게이트 재실측:
+네 벌 `allowed=True`, 경고 0. polar_v2·exile_v2 에 `accuracy` 요청은 여전히 차단(descriptive 정책은 승인과 무관).
+콘솔 `/api/meta.scenario_gate_rows` 에서 allowed 가 v2 네 벌. 운영 계약 §4 "approved_count=0 이 정상" 은
+이 시점부터 사실이 아니다 — 이제 **4**. 승인 절차는 `docs/SCENARIO_REGISTRY_OPERATIONS.md` §6 에 적었다.
+
+**확증 등급으로 돌릴 수 있는 시나리오: 0 → 4.**
+
 ## 4. 이 표가 말하지 않는 것
 
 게이트는 파일 정합성만 본다. 재료가 실험 질문에 맞는지(시나리오2 의 "12팩트 눈금" 이 분모만 맞추는지 태그 분포까지

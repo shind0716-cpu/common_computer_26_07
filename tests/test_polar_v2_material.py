@@ -211,12 +211,14 @@ class PolarV2RegistryTests(unittest.TestCase):
         self.registry = json.loads(paths.scenario_registry().read_text(encoding="utf-8"))
         self.entry = next((e for e in self.registry["entries"] if e["issue_id"] == V2), None)
 
-    def test_registry_has_candidate_prior_pending_entry(self):
+    def test_registry_has_approved_entry_with_signature(self):
         self.assertIsNotNone(self.entry, "issue_polar_v2 registry 항목이 없다")
-        self.assertEqual(self.entry["state"], "candidate")
+        # 2026-08-21 요한 승인(console_approved). prior completed, approved_by/at 채워짐.
+        self.assertEqual(self.entry["state"], "console_approved")
         self.assertEqual(self.entry["outcome_policy"], "descriptive_stance_only")
-        self.assertIsNone(self.entry["approved_by"])
-        self.assertIsNone(self.entry["approved_at"])
+        self.assertEqual(self.entry["prior"], {"required": True, "status": "completed"})
+        self.assertTrue(str(self.entry["approved_by"]).strip())
+        self.assertTrue(str(self.entry["approved_at"]).strip())
 
     def test_spec_and_calibration_coordinates_match_manifest(self):
         manifest = json.loads(paths.detection_manifest(V2).read_text(encoding="utf-8"))
@@ -226,11 +228,11 @@ class PolarV2RegistryTests(unittest.TestCase):
         self.assertEqual(
             self.entry["calibration"]["sha256"], manifest["sha256"]["calibration"])
 
-    def test_prior_is_completed_but_state_still_candidate(self):
-        # 2026-08-21 prior 프로브 완료(48콜 중 12). 승인은 별개 — state 는 candidate 유지.
+    def test_prior_completed_before_approval(self):
+        # 2026-08-21 prior 프로브(48콜 중 12) 가 먼저, 승인(console_approved) 이 그 뒤 — 운영 계약 §3 순서.
         self.assertTrue(self.entry["prior"]["required"])
         self.assertEqual(self.entry["prior"]["status"], "completed")
-        self.assertEqual(self.entry["state"], "candidate")
+        self.assertEqual(self.entry["state"], "console_approved")
 
     def test_registry_material_hashes_match_actual_v2_bytes(self):
         self.assertEqual(self.entry["material"]["issue_sha256"], sha(paths.issue(V2)))

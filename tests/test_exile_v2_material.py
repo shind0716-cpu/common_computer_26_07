@@ -295,14 +295,14 @@ class ExileV2RegistryTests(unittest.TestCase):
         registry = json.loads(paths.scenario_registry().read_text(encoding="utf-8"))
         self.entry = next((e for e in registry["entries"] if e["issue_id"] == V2), None)
 
-    def test_registry_has_fail_closed_candidate_entry(self):
+    def test_registry_has_approved_entry_with_signature(self):
         self.assertIsNotNone(self.entry, "issue_exile_v2 registry 항목이 없다")
-        self.assertEqual(self.entry["state"], "candidate")
+        # 2026-08-21 요한 승인(console_approved). prior completed, approved_by/at 채워짐.
+        self.assertEqual(self.entry["state"], "console_approved")
         self.assertEqual(self.entry["outcome_policy"], "descriptive_stance_only")
-        # 2026-08-21 prior 프로브 완료 — completed 이지만 state 는 여전히 candidate(사람 승인 전).
         self.assertEqual(self.entry["prior"], {"required": True, "status": "completed"})
-        self.assertIsNone(self.entry["approved_by"])
-        self.assertIsNone(self.entry["approved_at"])
+        self.assertTrue(str(self.entry["approved_by"]).strip())
+        self.assertTrue(str(self.entry["approved_at"]).strip())
         self.assertEqual(self.entry["material"]["issue_sha256"], sha(paths.issue(V2)))
         self.assertEqual(self.entry["material"]["facts_sha256"], sha(paths.facts(V2)))
         self.assertEqual(self.entry["material"]["assignment_sha256"], sha(paths.assignment(V2)))
