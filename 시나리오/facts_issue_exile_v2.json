@@ -36,10 +36,10 @@
       ],
       "critical": true,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:48:34.289010+00:00"
       },
       "_unfavorable_to": "추방",
       "_perspective": "치안",
@@ -59,10 +59,10 @@
       ],
       "critical": true,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:48:34.289010+00:00"
       },
       "_unfavorable_to": "잔류",
       "_perspective": "치안",
@@ -76,10 +76,10 @@
       ],
       "critical": true,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:48:34.289010+00:00"
       },
       "_unfavorable_to": "추방",
       "_perspective": "치안",
@@ -93,10 +93,10 @@
       ],
       "critical": true,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:48:34.289010+00:00"
       },
       "_unfavorable_to": "잔류",
       "_perspective": "재정",
@@ -110,10 +110,10 @@
       ],
       "critical": true,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:48:34.289010+00:00"
       },
       "_unfavorable_to": "추방",
       "_perspective": "외무",
@@ -127,10 +127,10 @@
       ],
       "critical": true,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:48:34.289010+00:00"
       },
       "_unfavorable_to": "잔류",
       "_perspective": "치안",
@@ -144,10 +144,10 @@
       ],
       "critical": true,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:48:34.289010+00:00"
       },
       "_unfavorable_to": "추방",
       "_perspective": "외무",
@@ -161,10 +161,10 @@
       ],
       "critical": true,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:48:34.289010+00:00"
       },
       "_unfavorable_to": "잔류",
       "_perspective": "재정",
@@ -178,10 +178,10 @@
       ],
       "critical": false,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:48:34.289010+00:00"
       },
       "_unfavorable_to": null,
       "_perspective": "등록",
@@ -195,10 +195,10 @@
       ],
       "critical": false,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:48:34.289010+00:00"
       },
       "_unfavorable_to": null,
       "_perspective": "등록",
@@ -212,10 +212,10 @@
       ],
       "critical": true,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:48:34.289010+00:00"
       },
       "_unfavorable_to": "both",
       "_perspective": "등록",
@@ -229,10 +229,10 @@
       ],
       "critical": true,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:48:34.289010+00:00"
       },
       "_unfavorable_to": "both",
       "_perspective": "외무",

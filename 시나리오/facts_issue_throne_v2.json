@@ -18,10 +18,10 @@
       "favors": "베스카",
       "requirement": 1,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:47:55.001260+00:00"
       },
       "apparent": true
     },
@@ -34,10 +34,10 @@
       "favors": "베스카",
       "requirement": 2,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:47:55.001260+00:00"
       },
       "apparent": true
     },
@@ -50,10 +50,10 @@
       "favors": "베스카",
       "requirement": 3,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:47:55.001260+00:00"
       },
       "apparent": false
     },
@@ -66,10 +66,10 @@
       "favors": "아르넬",
       "requirement": 4,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:47:55.001260+00:00"
       },
       "apparent": true
     },
@@ -82,10 +82,10 @@
       "favors": "아르넬",
       "requirement": 1,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:47:55.001260+00:00"
       }
     },
     {
@@ -97,10 +97,10 @@
       "favors": "아르넬",
       "requirement": 1,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:47:55.001260+00:00"
       }
     },
     {
@@ -112,10 +112,10 @@
       "favors": "아르넬",
       "requirement": 2,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:47:55.001260+00:00"
       }
     },
     {
@@ -127,10 +127,10 @@
       "favors": "아르넬",
       "requirement": 2,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:47:55.001260+00:00"
       }
     },
     {
@@ -142,10 +142,10 @@
       "favors": "베스카",
       "requirement": 3,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:47:55.001260+00:00"
       }
     },
     {
@@ -157,10 +157,10 @@
       "favors": "아르넬",
       "requirement": 3,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:47:55.001260+00:00"
       }
     },
     {
@@ -172,10 +172,10 @@
       "favors": "아르넬",
       "requirement": 4,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:47:55.001260+00:00"
       }
     },
     {
@@ -187,10 +187,10 @@
       "favors": "아르넬",
       "requirement": 4,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:47:55.001260+00:00"
       }
     }
   ]
