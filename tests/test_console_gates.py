@@ -258,11 +258,18 @@ class TestVariant(GateBase):
         self.assertEqual(r.status_code, 400)
         self.assertFalse(paths.assignment(f"{self.issue_id}_a1").exists())
 
-    def test_variant_stays_hidden_until_explicit_registry_approval(self):
+    def test_variant_surfaces_as_pilot_candidate_never_confirmatory(self):
+        # 2026-08-20 등급 분리(결정 패킷 G-1A owner 서명)로 계약이 바뀐 자리. 종전엔
+        # "registry 승인 전엔 목록에 안 보인다"였으나, 이제 기계검증(schema·identity·
+        # 배분 무결성)을 통과한 재료는 **파일럿(검수전) 후보로 자동 등재**된다.
+        # 변하지 않은 것: 확증(confirmatory) 자격은 여전히 registry 도장 없이는 없다.
         self.c.post("/api/variant", json={
             "issue_id": self.issue_id, "suffix": "a5", "n_agents": 5})
         rows = self.c.get("/api/meta").json()["issue_rows"]
-        self.assertNotIn(f"{self.issue_id}_a5", [r["issue_id"] for r in rows])
+        row = next((r for r in rows if r["issue_id"] == f"{self.issue_id}_a5"), None)
+        self.assertIsNotNone(row, "기계검증 통과 변종은 파일럿 후보로 떠야 한다(G-1A)")
+        self.assertEqual(row["promotion_tier"], "pilot_unvetted")
+        self.assertNotEqual(row["promotion_tier"], "confirmatory")
 
 
 class TestFar(GateBase):

@@ -16,7 +16,7 @@ from unittest import mock
 
 from fastapi.testclient import TestClient
 
-from modules import llm, paths
+from modules import llm, paths, scenario_gate
 from tests.test_note_slot import _write_fixture
 
 
@@ -178,6 +178,26 @@ class TestScan(SoloBase):
         self.assertFalse(any(x["partial"] for x in runs))
 
 
+class TestSoloMetaGate(SoloBase):
+    def test_meta_exposes_only_gate_approved_solo_issues(self):
+        def fake_evaluate(issue_id):
+            return scenario_gate.GateResult(
+                issue_id=issue_id,
+                state=("console_approved" if issue_id == "issue_throne" else "candidate"),
+                allowed=(issue_id == "issue_throne"),
+                blocking_reasons=([] if issue_id == "issue_throne" else
+                                  ["promotion state not executable: candidate"]),
+            )
+
+        with mock.patch.object(scenario_gate, "evaluate", side_effect=fake_evaluate):
+            payload = self.c.get("/api/solo/meta").json()
+        self.assertEqual(payload["issues"], {"issue_throne": ["fixed"]})
+        self.assertIsNone(payload["default_issue"])
+        rows = {row["issue_id"]: row for row in payload["scenario_gate_rows"]}
+        self.assertTrue(rows["issue_throne"]["allowed"])
+        self.assertFalse(rows["issue_exile"]["allowed"])
+
+
 class TestEstimate(SoloBase):
     def _est(self, **over):
         body = {"model": "gpt", "arms": ["A"], "memories": ["full"], "reps": [1]}
@@ -249,6 +269,9 @@ class TestRunGate(SoloBase):
         (self.mod.SOLO_DIR / "run_solo.py").write_text("# stub", encoding="utf-8")
         with mock.patch.object(llm, "preflight",
                                lambda model, temperature=None, reasoning=None: {}), \
+             mock.patch.object(scenario_gate, "require",
+                               lambda issue_id, **kwargs: scenario_gate.GateResult(
+                                   issue_id=issue_id, state="console_approved", allowed=True)), \
              mock.patch("subprocess.Popen") as popen:
             popen.return_value.stdout.readline.return_value = ""   # _tail_reader 즉시 종료
             popen.return_value.poll.return_value = 0
@@ -295,6 +318,43 @@ class TestRunGate(SoloBase):
     def test_rejects_empty_selection(self):
         r, popen = self._run(arms=[])
         self.assertEqual(r.status_code, 400)
+        popen.assert_not_called()
+
+    def test_candidate_issue_is_blocked_before_preflight_or_subprocess(self):
+        body = {"model": "gpt", "issue": "issue_exile", "stance_key": "추방",
+                "arms": ["A"], "memories": ["note"], "reps": [1],
+                "dry": False, "prereg_confirmed": False}
+        self.mod.SOLO_DIR.mkdir(parents=True, exist_ok=True)
+        (self.mod.SOLO_DIR / "run_solo.py").write_text("# stub", encoding="utf-8")
+        blocked = scenario_gate.GateResult(
+            issue_id="issue_exile", state="candidate", allowed=False,
+            blocking_reasons=["promotion state not executable: candidate"])
+        with mock.patch.object(scenario_gate, "require", return_value=blocked) as gate, \
+             mock.patch.object(llm, "preflight") as preflight, \
+             mock.patch("subprocess.Popen") as popen:
+            response = self.c.post("/api/solo/run", json=body)
+        self.assertEqual(response.status_code, 400, response.text)
+        self.assertIn("scenario gate", response.json()["detail"])
+        gate.assert_called_once_with("issue_exile")
+        preflight.assert_not_called()
+        popen.assert_not_called()
+
+    def test_candidate_issue_dry_run_is_also_blocked(self):
+        """0콜 dry도 승인 package 리허설만 허용한다 — candidate material 조립 우회 금지."""
+        body = {"model": "gpt", "issue": "issue_exile", "stance_key": "추방",
+                "arms": ["A"], "memories": ["note"], "reps": [1],
+                "dry": True, "prereg_confirmed": False}
+        self.mod.SOLO_DIR.mkdir(parents=True, exist_ok=True)
+        (self.mod.SOLO_DIR / "run_solo.py").write_text("# stub", encoding="utf-8")
+        blocked = scenario_gate.GateResult(
+            issue_id="issue_exile", state="candidate", allowed=False,
+            blocking_reasons=["promotion state not executable: candidate"])
+        with mock.patch.object(scenario_gate, "require", return_value=blocked), \
+             mock.patch.object(llm, "preflight") as preflight, \
+             mock.patch("subprocess.Popen") as popen:
+            response = self.c.post("/api/solo/run", json=body)
+        self.assertEqual(response.status_code, 400, response.text)
+        preflight.assert_not_called()
         popen.assert_not_called()
 
     def test_ns_collision_with_existing_no_poll_run_is_blocked(self):

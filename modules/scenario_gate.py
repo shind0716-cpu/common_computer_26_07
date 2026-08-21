@@ -27,6 +27,12 @@ class GateResult:
     issue_id: str
     state: str | None = None
     outcome_policy: str | None = None
+    tier: str | None = None
+    call_limit: int | None = None
+    expected_calls: int | None = None
+    material_hashes: dict[str, str] = field(default_factory=dict)
+    aggregate_eligible: bool = False
+    report_eligible: bool = False
     allowed: bool = False
     blocking_reasons: list[str] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
@@ -36,8 +42,9 @@ class GateResult:
 
 
 def _sha(path: Path) -> str:
-    import hashlib
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    # 줄바꿈 정규화 뒤에 찍는다 — 이유는 modules/content_hash.py 머리말(2026-08-20 실측).
+    from modules import content_hash
+    return content_hash.sha256_file(path)
 
 
 def _read_json(path: Path, label: str, reasons: list[str]) -> dict | None:
@@ -295,6 +302,145 @@ def registry_results() -> list[GateResult]:
         seen.add(iid)
         results.append(evaluate(iid))
     return results
+
+
+PILOT_CALL_LIMIT = 30
+PILOT_FORBIDDEN_METRICS = frozenset({
+    "accuracy", "correct", "incorrect", "correctness", "winner",
+    "정답", "정답률", "정오",
+})
+
+
+def _optional_registry_entry(issue_id: str) -> dict | None:
+    """파일럿은 registry 등재를 요구하지 않지만 명시적 v1 실행금지는 존중한다."""
+    path = paths.scenario_registry()
+    if not path.exists():
+        return None
+    try:
+        doc = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+    entries = doc.get("entries") if isinstance(doc, dict) else None
+    if not isinstance(entries, list):
+        return None
+    matches = [entry for entry in entries if isinstance(entry, dict)
+               and entry.get("issue_id") == issue_id]
+    return matches[0] if len(matches) == 1 else None
+
+
+def _check_pilot_material(issue_id: str, result: GateResult) -> None:
+    artifact_paths = {
+        "issue": paths.issue(issue_id),
+        "facts": paths.facts(issue_id),
+        "assignment": paths.assignment(issue_id),
+    }
+    docs: dict[str, dict | None] = {}
+    for kind, path in artifact_paths.items():
+        doc = _read_json(path, kind, result.blocking_reasons)
+        docs[kind] = doc
+        if doc is None:
+            continue
+        if doc.get("issue_id") != issue_id:
+            result.blocking_reasons.append(
+                f"{kind} filename/content issue_id mismatch: expected {issue_id}, "
+                f"got {doc.get('issue_id')!r}")
+        if not isinstance(doc.get("schema_ver"), str) or not doc.get("schema_ver"):
+            result.blocking_reasons.append(f"{kind}.schema_ver missing or invalid")
+        result.material_hashes[kind] = _sha(path)
+
+    issue_doc, facts_doc, assignment_doc = (
+        docs.get("issue"), docs.get("facts"), docs.get("assignment"))
+    if issue_doc is not None:
+        result.outcome_policy = issue_doc.get("outcome_policy")
+    if facts_doc is None or assignment_doc is None:
+        return
+    facts = facts_doc.get("facts")
+    agents = assignment_doc.get("agents")
+    if not isinstance(facts, list) or not facts:
+        result.blocking_reasons.append("facts.facts must be a non-empty list")
+        return
+    if not isinstance(agents, list) or not agents:
+        result.blocking_reasons.append("assignment.agents must be a non-empty list")
+        return
+    fact_ids = [fact.get("fact_id") for fact in facts if isinstance(fact, dict)]
+    valid = {fid for fid in fact_ids if isinstance(fid, str) and fid}
+    if len(valid) != len(facts):
+        result.blocking_reasons.append("facts contains missing or duplicate fact_id")
+    assigned: set = set()
+    malformed = False
+    for agent in agents:
+        ids = agent.get("assigned_fact_ids") if isinstance(agent, dict) else None
+        if not isinstance(ids, list):
+            malformed = True
+            continue
+        assigned.update(ids)
+    if malformed:
+        result.blocking_reasons.append("assignment assigned_fact_ids must be lists")
+    unknown = sorted(str(fid) for fid in assigned - valid)
+    orphan = sorted(valid - assigned)
+    if unknown:
+        result.blocking_reasons.append(f"assignment unknown fact_id: {unknown}")
+    if orphan:
+        result.blocking_reasons.append(f"assignment orphan fact_id: {orphan}")
+
+
+def evaluate_pilot(issue_id: str, *, expected_calls: int = 0,
+                   max_calls: int | None = PILOT_CALL_LIMIT,
+                   requested_metric: str | None = None) -> GateResult:
+    """사람 승인·spec·calibration·prior와 분리된 development-only 파일럿 문."""
+    result = GateResult(
+        issue_id=issue_id,
+        tier="pilot_unvetted",
+        call_limit=PILOT_CALL_LIMIT,
+        expected_calls=expected_calls,
+        aggregate_eligible=False,
+        report_eligible=False,
+    )
+    if not isinstance(expected_calls, int) or expected_calls < 0:
+        result.blocking_reasons.append("pilot expected_calls must be a non-negative integer")
+    if max_calls is None:
+        result.blocking_reasons.append("pilot max_calls is required")
+    elif not isinstance(max_calls, int) or max_calls <= 0:
+        result.blocking_reasons.append("pilot max_calls must be a positive integer")
+    elif max_calls > PILOT_CALL_LIMIT:
+        result.blocking_reasons.append(
+            f"pilot max_calls={max_calls} exceeds hard limit {PILOT_CALL_LIMIT}")
+    elif isinstance(expected_calls, int) and expected_calls > max_calls:
+        result.blocking_reasons.append(
+            f"pilot expected_calls={expected_calls} exceeds max_calls={max_calls}")
+    metric = str(requested_metric or "").strip().lower()
+    if metric in PILOT_FORBIDDEN_METRICS:
+        result.blocking_reasons.append(f"{metric} forbidden for pilot_unvetted tier")
+
+    _check_pilot_material(issue_id, result)
+    entry = _optional_registry_entry(issue_id)
+    if entry is not None:
+        result.state = entry.get("state")
+        if result.outcome_policy is None:
+            result.outcome_policy = entry.get("outcome_policy")
+        exemptions = " ".join(
+            str((entry.get(kind) or {}).get("reason") or "")
+            for kind in ("spec", "calibration", "prior")
+        ).lower()
+        if "no new execution approval" in exemptions or "v2 package required" in exemptions:
+            result.blocking_reasons.append(
+                "historical v1 material explicitly forbids new pilot execution")
+    result.warnings.extend([
+        "pilot_unvetted: development-only evidence",
+        "default aggregate excluded",
+        "report/presentation citation forbidden until confirmatory promotion",
+    ])
+    result.allowed = not result.blocking_reasons
+    return result
+
+
+def pilot_results() -> list[GateResult]:
+    """모든 issue 파일을 감사표에 보이되 기계검증 실패는 실행권한으로 승격하지 않는다."""
+    issue_dir = paths.DATA / "issues"
+    if not issue_dir.exists():
+        return []
+    return [evaluate_pilot(path.stem, expected_calls=0, max_calls=PILOT_CALL_LIMIT)
+            for path in sorted(issue_dir.glob("issue_*.json"))]
 
 
 def require(issue_id: str, *, requested_metric: str | None = None) -> GateResult:

@@ -611,3 +611,308 @@ E의 수용 기준은 "구현에 참여하지 않은 에이전트"이고 나는 
      갱신해야 한다. A가 이를 암묵 승인하지 않았다.
   4. polar/exile은 spec/calibration 및 owner 결정을 기다린다.
 - **커밋/push**: 하지 않음.
+
+---
+
+## 2026-08-20 · award-engineer B 완료 append
+
+- **상태**: award_v2 DetectionSpec·독립 calibration·chain evaluator 계약 완료. 신규 실호출 0.
+- **산출물**:
+  - `data/detection_specs/issue_award_v2.json`
+  - `data/detection_specs/calibration_issue_award_v2.json`
+  - `data/detection_specs/manifest_issue_award_v2.json`
+  - `시나리오/build_detection_spec_award_v2.py`
+  - `tests/test_award_v2_detection_spec.py`
+- **의미 계약**: fact 01~03 surface-only; fact 04~12의 proper subset 511개는
+  `decision_state=unknown`, `winner=null`; 전체 normative set에서만 `밤길 안내인` 선택.
+- **패키지 좌표**:
+  - spec version/hash: `0.1` / `cc71fe706a005d5b1fb395303b2e39252d6bd1c78bbaa0c26601b8ac5c7882aa`
+  - calibration version/hash: `cal-0.1` / `7a02bdea084c9ff3f06c04f82b38ba098909970c7fd9b603c029436f99ce8db6`
+- **Hermes 통합 재검증**:
+  - 관련 121 tests PASS
+  - 전체 477 tests PASS
+  - issue/facts/assignment validator PASS
+  - registry의 award_v2 spec/calibration 좌표를 위 실제 값으로 연결했으나 state=`candidate`,
+    prior=`pending`, owner approval 없음은 유지했다. 따라서 실행은 계속 차단된다.
+- **남은 blocker**: prior probe 승인·완료, owner 승인, 독립 Claude review, promotion audit.
+- **커밋/push**: 이 append와 Hermes 통합 변경은 커밋하지 않음.
+
+---
+
+## 2026-08-20 · Claude 구현 append — polar v2 정본 재료 (§4 안전한 순서 3·4·5)
+
+역할: material-reviewer C 의 위임 서명이 연 「polar v2 builder/material 초안」(§6-C 다음 담당,
+§4 안전한 순서 3번). owner 김요한이 결정 패킷 §5·§7 에서 P-0A~P-5A 를 직접 승인했다. **polar 만.**
+exile 은 E-8 사람 지정 blocker 로 착수하지 않았다. DetectionSpec/calibration 미착수(별도 spec-engineer 몫).
+
+### strict TDD 실행 증거
+
+- **RED**: `PYTHONUTF8=1 python -m unittest tests.test_polar_v2_material -v`
+  → **FAIL (exit 1)**. `ModuleNotFoundError: 시나리오.build_issue_polar_v2` 로 v2 계약 24종이
+  ERROR, registry 항목 부재로 `test_registry_has_candidate_prior_pending_entry` FAIL.
+  **v1 불변성 테스트(`PolarV1PreservationTests`)는 이 시점에도 PASS** — 손대지 않은 것을 먼저 확인.
+- **빌드**: `PYTHONUTF8=1 python 시나리오/build_issue_polar_v2.py` → **exit 0, 자체 검사 전부 통과**.
+  `시나리오/` 와 `data/{issues,facts,assignments}/` 에 **한 빌더에서 같은 바이트**를 썼다(cmp 3종 identical).
+- **registry**: `issue_polar_v2` 를 `candidate` + prior `pending` + spec/calibration `pending`(zero hash) +
+  `approved_by/at=null` 로만 추가. **승인 상태는 만들지 않았다.**
+- **GREEN**: 같은 명령 → **Ran 24 tests, OK (exit 0)**.
+- **material validate**: `python -m modules.validate` issue/facts/assignment 3종 → **전부 OK (exit 0)**.
+- **registry schema**: `jsonschema.validate` → **OK (exit 0)**.
+- **py_compile**: 빌더·테스트 → **OK**.
+- **회귀**: `tests.test_console_scenario_promotion tests.test_console tests.test_console_gates`
+  → **Ran 70, OK**. 전체 `discover -s tests` → **Ran 505 tests, OK (exit 0)**. **신규 실호출 0.**
+
+### 반영한 owner 결정
+
+- **P-0A** outcome_policy=`descriptive_stance_only` — issue·facts 문서와 registry 에 명시. winner/accuracy 없음.
+- **P-1A** fact 03 만 문면 변경 — "후송 항로에서 쓸 수 있는 가장 가까운 대체 착륙장까지 편도 여섯
+  시간이며 중간 급유지는 없다". 나머지 11개 문면은 v1 그대로.
+- **P-2A** fact 05 문면 유지 + `_boundary=historical_case_only`, `PRESENT_RISK_FORBIDDEN_FACTS` 로 현재 실패확률·필연 추론 금지.
+- **P-3A** fact 11 `_boundary=accessibility_unknown` + orientation blocked.
+- **P-4A** `_unfavorable_to` 는 prereg 분석 메타로만(문서 `_note` 명시), fact 11·12 `_orientation=blocked` — 방향 집계 제외.
+- **P-5A** 새 `issue_polar_v2` + `fact_polar_v2_01`~`12` 전량 v2 namespace. v1 fact_id 와 미충돌.
+
+### unknown-safe material evaluator
+
+`descriptive_stance_evaluator_v2(known_fact_ids)` — 보존 팩트로 기술적 stance 기록만 만든다.
+winner·accuracy 는 **항상 None**(정답 없음). orientation blocked(11·12)는 favorable/unfavorable
+집계에서 제외, 부재를 favors/불리로 바꾸지 않는다. `reject_accuracy_request` 는 accuracy/winner/
+정답률 요청에 `ValueError` 로 fail-closed. award 의 `normative_award_evaluator_v2` 골격을 따르되
+winner 를 만들지 않는 descriptive 판본이다.
+
+### 배분 (v1 polar 설계 유지)
+
+4에이전트 × (관점 × 입장), 에이전트당 3팩트, 전 팩트 고립(밀도 1.0). 자기 입장 불리 1 + 상대 입장
+불리 1 대칭. **아무도 12팩트 전량을 혼자 갖지 않는다**(`test_no_agent_trivially_holds_full_decision_chain`).
+descriptive 재료라 정답 사슬은 없지만 취합 없이는 전체 그림이 안 잡히는 구조를 유지했다.
+
+### prior 미이전
+
+문면이 바뀐 fact 03 은 v1 known 을 물려받을 수 없고 v2 전체가 새 namespace 라 prior 전량 `null`.
+facts `_note` 와 `test_prior_is_null_and_note_warns` 가 이를 지킨다. **독립 probe 는 실호출이라
+불변식 4 로 지금은 못 돈다.**
+
+### 변경 파일 (내가 만들거나 고친 것만)
+
+- `시나리오/build_issue_polar_v2.py` (신설)
+- `data/issues/issue_polar_v2.json` · `data/facts/facts_issue_polar_v2.json` ·
+  `data/assignments/assignment_issue_polar_v2.json` (신설, 빌더 산출)
+- `시나리오/{issue,facts_issue,assignment_issue}_polar_v2.json` (신설, 빌더 산출·data 와 byte-identical)
+- `data/scenario_registry.json` (issue_polar_v2 candidate 항목 1건 추가 — 승인 아님)
+- `tests/test_polar_v2_material.py` (신설, 24종)
+- 이 handoff 문서의 본 append
+
+### 남은 blocker
+
+1. **DetectionSpec·calibration 미착수** — material hash 확정 뒤 별도 spec-engineer 몫(§4 후속 7).
+   registry spec/calibration 은 `pending`/zero hash 로 남겨 실행이 계속 차단된다.
+2. **prior probe 미실행** — prior=null, registry status=`pending`. owner 별도 승인 + 실호출 필요.
+3. **독립 감사(E) 미수행** — 구현자가 나이므로 자체 점검을 감사로 읽지 마라(불변식 8).
+4. **owner 승인·console_approved 없음** — `candidate` 유지. `approved_count` 불변(fail-closed).
+5. **exile v2 미착수** — E-8 사람 coder·독립 adjudicator 지정 전까지 blocked(범위 밖).
+
+### 커밋/push
+
+하지 않음. 공유 워크트리의 무관한 변경(A/B/D 의 미커밋분·기타 M 파일)은 보존했다 —
+reset/checkout/stash 하지 않았다.
+
+---
+
+## 2026-08-20 · Hermes 독립 재검증 append — polar v2 material
+
+Claude 구현 종료 뒤 Hermes가 산출물·registry·원본 보존을 독립 재검증했다.
+
+- `python -m unittest tests.test_polar_v2_material -v` → **24/24 PASS**
+- `python -m modules.validate` v2 issue/facts/assignment → **3종 PASS**
+- builder/test `py_compile` → **PASS**
+- `python -m unittest discover -s tests -q` → **505 tests PASS**
+- v1 source/runtime 6종과 prior 원자료 2종 SHA-256 → 결정 패킷 동결값과 일치
+- source/runtime v2 3종 → byte-identical
+- v1/v2 fact text 비교 → **fact 03만 변경**, 나머지 11개 동일
+- `scenario_gate.evaluate('issue_polar_v2', requested_metric='accuracy')` → **allowed=false**
+  - candidate
+  - descriptive accuracy 금지
+  - DetectionSpec 없음
+  - calibration 없음
+  - prior pending
+- ad-hoc 독립 검증 표식: `POLAR_V2_AD_HOC_VERIFY_OK`
+- 신규 LLM/API 실호출: **0**
+
+판정: **polar v2 material package는 구현·독립 재검증 완료. 승격은 계속 차단.** 다음 단계는
+material hash를 입력으로 한 DetectionSpec·독립 calibration이며, prior probe와 console approval은
+그 이후 별도 단계다.
+
+## 2026-08-20 · Hermes spec-engineer append — polar v2 DetectionSpec / independent calibration / manifest
+
+새 participant **Hermes spec-engineer**가 이 절의 구현·검증을 수행했다. material 구현자
+Claude Code session `32b999ea-05b0-4b60-bed5-8c684d93473d`의 실행을 대신했다고 주장하지 않는다.
+observed pilot/raw/model output과 prior를 읽거나 재사용하지 않았고, prior probe 및 실제 LLM/API
+호출은 0건이다.
+
+### strict RED → GREEN
+
+1. 산출물 부재 상태에서 focused smoke test를 먼저 추가했다.
+   - `PYTHONUTF8=1 python -m unittest tests.test_polar_v2_detection_spec.PolarV2PackageSmokeTests.test_package_loads_exact_current_material_identity_and_hash -v`
+   - **RED: exit 1** — `data/detection_specs/*polar_v2*`가 0개인 상태의 산출물 부재.
+2. 초기 최소 package 생성 후 의미·독립성·fail-closed 계약을 먼저 확장했다.
+   - `PYTHONUTF8=1 python -m unittest tests.test_polar_v2_detection_spec -v`
+   - **RED: 18 tests, failures=2, errors=25** — `outcome_contract`, polar extensions,
+     independent calibration axes, descriptive evaluator가 없는 기능 부재로 실패.
+3. 공통 `FactSpec`에 의미를 해석하지 않는 generic `extensions` 보존 필드만 추가하고,
+   polar-owned 경계·distortion 어휘는 polar spec에 국소화했다. deterministic builder를 구현해
+   세 산출물을 생성했다.
+   - `PYTHONUTF8=1 python 시나리오/build_detection_spec_polar_v2.py && PYTHONUTF8=1 python -m unittest tests.test_polar_v2_detection_spec -v`
+   - **GREEN: 18/18 PASS**.
+
+### 구현 계약
+
+- `outcome_policy=descriptive_stance_only`; final choice는 `descriptive_record_only`이며
+  winner/accuracy/correctness 산출을 거부한다.
+- sparse·미언급·부분·빈 입력은 `unknown`; `false`나 다른 입장 승리로 변환하지 않는다.
+- fact 03은 `evacuation_route_alternate_landing_site` + `one_way_six_hours`; 병원 목적지,
+  왕복 시간, 비행 가능성은 unknown이고 확대 추론을 distortion으로 둔다.
+- fact 05는 `historical_case_only`; 현재 실패 확률·필연성·보편 실패는 unknown이다.
+- fact 11은 `accessibility=unknown`; fact 11/12는 `orientation_blocked`.
+- `_unfavorable_to`는 `preregistered_analysis_metadata`로만 보존하고 fact truth/favors로
+  사용하지 않는다.
+- calibration은 material+owner decisions만으로 만든 synthetic boundary fixtures 54건과
+  descriptive final-choice fixtures 4건이다. 모든 12 facts의 양성/음성, 5 mention modes,
+  blocked/unknown, prohibited inference, descriptive final choice를 포함한다.
+- 참가 에이전트 prompt/answer key는 만들지 않았다.
+
+### 파일·identity
+
+- 수정: `modules/detection_spec.py` — generic `FactSpec.extensions` 보존 필드.
+- 생성: `시나리오/build_detection_spec_polar_v2.py`
+- 생성: `tests/test_polar_v2_detection_spec.py`
+- 생성: `data/detection_specs/issue_polar_v2.json`
+  - spec version `0.2`
+  - SHA-256 `f376bbbebe382f7760d35115acd4263a7ab3df05134cb29f43b99f6490d73492`
+- 생성: `data/detection_specs/calibration_issue_polar_v2.json`
+  - calibration version `cal-0.2`
+  - SHA-256 `1a049245d930ebe64ee0fa9b12e17a15e8a3c4296b27c481d09a63af1d52149d`
+- 생성: `data/detection_specs/manifest_issue_polar_v2.json`
+  - SHA-256 `aedf29ff15cf859754845609be11cf7893276da1ef43ea86d9d1ad2ef16ca623`
+- frozen material: `data/facts/facts_issue_polar_v2.json`
+  - SHA-256 `ba2b02fe5c7417ddf5d8e316e422f59224d2a9545c9e523468f4091a3bc48b42`
+
+### 실제 검증
+
+- `python -m py_compile` builder/test/common loader → **PASS**.
+- `python -m modules.validate` issue/facts/assignment → **3종 PASS**.
+- 관련 suite:
+  `python -m unittest tests.test_polar_v2_detection_spec tests.test_polar_v2_material tests.test_detection_spec tests.test_award_v2_detection_spec tests.test_award_chain_eval -q`
+  → **105 tests PASS**.
+- deterministic rebuild 전/후 세 산출물 SHA-256 동일 → **DETERMINISTIC_REBUILD_OK**.
+- registry JSON schema 검증 → **REGISTRY_SCHEMA_OK_UNMODIFIED**. 이 participant는 registry를
+  수정하지 않았다. 시작부터 다른 participant 변경으로 working tree의 registry가 modified였으므로,
+  parent Hermes가 검증 후 polar manifest hash를 연결해야 한다.
+- `python -m unittest discover -s tests -q` → **524 tests PASS** (7.110s).
+  FastAPI deprecation warning 및 mock debate/judge 로그가 있었으나 실패는 없었고 실제 prior/LLM/API
+  호출은 실행하지 않았다.
+- `git diff --check` → **PASS** (기존 CRLF→LF 경고만 출력).
+
+미해결 구현 blocker: **없음**. 승격 blocker: registry hash 연결과 subsequent prior/console approval은
+지시대로 이 작업 범위 밖이며 parent Hermes의 독립 검증 후 진행한다.
+
+### Parent Hermes/GPT Sol 독립 통합 — 2026-08-20
+
+부모 Hermes가 package 파일을 재열람하고 다음을 실제 재검증했다.
+
+- spec/material/common 관련 **105 tests PASS**
+- manifest의 issue/facts/assignment/spec/calibration 5개 SHA-256 → 실제 bytes와 모두 일치
+- deterministic builder 재실행 전/후 spec/calibration/manifest 3종 hash 동일
+- validator 3종, `py_compile`, `git diff --check` PASS
+- registry 연결 RED: 새 repository integration test가 pending/zero 좌표 때문에
+  `spec hash mismatch`로 실제 실패
+- registry에 manifest 좌표 연결 후 GREEN:
+  - spec `0.2` / `f376bbbebe382f7760d35115acd4263a7ab3df05134cb29f43b99f6490d73492`
+  - calibration `cal-0.2` / `1a049245d930ebe64ee0fa9b12e17a15e8a3c4296b27c481d09a63af1d52149d`
+- console/polar focused **99 tests PASS**
+- mutation audit: spec material hash 변조, calibration 누락/version 변조, run 직전 material
+  hash 변조가 모두 fail-closed되고 subprocess가 호출되지 않음(**3 tests PASS**)
+- 최종 gate blocking reasons는 다음 세 개뿐이다.
+  - `promotion state not executable: candidate`
+  - `accuracy forbidden for descriptive_stance_only scenario`
+  - `prior not completed: 'pending'`
+- 통합 후 전체 `unittest discover` → **563 tests PASS**
+
+판정: **polar_v2 spec/calibration registry 좌표 통합 및 0콜 mutation 감사 완료.** candidate,
+prior pending, descriptive accuracy 금지는 유지하며 실제 실험/prior LLM 호출은 수행하지 않았다.
+Claude Code 독립 read-only 감사는 별도 진행 중이다.
+
+### Claude Code 독립 read-only 감사 — PASS
+
+별도 Claude Code auditor가 package와 parent integration을 read-only로 재검토했다.
+
+- verdict: **PASS**
+- P0: 없음
+- P1: 없음
+- focused 92 tests PASS, 전체 564 tests PASS
+- 6종 hash, deterministic rebuild, gate reasons, calibration provenance/축, participant 누출,
+  common loader regression을 독립 확인
+- P2 informational: registry가 manifest 파일 자체 hash를 별도로 pin하지 않음; 두 descriptive
+  evaluator 중 향후 소비자는 spec-layer evaluator를 우선할 것
+
+전체 감사 기록: `AUDIT_polar_v2_spec_claude_2026-08-20.md`.
+
+---
+
+## 2026-08-20 · 지문 기준 변경 (자체 리뷰 → 수리, 콜 0)
+
+- **발견**: registry·manifest·spec 의 sha256 이 전부 **로컬 CRLF 작업본** 기준이었다.
+  `.gitattributes` 는 `*.json text eol=lf` 라 저장소 정본은 LF다. 같은 커밋을 새 worktree 로
+  체크아웃해 대조하니 award_v2 5개 파일이 전부 다른 지문이었고, 그 체크아웃에서 전체 테스트가
+  19건 실패했다. 세 차례 감사(E 포함) 모두 못 본 항목이다.
+- **원인**: 빌드 스크립트가 Windows 에서 `Path.write_text()` 로 쓴다. 기본 newline 설정이
+  `\n` 을 CRLF 로 바꾼다. git 이 이 차이를 정규화로 흡수하므로 `git status` 는 깨끗했고,
+  그래서 아무도 눈치채지 못했다.
+- **새 규칙 — 두 기준을 섞지 마라**
+  - *재료 동일성* (issue/facts/assignment·spec·calibration; registry/manifest 핀과 대조):
+    `modules/content_hash.sha256_file` / `sha256_bytes` — 줄바꿈 정규화 뒤 지문.
+  - *무엇을 먹였나의 증명* (parent r0·bundle·파일럿 raw 원자료): raw bytes 그대로.
+    정규화하면 서로 다른 바이트가 같은 지문을 갖는다(`b'\x0d\x0a\xff'` vs `b'\x0a\xff'` 충돌).
+- **바꾼 것**: `modules/content_hash.py` 신설 · `scenario_gate._sha` 와
+  `detection_spec.sha256_of` 를 정규화로 · registry/manifest/spec 핀 70곳 재계산 ·
+  테스트 10개의 자체 해시 계산을 공용 함수로 · 죽은 `import hashlib` 8건 제거.
+- **다른 세션이 알아야 할 것**
+  - 빌드 스크립트는 이미 `detection_spec.sha256_of` 를 쓰므로 **재빌드해도 핀이 어긋나지 않는다.**
+  - 새로 지문 찍는 자리를 만들 때 `hashlib.sha256(path.read_bytes())` 를 직접 쓰지 마라.
+  - `issue_exile_v2` 의 registry spec/calibration 은 자리표시자 0…0 **그대로 두었다**(미연결 유지).
+  - `issue_polar_v2` 는 이 수리로 spec/calibration hash mismatch 가 해소됐다. 남은 차단은
+    candidate · prior pending.
+  - `abc_same_parent_runner` 의 `_sha256`/`_artifact_sha256` 분리는 다른 세션이 먼저 넣었다.
+    두 함수의 용도 구분이 위 규칙과 같으니 유지할 것.
+- **검사**: 전체 **593 tests PASS**. 추적 재료 20개 핀이 `git show HEAD:<path>` 바이트 지문과 일치.
+- **미검증**: 깨끗한 체크아웃에서의 전체 스위트 — 신규 재료 다수가 미추적이라 확인 불가.
+  "팀원 PC 에서도 된다"는 아직 핀 수준 추론이다.
+- **남은 owner 결정**: `시나리오/prior_issue_award.json`·`.partial.jsonl` 두 파일럿 원자료는
+  raw 고정이라 LF 체크아웃에서 안 맞는다. 정본 바이트를 정하고 `.gitattributes` 에 `-text` 로
+  못 박아야 하며, 원자료 정본을 바꾸는 결정이라 대리하지 않았다.
+  (승격 등급 결정 패킷 `DECISION_PACKET_promotion_tiering_2026-08-20.md` §5-1 참조)
+- **커밋/push**: 하지 않음.
+
+---
+
+## 2026-08-20 · 등급 분리 배선 완료 append (Claude, Hermes OOM 이후 이어받음)
+
+- **상태**: 결정 패킷(G-0A/G-1A+안전수정/G-2A 30콜/G-3A/G-4A·B/G-5A, owner 서명) 구현 완료.
+  전체 602 tests PASS, 실호출 0.
+- **분담 실측**: Hermes가 evaluate_pilot·/api/run 분기·judge 러너 상한·intervene tier 상속까지
+  깔고 OOM으로 중단. Claude가 이은 것 — /api/solo/meta 파일럿 포함(폼에 재료 0개 뜨던 빈틈),
+  index.html 등급 UI 전체, 낡은 variant 테스트 1건을 새 계약으로 갱신.
+- **실측 결과**: 파일럿 문 12중 10 PASS(차단 2 = throne/award v1, G-5A 문면 그대로).
+  차단 6경로 400 확인: 상한 없음 / 40 초과 / accuracy / v1 문면 / 확증 미등재 / solo 상한 없음.
+- **실행 가능 매트릭스**(파일럿, 실호출은 owner 버튼):
+  - debate 콘솔: award_v2·camp·hire·hire_a6·throne_v2 (협력) · esa(저자 저장소 있으면)
+  - solo 러너: camp·polar·exile (v1 프롬프트 등록분)
+  - 모델: gpt/gemini만 — ANTHROPIC_API_KEY 자리표시자
+- **다른 세션이 알아야 할 것**:
+  - solo 탭 tier 는 재료 속성에서 파생(사람이 안 고름), 상한은 사람이 적은 숫자만 전송 —
+    UI 가 기본값을 채우면 관문이 장식이 된다는 원칙을 양 탭에 동일 적용.
+  - configs/console/judge_pilot_judge.yaml·pilot_fixture.yaml 은 테스트 실행 잔재로 보임(
+    issue_gate_fixture 참조). 커밋 전 처분 필요 — 테스트가 ROOT/configs/console 에 실제로
+    쓴다면 그 테스트가 임시 폴더를 쓰도록 고치는 게 맞다.
+- **남은 blocker**: run_solo ISSUE_PROMPTS v2 미등록(v2 stub 저작 = 러너 소관) ·
+  v2 확증 승격엔 prior 프로브 12콜/시나리오 · §6-8 독립 재감사(파일럿 상한·라벨 우회 시도) 미실행.
+- **커밋/push**: 하지 않음.

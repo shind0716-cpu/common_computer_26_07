@@ -314,6 +314,18 @@ def validate(path: Path, deep: bool = False):
                 check_keys(ev["settings"],
                            ["window", "memory", "rounds", "structure", "stance",
                             "overlap_k", "ledger_mode", "seed"], f"{where}.settings")
+                if "promotion_tier" in ev:
+                    if ev["promotion_tier"] not in ("confirmatory", "pilot_unvetted"):
+                        fail(f"{where}: unknown promotion_tier {ev['promotion_tier']!r}")
+                    check_keys(ev, ["aggregate_eligible", "report_eligible"], where)
+                    if not isinstance(ev["aggregate_eligible"], bool) or not isinstance(
+                            ev["report_eligible"], bool):
+                        fail(f"{where}: eligibility labels must be booleans")
+                    if ev["promotion_tier"] == "pilot_unvetted":
+                        if ev["aggregate_eligible"] or ev["report_eligible"]:
+                            fail(f"{where}: pilot_unvetted cannot be aggregate/report eligible")
+                        if not str(ev.get("condition") or "").startswith("pilot/"):
+                            fail(f"{where}: pilot_unvetted condition must start with pilot/")
                 if events:  # 빈 줄은 세지 않는다 — '첫 이벤트'가 기준
                     fail(f"{where}: run_meta 는 첫 이벤트여야 한다 (앞에 {len(events)}건 있음)")
             if ev["event"] == "note_update":

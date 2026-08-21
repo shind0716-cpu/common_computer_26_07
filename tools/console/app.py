@@ -41,7 +41,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 
-from modules import debate_engine, llm, note_slot, paths
+from modules import debate_engine, llm, note_slot, paths, scenario_gate
 
 app = FastAPI(title="실험 콘솔 v0")
 HERE = Path(__file__).resolve().parent
@@ -54,6 +54,21 @@ try:
 except ImportError:
     pass
 ROOT = paths.ROOT
+
+# 콘솔이 만드는 config 의 저장처. 함수 안 하드코딩이 아니라 모듈 변수인 이유:
+# 테스트가 임시 폴더로 갈아끼운다(SOLO_DIR·paths.DATA 전례). 종전엔 두 라우트가 각자
+# ROOT/configs/console 을 조립해서, paths.DATA 만 갈아끼운 테스트의 픽스처 config
+# (pilot_fixture.yaml 등)가 실제 리포에 남았다 — 2026-08-20 실측 잔재 2건 삭제.
+CONFIG_DIR = ROOT / "configs" / "console"
+
+
+def _cfg_ref(p: Path) -> str:
+    """config 경로의 표시·응답용 문자열. 리포 안이면 상대경로(종전 동작), 테스트가
+    CONFIG_DIR 를 리포 밖 임시 폴더로 갈아끼웠으면 절대경로 — relative_to 로 죽지 않는다."""
+    try:
+        return str(p.relative_to(ROOT))
+    except ValueError:
+        return str(p)
 
 # ─── 실행 상태 (프로세스 1개만 — 동시 실행은 비용 사고의 지름길) ─────────────
 _proc: subprocess.Popen | None = None
@@ -135,8 +150,13 @@ STATIC_NOTES = [
 
 
 def _issues() -> list[str]:
-    d = paths.DATA / "issues"
-    return sorted(p.stem for p in d.glob("*.json")) if d.exists() else []
+    """확증 승인 또는 기계검증된 pilot 후보를 반환한다.
+
+    파일 존재는 감사 대상 발견에만 쓰고, 실행 가능성은 각 gate 결과가 결정한다.
+    """
+    confirmatory = {r.issue_id for r in scenario_gate.registry_results() if r.allowed}
+    pilot = {r.issue_id for r in scenario_gate.pilot_results() if r.allowed}
+    return sorted(confirmatory | pilot)
 
 
 def _issue_rows() -> list[dict]:
@@ -146,11 +166,19 @@ def _issue_rows() -> list[dict]:
     필요하다 — 이 차이를 UI 가 미리 말하지 않으면 사람이 실행 버튼을 누른 뒤에
     RuntimeError 로 알게 된다(2026-07-30 실측)."""
     rows = []
-    for iid in _issues():
+    confirmatory = {r.issue_id: r for r in scenario_gate.registry_results() if r.allowed}
+    pilot = {r.issue_id: r for r in scenario_gate.pilot_results() if r.allowed}
+    for iid in sorted(set(confirmatory) | set(pilot)):
+        result = confirmatory.get(iid) or pilot[iid]
         st = _stances_of(iid)
         rows.append({"issue_id": iid, "stances": sorted(s for s in st if s),
                      "coop": bool(st) and st == {"none"},
-                     "has_assignment": bool(st)})
+                     "has_assignment": bool(st),
+                     "promotion_state": result.state,
+                     "promotion_tier": ("confirmatory" if iid in confirmatory
+                                        else "pilot_unvetted"),
+                     "outcome_policy": result.outcome_policy,
+                     "promotion_warnings": result.warnings})
     return rows
 
 
@@ -291,6 +319,24 @@ def _read_events(issue_id: str, run_id: str) -> list[dict]:
     return [json.loads(l) for l in p.read_text(encoding="utf-8").splitlines() if l.strip()]
 
 
+def _require_source_tier(issue_id: str, meta: dict | None, *, expected_calls: int,
+                         max_calls: int | None, requested_metric: str | None = None):
+    """후속 과금 경로가 원본 run의 tier를 상속하도록 실행 직전 재검증한다."""
+    tier = (meta or {}).get("promotion_tier", "confirmatory")
+    if tier == "pilot_unvetted":
+        gate = scenario_gate.evaluate_pilot(
+            issue_id, expected_calls=expected_calls, max_calls=max_calls,
+            requested_metric=requested_metric)
+    elif tier == "confirmatory":
+        gate = scenario_gate.require(issue_id, requested_metric=requested_metric)
+    else:
+        raise HTTPException(400, f"원본 run의 promotion_tier를 알 수 없음: {tier!r}")
+    if not gate.allowed:
+        raise HTTPException(400, "scenario tier gate blocked — "
+                            + "; ".join(gate.blocking_reasons))
+    return gate
+
+
 # ─── API ─────────────────────────────────────────────────────────────────────
 def _author_repo_present() -> bool:
     """저자 저장소(DelibTrace) 클론이 있나 — 재현 트랙(pro/con) 실행의 선행 조건.
@@ -351,6 +397,8 @@ def _models() -> list[dict]:
 def api_meta():
     return {"axes": AXES, "static_notes": STATIC_NOTES,
             "issues": _issues(), "issue_rows": _issue_rows(), "runs": _runs(),
+            "scenario_gate_rows": [r.to_dict() for r in scenario_gate.registry_results()],
+            "pilot_gate_rows": [r.to_dict() for r in scenario_gate.pilot_results()],
             "models": _models(),
             "author_repo": _author_repo_present(),
             "author_hint": _author_dir_hint(),
@@ -376,14 +424,24 @@ class RunReq(BaseModel):
     debate_temperature: float = 1.0
     judge_n_votes: int = 3
     max_llm_calls: int | None = None
+    promotion_tier: str = "confirmatory"
+    # descriptive_stance_only 에 accuracy를 요청하는 API 직접 호출을 기계적으로 막는다.
+    outcome_metric: str | None = None
 
 
 def _write_config(req: RunReq) -> Path:
     """폼 → config yaml. 콘솔이 만든 config 도 파일로 남긴다 — run_meta.config_ref
     가 이 파일의 sha256 을 찍기 때문에, 파일이 없으면 "조건을 아는 산출물"이 안 된다."""
+    is_pilot = req.promotion_tier == "pilot_unvetted"
+    condition = req.condition or None
+    if is_pilot:
+        condition = f"pilot/{req.condition or 'unspecified'}"
     cfg = {
         "experiment": f"console_{req.run_id}",
-        "condition": req.condition or None,
+        "condition": condition,
+        "promotion_tier": req.promotion_tier,
+        "aggregate_eligible": not is_pilot,
+        "report_eligible": not is_pilot,
         "issue_id": req.issue_id, "run_id": req.run_id,
         "seed": req.seed, "rounds": req.rounds, "structure": req.structure,
         "window": req.window, "memory": req.memory,
@@ -399,7 +457,7 @@ def _write_config(req: RunReq) -> Path:
     }
     if req.max_llm_calls:
         cfg["max_llm_calls"] = req.max_llm_calls
-    d = ROOT / "configs" / "console"
+    d = CONFIG_DIR
     d.mkdir(parents=True, exist_ok=True)
     p = d / f"{req.run_id}.yaml"
     p.write_text("# 콘솔 v0 생성 — 설정 사전 8축 좌표\n" +
@@ -477,6 +535,26 @@ def api_estimate(req: RunReq):
 @app.post("/api/run")
 def api_run(req: RunReq):
     global _proc, _log, _current
+    # 목록을 통과했더라도 버튼을 누르는 사이 파일/manifest가 바뀔 수 있다. 실행 입구에서
+    # 같은 gate를 독립 재검사하고, 실패하면 config 작성·Popen·LLM 호출 전에 끝낸다.
+    if req.promotion_tier == "pilot_unvetted":
+        estimate = api_estimate(req)
+        if estimate.get("blocking"):
+            raise HTTPException(400, "pilot preflight blocked — "
+                                + "; ".join(estimate["blocking"]))
+        promotion = scenario_gate.evaluate_pilot(
+            req.issue_id,
+            expected_calls=estimate["total"],
+            max_calls=req.max_llm_calls,
+            requested_metric=req.outcome_metric,
+        )
+    elif req.promotion_tier == "confirmatory":
+        promotion = scenario_gate.require(req.issue_id, requested_metric=req.outcome_metric)
+    else:
+        raise HTTPException(400, f"unknown promotion_tier: {req.promotion_tier!r}")
+    if not promotion.allowed:
+        raise HTTPException(400, "scenario promotion gate blocked — "
+                            + "; ".join(promotion.blocking_reasons))
     if _proc is not None and _proc.poll() is None:
         raise HTTPException(409, "이미 실행 중 — 끝나거나 중단한 뒤에 다시.")
     out = paths.debate(req.issue_id, req.run_id)
@@ -510,9 +588,9 @@ def api_run(req: RunReq):
            "--issue", req.issue_id, "--run", req.run_id, "--config", str(cfg_path)]
     with _log_lock:
         _log = [f"$ {' '.join(cmd)}",
-                f"[config] {cfg_path.relative_to(ROOT)}"]
+                f"[config] {_cfg_ref(cfg_path)}"]
     _current = {"issue_id": req.issue_id, "run_id": req.run_id,
-                "config": str(cfg_path.relative_to(ROOT))}
+                "config": _cfg_ref(cfg_path)}
     _proc = subprocess.Popen(cmd, cwd=str(ROOT), stdout=subprocess.PIPE,
                              stderr=subprocess.STDOUT, text=True, encoding="utf-8",
                              errors="replace", bufsize=1)
@@ -580,6 +658,7 @@ class InterveneReq(BaseModel):
     notes: dict            # {agent_id: 고친 수첩 텍스트}
     debate_model: str = "claude-haiku"
     debate_temperature: float = 1.0
+    max_llm_calls: int | None = None
 
 
 @app.post("/api/intervene")
@@ -594,15 +673,6 @@ def api_intervene(req: InterveneReq):
       · note_update.origin="intervention" — 집계 기본 제외가 습관이 아니라 필드(§6)
       · condition 에 개입 표시 — 로그만 보고 구분 가능해야 한다(§6)
     """
-    # 키·온도 관문 (2026-07-30 · 민옥). /api/run 은 엔진 서브프로세스가 preflight 를
-    # 부르지만, 개입은 **이 프로세스에서** llm.obtain_response 를 직접 부른다. 그건 어떤
-    # 실패도 5회 백오프 뒤 공백으로 폴백하므로, 키가 자리표시자면 "개입 후 판단"이 빈
-    # 문자열로 저장되고 화면에는 원본과 다르게 — 즉 "결론이 바뀌었다"로 — 보인다.
-    # 인과 개입은 이 창의 존재 이유이므로, 가짜 차이가 나오는 경로를 열어둘 수 없다.
-    try:
-        llm.preflight(req.debate_model, temperature=req.debate_temperature)
-    except SystemExit as e:
-        raise HTTPException(400, str(e))
     src = _read_events(req.issue_id, req.run_id)
     meta = next((e for e in src if e["event"] == "run_meta"), None)
     if meta is None:
@@ -624,6 +694,15 @@ def api_intervene(req: InterveneReq):
     if not last_note:
         raise HTTPException(400, "원본에 수첩이 없다 — 개입 창은 수첩 조건 전용")
 
+    # 재료/tier/call budget을 API 키 조회나 provider 호출보다 먼저 검사한다.
+    gate = _require_source_tier(
+        req.issue_id, meta, expected_calls=len(last_note), max_calls=req.max_llm_calls)
+    # 개입은 이 프로세스에서 llm.obtain_response를 직접 부르므로 여기서 key/temp를 검사한다.
+    try:
+        llm.preflight(req.debate_model, temperature=req.debate_temperature)
+    except SystemExit as e:
+        raise HTTPException(400, str(e))
+
     events = []
 
     def emit(event, **f):
@@ -631,8 +710,12 @@ def api_intervene(req: InterveneReq):
 
     st = dict(meta.get("settings", {}))
     st["intervention_of"] = req.run_id     # 어느 run 에서 갈라졌나
+    source_tier = meta.get("promotion_tier") or "confirmatory"
     emit("run_meta", issue_id=req.issue_id,
          condition=f"{meta.get('condition') or 'unknown'}+intervention",
+         promotion_tier=source_tier,
+         aggregate_eligible=bool(meta.get("aggregate_eligible", source_tier != "pilot_unvetted")),
+         report_eligible=bool(meta.get("report_eligible", source_tier != "pilot_unvetted")),
          config_ref={"name": f"intervention_of_{req.run_id}", "sha256": None},
          settings=st)
 
@@ -771,6 +854,7 @@ class JudgeReq(BaseModel):
     judge_model: str = "gpt-mini"
     judge_n_votes: int = 3
     offline: bool = False
+    max_llm_calls: int | None = None
 
 
 def _judge_cost(issue_id: str, run_id: str, n_votes: int) -> dict:
@@ -805,6 +889,16 @@ def api_judge_status(issue_id: str, run_id: str, judge_model: str = "gpt-mini",
 def api_judge_run(req: JudgeReq):
     """채점을 서브프로세스로 띄운다. 실행 슬롯은 토론과 공유 — 동시 실행은 비용 사고다."""
     global _proc, _log, _current
+    source_events = _read_events(req.issue_id, req.run_id)
+    source_meta = next((e for e in source_events if e.get("event") == "run_meta"), None)
+    cost = _judge_cost(req.issue_id, req.run_id, req.judge_n_votes)
+    gate = _require_source_tier(
+        req.issue_id, source_meta,
+        expected_calls=0 if req.offline else cost["total"],
+        max_calls=(req.max_llm_calls if not req.offline
+                   else (req.max_llm_calls or scenario_gate.PILOT_CALL_LIMIT)),
+    )
+    source_tier = (source_meta or {}).get("promotion_tier", "confirmatory")
     if _proc is not None and _proc.poll() is None:
         raise HTTPException(409, "이미 실행 중 — 끝나거나 중단한 뒤에 다시.")
     if paths.judgment(req.issue_id, req.run_id).exists():
@@ -818,13 +912,17 @@ def api_judge_run(req: JudgeReq):
             raise HTTPException(400, str(e))
 
     # 판정 조건도 파일로 남긴다 — run config 와 같은 이유(산출물이 자기 잣대를 알아야 한다).
-    d = ROOT / "configs" / "console"
+    d = CONFIG_DIR
     d.mkdir(parents=True, exist_ok=True)
     cfg_path = d / f"judge_{req.run_id}.yaml"
     cfg_path.write_text(
         "# 콘솔 v0 생성 — 채점 조건\n" + yaml.safe_dump(
             {"judge_model": req.judge_model, "judge_temperature": 0,
-             "judge_n_votes": req.judge_n_votes},
+             "judge_n_votes": req.judge_n_votes,
+             "promotion_tier": source_tier,
+             "aggregate_eligible": source_tier != "pilot_unvetted",
+             "report_eligible": source_tier != "pilot_unvetted",
+             "max_llm_calls": (0 if req.offline else req.max_llm_calls)},
             allow_unicode=True, sort_keys=False), encoding="utf-8")
 
     cmd = [sys.executable, "-X", "utf8", "-m", "modules.judge",
@@ -832,11 +930,11 @@ def api_judge_run(req: JudgeReq):
     if req.offline:
         cmd.append("--offline")
     with _log_lock:
-        _log = [f"$ {' '.join(cmd)}", f"[config] {cfg_path.relative_to(ROOT)}",
+        _log = [f"$ {' '.join(cmd)}", f"[config] {_cfg_ref(cfg_path)}",
                 "[주의] 채점은 팩트×라운드×표 수만큼 호출한다 — 중단하면 처음부터다"
                 "(judge 에는 체크포인트가 없다)."]
     _current = {"issue_id": req.issue_id, "run_id": req.run_id,
-                "config": str(cfg_path.relative_to(ROOT)), "kind": "judge"}
+                "config": _cfg_ref(cfg_path), "kind": "judge"}
     _proc = subprocess.Popen(cmd, cwd=str(ROOT), stdout=subprocess.PIPE,
                              stderr=subprocess.STDOUT, text=True, encoding="utf-8",
                              errors="replace", bufsize=1)
@@ -949,6 +1047,8 @@ class SoloRunReq(BaseModel):
     # "PROMPTS_v2·PREREG_v2 를 로컬 커밋했다"는 **사람의 확인**. UI 가 자동으로 켜면
     # 사전등록 관문이 장식이 된다 — 기본 False, 체크 시에만 --allow-v2 가 붙는다(§1·§2-3).
     prereg_confirmed: bool = False
+    promotion_tier: str = "confirmatory"
+    max_llm_calls: int | None = None
 
 
 def _solo_v2_reasons(req: SoloRunReq) -> list[str]:
@@ -1017,7 +1117,10 @@ def _solo_planned_ids(req: SoloRunReq) -> list[str]:
 @app.get("/api/solo/meta")
 def api_solo_meta():
     """폼의 단일 소스 — 조건 어휘 + 모델 키 실재 여부(_models 와 같은 기준: 24자 미만
-    은 자리표시자). 러너 파일 존재도 함께 — 없으면 실행 버튼이 눌리기 전에 안다."""
+    은 자리표시자). 러너 파일 존재도 함께 — 없으면 실행 버튼이 눌리기 전에 안다.
+
+    SOLO_ISSUES는 러너 어휘일 뿐 승인 목록이 아니다. 현재 registry 바이트에 대한 기계 게이트를
+    다시 평가해 승인된 issue만 선택지로 내보내고, 차단 사유는 별도 행으로 보존한다."""
     models = []
     for key in SOLO_MODELS:
         try:
@@ -1032,9 +1135,30 @@ def api_solo_meta():
                        "reason": ("" if len(val) >= 24 else
                                   (f"{env} 없음" if not val
                                    else f"{env} 가 너무 짧음({len(val)}자 — 자리표시자)"))})
+    gate_results = [scenario_gate.evaluate(issue_id) for issue_id in SOLO_ISSUES]
+    # 등급 분리(결정 패킷 G-0A·G-1A, 2026-08-20 owner 서명): 확증 승인이 없어도 파일럿
+    # 기계검증을 통과한 재료는 선택지에 나온다. /api/solo/run 이 tier 별 게이트를 독립
+    # 재검사하므로 이 목록은 후보 표시일 뿐 실행권한이 아니다(안전 수정 조항).
+    pilot_gate_results = [
+        scenario_gate.evaluate_pilot(issue_id, expected_calls=0,
+                                     max_calls=scenario_gate.PILOT_CALL_LIMIT)
+        for issue_id in SOLO_ISSUES]
+    confirmatory_ok = {r.issue_id for r in gate_results if r.allowed}
+    pilot_ok = {r.issue_id for r in pilot_gate_results if r.allowed}
+    allowed_issue_ids = confirmatory_ok | pilot_ok
+    visible_issues = {issue_id: stances for issue_id, stances in SOLO_ISSUES.items()
+                      if issue_id in allowed_issue_ids}
+    issue_tiers = {iid: ("confirmatory" if iid in confirmatory_ok else "pilot_unvetted")
+                   for iid in allowed_issue_ids}
+    visible_default = (SOLO_DEFAULT_ISSUE
+                       if SOLO_DEFAULT_ISSUE in allowed_issue_ids else None)
     return {"models": models, "arms": SOLO_ARMS, "memories": SOLO_MEMS,
             "budgets": SOLO_BUDGETS, "default_budget": SOLO_DEFAULT_BUDGET,
-            "issues": SOLO_ISSUES, "default_issue": SOLO_DEFAULT_ISSUE,
+            "issues": visible_issues, "default_issue": visible_default,
+            "issue_tiers": issue_tiers,
+            "scenario_gate_rows": [result.to_dict() for result in gate_results],
+            "pilot_gate_rows": [result.to_dict() for result in pilot_gate_results],
+            "pilot_call_limit": scenario_gate.PILOT_CALL_LIMIT,
             "runner_exists": (SOLO_DIR / "run_solo.py").exists()}
 
 
@@ -1082,6 +1206,20 @@ def api_solo_run(req: SoloRunReq):
         if _proc is not None and _proc.poll() is None:
             raise HTTPException(409, "이미 실행 중 — 끝나거나 중단한 뒤에 다시.")
         _solo_validate(req)
+        estimate = api_solo_estimate(req)
+        if req.promotion_tier == "pilot_unvetted":
+            gate = scenario_gate.evaluate_pilot(
+                req.issue,
+                expected_calls=0 if req.dry else estimate["calls_max"],
+                max_calls=req.max_llm_calls,
+            )
+        elif req.promotion_tier == "confirmatory":
+            gate = scenario_gate.require(req.issue)
+        else:
+            raise HTTPException(400, f"unknown promotion_tier: {req.promotion_tier!r}")
+        if not gate.allowed:
+            detail = "; ".join(gate.blocking_reasons) or "unknown blocking reason"
+            raise HTTPException(400, f"scenario gate blocked {req.issue}: {detail}")
         reasons = _solo_v2_reasons(req)
         is_v2 = bool(reasons)
         if is_v2 and not req.dry and not req.prereg_confirmed:
