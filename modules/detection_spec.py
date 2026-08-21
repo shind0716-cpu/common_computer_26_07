@@ -36,12 +36,11 @@
 from __future__ import annotations
 
 import csv
-import hashlib
 import json
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from modules import paths
+from modules import content_hash, paths
 
 
 class SpecError(Exception):
@@ -86,6 +85,8 @@ class FactSpec:
     atomicity: str = "simple"
     note: str = ""
     decision_role: str = ""
+    # 시나리오 소유 확장. 공통 층은 의미를 해석하지 않고 구조만 보존한다.
+    extensions: dict = field(default_factory=dict)
 
 
 @dataclass
@@ -122,7 +123,9 @@ class CalibrationSet:
 
 
 def sha256_of(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    # 줄바꿈 정규화 뒤에 찍는다 — 이유는 modules/content_hash.py 머리말(2026-08-20 실측).
+    # 종전엔 raw bytes 라 CRLF 작업본과 LF 체크아웃의 지문이 달랐다.
+    return content_hash.sha256_file(path)
 
 
 # ── 로딩 ─────────────────────────────────────────────────────────────────────

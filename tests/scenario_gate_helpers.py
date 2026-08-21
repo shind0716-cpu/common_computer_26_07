@@ -1,14 +1,13 @@
 """콘솔 테스트 픽스처용 명시적 legacy 승인 원장 작성기."""
 from __future__ import annotations
 
-import hashlib
 import json
 
-from modules import paths
+from modules import content_hash, paths
 
 
 def _sha(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return content_hash.sha256_file(path)
 
 
 def approve_legacy_fixture(issue_id: str) -> None:

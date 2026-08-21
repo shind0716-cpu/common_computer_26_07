@@ -6,34 +6,52 @@ import json
 import unittest
 from pathlib import Path
 
-from modules import paths
+from modules import content_hash, paths
 
 ROOT = Path(__file__).resolve().parent.parent
 V1 = "issue_award"
 V2 = "issue_award_v2"
 
-# 2026-08-20 v2 작업 직전 지문. old material과 prior 파일럿 원자료는 불변이다.
-PRESERVED_SHA256 = {
-    "data/issues/issue_award.json": "ce6c64354fd90b8017d643b59131f7bfc0a3078048f90a9f05e714817a3ba293",
-    "data/facts/facts_issue_award.json": "e10393cdde53813a133aa4261f06f6776d3770645f0cf4487ddccdb619aa1078",
-    "data/assignments/assignment_issue_award.json": "24ee409a9ee38f668457398a11917a965b811524fa72be1ac3116cf1a0686f7e",
-    "시나리오/issue_award.json": "ce6c64354fd90b8017d643b59131f7bfc0a3078048f90a9f05e714817a3ba293",
-    "시나리오/facts_issue_award.json": "e10393cdde53813a133aa4261f06f6776d3770645f0cf4487ddccdb619aa1078",
-    "시나리오/assignment_issue_award.json": "24ee409a9ee38f668457398a11917a965b811524fa72be1ac3116cf1a0686f7e",
+# 2026-08-20 v2 작업 직전 지문. 두 묶음은 재는 것이 다르다 — 한 이름으로 묶었다가
+# 이름값을 잃은 것을 자체 리뷰에서 되돌렸다(같은 날 두 번째 같은 실수였다).
+#
+# ① 재료: registry·manifest 의 핀과 같은 기준(줄바꿈 정규화)으로 잰다. 내용이 바뀌면
+#    잡히고, 체크아웃마다 값이 흔들리지 않는다. 사유는 modules/content_hash.py 머리말.
+PRESERVED_MATERIAL_SHA256 = {
+    "data/issues/issue_award.json": "6051c482841e15fdd72340356545a27a25206384b72361a36cbd85503387fdf2",
+    "data/facts/facts_issue_award.json": "2baf898b254e02842225e036e5caa15aa81de2fae488b84cb4c5a775b5fbcaa2",
+    "data/assignments/assignment_issue_award.json": "4af6d26222e4ce68d7f092c8e5b4354bfa03c786efde10178eeee135f9ed8996",
+    "시나리오/issue_award.json": "6051c482841e15fdd72340356545a27a25206384b72361a36cbd85503387fdf2",
+    "시나리오/facts_issue_award.json": "2baf898b254e02842225e036e5caa15aa81de2fae488b84cb4c5a775b5fbcaa2",
+    "시나리오/assignment_issue_award.json": "4af6d26222e4ce68d7f092c8e5b4354bfa03c786efde10178eeee135f9ed8996",
+}
+
+# ② 파일럿 실호출 원자료: **바이트 그대로** 잰다. 정규화하면 줄바꿈만 바뀐 판본을 같은
+#    것으로 보게 되는데, 원자료 보존(규약 8)에서 그 관용은 곤란하다.
+#    한계를 적어 둔다: 이 두 값은 CRLF 작업본 기준이라 LF 체크아웃에서는 맞지 않는다.
+#    맞추려면 이 파일들의 정본 바이트를 정하고 .gitattributes 에 -text 로 못 박아야 하며,
+#    그건 원자료 정본을 바꾸는 결정이라 owner 몫이다(승격 등급 결정 패킷 §5-1에 기록).
+PRESERVED_RAW_SHA256 = {
     "시나리오/prior_issue_award.json": "44f09801037a975cb0f4d66975c240a49dee491629cbf65072c65a80c5165158",
     "시나리오/prior_issue_award.partial.jsonl": "474cee3c64c0a5ab1f93571c3fd4e5b51bbe25eb5fbf9b6730a79eef6d6ee360",
 }
 
 
 def sha(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return content_hash.sha256_file(path)
 
 
 class AwardV1PreservationTests(unittest.TestCase):
-    def test_old_material_and_pilot_raw_bytes_are_unchanged(self):
-        for relative, expected in PRESERVED_SHA256.items():
+    def test_old_material_content_is_unchanged(self):
+        for relative, expected in PRESERVED_MATERIAL_SHA256.items():
             with self.subTest(path=relative):
                 self.assertEqual(sha(ROOT / relative), expected)
+
+    def test_pilot_raw_artifacts_are_byte_identical(self):
+        for relative, expected in PRESERVED_RAW_SHA256.items():
+            with self.subTest(path=relative):
+                raw = (ROOT / relative).read_bytes()
+                self.assertEqual(hashlib.sha256(raw).hexdigest(), expected)
 
 
 class AwardV2IdentityTests(unittest.TestCase):

@@ -2,7 +2,7 @@
   "issue_id": "issue_award_v2",
   "spec_id": "award-normative-detection-v2",
   "spec_version": "0.1",
-  "material_sha256": "d023a085a902499bb55c08f31b0121caf07ea23d93ac9a1a39a1810aaec8a4d3",
+  "material_sha256": "dff21deeffd1d515cea04cdf139a74455fe2ed573d5b531100de49f7b0749658",
   "calibration_version": "cal-0.1",
   "lexical_is_primary": false,
   "_note": "award_v2 시나리오 소유 의미 계약. old verdict와 observed 파일럿 출력은 입력이 아니다.",
@@ -13,9 +13,9 @@
   ],
   "requirements": {},
   "material_artifacts": {
-    "issue_sha256": "5aa0fcce2ec22903c934af10610f20a36e93e3122d44097804fbc4dbe5746e45",
-    "facts_sha256": "d023a085a902499bb55c08f31b0121caf07ea23d93ac9a1a39a1810aaec8a4d3",
-    "assignment_sha256": "33c0e222798250cb46ca41aff46c22125c3197ec04be5c5d07b1f9dec21e9562"
+    "issue_sha256": "a43b198466153a99b13037627385a510757ca172fd016dc4ffddc202f9e0bb87",
+    "facts_sha256": "dff21deeffd1d515cea04cdf139a74455fe2ed573d5b531100de49f7b0749658",
+    "assignment_sha256": "f9fb873e6a7dd5fc76e4f471b0956fd94c4eb834b42c7c60e1b7a03d28f4a433"
   },
   "distortion_vocabulary": [
     "surface_to_normative_inference",

@@ -2,11 +2,10 @@
 
 import importlib
 import itertools
-import hashlib
 import json
 import unittest
 
-from modules import detection_spec as ds
+from modules import content_hash, detection_spec as ds
 from modules import paths
 
 ISSUE = "issue_award_v2"
@@ -134,7 +133,7 @@ class AwardV2HashManifestTests(unittest.TestCase):
         self.assertEqual(set(manifest["sha256"]), set(expected_paths))
         for key, path in expected_paths.items():
             with self.subTest(artifact=key):
-                actual = hashlib.sha256(path.read_bytes()).hexdigest()
+                actual = content_hash.sha256_file(path)
                 self.assertEqual(manifest["sha256"][key], actual)
         self.assertEqual(manifest["spec_version"], ds.load(ISSUE).spec_version)
         self.assertEqual(manifest["calibration_version"], ds.load(ISSUE).calibration_version)

@@ -4,12 +4,11 @@
 54콜 파일럿의 근거가 그 세 파일이다.
 """
 
-import hashlib
 import json
 import unittest
 from pathlib import Path
 
-from modules import paths
+from modules import content_hash, paths
 
 V1, V2 = "issue_throne", "issue_throne_v2"
 
@@ -22,7 +21,7 @@ V1_SHA256 = {
 
 
 def sha(p: Path) -> str:
-    return hashlib.sha256(p.read_bytes()).hexdigest()
+    return content_hash.sha256_file(p)
 
 
 class V1ImmutabilityTests(unittest.TestCase):
