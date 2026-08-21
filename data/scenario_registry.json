@@ -29,7 +29,7 @@
       "spec": {"required": true, "version": "0.1", "sha256": "15f39356c6dd6748ec4032ea521da49d19c865475ee3852227fc34f8d7230007"},
       "calibration": {"required": true, "version": "cal-0.1", "sha256": "9c6592284b42179ac8163185bafdf6f1f146d4f17c4305951bf0ed33a51b53b4"},
       "prior": {"required": true, "status": "completed"},
-      "approved_by": "김요한 (owner, 2026-08-21 구두 승인 — 보드 결정 로그 게시 예정)",
+      "approved_by": "김요한 (owner, 2026-08-21 — 보드 결정 로그 https://app.notion.com/p/3c30261412b081068115d8ede4044963)",
       "approved_at": "2026-08-21T16:46:17+09:00"
     },
     {
@@ -59,7 +59,7 @@
       "spec": {"required": true, "version": "0.1", "sha256": "ab1a8904b6549ba63ad9eaf23c99e7ac33d24152ffde1462fca49d117ab6f74b"},
       "calibration": {"required": true, "version": "cal-0.1", "sha256": "4ec16f69a63614870020fa7a80331326427bf6e9b2430f683c70b78aa493065f"},
       "prior": {"required": true, "status": "completed"},
-      "approved_by": "김요한 (owner, 2026-08-21 구두 승인 — 보드 결정 로그 게시 예정)",
+      "approved_by": "김요한 (owner, 2026-08-21 — 보드 결정 로그 https://app.notion.com/p/3c30261412b081068115d8ede4044963)",
       "approved_at": "2026-08-21T16:46:17+09:00"
     },
     {
@@ -89,7 +89,7 @@
       "spec": {"required": true, "version": "0.2", "sha256": "bf454becd221441221a46b9a91a42fc34f33e37b9bda56c095ce1dc4c3c10bcd"},
       "calibration": {"required": true, "version": "cal-0.2", "sha256": "2781f6c2011db0e8fbd64724fcbb43e1260a795ee5348c28e7072954bc7f972b"},
       "prior": {"required": true, "status": "completed"},
-      "approved_by": "김요한 (owner, 2026-08-21 구두 승인 — 보드 결정 로그 게시 예정)",
+      "approved_by": "김요한 (owner, 2026-08-21 — 보드 결정 로그 https://app.notion.com/p/3c30261412b081068115d8ede4044963)",
       "approved_at": "2026-08-21T16:46:17+09:00"
     },
     {
@@ -119,7 +119,7 @@
       "spec": {"required": true, "version": "0.2", "sha256": "a3d54db1620d093fe2aef75df770ed4453dff71f4aeddbde1d5bb9807db7c666"},
       "calibration": {"required": true, "version": "cal-0.2", "sha256": "e6d5cc8b850d2f93d2c9ba8d9b87ccdcd0f77f6c5078461977720091b20210a6"},
       "prior": {"required": true, "status": "completed"},
-      "approved_by": "김요한 (owner, 2026-08-21 구두 승인 — 보드 결정 로그 게시 예정)",
+      "approved_by": "김요한 (owner, 2026-08-21 — 보드 결정 로그 https://app.notion.com/p/3c30261412b081068115d8ede4044963)",
       "approved_at": "2026-08-21T16:46:17+09:00"
     }
   ]
