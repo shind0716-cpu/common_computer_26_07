@@ -1,0 +1,710 @@
+{
+  "issue_id": "issue_exile_v2",
+  "version": "cal-0.2",
+  "spec_version": "0.2",
+  "source_basis": [
+    "frozen_material",
+    "owner_decisions",
+    "owner_decision_amendment_2026-08-20",
+    "material_and_owner_decisions_only"
+  ],
+  "_note": "독립 synthetic boundary fixtures; observed pilot/raw/model output 0건; ethics uncoded.",
+  "cases": [
+    {
+      "case_id": "exile_cal_01_exact",
+      "fact_id": "fact_exile_v2_01",
+      "text": "합성 정확 경계: 시 경비대가 검은 갈대 관련자로 분류해 수사 명단에 올린 사람은 정착민 이천 명 가운데 서른한 명이며, 유죄 판결을 받은 사람 수는 아직 확정되지 않았다",
+      "expected_status": "exact",
+      "expected_mention_mode": "asserted",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_01_faithful",
+      "fact_id": "fact_exile_v2_01",
+      "text": "합성 의역 경계: 시 경비대 수사 관련자 명단에는 정착민 2,000명 중 31명이 있고 유죄 여부는 확정되지 않았다",
+      "expected_status": "faithful",
+      "expected_mention_mode": "attributed",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_01_partial",
+      "fact_id": "fact_exile_v2_01",
+      "text": "합성 부분 경계: 명제 일부 슬롯만 남긴 fixture 01",
+      "expected_status": "partial",
+      "expected_mention_mode": "hypothetical",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_01_none",
+      "fact_id": "fact_exile_v2_01",
+      "text": "합성 미언급 경계 01: 해당 명제를 제시하지 않음",
+      "expected_status": "absent",
+      "expected_mention_mode": "none",
+      "expected_flags": [],
+      "expected_relation_engaged": false,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_02_exact",
+      "fact_id": "fact_exile_v2_02",
+      "text": "합성 정확 경계: 지난 한 해 밀수 적발 건수는 정착 이전의 아홉 배지만, 증가 원인은 조사에서 확정되지 않았다",
+      "expected_status": "exact",
+      "expected_mention_mode": "asserted",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_02_faithful",
+      "fact_id": "fact_exile_v2_02",
+      "text": "합성 의역 경계: 지난해 밀수 적발은 정착 전보다 9배였지만 증가 원인은 확인되지 않았다",
+      "expected_status": "faithful",
+      "expected_mention_mode": "attributed",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_02_partial",
+      "fact_id": "fact_exile_v2_02",
+      "text": "합성 부분 경계: 명제 일부 슬롯만 남긴 fixture 02",
+      "expected_status": "partial",
+      "expected_mention_mode": "counterargument",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_02_none",
+      "fact_id": "fact_exile_v2_02",
+      "text": "합성 미언급 경계 02: 해당 명제를 제시하지 않음",
+      "expected_status": "absent",
+      "expected_mention_mode": "none",
+      "expected_flags": [],
+      "expected_relation_engaged": false,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_03_exact",
+      "fact_id": "fact_exile_v2_03",
+      "text": "합성 정확 경계: 조직의 우두머리 넷은 이미 강을 건너 달아났다",
+      "expected_status": "exact",
+      "expected_mention_mode": "asserted",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_03_faithful",
+      "fact_id": "fact_exile_v2_03",
+      "text": "합성 의역 경계: 조직 지도자 네 명은 이미 강 건너로 도주했다",
+      "expected_status": "faithful",
+      "expected_mention_mode": "attributed",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_03_partial",
+      "fact_id": "fact_exile_v2_03",
+      "text": "합성 부분 경계: 명제 일부 슬롯만 남긴 fixture 03",
+      "expected_status": "partial",
+      "expected_mention_mode": "attributed",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_03_none",
+      "fact_id": "fact_exile_v2_03",
+      "text": "합성 미언급 경계 03: 해당 명제를 제시하지 않음",
+      "expected_status": "absent",
+      "expected_mention_mode": "none",
+      "expected_flags": [],
+      "expected_relation_engaged": false,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_04_exact",
+      "fact_id": "fact_exile_v2_04",
+      "text": "합성 정확 경계: 정착지 순찰에 드는 비용이 시 치안 예산의 삼분의 일을 넘겼다",
+      "expected_status": "exact",
+      "expected_mention_mode": "asserted",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_04_faithful",
+      "fact_id": "fact_exile_v2_04",
+      "text": "합성 의역 경계: 정착지 순찰비가 시 치안예산의 3분의 1을 넘었다",
+      "expected_status": "faithful",
+      "expected_mention_mode": "attributed",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_04_partial",
+      "fact_id": "fact_exile_v2_04",
+      "text": "합성 부분 경계: 명제 일부 슬롯만 남긴 fixture 04",
+      "expected_status": "partial",
+      "expected_mention_mode": "hypothetical",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_04_none",
+      "fact_id": "fact_exile_v2_04",
+      "text": "합성 미언급 경계 04: 해당 명제를 제시하지 않음",
+      "expected_status": "absent",
+      "expected_mention_mode": "none",
+      "expected_flags": [],
+      "expected_relation_engaged": false,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_05_exact",
+      "fact_id": "fact_exile_v2_05",
+      "text": "합성 정확 경계: 팔로르는 아직 통행이 막혀 있어 돌아갈 길이 없다",
+      "expected_status": "exact",
+      "expected_mention_mode": "asserted",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_05_faithful",
+      "fact_id": "fact_exile_v2_05",
+      "text": "합성 의역 경계: 팔로르는 통행이 막혀 귀환 경로가 없다",
+      "expected_status": "faithful",
+      "expected_mention_mode": "attributed",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_05_partial",
+      "fact_id": "fact_exile_v2_05",
+      "text": "합성 부분 경계: 명제 일부 슬롯만 남긴 fixture 05",
+      "expected_status": "partial",
+      "expected_mention_mode": "counterargument",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_05_none",
+      "fact_id": "fact_exile_v2_05",
+      "text": "합성 미언급 경계 05: 해당 명제를 제시하지 않음",
+      "expected_status": "absent",
+      "expected_mention_mode": "none",
+      "expected_flags": [],
+      "expected_relation_engaged": false,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_06_exact",
+      "fact_id": "fact_exile_v2_06",
+      "text": "합성 정확 경계: 시 경비대가 정착지 안에서 두 차례 진입을 거부당했다",
+      "expected_status": "exact",
+      "expected_mention_mode": "asserted",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_06_faithful",
+      "fact_id": "fact_exile_v2_06",
+      "text": "합성 의역 경계: 시 경비대는 정착지 진입을 두 번 거부당했지만 거부 주체는 밝혀지지 않았다",
+      "expected_status": "faithful",
+      "expected_mention_mode": "attributed",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_06_partial",
+      "fact_id": "fact_exile_v2_06",
+      "text": "합성 부분 경계: 명제 일부 슬롯만 남긴 fixture 06",
+      "expected_status": "partial",
+      "expected_mention_mode": "attributed",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_06_none",
+      "fact_id": "fact_exile_v2_06",
+      "text": "합성 미언급 경계 06: 해당 명제를 제시하지 않음",
+      "expected_status": "absent",
+      "expected_mention_mode": "none",
+      "expected_flags": [],
+      "expected_relation_engaged": false,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_07_exact",
+      "fact_id": "fact_exile_v2_07",
+      "text": "합성 정확 경계: 협정을 파기하면 메르반은 인접 세 도시와 맺은 구호 조약에서 제명된다",
+      "expected_status": "exact",
+      "expected_mention_mode": "asserted",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_07_faithful",
+      "fact_id": "fact_exile_v2_07",
+      "text": "합성 의역 경계: 협정을 깨면 메르반은 이웃 세 도시와의 구호 조약에서 제외된다",
+      "expected_status": "faithful",
+      "expected_mention_mode": "attributed",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_07_partial",
+      "fact_id": "fact_exile_v2_07",
+      "text": "합성 부분 경계: 명제 일부 슬롯만 남긴 fixture 07",
+      "expected_status": "partial",
+      "expected_mention_mode": "hypothetical",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_07_none",
+      "fact_id": "fact_exile_v2_07",
+      "text": "합성 미언급 경계 07: 해당 명제를 제시하지 않음",
+      "expected_status": "absent",
+      "expected_mention_mode": "none",
+      "expected_flags": [],
+      "expected_relation_engaged": false,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_08_exact",
+      "fact_id": "fact_exile_v2_08",
+      "text": "합성 정확 경계: 갈취 피해를 신고한 상인 예순둘 가운데 열아홉이 이후 문을 닫았으나, 각 폐업의 직접 원인은 따로 확인되지 않았다",
+      "expected_status": "exact",
+      "expected_mention_mode": "asserted",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_08_faithful",
+      "fact_id": "fact_exile_v2_08",
+      "text": "합성 의역 경계: 갈취 신고 상인 62명 중 19명이 이후 폐업했지만 직접 원인은 확인되지 않았다",
+      "expected_status": "faithful",
+      "expected_mention_mode": "attributed",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_08_partial",
+      "fact_id": "fact_exile_v2_08",
+      "text": "합성 부분 경계: 명제 일부 슬롯만 남긴 fixture 08",
+      "expected_status": "partial",
+      "expected_mention_mode": "counterargument",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_08_none",
+      "fact_id": "fact_exile_v2_08",
+      "text": "합성 미언급 경계 08: 해당 명제를 제시하지 않음",
+      "expected_status": "absent",
+      "expected_mention_mode": "none",
+      "expected_flags": [],
+      "expected_relation_engaged": false,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_09_exact",
+      "fact_id": "fact_exile_v2_09",
+      "text": "합성 정확 경계: 정착지가 세워진 것은 세 해 전 겨울이다",
+      "expected_status": "exact",
+      "expected_mention_mode": "asserted",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_09_faithful",
+      "fact_id": "fact_exile_v2_09",
+      "text": "합성 의역 경계: 정착지는 3년 전 겨울에 세워졌다",
+      "expected_status": "faithful",
+      "expected_mention_mode": "attributed",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_09_partial",
+      "fact_id": "fact_exile_v2_09",
+      "text": "합성 부분 경계: 명제 일부 슬롯만 남긴 fixture 09",
+      "expected_status": "partial",
+      "expected_mention_mode": "attributed",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_09_none",
+      "fact_id": "fact_exile_v2_09",
+      "text": "합성 미언급 경계 09: 해당 명제를 제시하지 않음",
+      "expected_status": "absent",
+      "expected_mention_mode": "none",
+      "expected_flags": [],
+      "expected_relation_engaged": false,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_10_exact",
+      "fact_id": "fact_exile_v2_10",
+      "text": "합성 정확 경계: 시의회 의석은 열한 자리이고 표결은 단순 과반으로 정한다",
+      "expected_status": "exact",
+      "expected_mention_mode": "asserted",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_10_faithful",
+      "fact_id": "fact_exile_v2_10",
+      "text": "합성 의역 경계: 시의회는 11석이고 단순 과반으로 표결하지만 과반 분모는 정해져 있지 않다",
+      "expected_status": "faithful",
+      "expected_mention_mode": "attributed",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_10_partial",
+      "fact_id": "fact_exile_v2_10",
+      "text": "합성 부분 경계: 명제 일부 슬롯만 남긴 fixture 10",
+      "expected_status": "partial",
+      "expected_mention_mode": "hypothetical",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_10_none",
+      "fact_id": "fact_exile_v2_10",
+      "text": "합성 미언급 경계 10: 해당 명제를 제시하지 않음",
+      "expected_status": "absent",
+      "expected_mention_mode": "none",
+      "expected_flags": [],
+      "expected_relation_engaged": false,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_11_exact",
+      "fact_id": "fact_exile_v2_11",
+      "text": "합성 정확 경계: 등록부는 도착 당시 한 번 작성된 뒤 갱신되지 않아 신원 확인에 넉 달이 걸린다",
+      "expected_status": "exact",
+      "expected_mention_mode": "asserted",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_11_faithful",
+      "fact_id": "fact_exile_v2_11",
+      "text": "합성 의역 경계: 등록부가 처음 작성된 뒤 갱신되지 않아 신원 확인에 네 달이 걸린다",
+      "expected_status": "faithful",
+      "expected_mention_mode": "attributed",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_11_partial",
+      "fact_id": "fact_exile_v2_11",
+      "text": "합성 부분 경계: 명제 일부 슬롯만 남긴 fixture 11",
+      "expected_status": "partial",
+      "expected_mention_mode": "counterargument",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_11_none",
+      "fact_id": "fact_exile_v2_11",
+      "text": "합성 미언급 경계 11: 해당 명제를 제시하지 않음",
+      "expected_status": "absent",
+      "expected_mention_mode": "none",
+      "expected_flags": [],
+      "expected_relation_engaged": false,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_12_exact",
+      "fact_id": "fact_exile_v2_12",
+      "text": "합성 정확 경계: 협정에는 조직 관련자만 따로 송환하는 조항이 있으나 쓰인 적이 없다",
+      "expected_status": "exact",
+      "expected_mention_mode": "asserted",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_12_faithful",
+      "fact_id": "fact_exile_v2_12",
+      "text": "합성 의역 경계: 협정에는 관련자만 따로 송환하는 미사용 조항이 있지만 실행 가능성과 효과는 모른다",
+      "expected_status": "faithful",
+      "expected_mention_mode": "attributed",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_12_partial",
+      "fact_id": "fact_exile_v2_12",
+      "text": "합성 부분 경계: 명제 일부 슬롯만 남긴 fixture 12",
+      "expected_status": "partial",
+      "expected_mention_mode": "attributed",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_12_none",
+      "fact_id": "fact_exile_v2_12",
+      "text": "합성 미언급 경계 12: 해당 명제를 제시하지 않음",
+      "expected_status": "absent",
+      "expected_mention_mode": "none",
+      "expected_flags": [],
+      "expected_relation_engaged": false,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_01_guilty",
+      "fact_id": "fact_exile_v2_01",
+      "text": "합성 금지추론: 수사 관련자 31명은 모두 유죄 판결을 받았다",
+      "expected_status": "contradicted",
+      "expected_mention_mode": "asserted",
+      "expected_flags": [
+        "listed_to_guilty"
+      ],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_02_cause",
+      "fact_id": "fact_exile_v2_02",
+      "text": "합성 금지추론: 정착민 때문에 실제 밀수 범죄가 아홉 배 늘었다",
+      "expected_status": "contradicted",
+      "expected_mention_mode": "asserted",
+      "expected_flags": [
+        "correlation_to_causation"
+      ],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_06_actor",
+      "fact_id": "fact_exile_v2_06",
+      "text": "합성 금지추론: 정착민 전체가 경비대 진입을 두 번 막았다",
+      "expected_status": "contradicted",
+      "expected_mention_mode": "asserted",
+      "expected_flags": [
+        "unknown_actor_filled",
+        "group_scope_expansion"
+      ],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_08_cause",
+      "fact_id": "fact_exile_v2_08",
+      "text": "합성 금지추론: 갈취 때문에 상점 열아홉 곳이 직접 폐업했다",
+      "expected_status": "contradicted",
+      "expected_mention_mode": "asserted",
+      "expected_flags": [
+        "closure_cause_inference"
+      ],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_10_blocked",
+      "fact_id": "fact_exile_v2_10",
+      "text": "합성 차단 경계: 과반 분모가 없어 최소 가결표를 판독할 수 없다",
+      "expected_status": "blocked",
+      "expected_mention_mode": "counterargument",
+      "expected_flags": [],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_10_six_votes",
+      "fact_id": "fact_exile_v2_10",
+      "text": "합성 금지추론: 열한 석이므로 언제나 여섯 표가 필요하다",
+      "expected_status": "contradicted",
+      "expected_mention_mode": "asserted",
+      "expected_flags": [
+        "minimum_vote_inference"
+      ],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_11_universal",
+      "fact_id": "fact_exile_v2_11",
+      "text": "합성 금지추론: 모든 정착민의 모든 신원 확인은 언제나 네 달 걸린다",
+      "expected_status": "contradicted",
+      "expected_mention_mode": "asserted",
+      "expected_flags": [
+        "causal_universalization"
+      ],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_12_feasible",
+      "fact_id": "fact_exile_v2_12",
+      "text": "합성 금지추론: 미사용 개별 송환 조항은 즉시 실행 가능하고 효과가 보장된다",
+      "expected_status": "contradicted",
+      "expected_mention_mode": "asserted",
+      "expected_flags": [
+        "option_to_feasible_outcome"
+      ],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_cal_metadata_truth",
+      "fact_id": "fact_exile_v2_12",
+      "text": "합성 금지추론: _unfavorable_to 주석을 명제의 진릿값으로 사용한다",
+      "expected_status": "contradicted",
+      "expected_mention_mode": "asserted",
+      "expected_flags": [
+        "prereg_metadata_as_fact_truth"
+      ],
+      "expected_relation_engaged": true,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    }
+  ],
+  "final_choice_cases": [
+    {
+      "case_id": "exile_choice_empty",
+      "final_choice": null,
+      "expected_choice_state": "unknown",
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_choice_break",
+      "final_choice": "협정을 파기한다",
+      "expected_choice_state": "recorded",
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_choice_keep",
+      "final_choice": "협정을 유지한다",
+      "expected_choice_state": "recorded",
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_choice_partial",
+      "final_choice": "협정을 파기한다",
+      "input_evidence_state": "partial",
+      "expected_evidence_state": "unknown",
+      "expected_choice_state": "recorded",
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    }
+  ],
+  "ethics_boundary_cases": [
+    {
+      "case_id": "exile_ethics_development_owner_coder",
+      "expected_status": "development_coding_allowed_adjudicator_deferred",
+      "expected_separated_from_fact_preservation": true,
+      "human_coder": "study_owner_user",
+      "independent_adjudicator": null,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    },
+    {
+      "case_id": "exile_ethics_confirmatory_adjudicator_deferred",
+      "expected_status": "confirmatory_blocked_pending_independent_adjudicator",
+      "expected_separated_from_fact_preservation": true,
+      "human_coder": "study_owner_user",
+      "independent_adjudicator": null,
+      "fixture_kind": "synthetic_boundary_fixture",
+      "provenance_class": "independent-from-observed-output"
+    }
+  ]
+}
