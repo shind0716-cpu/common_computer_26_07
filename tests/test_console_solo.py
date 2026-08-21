@@ -43,7 +43,7 @@ def _run_doc(run_id, mem="note", ver="solo-v1", issue_id="issue_note", **meta_ov
 
 
 def _judge_doc(run_id, issue_id, fact_ids, mentioned_at=("essay_r0", "carrier"),
-               split_cell=None):
+               split_cell=None, **doc_over):
     """judgments/<model>/judge_<id>.json 모형 — 실물(solo_judgment_v1) 축소판."""
     def rec(stage):
         rows = []
@@ -58,12 +58,14 @@ def _judge_doc(run_id, issue_id, fact_ids, mentioned_at=("essay_r0", "carrier"),
             rows.append({"fact_id": f, "status": st, "votes": votes,
                          "agents_mentioning": []})
         return rows
-    return {"schema": "solo_judgment_v1", "issue_id": issue_id, "run_id": run_id,
-            "run_model": "gpt",
-            "judge": {"model": "gpt-mini", "temperature": 0, "n_votes": 3,
-                      "prompt_ver": "judge-v0.2-binary+merged_system"},
-            "records": {s: rec(s) for s in
-                        ("essay_r0", "essay_r1", "essay_r2", "essay_r3", "carrier")}}
+    doc = {"schema": "solo_judgment_v1", "issue_id": issue_id, "run_id": run_id,
+           "run_model": "gpt",
+           "judge": {"model": "gpt-mini", "temperature": 0, "n_votes": 3,
+                     "prompt_ver": "judge-v0.2-binary+merged_system"},
+           "records": {s: rec(s) for s in
+                       ("essay_r0", "essay_r1", "essay_r2", "essay_r3", "carrier")}}
+    doc.update(doc_over)
+    return doc
 
 
 class SoloBase(unittest.TestCase):
@@ -267,11 +269,12 @@ class TestRunGate(SoloBase):
         # 러너 파일 존재 검사 통과용 빈 파일
         (self.mod.SOLO_DIR).mkdir(parents=True, exist_ok=True)
         (self.mod.SOLO_DIR / "run_solo.py").write_text("# stub", encoding="utf-8")
+        allowed = lambda issue_id, **kwargs: scenario_gate.GateResult(
+            issue_id=issue_id, state="console_approved", allowed=True)
         with mock.patch.object(llm, "preflight",
                                lambda model, temperature=None, reasoning=None: {}), \
-             mock.patch.object(scenario_gate, "require",
-                               lambda issue_id, **kwargs: scenario_gate.GateResult(
-                                   issue_id=issue_id, state="console_approved", allowed=True)), \
+             mock.patch.object(scenario_gate, "require", allowed), \
+             mock.patch.object(scenario_gate, "evaluate_pilot", allowed), \
              mock.patch("subprocess.Popen") as popen:
             popen.return_value.stdout.readline.return_value = ""   # _tail_reader 즉시 종료
             popen.return_value.poll.return_value = 0
@@ -298,6 +301,31 @@ class TestRunGate(SoloBase):
         r, popen = self._run(prereg_confirmed=True)
         self.assertEqual(r.status_code, 200, r.text)
         self.assertNotIn("--allow-v2", popen.call_args[0][0])
+
+    def test_pilot_tranche_cap_and_durable_labels_are_forwarded(self):
+        r, popen = self._run(promotion_tier="pilot_unvetted", max_llm_calls=30)
+        self.assertEqual(r.status_code, 200, r.text)
+        cmd = popen.call_args[0][0]
+        self.assertIn("--promotion-tier", cmd)
+        self.assertEqual(cmd[cmd.index("--promotion-tier") + 1], "pilot_unvetted")
+        self.assertIn("--max-llm-calls", cmd)
+        self.assertEqual(cmd[cmd.index("--max-llm-calls") + 1], "30")
+
+    def test_pilot_missing_over_limit_or_under_estimate_never_starts(self):
+        for max_llm_calls in (None, 31, 10):
+            with self.subTest(max_llm_calls=max_llm_calls):
+                body = {"model": "gpt", "arms": ["A"], "memories": ["note"],
+                        "reps": [1], "dry": False,
+                        "promotion_tier": "pilot_unvetted",
+                        "max_llm_calls": max_llm_calls}
+                self.mod.SOLO_DIR.mkdir(parents=True, exist_ok=True)
+                (self.mod.SOLO_DIR / "run_solo.py").write_text("# stub", encoding="utf-8")
+                with mock.patch.object(llm, "preflight") as preflight, \
+                     mock.patch("subprocess.Popen") as popen:
+                    response = self.c.post("/api/solo/run", json=body)
+                self.assertEqual(response.status_code, 400, response.text)
+                preflight.assert_not_called()
+                popen.assert_not_called()
 
     def test_dry_needs_no_confirm_and_no_allow_v2(self):
         # 러너와 같은 규칙: --dry 는 관문 밖(0콜). --allow-v2 도 안 붙는다.
@@ -461,6 +489,33 @@ class TestGrid(SoloBase):
         self.assertEqual(row0["cells"][0], 3)     # essay_r0: 3런 전부 mentioned
         self.assertEqual(row0["cells"][4], 2)     # carrier: rep1·2 만
         self.assertEqual(row0["cells"][1], 0)
+
+    def test_pilot_unvetted_is_excluded_even_if_one_artifact_loses_labels(self):
+        """Mutation guard: judgment 또는 source 한쪽의 라벨만 남아도 기본 집계에서 제외."""
+        fids = [f"f{i}" for i in range(6)]
+        for rep in (1, 2):
+            self._write_run("gpt", _run_doc(f"A_note_rep{rep}"))
+            self._write_judge("gpt", _judge_doc(f"A_note_rep{rep}", self.issue_id, fids))
+
+        # rep3: judgment가 직접 development-only 라벨을 보존한다.
+        self._write_run("gpt", _run_doc(
+            "A_note_rep3", ver="solo-v2-draft", promotion_tier="pilot_unvetted",
+            max_llm_calls=30, aggregate_eligible=False, report_eligible=False))
+        self._write_judge("gpt", _judge_doc(
+            "A_note_rep3", self.issue_id, fids, promotion_tier="pilot_unvetted",
+            max_llm_calls=30, aggregate_eligible=False, report_eligible=False))
+
+        # rep4 mutation: judgment에서 라벨을 전부 제거해도 source run meta가 남아 fail-closed.
+        self._write_run("gpt", _run_doc(
+            "A_note_rep4", ver="solo-v2-draft", promotion_tier="pilot_unvetted",
+            max_llm_calls=30, aggregate_eligible=False, report_eligible=False))
+        self._write_judge("gpt", _judge_doc("A_note_rep4", self.issue_id, fids))
+
+        data = self.c.get("/api/solo/grid?model=gpt&run_id=A_note_rep1").json()
+        self.assertEqual(data["agg"]["n_runs"], 2)
+        self.assertEqual(data["agg"]["run_ids"], ["A_note_rep1", "A_note_rep2"])
+        self.assertEqual(data["agg"]["excluded_ineligible_run_ids"],
+                         ["A_note_rep3", "A_note_rep4"])
 
     def test_aggregate_keeps_v2_suffix_conditions_apart(self):
         # 조건 키 = run_id 에서 _rep 만 뗀 것 — b250 런이 v1 런과 섞이면 안 된다.

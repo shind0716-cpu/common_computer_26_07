@@ -219,12 +219,32 @@ def dependencies(records: list[dict]) -> dict:
     return {"runs": out}
 
 
+def _report_eligible(rec: dict) -> bool:
+    """Source run_meta와 judgment policy 중 더 제한적인 provenance를 따른다."""
+    docs = [doc for doc in (rec.get("run_meta"), rec.get("judgment_policy"))
+            if isinstance(doc, dict)]
+    tiers = {doc.get("promotion_tier") for doc in docs
+             if doc.get("promotion_tier") is not None}
+    if "pilot_unvetted" in tiers or len(tiers) > 1:
+        return False
+    for doc in docs:
+        if "report_eligible" in doc:
+            value = doc["report_eligible"]
+            if not isinstance(value, bool) or value is False:
+                return False
+    return True
+
+
 def report(records: list[dict]) -> dict:
     """판 간 좌표 대조 결과를 한 페이로드로 묶는다.
 
     두 판의 조건 일치는 판정하지 않는다 — 값을 나란히 싣고 사람이 본다.
     """
     pair = _records(records)
+    ineligible = [rec["run_id"] for rec in pair if not _report_eligible(rec)]
+    if ineligible:
+        raise CrossRunError(
+            "report-ineligible development artifact excluded: " + ", ".join(ineligible))
     maps = _cell_maps(pair)  # 형태 드리프트를 모든 진입점에서 먼저 검출
     stages = sorted({stage for _, stage in maps[0]})
     return {

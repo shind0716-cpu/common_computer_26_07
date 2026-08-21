@@ -1276,6 +1276,11 @@ def api_solo_run(req: SoloRunReq):
             cmd.append("--facts-reverse")
         if req.ns_final_poll:
             cmd += ["--no-stance", "--final-poll"]
+        if req.promotion_tier == "pilot_unvetted":
+            # max_llm_calls는 요청/tranche 전체 상한이다. 러너의 역사적 --max-calls
+            # (run 하나의 CallGate)와 단위를 섞지 않고 별도 인자로 전달한다.
+            cmd += ["--promotion-tier", "pilot_unvetted",
+                    "--max-llm-calls", str(req.max_llm_calls)]
         if req.dry:
             cmd.append("--dry")
         elif is_v2:
@@ -1414,6 +1419,44 @@ def _solo_grid_cells(records: dict, stages: list[str]) -> dict:
     return cells
 
 
+def _solo_aggregate_eligible(model: str, run_id: str, judgment: dict) -> bool:
+    """판정물과 source run 중 어느 한쪽이라도 파일럿이면 기본 집계에서 제외한다.
+
+    구 v1 산출물은 라벨 자체가 없으므로 legacy eligible로 유지한다. 새 산출물의 라벨이
+    한 파일에서 제거되거나 서로 충돌하면 다른 파일의 development-only 표식을 우선해
+    fail-closed 한다.
+    """
+    docs = [judgment]
+    issue_id = str(judgment.get("issue_id") or "")
+    run_root = _solo_runs_dir(False) / model
+    candidates = [run_root / f"run_{run_id}.json"]
+    if issue_id and issue_id != SOLO_DEFAULT_ISSUE:
+        candidates.append(run_root / issue_id / f"run_{run_id}.json")
+    for source in candidates:
+        if not source.exists():
+            continue
+        try:
+            doc = json.loads(source.read_text(encoding="utf-8"))
+            meta = (doc or {}).get("meta") or {}
+            if not isinstance(meta, dict):
+                return False
+            docs.append(meta)
+        except (ValueError, OSError, AttributeError):
+            return False
+        break
+
+    tiers = {doc.get("promotion_tier") for doc in docs
+             if doc.get("promotion_tier") is not None}
+    if "pilot_unvetted" in tiers or len(tiers) > 1:
+        return False
+    for doc in docs:
+        if "aggregate_eligible" in doc:
+            value = doc["aggregate_eligible"]
+            if not isinstance(value, bool) or value is False:
+                return False
+    return True
+
+
 @app.get("/api/solo/grid")
 def api_solo_grid(model: str, run_id: str):
     """생존 격자 — 사실 × 시점(essay_r0~r3·carrier). LLM 호출 0, judgments 재독만(§1 탭 3).
@@ -1460,7 +1503,7 @@ def api_solo_grid(model: str, run_id: str):
     agg = None
     if len(sib) > 1:
         counts: dict = {}
-        usable, skipped = [], []
+        usable, skipped, excluded_ineligible = [], [], []
         for sid in sib:
             try:
                 jd = json.loads((_solo_judgments_dir() / model / f"judge_{sid}.json")
@@ -1472,6 +1515,9 @@ def api_solo_grid(model: str, run_id: str):
                 # 조용히 빼지 않고 skipped 로 화면에 드러낸다 — 농도 분모가 줄어든 이유.
                 skipped.append(sid)
                 continue
+            if not _solo_aggregate_eligible(model, sid, jd):
+                excluded_ineligible.append(sid)
+                continue
             usable.append(sid)
             for s in stages:
                 for row in (jd.get("records") or {}).get(s) or []:
@@ -1481,6 +1527,7 @@ def api_solo_grid(model: str, run_id: str):
         if len(usable) > 1:
             agg = {"n_runs": len(usable), "run_ids": usable,
                    "skipped_run_ids": skipped, "condition": cond,
+                   "excluded_ineligible_run_ids": excluded_ineligible,
                    "rows": [{"fact_id": fid, "text": text_by_id.get(fid, ""),
                              "cells": [counts.get((fid, s), 0) for s in stages]}
                             for fid in row_ids]}

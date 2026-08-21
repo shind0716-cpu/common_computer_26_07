@@ -61,6 +61,7 @@ DEFAULT_NOTE_BUDGET = 500         # 자(파이썬 len, 공백·문장부호 포�
 GEN_TEMPERATURE = 0.7             # PREREG §4 (API 두 팔. hermes 는 TBD-1 — meta 에 문자열 기록)
 HERMES_POLL_SEC = 5
 HERMES_TIMEOUT_SEC = 3600
+PILOT_CALL_LIMIT = 30
 
 HERE = Path(__file__).resolve().parent
 RUNS_DIR = HERE / "runs"
@@ -346,11 +347,55 @@ def _variant_suffix(note_budget: int, facts_reverse: bool, stance: bool) -> str:
     return ("_" + "_".join(parts)) if parts else ""
 
 
+def validate_execution_policy(*, promotion_tier: str = "confirmatory",
+                              max_llm_calls: int | None = None,
+                              aggregate_eligible: bool = True,
+                              report_eligible: bool = True) -> dict:
+    """실행 등급과 영구 라벨을 한 번에 검증한다.
+
+    ``--max-calls``는 역사적으로 run 하나의 CallGate 상한이다. 이 함수의
+    ``max_llm_calls``는 요청/tranche 전체 논리콜 상한이며 개발 파일럿에서는 반드시
+    명시되고 30 이하여야 한다. 두 단위를 같은 값처럼 기록하지 않는다.
+    """
+    if promotion_tier not in {"confirmatory", "pilot_unvetted"}:
+        raise SystemExit(f"지원하지 않는 promotion_tier: {promotion_tier}")
+    if promotion_tier == "pilot_unvetted":
+        if (not isinstance(max_llm_calls, int) or isinstance(max_llm_calls, bool)
+                or max_llm_calls <= 0):
+            raise SystemExit("pilot_unvetted requires positive max_llm_calls")
+        if max_llm_calls > PILOT_CALL_LIMIT:
+            raise SystemExit(
+                f"pilot max_llm_calls={max_llm_calls} exceeds hard limit {PILOT_CALL_LIMIT}")
+        if aggregate_eligible is not False or report_eligible is not False:
+            raise SystemExit("pilot_unvetted must be aggregate/report ineligible")
+    return {
+        "promotion_tier": promotion_tier,
+        "max_llm_calls": max_llm_calls,
+        "aggregate_eligible": aggregate_eligible,
+        "report_eligible": report_eligible,
+    }
+
+
+def _planned_call_ceiling(memories: list[str], arms: list[str], reps: list[int],
+                          final_poll: bool) -> int:
+    """요청 전체 최악 논리콜 수. note는 라운드별 반려 3회를 포함한다."""
+    per_memory = sum(11 if mem == "note" else 5 for mem in memories)
+    runs = len(arms) * len(reps) * len(memories)
+    return per_memory * len(arms) * len(reps) + (runs if final_poll else 0)
+
+
 def run_one(model_key: str, provider: str, arm: str, mem: str, rep: int,
             facts_block: str, max_calls: int, dry: bool,
             note_budget: int = DEFAULT_NOTE_BUDGET, facts_reverse: bool = False,
             stance: bool = True, final_poll: bool = False,
-            issue_id: str = DEFAULT_ISSUE) -> Path:
+            issue_id: str = DEFAULT_ISSUE,
+            promotion_tier: str = "confirmatory",
+            max_llm_calls: int | None = None,
+            aggregate_eligible: bool = True,
+            report_eligible: bool = True) -> Path:
+    execution_policy = validate_execution_policy(
+        promotion_tier=promotion_tier, max_llm_calls=max_llm_calls,
+        aggregate_eligible=aggregate_eligible, report_eligible=report_eligible)
     # 재료 불일치 관문 (2026-08-19 적대적 리뷰 치명 1) — _ACTIVE 는 모듈 전역이라
     # select_issue() 를 안 부르고 run_one 을 직접 부르면 **다른 재료의 팩트에 camp 사안문이
     # 붙은 채 조용히 돈다**. 산출물 meta 에는 issue_id 가 제대로 찍혀 나중에 못 알아챈다.
@@ -434,6 +479,7 @@ def run_one(model_key: str, provider: str, arm: str, mem: str, rep: int,
             "note_truncated": note_truncated, "dry": dry,
             "facts_order": ("reversed" if facts_reverse else "original"),
             "stance": stance, "final_poll": final_poll,
+            **execution_policy,
             "deviations": list(getattr(llm, "LAST_DEVIATIONS", [])),
             "finished_at": _now(),
         },
@@ -458,6 +504,10 @@ def main() -> None:
     ap.add_argument("--reps", nargs="*", type=int, default=[1, 2, 3])
     ap.add_argument("--max-calls", type=int, default=60,
                     help="런 묶음 전체가 아니라 런 1개당 상한 (② 8콜 + 반려 여유)")
+    ap.add_argument("--max-llm-calls", type=int, default=None,
+                    help="요청/tranche 전체 논리콜 상한 (pilot_unvetted는 필수·30 이하)")
+    ap.add_argument("--promotion-tier", default="confirmatory",
+                    choices=["confirmatory", "pilot_unvetted"])
     ap.add_argument("--dry", action="store_true", help="0콜 조립 리허설")
     # v2 손잡이 (2026-08-18) — 기본값이면 v1과 문면·run_id 동일
     ap.add_argument("--note-budget", type=int, default=DEFAULT_NOTE_BUDGET,
@@ -490,6 +540,20 @@ def main() -> None:
         raise SystemExit("--final-poll 은 --no-stance 와 함께 써라 — 입장 고정 상태의 최종 판단은 "
                          "결론이 설계상 고정이라 측정이 무의미하다 (§6 1단계 정정 참조).")
 
+    pilot = args.promotion_tier == "pilot_unvetted"
+    execution_policy = validate_execution_policy(
+        promotion_tier=args.promotion_tier,
+        max_llm_calls=args.max_llm_calls,
+        aggregate_eligible=not pilot,
+        report_eligible=not pilot,
+    )
+    planned_ceiling = _planned_call_ceiling(
+        args.memories, args.arms, args.reps, args.final_poll)
+    if pilot and planned_ceiling > args.max_llm_calls:
+        raise SystemExit(
+            f"pilot planned logical calls {planned_ceiling} exceed "
+            f"max_llm_calls={args.max_llm_calls}")
+
     if not args.dry and args.provider == "api":
         llm.preflight(args.model, temperature=GEN_TEMPERATURE)
 
@@ -497,11 +561,12 @@ def main() -> None:
     planned = [(a, m, r) for a in args.arms for m in args.memories for r in args.reps]
     print(f"[plan] {args.issue} · 입장 {stance_key} · {args.model} ({args.provider}) — "
           f"{len(planned)}런 · dry={args.dry}" + (" · v2" if is_v2 else ""))
+    per_run_cap = (min(args.max_calls, args.max_llm_calls) if pilot else args.max_calls)
     for a, m, r in planned:
-        run_one(args.model, args.provider, a, m, r, facts_block, args.max_calls, args.dry,
+        run_one(args.model, args.provider, a, m, r, facts_block, per_run_cap, args.dry,
                 note_budget=args.note_budget, facts_reverse=args.facts_reverse,
                 stance=not args.no_stance, final_poll=args.final_poll,
-                issue_id=args.issue)
+                issue_id=args.issue, **execution_policy)
 
 
 if __name__ == "__main__":

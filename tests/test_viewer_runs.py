@@ -5,8 +5,11 @@
 부분 상태로 바꾸므로 여기서 고정한다. committed esa 픽스처만 사용(walkerhill 은 gitignore).
 """
 import json
+import shutil
+import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 from modules import paths
 
@@ -33,6 +36,54 @@ class TestRunDiscovery(unittest.TestCase):
         self.assertEqual(r["issue_id"], "issue_esa")   # '_' 포함 issue_id 역추출 정확
         self.assertEqual(r["run_state"], "complete")
         self.assertEqual(r["parts"]["judgment"], "present")
+
+
+@unittest.skipUnless(HAVE_APP, "fastapi/viewer app 미설치")
+class TestPilotVisibility(unittest.TestCase):
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp())
+        self.data = self.tmp / "data"
+        (self.data / "issues").mkdir(parents=True)
+        (self.data / "facts").mkdir(parents=True)
+        (self.data / "assignments").mkdir(parents=True)
+        (self.data / "debates").mkdir(parents=True)
+        (self.data / "judgments").mkdir(parents=True)
+        (self.data / "issues" / "issue_pilot.json").write_text(
+            json.dumps({"issue_id": "issue_pilot", "title": "pilot"}), encoding="utf-8")
+        self.patch = mock.patch.object(paths, "DATA", self.data)
+        self.patch.start()
+
+    def tearDown(self):
+        self.patch.stop()
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def _debate(self, run_id, meta):
+        rows = [{"event": "run_meta", "run_id": run_id, "issue_id": "issue_pilot",
+                 "ts": "now", **meta},
+                {"event": "utterance", "run_id": run_id, "round": 0,
+                 "agent_id": "a", "response_text": "x"}]
+        paths.debate("issue_pilot", run_id).write_text(
+            "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in rows),
+            encoding="utf-8")
+
+    def _judgment(self, run_id, policy):
+        paths.judgment("issue_pilot", run_id).write_text(
+            json.dumps({"issue_id": "issue_pilot", "run_id": run_id, **policy}),
+            encoding="utf-8")
+
+    def test_default_catalog_excludes_pilot_but_explicit_inspection_can_include(self):
+        policy = {"promotion_tier": "pilot_unvetted", "aggregate_eligible": False,
+                  "report_eligible": False}
+        self._debate("source-labelled", policy)
+        self._judgment("source-labelled", {})  # judgment label mutation/removal
+        self._debate("judgment-labelled", {})  # source label mutation/removal
+        self._judgment("judgment-labelled", policy)
+
+        self.assertEqual(viewer_app._available_runs(), [])
+        included = viewer_app._available_runs(include_unvetted=True)
+        self.assertEqual({row["run_id"] for row in included},
+                         {"source-labelled", "judgment-labelled"})
+        self.assertTrue(all(row["unvetted"] for row in included))
 
 
 @unittest.skipUnless(HAVE_APP, "fastapi/viewer app 미설치")

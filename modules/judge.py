@@ -231,6 +231,58 @@ def judge_stage(stage_utterances: list[dict], facts: list[dict], *, vote_fn,
 
 
 # ---------------------------------------------------------------------------
+# same-parent A/B/C 사후 판정 adapter
+# ---------------------------------------------------------------------------
+def make_same_parent_bundle_evaluator(model_config: dict):
+    """단일 parent + 단일 bundle을 기존 ``modules.llm`` 경계로 판정한다.
+
+    provider SDK, API key, retry/backoff를 이 모듈에 복제하지 않는다. factory에서 기존
+    preflight를 한 번 실행하고, 반환 callable은 coordinate마다 obtain_response를 정확히
+    한 번 호출해 **raw 문자열 그대로** runner에 돌려준다. 파싱·append/fsync·resume은
+    :mod:`modules.abc_same_parent_runner`의 소관이다.
+    """
+    if not isinstance(model_config, dict):
+        raise ValueError("model_config must be an object")
+    model = model_config.get("model")
+    if not isinstance(model, str) or not model.strip():
+        raise KeyError("model_config.model is required")
+    temperature = model_config.get("temperature", JUDGE_TEMPERATURE)
+    if isinstance(temperature, bool) or float(temperature) != float(JUDGE_TEMPERATURE):
+        raise ValueError(f"same-parent judge temperature must be {JUDGE_TEMPERATURE}")
+    reasoning = model_config.get("reasoning", "default")
+    if reasoning != "default":
+        raise ValueError("same-parent judge reasoning must be 'default'")
+    _llm.preflight(model, temperature=float(JUDGE_TEMPERATURE), reasoning=reasoning)
+
+    def evaluate(parent_r0: bytes, bundle: dict, coordinate: dict) -> str:
+        # strict decode: replacement characters would mean the model did not receive the frozen
+        # parent represented by parent_r0 bytes. Fail before provider invocation instead.
+        parent_text = parent_r0.decode("utf-8", errors="strict")
+        if not isinstance(bundle, dict) or bundle.get("role") != "posthoc_judge":
+            raise ValueError("posthoc_judge bundle required")
+        if not isinstance(coordinate, dict):
+            raise ValueError("coordinate object required")
+        prompt = (
+            "[COMMON SEMANTIC JUDGE PROTOCOL]\n"
+            + str(bundle.get("common_protocol") or "")
+            + "\n\n[COORDINATE JSON]\n"
+            + json.dumps(coordinate, ensure_ascii=False, sort_keys=True,
+                         separators=(",", ":"))
+            + "\n\n[POSTHOC BUNDLE JSON]\n"
+            + json.dumps(bundle, ensure_ascii=False, sort_keys=True,
+                         separators=(",", ":"))
+            + "\n\n[FROZEN PARENT R0 — UTF-8, EXACT TEXT]\n"
+            + parent_text
+            + "\n[END FROZEN PARENT R0]\n"
+        )
+        return _llm.obtain_response(
+            prompt, model=model, temperature=float(JUDGE_TEMPERATURE),
+            reasoning=reasoning)
+
+    return evaluate
+
+
+# ---------------------------------------------------------------------------
 # FAR 집계 (잠정 — 수식 확정 시 교체)
 # ---------------------------------------------------------------------------
 def far(fact_records: list[dict], facts_by_id: dict[str, dict], *, critical_only: bool = False) -> float | None:

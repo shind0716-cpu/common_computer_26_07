@@ -300,21 +300,21 @@ class SameParentDryRunEndToEndTests(unittest.TestCase):
         )
 
 
-class ActualPolarPackageDryIntegrationTests(unittest.TestCase):
-    def test_actual_polar_package_assembles_all_three_arms_with_zero_calls(self):
+class ActualV2PackagesDryIntegrationTests(unittest.TestCase):
+    def _assert_package(self, issue_id: str):
         repo = Path(__file__).resolve().parents[1]
         with tempfile.TemporaryDirectory() as td:
             tmp = Path(td)
             parent = tmp / "synthetic-parent-r0.txt"
             parent.write_text("synthetic zero-call parent; not observed output", encoding="utf-8")
             inputs = RunInputs(
-                issue_id="issue_polar_v2",
+                issue_id=issue_id,
                 parent_r0=parent,
-                issue=repo / "data/issues/issue_polar_v2.json",
-                facts=repo / "data/facts/facts_issue_polar_v2.json",
-                assignment=repo / "data/assignments/assignment_issue_polar_v2.json",
-                detection_spec=repo / "data/detection_specs/issue_polar_v2.json",
-                calibration=repo / "data/detection_specs/calibration_issue_polar_v2.json",
+                issue=repo / f"data/issues/{issue_id}.json",
+                facts=repo / f"data/facts/facts_{issue_id}.json",
+                assignment=repo / f"data/assignments/assignment_{issue_id}.json",
+                detection_spec=repo / f"data/detection_specs/{issue_id}.json",
+                calibration=repo / f"data/detection_specs/calibration_{issue_id}.json",
                 common_protocol=repo / "data/judge_protocols/common_semantic_judge_v1.md",
                 common_protocol_version="common-semantic-judge-v1",
                 output_dir=tmp / "out",
@@ -325,10 +325,16 @@ class ActualPolarPackageDryIntegrationTests(unittest.TestCase):
             self.assertEqual([], calls)
             manifest = json.loads(result.manifest_path.read_text(encoding="utf-8"))
             self.assertEqual(0, manifest["expected_calls"]["total"])
-            self.assertEqual("issue_polar_v2", manifest["issue_id"])
+            self.assertEqual(issue_id, manifest["issue_id"])
             self.assertEqual("cal-0.2", manifest["calibration"]["version"])
             self.assertEqual("sha256(raw_bytes)", manifest["parent_hash_policy"])
             self.assertEqual(3, len(result.records_path.read_text(encoding="utf-8").splitlines()))
+
+    def test_actual_polar_package_assembles_all_three_arms_with_zero_calls(self):
+        self._assert_package("issue_polar_v2")
+
+    def test_actual_exile_package_assembles_all_three_arms_with_zero_calls(self):
+        self._assert_package("issue_exile_v2")
 
 
 if __name__ == "__main__":

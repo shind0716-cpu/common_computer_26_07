@@ -130,6 +130,29 @@ class TestCrossRunReport(unittest.TestCase):
         out = report([self.a, self.b])
         self.assertIs(out["scope"]["runs"][0]["far"], self.a["far"])
 
+    def test_report_rejects_pilot_when_either_provenance_artifact_keeps_label(self):
+        pilot = record("pilot")
+        pilot["run_meta"].update(
+            promotion_tier="pilot_unvetted", aggregate_eligible=False,
+            report_eligible=False)
+        pilot["judgment_policy"] = {
+            "promotion_tier": "pilot_unvetted", "aggregate_eligible": False,
+            "report_eligible": False}
+        with self.assertRaisesRegex(CrossRunError, "report-ineligible"):
+            report([self.a, pilot])
+
+        # Mutation 1: source label removal alone cannot re-admit it.
+        source_stripped = record("source-stripped")
+        source_stripped["judgment_policy"] = dict(pilot["judgment_policy"])
+        with self.assertRaisesRegex(CrossRunError, "report-ineligible"):
+            report([self.a, source_stripped])
+
+        # Mutation 2: judgment label removal alone cannot re-admit it.
+        judgment_stripped = record("judgment-stripped")
+        judgment_stripped["run_meta"].update(pilot["run_meta"])
+        with self.assertRaisesRegex(CrossRunError, "report-ineligible"):
+            report([self.a, judgment_stripped])
+
     def test_shape_and_topology_are_passed_through(self):
         for structure in ("full", "line", "tree"):
             a, b = record("a", structure=structure), record("b", structure=structure)
