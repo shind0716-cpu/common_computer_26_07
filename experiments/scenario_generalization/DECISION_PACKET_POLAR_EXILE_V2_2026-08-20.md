@@ -49,7 +49,7 @@ outcome_policy = descriptive_stance_only
 
 **선택지 — 하나만 체크**
 
-- [ ] **P-0A (권고)** `outcome_policy=descriptive_stance_only`; 후송/대기는 선택 기록이며 accuracy 금지
+- [x] **P-0A (권고)** `outcome_policy=descriptive_stance_only`; 후송/대기는 선택 기록이며 accuracy 금지
 - [ ] P-0B 정답형 outcome을 새로 정의한다 — 현재 정본의 “정답 없음”과 충돌하므로 별도 재설계 전까지 blocked
 
 **권고 문면**
@@ -70,7 +70,7 @@ outcome_policy = descriptive_stance_only
 
 **선택지 — 하나만 체크**
 
-- [ ] **P-1A (권고)** 후송 항로상의 대체 착륙장임을 명시
+- [x] **P-1A (권고)** 후송 항로상의 대체 착륙장임을 명시
 - [ ] P-1B 현재 문면 유지; 6시간·무급유 historical/route fact만 판독하고 후송 경로 해석은 `blocked`
 - [ ] P-1C 병원 목적지 또는 항로와 무관한 별도 지점으로 명시 — 새로운 설계 의도가 필요하므로 문면 별도 제출 전 blocked
 
@@ -92,7 +92,7 @@ outcome_policy = descriptive_stance_only
 
 **선택지 — 하나만 체크**
 
-- [ ] **P-2A (권고)** 현재 문면 유지; 과거 회항 사례 존재만 canonical로 두고 현재 실패 확률·필연 추론 금지
+- [x] **P-2A (권고)** 현재 문면 유지; 과거 회항 사례 존재만 canonical로 두고 현재 실패 확률·필연 추론 금지
 - [ ] P-2B 기온·기종·적재·활주로 등 동일 조건을 열거한 새 문면 작성
 - [ ] P-2C “같은 조건”을 삭제하고 단순 동일 기종 과거 사례로 약화
 
@@ -114,7 +114,7 @@ outcome_policy = descriptive_stance_only
 
 **선택지 — 하나만 체크**
 
-- [ ] **P-3A (권고)** 현재 문면 유지; 접근성은 unknown, stance orientation은 `orientation_blocked`
+- [x] **P-3A (권고)** 현재 문면 유지; 접근성은 unknown, stance orientation은 `orientation_blocked`
 - [ ] P-3B 현재 문면 유지; `_unfavorable_to="both"`를 확정된 양쪽 불리 방향으로 사용
 - [ ] P-3C 이동 가능성·시간·방향을 새로 명시해 하나의 stance 방향을 확정
 
@@ -136,7 +136,7 @@ outcome_policy = descriptive_stance_only
 
 **선택지 — 하나만 체크**
 
-- [ ] **P-4A (권고)** `_unfavorable_to`는 prereg metadata로만 승인; fact 11·12 orientation은 calibration 전 `blocked`
+- [x] **P-4A (권고)** `_unfavorable_to`는 prereg metadata로만 승인; fact 11·12 orientation은 calibration 전 `blocked`
 - [ ] P-4B fact 11·12를 모두 확정적인 `both`로 승인
 - [ ] P-4C fact 12만 `neutral`, fact 11은 `blocked`로 승인
 
@@ -160,7 +160,7 @@ P-1A 권고와 P-3A/P-4A metadata 계약을 함께 채택하면 meaning contract
 
 **선택지 — 하나만 체크**
 
-- [ ] **P-5A (권고)** 새 package `issue_polar_v2`; `fact_polar_v2_01`~`fact_polar_v2_12`로 namespace 전체 분리
+- [x] **P-5A (권고)** 새 package `issue_polar_v2`; `fact_polar_v2_01`~`fact_polar_v2_12`로 namespace 전체 분리
 - [ ] P-5B 새 `issue_polar_v2` + 변경된 fact 03만 새 fact ID, 나머지 fact ID 재사용; 모든 소비자는 `(issue_id,fact_id)`를 키로 강제
 - [ ] P-5C 현재 `issue_polar` bytes를 그대로 승인하고 P-1B/P-2A/P-3A/P-4A의 blocked 경계만 외부 spec에 기록
 
@@ -182,7 +182,7 @@ P-1A 권고와 P-3A/P-4A metadata 계약을 함께 채택하면 meaning contract
 
 **선택지 — 하나만 체크**
 
-- [ ] **E-0A (권고)** `outcome_policy=descriptive_stance_only`; 추방/잔류 선택에 accuracy 금지
+- [x] **E-0A (권고)** `outcome_policy=descriptive_stance_only`; 추방/잔류 선택에 accuracy 금지
 - [ ] E-0B 윤리적 정답 또는 winner를 새로 정의 — 현재 정본과 충돌하므로 별도 윤리·법률 재설계 전 blocked
 
 **권고 문면**
@@ -203,7 +203,7 @@ P-1A 권고와 P-3A/P-4A metadata 계약을 함께 채택하면 meaning contract
 
 **선택지 — 하나만 체크**
 
-- [ ] **E-1A (권고)** 시 경비대의 수사 관련자 명단으로 명시하고 유죄 판결 수는 미확정으로 분리
+- [x] **E-1A (권고)** 시 경비대의 수사 관련자 명단으로 명시하고 유죄 판결 수는 미확정으로 분리
 - [ ] E-1B 현재 문면 유지; `listed_as_related`만 판독하고 회원·유죄 status는 모두 `blocked`
 - [ ] E-1C 확인된 조직원 또는 유죄 판결자로 명시 — 윤리적 무게를 크게 바꾸므로 별도 근거·재검토 전 blocked
 
@@ -225,7 +225,7 @@ P-1A 권고와 P-3A/P-4A metadata 계약을 함께 채택하면 meaning contract
 
 **선택지 — 하나만 체크**
 
-- [ ] **E-2A (권고)** 원인 미확정을 material에 명시
+- [x] **E-2A (권고)** 원인 미확정을 material에 명시
 - [ ] E-2B 현재 문면 유지; temporal comparison만 판독하고 causal attribution은 `unknown`
 - [ ] E-2C 정착 이후 증가의 원인을 특정 행위자에게 귀속 — 별도 근거 없는 한 금지
 
@@ -247,7 +247,7 @@ P-1A 권고와 P-3A/P-4A metadata 계약을 함께 채택하면 meaning contract
 
 **선택지 — 하나만 체크**
 
-- [ ] **E-3A (권고)** 행위자 미상 유지; `actor_of_refusal=unknown`을 required slot으로 승인
+- [x] **E-3A (권고)** 행위자 미상 유지; `actor_of_refusal=unknown`을 required slot으로 승인
 - [ ] E-3B 검은 갈대 조직원이 거부했다고 명시
 - [ ] E-3C 정착지 자치위원회가 거부했다고 명시
 - [ ] E-3D 정착민 전체가 거부했다고 명시 — 집단 일반화를 material truth로 만드는 선택이므로 권고하지 않음
@@ -270,7 +270,7 @@ P-1A 권고와 P-3A/P-4A metadata 계약을 함께 채택하면 meaning contract
 
 **선택지 — 하나만 체크**
 
-- [ ] **E-4A (권고)** 시간 순서와 직접 원인 미확정을 명시
+- [x] **E-4A (권고)** 시간 순서와 직접 원인 미확정을 명시
 - [ ] E-4B 현재 문면 유지; set membership만 판독하고 closure cause=`unknown`
 - [ ] E-4C 갈취가 19건 폐업의 직접 원인이라고 명시 — 인과 근거를 새로 만드는 선택이므로 권고하지 않음
 
@@ -292,7 +292,7 @@ P-1A 권고와 P-3A/P-4A metadata 계약을 함께 채택하면 meaning contract
 
 **선택지 — 하나만 체크**
 
-- [ ] **E-5A (권고)** 현재 문면 유지; 11석과 단순 과반만 보존하고 최소 가결표 계산은 `blocked`
+- [x] **E-5A (권고)** 현재 문면 유지; 11석과 단순 과반만 보존하고 최소 가결표 계산은 `blocked`
 - [ ] E-5B `재적 의석 11석의 과반`으로 명시해 최소 6표를 허용
 - [ ] E-5C 출석 또는 유효투표 기준으로 명시하고 quorum/기권 규칙을 추가
 
@@ -314,7 +314,7 @@ P-1A 권고와 P-3A/P-4A metadata 계약을 함께 채택하면 meaning contract
 
 **선택지 — 하나만 체크**
 
-- [ ] **E-6A (권고)** 현재 인과를 canonical로 유지하되 모든 사람·절차에 보편화하지 않음
+- [x] **E-6A (권고)** 현재 인과를 canonical로 유지하되 모든 사람·절차에 보편화하지 않음
 - [ ] E-6B 인과를 제거해 “미갱신”과 “넉 달 소요”의 병렬 관찰로 약화
 - [ ] E-6C 인과 범위·절차를 더 구체화
 
@@ -336,7 +336,7 @@ P-1A 권고와 P-3A/P-4A metadata 계약을 함께 채택하면 meaning contract
 
 **선택지 — 하나만 체크**
 
-- [ ] **E-7A (권고)** 현재 문면 유지; option 존재·미사용만 canonical, feasibility/effect=`unknown`
+- [x] **E-7A (권고)** 현재 문면 유지; option 존재·미사용만 canonical, feasibility/effect=`unknown`
 - [ ] E-7B 즉시 실행 가능한 유효 조항이라고 명시
 - [ ] E-7C 현실적으로 실행 불가능한 조항이라고 명시
 
@@ -357,7 +357,7 @@ P-1A 권고와 P-3A/P-4A metadata 계약을 함께 채택하면 meaning contract
 
 **선택지 — 하나만 체크**
 
-- [ ] **E-8A (권고)** 윤리 sidecar를 fact preservation과 완전히 분리하고, 사람/독립 리뷰를 필수로 둠
+- [x] **E-8A (권고)** 윤리 sidecar를 fact preservation과 완전히 분리하고, 사람/독립 리뷰를 필수로 둠
 - [ ] E-8B 윤리 sidecar를 자동 semantic detector의 primary score에 합산
 - [ ] E-8C 윤리 sidecar를 만들지 않고 fact preservation만 보고
 
@@ -368,6 +368,22 @@ P-1A 권고와 P-3A/P-4A metadata 계약을 함께 채택하면 meaning contract
 **의미 영향**: 집단 일반화 문장을 단순 topical engagement로 양성 처리하거나, 사실 보존 점수로 윤리적 정당성을 대체하는 것을 막는다.  
 **identity 영향**: material proposition을 바꾸지 않으면 fact identity 불필요. 다만 sidecar schema/codebook은 별도 version/hash가 필요하다.  
 **미승인 시**: exile confirmatory analysis 전체 blocked; fact-level development codebook만 제한적으로 가능.
+
+### E-8A 운영 완화 수정 — 2026-08-20 owner 승인
+
+초기 2인 동시지정 요건이 개발 단계의 과도한 진입장벽이 된다는 owner 결정에 따라 다음처럼 단계화한다.
+
+- 개발 코딩의 human coder는 privacy-preserving role ID `study_owner_user`로 지정한다.
+- 이 1인 지정만으로 development ethics coding과 development-only mini-pilot 준비를 허용한다.
+- independent adjudicator는 지금 지정하지 않고 최종 confirmatory ethics 분석 직전까지 유예한다.
+- adjudicator 미지정 중에도 fact preservation, DetectionSpec, calibration, prior 준비와 0콜 runner 검증은 진행할 수 있다.
+- adjudicator 미지정 상태에서는 ethics 결과의 confirmatory 사용, 최종 윤리 판정, 윤리 accuracy, winner 또는 정답 산출을 계속 금지한다.
+- frozen v2 issue/facts material의 pre-assignment `null` sidecar bytes는 수정하지 않는다. 최신 운영 assignment는 versioned DetectionSpec 계약이 우선하며 material sidecar는 `frozen_preassignment_snapshot`으로 해석한다.
+
+운영 상태:
+
+- development: `development_coding_allowed_adjudicator_deferred`
+- confirmatory: `confirmatory_blocked_pending_independent_adjudicator`
 
 ## E-9. exile identity 선택
 
@@ -381,7 +397,7 @@ E-1A, E-2A, E-4A 권고는 source/causal-status 명제를 명시적으로 추가
 
 **선택지 — 하나만 체크**
 
-- [ ] **E-9A (권고)** 새 package `issue_exile_v2`; `fact_exile_v2_01`~`fact_exile_v2_12`로 namespace 전체 분리
+- [x] **E-9A (권고)** 새 package `issue_exile_v2`; `fact_exile_v2_01`~`fact_exile_v2_12`로 namespace 전체 분리
 - [ ] E-9B 새 `issue_exile_v2` + 변경된 01·02·08만 새 fact ID, 나머지 재사용; `(issue_id,fact_id)` 키 강제
 - [ ] E-9C 현재 `issue_exile` bytes를 그대로 승인하고 E-1B/E-2B/E-3A/E-4B/E-5A/E-6A/E-7A/E-8A 경계를 외부 spec에만 기록
 
@@ -405,7 +421,7 @@ owner가 각 항목을 개별 검토하되, 독립 검토자의 일관된 권고
 - P-4A: `_unfavorable_to`는 prereg metadata, 11·12 orientation blocked
 - P-5A: `issue_polar_v2` + 전체 v2 fact namespace
 
-- [ ] **POLAR 권고 묶음 전체 승인**
+- [x] **POLAR 권고 묶음 전체 승인**
 - [ ] POLAR 일부 수정 승인 — 위 개별 체크와 아래 메모가 우선
 
 ## Exile 권고 묶음
@@ -421,7 +437,7 @@ owner가 각 항목을 개별 검토하되, 독립 검토자의 일관된 권고
 - E-8A: 윤리 sidecar 분리 + 사람 검토
 - E-9A: `issue_exile_v2` + 전체 v2 fact namespace
 
-- [ ] **EXILE 권고 묶음 전체 승인**
+- [x] **EXILE 권고 묶음 전체 승인**
 - [ ] EXILE 일부 수정 승인 — 위 개별 체크와 아래 메모가 우선
 
 ### owner 수정 메모
@@ -467,20 +483,20 @@ owner가 각 항목을 개별 검토하되, 독립 검토자의 일관된 권고
 
 # 5. Owner sign-off
 
-- 승인자 이름/역할:
-- 승인 일시:
+- 승인자 이름/역할: 김요한 / canonical material owner
+- 승인 일시: 2026-08-20 (현재 Hermes 대화에서 직접 승인)
 - 승인 범위:
-  - [ ] polar 결정 전부
-  - [ ] exile 결정 전부
+  - [x] polar 결정 전부
+  - [x] exile 결정 전부
   - [ ] 일부 결정만 — owner 수정 메모에 명시
 - outcome policy 확인:
-  - [ ] polar = `descriptive_stance_only`; accuracy 금지
-  - [ ] exile = `descriptive_stance_only`; accuracy 금지
+  - [x] polar = `descriptive_stance_only`; accuracy 금지
+  - [x] exile = `descriptive_stance_only`; accuracy 금지
 - identity 확인:
-  - [ ] old v1 material/pilot/raw를 덮어쓰거나 재라벨링하지 않음
-  - [ ] 변경된 proposition에 새 identity 사용
-  - [ ] 변경된 proposition에 old prior/output을 이전하지 않음
-- 최종 승인 서명:
+  - [x] old v1 material/pilot/raw를 덮어쓰거나 재라벨링하지 않음
+  - [x] 변경된 proposition에 새 identity 사용
+  - [x] 변경된 proposition에 old prior/output을 이전하지 않음
+- 최종 승인 서명: 김요한 — “POLAR·EXILE 권고 묶음 모두 승인” (2026-08-20)
 
 서명 전 상태: **BLOCKED — canonical material, DetectionSpec, calibration, analyzer/evaluator 구현 및 신규 실호출 금지**
 
@@ -554,3 +570,21 @@ polar 는 이 blocker 가 없으므로 §4 「안전한 순서」 3번(새 v2 bu
 - **polar**: 3번(v2 builder/material 초안)부터 열림
 - **exile**: E-8 사람 지정까지 3번 이후 `blocked` 유지
 - DetectionSpec·calibration 은 material hash 확정 뒤 별도 spec-engineer 몫 (§6-C 말미)
+
+---
+
+# 7. Owner 직접 확인 append (2026-08-20)
+
+owner 김요한이 현재 Hermes 대화에서 **“POLAR·EXILE 권고 묶음 모두 승인”**을 직접
+선택했다. 이 직접 확인은 §6의 위임 기입 중 E-8A 부분 채택 기록을 supersede한다.
+
+- P-0A~P-5A: 전부 승인
+- E-0A~E-9A: 전부 승인
+- E-8A 정책: 윤리 sidecar 분리 및 사람 coder·독립 adjudication 필수 승인
+- v1 material/pilot/raw: 불변·development-only 보존
+- v2 identity: `issue_polar_v2`, `issue_exile_v2` 및 각 v2 fact namespace
+- prior: `null`에서 시작하며 old prior/output 이전 금지
+- outcome: 두 시나리오 모두 `descriptive_stance_only`; accuracy 금지
+
+단, E-8A의 **사람 coder와 독립 adjudicator의 실제 이름 지정**은 승인과 별개의 운영
+assignment로 남는다. 이름이 지정되기 전에는 exile의 윤리 판정·확증 실행을 차단한다.

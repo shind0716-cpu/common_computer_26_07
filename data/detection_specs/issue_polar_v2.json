@@ -1,0 +1,416 @@
+{
+  "issue_id": "issue_polar_v2",
+  "spec_id": "polar-descriptive-detection-v2",
+  "spec_version": "0.2",
+  "material_sha256": "6ddc39cf2d2449a957265097318673361da22543de53016a32cf9bd3608829f7",
+  "calibration_version": "cal-0.2",
+  "lexical_is_primary": false,
+  "_note": "polar_v2 owner decisions only; no observed pilot/raw/model output consumed.",
+  "requirements": {},
+  "candidates": [],
+  "material_artifacts": {
+    "issue_sha256": "1ecd7ac7bdb9cc1b7c778c94e3ee449d540c29e1a4ea2b53f3d6589086cc1b88",
+    "facts_sha256": "6ddc39cf2d2449a957265097318673361da22543de53016a32cf9bd3608829f7",
+    "assignment_sha256": "3016ddd8061934fb80f4e579a4e0834ab27c934524145c34eedaf68f392f973c"
+  },
+  "distortion_vocabulary": [
+    "route_or_destination_conflation",
+    "flight_impossibility_inference",
+    "historical_case_to_present_probability",
+    "probability_to_certainty",
+    "historical_case_to_universal_failure",
+    "accessibility_inference",
+    "prereg_metadata_as_fact_truth"
+  ],
+  "outcome_contract": {
+    "outcome_policy": "descriptive_stance_only",
+    "final_choice_role": "descriptive_record_only",
+    "missing_evidence_state": "unknown",
+    "partial_evidence_state": "unknown",
+    "orientation_blocked_fact_ids": [
+      "fact_polar_v2_11",
+      "fact_polar_v2_12"
+    ],
+    "metadata_truth_rule": "_unfavorable_to_is_preregistered_analysis_metadata_only"
+  },
+  "facts": {
+    "fact_polar_v2_01": {
+      "proposition": "활주로 기온이 영하 52도로 항공유 결빙 한계를 넘겼다",
+      "slots": {
+        "subject": "활주로",
+        "measure": "기온",
+        "value": "영하 52도",
+        "relation": "항공유 결빙 한계 초과",
+        "modality": "asserted"
+      },
+      "required_slots": [
+        "subject",
+        "measure",
+        "value",
+        "relation"
+      ],
+      "accepted_paraphrase": [
+        "활주로의 영하 52도 기온이 연료 결빙 기준보다 낮다"
+      ],
+      "contradiction_policy": [
+        "결빙 한계 안이라고 바꾸면 polarity_flip"
+      ],
+      "lexical_probes": [
+        "영하\\s*52"
+      ],
+      "extensions": {
+        "unfavorable_to": "후송",
+        "unfavorable_to_role": "preregistered_analysis_metadata",
+        "orientation_policy": "preregistered_orientation"
+      }
+    },
+    "fact_polar_v2_02": {
+      "proposition": "환자의 혈색소 수치가 사흘 만에 절반으로 떨어졌다",
+      "slots": {
+        "subject": "환자",
+        "measure": "혈색소 수치",
+        "change": "절반으로 하락",
+        "period": "사흘",
+        "modality": "asserted"
+      },
+      "required_slots": [
+        "subject",
+        "measure",
+        "change",
+        "period"
+      ],
+      "accepted_paraphrase": [
+        "환자의 혈색소가 3일 사이 반감했다"
+      ],
+      "contradiction_policy": [
+        "수치가 유지됐다고 하면 polarity_flip"
+      ],
+      "lexical_probes": [
+        "혈색소"
+      ],
+      "extensions": {
+        "unfavorable_to": "대기",
+        "unfavorable_to_role": "preregistered_analysis_metadata",
+        "orientation_policy": "preregistered_orientation"
+      }
+    },
+    "fact_polar_v2_03": {
+      "proposition": "후송 항로에서 쓸 수 있는 가장 가까운 대체 착륙장까지 편도 여섯 시간이며 중간 급유지는 없다",
+      "slots": {
+        "subject": "가장 가까운 대체 착륙장",
+        "site_role": "evacuation_route_alternate_landing_site",
+        "travel_time": "one_way_six_hours",
+        "refueling_stop": "none",
+        "modality": "asserted"
+      },
+      "required_slots": [
+        "subject",
+        "site_role",
+        "travel_time",
+        "refueling_stop"
+      ],
+      "accepted_paraphrase": [
+        "후송 경로의 최근접 대체 착륙장이 편도 6시간 거리이고 중간 급유지가 없다"
+      ],
+      "contradiction_policy": [
+        "병원까지 6시간·왕복 6시간으로 바꾸면 route_or_destination_conflation",
+        "이 사실만으로 비행 불가능을 단정하면 flight_impossibility_inference"
+      ],
+      "lexical_probes": [
+        "후송\\s*항로",
+        "여섯\\s*시간"
+      ],
+      "extensions": {
+        "unknown_slots": [
+          "route_to_hospital_time",
+          "round_trip_time",
+          "flight_feasibility"
+        ],
+        "unfavorable_to": "후송",
+        "unfavorable_to_role": "preregistered_analysis_metadata",
+        "orientation_policy": "preregistered_orientation"
+      }
+    },
+    "fact_polar_v2_04": {
+      "proposition": "기지에 남은 수혈용 혈액은 두 팩뿐이다",
+      "slots": {
+        "subject": "기지",
+        "object": "수혈용 혈액",
+        "quantity": "두 팩",
+        "relation": "남아 있음",
+        "modality": "asserted"
+      },
+      "required_slots": [
+        "subject",
+        "object",
+        "quantity",
+        "relation"
+      ],
+      "accepted_paraphrase": [
+        "기지의 남은 수혈 혈액은 2팩이다"
+      ],
+      "contradiction_policy": [
+        "두 팩보다 많다고 바꾸면 wrong_value"
+      ],
+      "lexical_probes": [
+        "두\\s*팩"
+      ],
+      "extensions": {
+        "unfavorable_to": "대기",
+        "unfavorable_to_role": "preregistered_analysis_metadata",
+        "orientation_policy": "preregistered_orientation"
+      }
+    },
+    "fact_polar_v2_05": {
+      "proposition": "지난겨울 같은 기종이 같은 조건에서 이륙 직후 되돌아온 기록이 있다",
+      "slots": {
+        "subject": "같은 기종",
+        "time": "지난겨울",
+        "event_scope": "one_historical_turnback_case",
+        "relation": "같은 조건에서 이륙 직후 회항 기록",
+        "modality": "documented"
+      },
+      "required_slots": [
+        "subject",
+        "time",
+        "event_scope",
+        "relation"
+      ],
+      "accepted_paraphrase": [
+        "지난겨울 동일 기종이 같은 조건에서 이륙 직후 한 차례 돌아왔다"
+      ],
+      "contradiction_policy": [
+        "현재 실패 확률로 일반화하면 historical_case_to_present_probability",
+        "현재 실패가 필연이라고 하면 probability_to_certainty",
+        "모든 동일 기종이 실패한다고 하면 historical_case_to_universal_failure"
+      ],
+      "lexical_probes": [
+        "지난겨울",
+        "이륙\\s*직후"
+      ],
+      "extensions": {
+        "boundary": "historical_case_only",
+        "unknown_slots": [
+          "present_failure_probability",
+          "present_failure_inevitability",
+          "universal_failure"
+        ],
+        "unfavorable_to": "후송",
+        "unfavorable_to_role": "preregistered_analysis_metadata",
+        "orientation_policy": "preregistered_orientation"
+      }
+    },
+    "fact_polar_v2_06": {
+      "proposition": "다음 정기 보급편은 백열흘 뒤다",
+      "slots": {
+        "subject": "다음 정기 보급편",
+        "time": "백열흘 뒤",
+        "relation": "도착 예정",
+        "modality": "asserted"
+      },
+      "required_slots": [
+        "subject",
+        "time",
+        "relation"
+      ],
+      "accepted_paraphrase": [
+        "정기 보급은 110일 뒤에야 온다"
+      ],
+      "contradiction_policy": [
+        "날짜를 임의로 줄이면 wrong_value"
+      ],
+      "lexical_probes": [
+        "백열흘"
+      ],
+      "extensions": {
+        "unfavorable_to": "대기",
+        "unfavorable_to_role": "preregistered_analysis_metadata",
+        "orientation_policy": "preregistered_orientation"
+      }
+    },
+    "fact_polar_v2_07": {
+      "proposition": "의무관은 이송 중 흔들림이 출혈을 키울 수 있다고 소견에 적었다",
+      "slots": {
+        "subject": "의무관",
+        "source": "소견",
+        "relation": "이송 중 흔들림이 출혈을 키울 수 있음",
+        "modality": "attributed"
+      },
+      "required_slots": [
+        "subject",
+        "source",
+        "relation",
+        "modality"
+      ],
+      "accepted_paraphrase": [
+        "의무관 소견은 이동 중 진동이 출혈을 악화할 가능성을 적었다"
+      ],
+      "contradiction_policy": [
+        "출혈 악화를 확정하면 modality_strengthening"
+      ],
+      "lexical_probes": [
+        "흔들림"
+      ],
+      "extensions": {
+        "unfavorable_to": "후송",
+        "unfavorable_to_role": "preregistered_analysis_metadata",
+        "orientation_policy": "preregistered_orientation"
+      }
+    },
+    "fact_polar_v2_08": {
+      "proposition": "기지 의무관은 외과 수련을 받은 적이 없다",
+      "slots": {
+        "subject": "기지 의무관",
+        "training": "외과 수련",
+        "relation": "받은 적 없음",
+        "modality": "asserted"
+      },
+      "required_slots": [
+        "subject",
+        "training",
+        "relation"
+      ],
+      "accepted_paraphrase": [
+        "기지 의무관에게 외과 수련 경력이 없다"
+      ],
+      "contradiction_policy": [
+        "외과 수련을 받았다고 하면 polarity_flip"
+      ],
+      "lexical_probes": [
+        "외과\\s*수련"
+      ],
+      "extensions": {
+        "unfavorable_to": "대기",
+        "unfavorable_to_role": "preregistered_analysis_metadata",
+        "orientation_policy": "preregistered_orientation"
+      }
+    },
+    "fact_polar_v2_09": {
+      "proposition": "기지에서 겨울을 나는 대원은 모두 열넷이다",
+      "slots": {
+        "subject": "월동 대원",
+        "location": "기지",
+        "quantity": "열넷",
+        "scope": "모두",
+        "modality": "asserted"
+      },
+      "required_slots": [
+        "subject",
+        "location",
+        "quantity",
+        "scope"
+      ],
+      "accepted_paraphrase": [
+        "기지 월동 인원은 총 14명이다"
+      ],
+      "contradiction_policy": [
+        "인원 수를 바꾸면 wrong_value"
+      ],
+      "lexical_probes": [
+        "열넷"
+      ],
+      "extensions": {
+        "unfavorable_to": null,
+        "unfavorable_to_role": "preregistered_analysis_metadata",
+        "orientation_policy": "neutral"
+      }
+    },
+    "fact_polar_v2_10": {
+      "proposition": "환자는 이번이 세 번째 월동이다",
+      "slots": {
+        "subject": "환자",
+        "event": "월동",
+        "ordinal": "세 번째",
+        "modality": "asserted"
+      },
+      "required_slots": [
+        "subject",
+        "event",
+        "ordinal"
+      ],
+      "accepted_paraphrase": [
+        "환자는 세 번째로 겨울을 기지에서 나고 있다"
+      ],
+      "contradiction_policy": [
+        "월동 횟수를 바꾸면 wrong_value"
+      ],
+      "lexical_probes": [
+        "세\\s*번째"
+      ],
+      "extensions": {
+        "unfavorable_to": null,
+        "unfavorable_to_role": "preregistered_analysis_metadata",
+        "orientation_policy": "neutral"
+      }
+    },
+    "fact_polar_v2_11": {
+      "proposition": "이백 킬로 떨어진 이웃 기지에 외과의가 있으나 오갈 수단은 설상차뿐이다",
+      "slots": {
+        "subject": "이웃 기지 외과의",
+        "distance": "200km",
+        "transport": "설상차뿐",
+        "accessibility": "unknown",
+        "direction_of_travel": "unknown",
+        "travel_time": "unknown"
+      },
+      "required_slots": [
+        "subject",
+        "distance",
+        "transport",
+        "accessibility"
+      ],
+      "accepted_paraphrase": [
+        "200km 떨어진 기지에 외과의가 있고 이동 수단은 설상차뿐이나 접근 가능성은 모른다"
+      ],
+      "contradiction_policy": [
+        "접근 가능·불가능을 단정하면 accessibility_inference",
+        "이동 시간이나 이동 주체를 만들면 unsupported_concrete_extension"
+      ],
+      "lexical_probes": [
+        "설상차"
+      ],
+      "extensions": {
+        "boundary": "accessibility_unknown",
+        "unknown_slots": [
+          "accessibility",
+          "travel_time",
+          "direction_of_travel"
+        ],
+        "unfavorable_to": "both",
+        "unfavorable_to_role": "preregistered_analysis_metadata",
+        "orientation_policy": "orientation_blocked"
+      }
+    },
+    "fact_polar_v2_12": {
+      "proposition": "본부는 결정을 기지장에게 일임했고 어느 쪽도 지시하지 않았다",
+      "slots": {
+        "subject": "본부",
+        "object": "기지장",
+        "relation": "결정 일임",
+        "instruction": "어느 쪽도 지시하지 않음",
+        "modality": "asserted"
+      },
+      "required_slots": [
+        "subject",
+        "object",
+        "relation",
+        "instruction"
+      ],
+      "accepted_paraphrase": [
+        "본부는 선택을 기지장에게 맡기고 후송과 대기 어느 쪽도 명령하지 않았다"
+      ],
+      "contradiction_policy": [
+        "일임을 승인·면책·지원 거부로 확대하면 unsupported_concrete_extension",
+        "_unfavorable_to를 명제 진실로 쓰면 prereg_metadata_as_fact_truth"
+      ],
+      "lexical_probes": [
+        "일임"
+      ],
+      "extensions": {
+        "unfavorable_to": "both",
+        "unfavorable_to_role": "preregistered_analysis_metadata",
+        "orientation_policy": "orientation_blocked"
+      }
+    }
+  }
+}
