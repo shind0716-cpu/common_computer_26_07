@@ -1,4 +1,4 @@
-"""[패키지 A · 신동범 / 2026-07-30 민옥: 다중 공급자 확장] LLM 호출 래퍼 — debate_engine·judge 공용.
+"""[공용 코어 · 8/21 요한 결정 (구 패키지 A · 신동범, 8/21 이적 / 7-30 민옥: 다중 공급자 확장)] LLM 호출 래퍼 — debate_engine·judge 공용.
 
 저자 코드 utils.py의 재시도·폴백 방식(tenacity, 실패 시 공백 반환)을 계승하되 SDK를 갈아끼운다.
 config의 모델 별칭(claude-haiku 등)을 실제 모델 ID로 해석하는 것도 여기 책임.
