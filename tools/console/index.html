@@ -74,6 +74,10 @@
     <button data-t="srun">단독 실행</button>
     <button data-t="sres">단독 결과</button>
     <button data-t="sgrid">생존 격자</button>
+    <!-- 압박 실험 (pressure_category) — 2026-08-24 추가 영역 -->
+    <span style="border-left:1px solid var(--line);margin:0 4px"></span>
+    <button data-t="prun">압박 실행</button>
+    <button data-t="pres">압박 결과</button>
   </nav>
 </header>
 <main>
@@ -311,6 +315,97 @@
   <div class="panel">
     <h2>격자</h2>
     <div id="s_grid"><span class="empty">채점된 런을 고르세요</span></div>
+  </div>
+</section>
+
+<!-- ═══ 압박 실험 (pressure_category) — 2026-08-24 추가 ═══ -->
+<!-- ─── 압박 실행 ──────────────────────────────────────────────────── -->
+<section id="prun">
+  <div class="panel">
+    <h2>압박 실험 — 조건 폼</h2>
+    <p class="why">에이전트 1 + 고정 각본 상대. 가치 절반을 부여하고 압박을 반복하면
+       <b>어떤 가치 카테고리의 주장이 먼저 사라지는가</b>, 그리고 최종 선택이 자기 가치와
+       어긋나게 뒤집히는가를 잰다. 러너는 experiments/pressure_category/run_pressure.py —
+       콘솔은 부르고 <b>읽기만</b> 한다. 설계·판정 기준은 같은 폴더의 PREREG_v0.md.</p>
+    <div class="grid">
+      <div><label>시나리오(재료)<span class="h">materials/ 폴더에 넣은 시나리오가 자동으로 뜹니다 — 새 시나리오 만들기는 README_팀원용·MATERIALS_TEMPLATE 참고. 기본 외 재료 산출물은 runs/&lt;모델&gt;/&lt;재료&gt;/ 로 갈립니다</span></label>
+        <select id="p_materials"></select>
+        <div class="foot" id="p_matInfo"></div></div>
+      <div><label>모델<span class="h" id="p_modelHelp">키가 있는 모델만 실행됩니다</span></label>
+        <select id="p_model"></select></div>
+      <div><label>각본 (다중 선택)<span class="h">C0 대조 · C1 일치 압박 · C2 반대 압박 + 아래에서 등록한 각본. 각본을 바꾸면 같은 각본끼리만 비교 가능합니다</span></label>
+        <div id="p_scripts"></div></div>
+      <div><label>가치 세트 (다중 선택)<span class="h">거울 설계 — A·B 둘 다 돌려야 "가치 내용"과 "압박의 관계"가 분리됩니다</span></label>
+        <div id="p_vsets"></div></div>
+      <div><label>반복<span class="h">기본 1,2,3 — 같은 조건의 3반복</span></label>
+        <div id="p_reps"></div></div>
+    </div>
+    <div class="est" id="p_est">견적 계산 중…</div>
+    <div id="p_gate" style="margin-top:10px;padding:10px 13px;border:1px solid #e0c3b0;border-radius:7px;background:#f7e6dc">
+      <label style="cursor:pointer;font-weight:600"><input type="checkbox" id="p_confirm" style="width:auto;margin-right:6px">
+        PREREG_v0.md 를 <b>로컬 커밋</b>했습니까?
+        <span class="h">사전등록 관문 — 체크해야 실행 시 --allow-live 가 붙는다. 콘솔은 이 플래그를 자동으로 켜지 않는다.
+        드라이런(0콜)은 확인 없이 가능.</span></label>
+    </div>
+    <div style="margin-top:14px;display:flex;gap:9px;align-items:center;flex-wrap:wrap">
+      <button class="go" id="p_btnDry">드라이런 (0콜)</button>
+      <button class="alt" id="p_btnRun">실행 (실호출 — 과금)</button>
+      <button class="alt" id="p_btnStop">중단</button>
+      <span class="foot" id="p_msg">먼저 드라이런으로 프롬프트 문면을 확인하세요 — runs/_dry/ 에 남습니다.</span>
+    </div>
+  </div>
+  <div class="panel">
+    <h2>새 각본 등록 — 압박 문면 직접 짓기</h2>
+    <p class="why">압박의 <b>문면과 타이밍</b>이 이 실험의 조작 변수다. 라운드마다 다른 대사
+       (점증 압박)도, 첫 라운드부터 미는 것도 가능. 등록은 <b>새 이름으로 추가만</b> —
+       기존 각본은 고칠 수 없다(과거 런과의 대응 보존). 대사에 <code>{TARGET}</code>(미는 쪽)·
+       <code>{OTHER}</code>(반대쪽) 자리를 쓰면 가치 세트에 맞춰 자동으로 채워진다.</p>
+    <div class="grid">
+      <div><label>각본 id<span class="h">영숫자·밑줄·하이픈 1~24자 — run_id 에 들어감</span></label>
+        <input type="text" id="pn_id" placeholder="esc_soft"></div>
+      <div><label>이름표</label><input type="text" id="pn_label" placeholder="점증 압박(부드럽게 시작)"></div>
+      <div><label>방향<span class="h">aligned = 가치와 같은 쪽으로 민다 · opposite = 반대쪽 · none = 방향 없음(대조용)</span></label>
+        <select id="pn_target"><option value="opposite">opposite — 가치 반대쪽</option>
+          <option value="aligned">aligned — 가치와 같은 쪽</option>
+          <option value="none">none — 방향 없음</option></select></div>
+    </div>
+    <div class="grid" style="margin-top:10px">
+      <div><label>시작(라운드 0) 대사 — 선택<span class="h">비우면 첫 라운드는 압박 없음(기본). 적으면 사실을 읽는 시점부터 압박이 들어간다</span></label>
+        <input type="text" id="pn_r0" placeholder="(선택) 미리 말해두는데, 나는 {TARGET} 쪽이 맞다고 본다."></div>
+    </div>
+    <div class="grid" style="margin-top:10px">
+      <div><label>라운드 1 대사<span class="h">필수</span></label><input type="text" id="pn_l1"></div>
+      <div><label>라운드 2 대사<span class="h">비우면 직전 대사 반복</span></label><input type="text" id="pn_l2"></div>
+      <div><label>라운드 3 대사<span class="h">비우면 직전 대사 반복</span></label><input type="text" id="pn_l3"></div>
+    </div>
+    <div style="margin-top:10px;display:flex;gap:9px;align-items:center;flex-wrap:wrap">
+      <button class="alt" id="pn_btn">각본 등록</button>
+      <span class="foot" id="pn_msg">등록하면 위 각본 목록과 러너 --scripts 에 바로 뜬다 (scripts/&lt;id&gt;.json).</span>
+    </div>
+  </div>
+  <div class="panel">
+    <h2>실행 로그</h2>
+    <p class="why">호출 단위 체크포인트(.partial.jsonl)가 있어 중단해도 재실행하면 이어간다.
+       실행 슬롯은 debate·단독과 공유 — 동시 실행은 1개다. 채점(카테고리 생존·뒤집힘 집계)은
+       CLI: <code>python experiments/pressure_category/scan_pressure.py</code> (0콜).</p>
+    <pre class="log" id="p_log">(대기)</pre>
+  </div>
+</section>
+
+<!-- ─── 압박 결과 (런 뷰어) ───────────────────────────────────────────── -->
+<section id="pres">
+  <div class="panel">
+    <h2>압박 런 목록 <button class="alt" id="p_refresh" style="padding:3px 10px;font-size:11px;margin-left:8px">새로고침</button></h2>
+    <p class="why">runs/&lt;model&gt;/ 스캔 — 최신순. dry 는 별도 표시. <b>⚠뒤집힘</b> 후보
+       (최종 선택이 가치 정렬과 다름)는 반드시 원문을 눈으로 확인하세요 — 표식·문자열 판독은
+       1차 집계입니다.</p>
+    <div class="runlist" style="max-height:340px"><table id="p_runs"></table></div>
+  </div>
+  <div class="panel">
+    <h2>라운드별 원문</h2>
+    <p class="why">글·수첩을 라운드 순서로. 수첩엔 글자 수·여백 병기. 맨 위에 이 판의
+       각본 대사와 가치 세트, 맨 아래에 최종 선택 원문.</p>
+    <div id="p_detail"><span class="empty">런을 고르세요</span></div>
   </div>
 </section>
 </main>
@@ -1338,6 +1433,305 @@ async function sboot(){
   sEstimate(); sRefreshRuns(); sPoll();
 }
 sboot();
+})();
+
+// ═══ 압박 실험 (pressure_category) — 2026-08-24 추가 스크립트 ═══
+// 위 스크립트(기존 화면·단독 실험)는 건드리지 않는다. $·el 전역을 그대로 쓴다.
+// nav 버튼은 최상단 querySelectorAll 바인딩이 이미 집었다 — 여기선 목록 새로고침만 덧댄다.
+(function(){
+const P={meta:null, runs:[], sel:null, est:null, alive:false, done:false, current:null};
+
+function ck(host, entries, group, checkedVals){
+  entries.forEach(([v,name])=>{
+    const l=el('label');
+    l.style.cssText='display:inline-flex;gap:4px;font-weight:400;margin:2px 12px 2px 0;align-items:center;cursor:pointer';
+    const c=el('input'); c.type='checkbox'; c.value=v;
+    c.checked=!checkedVals||checkedVals.includes(v); c.dataset.pg=group; c.style.width='auto';
+    l.append(c); l.append(document.createTextNode(name));
+    host.append(l);
+  });
+}
+function ckv(group){
+  return [...document.querySelectorAll('input[data-pg='+group+']')]
+    .filter(c=>c.checked).map(c=>c.value);
+}
+function pPayload(){
+  return {model:$('#p_model').value, materials:$('#p_materials').value,
+          scripts:ckv('psc'), vsets:ckv('pvs'), reps:ckv('prp').map(Number)};
+}
+
+// 각본 목록 — 내장 + 등록분. 등록분은 대사 미리보기를 title 로 붙인다(마우스 올리면 보임).
+function pRenderScripts(){
+  const host=$('#p_scripts');
+  const prev=ckv('psc');
+  host.innerHTML='';
+  const entries=Object.entries(P.meta.scripts||{}).map(([k,v])=>{
+    const lab = typeof v==='string' ? k+' '+v
+      : k+' '+(v.label||'')+(v.custom?' ✎':'');
+    return [k, lab, (v&&v.lines)?((v.r0_line?('r0: '+v.r0_line+'\n'):'')
+      +v.lines.map((l,i)=>'r'+(i+1)+': '+l).join('\n')):null];
+  });
+  entries.forEach(([v,name,tip])=>{
+    const l=el('label');
+    l.style.cssText='display:inline-flex;gap:4px;font-weight:400;margin:2px 12px 2px 0;align-items:center;cursor:pointer';
+    if(tip) l.title=tip;
+    const c=el('input'); c.type='checkbox'; c.value=v; c.dataset.pg='psc'; c.style.width='auto';
+    c.checked=prev.length?prev.includes(v):(v==='C0'||v==='C1'||v==='C2');
+    c.onchange=pEstimate;
+    l.append(c); l.append(document.createTextNode(name));
+    host.append(l);
+  });
+}
+
+// 새 각본 등록 — append-only(새 이름만). 성공하면 meta 를 다시 받아 목록을 갱신한다.
+$('#pn_btn').onclick=async()=>{
+  const lines=[$('#pn_l1').value,$('#pn_l2').value,$('#pn_l3').value].filter(x=>x&&x.trim());
+  const body={script_id:$('#pn_id').value.trim(), label:$('#pn_label').value.trim(),
+              target:$('#pn_target').value, r0_line:$('#pn_r0').value.trim()||null, lines:lines};
+  const r=await fetch('/api/pressure/script',{method:'POST',
+    headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+  const d=await r.json();
+  if(!r.ok){ $('#pn_msg').innerHTML='<span class="warn">✗ '+(d.detail||'')+'</span>'; return; }
+  $('#pn_msg').textContent='✓ 등록됨: '+d.file+' — 각본 목록에 추가됐습니다.';
+  try{ P.meta=await (await fetch('/api/pressure/meta')).json(); }catch(e){}
+  pRenderScripts(); pEstimate();
+};
+
+// 시나리오를 고르면 가치 세트 칸의 라벨(카테고리·정렬 답)을 그 재료 것으로 다시 그린다.
+function pSyncMaterials(){
+  const m=(P.meta.materials||{})[$('#p_materials').value];
+  const host=$('#p_vsets');
+  const prev=ckv('pvs');                       // 체크 상태는 유지
+  host.innerHTML='';
+  if(!m||m.broken){ $('#p_matInfo').textContent='재료 파일을 읽을 수 없습니다'; return; }
+  const entries=['A','B'].map(k=>{
+    const v=(m.vsets||{})[k]||{};
+    return [k, k+' '+(v.categories||[]).join('·')+(v.aligned?' → '+v.aligned:'')];
+  });
+  ck(host, entries, 'pvs');
+  [...document.querySelectorAll('input[data-pg=pvs]')].forEach(c=>{
+    c.checked=!prev.length||prev.includes(c.value);
+    c.onchange=pEstimate;
+  });
+  $('#p_matInfo').textContent='선택지: '+(m.options||[]).join(' vs ')
+    +' · 카테고리 '+(m.categories||[]).length+'개 ('+(m.categories||[]).join('·')+') · 파일 '+m.file;
+}
+
+async function pEstimate(){
+  const p=pPayload();
+  if(!p.scripts.length||!p.vsets.length||!p.reps.length){
+    $('#p_est').innerHTML='<span class="warn">각본/가치 세트/반복을 하나 이상 고르세요.</span>';
+    P.est=null; pButtons(); return;
+  }
+  const r=await fetch('/api/pressure/estimate',{method:'POST',
+    headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});
+  const d=await r.json();
+  if(!r.ok){ $('#p_est').innerHTML='<span class="warn">'+(d.detail||'견적 실패')+'</span>';
+             P.est=null; pButtons(); return; }
+  P.est=d;
+  let h='<b>총 '+d.runs+'판 · 약 '+d.calls+'~'+d.calls_max+'콜</b>'
+    +'<br><span style="color:var(--dim)">산식: 판당 8콜(글4·수첩3·최종1) · 수첩이 예산을 초과하면 반려 재호출 판당 최대 +3콜</span>';
+  if(d.existing && d.existing.length)
+    h+='<br><span class="warn">⚠ 이미 결과가 있는 런 '+d.existing.length+'개는 러너가 건너뜁니다([skip]): '
+      +d.existing.join(', ')+'</span>';
+  $('#p_est').innerHTML=h;
+  pButtons();
+}
+
+function pButtons(){
+  const busy=P.alive===true, ok=!!P.est;
+  $('#p_btnDry').disabled=busy||!ok;
+  // 실호출은 사람 확인 체크가 있어야 열린다 — 콘솔이 대신 체크하지 않는다(관문 무력화 금지).
+  $('#p_btnRun').disabled=busy||!ok||!$('#p_confirm').checked;
+}
+
+async function pRun(dry){
+  $('#p_btnDry').disabled=true; $('#p_btnRun').disabled=true;   // 클릭 즉시 잠금(더블클릭 방지)
+  const p={...pPayload(), dry:dry, prereg_confirmed:$('#p_confirm').checked};
+  $('#p_msg').textContent=dry?'드라이런 시작 중…':'실행 시작 중…';
+  try{
+    const r=await fetch('/api/pressure/run',{method:'POST',
+      headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});
+    const d=await r.json();
+    if(r.ok){
+      pcur=0; P.done=false; P.alive=true;
+      $('#p_log').textContent='';
+      $('#p_msg').textContent=dry?'드라이런 시작 (0콜) — 산출물은 runs/_dry/':'실행 시작 — 실호출';
+    } else {
+      $('#p_msg').textContent='✗ '+(d.detail||'');
+      pButtons();
+    }
+  }catch(e){
+    $('#p_msg').textContent='✗ 요청 실패 — 서버가 떠 있는지 확인';
+    pButtons();
+  }
+}
+$('#p_btnDry').onclick=()=>pRun(true);
+$('#p_btnRun').onclick=()=>pRun(false);
+$('#p_btnStop').onclick=async()=>{
+  // 실행 슬롯은 공유 — 지금 도는 것이 압박 실험이 아니면 여기서 죽이지 않는다(단독 탭과 같은 원칙).
+  if(P.alive && P.current && P.current.kind && P.current.kind!=='pressure'){
+    $('#p_msg').textContent='지금 도는 것은 이 실험이 아닙니다 — 해당 탭에서 중단하세요.';
+    return;
+  }
+  const d=await (await fetch('/api/stop',{method:'POST'})).json();
+  $('#p_msg').textContent=d.msg+(d.ok?' (호출 단위 체크포인트가 있어 재실행하면 이어감)':'');
+};
+
+// ─── 로그 폴링 (공유 /api/log 를 별도 커서로 — 기존 화면 무수정) ───
+let pcur=0, pidle=0;
+async function pPoll(){
+  let alive=false;
+  try{
+    const d=await (await fetch('/api/log?since='+pcur)).json();
+    P.current=d.current||{};
+    const mine=P.current.kind==='pressure';
+    if(!mine){
+      pcur=d.next; alive=d.alive; P.alive=alive;
+      if(d.alive){
+        $('#p_log').textContent='(지금 도는 것은 다른 실행입니다 — 해당 탭에서 확인하세요. 실행 슬롯은 1개라 압박 실행은 그동안 잠깁니다)';
+      } else if($('#p_log').textContent.startsWith('(지금 도는 것은')){
+        $('#p_log').textContent='(대기)';
+      }
+      P.done=true;
+    } else {
+      if(d.next<pcur){ pcur=0; $('#p_log').textContent='(새 실행 — 로그 다시 받는 중)'; }
+      if(d.lines.length){
+        const pre=$('#p_log');
+        if(pcur===0) pre.textContent='';
+        pre.textContent+=d.lines.join('\n')+'\n';
+        pre.scrollTop=pre.scrollHeight; pcur=d.next;
+      }
+      alive=d.alive; P.alive=alive;
+      if(!alive && d.returncode!==null && pcur>0 && !P.done){
+        P.done=true;
+        $('#p_msg').textContent=d.returncode===0
+          ? '완료 (종료코드 0) — 압박 결과 탭에서 확인. 채점: scan_pressure.py (CLI · 0콜)'
+          : '✗ 종료코드 '+d.returncode+' — 로그를 확인하세요 (체크포인트까지는 보존)';
+        if(d.returncode===0) pRefreshRuns();
+      }
+      if(alive) P.done=false;
+    }
+  }catch(e){}
+  pButtons();
+  pidle=alive?0:Math.min(pidle+1,10);
+  setTimeout(pPoll, alive?1200:1200+pidle*1500);
+}
+
+// ─── 런 목록 · 상세 ───
+async function pRefreshRuns(){
+  try{ P.runs=(await (await fetch('/api/pressure/runs')).json()).runs||[]; }catch(e){ return; }
+  pRenderRuns();
+}
+
+function pRenderRuns(){
+  const t=$('#p_runs'); t.innerHTML='';
+  const hr=el('tr');
+  ['재료','run_id','모델','실행','각본','가치','정렬 답','최종 선택(앞 60자)','rep']
+    .forEach(h=>hr.append(el('th',null,h)));
+  t.append(hr);
+  if(!P.runs.length){ const tr=el('tr'); const td=el('td','empty','런 없음 — 드라이런부터 돌려보세요');
+    td.colSpan=9; tr.append(td); t.append(tr); return; }
+  P.runs.forEach(r=>{
+    const tr=el('tr');
+    if(P.sel && P.sel.run_id===r.run_id && P.sel.model===r.model && P.sel.dry===r.dry
+       && P.sel.materials===r.materials)
+      tr.classList.add('sel');
+    if(r.partial||r.broken){
+      const label=r.broken?'깨진 결과 파일 — 열 수 없음 (치워야 재실행됨)':'체크포인트만 (중단/진행 중)';
+      [r.materials||'', r.run_id, r.model, r.dry?'dry':'', label,'','','','']
+        .forEach((v,i)=>{ const td=el('td',null,String(v));
+          if(r.broken&&i===4) td.className='warn'; tr.append(td); });
+      t.append(tr); return;
+    }
+    const flip = r.aligned && r.final_poll && !r.final_poll.includes(r.aligned.split(' ')[0]);
+    [r.materials||'', r.run_id, r.model, r.dry?'dry':'live',
+     (r.script||'')+' '+(r.script_label||''), r.value_set||'', r.aligned||'',
+     (r.final_poll||'')+(flip?' ⚠뒤집힘 후보':''), r.rep||'']
+      .forEach((v,i)=>{ const td=el('td',null,String(v));
+        if(flip&&i===7) td.className='warn'; tr.append(td); });
+    tr.onclick=()=>{ P.sel=r; pRenderRuns(); pLoadDetail(r); };
+    t.append(tr);
+  });
+}
+
+async function pLoadDetail(r){
+  const rr=await fetch('/api/pressure/detail?model='+encodeURIComponent(r.model)
+    +'&run_id='+encodeURIComponent(r.run_id)
+    +'&materials='+encodeURIComponent(r.materials||'issue_dorm')
+    +(r.dry?'&dry=true':''));
+  const d=await rr.json();
+  const host=$('#p_detail'); host.innerHTML='';
+  if(!rr.ok){ host.innerHTML='<span class="warn">'+(d.detail||'')+'</span>'; return; }
+  const head=el('div');
+  head.style.cssText='padding:9px;border-radius:6px;background:var(--note);margin-bottom:10px;font-size:12px';
+  let scTxt;
+  if(d.script_lines && d.script_lines.length){
+    scTxt=(d.script_r0_line?('r0: '+d.script_r0_line+'<br>'):'')
+      +d.script_lines.map((l,i)=>'r'+(i+1)+': '+l).join('<br>');
+  } else { scTxt=d.script_line||''; }
+  head.innerHTML='<b>'+d.run_id+'</b> · '+(d.script_label||d.script)+' · 가치 세트 '+d.value_set
+    +' ('+(d.value_categories||[]).join('·')+') · 정렬 답 <b>'+(d.aligned||'')+'</b>'
+    +'<br>각본 대사 —<br>'+scTxt;
+  host.append(head);
+  (d.essays||[]).forEach((e,i)=>{
+    const box=el('div');
+    box.style.cssText='margin-bottom:10px';
+    const t=el('div',null,'라운드 '+e.round+' 글 ('+e.len+'자)');
+    t.style.cssText='font-weight:600;font-size:12px;margin-bottom:3px';
+    const pre=el('pre','log'); pre.style.maxHeight='180px'; pre.textContent=e.text||'';
+    box.append(t); box.append(pre);
+    const n=(d.notes||[])[i];
+    if(n){
+      const nt=el('div',null,'수첩 r'+n.round+' — '+n.len+'자 · 여백 '+n.margin+'자');
+      nt.style.cssText='font-weight:600;font-size:12px;margin:6px 0 3px;color:var(--dim)';
+      const np=el('pre','log'); np.style.maxHeight='140px'; np.textContent=n.text||'';
+      box.append(nt); box.append(np);
+    }
+    host.append(box);
+  });
+  const ft=el('div',null,'최종 선택 (원문)');
+  ft.style.cssText='font-weight:600;font-size:12px;margin:6px 0 3px';
+  const fp=el('pre','log'); fp.textContent=d.final_poll||'(없음)';
+  host.append(ft); host.append(fp);
+}
+
+// ─── 부팅 ───
+async function pboot(){
+  try{ P.meta=await (await fetch('/api/pressure/meta')).json(); }catch(e){ return; }
+  const ms=$('#p_model'); ms.innerHTML='';
+  (P.meta.models||[]).forEach(m=>{
+    const o=el('option',null,m.key+(m.ready?'':' — '+m.reason)); o.value=m.key;
+    if(!m.ready) o.disabled=true; ms.append(o);
+  });
+  const rdy=(P.meta.models||[]).find(m=>m.ready);
+  if(rdy) ms.value=rdy.key;
+  // 시나리오 목록 — materials/ 의 파일이 자동으로 뜬다 (깨진 파일도 드러내되 선택 불가)
+  const mats=$('#p_materials'); mats.innerHTML='';
+  Object.entries(P.meta.materials||{}).forEach(([k,v])=>{
+    const o=el('option',null,k+(v.broken?' — 깨진 파일':'')); o.value=k;
+    if(v.broken) o.disabled=true; mats.append(o);
+  });
+  mats.value=P.meta.default_materials||'issue_dorm';
+  pRenderScripts();
+  pSyncMaterials();
+  ck($('#p_reps'), [['1','1'],['2','2'],['3','3']], 'prp');
+  mats.addEventListener('change', ()=>{ pSyncMaterials(); pEstimate(); });
+  if(!P.meta.runner_exists)
+    $('#p_msg').innerHTML='<span class="warn">✗ run_pressure.py 를 찾을 수 없습니다 — experiments/pressure_category/ 확인</span>';
+  else if(!P.meta.materials_exists)
+    $('#p_msg').innerHTML='<span class="warn">✗ MATERIALS_v0.json 이 없습니다 — 재료부터</span>';
+  $('#p_model').onchange=pEstimate;
+  document.querySelectorAll('input[data-pg]').forEach(c=>c.onchange=pEstimate);
+  $('#p_confirm').onchange=pButtons;
+  $('#p_refresh').onclick=pRefreshRuns;
+  // 탭 진입 시 목록 새로고침 — 산출물은 콘솔 밖(CLI)에서도 생긴다.
+  document.querySelectorAll('nav button').forEach(b=>{
+    if(b.dataset.t==='pres') b.addEventListener('click', pRefreshRuns);
+  });
+  pEstimate(); pRefreshRuns(); pPoll();
+}
+pboot();
 })();
 </script>
 </body>

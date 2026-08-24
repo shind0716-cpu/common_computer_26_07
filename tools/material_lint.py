@@ -199,9 +199,6 @@ def suggest_candidates(text: str, corpus: str, k: int = 3) -> list[tuple[str, st
             s = text[i:i + length]
             if s != s.strip() or not s:
                 continue
-            if (i + length < len(text) and text[i + length].isdigit()
-                    and (s[-1].isdigit() or s[-1] == ",")):
-                continue                  # 숫자 시퀀스 중간 절단("4,0") 방지
             if s in corpus:
                 continue
             if any(not (i + length <= a or i >= a + al) for a, al, _ in taken):
@@ -252,19 +249,18 @@ def main() -> None:
     print("\n".join(lines1)) if lines1 else None
     fails += 0 if ok1 else 1
 
-    hollow = "" if patterns else " — 검사할 앵커가 0개인 공허한 통과"
     ok2, lines2 = check_cross_hit(facts, patterns, allowlist)
     n_allowed = sum(1 for l in lines2 if l.lstrip().startswith("- 허용"))
     n_bad = sum(1 for l in lines2 if l.lstrip().startswith("- 오발"))
     desc2 = (f"오발 {n_allowed}건 — 전부 허용 목록 처리" if ok2 and n_allowed
-             else (f"0건{hollow}" if ok2 else f"오발 {n_bad}건 (허용 외)"))
+             else ("0건" if ok2 else f"오발 {n_bad}건 (허용 외)"))
     print(f"[2] 교차 오발   {'PASS' if ok2 else 'FAIL'}  {desc2}")
     print("\n".join(lines2)) if lines2 else None
     fails += 0 if ok2 else 1
 
     ok3, lines3 = check_issue_leak(fields, patterns)
     print(f"[3] 본문 누출   {'PASS' if ok3 else 'FAIL'}  "
-          f"{0 if ok3 else len(lines3)}건{hollow} (검사 필드: {', '.join(fields)})")
+          f"{0 if ok3 else len(lines3)}건 (검사 필드: {', '.join(fields)})")
     print("\n".join(lines3)) if lines3 else None
     fails += 0 if ok3 else 1
 

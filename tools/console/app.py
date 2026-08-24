@@ -986,7 +986,11 @@ def index():
 # 함수가 아니라 모듈 변수인 이유: 테스트가 임시 폴더로 갈아끼운다(paths.DATA 전례).
 SOLO_DIR = ROOT / "experiments" / "memory_structure"
 
-SOLO_MODELS = ("gpt", "gemini-flash")            # run_solo.py --model 값 (llm.py 별칭)
+# run_solo.py --model 값 (llm.py 별칭). claude 두 종은 2026-08-24 추가 — Anthropic 키
+# 도입 예정에 따라 미리 목록에 올린다. 키가 .env 에 없으면 ready:false 로 회색 표시되고
+# 실행은 preflight 가 막는다(숨기지 않고 왜 못 쓰는지 보여주는 _models 원칙 그대로).
+# claude-opus 는 비용 때문에 일부러 뺐다 — 필요하면 여기 한 줄.
+SOLO_MODELS = ("gpt", "gemini-flash", "claude-haiku", "claude-sonnet")
 SOLO_ARMS = {"A": "반복", "P": "전진(A′)", "B": "숙의"}
 SOLO_MEMS = {"full": "전체", "note": "수첩", "prev": "직전만"}
 SOLO_BUDGETS = (500, 250, 125, 60)               # 수첩 예산 스윕 후보 (500 = v1 기본)
@@ -1533,3 +1537,354 @@ def api_solo_grid(model: str, run_id: str):
                             for fid in row_ids]}
     return {"model": model, "run_id": run_id, "issue_id": doc.get("issue_id"),
             "judge": doc.get("judge") or {}, "stages": stages, "rows": rows, "agg": agg}
+
+
+# ═══ 압박 실험 (experiments/pressure_category) — 2026-08-24 추가 ═══
+# 이 아래는 전부 **추가**다 — 기존 debate·solo 라우트·동작은 건드리지 않는다.
+# 콘솔은 러너(run_pressure.py)를 서브프로세스로 부르고 산출물을 **읽기만** 한다.
+# 사전등록 관문·프롬프트·체크포인트는 전부 러너 소관 (solo 와 같은 원칙).
+
+PRESSURE_DIR = ROOT / "experiments" / "pressure_category"
+PRESSURE_MODELS = SOLO_MODELS                       # llm.py 별칭 — solo 와 같은 후보
+PRESSURE_SCRIPTS = {"C0": "압박 없음(대조)", "C1": "일치 압박", "C2": "반대 압박"}
+PRESSURE_SCRIPT_ID_RE = re.compile(r"[A-Za-z0-9_-]{1,24}")   # run_pressure.SCRIPT_ID_RE 미러
+PRESSURE_CALLS_PER_RUN = 8                          # run_pressure.py 절차 미러 (4+3+1)
+PRESSURE_RETRY_MAX = 3                              # 수첩 반려 재호출 상한 미러
+PRESSURE_DEFAULT_MATERIALS = "issue_dorm"           # run_pressure.DEFAULT_MATERIALS_ID 미러
+
+
+def _pressure_runs_dir(dry: bool) -> Path:
+    d = PRESSURE_DIR / "runs"
+    return d / "_dry" if dry else d
+
+
+def _pressure_materials() -> dict[str, dict]:
+    """재료 registry — issue_id → {파일·옵션·카테고리·가치 세트}. 발견 규칙은
+    run_pressure.discover_materials 의 미러(그쪽이 정본): 기본 재료 + materials/*.json,
+    템플릿 제외, 깨진 파일은 건너뛰되 broken 으로 드러낸다."""
+    out: dict[str, dict] = {}
+    cands = ([PRESSURE_DIR / "MATERIALS_v0.json"]
+             + sorted((PRESSURE_DIR / "materials").glob("*.json")
+                      if (PRESSURE_DIR / "materials").exists() else []))
+    for p in cands:
+        if not p.exists() or p.name == "MATERIALS_TEMPLATE.json":
+            continue
+        try:
+            doc = json.loads(p.read_text(encoding="utf-8"))
+            iid = doc["issue_id"]
+        except Exception:
+            out[f"(깨짐) {p.name}"] = {"file": p.name, "broken": True}
+            continue
+        if iid in out:
+            continue        # 충돌 — 러너가 즉사시키는 사안. 목록엔 먼저 온 것만.
+        vs = doc.get("value_sets") or {}
+        out[iid] = {
+            "file": p.name, "broken": False,
+            "options": doc.get("options") or [],
+            "categories": doc.get("categories") or [],
+            "vsets": {k: {"categories": (vs.get(k) or {}).get("categories") or [],
+                          "aligned": (vs.get(k) or {}).get("aligned")}
+                      for k in ("A", "B")},
+        }
+    return out
+
+
+def _pressure_scripts() -> dict[str, dict]:
+    """각본 registry — 내장 C0/C1/C2 + scripts/*.json (run_pressure.discover_scripts
+    미러 — 그쪽이 정본). 등록 각본엔 라운드별 대사·r0 대사·방향을 함께 실어 화면이
+    미리보기를 그릴 수 있게 한다."""
+    out = {sid: {"label": lab, "target": None, "lines": None, "r0_line": None,
+                 "custom": False}
+           for sid, lab in PRESSURE_SCRIPTS.items()}
+    sdir = PRESSURE_DIR / "scripts"
+    if sdir.exists():
+        for p in sorted(sdir.glob("*.json")):
+            try:
+                d = json.loads(p.read_text(encoding="utf-8"))
+                sid = d["script_id"]
+            except Exception:
+                continue
+            if not PRESSURE_SCRIPT_ID_RE.fullmatch(sid or "") or sid in out:
+                continue
+            lines = d.get("lines")
+            if isinstance(lines, str):
+                lines = [lines]
+            if not lines:
+                continue
+            out[sid] = {"label": d.get("label") or sid, "target": d.get("target", "none"),
+                        "lines": lines, "r0_line": d.get("r0_line"),
+                        "custom": True, "file": p.name}
+    return out
+
+
+class PressureRunReq(BaseModel):
+    model: str = "gpt"
+    # 재료(시나리오) — run_pressure.py --materials 와 연결. 팀원이 materials/ 에 넣은
+    # 시나리오가 자동으로 목록에 뜬다. 기본값이면 종전과 동일 동작.
+    materials: str = PRESSURE_DEFAULT_MATERIALS
+    scripts: list[str] = ["C0", "C1", "C2"]
+    vsets: list[str] = ["A", "B"]
+    reps: list[int] = [1, 2, 3]
+    dry: bool = False
+    # "PREREG_v0.md 를 로컬 커밋했다"는 **사람의 확인** — solo 의 prereg_confirmed 와
+    # 같은 원칙: UI 가 자동으로 켜면 사전등록 관문이 장식이 된다.
+    prereg_confirmed: bool = False
+
+
+def _pressure_validate(req: PressureRunReq) -> None:
+    if req.model not in PRESSURE_MODELS:
+        raise HTTPException(400, f"모르는 모델: {req.model} (가능: {', '.join(PRESSURE_MODELS)})")
+    reg = _pressure_materials()
+    if req.materials not in reg or reg[req.materials].get("broken"):
+        ok = [k for k, v in reg.items() if not v.get("broken")]
+        raise HTTPException(400, f"모르는 재료: {req.materials} (가능: {', '.join(ok)})")
+    if not (req.scripts and req.vsets and req.reps):
+        raise HTTPException(400, "각본/가치 세트/반복을 하나 이상 고르세요.")
+    known_scripts = _pressure_scripts()
+    bad = ([s for s in req.scripts if s not in known_scripts]
+           + [v for v in req.vsets if v not in ("A", "B")])
+    if bad:
+        raise HTTPException(400, f"모르는 조건: {bad}")
+
+
+def _pressure_run_base(req: PressureRunReq) -> Path:
+    """이 요청의 산출물 폴더 — 러너 run_one 의 out_dir 규칙 미러
+    (기본 재료는 종전 경로, 그 외는 issue_id 하위)."""
+    d = _pressure_runs_dir(req.dry) / req.model
+    return d if req.materials == PRESSURE_DEFAULT_MATERIALS else d / req.materials
+
+
+def _pressure_planned_ids(req: PressureRunReq) -> list[str]:
+    """이 요청이 만들 run_id 목록 — 러너의 조립식(run_one)과 같은 규칙."""
+    return [f"{s}_{v}_rep{n}" for s in req.scripts for v in req.vsets for n in req.reps]
+
+
+@app.get("/api/pressure/meta")
+def api_pressure_meta():
+    """폼의 단일 소스 — 조건 어휘 + 모델 키 실재 + 러너·재료·사전등록 파일 존재."""
+    models = []
+    for key in PRESSURE_MODELS:
+        try:
+            provider = llm.resolve_provider(key)
+        except KeyError:
+            continue
+        env = llm.PROVIDER_KEY_ENV[provider]
+        val = os.environ.get(env, "")
+        models.append({"key": key, "model_id": llm.resolve_model(key),
+                       "provider": provider, "key_env": env,
+                       "ready": len(val) >= 24,
+                       "reason": ("" if len(val) >= 24 else
+                                  (f"{env} 없음" if not val
+                                   else f"{env} 가 너무 짧음({len(val)}자 — 자리표시자)"))})
+    return {"models": models, "scripts": _pressure_scripts(),
+            "materials": _pressure_materials(),
+            "default_materials": PRESSURE_DEFAULT_MATERIALS,
+            "runner_exists": (PRESSURE_DIR / "run_pressure.py").exists(),
+            "materials_exists": (PRESSURE_DIR / "MATERIALS_v0.json").exists(),
+            "prereg_exists": (PRESSURE_DIR / "PREREG_v0.md").exists()}
+
+
+@app.post("/api/pressure/estimate")
+def api_pressure_estimate(req: PressureRunReq):
+    """실행 전 견적 — 판당 8콜(글4·수첩3·최종1) + 수첩 반려 최대 +3콜.
+    이미 결과가 있어 러너가 [skip] 할 런도 센다 (solo 견적과 같은 원칙)."""
+    _pressure_validate(req)
+    ids = _pressure_planned_ids(req)
+    base = _pressure_run_base(req)
+    existing = [rid for rid in ids if (base / f"run_{rid}.json").exists()]
+    n = len(ids)
+    return {"runs": n, "calls": PRESSURE_CALLS_PER_RUN * n,
+            "calls_max": (PRESSURE_CALLS_PER_RUN + PRESSURE_RETRY_MAX) * n,
+            "existing": existing}
+
+
+@app.post("/api/pressure/run")
+def api_pressure_run(req: PressureRunReq):
+    """run_pressure.py 서브프로세스 실행 — 기존 _proc/_log 골격 재사용(동시 실행 1개).
+
+    사전등록 관문: 실호출은 prereg_confirmed(사람 확인) 없이는 400, 확인된 경우에만
+    --allow-live 를 붙인다. 드라이런(0콜)은 러너와 같은 이유로 관문 밖.
+    전 구간이 _run_lock 안 — solo 와 같은 원자화(더블클릭 이중 실행 차단)."""
+    global _proc, _log, _current
+    with _run_lock:
+        if _proc is not None and _proc.poll() is None:
+            raise HTTPException(409, "이미 실행 중 — 끝나거나 중단한 뒤에 다시.")
+        _pressure_validate(req)
+        if not req.dry and not req.prereg_confirmed:
+            raise HTTPException(400, "실호출 차단 — PREREG_v0.md 로컬 커밋 확인 체크가 "
+                                     "필요하다. 드라이런(0콜)은 확인 없이 가능.")
+        if not req.dry:
+            try:
+                llm.preflight(req.model)
+            except SystemExit as e:
+                raise HTTPException(400, str(e))
+            except KeyError as e:
+                raise HTTPException(400, str(e))
+        runner = PRESSURE_DIR / "run_pressure.py"
+        if not runner.exists():
+            raise HTTPException(500, f"러너 없음: {runner}")
+        cmd = [sys.executable, "-X", "utf8", "-u", str(runner),
+               "--model", req.model,
+               "--materials", req.materials,
+               "--scripts", *req.scripts,
+               "--vsets", *req.vsets,
+               "--reps", *[str(n) for n in req.reps]]
+        if req.dry:
+            cmd.append("--dry")
+        else:
+            cmd.append("--allow-live")   # 사람 확인(prereg_confirmed)을 통과한 경우만 도달
+        with _log_lock:
+            _log = [f"$ {' '.join(cmd)}"]
+        _current = {"kind": "pressure", "model": req.model, "dry": req.dry}
+        _proc = subprocess.Popen(cmd, cwd=str(ROOT), stdout=subprocess.PIPE,
+                                 stderr=subprocess.STDOUT, text=True, encoding="utf-8",
+                                 errors="replace", bufsize=1)
+        threading.Thread(target=_tail_reader, args=(_proc,), daemon=True).start()
+    return {"ok": True, "cmd": cmd, "dry": req.dry}
+
+
+class PressureScriptReq(BaseModel):
+    script_id: str
+    label: str = ""
+    target: str = "none"          # aligned | opposite | none
+    r0_line: str | None = None    # 있으면 첫 라운드(사실 읽는 시점)부터 압박
+    lines: list[str] = []         # 라운드 1~3 대사 (모자라면 러너가 마지막을 반복)
+
+
+@app.post("/api/pressure/script")
+def api_pressure_script(req: PressureScriptReq):
+    """각본 등록 — scripts/<id>.json **새 파일 추가만**. 기존 각본(내장·등록분) 덮어쓰기는
+    409: 문면을 고치면 과거 런과의 대응이 끊기므로, 바꾸고 싶으면 새 이름으로 등록한다
+    (append-only — 색인 규칙과 같은 원리). 전례: 콘솔의 변종 이슈 파생·configs/console 생성."""
+    sid = (req.script_id or "").strip()
+    if not PRESSURE_SCRIPT_ID_RE.fullmatch(sid):
+        raise HTTPException(400, "각본 id 는 영숫자·밑줄·하이픈 1~24자 (run_id·경로에 들어간다)")
+    if req.target not in ("aligned", "opposite", "none"):
+        raise HTTPException(400, "target 은 aligned(가치 정렬 쪽으로 민다) / opposite(반대쪽) "
+                                 "/ none(방향 없음) 중 하나")
+    lines = [x for x in (req.lines or []) if x and x.strip()]
+    if not lines:
+        raise HTTPException(400, "라운드 대사(lines)를 하나 이상 적으세요.")
+    if req.target == "none":
+        for ln in lines + ([req.r0_line] if req.r0_line else []):
+            if "{TARGET}" in ln or "{OTHER}" in ln:
+                raise HTTPException(400, "target 이 none 인데 대사에 {TARGET}/{OTHER} 자리가 "
+                                         "있습니다 — 방향을 고르거나 자리를 지우세요.")
+    if sid in _pressure_scripts():
+        raise HTTPException(409, f"이미 있는 각본 id: {sid} — 기존 각본은 고치지 않습니다"
+                                 "(과거 런과의 대응 보존). 새 이름으로 등록하세요.")
+    sdir = PRESSURE_DIR / "scripts"
+    sdir.mkdir(parents=True, exist_ok=True)
+    dst = sdir / f"{sid}.json"
+    if dst.exists():
+        raise HTTPException(409, f"파일이 이미 있습니다: {dst.name}")
+    doc = {"script_id": sid, "label": (req.label or sid).strip(),
+           "target": req.target, "lines": lines}
+    if req.r0_line and req.r0_line.strip():
+        doc["r0_line"] = req.r0_line.strip()
+    dst.write_text(json.dumps(doc, ensure_ascii=False, indent=2), encoding="utf-8")
+    return {"ok": True, "script_id": sid, "file": dst.name}
+
+
+@app.get("/api/pressure/runs")
+def api_pressure_runs():
+    """runs/<model>/ + runs/_dry/<model>/ 스캔 → 런 목록(최신순). _solo_scan 과 같은
+    원칙: 깨진 파일·체크포인트만 있는 런도 숨기지 않고 드러낸다."""
+    out = []
+    for dry in (False, True):
+        base = _pressure_runs_dir(dry)
+        if not base.exists():
+            continue
+        for mdir in sorted(base.iterdir()):
+            if not mdir.is_dir() or mdir.name.startswith("_"):
+                continue
+            done_keys = set()
+
+            def _mat_of(p: Path) -> str:
+                # 하위 폴더 이름 = 재료 issue_id (러너 out_dir 규칙 미러). 바로 아래 = 기본 재료.
+                return p.parent.name if p.parent != mdir else PRESSURE_DEFAULT_MATERIALS
+
+            # 기본 재료는 모델 폴더 바로 아래, 팀원 시나리오는 <issue_id>/ 하위 (러너 규칙 미러)
+            for p in sorted(mdir.glob("run_*.json")) + sorted(mdir.glob("*/run_*.json")):
+                rid_from_name = p.stem[len("run_"):]
+                mat_id = _mat_of(p)
+                try:
+                    doc = json.loads(p.read_text(encoding="utf-8"))
+                    if not isinstance(doc, dict):
+                        raise ValueError("결과가 JSON 객체가 아님")
+                except Exception:
+                    done_keys.add((mat_id, rid_from_name))
+                    out.append({"model": mdir.name, "run_id": rid_from_name,
+                                "materials": mat_id, "issue_id": mat_id,
+                                "file": p.name, "dry": dry, "broken": True,
+                                "partial": False, "mtime": p.stat().st_mtime})
+                    continue
+                rid = doc.get("run_id") or rid_from_name
+                done_keys.add((mat_id, rid))
+                meta = doc.get("meta") or {}
+                poll = (doc.get("final_poll") or "").strip()
+                out.append({"model": mdir.name, "run_id": rid,
+                            "materials": mat_id, "issue_id": doc.get("issue_id"),
+                            "file": p.name,
+                            "dry": dry, "script": doc.get("script"),
+                            "script_label": doc.get("script_label"),
+                            "value_set": doc.get("value_set"),
+                            "aligned": doc.get("aligned"), "rep": doc.get("rep"),
+                            "final_poll": poll[:60], "model_id": meta.get("model_id"),
+                            "finished_at": meta.get("finished_at"),
+                            "partial": False, "broken": False,
+                            "mtime": p.stat().st_mtime})
+            for p in (sorted(mdir.glob("run_*.partial.jsonl"))
+                      + sorted(mdir.glob("*/run_*.partial.jsonl"))):
+                rid = p.name[len("run_"):-len(".partial.jsonl")]
+                mat_id = _mat_of(p)
+                if (mat_id, rid) in done_keys:
+                    continue
+                out.append({"model": mdir.name, "run_id": rid,
+                            "materials": mat_id, "issue_id": mat_id, "file": p.name,
+                            "dry": dry, "partial": True, "broken": False,
+                            "mtime": p.stat().st_mtime})
+    out.sort(key=lambda r: r.get("mtime") or 0, reverse=True)
+    return {"runs": out}
+
+
+@app.get("/api/pressure/detail")
+def api_pressure_detail(model: str, run_id: str, dry: bool = False,
+                        materials: str = PRESSURE_DEFAULT_MATERIALS):
+    """런 한 벌 원문 — 라운드별 글·수첩(글자 수·여백)·각본 대사·최종 선택."""
+    _solo_check_names(model, run_id)     # 같은 경로 문자 방어(영숫자·밑줄·하이픈만)
+    if not _SOLO_NAME_RE.fullmatch(materials):
+        raise HTTPException(400, "materials 는 영숫자·밑줄·하이픈만 받는다")
+    base = _pressure_runs_dir(dry) / model
+    if materials != PRESSURE_DEFAULT_MATERIALS:
+        base = base / materials
+    p = base / f"run_{run_id}.json"
+    if not p.exists():
+        raise HTTPException(404, f"런 없음: {p.name}")
+    try:
+        doc = json.loads(p.read_text(encoding="utf-8"))
+        if not isinstance(doc, dict):
+            raise ValueError("결과가 JSON 객체가 아님")
+    except (ValueError, OSError):
+        raise HTTPException(422, f"깨진 결과 파일: {p.name} — 파일을 치운 뒤 재실행해야 "
+                                 "러너가 다시 돈다(깨진 파일이 있으면 러너는 [skip]한다).")
+    meta = doc.get("meta") or {}
+    budget = meta.get("note_budget") or 500
+    essays = [{"round": i, "text": t, "len": len(t or "")}
+              for i, t in enumerate(doc.get("essays") or [])]
+    notes = [{"round": i, "text": t, "len": len(t or ""),
+              "margin": budget - len(t or "")}
+             for i, t in enumerate(doc.get("notes") or [])]
+    return {"model": model, "run_id": run_id, "dry": dry,
+            "script": doc.get("script"), "script_label": doc.get("script_label"),
+            "script_line": doc.get("script_line"),
+            # 등록 각본판 필드 — 구판 산출물엔 없다(None 이면 화면이 단일 대사로 그린다)
+            "script_lines": doc.get("script_lines"),
+            "script_r0_line": doc.get("script_r0_line"),
+            "script_source": doc.get("script_source"),
+            "value_set": doc.get("value_set"),
+            "value_categories": doc.get("value_categories"),
+            "aligned": doc.get("aligned"), "rep": doc.get("rep"),
+            "meta": meta, "note_budget": budget,
+            "essays": essays, "notes": notes,
+            "final_poll": doc.get("final_poll")}

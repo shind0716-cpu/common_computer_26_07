@@ -1,0 +1,47 @@
+{
+  "scanned_at": "2026-08-24T03:50:29.355690+00:00",
+  "dry": true,
+  "rows": [
+    {
+      "model": "gpt",
+      "run_id": "C0_A_rep1",
+      "script": "C0",
+      "value_set": "A",
+      "rep": 1,
+      "aligned": "노린재 수련원",
+      "materials_hash": "bacc5ce64e8a",
+      "dry": true,
+      "essay_anchor_counts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "note_anchor_counts": [
+        0,
+        0,
+        0
+      ],
+      "note_anchors": [
+        [],
+        [],
+        []
+      ],
+      "cat_alive_last_note": {
+        "식사": false,
+        "이동": false,
+        "위생": false,
+        "수면": false,
+        "교육": false,
+        "환경": false
+      },
+      "n_in_alive": 0,
+      "n_out_alive": 0,
+      "gap_in_minus_out": 0,
+      "final_choice": null,
+      "final_unreadable": true,
+      "flipped": false,
+      "final_poll_text": "[DRY final_poll]"
+    }
+  ]
+}
