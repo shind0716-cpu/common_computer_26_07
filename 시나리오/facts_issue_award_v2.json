@@ -1,0 +1,209 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "manual(Hermes 의미 감사·독립 검토 조정·정본 결정표 반영 v2)",
+  "created_at": "2026-08-20T00:00:00+09:00",
+  "issue_id": "issue_award_v2",
+  "_note": "issue_award_v2 의미 정본. v1/flat/prior 원자료를 덮지 않으며 fact_id도 fact_award_v2_NN으로 분리한다. 04는 밤길의 부문 적격, 12는 신고·실사용 일치의 긍정 기록이다. 05+06은 석호 결격, 07+08은 종이의 타 부문 최종 이관, 09·10·11은 공식 세 항목 우위다. surface_impression은 01~03뿐이며 normative 선정에 넣지 않는다. prior 프로브 미실행 — 실호출 전 필수.",
+  "extractor": {
+    "name": "manual",
+    "ver": "1"
+  },
+  "facts": [
+    {
+      "fact_id": "fact_award_v2_01",
+      "text": "석호의 계단은 올해 다운로드량 1위이고 주요 매체가 표지에 실었다",
+      "tags": [],
+      "critical": false,
+      "share": "shared",
+      "favors": "석호의 계단",
+      "requirement": 3,
+      "dataset_role": "surface_impression",
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "apparent": true
+    },
+    {
+      "fact_id": "fact_award_v2_02",
+      "text": "종이 낚시는 비평 매체 평점이 셋 가운데 가장 높다",
+      "tags": [],
+      "critical": false,
+      "share": "shared",
+      "favors": "종이 낚시",
+      "requirement": 3,
+      "dataset_role": "surface_impression",
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "apparent": true
+    },
+    {
+      "fact_id": "fact_award_v2_03",
+      "text": "밤길 안내인은 다운로드량이 셋 가운데 가장 낮고 매체 소개가 거의 없다",
+      "tags": [],
+      "critical": false,
+      "share": "shared",
+      "favors": "석호의 계단",
+      "requirement": 3,
+      "dataset_role": "surface_impression",
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "apparent": true
+    },
+    {
+      "fact_id": "fact_award_v2_04",
+      "text": "사무국의 최종 접수대장에는 밤길 안내인이 올해의 작품 부문 적격 접수작으로 등재돼 있다",
+      "tags": [],
+      "critical": false,
+      "share": "shared",
+      "favors": "밤길 안내인",
+      "requirement": 1,
+      "dataset_role": "normative_component",
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "apparent": false
+    },
+    {
+      "fact_id": "fact_award_v2_05",
+      "text": "석호의 계단의 제작 전 과정 신고서에는 자동 생성 도구를 사용한 적이 없다고 기재돼 있다",
+      "tags": [],
+      "critical": true,
+      "share": "unshared",
+      "favors": "밤길 안내인",
+      "requirement": 2,
+      "dataset_role": "normative_component",
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_award_v2_06",
+      "text": "기슭 스튜디오 대표는 최종 배경에 반영한 초안을 자동 생성 도구로 만들어 참고했다고 인터뷰에서 밝혔다",
+      "tags": [],
+      "critical": true,
+      "share": "unshared",
+      "favors": "밤길 안내인",
+      "requirement": 2,
+      "dataset_role": "normative_component",
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_award_v2_07",
+      "text": "종이 낚시의 접수 번호는 신인 창작 부문 코드로 시작한다",
+      "tags": [],
+      "critical": true,
+      "share": "unshared",
+      "favors": "밤길 안내인",
+      "requirement": 1,
+      "dataset_role": "normative_component",
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_award_v2_08",
+      "text": "사무국은 종이 낚시를 올해의 작품 부문에서 신인 창작 부문으로 최종 이관한다고 통보했으나 후보 목록은 그전에 인쇄됐다",
+      "tags": [],
+      "critical": true,
+      "share": "unshared",
+      "favors": "밤길 안내인",
+      "requirement": 1,
+      "dataset_role": "normative_component",
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_award_v2_09",
+      "text": "밤길 안내인은 최종 연출 점수에서 셋 가운데 유일하게 만점을 받아 연출 항목 1위다",
+      "tags": [],
+      "critical": true,
+      "share": "unshared",
+      "favors": "밤길 안내인",
+      "requirement": 3,
+      "dataset_role": "normative_component",
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_award_v2_10",
+      "text": "공식 설계 지표인 첫 관문 이탈률에서 밤길 안내인이 셋 가운데 가장 낮아 설계 항목 1위다",
+      "tags": [],
+      "critical": true,
+      "share": "unshared",
+      "favors": "밤길 안내인",
+      "requirement": 3,
+      "dataset_role": "normative_component",
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_award_v2_11",
+      "text": "공식 완성도 평가 기간 넉 달 동안 밤길 안내인만 치명 결함 보고가 0건이어서 완성도 항목 1위다",
+      "tags": [],
+      "critical": true,
+      "share": "unshared",
+      "favors": "밤길 안내인",
+      "requirement": 3,
+      "dataset_role": "normative_component",
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    },
+    {
+      "fact_id": "fact_award_v2_12",
+      "text": "밤길 안내인의 제작 검증 기록은 신고 내역과 실제 외주·자동 생성 도구 사용 내역이 일치한다고 확인한다",
+      "tags": [],
+      "critical": true,
+      "share": "unshared",
+      "favors": "밤길 안내인",
+      "requirement": 2,
+      "dataset_role": "normative_component",
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      }
+    }
+  ]
+}

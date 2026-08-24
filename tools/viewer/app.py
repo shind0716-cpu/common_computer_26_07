@@ -120,7 +120,21 @@ def _run_meta(issue_id: str, run_id: str) -> dict | None:
     return None
 
 
-def _available_runs() -> list[dict]:
+def _is_unvetted(*docs: dict | None) -> bool:
+    """서로 독립 저장된 source/judgment 중 하나라도 development-only면 True."""
+    policies = [doc for doc in docs if isinstance(doc, dict)]
+    tiers = {doc.get("promotion_tier") for doc in policies
+             if doc.get("promotion_tier") is not None}
+    if "pilot_unvetted" in tiers or len(tiers) > 1:
+        return True
+    for doc in policies:
+        for key in ("aggregate_eligible", "report_eligible"):
+            if key in doc and (not isinstance(doc[key], bool) or doc[key] is False):
+                return True
+    return False
+
+
+def _available_runs(include_unvetted: bool = False) -> list[dict]:
     """data/debates 스캔 → run 목록(부분/완전 모두). 존재 기준 = debate.jsonl (§G).
     run_id 는 파일 내용에서, issue_id 는 파일명 접미 제거로 역추출. '4파일 완비' 특례 없음."""
     out: list[dict] = []
@@ -142,17 +156,30 @@ def _available_runs() -> list[dict]:
         # 조건 좌표 — run_meta(스키마 v0.3 §4‴)가 있으면 로그에서 읽는다. 없으면 null:
         # run 이름에서 조건을 추측하지 않는다(그게 애초에 없애려던 문제다).
         meta = _run_meta(issue_id, run_id)
+        judgment_doc = None
+        if parts["judgment"] == "present":
+            try:
+                loaded = json.loads(paths.judgment(issue_id, run_id).read_text(encoding="utf-8"))
+                judgment_doc = loaded if isinstance(loaded, dict) else None
+            except Exception:
+                judgment_doc = None
+        unvetted = _is_unvetted(meta, judgment_doc)
+        if unvetted and not include_unvetted:
+            continue
         item = {
             "issue_id": issue_id, "run_id": run_id, "title": _issue_title(issue_id),
             "run_state": run_state, "parts": parts,
             "condition": (meta or {}).get("condition"),
             "settings": (meta or {}).get("settings"),
             "config_ref": (meta or {}).get("config_ref"),
+            "promotion_tier": ((meta or {}).get("promotion_tier")
+                               or (judgment_doc or {}).get("promotion_tier")),
+            "unvetted": unvetted,
             "stage_type": None, "judge": None, "n_stages": None, "far_system": None,
         }
         if parts["judgment"] == "present":
             try:
-                jd = json.loads(paths.judgment(issue_id, run_id).read_text(encoding="utf-8"))
+                jd = judgment_doc or {}
                 item.update(
                     stage_type=jd.get("stage_type"),
                     judge=(jd.get("judge") or {}).get("model"),
@@ -213,8 +240,8 @@ def _partial_viewmodel(issue_id: str, run_id: str) -> dict:
 
 
 @app.get("/api/runs")
-def api_runs() -> dict:
-    return {"runs": _available_runs()}
+def api_runs(include_unvetted: bool = False) -> dict:
+    return {"runs": _available_runs(include_unvetted=include_unvetted)}
 
 
 @app.get("/api/viewmodel/{issue_id}/{run_id}")
@@ -924,6 +951,17 @@ def _pair_record(issue_id: str, run_id: str) -> dict:
         "assumed_full": edge_meta["assumed_full"],
     }
     access = audit.get("access") or {}
+    judgment_policy = {}
+    try:
+        judgment_doc = json.loads(paths.judgment(issue_id, run_id).read_text(encoding="utf-8"))
+        if isinstance(judgment_doc, dict):
+            judgment_policy = {key: judgment_doc[key] for key in
+                               ("promotion_tier", "aggregate_eligible", "report_eligible")
+                               if key in judgment_doc}
+    except (FileNotFoundError, ValueError, OSError):
+        # _pair_record의 순수 조립 테스트와 구 legacy 판정은 policy 필드가 없다.
+        # 실제 malformed judgment는 앞선 api_audit가 이미 거부한다.
+        judgment_policy = {}
     return {
         "run_id": run_id, "judge": audit["judge"], "far": audit["far"],
         "ledger_mode": ledger_view["ledger_mode"],
@@ -940,6 +978,7 @@ def _pair_record(issue_id: str, run_id: str) -> dict:
             "note": access.get("note"),
         },
         "run_meta": _run_meta(issue_id, run_id),
+        "judgment_policy": judgment_policy,
         "analysis": analysis["report"],
         # 발화 전문은 audit 산출을 그대로 싣는다. crossrun은 읽거나 가공하지 않는다.
         "utterances": audit["utterances"],

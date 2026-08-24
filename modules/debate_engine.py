@@ -460,6 +460,9 @@ def run(issue_id: str, run_id: str, config_path: Path, *,
         "run_meta",
         issue_id=issue_id,
         condition=cfg.get("condition"),          # 사람용 슬러그. 없으면 null
+        promotion_tier=cfg.get("promotion_tier", "confirmatory"),
+        aggregate_eligible=bool(cfg.get("aggregate_eligible", True)),
+        report_eligible=bool(cfg.get("report_eligible", True)),
         config_ref={"name": config_path.name,
                     "sha256": sha256(config_path.read_text(encoding="utf-8"))},
         settings={

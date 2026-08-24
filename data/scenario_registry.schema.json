@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "scenario_registry.schema.json",
+  "title": "Console scenario promotion registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "legacy_policy", "entries"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "legacy_policy": {"const": "deny_unless_explicit_legacy_approved"},
+    "entries": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/entry"}
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "requiredArtifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "version", "sha256"],
+      "properties": {
+        "required": {"const": true},
+        "version": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "exemptArtifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "reason"],
+      "properties": {
+        "required": {"const": false},
+        "reason": {"type": "string", "minLength": 1}
+      }
+    },
+    "artifact": {
+      "oneOf": [
+        {"$ref": "#/$defs/requiredArtifact"},
+        {"$ref": "#/$defs/exemptArtifact"}
+      ]
+    },
+    "prior": {
+      "oneOf": [
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["required", "status"],
+          "properties": {"required": {"const": true}, "status": {"enum": ["pending", "completed"]}}
+        },
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["required", "status", "reason"],
+          "properties": {
+            "required": {"const": false}, "status": {"const": "exempt"},
+            "reason": {"type": "string", "minLength": 1}
+          }
+        }
+      ]
+    },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["issue_id", "state", "outcome_policy", "material", "spec", "calibration",
+                   "prior", "approved_by", "approved_at"],
+      "properties": {
+        "issue_id": {"type": "string", "pattern": "^issue_[A-Za-z0-9_-]+$"},
+        "state": {"enum": ["candidate", "canonical_reviewed", "spec_ready", "calibration_ready",
+                            "prior_ready", "console_approved", "pilot_only", "confirmatory_frozen",
+                            "legacy_approved"]},
+        "outcome_policy": {"enum": ["normative_decision", "descriptive_stance_only"]},
+        "material": {
+          "type": "object", "additionalProperties": false,
+          "required": ["issue_sha256", "facts_sha256", "assignment_sha256"],
+          "properties": {
+            "issue_sha256": {"$ref": "#/$defs/sha256"},
+            "facts_sha256": {"$ref": "#/$defs/sha256"},
+            "assignment_sha256": {"$ref": "#/$defs/sha256"}
+          }
+        },
+        "spec": {"$ref": "#/$defs/artifact"},
+        "calibration": {"$ref": "#/$defs/artifact"},
+        "prior": {"$ref": "#/$defs/prior"},
+        "approved_by": {"type": ["string", "null"]},
+        "approved_at": {"type": ["string", "null"]}
+      },
+      "allOf": [{
+        "if": {"properties": {"state": {"enum": ["console_approved", "pilot_only", "confirmatory_frozen", "legacy_approved"]}}},
+        "then": {
+          "properties": {
+            "approved_by": {"type": "string", "minLength": 1},
+            "approved_at": {"type": "string", "minLength": 1}
+          }
+        }
+      }]
+    }
+  }
+}

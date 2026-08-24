@@ -1,0 +1,62 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "assignment_gen v1 (split_pairs)",
+  "issue_id": "issue_award",
+  "seed": 42,
+  "overlap_k": 1,
+  "agents": [
+    {
+      "agent_id": "agent_1",
+      "perspective": "참석자A",
+      "stance": "none",
+      "assigned_fact_ids": [
+        "fact_award_01",
+        "fact_award_02",
+        "fact_award_03",
+        "fact_award_04",
+        "fact_award_08",
+        "fact_award_10"
+      ]
+    },
+    {
+      "agent_id": "agent_2",
+      "perspective": "참석자B",
+      "stance": "none",
+      "assigned_fact_ids": [
+        "fact_award_01",
+        "fact_award_02",
+        "fact_award_03",
+        "fact_award_04",
+        "fact_award_07",
+        "fact_award_11"
+      ]
+    },
+    {
+      "agent_id": "agent_3",
+      "perspective": "참석자C",
+      "stance": "none",
+      "assigned_fact_ids": [
+        "fact_award_01",
+        "fact_award_02",
+        "fact_award_03",
+        "fact_award_04",
+        "fact_award_05",
+        "fact_award_12"
+      ]
+    },
+    {
+      "agent_id": "agent_4",
+      "perspective": "참석자D",
+      "stance": "none",
+      "assigned_fact_ids": [
+        "fact_award_01",
+        "fact_award_02",
+        "fact_award_03",
+        "fact_award_04",
+        "fact_award_06",
+        "fact_award_09"
+      ]
+    }
+  ],
+  "_note": "agent_1: req=[1, 3] favors=밤길 안내인,밤길 안내인; agent_2: req=[1, 3] favors=밤길 안내인,밤길 안내인; agent_3: req=[2, 3] favors=밤길 안내인,밤길 안내인; agent_4: req=[2, 3] favors=밤길 안내인,밤길 안내인"
+}
