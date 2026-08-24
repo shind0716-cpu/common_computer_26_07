@@ -87,16 +87,8 @@
   <div class="panel">
     <h2>시나리오 고르기</h2>
     <p class="why">실험을 돌리기 전에 "이 시나리오가 무엇을 묻고, 누가 무엇을 아는가"를
-       확인한다. <b>승격 registry의 승인 상태 + 현재 바이트 기계 검사</b>를 모두 통과한 것만
-       보인다. 여기서 고른 시나리오가 설정·실행 탭에도 함께 선택된다.</p>
+       확인한다. 여기서 고른 시나리오가 <b>설정·실행 탭에도 함께 선택</b>된다.</p>
     <div class="runlist"><table id="scnList"></table></div>
-  </div>
-  <div class="panel">
-    <h2>승격 관문 상태</h2>
-    <p class="why">확증 문(원장 등재분)과 파일럿 문(data/issues 발견분 전부)을 나란히 —
-       차단된 재료도 이유를 숨기지 않고 보여준다. 이 표의 차단 행은
-       선택·실행 목록에는 들어가지 않는다.</p>
-    <div class="runlist"><table id="gateList"></table></div>
   </div>
   <div class="panel" id="scnDetailPanel">
     <h2>원문</h2>
@@ -146,15 +138,8 @@
        sha256 이 로그의 run_meta 에 찍힌다 — 산출물이 자기 조건을 안다.</p>
     <div class="grid" id="form"></div>
     <div class="grid" style="margin-top:14px">
-      <div><label>이슈<span class="h">확증 승인 + 파일럿 기계검증 통과분</span></label>
+      <div><label>이슈<span class="h">data/issues 에 있는 것</span></label>
         <select id="issue_id"></select></div>
-      <div><label>승격 문<span class="h">파일럿 = 검수 전 재료. 산출물에 pilot/ 라벨, 집계 기본 제외, 보고 인용 금지(G-3·G-4)</span></label>
-        <select id="promotion_tier">
-          <option value="confirmatory">확증 (registry 도장 필요)</option>
-          <option value="pilot_unvetted">파일럿 — 검수 전 (상한 필수 ≤30콜)</option>
-        </select></div>
-      <div><label>콜 상한<span class="h">파일럿 필수(≤30) — 없거나 넘으면 서버가 400 으로 막는다(G-2)</span></label>
-        <input type="number" id="max_llm_calls" placeholder="파일럿: 예 30" min="1"></div>
       <div><label>run_id<span class="h">기존 run 을 덮어쓰지 않는다(append-only)</span></label>
         <input type="text" id="run_id" placeholder="예: note001"></div>
       <div><label>조건 슬러그<span class="h">사람용 이름. 예: talk-note</span></label>
@@ -243,8 +228,6 @@
     <div class="grid">
       <div><label>재료(이슈)<span class="h">기본 issue_camp = 종전 실험. 다른 재료는 산출물이 runs/&lt;모델&gt;/&lt;이슈&gt;/ 로 갈립니다</span></label>
         <select id="s_issue"></select></div>
-      <div id="s_capBox" style="display:none"><label>콜 상한<span class="h">파일럿(검수전) 재료 필수 — 없거나 30 초과·견적 초과면 서버가 400 으로 막는다(G-2)</span></label>
-        <input type="number" id="s_cap" placeholder="예: 30" min="1"></div>
       <div id="s_stanceBox" style="display:none"><label>입장<span class="h">입장 대립형 재료 — 같은 재료를 입장별로 각각 돌립니다</span></label>
         <select id="s_stance"></select></div>
       <div><label>모델<span class="h" id="s_modelHelp">키가 있는 모델만 실행됩니다</span></label>
@@ -328,7 +311,7 @@
        어긋나게 뒤집히는가를 잰다. 러너는 experiments/pressure_category/run_pressure.py —
        콘솔은 부르고 <b>읽기만</b> 한다. 설계·판정 기준은 같은 폴더의 PREREG_v0.md.</p>
     <div class="grid">
-      <div><label>시나리오(재료)<span class="h">materials/ 폴더에 넣은 시나리오가 자동으로 뜹니다 — 새 시나리오 만들기는 README_팀원용·MATERIALS_TEMPLATE 참고. 기본 외 재료 산출물은 runs/&lt;모델&gt;/&lt;재료&gt;/ 로 갈립니다</span></label>
+      <div><label>시나리오(재료)<span class="h">materials/ 폴더에 넣은 시나리오가 자동으로 뜹니다 — 새 시나리오 만들기는 README_팀원용·MATERIALS_TEMPLATE 참고. 견본(example)은 이해·드라이런 전용이고 실호출이 막힙니다. 산출물은 runs/&lt;모델&gt;/&lt;재료&gt;/ 로 갈립니다</span></label>
         <select id="p_materials"></select>
         <div class="foot" id="p_matInfo"></div></div>
       <div><label>모델<span class="h" id="p_modelHelp">키가 있는 모델만 실행됩니다</span></label>
@@ -381,6 +364,27 @@
     <div style="margin-top:10px;display:flex;gap:9px;align-items:center;flex-wrap:wrap">
       <button class="alt" id="pn_btn">각본 등록</button>
       <span class="foot" id="pn_msg">등록하면 위 각본 목록과 러너 --scripts 에 바로 뜬다 (scripts/&lt;id&gt;.json).</span>
+    </div>
+  </div>
+  <div class="panel">
+    <h2>새 가치 세트(페르소나) 등록</h2>
+    <p class="why">페르소나는 <b>카테고리 카드</b>로 짓는다 — ＋를 눌러 카드를 추가하고,
+       카드마다 <b>이름</b>(예: 식사, 정치적 신념 — 자유)과 <b>내용</b>(그 가치를 말하는 문장)을
+       채운다. 내용을 이어 붙인 것이 [너의 가치] 칸으로 에이전트에게 들어간다.
+       <b>이름이 시나리오 카테고리와 같은 카드만 측정</b>되고(생존 집계·정렬 답 계산),
+       시나리오 밖 이름은 문장에는 들어가되 측정 밖이다. 정렬 답은 측정 카드의 우세
+       다수결로 자동 계산 — 동수거나 측정 카드가 없으면 뒤집힘을 잴 수 없고 방향 압박
+       (C1/C2 류)은 러너가 거부한다. 등록은 새 이름으로 추가만(기존 세트 수정 불가).
+       대상 시나리오는 위에서 고른 것.</p>
+    <div class="grid">
+      <div><label>가치 세트 id<span class="h">영숫자·밑줄·하이픈 1~24자 — run_id 에 들어감</span></label>
+        <input type="text" id="pv_id" placeholder="food_first"></div>
+    </div>
+    <div id="pv_rows" style="margin-top:10px"></div>
+    <div style="margin-top:8px;display:flex;gap:9px;align-items:center;flex-wrap:wrap">
+      <button class="alt" id="pv_add">＋ 카테고리 카드</button>
+      <button class="alt" id="pv_btn">가치 세트 등록</button>
+      <span class="foot" id="pv_msg">등록하면 위 가치 세트 목록과 러너 --vsets 에 바로 뜬다 (values/&lt;id&gt;.json).</span>
     </div>
   </div>
   <div class="panel">
@@ -439,42 +443,19 @@ let SCN=null, SCN_REVEAL=false;
 function renderScnList(){
   const t=$('#scnList'); t.innerHTML='';
   const hr=el('tr');
-  ['시나리오','승격','결과 정책','트랙','팩트','critical','공유/미공유','에이전트','배분'].forEach(h=>hr.append(el('th',null,h)));
+  ['시나리오','트랙','팩트','critical','공유/미공유','에이전트','배분'].forEach(h=>hr.append(el('th',null,h)));
   t.append(hr);
   (META.issue_rows||[]).forEach(r=>{
     const tr=el('tr');
     if(SCN && SCN.issue_id===r.issue_id) tr.classList.add('sel');
     // 목록에선 가벼운 값만 — 자세한 건 클릭 후 조회한다.
     tr.append(el('td',null,r.issue_id));
-    tr.append(el('td',null,r.promotion_tier==='pilot_unvetted'
-                   ? '파일럿(검수전)' : (r.promotion_state||'—')));
-    tr.append(el('td',null,r.outcome_policy||'—'));
     tr.append(el('td',null,r.coop?'협력·무입장':(r.has_assignment?'재현 '+r.stances.join('/'):'배분표 없음')));
     ['—','—','—','—','—'].forEach(v=>tr.append(el('td',null,v)));
     tr.onclick=()=>loadScn(r.issue_id);
     t.append(tr);
   });
   if(SCN) fillScnRow();
-  renderGateList();
-}
-
-function renderGateList(){
-  const t=$('#gateList'); if(!t) return; t.innerHTML='';
-  const hr=el('tr'); ['시나리오','문','상태','실행','차단 이유 / 경고'].forEach(h=>hr.append(el('th',null,h))); t.append(hr);
-  // 두 문을 나란히 — 확증(원장 등재분)과 파일럿(data/issues 발견분 전부).
-  // 파일럿 행 덕에 원장 미등재 재료도 이유 없이 사라지지 않는다(결정 패킷 §5-2).
-  const rows=[...(META.scenario_gate_rows||[]).map(r=>({gate:'확증',...r})),
-              ...(META.pilot_gate_rows||[]).map(r=>({gate:'파일럿',...r}))];
-  rows.forEach(r=>{
-    const tr=el('tr');
-    tr.append(el('td',null,r.issue_id));
-    tr.append(el('td',null,r.gate));
-    tr.append(el('td',null,r.state||(r.gate==='파일럿'?'미등재':'미등록/오류')));
-    tr.append(el('td',null,r.allowed?'PASS':'BLOCK'));
-    const reasons=[...(r.blocking_reasons||[]),...(r.warnings||[]).map(x=>'경고: '+x)];
-    tr.append(el('td',r.allowed?'':'warn',reasons.join(' · ')||'—'));
-    t.append(tr);
-  });
 }
 
 function fillScnRow(){
@@ -488,7 +469,7 @@ function fillScnRow(){
   const vals=[String(SCN.n_facts), String(SCN.n_critical), share,
               String(SCN.agents.length),
               (SCN.assignment_mode||'—')+(SCN.overlap_k!=null?` k=${SCN.overlap_k}`:'')];
-  vals.forEach((v,i)=>{ r.cells[i+4].textContent=v; });
+  vals.forEach((v,i)=>{ r.cells[i+2].textContent=v; });
 }
 
 async function loadScn(iid){
@@ -554,11 +535,7 @@ function renderScnDetail(){
         if(v===undefined || v===null) txt='—';
         else if(Array.isArray(v)) txt=v.join(',');
         else if(typeof v==='object'){
-          // score 가 null 이면 "프로브를 아직 안 돌린 것"이다. String(null) 로 "null" 을
-          // 찍으면 known 0(=0) 과 글자만 다른 값이 되어 검수자가 둘을 못 가른다.
-          txt = ('score' in v)
-            ? (v.score === null ? '미실행' : String(v.score))
-            : JSON.stringify(v);
+          txt = ('score' in v) ? String(v.score) : JSON.stringify(v);
           tip = JSON.stringify(v);
         }
         else txt=String(v);
@@ -611,12 +588,17 @@ $('#btnVariant').onclick = async ()=>{
   const d=await r.json();
   $('#btnVariant').disabled=false;
   if(!r.ok){ $('#vmsg').innerHTML='<span class="warn">✗ '+(d.detail||'')+'</span>'; return; }
-  $('#vmsg').textContent='candidate로 만들었습니다 → '+d.issue_id+
-    ' (에이전트 '+d.n_agents+'명). 파일럿 문(기계검증)을 통과하면 목록에 파일럿으로 뜨고, '+
-    '확증 실행은 registry 승인이 필요합니다.';
-  // 새 파일은 승인 증거가 아니다. 감사 표만 갱신하고 기존 승인 시나리오 선택을 유지한다.
+  $('#vmsg').textContent='만들었습니다 → '+d.issue_id+' (에이전트 '+d.n_agents+'명)';
+  // 목록·폼을 다시 읽어 새 이슈가 바로 보이게 한다.
   META=await (await fetch('/api/meta')).json();
-  renderScnList();
+  const is=$('#issue_id'); is.innerHTML='';
+  (META.issue_rows||[]).forEach(row=>{
+    const tag = row.coop ? '협력·무입장'
+      : (row.has_assignment ? '재현 트랙 '+(row.stances||[]).join('/') : '배분표 없음');
+    const o=el('option',null,`${row.issue_id}  —  ${tag}`); o.value=row.issue_id; is.append(o);
+  });
+  is.value=d.issue_id;
+  renderScnList(); loadScn(d.issue_id); estimate();
 };
 
 // ─── 팩트 생존 (FAR) ───
@@ -712,24 +694,15 @@ async function boot(){
   });
   // 이슈 목록 — 트랙(협력/재현)을 이름 옆에 적는다. 고른 뒤에 알게 되면 늦다.
   const is=$('#issue_id'); is.innerHTML='';
-  const approvedRows=(META.issue_rows||META.issues.map(v=>({issue_id:v})));
-  approvedRows.forEach(r=>{
-    let tag = r.coop ? '협력·무입장' :
+  (META.issue_rows||META.issues.map(v=>({issue_id:v}))).forEach(r=>{
+    const tag = r.coop ? '협력·무입장' :
                 (r.has_assignment ? '재현 트랙 '+(r.stances||[]).join('/') : '배분표 없음');
-    if(r.promotion_tier==='pilot_unvetted') tag += ' · 파일럿(검수전)';
     const o=el('option',null,`${r.issue_id}  —  ${tag}`);
     o.value=r.issue_id; is.append(o);
   });
   // 협력 이슈를 기본 선택(수첩·누적창이 되는 쪽)
   const coopIssue=(META.issue_rows||[]).find(r=>r.coop);
   if(coopIssue) is.value=coopIssue.issue_id;
-  if(!approvedRows.length){
-    is.disabled=true;
-    window._blocked=true;
-    $('#btnRun').disabled=true;
-    $('#est').innerHTML='<span class="warn">승격 게이트를 통과한 시나리오가 없습니다.</span>';
-    $('#runmsg').textContent='registry 승인·독립 감사를 먼저 완료하세요.';
-  }
 
   // 모델 목록 — 키 없는 모델도 보여주되 왜 못 쓰는지 적고, 기본값은 키가 있는 첫 모델.
   const ms=$('#debate_model'); ms.innerHTML='';
@@ -755,13 +728,9 @@ async function boot(){
     + '<br>· 수첩 파싱 규칙 버전: <code>'+META.note_parse_ver+'</code>';
   f.addEventListener('change', estimate);
   $('#issue_id').onchange = estimate;
-  // 문·상한이 바뀌면 파일럿 사전 검사(estimate 안)가 다시 돌아야 한다.
-  $('#promotion_tier').onchange = estimate;
-  $('#max_llm_calls').oninput = estimate;
   ['rounds','judge_n_votes'].forEach(k=>{const e=$('#ax_'+k); if(e)e.oninput=estimate;});
   renderRuns();
-  renderScnList();
-  if(approvedRows.length) estimate();
+  estimate();
   poll();
 }
 
@@ -776,11 +745,7 @@ function payload(){
     reasoning:g('reasoning')||'default',
     ledger_mode:g('ledger_mode'), final_poll:g('final_poll')==='yes',
     seed:+$('#seed').value, debate_model:$('#debate_model').value,
-    debate_temperature:+$('#debate_temperature').value, judge_n_votes:3,
-    promotion_tier:($('#promotion_tier')?$('#promotion_tier').value:'confirmatory'),
-    // 파일럿 상한은 사람이 적은 숫자만 보낸다 — 빈 칸이면 null 로 보내 서버가 막게 한다
-    // (UI 가 기본값을 채워 넣으면 상한 관문이 장식이 된다).
-    max_llm_calls:($('#max_llm_calls')&&$('#max_llm_calls').value?+$('#max_llm_calls').value:null)
+    debate_temperature:+$('#debate_temperature').value, judge_n_votes:3
   };
 }
 
@@ -796,15 +761,6 @@ async function estimate(){
   (d.warnings||[]).forEach(w=>{ h += '<br><span class="warn">⚠ '+w+'</span>'; });
   // 차단 사유는 경고와 다르게 보여준다 — 실행 버튼도 잠근다.
   const blk = d.blocking||[];
-  // 파일럿 문: 상한을 여기서 미리 대조한다. 서버(/api/run → evaluate_pilot)가 같은 검사를
-  // 독립으로 다시 하지만, 버튼을 누르기 전에 문장으로 아는 편이 낫다(온도 관문 전례).
-  if(($('#promotion_tier')||{}).value==='pilot_unvetted'){
-    const cap = +($('#max_llm_calls').value||0);
-    if(!cap) blk.push('파일럿은 콜 상한이 필수다 — 콜 상한 칸에 숫자를 적어라(≤30).');
-    else if(cap>30) blk.push('파일럿 상한은 30콜까지다 — 그 이상은 확증 문으로 가라(G-2A).');
-    else if(d.total>cap) blk.push('예상 '+d.total+'콜이 상한 '+cap+'콜을 넘는다 — 라운드·수첩·폴링을 줄여라.');
-    h += '<br><span class="warn">⚠ 파일럿(검수 전) 실행 — 산출물에 pilot/ 라벨이 붙고 집계에서 기본 제외, 보고·발표 인용 금지.</span>';
-  }
   blk.forEach(b=>{ h += '<br><span class="warn">✗ 실행 불가: '+b+'</span>'; });
   $('#est').innerHTML = h;
   window._blocked = blk.length>0;   // 폴러가 이 값을 존중한다
@@ -1040,21 +996,14 @@ function ckVals(group){
     .filter(c=>c.checked).map(c=>c.value);
 }
 
-function sTier(iss){ return ((S.meta||{}).issue_tiers||{})[iss]||'confirmatory'; }
-
 function sPayload(){
   const iss=$('#s_issue').value;
   const many=((S.meta.issues||{})[iss]||[]).length>1;
-  const pilot=sTier(iss)==='pilot_unvetted';
   return {model:$('#s_model').value, issue:iss,
           stance_key: many ? $('#s_stance').value : null,
           arms:ckVals('arm'), memories:ckVals('mem'),
           reps:ckVals('rep').map(Number), note_budget:+$('#s_budget').value,
-          facts_reverse:$('#s_rev').checked, ns_final_poll:$('#s_ns').checked,
-          // tier 는 재료 속성에서 파생 — 사람이 고를 게 아니다. 상한은 사람이 적은
-          // 숫자만 보낸다(빈 칸이면 null → 서버가 막는다. UI 가 채우면 관문이 장식).
-          promotion_tier: pilot?'pilot_unvetted':'confirmatory',
-          max_llm_calls: (pilot&&$('#s_cap').value)?+$('#s_cap').value:null};
+          facts_reverse:$('#s_rev').checked, ns_final_poll:$('#s_ns').checked};
 }
 
 // 재료를 고르면 입장 칸을 켜고 끈다 — 입장이 하나뿐인 재료는 고를 게 없다.
@@ -1065,8 +1014,6 @@ function sSyncStance(){
     sel.innerHTML=''; list.forEach(k=>{ const o=el('option',null,k); o.value=k; sel.append(o); });
     box.style.display='';
   } else { sel.innerHTML=''; box.style.display='none'; }
-  // 파일럿(검수전) 재료일 때만 콜 상한 칸을 켠다.
-  $('#s_capBox').style.display = sTier($('#s_issue').value)==='pilot_unvetted' ? '' : 'none';
 }
 
 async function sEstimate(){
@@ -1100,15 +1047,6 @@ async function sEstimate(){
   if(d.existing && d.existing.length)
     h+='<br><span class="warn">⚠ 이미 결과가 있는 런 '+d.existing.length+'개는 러너가 건너뜁니다([skip]) — 실제 콜은 그만큼 적습니다: '
       +d.existing.join(', ')+'</span>';
-  // 파일럿 문: 상한을 미리 대조 — 서버(/api/solo/run → evaluate_pilot)가 같은 검사를
-  // 독립으로 다시 하지만, 버튼 누르기 전에 문장으로 아는 편이 낫다.
-  if(sTier(p.issue)==='pilot_unvetted'){
-    const cap=+($('#s_cap').value||0), lim=S.meta.pilot_call_limit||30;
-    h+='<br><span class="warn">⚠ 파일럿(검수전) 재료 — 산출물은 집계 기본 제외, 보고·발표 인용 금지.</span>';
-    if(!cap) h+='<br><span class="warn">✗ 콜 상한이 필수다 — 상한 칸에 숫자를 적어라(≤'+lim+').</span>';
-    else if(cap>lim) h+='<br><span class="warn">✗ 파일럿 상한은 '+lim+'콜까지다(G-2A).</span>';
-    else if(d.calls_max>cap) h+='<br><span class="warn">✗ 견적 상한 '+d.calls_max+'콜이 상한 '+cap+'콜을 넘는다 — 조건 수를 줄여라.</span>';
-  }
   $('#s_est').innerHTML=h;
   $('#s_v2gate').style.display=d.is_v2?'block':'none';
   sButtons();
@@ -1412,15 +1350,12 @@ async function sboot(){
   bs.value=S.meta.default_budget;
   const is=$('#s_issue'); is.innerHTML='';
   Object.keys(S.meta.issues||{'issue_camp':['fixed']}).forEach(k=>{
-    let tag = k===S.meta.default_issue?' (종전 실험)':'';
-    if(((S.meta.issue_tiers||{})[k])==='pilot_unvetted') tag+=' · 파일럿(검수전)';
-    const o=el('option',null, k+tag);
+    const o=el('option',null, k+(k===S.meta.default_issue?' (종전 실험)':''));
     o.value=k; is.append(o);
   });
   is.value=S.meta.default_issue||'issue_camp';
   sSyncStance();
   is.addEventListener('change', sSyncStance);
-  $('#s_cap').oninput=sEstimate;
   ['#s_issue','#s_stance','#s_model','#s_budget','#s_rev','#s_ns'].forEach(sel=>{ $(sel).onchange=sEstimate; });
   document.querySelectorAll('input[data-sg]').forEach(c=>c.onchange=sEstimate);
   $('#s_confirm').onchange=sButtons;
@@ -1497,6 +1432,23 @@ $('#pn_btn').onclick=async()=>{
   pRenderScripts(); pEstimate();
 };
 
+// 새 가치 세트(페르소나) 등록 — append-only. 성공하면 meta 갱신 + 목록 다시 그림.
+$('#pv_btn').onclick=async()=>{
+  const items=[...document.querySelectorAll('#pv_rows .pvrow')].map(r=>({
+    category:r.querySelector('.pvname').value.trim(),
+    content:r.querySelector('.pvcontent').value.trim()})).filter(it=>it.category||it.content);
+  const body={vset_id:$('#pv_id').value.trim(), materials:$('#p_materials').value, items:items};
+  const r=await fetch('/api/pressure/valueset',{method:'POST',
+    headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+  const d=await r.json();
+  if(!r.ok){ $('#pv_msg').innerHTML='<span class="warn">✗ '+(d.detail||'')+'</span>'; return; }
+  $('#pv_msg').innerHTML='✓ 등록됨: '+d.file
+    +' — 측정 '+(d.mapped||[]).length+'카드'+((d.unmapped||[]).length?' · 측정 밖: '+(d.unmapped||[]).join('·'):'')
+    +(d.aligned?' · 정렬 답: '+d.aligned:' · <span class="warn">'+(d.note||'정렬 불명')+'</span>');
+  try{ P.meta=await (await fetch('/api/pressure/meta')).json(); }catch(e){}
+  pSyncMaterials(); pEstimate();
+};
+
 // 시나리오를 고르면 가치 세트 칸의 라벨(카테고리·정렬 답)을 그 재료 것으로 다시 그린다.
 function pSyncMaterials(){
   const m=(P.meta.materials||{})[$('#p_materials').value];
@@ -1504,18 +1456,60 @@ function pSyncMaterials(){
   const prev=ckv('pvs');                       // 체크 상태는 유지
   host.innerHTML='';
   if(!m||m.broken){ $('#p_matInfo').textContent='재료 파일을 읽을 수 없습니다'; return; }
-  const entries=['A','B'].map(k=>{
-    const v=(m.vsets||{})[k]||{};
-    return [k, k+' '+(v.categories||[]).join('·')+(v.aligned?' → '+v.aligned:'')];
+  // 내장 A/B + 등록 페르소나(values/*.json) — 등록분은 ✎ 표시, 정렬 불명은 경고 표시.
+  const entries=Object.entries(m.vsets||{}).map(([k,v])=>{
+    const lab=k+' '+(v.categories||[]).join('·')
+      +(v.aligned?' → '+v.aligned:' — 정렬 불명(방향 압박 불가)')
+      +(v.custom?' ✎':'');
+    return [k, lab, v.statement||null];
   });
-  ck(host, entries, 'pvs');
-  [...document.querySelectorAll('input[data-pg=pvs]')].forEach(c=>{
-    c.checked=!prev.length||prev.includes(c.value);
+  entries.forEach(([v,name,tip])=>{
+    const l=el('label');
+    l.style.cssText='display:inline-flex;gap:4px;font-weight:400;margin:2px 12px 2px 0;align-items:center;cursor:pointer';
+    if(tip) l.title=tip;
+    const c=el('input'); c.type='checkbox'; c.value=v; c.dataset.pg='pvs'; c.style.width='auto';
+    c.checked=prev.length?prev.includes(v):(v==='A'||v==='B');
     c.onchange=pEstimate;
+    l.append(c); l.append(document.createTextNode(name));
+    host.append(l);
   });
-  $('#p_matInfo').textContent='선택지: '+(m.options||[]).join(' vs ')
+  $('#p_matInfo').textContent=(m.example?'⚠ 견본 재료 — 이해·드라이런 전용, 실호출은 서버가 거부합니다. ':'')
+    +'선택지: '+(m.options||[]).join(' vs ')
     +' · 카테고리 '+(m.categories||[]).length+'개 ('+(m.categories||[]).join('·')+') · 파일 '+m.file;
+  pvRefreshBadges();
 }
+
+// 페르소나 카드 행 — [이름][내용][측정 배지][삭제]. 이름이 지금 고른 시나리오의
+// 카테고리와 같으면 "측정됨", 아니면 "측정 밖"을 실시간으로 보여준다.
+function pvBadge(row){
+  const m=(P.meta.materials||{})[$('#p_materials').value]||{};
+  const name=row.querySelector('.pvname').value.trim();
+  const b=row.querySelector('.pvbadge');
+  if(!name){ b.textContent=''; return; }
+  const hit=(m.categories||[]).includes(name);
+  b.textContent=hit?'측정됨':'측정 밖';
+  b.style.color=hit?'':'var(--dim)';
+}
+function pvAddRow(name, content){
+  const row=el('div');
+  row.className='pvrow';
+  row.style.cssText='display:flex;gap:8px;align-items:center;margin:4px 0;flex-wrap:wrap';
+  const n=el('input'); n.className='pvname'; n.placeholder='카테고리 이름 (예: 식사, 정치적 신념)';
+  n.style.cssText='width:220px'; n.value=name||'';
+  const c=el('input'); c.className='pvcontent'; c.placeholder='내용 — 그 가치를 말하는 문장 (예: 너에게는 밥이 제때 나오는 것이 중요하다.)';
+  c.style.cssText='flex:1;min-width:260px'; c.value=content||'';
+  const b=el('span','foot'); b.className='pvbadge foot'; b.style.minWidth='52px';
+  const x=el('button','alt','×'); x.style.cssText='padding:2px 9px';
+  x.onclick=()=>{ row.remove(); };
+  n.oninput=()=>pvBadge(row);
+  row.append(n); row.append(c); row.append(b); row.append(x);
+  $('#pv_rows').append(row);
+  pvBadge(row);
+}
+function pvRefreshBadges(){
+  document.querySelectorAll('#pv_rows .pvrow').forEach(pvBadge);
+}
+$('#pv_add').onclick=()=>pvAddRow();
 
 async function pEstimate(){
   const p=pPayload();
@@ -1540,9 +1534,10 @@ async function pEstimate(){
 
 function pButtons(){
   const busy=P.alive===true, ok=!!P.est;
+  const m=(P.meta&&P.meta.materials||{})[$('#p_materials').value];
   $('#p_btnDry').disabled=busy||!ok;
-  // 실호출은 사람 확인 체크가 있어야 열린다 — 콘솔이 대신 체크하지 않는다(관문 무력화 금지).
-  $('#p_btnRun').disabled=busy||!ok||!$('#p_confirm').checked;
+  // 실호출: 사람 확인 체크 필수(관문 무력화 금지) + 견본 재료는 잠금(서버도 400 으로 거부).
+  $('#p_btnRun').disabled=busy||!ok||!$('#p_confirm').checked||!!(m&&m.example);
 }
 
 async function pRun(dry){
@@ -1658,7 +1653,7 @@ function pRenderRuns(){
 async function pLoadDetail(r){
   const rr=await fetch('/api/pressure/detail?model='+encodeURIComponent(r.model)
     +'&run_id='+encodeURIComponent(r.run_id)
-    +'&materials='+encodeURIComponent(r.materials||'issue_dorm')
+    +'&materials='+encodeURIComponent(r.issue_id||r.materials||'')
     +(r.dry?'&dry=true':''));
   const d=await rr.json();
   const host=$('#p_detail'); host.innerHTML='';
@@ -1709,10 +1704,13 @@ async function pboot(){
   // 시나리오 목록 — materials/ 의 파일이 자동으로 뜬다 (깨진 파일도 드러내되 선택 불가)
   const mats=$('#p_materials'); mats.innerHTML='';
   Object.entries(P.meta.materials||{}).forEach(([k,v])=>{
-    const o=el('option',null,k+(v.broken?' — 깨진 파일':'')); o.value=k;
+    const o=el('option',null,k+(v.broken?' — 깨진 파일':v.example?' (견본 — 드라이런 전용)':''));
+    o.value=k;
     if(v.broken) o.disabled=true; mats.append(o);
   });
-  mats.value=P.meta.default_materials||'issue_dorm';
+  // 기본 재료는 없다 — 초기 선택은 "견본이 아닌 첫 재료", 없으면 견본(실습용).
+  const real=Object.entries(P.meta.materials||{}).find(([k,v])=>!v.broken&&!v.example);
+  mats.value=real?real[0]:((P.meta.example_materials||[])[0]||'');
   pRenderScripts();
   pSyncMaterials();
   ck($('#p_reps'), [['1','1'],['2','2'],['3','3']], 'prp');
@@ -1720,7 +1718,7 @@ async function pboot(){
   if(!P.meta.runner_exists)
     $('#p_msg').innerHTML='<span class="warn">✗ run_pressure.py 를 찾을 수 없습니다 — experiments/pressure_category/ 확인</span>';
   else if(!P.meta.materials_exists)
-    $('#p_msg').innerHTML='<span class="warn">✗ MATERIALS_v0.json 이 없습니다 — 재료부터</span>';
+    $('#p_msg').innerHTML='<span class="warn">✗ materials/ 에 재료가 없습니다 — MATERIALS_TEMPLATE 로 만들거나 견본을 확인하세요</span>';
   $('#p_model').onchange=pEstimate;
   document.querySelectorAll('input[data-pg]').forEach(c=>c.onchange=pEstimate);
   $('#p_confirm').onchange=pButtons;

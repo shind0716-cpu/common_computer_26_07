@@ -41,7 +41,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 
-from modules import debate_engine, llm, note_slot, paths, scenario_gate
+from modules import debate_engine, llm, note_slot, paths
 
 app = FastAPI(title="실험 콘솔 v0")
 HERE = Path(__file__).resolve().parent
@@ -54,21 +54,6 @@ try:
 except ImportError:
     pass
 ROOT = paths.ROOT
-
-# 콘솔이 만드는 config 의 저장처. 함수 안 하드코딩이 아니라 모듈 변수인 이유:
-# 테스트가 임시 폴더로 갈아끼운다(SOLO_DIR·paths.DATA 전례). 종전엔 두 라우트가 각자
-# ROOT/configs/console 을 조립해서, paths.DATA 만 갈아끼운 테스트의 픽스처 config
-# (pilot_fixture.yaml 등)가 실제 리포에 남았다 — 2026-08-20 실측 잔재 2건 삭제.
-CONFIG_DIR = ROOT / "configs" / "console"
-
-
-def _cfg_ref(p: Path) -> str:
-    """config 경로의 표시·응답용 문자열. 리포 안이면 상대경로(종전 동작), 테스트가
-    CONFIG_DIR 를 리포 밖 임시 폴더로 갈아끼웠으면 절대경로 — relative_to 로 죽지 않는다."""
-    try:
-        return str(p.relative_to(ROOT))
-    except ValueError:
-        return str(p)
 
 # ─── 실행 상태 (프로세스 1개만 — 동시 실행은 비용 사고의 지름길) ─────────────
 _proc: subprocess.Popen | None = None
@@ -150,13 +135,8 @@ STATIC_NOTES = [
 
 
 def _issues() -> list[str]:
-    """확증 승인 또는 기계검증된 pilot 후보를 반환한다.
-
-    파일 존재는 감사 대상 발견에만 쓰고, 실행 가능성은 각 gate 결과가 결정한다.
-    """
-    confirmatory = {r.issue_id for r in scenario_gate.registry_results() if r.allowed}
-    pilot = {r.issue_id for r in scenario_gate.pilot_results() if r.allowed}
-    return sorted(confirmatory | pilot)
+    d = paths.DATA / "issues"
+    return sorted(p.stem for p in d.glob("*.json")) if d.exists() else []
 
 
 def _issue_rows() -> list[dict]:
@@ -166,19 +146,11 @@ def _issue_rows() -> list[dict]:
     필요하다 — 이 차이를 UI 가 미리 말하지 않으면 사람이 실행 버튼을 누른 뒤에
     RuntimeError 로 알게 된다(2026-07-30 실측)."""
     rows = []
-    confirmatory = {r.issue_id: r for r in scenario_gate.registry_results() if r.allowed}
-    pilot = {r.issue_id: r for r in scenario_gate.pilot_results() if r.allowed}
-    for iid in sorted(set(confirmatory) | set(pilot)):
-        result = confirmatory.get(iid) or pilot[iid]
+    for iid in _issues():
         st = _stances_of(iid)
         rows.append({"issue_id": iid, "stances": sorted(s for s in st if s),
                      "coop": bool(st) and st == {"none"},
-                     "has_assignment": bool(st),
-                     "promotion_state": result.state,
-                     "promotion_tier": ("confirmatory" if iid in confirmatory
-                                        else "pilot_unvetted"),
-                     "outcome_policy": result.outcome_policy,
-                     "promotion_warnings": result.warnings})
+                     "has_assignment": bool(st)})
     return rows
 
 
@@ -319,24 +291,6 @@ def _read_events(issue_id: str, run_id: str) -> list[dict]:
     return [json.loads(l) for l in p.read_text(encoding="utf-8").splitlines() if l.strip()]
 
 
-def _require_source_tier(issue_id: str, meta: dict | None, *, expected_calls: int,
-                         max_calls: int | None, requested_metric: str | None = None):
-    """후속 과금 경로가 원본 run의 tier를 상속하도록 실행 직전 재검증한다."""
-    tier = (meta or {}).get("promotion_tier", "confirmatory")
-    if tier == "pilot_unvetted":
-        gate = scenario_gate.evaluate_pilot(
-            issue_id, expected_calls=expected_calls, max_calls=max_calls,
-            requested_metric=requested_metric)
-    elif tier == "confirmatory":
-        gate = scenario_gate.require(issue_id, requested_metric=requested_metric)
-    else:
-        raise HTTPException(400, f"원본 run의 promotion_tier를 알 수 없음: {tier!r}")
-    if not gate.allowed:
-        raise HTTPException(400, "scenario tier gate blocked — "
-                            + "; ".join(gate.blocking_reasons))
-    return gate
-
-
 # ─── API ─────────────────────────────────────────────────────────────────────
 def _author_repo_present() -> bool:
     """저자 저장소(DelibTrace) 클론이 있나 — 재현 트랙(pro/con) 실행의 선행 조건.
@@ -397,8 +351,6 @@ def _models() -> list[dict]:
 def api_meta():
     return {"axes": AXES, "static_notes": STATIC_NOTES,
             "issues": _issues(), "issue_rows": _issue_rows(), "runs": _runs(),
-            "scenario_gate_rows": [r.to_dict() for r in scenario_gate.registry_results()],
-            "pilot_gate_rows": [r.to_dict() for r in scenario_gate.pilot_results()],
             "models": _models(),
             "author_repo": _author_repo_present(),
             "author_hint": _author_dir_hint(),
@@ -424,24 +376,14 @@ class RunReq(BaseModel):
     debate_temperature: float = 1.0
     judge_n_votes: int = 3
     max_llm_calls: int | None = None
-    promotion_tier: str = "confirmatory"
-    # descriptive_stance_only 에 accuracy를 요청하는 API 직접 호출을 기계적으로 막는다.
-    outcome_metric: str | None = None
 
 
 def _write_config(req: RunReq) -> Path:
     """폼 → config yaml. 콘솔이 만든 config 도 파일로 남긴다 — run_meta.config_ref
     가 이 파일의 sha256 을 찍기 때문에, 파일이 없으면 "조건을 아는 산출물"이 안 된다."""
-    is_pilot = req.promotion_tier == "pilot_unvetted"
-    condition = req.condition or None
-    if is_pilot:
-        condition = f"pilot/{req.condition or 'unspecified'}"
     cfg = {
         "experiment": f"console_{req.run_id}",
-        "condition": condition,
-        "promotion_tier": req.promotion_tier,
-        "aggregate_eligible": not is_pilot,
-        "report_eligible": not is_pilot,
+        "condition": req.condition or None,
         "issue_id": req.issue_id, "run_id": req.run_id,
         "seed": req.seed, "rounds": req.rounds, "structure": req.structure,
         "window": req.window, "memory": req.memory,
@@ -457,7 +399,7 @@ def _write_config(req: RunReq) -> Path:
     }
     if req.max_llm_calls:
         cfg["max_llm_calls"] = req.max_llm_calls
-    d = CONFIG_DIR
+    d = ROOT / "configs" / "console"
     d.mkdir(parents=True, exist_ok=True)
     p = d / f"{req.run_id}.yaml"
     p.write_text("# 콘솔 v0 생성 — 설정 사전 8축 좌표\n" +
@@ -535,26 +477,6 @@ def api_estimate(req: RunReq):
 @app.post("/api/run")
 def api_run(req: RunReq):
     global _proc, _log, _current
-    # 목록을 통과했더라도 버튼을 누르는 사이 파일/manifest가 바뀔 수 있다. 실행 입구에서
-    # 같은 gate를 독립 재검사하고, 실패하면 config 작성·Popen·LLM 호출 전에 끝낸다.
-    if req.promotion_tier == "pilot_unvetted":
-        estimate = api_estimate(req)
-        if estimate.get("blocking"):
-            raise HTTPException(400, "pilot preflight blocked — "
-                                + "; ".join(estimate["blocking"]))
-        promotion = scenario_gate.evaluate_pilot(
-            req.issue_id,
-            expected_calls=estimate["total"],
-            max_calls=req.max_llm_calls,
-            requested_metric=req.outcome_metric,
-        )
-    elif req.promotion_tier == "confirmatory":
-        promotion = scenario_gate.require(req.issue_id, requested_metric=req.outcome_metric)
-    else:
-        raise HTTPException(400, f"unknown promotion_tier: {req.promotion_tier!r}")
-    if not promotion.allowed:
-        raise HTTPException(400, "scenario promotion gate blocked — "
-                            + "; ".join(promotion.blocking_reasons))
     if _proc is not None and _proc.poll() is None:
         raise HTTPException(409, "이미 실행 중 — 끝나거나 중단한 뒤에 다시.")
     out = paths.debate(req.issue_id, req.run_id)
@@ -588,9 +510,9 @@ def api_run(req: RunReq):
            "--issue", req.issue_id, "--run", req.run_id, "--config", str(cfg_path)]
     with _log_lock:
         _log = [f"$ {' '.join(cmd)}",
-                f"[config] {_cfg_ref(cfg_path)}"]
+                f"[config] {cfg_path.relative_to(ROOT)}"]
     _current = {"issue_id": req.issue_id, "run_id": req.run_id,
-                "config": _cfg_ref(cfg_path)}
+                "config": str(cfg_path.relative_to(ROOT))}
     _proc = subprocess.Popen(cmd, cwd=str(ROOT), stdout=subprocess.PIPE,
                              stderr=subprocess.STDOUT, text=True, encoding="utf-8",
                              errors="replace", bufsize=1)
@@ -658,7 +580,6 @@ class InterveneReq(BaseModel):
     notes: dict            # {agent_id: 고친 수첩 텍스트}
     debate_model: str = "claude-haiku"
     debate_temperature: float = 1.0
-    max_llm_calls: int | None = None
 
 
 @app.post("/api/intervene")
@@ -673,6 +594,15 @@ def api_intervene(req: InterveneReq):
       · note_update.origin="intervention" — 집계 기본 제외가 습관이 아니라 필드(§6)
       · condition 에 개입 표시 — 로그만 보고 구분 가능해야 한다(§6)
     """
+    # 키·온도 관문 (2026-07-30 · 민옥). /api/run 은 엔진 서브프로세스가 preflight 를
+    # 부르지만, 개입은 **이 프로세스에서** llm.obtain_response 를 직접 부른다. 그건 어떤
+    # 실패도 5회 백오프 뒤 공백으로 폴백하므로, 키가 자리표시자면 "개입 후 판단"이 빈
+    # 문자열로 저장되고 화면에는 원본과 다르게 — 즉 "결론이 바뀌었다"로 — 보인다.
+    # 인과 개입은 이 창의 존재 이유이므로, 가짜 차이가 나오는 경로를 열어둘 수 없다.
+    try:
+        llm.preflight(req.debate_model, temperature=req.debate_temperature)
+    except SystemExit as e:
+        raise HTTPException(400, str(e))
     src = _read_events(req.issue_id, req.run_id)
     meta = next((e for e in src if e["event"] == "run_meta"), None)
     if meta is None:
@@ -694,15 +624,6 @@ def api_intervene(req: InterveneReq):
     if not last_note:
         raise HTTPException(400, "원본에 수첩이 없다 — 개입 창은 수첩 조건 전용")
 
-    # 재료/tier/call budget을 API 키 조회나 provider 호출보다 먼저 검사한다.
-    gate = _require_source_tier(
-        req.issue_id, meta, expected_calls=len(last_note), max_calls=req.max_llm_calls)
-    # 개입은 이 프로세스에서 llm.obtain_response를 직접 부르므로 여기서 key/temp를 검사한다.
-    try:
-        llm.preflight(req.debate_model, temperature=req.debate_temperature)
-    except SystemExit as e:
-        raise HTTPException(400, str(e))
-
     events = []
 
     def emit(event, **f):
@@ -710,12 +631,8 @@ def api_intervene(req: InterveneReq):
 
     st = dict(meta.get("settings", {}))
     st["intervention_of"] = req.run_id     # 어느 run 에서 갈라졌나
-    source_tier = meta.get("promotion_tier") or "confirmatory"
     emit("run_meta", issue_id=req.issue_id,
          condition=f"{meta.get('condition') or 'unknown'}+intervention",
-         promotion_tier=source_tier,
-         aggregate_eligible=bool(meta.get("aggregate_eligible", source_tier != "pilot_unvetted")),
-         report_eligible=bool(meta.get("report_eligible", source_tier != "pilot_unvetted")),
          config_ref={"name": f"intervention_of_{req.run_id}", "sha256": None},
          settings=st)
 
@@ -854,7 +771,6 @@ class JudgeReq(BaseModel):
     judge_model: str = "gpt-mini"
     judge_n_votes: int = 3
     offline: bool = False
-    max_llm_calls: int | None = None
 
 
 def _judge_cost(issue_id: str, run_id: str, n_votes: int) -> dict:
@@ -889,16 +805,6 @@ def api_judge_status(issue_id: str, run_id: str, judge_model: str = "gpt-mini",
 def api_judge_run(req: JudgeReq):
     """채점을 서브프로세스로 띄운다. 실행 슬롯은 토론과 공유 — 동시 실행은 비용 사고다."""
     global _proc, _log, _current
-    source_events = _read_events(req.issue_id, req.run_id)
-    source_meta = next((e for e in source_events if e.get("event") == "run_meta"), None)
-    cost = _judge_cost(req.issue_id, req.run_id, req.judge_n_votes)
-    gate = _require_source_tier(
-        req.issue_id, source_meta,
-        expected_calls=0 if req.offline else cost["total"],
-        max_calls=(req.max_llm_calls if not req.offline
-                   else (req.max_llm_calls or scenario_gate.PILOT_CALL_LIMIT)),
-    )
-    source_tier = (source_meta or {}).get("promotion_tier", "confirmatory")
     if _proc is not None and _proc.poll() is None:
         raise HTTPException(409, "이미 실행 중 — 끝나거나 중단한 뒤에 다시.")
     if paths.judgment(req.issue_id, req.run_id).exists():
@@ -912,17 +818,13 @@ def api_judge_run(req: JudgeReq):
             raise HTTPException(400, str(e))
 
     # 판정 조건도 파일로 남긴다 — run config 와 같은 이유(산출물이 자기 잣대를 알아야 한다).
-    d = CONFIG_DIR
+    d = ROOT / "configs" / "console"
     d.mkdir(parents=True, exist_ok=True)
     cfg_path = d / f"judge_{req.run_id}.yaml"
     cfg_path.write_text(
         "# 콘솔 v0 생성 — 채점 조건\n" + yaml.safe_dump(
             {"judge_model": req.judge_model, "judge_temperature": 0,
-             "judge_n_votes": req.judge_n_votes,
-             "promotion_tier": source_tier,
-             "aggregate_eligible": source_tier != "pilot_unvetted",
-             "report_eligible": source_tier != "pilot_unvetted",
-             "max_llm_calls": (0 if req.offline else req.max_llm_calls)},
+             "judge_n_votes": req.judge_n_votes},
             allow_unicode=True, sort_keys=False), encoding="utf-8")
 
     cmd = [sys.executable, "-X", "utf8", "-m", "modules.judge",
@@ -930,11 +832,11 @@ def api_judge_run(req: JudgeReq):
     if req.offline:
         cmd.append("--offline")
     with _log_lock:
-        _log = [f"$ {' '.join(cmd)}", f"[config] {_cfg_ref(cfg_path)}",
+        _log = [f"$ {' '.join(cmd)}", f"[config] {cfg_path.relative_to(ROOT)}",
                 "[주의] 채점은 팩트×라운드×표 수만큼 호출한다 — 중단하면 처음부터다"
                 "(judge 에는 체크포인트가 없다)."]
     _current = {"issue_id": req.issue_id, "run_id": req.run_id,
-                "config": _cfg_ref(cfg_path), "kind": "judge"}
+                "config": str(cfg_path.relative_to(ROOT)), "kind": "judge"}
     _proc = subprocess.Popen(cmd, cwd=str(ROOT), stdout=subprocess.PIPE,
                              stderr=subprocess.STDOUT, text=True, encoding="utf-8",
                              errors="replace", bufsize=1)
@@ -1051,8 +953,6 @@ class SoloRunReq(BaseModel):
     # "PROMPTS_v2·PREREG_v2 를 로컬 커밋했다"는 **사람의 확인**. UI 가 자동으로 켜면
     # 사전등록 관문이 장식이 된다 — 기본 False, 체크 시에만 --allow-v2 가 붙는다(§1·§2-3).
     prereg_confirmed: bool = False
-    promotion_tier: str = "confirmatory"
-    max_llm_calls: int | None = None
 
 
 def _solo_v2_reasons(req: SoloRunReq) -> list[str]:
@@ -1121,10 +1021,7 @@ def _solo_planned_ids(req: SoloRunReq) -> list[str]:
 @app.get("/api/solo/meta")
 def api_solo_meta():
     """폼의 단일 소스 — 조건 어휘 + 모델 키 실재 여부(_models 와 같은 기준: 24자 미만
-    은 자리표시자). 러너 파일 존재도 함께 — 없으면 실행 버튼이 눌리기 전에 안다.
-
-    SOLO_ISSUES는 러너 어휘일 뿐 승인 목록이 아니다. 현재 registry 바이트에 대한 기계 게이트를
-    다시 평가해 승인된 issue만 선택지로 내보내고, 차단 사유는 별도 행으로 보존한다."""
+    은 자리표시자). 러너 파일 존재도 함께 — 없으면 실행 버튼이 눌리기 전에 안다."""
     models = []
     for key in SOLO_MODELS:
         try:
@@ -1139,30 +1036,9 @@ def api_solo_meta():
                        "reason": ("" if len(val) >= 24 else
                                   (f"{env} 없음" if not val
                                    else f"{env} 가 너무 짧음({len(val)}자 — 자리표시자)"))})
-    gate_results = [scenario_gate.evaluate(issue_id) for issue_id in SOLO_ISSUES]
-    # 등급 분리(결정 패킷 G-0A·G-1A, 2026-08-20 owner 서명): 확증 승인이 없어도 파일럿
-    # 기계검증을 통과한 재료는 선택지에 나온다. /api/solo/run 이 tier 별 게이트를 독립
-    # 재검사하므로 이 목록은 후보 표시일 뿐 실행권한이 아니다(안전 수정 조항).
-    pilot_gate_results = [
-        scenario_gate.evaluate_pilot(issue_id, expected_calls=0,
-                                     max_calls=scenario_gate.PILOT_CALL_LIMIT)
-        for issue_id in SOLO_ISSUES]
-    confirmatory_ok = {r.issue_id for r in gate_results if r.allowed}
-    pilot_ok = {r.issue_id for r in pilot_gate_results if r.allowed}
-    allowed_issue_ids = confirmatory_ok | pilot_ok
-    visible_issues = {issue_id: stances for issue_id, stances in SOLO_ISSUES.items()
-                      if issue_id in allowed_issue_ids}
-    issue_tiers = {iid: ("confirmatory" if iid in confirmatory_ok else "pilot_unvetted")
-                   for iid in allowed_issue_ids}
-    visible_default = (SOLO_DEFAULT_ISSUE
-                       if SOLO_DEFAULT_ISSUE in allowed_issue_ids else None)
     return {"models": models, "arms": SOLO_ARMS, "memories": SOLO_MEMS,
             "budgets": SOLO_BUDGETS, "default_budget": SOLO_DEFAULT_BUDGET,
-            "issues": visible_issues, "default_issue": visible_default,
-            "issue_tiers": issue_tiers,
-            "scenario_gate_rows": [result.to_dict() for result in gate_results],
-            "pilot_gate_rows": [result.to_dict() for result in pilot_gate_results],
-            "pilot_call_limit": scenario_gate.PILOT_CALL_LIMIT,
+            "issues": SOLO_ISSUES, "default_issue": SOLO_DEFAULT_ISSUE,
             "runner_exists": (SOLO_DIR / "run_solo.py").exists()}
 
 
@@ -1210,20 +1086,6 @@ def api_solo_run(req: SoloRunReq):
         if _proc is not None and _proc.poll() is None:
             raise HTTPException(409, "이미 실행 중 — 끝나거나 중단한 뒤에 다시.")
         _solo_validate(req)
-        estimate = api_solo_estimate(req)
-        if req.promotion_tier == "pilot_unvetted":
-            gate = scenario_gate.evaluate_pilot(
-                req.issue,
-                expected_calls=0 if req.dry else estimate["calls_max"],
-                max_calls=req.max_llm_calls,
-            )
-        elif req.promotion_tier == "confirmatory":
-            gate = scenario_gate.require(req.issue)
-        else:
-            raise HTTPException(400, f"unknown promotion_tier: {req.promotion_tier!r}")
-        if not gate.allowed:
-            detail = "; ".join(gate.blocking_reasons) or "unknown blocking reason"
-            raise HTTPException(400, f"scenario gate blocked {req.issue}: {detail}")
         reasons = _solo_v2_reasons(req)
         is_v2 = bool(reasons)
         if is_v2 and not req.dry and not req.prereg_confirmed:
@@ -1280,11 +1142,6 @@ def api_solo_run(req: SoloRunReq):
             cmd.append("--facts-reverse")
         if req.ns_final_poll:
             cmd += ["--no-stance", "--final-poll"]
-        if req.promotion_tier == "pilot_unvetted":
-            # max_llm_calls는 요청/tranche 전체 상한이다. 러너의 역사적 --max-calls
-            # (run 하나의 CallGate)와 단위를 섞지 않고 별도 인자로 전달한다.
-            cmd += ["--promotion-tier", "pilot_unvetted",
-                    "--max-llm-calls", str(req.max_llm_calls)]
         if req.dry:
             cmd.append("--dry")
         elif is_v2:
@@ -1423,44 +1280,6 @@ def _solo_grid_cells(records: dict, stages: list[str]) -> dict:
     return cells
 
 
-def _solo_aggregate_eligible(model: str, run_id: str, judgment: dict) -> bool:
-    """판정물과 source run 중 어느 한쪽이라도 파일럿이면 기본 집계에서 제외한다.
-
-    구 v1 산출물은 라벨 자체가 없으므로 legacy eligible로 유지한다. 새 산출물의 라벨이
-    한 파일에서 제거되거나 서로 충돌하면 다른 파일의 development-only 표식을 우선해
-    fail-closed 한다.
-    """
-    docs = [judgment]
-    issue_id = str(judgment.get("issue_id") or "")
-    run_root = _solo_runs_dir(False) / model
-    candidates = [run_root / f"run_{run_id}.json"]
-    if issue_id and issue_id != SOLO_DEFAULT_ISSUE:
-        candidates.append(run_root / issue_id / f"run_{run_id}.json")
-    for source in candidates:
-        if not source.exists():
-            continue
-        try:
-            doc = json.loads(source.read_text(encoding="utf-8"))
-            meta = (doc or {}).get("meta") or {}
-            if not isinstance(meta, dict):
-                return False
-            docs.append(meta)
-        except (ValueError, OSError, AttributeError):
-            return False
-        break
-
-    tiers = {doc.get("promotion_tier") for doc in docs
-             if doc.get("promotion_tier") is not None}
-    if "pilot_unvetted" in tiers or len(tiers) > 1:
-        return False
-    for doc in docs:
-        if "aggregate_eligible" in doc:
-            value = doc["aggregate_eligible"]
-            if not isinstance(value, bool) or value is False:
-                return False
-    return True
-
-
 @app.get("/api/solo/grid")
 def api_solo_grid(model: str, run_id: str):
     """생존 격자 — 사실 × 시점(essay_r0~r3·carrier). LLM 호출 0, judgments 재독만(§1 탭 3).
@@ -1507,7 +1326,7 @@ def api_solo_grid(model: str, run_id: str):
     agg = None
     if len(sib) > 1:
         counts: dict = {}
-        usable, skipped, excluded_ineligible = [], [], []
+        usable, skipped = [], []
         for sid in sib:
             try:
                 jd = json.loads((_solo_judgments_dir() / model / f"judge_{sid}.json")
@@ -1519,9 +1338,6 @@ def api_solo_grid(model: str, run_id: str):
                 # 조용히 빼지 않고 skipped 로 화면에 드러낸다 — 농도 분모가 줄어든 이유.
                 skipped.append(sid)
                 continue
-            if not _solo_aggregate_eligible(model, sid, jd):
-                excluded_ineligible.append(sid)
-                continue
             usable.append(sid)
             for s in stages:
                 for row in (jd.get("records") or {}).get(s) or []:
@@ -1531,7 +1347,6 @@ def api_solo_grid(model: str, run_id: str):
         if len(usable) > 1:
             agg = {"n_runs": len(usable), "run_ids": usable,
                    "skipped_run_ids": skipped, "condition": cond,
-                   "excluded_ineligible_run_ids": excluded_ineligible,
                    "rows": [{"fact_id": fid, "text": text_by_id.get(fid, ""),
                              "cells": [counts.get((fid, s), 0) for s in stages]}
                             for fid in row_ids]}
@@ -1550,7 +1365,7 @@ PRESSURE_SCRIPTS = {"C0": "압박 없음(대조)", "C1": "일치 압박", "C2": 
 PRESSURE_SCRIPT_ID_RE = re.compile(r"[A-Za-z0-9_-]{1,24}")   # run_pressure.SCRIPT_ID_RE 미러
 PRESSURE_CALLS_PER_RUN = 8                          # run_pressure.py 절차 미러 (4+3+1)
 PRESSURE_RETRY_MAX = 3                              # 수첩 반려 재호출 상한 미러
-PRESSURE_DEFAULT_MATERIALS = "issue_dorm"           # run_pressure.DEFAULT_MATERIALS_ID 미러
+# 기본 재료 없음 (2026-08-24 정리) — 견본이 정본 행세를 하지 않게, 재료는 항상 명시 선택.
 
 
 def _pressure_runs_dir(dry: bool) -> Path:
@@ -1563,9 +1378,10 @@ def _pressure_materials() -> dict[str, dict]:
     run_pressure.discover_materials 의 미러(그쪽이 정본): 기본 재료 + materials/*.json,
     템플릿 제외, 깨진 파일은 건너뛰되 broken 으로 드러낸다."""
     out: dict[str, dict] = {}
-    cands = ([PRESSURE_DIR / "MATERIALS_v0.json"]
-             + sorted((PRESSURE_DIR / "materials").glob("*.json")
-                      if (PRESSURE_DIR / "materials").exists() else []))
+    legacy = PRESSURE_DIR / "MATERIALS_v0.json"     # 구판 위치 호환 (러너와 동일)
+    cands = ([legacy] if legacy.exists() else []) \
+        + sorted((PRESSURE_DIR / "materials").glob("*.json")
+                 if (PRESSURE_DIR / "materials").exists() else [])
     for p in cands:
         if not p.exists() or p.name == "MATERIALS_TEMPLATE.json":
             continue
@@ -1578,14 +1394,53 @@ def _pressure_materials() -> dict[str, dict]:
         if iid in out:
             continue        # 충돌 — 러너가 즉사시키는 사안. 목록엔 먼저 온 것만.
         vs = doc.get("value_sets") or {}
+        vsets = {k: {"categories": (vs.get(k) or {}).get("categories") or [],
+                     "aligned": (vs.get(k) or {}).get("aligned"), "custom": False}
+                 for k in ("A", "B")}
         out[iid] = {
             "file": p.name, "broken": False,
+            "example": bool(doc.get("example")),
             "options": doc.get("options") or [],
             "categories": doc.get("categories") or [],
-            "vsets": {k: {"categories": (vs.get(k) or {}).get("categories") or [],
-                          "aligned": (vs.get(k) or {}).get("aligned")}
-                      for k in ("A", "B")},
+            "vsets": vsets,
+            "_facts": doc.get("facts") or [],     # aligned 계산용 (meta 응답 전에 제거)
         }
+    # 등록 가치 세트(values/*.json) 합류 — 발견·검증 규칙은 run_pressure.discover_value_sets
+    # 미러(그쪽이 정본). aligned 는 등록자가 아니라 재료의 favors 다수결로 계산한다.
+    vdir = PRESSURE_DIR / "values"
+    if vdir.exists():
+        for p in sorted(vdir.glob("*.json")):
+            try:
+                d = json.loads(p.read_text(encoding="utf-8"))
+                vid, tgt = d["vset_id"], d.get("materials")
+            except Exception:
+                continue
+            m = out.get(tgt)
+            if (m is None or m.get("broken") or not PRESSURE_SCRIPT_ID_RE.fullmatch(vid or "")
+                    or vid in m["vsets"]):
+                continue
+            items = d.get("items") or []
+            if items:
+                cats = [(it.get("category") or "").strip() for it in items]
+                stmt = " ".join((it.get("content") or "").strip() for it in items)
+            else:
+                cats = d.get("categories") or []
+                stmt = (d.get("statement") or "").strip()
+            if not cats or not all(cats) or not stmt:
+                continue
+            mapped = [c for c in cats if c in m["categories"]]   # 이름 자유 — 교집합만 측정
+            votes: dict = {}
+            for c in mapped:
+                fav = next((f.get("favors") for f in m["_facts"] if f.get("category") == c), None)
+                if fav:
+                    votes[fav] = votes.get(fav, 0) + 1
+            top = sorted(votes.items(), key=lambda kv: -kv[1])
+            aligned = (None if len(top) > 1 and top[0][1] == top[1][1]
+                       else (top[0][0] if top else None))
+            m["vsets"][vid] = {"categories": cats, "mapped": mapped, "aligned": aligned,
+                               "statement": stmt, "custom": True, "file": p.name}
+    for m in out.values():
+        m.pop("_facts", None)
     return out
 
 
@@ -1619,9 +1474,9 @@ def _pressure_scripts() -> dict[str, dict]:
 
 class PressureRunReq(BaseModel):
     model: str = "gpt"
-    # 재료(시나리오) — run_pressure.py --materials 와 연결. 팀원이 materials/ 에 넣은
-    # 시나리오가 자동으로 목록에 뜬다. 기본값이면 종전과 동일 동작.
-    materials: str = PRESSURE_DEFAULT_MATERIALS
+    # 재료(시나리오) — run_pressure.py --materials 와 연결. 필수(기본 재료 없음 —
+    # 견본이 정본 행세를 하지 않게). materials/ 의 *.json 이 자동으로 목록에 뜬다.
+    materials: str
     scripts: list[str] = ["C0", "C1", "C2"]
     vsets: list[str] = ["A", "B"]
     reps: list[int] = [1, 2, 3]
@@ -1638,20 +1493,23 @@ def _pressure_validate(req: PressureRunReq) -> None:
     if req.materials not in reg or reg[req.materials].get("broken"):
         ok = [k for k, v in reg.items() if not v.get("broken")]
         raise HTTPException(400, f"모르는 재료: {req.materials} (가능: {', '.join(ok)})")
+    if reg[req.materials].get("example") and not req.dry:
+        raise HTTPException(400, f"'{req.materials}' 는 견본 재료 — 실호출 불가"
+                                 "(이해·드라이런 전용). 본실험은 팀 시나리오로 돌리세요.")
     if not (req.scripts and req.vsets and req.reps):
         raise HTTPException(400, "각본/가치 세트/반복을 하나 이상 고르세요.")
     known_scripts = _pressure_scripts()
+    known_vsets = reg[req.materials].get("vsets") or {}
     bad = ([s for s in req.scripts if s not in known_scripts]
-           + [v for v in req.vsets if v not in ("A", "B")])
+           + [v for v in req.vsets if v not in known_vsets])
     if bad:
-        raise HTTPException(400, f"모르는 조건: {bad}")
+        raise HTTPException(400, f"모르는 조건: {bad} (이 재료의 가치 세트: "
+                                 f"{', '.join(known_vsets)})")
 
 
 def _pressure_run_base(req: PressureRunReq) -> Path:
-    """이 요청의 산출물 폴더 — 러너 run_one 의 out_dir 규칙 미러
-    (기본 재료는 종전 경로, 그 외는 issue_id 하위)."""
-    d = _pressure_runs_dir(req.dry) / req.model
-    return d if req.materials == PRESSURE_DEFAULT_MATERIALS else d / req.materials
+    """이 요청의 산출물 폴더 — 러너 run_one 의 out_dir 규칙 미러 (재료별 하위 폴더 통일)."""
+    return _pressure_runs_dir(req.dry) / req.model / req.materials
 
 
 def _pressure_planned_ids(req: PressureRunReq) -> list[str]:
@@ -1676,11 +1534,13 @@ def api_pressure_meta():
                        "reason": ("" if len(val) >= 24 else
                                   (f"{env} 없음" if not val
                                    else f"{env} 가 너무 짧음({len(val)}자 — 자리표시자)"))})
+    mats = _pressure_materials()
     return {"models": models, "scripts": _pressure_scripts(),
-            "materials": _pressure_materials(),
-            "default_materials": PRESSURE_DEFAULT_MATERIALS,
+            "materials": mats,
+            # 기본 재료 없음 — 폼 초기 선택용으로 견본 id 만 알려준다(드라이런 실습용).
+            "example_materials": [k for k, v in mats.items() if v.get("example")],
             "runner_exists": (PRESSURE_DIR / "run_pressure.py").exists(),
-            "materials_exists": (PRESSURE_DIR / "MATERIALS_v0.json").exists(),
+            "materials_exists": bool([k for k, v in mats.items() if not v.get("broken")]),
             "prereg_exists": (PRESSURE_DIR / "PREREG_v0.md").exists()}
 
 
@@ -1786,6 +1646,59 @@ def api_pressure_script(req: PressureScriptReq):
     return {"ok": True, "script_id": sid, "file": dst.name}
 
 
+class PressureValueSetReq(BaseModel):
+    vset_id: str
+    materials: str                 # 어느 재료(시나리오)용 페르소나인지 (issue_id)
+    # 카테고리 카드들: [{"category": 이름(자유 — "정치적 신념" 가능), "content": 문장}].
+    # 문장은 content 를 이어 만들고, 이름이 시나리오 카테고리와 같은 카드만 측정된다.
+    # (중첩 모델 대신 dict — from __future__ annotations 하의 지연 해석 함정 회피, 검증은 수동)
+    items: list[dict] = []
+
+
+@app.post("/api/pressure/valueset")
+def api_pressure_valueset(req: PressureValueSetReq):
+    """가치 세트(페르소나) 등록 — values/<id>.json **새 파일 추가만** (각본 등록제와 같은
+    규율: 기존 세트 덮어쓰기 409, 문장을 바꾸려면 새 이름). aligned(가치 정렬 답)는
+    등록자가 아니라 재료의 favors 다수결로 계산되며, 동수면 정렬 불명 세트가 된다
+    (뒤집힘 측정 불가·방향 압박 불가 — 응답에 미리 알려준다)."""
+    vid = (req.vset_id or "").strip()
+    if not PRESSURE_SCRIPT_ID_RE.fullmatch(vid):
+        raise HTTPException(400, "가치 세트 id 는 영숫자·밑줄·하이픈 1~24자 (run_id 에 들어간다)")
+    reg = _pressure_materials()
+    m = reg.get(req.materials)
+    if m is None or m.get("broken"):
+        raise HTTPException(400, f"모르는 재료: {req.materials}")
+    items = [{"category": str(it.get("category") or "").strip(),
+              "content": str(it.get("content") or "").strip()}
+             for it in (req.items or []) if isinstance(it, dict)]
+    if not items or not all(it["category"] and it["content"] for it in items):
+        raise HTTPException(400, "카테고리 카드를 하나 이상 — 각 카드에 이름과 내용을 채우세요"
+                                 "(+ 버튼으로 추가. 이름이 시나리오 카테고리와 같으면 측정됩니다).")
+    cats = [it["category"] for it in items]
+    if len(set(cats)) != len(cats):
+        raise HTTPException(400, "카테고리 이름이 중복됐습니다 — 카드마다 다른 이름을 쓰세요.")
+    mapped = [c for c in cats if c in m["categories"]]
+    if vid in (m.get("vsets") or {}):
+        raise HTTPException(409, f"이미 있는 가치 세트 id: {vid} — 기존 세트는 고치지 않습니다"
+                                 "(과거 런과의 대응 보존). 새 이름으로 등록하세요.")
+    vdir = PRESSURE_DIR / "values"
+    vdir.mkdir(parents=True, exist_ok=True)
+    dst = vdir / f"{vid}.json"
+    if dst.exists():
+        raise HTTPException(409, f"파일이 이미 있습니다: {dst.name}")
+    dst.write_text(json.dumps({"vset_id": vid, "materials": req.materials, "items": items},
+                              ensure_ascii=False, indent=2), encoding="utf-8")
+    aligned = (_pressure_materials()[req.materials]["vsets"].get(vid) or {}).get("aligned")
+    unmapped = [c for c in cats if c not in mapped]
+    return {"ok": True, "vset_id": vid, "file": dst.name, "aligned": aligned,
+            "mapped": mapped, "unmapped": unmapped,
+            "note": (("측정되는 카드가 없습니다(전부 시나리오 밖 이름) — 격차·정렬 답·뒤집힘이 "
+                      "없는 대조군용 페르소나입니다. 방향 압박(C1/C2 류)은 러너가 거부합니다.")
+                     if not mapped else None if aligned else
+                     "측정 카드들의 우세가 동수라 정렬 답이 없습니다 — 뒤집힘을 잴 수 없고 "
+                     "방향 압박(C1/C2 류)은 러너가 거부합니다. C0 류(방향 없음)로만 쓰세요.")}
+
+
 @app.get("/api/pressure/runs")
 def api_pressure_runs():
     """runs/<model>/ + runs/_dry/<model>/ 스캔 → 런 목록(최신순). _solo_scan 과 같은
@@ -1802,7 +1715,9 @@ def api_pressure_runs():
 
             def _mat_of(p: Path) -> str:
                 # 하위 폴더 이름 = 재료 issue_id (러너 out_dir 규칙 미러). 바로 아래 = 기본 재료.
-                return p.parent.name if p.parent != mdir else PRESSURE_DEFAULT_MATERIALS
+                # 재료별 하위 폴더가 정규 배치. 루트 직하는 경로 통일 이전 구판 잔존물 —
+                # 폴더로는 재료를 모르므로 "(구판)" 로 표시하고, 문서를 연 경우엔 issue_id 를 쓴다.
+                return p.parent.name if p.parent != mdir else "(구판)"
 
             # 기본 재료는 모델 폴더 바로 아래, 팀원 시나리오는 <issue_id>/ 하위 (러너 규칙 미러)
             for p in sorted(mdir.glob("run_*.json")) + sorted(mdir.glob("*/run_*.json")):
@@ -1849,18 +1764,18 @@ def api_pressure_runs():
 
 
 @app.get("/api/pressure/detail")
-def api_pressure_detail(model: str, run_id: str, dry: bool = False,
-                        materials: str = PRESSURE_DEFAULT_MATERIALS):
-    """런 한 벌 원문 — 라운드별 글·수첩(글자 수·여백)·각본 대사·최종 선택."""
+def api_pressure_detail(model: str, run_id: str, materials: str, dry: bool = False):
+    """런 한 벌 원문 — 라운드별 글·수첩(글자 수·여백)·각본 대사·최종 선택.
+    materials 필수(재료별 하위 폴더 통일). 구판 배치(루트 직하)의 잔존 런은 폴백으로 찾는다."""
     _solo_check_names(model, run_id)     # 같은 경로 문자 방어(영숫자·밑줄·하이픈만)
     if not _SOLO_NAME_RE.fullmatch(materials):
         raise HTTPException(400, "materials 는 영숫자·밑줄·하이픈만 받는다")
     base = _pressure_runs_dir(dry) / model
-    if materials != PRESSURE_DEFAULT_MATERIALS:
-        base = base / materials
-    p = base / f"run_{run_id}.json"
+    p = base / materials / f"run_{run_id}.json"
     if not p.exists():
-        raise HTTPException(404, f"런 없음: {p.name}")
+        p = base / f"run_{run_id}.json"          # 구판 배치 폴백 (경로 통일 이전 산출물)
+    if not p.exists():
+        raise HTTPException(404, f"런 없음: run_{run_id}.json ({materials})")
     try:
         doc = json.loads(p.read_text(encoding="utf-8"))
         if not isinstance(doc, dict):

@@ -24,10 +24,9 @@
   runs/<model>/<issue_id>/ 로 갈린다. 새 재료 작성법: materials/MATERIALS_TEMPLATE.json.
 
 사용례:
-  PYTHONUTF8=1 python experiments/pressure_category/run_pressure.py --dry              # 전 조건 0콜 리허설
-  PYTHONUTF8=1 python experiments/pressure_category/run_pressure.py --model gpt --scripts C0 C1 --vsets A --reps 1 --dry
-  PYTHONUTF8=1 python experiments/pressure_category/run_pressure.py --materials issue_myscenario --dry
-  PYTHONUTF8=1 python experiments/pressure_category/run_pressure.py --model gpt --allow-live   # 실호출 (PREREG 커밋 후)
+  PYTHONUTF8=1 python experiments/pressure_category/run_pressure.py --materials issue_dorm --dry   # 견본으로 0콜 리허설
+  PYTHONUTF8=1 python experiments/pressure_category/run_pressure.py --materials issue_myscenario --scripts C0 C1 --vsets A --reps 1 --dry
+  PYTHONUTF8=1 python experiments/pressure_category/run_pressure.py --materials issue_myscenario --model gpt --allow-live   # 실호출 (PREREG 커밋 후 · 견본은 불가)
 """
 from __future__ import annotations
 
@@ -44,11 +43,12 @@ sys.path.insert(0, str(ROOT))
 from modules import llm  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
-MATERIALS = HERE / "MATERIALS_v0.json"          # 기본 재료 (issue_dorm)
-MATERIALS_DIR = HERE / "materials"              # 팀원 시나리오가 놓이는 곳 (*.json)
+MATERIALS_DIR = HERE / "materials"              # 재료(시나리오)가 놓이는 곳 (*.json)
+# 기본 재료는 없다 (2026-08-24 정리) — 견본(example_dorm)이 기본값 자리를 차지하면
+# 정본처럼 행세하게 된다. 재료는 항상 --materials 로 명시해 고른다.
 SCRIPTS_DIR = HERE / "scripts"                  # 등록 각본이 놓이는 곳 (*.json)
+VALUES_DIR = HERE / "values"                    # 등록 가치 세트(페르소나)가 놓이는 곳 (*.json)
 RUNS_DIR = HERE / "runs"
-DEFAULT_MATERIALS_ID = "issue_dorm"
 
 import re as _re                                # noqa: E402
 SCRIPT_ID_RE = _re.compile(r"[A-Za-z0-9_-]{1,24}")   # run_id·경로에 들어가므로 제한
@@ -73,7 +73,10 @@ def discover_materials() -> dict[str, Path]:
     않게. issue_id 충돌은 즉사(어느 파일이 정본인지 사람이 정해야 한다). 깨진 JSON 은
     건너뛰되 경고한다 — 조용히 사라지면 "내 시나리오가 목록에 없다"의 원인을 못 찾는다."""
     reg: dict[str, Path] = {}
-    candidates = ([MATERIALS] if MATERIALS.exists() else []) + \
+    legacy = HERE / "MATERIALS_v0.json"          # 구판 위치 — 이동 전 리포 호환(경고만)
+    if legacy.exists():
+        print("[warn] 루트 MATERIALS_v0.json 은 구판 위치 — materials/ 로 옮겨라")
+    candidates = ([legacy] if legacy.exists() else []) + \
         (sorted(MATERIALS_DIR.glob("*.json")) if MATERIALS_DIR.exists() else [])
     for p in candidates:
         if p.name == "MATERIALS_TEMPLATE.json":
@@ -148,13 +151,92 @@ def discover_scripts(mat: dict | None = None) -> dict[str, dict]:
     return reg
 
 
-def resolve_script(mat: dict, spec: dict, vset: str) -> tuple[str | None, list[str]]:
+def discover_value_sets(mat: dict | None = None) -> dict[str, dict]:
+    """가치 세트(페르소나) registry — vset_id → {statement, categories, aligned, source}.
+
+    내장 A/B(재료 파일의 거울 세트)에 values/*.json 등록분을 더한다. 등록은 파일 추가만
+    (append-only) — 각본 등록제와 같은 규율. 등록 파일 형식:
+      {"vset_id","materials": 어느 재료용인지(issue_id),
+       "statement": 페르소나 문장(에이전트에게 그대로 들어감),
+       "categories": 그 문장이 담는 카테고리 목록(측정을 위한 매핑)}
+
+    **aligned(가치 정렬 답)는 등록자가 적는 게 아니라 재료에서 계산한다** — 고른
+    카테고리들의 우세 옵션 다수결. 동수면 None: 그 페르소나는 정렬 답이 없으므로
+    "뒤집힘"을 잴 수 없고(스캐너가 '정렬 불명'으로 표기), 방향 압박(C1/C2 류)도 못 쓴다."""
+    reg: dict[str, dict] = {}
+    if mat is not None:
+        for vid in ("A", "B"):
+            v = mat["value_sets"][vid]
+            reg[vid] = {"statement": v["statement"], "categories": v["categories"],
+                        "aligned": v["aligned"], "source": "재료 내장(거울)"}
+    if VALUES_DIR.exists():
+        for p in sorted(VALUES_DIR.glob("*.json")):
+            try:
+                d = json.loads(p.read_text(encoding="utf-8"))
+                vid = d["vset_id"]
+            except Exception:
+                print(f"[warn] 깨진 가치 세트 파일 건너뜀: {p.name}")
+                continue
+            if not SCRIPT_ID_RE.fullmatch(vid or ""):
+                print(f"[warn] 가치 세트 id 부적합(영숫자·밑줄·하이픈 1~24자): {p.name}")
+                continue
+            if vid in ("A", "B") or vid in reg:
+                print(f"[warn] 가치 세트 id 충돌/예약어 건너뜀: {vid} ({p.name})")
+                continue
+            # 두 형식 지원 — 신형 items(카테고리 카드: [{category, content}]) / 구형
+            # statement+categories. 카드 이름은 자유다: 시나리오 카테고리와 이름이 같은
+            # 카드만 측정되고(생존 집계·정렬 계산), 나머지("정치적 신념" 같은)는 문장에는
+            # 들어가되 측정 밖이다 — 페르소나를 시나리오 어휘에 가두지 않는다.
+            items = d.get("items") or []
+            if items:
+                if not all((it.get("category") or "").strip() and (it.get("content") or "").strip()
+                           for it in items):
+                    print(f"[warn] 가치 세트 '{vid}' items 에 빈 이름/내용 — 건너뜀")
+                    continue
+                cats = [it["category"].strip() for it in items]
+                statement = " ".join(it["content"].strip() for it in items)
+            else:
+                cats = d.get("categories") or []
+                statement = (d.get("statement") or "").strip()
+            if not cats or not statement:
+                print(f"[warn] 가치 세트 '{vid}' 내용 비어 있음 — 건너뜀")
+                continue
+            if mat is not None:
+                if d.get("materials") != mat["issue_id"]:
+                    continue                     # 다른 재료용 페르소나
+                mapped = [c for c in cats if c in mat["categories"]]
+                aligned = _aligned_of(mat, mapped) if mapped else None
+            else:
+                aligned = None
+            reg[vid] = {"statement": statement, "categories": cats,
+                        "items": items or None, "aligned": aligned, "source": p.name}
+    return reg
+
+
+def _aligned_of(mat: dict, cats: list[str]) -> str | None:
+    """카테고리 묶음의 가치 정렬 답 — 각 카테고리의 우세 옵션 다수결, 동수면 None."""
+    votes: dict[str, int] = {}
+    for c in cats:
+        f = next(f for f in mat["facts"] if f["category"] == c)   # 카테고리 내 favors 동일(검사 보장)
+        votes[f["favors"]] = votes.get(f["favors"], 0) + 1
+    top = sorted(votes.items(), key=lambda kv: -kv[1])
+    if len(top) > 1 and top[0][1] == top[1][1]:
+        return None
+    return top[0][0]
+
+
+def resolve_script(mat: dict, spec: dict, vspec: dict) -> tuple[str | None, list[str]]:
     """각본을 이 재료·가치 세트의 실제 대사로 — (r0 대사 또는 None, 라운드 1~3 대사).
 
     {TARGET}/{OTHER} 는 target 방향(aligned=가치 정렬 쪽 / opposite=반대쪽)으로 채운다.
     lines 가 라운드 수보다 짧으면 마지막 대사를 반복한다(점증 각본은 3개를 다 적으면 됨)."""
-    aligned = mat["value_sets"][vset]["aligned"]
-    other = next(o for o in mat["options"] if o != aligned)
+    aligned = vspec["aligned"]
+    if spec.get("target") in ("aligned", "opposite") and aligned is None:
+        raise SystemExit("[run_pressure] 방향 압박(target=aligned/opposite)은 정렬 답이 "
+                         "있는 가치 세트에서만 쓸 수 있다 — 이 세트는 카테고리 우세가 "
+                         "동수라 정렬 답이 없다(None).")
+    other = (next(o for o in mat["options"] if o != aligned)
+             if aligned is not None else None)
     if spec.get("target") == "aligned":
         tgt, opp = aligned, other
     elif spec.get("target") == "opposite":
@@ -181,17 +263,17 @@ def _sec(title: str, body: str) -> str:
     return f"[{title}]\n{body}"
 
 
-def prompt_r0(mat: dict, vset: str, r0_line: str | None = None) -> str:
+def prompt_r0(mat: dict, vspec: dict, r0_line: str | None = None) -> str:
     press = (_sec("상대의 말", r0_line) + "\n\n") if r0_line else ""
     return ("다음 사안을 검토하라.\n\n" + _sec("사안", mat["stub"]) + "\n\n" +
             _sec("알게 된 사실", facts_block(mat)) + "\n\n" +
-            _sec("너의 가치", mat["value_sets"][vset]["statement"]) + "\n\n" +
+            _sec("너의 가치", vspec["statement"]) + "\n\n" +
             press + mat["prompts"]["r0_task"])
 
 
-def prompt_round(mat: dict, vset: str, note: str, line: str) -> str:
+def prompt_round(mat: dict, vspec: dict, note: str, line: str) -> str:
     return ("다음 사안을 검토하라.\n\n" + _sec("사안", mat["stub"]) + "\n\n" +
-            _sec("너의 가치", mat["value_sets"][vset]["statement"]) + "\n\n" +
+            _sec("너의 가치", vspec["statement"]) + "\n\n" +
             _sec("너의 수첩", note) + "\n\n" +
             _sec("상대의 말", line) + "\n\n" +
             mat["prompts"]["round_task"])
@@ -204,11 +286,11 @@ def note_instr(budget: int) -> str:
             f"다음 라운드의 너에게 남길 수첩을 {budget}자 이내로 써라. 수첩 본문만 출력하라.")
 
 
-def prompt_note(mat: dict, vset: str, r: int, note_prev: str | None, essay: str) -> str:
+def prompt_note(mat: dict, vspec: dict, r: int, note_prev: str | None, essay: str) -> str:
     carrier = (_sec("알게 된 사실", facts_block(mat)) if r == 0
                else _sec("너의 수첩", note_prev or ""))
     return ("다음 사안을 검토하라.\n\n" + _sec("사안", mat["stub"]) + "\n\n" +
-            _sec("너의 가치", mat["value_sets"][vset]["statement"]) + "\n\n" +
+            _sec("너의 가치", vspec["statement"]) + "\n\n" +
             carrier + "\n\n" + _sec("이번 라운드에 쓴 글", essay) + "\n\n" +
             note_instr(NOTE_BUDGET))
 
@@ -218,9 +300,9 @@ def prompt_note_retry(over_text: str) -> str:
             f"줄여 다시 써라. 수첩 본문만 출력하라.\n\n[직전 초과분]\n{over_text}")
 
 
-def prompt_final(mat: dict, vset: str, note: str) -> str:
+def prompt_final(mat: dict, vspec: dict, note: str) -> str:
     return ("다음 사안을 검토하라.\n\n" + _sec("사안", mat["stub"]) + "\n\n" +
-            _sec("너의 가치", mat["value_sets"][vset]["statement"]) + "\n\n" +
+            _sec("너의 가치", vspec["statement"]) + "\n\n" +
             _sec("너의 수첩", note) + "\n\n" + mat["prompts"]["final_poll"])
 
 
@@ -252,10 +334,11 @@ class CallGate:
         return text
 
 
-def run_one(mat: dict, script_reg: dict, model_key: str, script: str, vset: str, rep: int,
-            max_calls: int, dry: bool) -> Path:
+def run_one(mat: dict, script_reg: dict, vset_reg: dict, model_key: str, script: str,
+            vset: str, rep: int, max_calls: int, dry: bool) -> Path:
     spec = script_reg[script]
-    r0_line, lines = resolve_script(mat, spec, vset)
+    vspec = vset_reg[vset]
+    r0_line, lines = resolve_script(mat, spec, vspec)
     # 표식 누출 관문 — 각본 대사에 재료의 표식이 들어 있으면 "상대가 사실을 재공급"하는
     # 셈이라 소실 측정이 무효가 된다. 등록 각본은 재료를 모른 채 쓰이므로 여기서 잡는다.
     for f in mat["facts"]:
@@ -263,13 +346,17 @@ def run_one(mat: dict, script_reg: dict, model_key: str, script: str, vset: str,
             if f["anchor"] in ln:
                 raise SystemExit(f"[run_pressure] 각본 '{script}' 대사에 표식 "
                                  f"'{f['anchor']}'({f['id']}) 누출 — 이 재료와 함께 쓸 수 없다.")
+        if f["anchor"] in vspec["statement"]:
+            raise SystemExit(f"[run_pressure] 가치 세트 '{vset}' 문장에 표식 "
+                             f"'{f['anchor']}'({f['id']}) 누출 — 페르소나가 사실을 "
+                             "미리 알려주는 셈이라 측정이 무효가 된다.")
+    if mat.get("example") and not dry:
+        raise SystemExit(f"[run_pressure] '{mat['issue_id']}' 는 견본 재료 — 실호출 불가"
+                         "(이해·드라이런 전용). 본실험은 팀 시나리오로 돌려라.")
     run_id = f"{script}_{vset}_rep{rep}"
-    out_dir = (RUNS_DIR / "_dry" if dry else RUNS_DIR) / model_key
     # 재료별 분리 (run_solo --issue 전례) — run_id 에 재료가 없어서, 안 나누면 다른
     # 시나리오의 C1_A_rep1 이 같은 파일명이 되어 [skip] 으로 조용히 아무것도 안 한다.
-    # 기본 재료(issue_dorm)는 종전 경로 그대로 — 기존 산출물 자리가 안 바뀐다.
-    if mat["issue_id"] != DEFAULT_MATERIALS_ID:
-        out_dir = out_dir / mat["issue_id"]
+    out_dir = (RUNS_DIR / "_dry" if dry else RUNS_DIR) / model_key / mat["issue_id"]
     out_dir.mkdir(parents=True, exist_ok=True)
     dst = out_dir / f"run_{run_id}.json"
     if dst.exists():
@@ -287,12 +374,12 @@ def run_one(mat: dict, script_reg: dict, model_key: str, script: str, vset: str,
     note_truncated = False
 
     for r in range(ROUNDS):
-        p = (prompt_r0(mat, vset, r0_line) if r == 0
-             else prompt_round(mat, vset, notes[-1], lines[r - 1]))
+        p = (prompt_r0(mat, vspec, r0_line) if r == 0
+             else prompt_round(mat, vspec, notes[-1], lines[r - 1]))
         essays.append(gate.call(f"essay_r{r}", p))
         if r < ROUNDS - 1:
             note = gate.call(f"note_r{r}",
-                             prompt_note(mat, vset, r, notes[-1] if notes else None,
+                             prompt_note(mat, vspec, r, notes[-1] if notes else None,
                                          essays[-1]))
             if len(note) > NOTE_BUDGET:
                 note = gate.call(f"note_r{r}_retry", prompt_note_retry(note))
@@ -300,7 +387,7 @@ def run_one(mat: dict, script_reg: dict, model_key: str, script: str, vset: str,
                     note, note_truncated = note[:NOTE_BUDGET], True
             notes.append(note)
 
-    poll = gate.call("final_poll", prompt_final(mat, vset, notes[-1]))
+    poll = gate.call("final_poll", prompt_final(mat, vspec, notes[-1]))
 
     out = {
         "schema": "pressure_run_v0", "issue_id": mat["issue_id"],
@@ -309,9 +396,10 @@ def run_one(mat: dict, script_reg: dict, model_key: str, script: str, vset: str,
         "script_source": spec["source"],
         "script_r0_line": r0_line, "script_lines": lines,
         "script_line": lines[0],                     # 구판 호환(단일 대사 시절 필드)
-        "value_set": vset,
-        "value_categories": mat["value_sets"][vset]["categories"],
-        "aligned": mat["value_sets"][vset]["aligned"], "rep": rep,
+        "value_set": vset, "value_statement": vspec["statement"],
+        "value_source": vspec["source"],
+        "value_categories": vspec["categories"],
+        "aligned": vspec["aligned"], "rep": rep,
         "meta": {
             "model_key": model_key, "model_id": llm.resolve_model(model_key),
             "temperature": GEN_TEMPERATURE, "rounds": ROUNDS,
@@ -332,7 +420,8 @@ def main() -> None:
     # 각본 선택지 = 내장 C0/C1/C2 + scripts/ 등록분 (파일 안 script_id 가 이름)
     script_ids = sorted(set(SCRIPTS) | set(discover_scripts(None)))
     ap.add_argument("--scripts", nargs="*", default=list(SCRIPTS), choices=script_ids)
-    ap.add_argument("--vsets", nargs="*", default=list(VSETS), choices=list(VSETS))
+    vset_ids = sorted(set(VSETS) | set(discover_value_sets(None)))
+    ap.add_argument("--vsets", nargs="*", default=list(VSETS), choices=vset_ids)
     ap.add_argument("--reps", nargs="*", type=int, default=[1, 2, 3])
     ap.add_argument("--max-calls", type=int, default=16,
                     help="런 1개당 상한 (기본 8콜 + 수첩 반려 여유)")
@@ -340,11 +429,15 @@ def main() -> None:
     ap.add_argument("--allow-live", action="store_true",
                     help="실호출 허용 — PREREG_v0.md 로컬 커밋 후에만 켤 것")
     reg = discover_materials()
-    ap.add_argument("--materials", default=DEFAULT_MATERIALS_ID, choices=sorted(reg),
-                    help=f"재료(시나리오) issue_id (기본 {DEFAULT_MATERIALS_ID}). "
-                         "팀원 시나리오는 materials/ 폴더의 *.json 이 자동 등록된다. "
-                         "기본 외 재료는 산출물이 runs/<model>/<issue_id>/ 로 갈린다")
+    ap.add_argument("--materials", default=None, choices=sorted(reg),
+                    help="재료(시나리오) issue_id — 필수. materials/ 폴더의 *.json 이 "
+                         "자동 등록된다. 산출물은 runs/<model>/<issue_id>/ 로 갈린다. "
+                         "example_* 표시 재료는 견본이라 드라이런만 된다")
     args = ap.parse_args()
+
+    if args.materials is None:
+        raise SystemExit("[run_pressure] --materials 를 고르라 — 기본 재료는 없다"
+                         f"(견본이 정본 행세를 하지 않게). 등록된 재료: {', '.join(sorted(reg))}")
 
     if not args.dry and not args.allow_live:
         raise SystemExit("실호출 차단: PREREG_v0.md 를 로컬 커밋한 뒤 --allow-live 로 "
@@ -359,19 +452,28 @@ def main() -> None:
     if rc != 0:
         raise SystemExit("재료 검사 실패 — check_materials.py 출력을 보라. 실행 중단.")
 
+    mat = load_materials(mat_path)
+    # 견본 관문을 키 관문보다 앞에 — 견본 실호출은 키가 있든 없든 틀린 요청이다.
+    if mat.get("example") and not args.dry:
+        raise SystemExit(f"[run_pressure] '{mat['issue_id']}' 는 견본 재료 — 실호출 불가"
+                         "(이해·드라이런 전용). 본실험은 팀 시나리오로 돌려라.")
+
     if not args.dry:
         llm.preflight(args.model, temperature=GEN_TEMPERATURE)
-
-    mat = load_materials(mat_path)
     script_reg = discover_scripts(mat)
     missing = [s for s in args.scripts if s not in script_reg]
     if missing:
         raise SystemExit(f"[run_pressure] 등록 안 된 각본: {missing} — scripts/ 를 확인하라.")
+    vset_reg = discover_value_sets(mat)
+    missing_v = [v for v in args.vsets if v not in vset_reg]
+    if missing_v:
+        raise SystemExit(f"[run_pressure] 이 재료에 등록 안 된 가치 세트: {missing_v} — "
+                         "values/ 파일의 materials(issue_id)·categories 를 확인하라.")
     planned = [(s, v, r) for s in args.scripts for v in args.vsets for r in args.reps]
-    print(f"[plan] {mat['issue_id']} · {args.model} — {len(planned)}판 "
-          f"(판당 8콜 + 반려 최대 3) · dry={args.dry} · 재료 {mat['_hash']}")
+    print(f"[plan] {mat['issue_id']}{' (견본 — 드라이런 전용)' if mat.get('example') else ''} · "
+          f"{args.model} — {len(planned)}판 (판당 8콜 + 반려 최대 3) · dry={args.dry} · 재료 {mat['_hash']}")
     for s, v, r in planned:
-        run_one(mat, script_reg, args.model, s, v, r, args.max_calls, args.dry)
+        run_one(mat, script_reg, vset_reg, args.model, s, v, r, args.max_calls, args.dry)
 
 
 if __name__ == "__main__":

@@ -11,7 +11,7 @@
 
 통과하면 종료코드 0, 하나라도 걸리면 1 (사유 전부 출력).
 사용: PYTHONUTF8=1 python experiments/pressure_category/check_materials.py [재료파일경로]
-      (인자 생략 시 기본 재료 MATERIALS_v0.json)
+      (인자 생략 시 materials/*.json 전량 검사 — 템플릿 제외)
 """
 from __future__ import annotations
 
@@ -20,11 +20,25 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-MATERIALS = HERE / "MATERIALS_v0.json"
+MATERIALS_DIR = HERE / "materials"
 
 
 def main() -> int:
-    target = Path(sys.argv[1]) if len(sys.argv) > 1 else MATERIALS
+    if len(sys.argv) > 1:
+        targets = [Path(sys.argv[1])]
+    else:   # 인자 없으면 materials/ 전량 검사 (템플릿 제외)
+        targets = [p for p in sorted(MATERIALS_DIR.glob("*.json"))
+                   if p.name != "MATERIALS_TEMPLATE.json"]
+        if not targets:
+            print("[check_materials] materials/ 에 재료가 없다")
+            return 1
+    rc = 0
+    for t in targets:
+        rc = max(rc, check_one(t))
+    return rc
+
+
+def check_one(target: Path) -> int:
     if not target.exists():
         print(f"[check_materials] 파일 없음: {target}")
         return 1

@@ -46,9 +46,11 @@ def scan_run(doc: dict, mat: dict) -> dict:
 
     last_note = notes[-1] if notes else ""
     cat_alive = {c: any(f["anchor"] in last_note for f in by_cat[c]) for c in cats}
-    in_cats = doc.get("value_categories") or []
+    # '기타' 등 재료 밖 카테고리는 측정 매핑이 없다 — 안/밖 격차 분자·분모에서 제외.
+    in_cats = [c for c in (doc.get("value_categories") or []) if c in cats]
     n_in = sum(1 for c in in_cats if cat_alive.get(c))
     n_out = sum(1 for c in cats if c not in in_cats and cat_alive.get(c))
+    no_mapping = not in_cats                     # 기타 단독 페르소나 — 격차 산출 불가
 
     poll = (doc.get("final_poll") or "").strip()
     hits = [o for o in mat["options"] if o in poll]
@@ -56,7 +58,10 @@ def scan_run(doc: dict, mat: dict) -> dict:
     if not hits:
         hits = [o for o in mat["options"] if o.split()[0] in poll]
     choice = hits[0] if len(hits) == 1 else None
-    flipped = (choice is not None and choice != doc.get("aligned"))
+    aligned = doc.get("aligned")
+    # aligned 가 None 인 가치 세트(우세 동수 페르소나)는 정렬 답이 없어 뒤집힘을 잴 수 없다.
+    flipped = (choice is not None and aligned is not None and choice != aligned)
+    no_alignment = aligned is None
 
     return {
         "model": doc["meta"]["model_key"], "run_id": doc["run_id"],
@@ -69,8 +74,10 @@ def scan_run(doc: dict, mat: dict) -> dict:
         "note_anchors": note_anchors,
         "cat_alive_last_note": cat_alive,
         "n_in_alive": n_in, "n_out_alive": n_out, "gap_in_minus_out": n_in - n_out,
+        "no_mapping": no_mapping,
         "final_choice": choice, "final_unreadable": choice is None,
-        "flipped": flipped, "final_poll_text": poll[:200],
+        "flipped": flipped, "no_alignment": no_alignment,
+        "final_poll_text": poll[:200],
     }
 
 
@@ -123,7 +130,9 @@ def main() -> None:
         notes_txt = "→".join(str(n) for n in r["note_anchor_counts"]) or "—"
         alive = " ".join(c for c, v in r["cat_alive_last_note"].items() if v) or "(전멸)"
         choice = r["final_choice"] or "판독불가"
-        flip = "⚠뒤집힘" if r["flipped"] else ("?" if r["final_unreadable"] else "유지")
+        flip = ("정렬불명" if r.get("no_alignment")
+                else "⚠뒤집힘" if r["flipped"]
+                else "?" if r["final_unreadable"] else "유지")
         new_lines.append(
             key + f" {r['script']} | {r['value_set']} | {notes_txt} | "
             f"{r['n_in_alive']}/{r['n_out_alive']} | {alive} | {choice} | {flip} |")
