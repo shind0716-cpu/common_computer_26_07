@@ -1,0 +1,218 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "manual(session-claude-draft, 팀 검수 전 후보 지위)",
+  "created_at": "2026-08-24T10:06:09.968149+00:00",
+  "issue_id": "issue_childcare",
+  "_note": "12팩트. 관점 4분할(관점당 3). 불리 pro:con 대칭. _unfavorable_to/_perspective는 스키마 밖 보조 필드.",
+  "extractor": {
+    "model": "manual",
+    "temperature": 0,
+    "prompt_ver": "scenario-cand-v5-12"
+  },
+  "facts": [
+    {
+      "fact_id": "fact_childcare_01",
+      "text": "아이는 입구를 지나면 대체로 안정된다는 교사 관찰이 있다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "아동",
+      "_anchor": "대체로 안정"
+    },
+    {
+      "fact_id": "fact_childcare_02",
+      "text": "아이는 최근 낮잠 시간마다 힘들어한다는 기록이 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "아동",
+      "_anchor": "낮잠 시간"
+    },
+    {
+      "fact_id": "fact_childcare_03",
+      "text": "아이는 최근 동생이 태어나며 정서적으로 예민해진 시기다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "아동",
+      "_anchor": "동생이 태어나"
+    },
+    {
+      "fact_id": "fact_childcare_04",
+      "text": "보호자는 등원 요일이 정해져 있지 않으면 돌봄 공백이 생긴다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "보호자",
+      "_anchor": "돌봄 공백"
+    },
+    {
+      "fact_id": "fact_childcare_05",
+      "text": "보호자는 최근 며칠 등원을 늦추자는 쪽으로 마음이 기울었다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "보호자",
+      "_anchor": "등원을 늦추자"
+    },
+    {
+      "fact_id": "fact_childcare_06",
+      "text": "보호자는 아이의 등원 거부가 반복되면 상담을 받아볼 계획이다",
+      "tags": [
+        "condition"
+      ],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": null,
+      "_perspective": "보호자",
+      "_anchor": "상담을 받아볼"
+    },
+    {
+      "fact_id": "fact_childcare_07",
+      "text": "기관은 정원 유지를 위해 규칙적인 등원을 권장한다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "기관",
+      "_anchor": "정원 유지"
+    },
+    {
+      "fact_id": "fact_childcare_08",
+      "text": "기관 교사는 무리한 등원이 아이의 불안을 키울 수 있다고 본다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "기관",
+      "_anchor": "불안을 키울"
+    },
+    {
+      "fact_id": "fact_childcare_09",
+      "text": "기관에는 적응 기간을 유연하게 두는 별도 절차가 있다",
+      "tags": [
+        "exception"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "기관",
+      "_anchor": "적응 기간"
+    },
+    {
+      "fact_id": "fact_childcare_10",
+      "text": "또래 친구들은 아이가 오는 날을 반긴다는 이야기가 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "또래·환경",
+      "_anchor": "오는 날을 반긴다"
+    },
+    {
+      "fact_id": "fact_childcare_11",
+      "text": "비슷한 사례에서 며칠 쉬고 나니 저절로 나아졌다는 이야기도 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "both",
+      "_perspective": "또래·환경",
+      "_anchor": "저절로 나아졌다"
+    },
+    {
+      "fact_id": "fact_childcare_12",
+      "text": "무리한 등원이 이어지면 등원 자체를 더 거부하게 됐다는 사례도 있다",
+      "tags": [
+        "exception"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "또래·환경",
+      "_anchor": "더 거부하게"
+    }
+  ]
+}

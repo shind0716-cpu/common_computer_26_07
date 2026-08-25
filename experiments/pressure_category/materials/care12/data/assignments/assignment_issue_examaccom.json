@@ -1,0 +1,90 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "manual(session-claude-draft, 팀 검수 전 후보 지위)",
+  "created_at": "2026-08-24T10:51:48.441408+00:00",
+  "issue_id": "issue_examaccom",
+  "_note": "8에이전트(관점 4 x 입장 2), 에이전트당 3팩트, 밀도 2.0, 자기2/타1, 각 자기입장 불리 1+.",
+  "seed": 42,
+  "agents": [
+    {
+      "agent_id": "agent_1",
+      "perspective": "서류·절차",
+      "stance": "pro",
+      "assigned_fact_ids": [
+        "fact_examaccom_03",
+        "fact_examaccom_01",
+        "fact_examaccom_08"
+      ]
+    },
+    {
+      "agent_id": "agent_2",
+      "perspective": "서류·절차",
+      "stance": "con",
+      "assigned_fact_ids": [
+        "fact_examaccom_02",
+        "fact_examaccom_01",
+        "fact_examaccom_10"
+      ]
+    },
+    {
+      "agent_id": "agent_3",
+      "perspective": "학업 기록",
+      "stance": "pro",
+      "assigned_fact_ids": [
+        "fact_examaccom_06",
+        "fact_examaccom_05",
+        "fact_examaccom_11"
+      ]
+    },
+    {
+      "agent_id": "agent_4",
+      "perspective": "학업 기록",
+      "stance": "con",
+      "assigned_fact_ids": [
+        "fact_examaccom_05",
+        "fact_examaccom_06",
+        "fact_examaccom_07"
+      ]
+    },
+    {
+      "agent_id": "agent_5",
+      "perspective": "제도·기준",
+      "stance": "pro",
+      "assigned_fact_ids": [
+        "fact_examaccom_09",
+        "fact_examaccom_08",
+        "fact_examaccom_03"
+      ]
+    },
+    {
+      "agent_id": "agent_6",
+      "perspective": "제도·기준",
+      "stance": "con",
+      "assigned_fact_ids": [
+        "fact_examaccom_09",
+        "fact_examaccom_07",
+        "fact_examaccom_05"
+      ]
+    },
+    {
+      "agent_id": "agent_7",
+      "perspective": "형평성·환경",
+      "stance": "pro",
+      "assigned_fact_ids": [
+        "fact_examaccom_12",
+        "fact_examaccom_11",
+        "fact_examaccom_02"
+      ]
+    },
+    {
+      "agent_id": "agent_8",
+      "perspective": "형평성·환경",
+      "stance": "con",
+      "assigned_fact_ids": [
+        "fact_examaccom_10",
+        "fact_examaccom_11",
+        "fact_examaccom_04"
+      ]
+    }
+  ]
+}

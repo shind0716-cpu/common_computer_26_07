@@ -1,0 +1,218 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "manual(session-claude-draft, 팀 검수 전 후보 지위)",
+  "created_at": "2026-08-24T10:51:48.441408+00:00",
+  "issue_id": "issue_examaccom",
+  "_note": "12팩트. 관점 4분할(관점당 3). 불리 pro:con 대칭. _unfavorable_to/_perspective는 스키마 밖 보조 필드.",
+  "extractor": {
+    "model": "manual",
+    "temperature": 0,
+    "prompt_ver": "scenario-cand-v5-12"
+  },
+  "facts": [
+    {
+      "fact_id": "fact_examaccom_01",
+      "text": "이 학생은 관련 진단서를 제출 기한 내에 제출했다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "서류·절차",
+      "_anchor": "제출 기한 내"
+    },
+    {
+      "fact_id": "fact_examaccom_02",
+      "text": "진단서 발급일이 신청 기준일보다 다소 오래됐다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "서류·절차",
+      "_anchor": "다소 오래됐다"
+    },
+    {
+      "fact_id": "fact_examaccom_03",
+      "text": "학교는 갱신 진단서를 요구할 수 있는 별도 절차를 두고 있다",
+      "tags": [
+        "exception"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "서류·절차",
+      "_anchor": "갱신 진단서"
+    },
+    {
+      "fact_id": "fact_examaccom_04",
+      "text": "이 학생은 이전 학기 시험에서도 동일한 연장을 받은 적이 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "학업 기록",
+      "_anchor": "동일한 연장"
+    },
+    {
+      "fact_id": "fact_examaccom_05",
+      "text": "최근 성적 추이는 연장 없이도 큰 변화가 없었다는 기록이 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "학업 기록",
+      "_anchor": "큰 변화가 없었다"
+    },
+    {
+      "fact_id": "fact_examaccom_06",
+      "text": "담당 교사는 이번 학기 들어 학생의 어려움이 커졌다고 본다",
+      "tags": [
+        "condition"
+      ],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": null,
+      "_perspective": "학업 기록",
+      "_anchor": "어려움이 커졌다"
+    },
+    {
+      "fact_id": "fact_examaccom_07",
+      "text": "심사 기준은 정해진 요건의 충족 개수로 승인 여부를 정하도록 규정돼 있다",
+      "tags": [
+        "exception"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "both",
+      "_perspective": "제도·기준",
+      "_anchor": "충족 개수로"
+    },
+    {
+      "fact_id": "fact_examaccom_08",
+      "text": "요건 중 하나인 전문가 소견서가 이번엔 조금 늦게 도착했다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "제도·기준",
+      "_anchor": "조금 늦게 도착"
+    },
+    {
+      "fact_id": "fact_examaccom_09",
+      "text": "지각 제출에 대한 예외 인정 여부는 위원회 재량으로 되어 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "제도·기준",
+      "_anchor": "위원회 재량"
+    },
+    {
+      "fact_id": "fact_examaccom_10",
+      "text": "다른 학생들 사이에서 형평성 문제가 제기된 적이 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "형평성·환경",
+      "_anchor": "형평성 문제"
+    },
+    {
+      "fact_id": "fact_examaccom_11",
+      "text": "비슷한 사례에서 서류가 조금 늦어도 승인된 전례가 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "형평성·환경",
+      "_anchor": "조금 늦어도"
+    },
+    {
+      "fact_id": "fact_examaccom_12",
+      "text": "이 학생은 연장이 반려되면 이의 신청을 할 뜻을 밝혔다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "형평성·환경",
+      "_anchor": "이의 신청"
+    }
+  ]
+}

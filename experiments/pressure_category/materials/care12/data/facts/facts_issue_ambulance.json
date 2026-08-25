@@ -1,0 +1,218 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "manual(session-claude-draft, 팀 검수 전 후보 지위)",
+  "created_at": "2026-08-24T12:33:34.492727+00:00",
+  "issue_id": "issue_ambulance",
+  "_note": "12팩트. 관점 4분할(관점당 3). 불리 pro:con 대칭. _unfavorable_to/_perspective는 스키마 밖 보조 필드.",
+  "extractor": {
+    "model": "manual",
+    "temperature": 0,
+    "prompt_ver": "scenario-cand-v5-12"
+  },
+  "facts": [
+    {
+      "fact_id": "fact_ambulance_01",
+      "text": "이 신고는 의식 저하를 명확히 언급했다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "신고 내용",
+      "_anchor": "의식 저하를"
+    },
+    {
+      "fact_id": "fact_ambulance_02",
+      "text": "신고자는 최근 비슷한 신고를 한 적이 있어 과잉 신고 가능성이 거론됐다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "신고 내용",
+      "_anchor": "과잉 신고"
+    },
+    {
+      "fact_id": "fact_ambulance_03",
+      "text": "다른 쪽 신고는 통증을 호소하는 수준으로 접수됐다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "신고 내용",
+      "_anchor": "통증을 호소"
+    },
+    {
+      "fact_id": "fact_ambulance_04",
+      "text": "이 환자는 만성질환 병력이 있는 것으로 확인됐다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "환자 상태",
+      "_anchor": "만성질환 병력"
+    },
+    {
+      "fact_id": "fact_ambulance_05",
+      "text": "다른 쪽 환자는 최근 유사 증상으로 응급실을 다녀온 기록이 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "환자 상태",
+      "_anchor": "유사 증상으로"
+    },
+    {
+      "fact_id": "fact_ambulance_06",
+      "text": "이 환자의 정확한 현재 활력징후는 아직 확인되지 않았다",
+      "tags": [
+        "condition"
+      ],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": null,
+      "_perspective": "환자 상태",
+      "_anchor": "활력징후는"
+    },
+    {
+      "fact_id": "fact_ambulance_07",
+      "text": "이송 우선순위 기준은 정해진 요건의 충족 개수로 판정하도록 규정돼 있다",
+      "tags": [
+        "exception"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "both",
+      "_perspective": "제도·기준",
+      "_anchor": "요건의 충족"
+    },
+    {
+      "fact_id": "fact_ambulance_08",
+      "text": "두 신고 지점 사이 거리는 도보로도 이동 가능한 수준이다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "제도·기준",
+      "_anchor": "도보로도 이동"
+    },
+    {
+      "fact_id": "fact_ambulance_09",
+      "text": "인근에 배차 가능한 예비 구급차가 한 대 더 있다는 보고가 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "제도·기준",
+      "_anchor": "예비 구급차"
+    },
+    {
+      "fact_id": "fact_ambulance_10",
+      "text": "이 지역은 최근 구급 수요가 몰리는 시간대라는 통계가 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "상황·환경",
+      "_anchor": "수요가 몰리는"
+    },
+    {
+      "fact_id": "fact_ambulance_11",
+      "text": "다른 쪽 신고 현장에는 이미 응급처치 교육을 받은 사람이 있다고 한다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "상황·환경",
+      "_anchor": "응급처치 교육"
+    },
+    {
+      "fact_id": "fact_ambulance_12",
+      "text": "판정이 늦어지면 두 신고 모두에 대응이 지연된다는 우려가 있다",
+      "tags": [
+        "exception"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "상황·환경",
+      "_anchor": "대응이 지연"
+    }
+  ]
+}

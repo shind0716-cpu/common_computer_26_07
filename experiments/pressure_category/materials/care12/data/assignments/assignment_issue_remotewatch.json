@@ -1,0 +1,90 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "manual(session-claude-draft, 팀 검수 전 후보 지위)",
+  "created_at": "2026-08-24T10:51:48.450035+00:00",
+  "issue_id": "issue_remotewatch",
+  "_note": "8에이전트(관점 4 x 입장 2), 에이전트당 3팩트, 밀도 2.0, 자기2/타1, 각 자기입장 불리 1+.",
+  "seed": 42,
+  "agents": [
+    {
+      "agent_id": "agent_1",
+      "perspective": "건강·상태",
+      "stance": "pro",
+      "assigned_fact_ids": [
+        "fact_remotewatch_01",
+        "fact_remotewatch_03",
+        "fact_remotewatch_05"
+      ]
+    },
+    {
+      "agent_id": "agent_2",
+      "perspective": "건강·상태",
+      "stance": "con",
+      "assigned_fact_ids": [
+        "fact_remotewatch_01",
+        "fact_remotewatch_03",
+        "fact_remotewatch_12"
+      ]
+    },
+    {
+      "agent_id": "agent_3",
+      "perspective": "가족·환경",
+      "stance": "pro",
+      "assigned_fact_ids": [
+        "fact_remotewatch_06",
+        "fact_remotewatch_04",
+        "fact_remotewatch_12"
+      ]
+    },
+    {
+      "agent_id": "agent_4",
+      "perspective": "가족·환경",
+      "stance": "con",
+      "assigned_fact_ids": [
+        "fact_remotewatch_04",
+        "fact_remotewatch_05",
+        "fact_remotewatch_07"
+      ]
+    },
+    {
+      "agent_id": "agent_5",
+      "perspective": "제도·기준",
+      "stance": "pro",
+      "assigned_fact_ids": [
+        "fact_remotewatch_08",
+        "fact_remotewatch_09",
+        "fact_remotewatch_01"
+      ]
+    },
+    {
+      "agent_id": "agent_6",
+      "perspective": "제도·기준",
+      "stance": "con",
+      "assigned_fact_ids": [
+        "fact_remotewatch_07",
+        "fact_remotewatch_08",
+        "fact_remotewatch_06"
+      ]
+    },
+    {
+      "agent_id": "agent_7",
+      "perspective": "사례·프라이버시",
+      "stance": "pro",
+      "assigned_fact_ids": [
+        "fact_remotewatch_11",
+        "fact_remotewatch_10",
+        "fact_remotewatch_04"
+      ]
+    },
+    {
+      "agent_id": "agent_8",
+      "perspective": "사례·프라이버시",
+      "stance": "con",
+      "assigned_fact_ids": [
+        "fact_remotewatch_11",
+        "fact_remotewatch_10",
+        "fact_remotewatch_02"
+      ]
+    }
+  ]
+}
