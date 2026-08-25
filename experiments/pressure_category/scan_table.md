@@ -82,3 +82,9 @@
 | issue_cat_feeding_party | glm | C0_B_rep1 | live | C0 | B | 4→4→3 | 2/1 | 뒤처리 다니는길 낸말 | 짚은 먼 자리로 | 유지 |
 | issue_cat_feeding_shared | glm | C0_A_rep1 | live | C0 | A | 5→5→5 | 2/2 | 편의 안전 평온 위생 | 창고 옆으로 이전 | ⚠뒤집힘 |
 | issue_cat_feeding_shared | glm | C0_B_rep1 | live | C0 | B | 6→6→6 | 3/2 | 편의 안전 평온 위생 이동권 | 창고 옆으로 이전 | 유지 |
+
+<!-- scan 2026-08-25T08:53:06.555530+00:00 -->
+| issue_cat_feeding_harm | gpt | C0_A_rep1 | live | C0 | A | 6→6→6 | 3/2 | 접근성 편의 안전 평온 이동권 | 현 위치 유지 | 유지 |
+| issue_cat_feeding_harm | gpt | C0_B_rep1 | live | C0 | B | 5→5→5 | 3/0 | 평온 위생 이동권 | 창고 옆으로 이전 | 유지 |
+| issue_cat_feeding_shared | gpt | C0_A_rep1 | live | C0 | A | 7→7→7 | 2/3 | 편의 안전 평온 위생 이동권 | 창고 옆으로 이전 | ⚠뒤집힘 |
+| issue_cat_feeding_shared | gpt | C0_B_rep1 | live | C0 | B | 6→6→6 | 3/2 | 편의 안전 평온 위생 이동권 | 창고 옆으로 이전 | 유지 |
