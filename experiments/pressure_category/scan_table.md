@@ -76,3 +76,9 @@
 | issue_cat_feeding_evenweight | gpt | C0_B_rep1 | live | C0 | B | 7→7→7 | 3/2 | 돌봄 책임 위생 이동권 안전 | 창고 옆으로 이전 | 유지 |
 | issue_cat_feeding_evenweight | gpt | c2r0_A_rep1 | live | c2r0 | A | 6→5→5 | 2/3 | 돌봄 책임 위생 이동권 안전 | 창고 옆으로 이전 | ⚠뒤집힘 |
 | issue_cat_feeding_evenweight | gpt | c2r0_B_rep1 | live | c2r0 | B | 6→5→5 | 3/2 | 돌봄 책임 위생 이동권 안전 | 창고 옆으로 이전 | 유지 |
+
+<!-- scan 2026-08-25T08:33:14.432631+00:00 -->
+| issue_cat_feeding_party | glm | C0_A_rep1 | live | C0 | A | 1→1→1 | 0/1 | 다니는길 | 지금 자리에서 이어감 | 유지 |
+| issue_cat_feeding_party | glm | C0_B_rep1 | live | C0 | B | 4→4→3 | 2/1 | 뒤처리 다니는길 낸말 | 짚은 먼 자리로 | 유지 |
+| issue_cat_feeding_shared | glm | C0_A_rep1 | live | C0 | A | 5→5→5 | 2/2 | 편의 안전 평온 위생 | 창고 옆으로 이전 | ⚠뒤집힘 |
+| issue_cat_feeding_shared | glm | C0_B_rep1 | live | C0 | B | 6→6→6 | 3/2 | 편의 안전 평온 위생 이동권 | 창고 옆으로 이전 | 유지 |
