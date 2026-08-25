@@ -1,4 +1,4 @@
-"""[패키지 A · 신동범] dryrun2 정본 픽스처 생성기 — 현 judge.py 구조의 canonical 예시.
+"""[공용 코어 · 8/21 요한 결정 (구 패키지 A · 신동범, 8/21 이적)] dryrun2 정본 픽스처 생성기 — 현 judge.py 구조의 canonical 예시.
 
 배경(7/22): 리포에 커밋된 dryrun judgment 는 초안 judge(af4963f) 산출물이라 votes 구조가
 현 judge.py 출력과 다르다(WORKLOG ⚠ 민옥 발견). 그러나 그 파일은

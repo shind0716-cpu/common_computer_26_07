@@ -449,17 +449,21 @@ class TestConsoleIntegration(PromotionBase):
 
 
 class TestRepositoryRegistryIntegration(unittest.TestCase):
-    """실제 award_v2 package는 의미 패키지까지 동기화됐지만 승인·prior 전에는 막힌다."""
+    """실제 v2 package: 의미 패키지·prior·사람 승인(2026-08-21 요한, console_approved)까지 갖춰 확증 문을 통과한다.
+    descriptive 두 벌은 accuracy 요청만 여전히 막힌다."""
 
-    def test_award_v2_registry_matches_package_but_remains_non_executable(self):
+    def test_award_v2_registry_matches_package_and_is_executable(self):
         from modules import scenario_gate
 
         result = scenario_gate.evaluate("issue_award_v2")
-        self.assertFalse(result.allowed)
-        self.assertEqual(result.state, "candidate")
+        self.assertTrue(result.allowed, result.blocking_reasons)
+        self.assertEqual(result.state, "console_approved")
+        self.assertEqual(result.warnings, [])
         joined = " | ".join(result.blocking_reasons)
-        self.assertIn("promotion state not executable: candidate", joined)
-        self.assertIn("prior not completed", joined)
+        self.assertNotIn("promotion state not executable", joined)
+        # 2026-08-21 prior 프로브 완료(known 0/12, 48콜) — 이제 prior 는 막지 않는다.
+        self.assertNotIn("prior not completed", joined)
+        self.assertNotIn("facts hash mismatch", joined)
         for stale_error in (
             "spec hash mismatch", "spec version mismatch",
             "calibration hash mismatch", "calibration version mismatch",
@@ -467,15 +471,20 @@ class TestRepositoryRegistryIntegration(unittest.TestCase):
         ):
             self.assertNotIn(stale_error, joined)
 
-    def test_polar_v2_registry_matches_package_but_remains_non_executable(self):
+    def test_polar_v2_registry_approved_but_accuracy_still_forbidden(self):
         from modules import scenario_gate
 
+        # 승인됐어도 descriptive_stance_only 에 accuracy 를 청구하면 막힌다 — 그게 유일한 장애여야 한다.
+        self.assertTrue(scenario_gate.evaluate("issue_polar_v2").allowed)
         result = scenario_gate.evaluate("issue_polar_v2", requested_metric="accuracy")
         self.assertFalse(result.allowed)
-        self.assertEqual(result.state, "candidate")
+        self.assertEqual(result.state, "console_approved")
+        self.assertEqual(result.blocking_reasons,
+                         ["accuracy forbidden for descriptive_stance_only scenario"])
         joined = " | ".join(result.blocking_reasons)
-        self.assertIn("promotion state not executable: candidate", joined)
-        self.assertIn("prior not completed", joined)
+        # 2026-08-21 prior 프로브 완료(known 0/12, 48콜) — 이제 prior 는 막지 않는다.
+        self.assertNotIn("prior not completed", joined)
+        self.assertNotIn("facts hash mismatch", joined)
         self.assertIn("accuracy forbidden for descriptive_stance_only scenario", joined)
         for stale_error in (
             "spec hash mismatch", "spec version mismatch",
@@ -484,15 +493,20 @@ class TestRepositoryRegistryIntegration(unittest.TestCase):
         ):
             self.assertNotIn(stale_error, joined)
 
-    def test_exile_v2_registry_matches_package_but_remains_non_executable(self):
+    def test_exile_v2_registry_approved_but_accuracy_still_forbidden(self):
         from modules import scenario_gate
 
+        # 승인됐어도 descriptive_stance_only 에 accuracy 를 청구하면 막힌다 — 그게 유일한 장애여야 한다.
+        self.assertTrue(scenario_gate.evaluate("issue_exile_v2").allowed)
         result = scenario_gate.evaluate("issue_exile_v2", requested_metric="accuracy")
         self.assertFalse(result.allowed)
-        self.assertEqual(result.state, "candidate")
+        self.assertEqual(result.state, "console_approved")
+        self.assertEqual(result.blocking_reasons,
+                         ["accuracy forbidden for descriptive_stance_only scenario"])
         joined = " | ".join(result.blocking_reasons)
-        self.assertIn("promotion state not executable: candidate", joined)
-        self.assertIn("prior not completed", joined)
+        # 2026-08-21 prior 프로브 완료(known 0/12, 48콜) — 이제 prior 는 막지 않는다.
+        self.assertNotIn("prior not completed", joined)
+        self.assertNotIn("facts hash mismatch", joined)
         self.assertIn("accuracy forbidden for descriptive_stance_only scenario", joined)
         for stale_error in (
             "spec hash mismatch", "spec version mismatch",

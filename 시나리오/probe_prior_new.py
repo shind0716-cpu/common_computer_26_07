@@ -40,7 +40,11 @@ from modules.llm import obtain_response, preflight  # noqa: E402
 
 # issue_award 추가(2026-08-19). 앞선 셋은 prior_<이슈>.json 이 이미 있어 아래 루프가
 # 건너뛴다 — 그래서 이번 실행은 award 12콜만 나간다. 재실행해도 같다.
-ISSUES = ("issue_throne", "issue_polar", "issue_exile", "issue_award")
+# v2 네 벌 추가(2026-08-21, 요한 승인 48콜). v1 넷은 prior 파일이 있어 스킵 — 상한 51.
+# 프로브 뒤 facts 해시가 바뀌므로 spec 빌더의 동결 해시·manifest·registry 를 재계산해야
+# 한다(운영 계약 §3 5→7). 그 절차는 WORKLOG 2026-08-21 줄에.
+ISSUES = ("issue_throne", "issue_polar", "issue_exile", "issue_award",
+          "issue_throne_v2", "issue_award_v2", "issue_polar_v2", "issue_exile_v2")
 PROBE_MODEL = "gpt-mini"
 PROBE_PROMPT_VER = "camp-prior-v0.2"      # 문면 계승 — 버전도 그대로 둔다
 TEMPERATURE = 0.0

@@ -2,7 +2,7 @@
   "issue_id": "issue_exile_v2",
   "spec_id": "exile-descriptive-detection-v2",
   "spec_version": "0.2",
-  "material_sha256": "efc64f0a10cd13ddb07380972fd36f60854ba57cb71c472f3628423a1352a70b",
+  "material_sha256": "897bb7afb44722e6d8fb0796aa0fa2784254ebe920bfe57eae8a1511310a1627",
   "calibration_version": "cal-0.2",
   "lexical_is_primary": false,
   "_note": "frozen exile_v2 material + owner decisions only; observed output consumed 0.",
@@ -10,7 +10,7 @@
   "candidates": [],
   "material_artifacts": {
     "issue_sha256": "833fcc221d9224e1e10422cb7dbeb949bd087513be3c3f3563125dbcbd855cf2",
-    "facts_sha256": "efc64f0a10cd13ddb07380972fd36f60854ba57cb71c472f3628423a1352a70b",
+    "facts_sha256": "897bb7afb44722e6d8fb0796aa0fa2784254ebe920bfe57eae8a1511310a1627",
     "assignment_sha256": "38ad3a6ca2cfb32a2b81ebc6cfcace213c25a22412aa5589fd2c1659ac331fee"
   },
   "distortion_vocabulary": [

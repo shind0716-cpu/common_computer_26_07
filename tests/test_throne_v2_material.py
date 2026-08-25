@@ -78,12 +78,15 @@ class V2StructureTests(unittest.TestCase):
         sh = [f for f in self.facts["facts"] if f["share"] == "shared"]
         self.assertEqual(sum(f["favors"] == "베스카" for f in sh), 3)
 
-    def test_prior_is_unprobed(self):
-        """문면이 바뀐 재료라 v1 의 known 0/12 를 물려받을 수 없다."""
-        self.assertTrue(all(f["prior"]["score"] is None for f in self.facts["facts"]))
+    def test_prior_is_probed_independently_of_v1(self):
+        """문면이 바뀐 재료라 v1 의 known 0/12 를 물려받지 않았다 — 2026-08-21 독립 프로브 0/12."""
+        for f in self.facts["facts"]:
+            self.assertEqual(f["prior"]["score"], 0.0)
+            self.assertEqual(f["prior"]["probe_prompt_ver"], "camp-prior-v0.2")
+            self.assertIsNotNone(f["prior"]["probed_at"])
 
-    def test_note_warns_prior_not_probed(self):
-        self.assertIn("prior 프로브 미실행", self.facts["_note"])
+    def test_note_records_prior_probe(self):
+        self.assertIn("prior 프로브 완료", self.facts["_note"])
 
     def test_assignment_has_no_unassigned_fact(self):
         owned = {i for a in self.assign["agents"] for i in a["assigned_fact_ids"]}

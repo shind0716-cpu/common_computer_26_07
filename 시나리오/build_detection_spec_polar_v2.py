@@ -28,7 +28,7 @@ SPEC_ID = "polar-descriptive-detection-v2"
 SPEC_VERSION = "0.2"
 CALIBRATION_VERSION = "cal-0.2"
 OUTCOME_POLICY = "descriptive_stance_only"
-MATERIAL_SHA256 = "6ddc39cf2d2449a957265097318673361da22543de53016a32cf9bd3608829f7"
+MATERIAL_SHA256 = "79dda8f82f35eb0ab902a38d0d2a5a60d413425b0f9208304670225a8aef07ae"  # 2026-08-21 prior 프로브 뒤 재동결(구 6ddc39cf2d24…)
 FINAL_CHOICES = ("후송한다", "후송하지 않는다")
 FORBIDDEN_OUTCOME_REQUESTS = {
     "accuracy", "correct", "incorrect", "winner", "정답", "정답률", "정오", "correctness",

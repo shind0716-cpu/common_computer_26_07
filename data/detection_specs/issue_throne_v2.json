@@ -2,7 +2,7 @@
   "issue_id": "issue_throne_v2",
   "spec_id": "throne-semantic-detection",
   "spec_version": "0.1",
-  "material_sha256": "438cb771eb09d7a061d33b086d9ef6c08315397a27f026152cc759c6cdd93517",
+  "material_sha256": "5f66817cd96d09eb71946f598bf8252b19bc77bf2e82d01e2cedf54b9ad5a8c1",
   "calibration_version": "cal-0.1",
   "lexical_is_primary": false,
   "_note": "시나리오가 소유하는 의미 판독 계약. lexical_probes 는 후보 span 탐색·누출 검사용 보조지표이며 의미 보존 판정에 쓰지 않는다. 정본: THRONE_CANONICAL_DECISIONS.md (요한 승인 2026-08-20, A/A/A).",

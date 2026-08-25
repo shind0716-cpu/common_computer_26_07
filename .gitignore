@@ -24,3 +24,9 @@ __pycache__/
 # 에이전트 오케스트레이터(Hermes) 작업 파일 — 개인 소비용 인계문·계획. 팀 기록은
 # experiments/·docs/ 에 정식 문서로 남긴다 (cowork 인계 파일 커밋 금지 규칙과 동일 취지).
 /.hermes/
+
+# 오디세이아 트랙은 별도 리포다 (github.com/john891212-oss/odyssey, 2026-08-25 분리).
+# 이 경로에 그 리포를 클론해 두면 스크립트가 ROOT=HERE.parent.parent 로 이 리포의
+# modules/ 를 그대로 찾는다 — 코드는 공용 코어를 빌려 쓰고 기록만 따로 쌓는 모양이다.
+# 무시하지 않으면 git add 가 gitlink(서브모듈)로 잡아 사고가 난다.
+experiments/odyssey_layers/

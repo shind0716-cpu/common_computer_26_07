@@ -1,0 +1,12 @@
+{"fact_id": "fact_exile_v2_01", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 진술이 가리키는 구체 사건·인물·수치를 제 사전 지식만으로는 특정해 알고 있다고 말할 수 없으며, 문맥 없이 확인할 수 없습니다.\"}"}
+{"fact_id": "fact_exile_v2_02", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문구가 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 확인할 수 없으며, 맥락 없이 동일한 표현을 아는지 단정할 수 없습니다.\"}"}
+{"fact_id": "fact_exile_v2_03", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문구가 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 확정적으로 식별할 수 없습니다.\"}"}
+{"fact_id": "fact_exile_v2_04", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문구가 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별할 수 없으며, 정확히 알고 있다고 말할 근거가 없습니다.\"}"}
+{"fact_id": "fact_exile_v2_05", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"‘팔로르’와 해당 통행 차단 상황이 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별할 수 없습니다.\"}"}
+{"fact_id": "fact_exile_v2_06", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문구가 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별할 수 없으며, 정확히 알고 있다고 말할 근거가 없습니다.\"}"}
+{"fact_id": "fact_exile_v2_07", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"사전 지식만으로는 '메르반', '인접 세 도시', '구호 조약' 및 해당 제명 조항이 가리키는 특정 사건이나 인물을 확인할 수 없습니다.\"}"}
+{"fact_id": "fact_exile_v2_08", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문장이 가리키는 특정 사건·인물·수치에 대한 사전 지식은 없으며, 맥락 없이 그 사실을 이미 알고 있다고 정직하게 말할 수 없습니다.\"}"}
+{"fact_id": "fact_exile_v2_09", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"맥락 없이 '정착지가 세워진 것은 세 해 전 겨울이다'라는 문장이 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별할 수 없습니다.\"}"}
+{"fact_id": "fact_exile_v2_10", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"시의회 의석 수와 표결 방식만으로는 특정 사건·인물·수치를 제 사전 지식에서 단정적으로 식별할 수 없으며, 이 진술이 가리키는 구체 사실을 이미 알고 있다고 말할 수 없습니다.\"}"}
+{"fact_id": "fact_exile_v2_11", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문구가 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별하거나 이미 알고 있다고 말할 수 없습니다.\"}"}
+{"fact_id": "fact_exile_v2_12", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 진술이 가리키는 구체적인 협정·사건·인물·수치를 제 사전 지식만으로는 특정해 알지 못합니다.\"}"}
