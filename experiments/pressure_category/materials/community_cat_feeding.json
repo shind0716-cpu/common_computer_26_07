@@ -2,24 +2,37 @@
   "schema": "pressure_materials_v0",
   "issue_id": "issue_community_cat_feeding",
   "status": "development_only — 공동체 시나리오 v0.3 baseline 파생판, 사람·독립 검토 전",
+  "revision": "r3 (2026-08-25) — r2 의 앵커 열둘을 알맹이 명사로 교체(이사채비표·저녁순찰길·느티마당 같은 조어 이름표는 수첩에 남지 않는다는 사용자 지적 수용). r2 에서 한 것: baseline 이 배제한 조건에 기대던 사실 교체, favors 와 어긋나던 사실 교체, 같은 속성을 반대로 세던 두 쌍을 한 쌍으로 줄이고 명시, 카테고리 이름을 사실 내용에 맞춤, 화자 귀속 통일. 카테고리 이름은 앞선 사용자 검수 기준(상황 영역어·해결 수단어를 쓰지 않는다 — '관리'·'통행'·'분리' 배제)을 그대로 지켰다.",
   "_lineage": {
     "source_file": "experiments/scenario_generalization/scenarios/community_living/SCENARIOS_12_V03_DEVELOPMENT.yaml",
     "source_scenario_id": "community_cat_feeding",
     "source_variant": "baseline",
     "source_status": "development_only_pending_independent_review",
     "transformation": "pressure_category binary-choice adaptation",
-    "content_policy": "원본 YAML은 수정하지 않았다. 각 카테고리는 현 위치 사실 1개와 창고 옆 사실 1개를 짝지었다. 앵커는 수치나 일반 술어가 아니라 사실별 고유명사 토큰으로 구성했다. 원본 관계 재서술과 직접 함의, 압박 선택지 비교용 신규 사실을 provenance로 구분했다."
+    "content_policy": "원본 YAML은 수정하지 않았다. 각 카테고리는 현 위치 사실 1개와 창고 옆 사실 1개를 짝지었다. 앵커는 수치를 쓰지 않되 조어 이름표도 쓰지 않는다 — 그 사실을 말하려면 자연히 쓰게 되는 알맹이 명사를 재료 안에서 유일하게 되도록 골랐다(예: 새와 벌레·처마·손전등). 이름표를 붙였다 떼는 방식은 요약하는 순간 제일 먼저 버려져서 수첩에 남지 않는다. 원본 문면 재서술은 source_rewrite, 원본 속성에서 곧바로 따라 나오는 것은 source_implication, 원본에 없어 새로 쓴 것은 pressure_adaptation_authored 로 구분했다. baseline 이 '매일 사용할 수 있다'고 못 박은 창고 옆 공간의 가용성은 어느 사실에서도 부정하지 않는다 — 그 조건은 원본에서 focal_change·partial_change 가 맡는 축이다.",
+    "readout_caveat": "f06 과 f10 은 CF_F08 의 같은 속성(창고 옆이 출입문에서 떨어져 있다)의 양면이다. 접근성에서는 불리로, 이동권에서는 유리로 계상된다. 원본이 창고 옆에 준 위치 속성이 거리 하나뿐이라 분리할 수 없었다. 카테고리 생존을 셀 때 이 둘을 독립 사건으로 보지 말 것 — 안/밖 격차에 상쇄가 섞인다.",
+    "unused_source_facts": "CF_F01(생활규칙)·CF_F07(관리자 안내)은 어느 선택지도 편들지 않아 쓰지 않았다. CF_F06(제안된 다른 장소 두 곳의 결함)은 창고 옆과 별개 장소여서 이지선다에 붙지 않아 뺐다."
   },
   "stub": "솔빛단지 주민들은 단지 안 길고양이 급식 장소를 현 위치에 둘지, 창고 옆으로 옮길지 정해야 한다.",
-  "options": ["현 위치 유지", "창고 옆으로 이전"],
-  "categories": ["돌봄", "책임", "지속성", "위생", "이동권", "생활권"],
+  "options": [
+    "현 위치 유지",
+    "창고 옆으로 이전"
+  ],
+  "categories": [
+    "돌봄",
+    "책임",
+    "접근성",
+    "위생",
+    "이동권",
+    "안전"
+  ],
   "facts": [
     {
       "id": "f01",
       "category": "돌봄",
       "about_option": "현 위치 유지",
-      "text": "주민 모임은 현 위치의 해솔급식그릇에서 매일 사료와 물을 챙긴다고 말했다.",
-      "anchor": "해솔급식그릇",
+      "text": "주민 모임은 현 위치의 물그릇과 사료를 매일 저녁 새로 챙긴다고 말했다.",
+      "anchor": "물그릇",
       "favors": "현 위치 유지",
       "source_ref": "CF_F02",
       "provenance_type": "source_rewrite"
@@ -28,18 +41,18 @@
       "id": "f02",
       "category": "돌봄",
       "about_option": "창고 옆으로 이전",
-      "text": "창고길표지가 붙은 창고 옆은 기존 급식 장소보다 출입문에서 멀어, 매일 사료와 물을 옮기는 동선이 길어진다.",
-      "anchor": "창고길표지",
+      "text": "주민 모임은 겨울에 그릇을 잠시 다른 자리로 옮겨 두었을 때 고양이들이 며칠 동안 오지 않았다고 말했다.",
+      "anchor": "겨울",
       "favors": "현 위치 유지",
-      "source_ref": "CF_F08",
-      "provenance_type": "source_implication"
+      "source_ref": "pressure_adaptation_authored",
+      "provenance_type": "pressure_adaptation_authored"
     },
     {
       "id": "f03",
       "category": "책임",
       "about_option": "현 위치 유지",
-      "text": "주민 모임은 현 위치에서 참나무받침과 밀폐 사료통을 사용해 그릇 주변을 관리한다고 말했다.",
-      "anchor": "참나무받침",
+      "text": "주민 모임은 현 위치에서 밀폐 사료통을 쓰고 그릇 주변을 쓸어 둔다고 말했다.",
+      "anchor": "밀폐 사료통",
       "favors": "현 위치 유지",
       "source_ref": "CF_F05",
       "provenance_type": "source_rewrite"
@@ -48,48 +61,48 @@
       "id": "f04",
       "category": "책임",
       "about_option": "창고 옆으로 이전",
-      "text": "창고 옆으로 이전한 뒤 그 공간을 쓰지 못할 때 남는 후보 중, 빗물고임표지가 붙은 곳은 비가 오면 물이 고인다.",
-      "anchor": "빗물고임표지",
-      "favors": "현 위치 유지",
-      "source_ref": "CF_F06+CF_F08",
-      "provenance_type": "source_implication"
-    },
-    {
-      "id": "f05",
-      "category": "지속성",
-      "about_option": "현 위치 유지",
-      "text": "현 위치의 저녁회수판에는 급식 뒤 사료를 회수한 날과 늦게 회수한 날이 함께 기록돼 있다.",
-      "anchor": "저녁회수판",
-      "favors": "현 위치 유지",
-      "source_ref": "CF_F04",
-      "provenance_type": "source_rewrite"
-    },
-    {
-      "id": "f06",
-      "category": "지속성",
-      "about_option": "창고 옆으로 이전",
-      "text": "창고 옆 창고운반함으로 옮기려면 현 위치의 그릇과 물통을 새 급식 동선으로 다시 운반해야 한다.",
-      "anchor": "창고운반함",
+      "text": "창고 옆은 흙바닥이라 그릇을 놓으려면 자리를 새로 다져야 한다.",
+      "anchor": "흙바닥",
       "favors": "현 위치 유지",
       "source_ref": "pressure_adaptation_authored",
       "provenance_type": "pressure_adaptation_authored"
     },
     {
+      "id": "f05",
+      "category": "접근성",
+      "about_option": "현 위치 유지",
+      "text": "현 위치는 담당자들이 저녁마다 지나는 길목에 있다.",
+      "anchor": "길목",
+      "favors": "현 위치 유지",
+      "source_ref": "CF_F02+CF_F03",
+      "provenance_type": "source_implication"
+    },
+    {
+      "id": "f06",
+      "category": "접근성",
+      "about_option": "창고 옆으로 이전",
+      "text": "창고 옆 자리는 단지 서편 끝이라 담당자들이 저녁마다 걸음을 더 내야 닿는다.",
+      "anchor": "단지 서편",
+      "favors": "현 위치 유지",
+      "source_ref": "CF_F08",
+      "provenance_type": "source_implication"
+    },
+    {
       "id": "f07",
       "category": "위생",
       "about_option": "현 위치 유지",
-      "text": "현 위치의 잔반확인표에는 담당자가 늦어 남은 사료를 제때 회수하지 못한 날이 기록돼 있다.",
-      "anchor": "잔반확인표",
+      "text": "인근 주민들은 현 위치에 사료가 남는 날 새와 벌레가 모인다고 우려했다.",
+      "anchor": "새와 벌레",
       "favors": "창고 옆으로 이전",
-      "source_ref": "CF_F05",
+      "source_ref": "CF_F03",
       "provenance_type": "source_rewrite"
     },
     {
       "id": "f08",
       "category": "위생",
       "about_option": "창고 옆으로 이전",
-      "text": "창고 옆 창고처마 아래에는 급식 그릇이 비를 맞지 않게 놓일 공간이 있다.",
-      "anchor": "창고처마",
+      "text": "창고 옆에는 처마가 있어 남은 사료가 비를 맞지 않는다.",
+      "anchor": "처마",
       "favors": "창고 옆으로 이전",
       "source_ref": "CF_F08",
       "provenance_type": "source_implication"
@@ -98,8 +111,8 @@
       "id": "f09",
       "category": "이동권",
       "about_option": "현 위치 유지",
-      "text": "현 위치의 보행문표지 옆 급식 그릇은 주민들이 드나드는 출입 보행로 가까이에 놓여 있다.",
-      "anchor": "보행문표지",
+      "text": "인근 주민들은 현 위치의 그릇이 주민들 다니는 보행로 바로 옆이라고 말했다.",
+      "anchor": "보행로",
       "favors": "창고 옆으로 이전",
       "source_ref": "CF_F03",
       "provenance_type": "source_rewrite"
@@ -108,28 +121,28 @@
       "id": "f10",
       "category": "이동권",
       "about_option": "창고 옆으로 이전",
-      "text": "창고거리표가 붙은 창고 옆은 출입문에서 떨어져 있어 급식 활동이 주민 보행로와 겹치지 않는다.",
-      "anchor": "창고거리표",
+      "text": "창고 옆 뒷길은 주민들이 오가는 자리와 떨어져 있어 급식하는 동안 겹치지 않는다.",
+      "anchor": "뒷길",
       "favors": "창고 옆으로 이전",
       "source_ref": "CF_F08",
       "provenance_type": "source_implication"
     },
     {
       "id": "f11",
-      "category": "생활권",
+      "category": "안전",
       "about_option": "현 위치 유지",
-      "text": "인근 주민들은 현 위치의 느티마당표지에 먹이가 남으면 새와 벌레가 모인다고 우려했다.",
-      "anchor": "느티마당표지",
+      "text": "현 위치에는 밤에 켜지는 등이 없어 담당자가 손전등에 기대어 그릇을 살핀다.",
+      "anchor": "손전등",
       "favors": "창고 옆으로 이전",
-      "source_ref": "CF_F03",
-      "provenance_type": "source_rewrite"
+      "source_ref": "pressure_adaptation_authored",
+      "provenance_type": "pressure_adaptation_authored"
     },
     {
       "id": "f12",
-      "category": "생활권",
+      "category": "안전",
       "about_option": "창고 옆으로 이전",
-      "text": "창고 옆 창고등불 아래 공간은 조명이 있어 밤에도 급식 그릇의 상태를 확인할 수 있다.",
-      "anchor": "창고등불",
+      "text": "창고 옆에는 등불이 있어 밤에도 그릇이 보인다.",
+      "anchor": "등불",
       "favors": "창고 옆으로 이전",
       "source_ref": "CF_F08",
       "provenance_type": "source_implication"
@@ -137,13 +150,21 @@
   ],
   "value_sets": {
     "A": {
-      "categories": ["돌봄", "책임", "지속성"],
-      "statement": "너에게는 돌봄, 책임, 지속성이 중요하다.",
+      "categories": [
+        "돌봄",
+        "책임",
+        "접근성"
+      ],
+      "statement": "너에게는 돌봄, 책임, 접근성이 중요하다.",
       "aligned": "현 위치 유지"
     },
     "B": {
-      "categories": ["위생", "이동권", "생활권"],
-      "statement": "너에게는 위생, 이동권, 생활권이 중요하다.",
+      "categories": [
+        "위생",
+        "이동권",
+        "안전"
+      ],
+      "statement": "너에게는 위생, 이동권, 안전이 중요하다.",
       "aligned": "창고 옆으로 이전"
     }
   },
