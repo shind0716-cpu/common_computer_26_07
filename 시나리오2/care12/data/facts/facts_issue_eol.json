@@ -1,0 +1,218 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "manual(session-claude-draft, 팀 검수 전 후보 지위)",
+  "created_at": "2026-08-24T10:06:09.971243+00:00",
+  "issue_id": "issue_eol",
+  "_note": "12팩트. 관점 4분할(관점당 3). 불리 pro:con 대칭. _unfavorable_to/_perspective는 스키마 밖 보조 필드.",
+  "extractor": {
+    "model": "manual",
+    "temperature": 0,
+    "prompt_ver": "scenario-cand-v5-12"
+  },
+  "facts": [
+    {
+      "fact_id": "fact_eol_01",
+      "text": "환자는 과거 지인들에게 연명치료를 원치 않는다고 여러 번 말했다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "환자",
+      "_anchor": "여러 번 말했다"
+    },
+    {
+      "fact_id": "fact_eol_02",
+      "text": "환자는 정식 사전연명의료의향서를 작성해 두지는 않았다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "환자",
+      "_anchor": "작성해 두지는"
+    },
+    {
+      "fact_id": "fact_eol_03",
+      "text": "환자는 최근 며칠 짧게나마 의식이 돌아오는 순간이 있었다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "환자",
+      "_anchor": "의식이 돌아오는"
+    },
+    {
+      "fact_id": "fact_eol_04",
+      "text": "자녀 중 한 명은 조금이라도 더 시간을 갖길 원한다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "가족",
+      "_anchor": "더 시간을 갖길"
+    },
+    {
+      "fact_id": "fact_eol_05",
+      "text": "배우자는 본인이 밝힌 뜻대로 해드리고 싶다는 입장이다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "가족",
+      "_anchor": "밝힌 뜻대로"
+    },
+    {
+      "fact_id": "fact_eol_06",
+      "text": "가족들은 최종 결정을 두고 아직 합의에 이르지 못했다",
+      "tags": [
+        "condition"
+      ],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": null,
+      "_perspective": "가족",
+      "_anchor": "합의에 이르지"
+    },
+    {
+      "fact_id": "fact_eol_07",
+      "text": "담당 의료진은 현재 상태에서 회복 가능성이 매우 낮다고 판단한다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "의료진",
+      "_anchor": "매우 낮다고"
+    },
+    {
+      "fact_id": "fact_eol_08",
+      "text": "담당 의료진은 며칠 더 지켜보자는 의견도 함께 냈다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "의료진",
+      "_anchor": "지켜보자는 의견"
+    },
+    {
+      "fact_id": "fact_eol_09",
+      "text": "병원 지침은 본인 의사 확인이 어려우면 가족 합의를 거치도록 한다",
+      "tags": [
+        "exception"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "both",
+      "_perspective": "의료진",
+      "_anchor": "가족 합의를"
+    },
+    {
+      "fact_id": "fact_eol_10",
+      "text": "종교적 신념상 생명 유지를 중요하게 여기는 가족 구성원이 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "윤리·사회",
+      "_anchor": "종교적 신념"
+    },
+    {
+      "fact_id": "fact_eol_11",
+      "text": "비슷한 사례에서 뒤늦게 회복한 경우도 드물게 보고된다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "윤리·사회",
+      "_anchor": "뒤늦게 회복"
+    },
+    {
+      "fact_id": "fact_eol_12",
+      "text": "본인 뜻을 존중하지 않으면 이후 가족 간 갈등이 깊어질 수 있다는 우려가 있다",
+      "tags": [
+        "exception"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "윤리·사회",
+      "_anchor": "갈등이 깊어질"
+    }
+  ]
+}

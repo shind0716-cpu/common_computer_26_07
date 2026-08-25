@@ -1,0 +1,218 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "manual(session-claude-draft, 팀 검수 전 후보 지위)",
+  "created_at": "2026-08-24T10:51:48.449129+00:00",
+  "issue_id": "issue_shelter",
+  "_note": "12팩트. 관점 4분할(관점당 3). 불리 pro:con 대칭. _unfavorable_to/_perspective는 스키마 밖 보조 필드.",
+  "extractor": {
+    "model": "manual",
+    "temperature": 0,
+    "prompt_ver": "scenario-cand-v5-12"
+  },
+  "facts": [
+    {
+      "fact_id": "fact_shelter_01",
+      "text": "이 사람은 담당자에게 쉼터 입소를 원치 않는다고 직접 밝혔다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "당사자·자기결정",
+      "_anchor": "직접 밝혔다"
+    },
+    {
+      "fact_id": "fact_shelter_02",
+      "text": "이 사람은 예전에 짧게 쉼터를 이용한 적이 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "당사자·자기결정",
+      "_anchor": "짧게 쉼터를"
+    },
+    {
+      "fact_id": "fact_shelter_03",
+      "text": "이 사람은 스스로 판단할 능력에 제한이 없어 보인다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "당사자·자기결정",
+      "_anchor": "판단할 능력"
+    },
+    {
+      "fact_id": "fact_shelter_04",
+      "text": "주변 상인들이 안전을 걱정하는 목소리를 전해 왔다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "주변·환경",
+      "_anchor": "안전을 걱정"
+    },
+    {
+      "fact_id": "fact_shelter_05",
+      "text": "인근에서 저체온증 사례가 최근 보고된 적이 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "주변·환경",
+      "_anchor": "저체온증 사례"
+    },
+    {
+      "fact_id": "fact_shelter_06",
+      "text": "이 사람과 담당자의 접촉은 최근 며칠 뜸해진 상태다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "주변·환경",
+      "_anchor": "며칠 뜸해진"
+    },
+    {
+      "fact_id": "fact_shelter_07",
+      "text": "지원 지침은 본인 동의를 입소의 원칙적 전제로 둔다",
+      "tags": [
+        "condition"
+      ],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": null,
+      "_perspective": "지원·행정",
+      "_anchor": "원칙적 전제"
+    },
+    {
+      "fact_id": "fact_shelter_08",
+      "text": "동의 없는 입소는 이후 신뢰 형성을 어렵게 한다는 현장 의견이 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "지원·행정",
+      "_anchor": "신뢰 형성을"
+    },
+    {
+      "fact_id": "fact_shelter_09",
+      "text": "한파 특보 기간에는 예외적으로 동의 없는 보호가 가능한 조항이 있다",
+      "tags": [
+        "exception"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "both",
+      "_perspective": "지원·행정",
+      "_anchor": "한파 특보"
+    },
+    {
+      "fact_id": "fact_shelter_10",
+      "text": "현재까지 확인된 정보로는 즉각적인 생명 위험 징후는 없다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "위험·안전",
+      "_anchor": "생명 위험 징후"
+    },
+    {
+      "fact_id": "fact_shelter_11",
+      "text": "장기간 노숙이 이어지면 건강 위험이 커진다는 일반적 소견이 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "위험·안전",
+      "_anchor": "건강 위험이 커진다"
+    },
+    {
+      "fact_id": "fact_shelter_12",
+      "text": "당장의 입소 대신 방한용품 지원 같은 완충 조치도 가능하다",
+      "tags": [
+        "exception"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "위험·안전",
+      "_anchor": "방한용품 지원"
+    }
+  ]
+}

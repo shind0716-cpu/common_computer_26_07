@@ -1,0 +1,218 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "manual(session-claude-draft, 팀 검수 전 후보 지위)",
+  "created_at": "2026-08-24T10:06:09.973952+00:00",
+  "issue_id": "issue_elderdrive",
+  "_note": "12팩트. 관점 4분할(관점당 3). 불리 pro:con 대칭. _unfavorable_to/_perspective는 스키마 밖 보조 필드.",
+  "extractor": {
+    "model": "manual",
+    "temperature": 0,
+    "prompt_ver": "scenario-cand-v5-12"
+  },
+  "facts": [
+    {
+      "fact_id": "fact_elderdrive_01",
+      "text": "부모님은 최근 주차 중 가벼운 접촉 사고를 두 차례 냈다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "부모",
+      "_anchor": "접촉 사고를 두 차례"
+    },
+    {
+      "fact_id": "fact_elderdrive_02",
+      "text": "부모님은 최근 건강검진에서 시력과 반응속도가 정상 범위로 나왔다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "부모",
+      "_anchor": "정상 범위로"
+    },
+    {
+      "fact_id": "fact_elderdrive_03",
+      "text": "부모님은 운전을 그만두면 활동 반경이 크게 줄 것을 걱정한다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "부모",
+      "_anchor": "활동 반경이"
+    },
+    {
+      "fact_id": "fact_elderdrive_04",
+      "text": "부모님은 병원 통원에 운전이 꼭 필요하다고 말한다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "가족",
+      "_anchor": "통원에 운전이"
+    },
+    {
+      "fact_id": "fact_elderdrive_05",
+      "text": "자녀 중 한 명은 대신 운전해 드릴 여건이 된다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "가족",
+      "_anchor": "대신 운전해"
+    },
+    {
+      "fact_id": "fact_elderdrive_06",
+      "text": "가족들은 아직 이 문제를 부모님께 직접 여쭤보지 않았다",
+      "tags": [
+        "condition"
+      ],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": null,
+      "_perspective": "가족",
+      "_anchor": "직접 여쭤보지"
+    },
+    {
+      "fact_id": "fact_elderdrive_07",
+      "text": "거주 지역은 대중교통 접근성이 낮은 편이다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "지역·안전",
+      "_anchor": "접근성이 낮은"
+    },
+    {
+      "fact_id": "fact_elderdrive_08",
+      "text": "최근 그 지역에서 고령 운전자 관련 사고가 몇 차례 보도됐다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "지역·안전",
+      "_anchor": "몇 차례 보도"
+    },
+    {
+      "fact_id": "fact_elderdrive_09",
+      "text": "지자체에는 고령자 이동 지원 서비스가 일부 운영되고 있다",
+      "tags": [
+        "exception"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "지역·안전",
+      "_anchor": "이동 지원 서비스"
+    },
+    {
+      "fact_id": "fact_elderdrive_10",
+      "text": "비슷한 연세에도 문제없이 운전하는 이웃 사례가 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "사회·제도",
+      "_anchor": "문제없이 운전하는"
+    },
+    {
+      "fact_id": "fact_elderdrive_11",
+      "text": "면허 자진 반납 시 지자체 혜택이 있다는 안내를 받은 적이 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "사회·제도",
+      "_anchor": "자진 반납 시"
+    },
+    {
+      "fact_id": "fact_elderdrive_12",
+      "text": "본인 의사에 반해 면허를 반납시키는 강제 절차는 없다",
+      "tags": [
+        "exception"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "both",
+      "_perspective": "사회·제도",
+      "_anchor": "강제 절차는"
+    }
+  ]
+}

@@ -1,0 +1,218 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "manual(session-claude-draft, 팀 검수 전 후보 지위)",
+  "created_at": "2026-08-24T10:06:09.982128+00:00",
+  "issue_id": "issue_parentalreturn",
+  "_note": "12팩트. 관점 4분할(관점당 3). 불리 pro:con 대칭. _unfavorable_to/_perspective는 스키마 밖 보조 필드.",
+  "extractor": {
+    "model": "manual",
+    "temperature": 0,
+    "prompt_ver": "scenario-cand-v5-12"
+  },
+  "facts": [
+    {
+      "fact_id": "fact_parentalreturn_01",
+      "text": "이 팀원은 휴직 전 담당 업무에서 높은 평가를 받았다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "업무·역량",
+      "_anchor": "높은 평가"
+    },
+    {
+      "fact_id": "fact_parentalreturn_02",
+      "text": "휴직 기간 중 관련 시스템이 크게 바뀌어 재적응이 필요하다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "업무·역량",
+      "_anchor": "크게 바뀌어"
+    },
+    {
+      "fact_id": "fact_parentalreturn_03",
+      "text": "이 팀원은 휴직 중에도 관련 교육을 일부 이수했다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "업무·역량",
+      "_anchor": "교육을 일부"
+    },
+    {
+      "fact_id": "fact_parentalreturn_04",
+      "text": "원래 업무는 현재 다른 팀원이 임시로 맡아 안정적으로 돌아가고 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "팀 상황",
+      "_anchor": "임시로 맡아"
+    },
+    {
+      "fact_id": "fact_parentalreturn_05",
+      "text": "그 팀원은 계속 그 업무를 맡고 싶다는 뜻을 밝혔다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "팀 상황",
+      "_anchor": "계속 그 업무를"
+    },
+    {
+      "fact_id": "fact_parentalreturn_06",
+      "text": "팀 내 다른 자리는 현재 마땅한 공백이 없다",
+      "tags": [
+        "condition"
+      ],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": null,
+      "_perspective": "팀 상황",
+      "_anchor": "마땅한 공백이"
+    },
+    {
+      "fact_id": "fact_parentalreturn_07",
+      "text": "회사 복귀 배치 기준은 정해진 요건의 충족 개수로 정하도록 규정돼 있다",
+      "tags": [
+        "exception"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "both",
+      "_perspective": "회사·제도",
+      "_anchor": "충족 개수로"
+    },
+    {
+      "fact_id": "fact_parentalreturn_08",
+      "text": "복귀자를 원래 업무가 아닌 곳에 배치하면 별도 사유 기록이 필요하다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "회사·제도",
+      "_anchor": "사유 기록이"
+    },
+    {
+      "fact_id": "fact_parentalreturn_09",
+      "text": "본인 동의 없는 재배치는 추가 협의 절차를 거치게 되어 있다",
+      "tags": [
+        "exception"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "회사·제도",
+      "_anchor": "협의 절차를"
+    },
+    {
+      "fact_id": "fact_parentalreturn_10",
+      "text": "이 팀원은 육아 시간 단축 근무를 함께 신청한 상태다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "당사자·사정",
+      "_anchor": "단축 근무를"
+    },
+    {
+      "fact_id": "fact_parentalreturn_11",
+      "text": "이 팀원은 이전에 근무 조정 관련 문의를 여러 차례 남긴 적이 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "당사자·사정",
+      "_anchor": "문의를 여러 차례"
+    },
+    {
+      "fact_id": "fact_parentalreturn_12",
+      "text": "이 팀원은 원래 업무 복귀가 이번 결정의 전제 조건이라 여기고 있다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "당사자·사정",
+      "_anchor": "전제 조건이라"
+    }
+  ]
+}

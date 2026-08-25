@@ -1,0 +1,90 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "manual(session-claude-draft, 팀 검수 전 후보 지위)",
+  "created_at": "2026-08-24T10:06:09.971243+00:00",
+  "issue_id": "issue_eol",
+  "_note": "8에이전트(관점 4 x 입장 2), 에이전트당 3팩트, 밀도 2.0, 자기2/타1, 각 자기입장 불리 1+.",
+  "seed": 42,
+  "agents": [
+    {
+      "agent_id": "agent_1",
+      "perspective": "환자",
+      "stance": "pro",
+      "assigned_fact_ids": [
+        "fact_eol_03",
+        "fact_eol_02",
+        "fact_eol_12"
+      ]
+    },
+    {
+      "agent_id": "agent_2",
+      "perspective": "환자",
+      "stance": "con",
+      "assigned_fact_ids": [
+        "fact_eol_03",
+        "fact_eol_02",
+        "fact_eol_10"
+      ]
+    },
+    {
+      "agent_id": "agent_3",
+      "perspective": "가족",
+      "stance": "pro",
+      "assigned_fact_ids": [
+        "fact_eol_05",
+        "fact_eol_06",
+        "fact_eol_07"
+      ]
+    },
+    {
+      "agent_id": "agent_4",
+      "perspective": "가족",
+      "stance": "con",
+      "assigned_fact_ids": [
+        "fact_eol_05",
+        "fact_eol_04",
+        "fact_eol_10"
+      ]
+    },
+    {
+      "agent_id": "agent_5",
+      "perspective": "의료진",
+      "stance": "pro",
+      "assigned_fact_ids": [
+        "fact_eol_07",
+        "fact_eol_09",
+        "fact_eol_02"
+      ]
+    },
+    {
+      "agent_id": "agent_6",
+      "perspective": "의료진",
+      "stance": "con",
+      "assigned_fact_ids": [
+        "fact_eol_08",
+        "fact_eol_09",
+        "fact_eol_06"
+      ]
+    },
+    {
+      "agent_id": "agent_7",
+      "perspective": "윤리·사회",
+      "stance": "pro",
+      "assigned_fact_ids": [
+        "fact_eol_12",
+        "fact_eol_11",
+        "fact_eol_01"
+      ]
+    },
+    {
+      "agent_id": "agent_8",
+      "perspective": "윤리·사회",
+      "stance": "con",
+      "assigned_fact_ids": [
+        "fact_eol_11",
+        "fact_eol_12",
+        "fact_eol_08"
+      ]
+    }
+  ]
+}

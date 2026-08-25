@@ -1,0 +1,218 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "manual(session-claude-draft, 팀 검수 전 후보 지위)",
+  "created_at": "2026-08-24T13:47:13.968745+00:00",
+  "issue_id": "issue_caregiverprotect",
+  "_note": "12팩트. 관점 4분할(관점당 3). 불리 pro:con 대칭. _unfavorable_to/_perspective는 스키마 밖 보조 필드.",
+  "extractor": {
+    "model": "manual",
+    "temperature": 0,
+    "prompt_ver": "scenario-cand-v5-12"
+  },
+  "facts": [
+    {
+      "fact_id": "fact_caregiverprotect_01",
+      "text": "이 요양보호사는 해당 가정에서 위협적인 언행을 겪은 적이 있다고 보고했다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "요양보호사",
+      "_anchor": "위협적인 언행"
+    },
+    {
+      "fact_id": "fact_caregiverprotect_02",
+      "text": "그 보고는 정식 사건 기록으로는 아직 남아 있지 않다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "요양보호사",
+      "_anchor": "사건 기록으로는"
+    },
+    {
+      "fact_id": "fact_caregiverprotect_03",
+      "text": "이 요양보호사는 해당 가정 방문을 명시적으로 거부 의사를 밝혔다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "요양보호사",
+      "_anchor": "명시적으로 거부"
+    },
+    {
+      "fact_id": "fact_caregiverprotect_04",
+      "text": "이용자 가족은 그런 일이 없었다고 반박하고 있다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "이용자·가족",
+      "_anchor": "그런 일이 없었다"
+    },
+    {
+      "fact_id": "fact_caregiverprotect_05",
+      "text": "이용자는 이 요양보호사와의 관계가 좋았다는 다른 방문 기록이 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "이용자·가족",
+      "_anchor": "관계가 좋았다"
+    },
+    {
+      "fact_id": "fact_caregiverprotect_06",
+      "text": "이용자 가족과 아직 직접 대면 확인은 이뤄지지 않았다",
+      "tags": [
+        "condition"
+      ],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": null,
+      "_perspective": "이용자·가족",
+      "_anchor": "직접 대면 확인"
+    },
+    {
+      "fact_id": "fact_caregiverprotect_07",
+      "text": "배치 변경 여부는 정해진 요건의 충족 개수로 판단하도록 규정돼 있다",
+      "tags": [
+        "exception"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "both",
+      "_perspective": "기관·관리",
+      "_anchor": "요건의 충족"
+    },
+    {
+      "fact_id": "fact_caregiverprotect_08",
+      "text": "해당 지역에는 대체 배치할 인력이 마땅치 않은 상황이다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "기관·관리",
+      "_anchor": "대체 배치할"
+    },
+    {
+      "fact_id": "fact_caregiverprotect_09",
+      "text": "기관 지침은 노동자의 위험 상황 배치 거부권을 원칙적으로 인정한다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "기관·관리",
+      "_anchor": "거부권을 원칙적으로"
+    },
+    {
+      "fact_id": "fact_caregiverprotect_10",
+      "text": "비슷한 신고가 이 가정에서 이전에도 한 차례 있었다는 기록이 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "제도·안전",
+      "_anchor": "이전에도 한 차례"
+    },
+    {
+      "fact_id": "fact_caregiverprotect_11",
+      "text": "그 이전 신고는 조사 결과 사실무근으로 종결된 바 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "제도·안전",
+      "_anchor": "사실무근으로"
+    },
+    {
+      "fact_id": "fact_caregiverprotect_12",
+      "text": "위험 상황이 반복되면 관리 책임 문제가 제기될 수 있다는 우려가 있다",
+      "tags": [
+        "exception"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "제도·안전",
+      "_anchor": "관리 책임 문제"
+    }
+  ]
+}

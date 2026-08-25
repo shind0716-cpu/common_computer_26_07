@@ -1,0 +1,218 @@
+{
+  "schema_ver": "0.2",
+  "created_by": "manual(session-claude-draft, 팀 검수 전 후보 지위)",
+  "created_at": "2026-08-24T12:33:34.495068+00:00",
+  "issue_id": "issue_euthanasia",
+  "_note": "12팩트. 관점 4분할(관점당 3). 불리 pro:con 대칭. _unfavorable_to/_perspective는 스키마 밖 보조 필드.",
+  "extractor": {
+    "model": "manual",
+    "temperature": 0,
+    "prompt_ver": "scenario-cand-v5-12"
+  },
+  "facts": [
+    {
+      "fact_id": "fact_euthanasia_01",
+      "text": "이 동물은 공식 보호 기간이 이번 주로 끝난다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "보호 기간·자원",
+      "_anchor": "보호 기간이 이번 주"
+    },
+    {
+      "fact_id": "fact_euthanasia_02",
+      "text": "보호소는 임시로 기간을 연장한 전례가 여러 번 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "보호 기간·자원",
+      "_anchor": "임시로 기간을"
+    },
+    {
+      "fact_id": "fact_euthanasia_03",
+      "text": "현재 보호소 수용 공간이 한계에 가까운 상태다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "보호 기간·자원",
+      "_anchor": "수용 공간이 한계"
+    },
+    {
+      "fact_id": "fact_euthanasia_04",
+      "text": "이 동물은 만성 질환으로 지속적인 치료가 필요하다는 소견이 있다",
+      "tags": [
+        "stance_support"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "건강 상태",
+      "_anchor": "지속적인 치료"
+    },
+    {
+      "fact_id": "fact_euthanasia_05",
+      "text": "그 질환은 관리만 되면 일상생활에 큰 지장이 없다는 소견도 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "건강 상태",
+      "_anchor": "관리만 되면"
+    },
+    {
+      "fact_id": "fact_euthanasia_06",
+      "text": "정확한 예후는 아직 추가 검사 결과를 기다리는 중이다",
+      "tags": [
+        "condition"
+      ],
+      "critical": false,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": null,
+      "_perspective": "건강 상태",
+      "_anchor": "추가 검사 결과"
+    },
+    {
+      "fact_id": "fact_euthanasia_07",
+      "text": "안락사 결정 기준은 정해진 요건의 충족 개수로 판단하도록 되어 있다",
+      "tags": [
+        "exception"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "both",
+      "_perspective": "제도·기준",
+      "_anchor": "요건의 충족"
+    },
+    {
+      "fact_id": "fact_euthanasia_08",
+      "text": "최근 이 동물에게 관심을 보인 입양 문의가 한 건 있었다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "입양·주변",
+      "_anchor": "입양 문의가"
+    },
+    {
+      "fact_id": "fact_euthanasia_09",
+      "text": "그 문의는 아직 확정되지 않은 초기 단계다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "입양·주변",
+      "_anchor": "확정되지 않은"
+    },
+    {
+      "fact_id": "fact_euthanasia_10",
+      "text": "이 동물의 SNS 홍보 게시물에 대한 관심이 최근 늘었다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "입양·주변",
+      "_anchor": "SNS 홍보"
+    },
+    {
+      "fact_id": "fact_euthanasia_11",
+      "text": "비슷한 사례에서 기간을 넘겨서도 입양된 경우가 있다",
+      "tags": [
+        "counter_evidence"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "con",
+      "_perspective": "제도·기준",
+      "_anchor": "기간을 넘겨서도"
+    },
+    {
+      "fact_id": "fact_euthanasia_12",
+      "text": "결정을 미루는 동안 다른 동물의 신규 보호가 지연될 수 있다는 우려가 있다",
+      "tags": [
+        "exception"
+      ],
+      "critical": true,
+      "prior": {
+        "score": null,
+        "probe_model": null,
+        "probe_prompt_ver": null,
+        "probed_at": null
+      },
+      "_unfavorable_to": "pro",
+      "_perspective": "보호 기간·자원",
+      "_anchor": "신규 보호가"
+    }
+  ]
+}
