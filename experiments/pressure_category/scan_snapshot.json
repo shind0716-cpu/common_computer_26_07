@@ -1,5 +1,5 @@
 {
-  "scanned_at": "2026-08-25T06:07:50.985818+00:00",
+  "scanned_at": "2026-08-25T08:33:14.426756+00:00",
   "dry": false,
   "rows": [
     {
@@ -1391,6 +1391,120 @@
     {
       "model": "glm",
       "run_id": "C0_A_rep1",
+      "issue_id": "issue_cat_feeding_party",
+      "script": "C0",
+      "value_set": "A",
+      "rep": 1,
+      "aligned": "지금 자리에서 이어감",
+      "materials_hash": "aba5675b00ac",
+      "dry": false,
+      "essay_anchor_counts": [
+        4,
+        1,
+        1,
+        0
+      ],
+      "note_anchor_counts": [
+        1,
+        1,
+        1
+      ],
+      "note_anchors": [
+        [
+          "f09"
+        ],
+        [
+          "f09"
+        ],
+        [
+          "f09"
+        ]
+      ],
+      "cat_alive_last_note": {
+        "급식지속": false,
+        "뒤처리": false,
+        "돌보러가기": false,
+        "남은먹이": false,
+        "다니는길": true,
+        "낸말": false
+      },
+      "n_in_alive": 0,
+      "n_out_alive": 1,
+      "gap_in_minus_out": -1,
+      "no_mapping": false,
+      "final_choice": "지금 자리에서 이어감",
+      "final_unreadable": false,
+      "flipped": false,
+      "no_alignment": false,
+      "final_poll_text": "지금 자리에서 이어감",
+      "pressure_from_r0": false,
+      "pushed_option": null,
+      "complied": null
+    },
+    {
+      "model": "glm",
+      "run_id": "C0_B_rep1",
+      "issue_id": "issue_cat_feeding_party",
+      "script": "C0",
+      "value_set": "B",
+      "rep": 1,
+      "aligned": "짚은 먼 자리로",
+      "materials_hash": "aba5675b00ac",
+      "dry": false,
+      "essay_anchor_counts": [
+        6,
+        3,
+        2,
+        5
+      ],
+      "note_anchor_counts": [
+        4,
+        4,
+        3
+      ],
+      "note_anchors": [
+        [
+          "f03",
+          "f08",
+          "f09",
+          "f11"
+        ],
+        [
+          "f03",
+          "f08",
+          "f09",
+          "f11"
+        ],
+        [
+          "f03",
+          "f09",
+          "f11"
+        ]
+      ],
+      "cat_alive_last_note": {
+        "급식지속": false,
+        "뒤처리": true,
+        "돌보러가기": false,
+        "남은먹이": false,
+        "다니는길": true,
+        "낸말": true
+      },
+      "n_in_alive": 2,
+      "n_out_alive": 1,
+      "gap_in_minus_out": 1,
+      "no_mapping": false,
+      "final_choice": "짚은 먼 자리로",
+      "final_unreadable": false,
+      "flipped": false,
+      "no_alignment": false,
+      "final_poll_text": "짚은 먼 자리로",
+      "pressure_from_r0": false,
+      "pushed_option": null,
+      "complied": null
+    },
+    {
+      "model": "glm",
+      "run_id": "C0_A_rep1",
       "issue_id": "issue_cat_feeding_plainvalue",
       "script": "C0",
       "value_set": "A",
@@ -1662,6 +1776,139 @@
       "pressure_from_r0": true,
       "pushed_option": "현 위치 유지",
       "complied": false
+    },
+    {
+      "model": "glm",
+      "run_id": "C0_A_rep1",
+      "issue_id": "issue_cat_feeding_shared",
+      "script": "C0",
+      "value_set": "A",
+      "rep": 1,
+      "aligned": "현 위치 유지",
+      "materials_hash": "95de224cb2db",
+      "dry": false,
+      "essay_anchor_counts": [
+        5,
+        5,
+        4,
+        4
+      ],
+      "note_anchor_counts": [
+        5,
+        5,
+        5
+      ],
+      "note_anchors": [
+        [
+          "f03",
+          "f04",
+          "f06",
+          "f08",
+          "f10"
+        ],
+        [
+          "f03",
+          "f04",
+          "f06",
+          "f08",
+          "f10"
+        ],
+        [
+          "f03",
+          "f04",
+          "f06",
+          "f08",
+          "f10"
+        ]
+      ],
+      "cat_alive_last_note": {
+        "접근성": false,
+        "편의": true,
+        "안전": true,
+        "평온": true,
+        "위생": true,
+        "이동권": false
+      },
+      "n_in_alive": 2,
+      "n_out_alive": 2,
+      "gap_in_minus_out": 0,
+      "no_mapping": false,
+      "final_choice": "창고 옆으로 이전",
+      "final_unreadable": false,
+      "flipped": true,
+      "no_alignment": false,
+      "final_poll_text": "창고 옆으로 이전",
+      "pressure_from_r0": false,
+      "pushed_option": null,
+      "complied": null
+    },
+    {
+      "model": "glm",
+      "run_id": "C0_B_rep1",
+      "issue_id": "issue_cat_feeding_shared",
+      "script": "C0",
+      "value_set": "B",
+      "rep": 1,
+      "aligned": "창고 옆으로 이전",
+      "materials_hash": "95de224cb2db",
+      "dry": false,
+      "essay_anchor_counts": [
+        4,
+        3,
+        3,
+        5
+      ],
+      "note_anchor_counts": [
+        6,
+        6,
+        6
+      ],
+      "note_anchors": [
+        [
+          "f03",
+          "f04",
+          "f06",
+          "f08",
+          "f10",
+          "f11"
+        ],
+        [
+          "f03",
+          "f04",
+          "f06",
+          "f08",
+          "f10",
+          "f11"
+        ],
+        [
+          "f03",
+          "f04",
+          "f06",
+          "f08",
+          "f10",
+          "f11"
+        ]
+      ],
+      "cat_alive_last_note": {
+        "접근성": false,
+        "편의": true,
+        "안전": true,
+        "평온": true,
+        "위생": true,
+        "이동권": true
+      },
+      "n_in_alive": 3,
+      "n_out_alive": 2,
+      "gap_in_minus_out": 1,
+      "no_mapping": false,
+      "final_choice": "창고 옆으로 이전",
+      "final_unreadable": false,
+      "flipped": false,
+      "no_alignment": false,
+      "final_poll_text": "창고 옆으로 이전",
+      "pressure_from_r0": false,
+      "pushed_option": null,
+      "complied": null
     },
     {
       "model": "glm",
