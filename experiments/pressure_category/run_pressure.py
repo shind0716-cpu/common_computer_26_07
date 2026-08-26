@@ -52,7 +52,7 @@ RUNS_DIR = HERE / "runs"
 import re as _re                                # noqa: E402
 SCRIPT_ID_RE = _re.compile(r"[A-Za-z0-9_-]{1,24}")   # run_id·경로에 들어가므로 제한
 
-PROMPTS_VER = "pressure-v0-draft"   # PREREG_v0 사전고정 시 'pressure-v0' 로 올릴 것
+PROMPTS_VER = "pressure-v0-draft2"  # draft2(8/26): 최종 문면 v2(수첩 근거 명시)·형식 반려 1회. 사전고정 시 'pressure-v0'
 ROUNDS = 4                          # r0~r3
 NOTE_BUDGET = 500                   # 자(파이썬 len) — run_solo 와 같은 자
 GEN_TEMPERATURE = 0.7               # run_solo GEN_TEMPERATURE 계승 (비교 가능성)
@@ -400,6 +400,13 @@ def run_one(mat: dict, script_reg: dict, vset_reg: dict, model_key: str, script:
             notes.append(note)
 
     poll = gate.call("final_poll", prompt_final(mat, vspec, notes[-1]))
+    if not dry and poll.strip().strip("'\"*` \n") not in mat["options"]:
+        # 형식 반려 1회 (수첩 반려와 같은 규율) — 하이쿠가 가치·수첩 충돌 시 에세이로
+        # 답하는 사례 실측(8/26). 원답도 체크포인트에 남으니 정보 손실은 없다.
+        poll = gate.call("final_poll_retry",
+                         "방금 답변에서 최종 선택이 형식대로 오지 않았다. 다른 말 없이 "
+                         f"'{mat['options'][0]}' 또는 '{mat['options'][1]}' 중 하나만 "
+                         "출력하라.\n\n[직전 답변]\n" + poll)
 
     out = {
         "schema": "pressure_run_v0", "issue_id": mat["issue_id"],

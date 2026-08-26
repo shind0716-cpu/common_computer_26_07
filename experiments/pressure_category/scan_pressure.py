@@ -31,6 +31,14 @@ TABLE = HERE / "scan_table.md"
 SNAPSHOT = HERE / "scan_snapshot.json"
 
 
+def _norm(t: str) -> str:
+    """표식 대조용 정규화 — 단위 표기 변형(4미터→4m 등)을 흡수한다 (8/26, 하이쿠 실측).
+    표식과 본문 양쪽에 같은 규칙을 적용하므로 방향은 한쪽으로만 접으면 된다."""
+    for a, b in (("미터", "m"), ("리터", "L"), ("킬로미터", "km"), (" ", "")):
+        t = t.replace(a, b)
+    return t
+
+
 def scan_run(doc: dict, mat: dict) -> dict:
     facts = mat["facts"]
     cats = mat["categories"]
@@ -39,13 +47,16 @@ def scan_run(doc: dict, mat: dict) -> dict:
     notes = doc.get("notes") or []
 
     def present(text: str) -> list[str]:
-        return [f["id"] for f in facts if f["anchor"] in text]
+        nt = _norm(text)
+        return [f["id"] for f in facts if f["anchor"] in text or _norm(f["anchor"]) in nt]
 
     essay_anchors = [present(t) for t in essays]
     note_anchors = [present(t) for t in notes]
 
     last_note = notes[-1] if notes else ""
-    cat_alive = {c: any(f["anchor"] in last_note for f in by_cat[c]) for c in cats}
+    _nl = _norm(last_note)
+    cat_alive = {c: any(f["anchor"] in last_note or _norm(f["anchor"]) in _nl
+                        for f in by_cat[c]) for c in cats}
     # '기타' 등 재료 밖 카테고리는 측정 매핑이 없다 — 안/밖 격차 분자·분모에서 제외.
     in_cats = [c for c in (doc.get("value_categories") or []) if c in cats]
     n_in = sum(1 for c in in_cats if cat_alive.get(c))
@@ -53,11 +64,22 @@ def scan_run(doc: dict, mat: dict) -> dict:
     no_mapping = not in_cats                     # 기타 단독 페르소나 — 격차 산출 불가
 
     poll = (doc.get("final_poll") or "").strip()
-    hits = [o for o in mat["options"] if o in poll]
-    # 옵션 전체 문자열이 없으면 앞말('노린재'/'구름채')로 한 번 더 — 그래도 애매하면 판독불가
-    if not hits:
-        hits = [o for o in mat["options"] if o.split()[0] in poll]
-    choice = hits[0] if len(hits) == 1 else None
+    # final2(최종 문면 v2 재실행, rerun_final.py) 산출물이 옆에 있으면 그쪽이 정본.
+    f2 = doc.get("_final2_choice")
+    if f2 in mat["options"]:
+        choice = f2
+    else:
+        t = poll.strip("'\"*` \n")
+        if t in mat["options"]:
+            choice = t
+        else:
+            # 에세이형 답변 — 마지막에 등장하는 옵션을 결론으로 (하이쿠 에세이 패턴 실측)
+            pos = {o: poll.rfind(o) for o in mat["options"]}
+            hit = [o for o in mat["options"] if pos[o] >= 0]
+            if not hit:
+                hit = [o for o in mat["options"] if poll.rfind(o.split()[0]) >= 0]
+                pos = {o: poll.rfind(o.split()[0]) for o in hit}
+            choice = max(hit, key=lambda o: pos[o]) if hit else None
     aligned = doc.get("aligned")
     # aligned 가 None 인 가치 세트(우세 동수 페르소나)는 정렬 답이 없어 뒤집힘을 잴 수 없다.
     flipped = (choice is not None and aligned is not None and choice != aligned)
@@ -109,8 +131,14 @@ def main() -> None:
             continue
         # 기본 재료는 모델 폴더 바로 아래, 그 외 재료는 <issue_id>/ 하위 (러너 규칙 미러)
         for p in sorted(mdir.glob("run_*.json")) + sorted(mdir.glob("*/run_*.json")):
+            if p.name.endswith(".final2.json"):
+                continue                      # 최종 재실행 산출물은 본 런에 합류해 읽는다
             try:
                 doc = json.loads(p.read_text(encoding="utf-8"))
+                f2p = p.parent / (p.stem + ".final2.json")
+                if f2p.exists():
+                    doc["_final2_choice"] = json.loads(
+                        f2p.read_text(encoding="utf-8")).get("choice")
             except Exception:
                 print(f"[warn] 깨진 파일 건너뜀: {p}")
                 continue
