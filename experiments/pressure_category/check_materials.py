@@ -1,11 +1,16 @@
 """[민옥 트랙 · 압박×카테고리] 재료 제작 검사 — LLM 0콜, 파일만 읽는다.
 
-검사 3종 (PREREG_v0 §1-3):
+검사 3종 (PREREG_v0 §1-3 · 규칙 v1, 2026-08-26):
   ① 표식 고유성 — 각 표식은 자기 사실 문면에 정확히 1회, 다른 사실·사안문·가치문·
      각본·최종질문·옵션 어디에도 없다 (교차 검색 0).
-  ② 구조 — 카테고리마다 사실 정확히 2개(옵션별 1개씩) = favors 대칭,
-     가치 세트 A·B 가 카테고리 전체를 정확히 반분하고 aligned 가 서로 다르다.
+  ② 구조 — 카테고리마다 사실 개수 동일(k개, k≥2) + 카테고리 안에서 한쪽이 다수 우세
+     (동률 금지 — 만장일치가 아니면 ⚠ 경고로 표시) + favors 전체 대칭(반씩),
+     가치 세트 A·B 가 카테고리 전체를 정확히 반분하고 aligned = 그 카테고리들의 다수 우세.
   ③ 누출 — 사안문(stub)에 사실 표식·문면 노출 0.
+
+규칙 v1 변경(2026-08-26, 민옥): "카테고리당 정확히 2개 · 만장일치"를 "동수 k개 · 다수
+우세"로 완화. 이유: 히든 프로필판에서 변환된 재료(카테고리당 3사실, 2:1 구조)를 사실
+삭제 없이 받기 위함. 주의: k가 다른 재료끼리는 카테고리 생존율을 직접 비교하지 않는다.
 
 어느 재료든 같은 잣대다 — 팀원이 만든 시나리오 파일도 이걸 통과해야 러너가 받는다.
 
@@ -71,25 +76,42 @@ def check_one(target: Path) -> int:
     opts = doc["options"]
     errors: list[str] = []
 
-    # ② 구조 — 카테고리 수는 재료가 정하되(짝수), 카테고리당 2사실·옵션별 1사실은 불변
+    # ② 구조 (규칙 v1) — 카테고리 수는 재료가 정하되(짝수), 카테고리당 동수 k(k≥2) +
+    #    카테고리 안 다수 우세(동률 금지). 만장일치가 아니면 경고만 남긴다 — 소수파 사실이
+    #    섞인 재료(히든 프로필 변환판)를 허용하되, 눈금이 다르다는 표시는 남긴다.
+    warnings: list[str] = []
     if len(opts) != 2:
         errors.append(f"옵션 수 {len(opts)} ≠ 2")
     if len(cats) % 2 != 0:
         errors.append(f"카테고리 수 {len(cats)} 가 홀수 — 가치 세트를 반분할 수 없다")
-    if len(facts) != 2 * len(cats):
-        errors.append(f"사실 수 {len(facts)} ≠ 카테고리 {len(cats)} × 2")
+    k, rem = divmod(len(facts), len(cats)) if cats else (0, 1)
+    if rem != 0 or k < 2:
+        errors.append(f"사실 수 {len(facts)} 가 카테고리 {len(cats)} 의 동수 배분이 아님 "
+                      "(카테고리당 같은 개수 · 최소 2개)")
+    majority: dict[str, str | None] = {}
     for cat in cats:
         cf = [f for f in facts if f["category"] == cat]
-        if len(cf) != 2:
-            errors.append(f"카테고리 '{cat}' 사실 수 {len(cf)} ≠ 2")
-        elif len({f["favors"] for f in cf}) != 1:
-            # 한 카테고리는 한쪽이 명확히 우세해야 한다(두 사실이 같은 쪽을 가리킴).
-            # 갈리면 가치 정렬 답이 자명하지 않게 되어 뒤집힘 판정이 흐려진다.
-            errors.append(f"카테고리 '{cat}' 의 두 사실이 서로 다른 쪽을 편듦 — 우세가 불명")
+        if k >= 2 and len(cf) != k:
+            errors.append(f"카테고리 '{cat}' 사실 수 {len(cf)} ≠ {k} (동수 배분 위반)")
+            continue
+        votes: dict[str, int] = {}
+        for f in cf:
+            votes[f["favors"]] = votes.get(f["favors"], 0) + 1
+        top = sorted(votes.items(), key=lambda kv: -kv[1])
+        if len(top) > 1 and top[0][1] == top[1][1]:
+            # 한 카테고리는 한쪽이 명확히 우세해야 한다. 동률이면 가치 정렬 답이
+            # 자명하지 않게 되어 뒤집힘 판정이 흐려진다.
+            errors.append(f"카테고리 '{cat}' 의 사실이 동률로 갈림 — 우세가 불명")
+            majority[cat] = None
+            continue
+        majority[cat] = top[0][0]
+        if len(top) > 1:
+            warnings.append(f"카테고리 '{cat}' 는 만장일치가 아님({top[0][1]}:{top[1][1]}) — "
+                            "소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지")
     for opt in opts:
         n = sum(1 for f in facts if f["favors"] == opt)
-        if n != len(cats):
-            errors.append(f"favors '{opt}' 수 {n} ≠ {len(cats)} (대칭 깨짐)")
+        if n != len(facts) // 2:
+            errors.append(f"favors '{opt}' 수 {n} ≠ {len(facts) // 2} (대칭 깨짐)")
     vs = doc["value_sets"]
     a, b = set(vs["A"]["categories"]), set(vs["B"]["categories"])
     if a | b != set(cats) or a & b:
@@ -128,12 +150,12 @@ def check_one(target: Path) -> int:
         if f["text"] in doc["stub"]:
             errors.append(f"{f['id']} 문면이 사안문에 통째로 노출")
 
-    # 가치 정렬 자명성 — 각 세트의 카테고리에서 aligned 옵션이 전부 우세인지
+    # 가치 정렬 자명성 (규칙 v1) — 각 세트의 카테고리에서 다수 우세가 aligned 와 같은지
     for key, v in vs.items():
         for cat in v["categories"]:
-            favors = {f["favors"] for f in facts if f["category"] == cat}
-            if favors != {v["aligned"]}:
-                errors.append(f"세트 {key} 카테고리 '{cat}' 의 favors {sorted(favors)} 가 "
+            maj = majority.get(cat)
+            if maj is not None and maj != v["aligned"]:
+                errors.append(f"세트 {key} 카테고리 '{cat}' 의 다수 우세 '{maj}' 가 "
                               f"aligned '{v['aligned']}' 와 불일치")
 
     if errors:
@@ -141,7 +163,10 @@ def check_one(target: Path) -> int:
         for e in errors:
             print("  ✗ " + e)
         return 1
-    print(f"[check_materials] 통과 — 표식 {len(facts)}개 고유·구조 대칭·누출 0")
+    for w in warnings:
+        print("  ⚠ " + w)
+    print(f"[check_materials] 통과(규칙 v1) — 표식 {len(facts)}개 고유·구조 대칭·누출 0"
+          + (f" · 경고 {len(warnings)}건" if warnings else ""))
     return 0
 
 

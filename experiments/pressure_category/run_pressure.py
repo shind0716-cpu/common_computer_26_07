@@ -214,13 +214,22 @@ def discover_value_sets(mat: dict | None = None) -> dict[str, dict]:
 
 
 def _aligned_of(mat: dict, cats: list[str]) -> str | None:
-    """카테고리 묶음의 가치 정렬 답 — 각 카테고리의 우세 옵션 다수결, 동수면 None."""
+    """카테고리 묶음의 가치 정렬 답 — 각 카테고리의 우세 옵션 다수결, 동수면 None.
+
+    검사 규칙 v1(2026-08-26)부터 카테고리 안에 소수파 사실이 있을 수 있으므로,
+    카테고리의 우세도 첫 사실이 아니라 카테고리 내 다수결로 정한다."""
     votes: dict[str, int] = {}
     for c in cats:
-        f = next(f for f in mat["facts"] if f["category"] == c)   # 카테고리 내 favors 동일(검사 보장)
-        votes[f["favors"]] = votes.get(f["favors"], 0) + 1
+        inner: dict[str, int] = {}
+        for f in mat["facts"]:
+            if f["category"] == c:
+                inner[f["favors"]] = inner.get(f["favors"], 0) + 1
+        itop = sorted(inner.items(), key=lambda kv: -kv[1])
+        if not itop or (len(itop) > 1 and itop[0][1] == itop[1][1]):
+            continue                       # 동률 카테고리는 표를 내지 않는다
+        votes[itop[0][0]] = votes.get(itop[0][0], 0) + 1
     top = sorted(votes.items(), key=lambda kv: -kv[1])
-    if len(top) > 1 and top[0][1] == top[1][1]:
+    if not top or (len(top) > 1 and top[0][1] == top[1][1]):
         return None
     return top[0][0]
 
