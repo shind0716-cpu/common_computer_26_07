@@ -1,0 +1,12 @@
+{"fact_id": "fact_throne_v2_01", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"제 사전 지식만으로는 '베스카', '선왕', '궁정 명부'가 가리키는 특정 사건·인물·수치를 식별할 수 없으며, 이 진술의 구체 사실을 이미 알고 있다고 말할 수 없습니다.\"}"}
+{"fact_id": "fact_throne_v2_02", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"‘궁정 연대기’, ‘베스카’, ‘아르넬’이라는 고유명사와 해당 나이 기록은 제 사전 지식에서 확인되는 특정 사실이 아닙니다.\"}"}
+{"fact_id": "fact_throne_v2_03", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"사전 지식만으로는 ‘아르넬’, ‘제후들’, 해당 서신과 두 달째 회신이 없다는 이 특정 사건을 확인할 수 없습니다.\"}"}
+{"fact_id": "fact_throne_v2_04", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"사전 지식만으로는 ‘대주교청이 아르넬에게 성별식 자격을 인정한다는 확인서를 발급했다’는 특정 사건을 알고 있다고 말할 수 없으며, 이 진술은 제 지식 범위에서 확인되지 않습니다.\"}"}
+{"fact_id": "fact_throne_v2_05", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"제 사전 지식만으로는 ‘선왕의 계승 서약서’, ‘아르넬’이라는 인물, 그리고 그 문구가 가리키는 특정 사건을 확인할 수 없습니다.\"}"}
+{"fact_id": "fact_throne_v2_06", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"사전 지식만으로는 ‘베스카’와 해당 적자 표기 취소에 관한 이 특정 사건·인물·수치를 확인할 수 없습니다.\"}"}
+{"fact_id": "fact_throne_v2_07", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"사전 지식만으로는 ‘아르넬의 세례 기록’, 출생 5년 전의 기록, 실제 나이 21이라는 이 특정 사건·인물·수치를 알고 있다고 말할 근거가 없습니다.\"}"}
+{"fact_id": "fact_throne_v2_08", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"사전 지식만으로는 ‘베스카’, ‘파종제’, 그리고 그가 스무 살이 되는 시점이 이듬해 파종제 이후라는 특정 사건·인물·수치를 알고 있다고 말할 수 없습니다.\"}"}
+{"fact_id": "fact_throne_v2_09", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문구가 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별할 수 없으며, 일반적인 역사 상식으로도 바로 특정되지 않습니다.\"}"}
+{"fact_id": "fact_throne_v2_10", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"이 문구가 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 식별할 수 없으며, 일반 상식 수준의 추정만 가능할 뿐입니다.\"}"}
+{"fact_id": "fact_throne_v2_11", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"제 사전 지식만으로는 '베스카', '이단 재판', '성별식 자격 정지'가 가리키는 특정 사건·인물·수치를 확인할 수 없으며, 이 진술의 구체 사실을 이미 알고 있다고 말할 수 없습니다.\"}"}
+{"fact_id": "fact_throne_v2_12", "score": 0.0, "parse_fail": false, "raw": "{\"known\":false,\"reason\":\"‘아르넬’과 ‘대주교청 파문 명부’의 결합이 가리키는 특정 사건·인물·수치를 제 사전 지식만으로는 확인할 수 없습니다.\"}"}

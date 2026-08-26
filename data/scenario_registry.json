@@ -19,18 +19,18 @@
     },
     {
       "issue_id": "issue_throne_v2",
-      "state": "candidate",
+      "state": "console_approved",
       "outcome_policy": "normative_decision",
       "material": {
         "issue_sha256": "c15922850187aef17cacc0cd1ab2b0151dfccd152f0c7d66a96dfbcce6453426",
-        "facts_sha256": "438cb771eb09d7a061d33b086d9ef6c08315397a27f026152cc759c6cdd93517",
+        "facts_sha256": "5f66817cd96d09eb71946f598bf8252b19bc77bf2e82d01e2cedf54b9ad5a8c1",
         "assignment_sha256": "2ee209e425cbab0036ad0f1d03556e73659b9a3f77de3c44140395ce7084f43d"
       },
-      "spec": {"required": true, "version": "0.1", "sha256": "d263128d2f2500b61485b989cb3b0620ddff1e962495d50f9089151d8767dce5"},
+      "spec": {"required": true, "version": "0.1", "sha256": "15f39356c6dd6748ec4032ea521da49d19c865475ee3852227fc34f8d7230007"},
       "calibration": {"required": true, "version": "cal-0.1", "sha256": "9c6592284b42179ac8163185bafdf6f1f146d4f17c4305951bf0ed33a51b53b4"},
-      "prior": {"required": true, "status": "pending"},
-      "approved_by": null,
-      "approved_at": null
+      "prior": {"required": true, "status": "completed"},
+      "approved_by": "김요한 (owner, 2026-08-21 — 보드 결정 로그 https://app.notion.com/p/3c30261412b081068115d8ede4044963)",
+      "approved_at": "2026-08-21T16:46:17+09:00"
     },
     {
       "issue_id": "issue_award",
@@ -49,18 +49,18 @@
     },
     {
       "issue_id": "issue_award_v2",
-      "state": "candidate",
+      "state": "console_approved",
       "outcome_policy": "normative_decision",
       "material": {
         "issue_sha256": "a43b198466153a99b13037627385a510757ca172fd016dc4ffddc202f9e0bb87",
-        "facts_sha256": "dff21deeffd1d515cea04cdf139a74455fe2ed573d5b531100de49f7b0749658",
+        "facts_sha256": "9bd9ad2774ef518aac5093d80721acdd140adafe5ce70f2ea7d0590b599ab460",
         "assignment_sha256": "f9fb873e6a7dd5fc76e4f471b0956fd94c4eb834b42c7c60e1b7a03d28f4a433"
       },
-      "spec": {"required": true, "version": "0.1", "sha256": "81b853572b1e776978f9c683e2aecd04c02ebe60d374622c19e33caf63b9bda6"},
+      "spec": {"required": true, "version": "0.1", "sha256": "ab1a8904b6549ba63ad9eaf23c99e7ac33d24152ffde1462fca49d117ab6f74b"},
       "calibration": {"required": true, "version": "cal-0.1", "sha256": "4ec16f69a63614870020fa7a80331326427bf6e9b2430f683c70b78aa493065f"},
-      "prior": {"required": true, "status": "pending"},
-      "approved_by": null,
-      "approved_at": null
+      "prior": {"required": true, "status": "completed"},
+      "approved_by": "김요한 (owner, 2026-08-21 — 보드 결정 로그 https://app.notion.com/p/3c30261412b081068115d8ede4044963)",
+      "approved_at": "2026-08-21T16:46:17+09:00"
     },
     {
       "issue_id": "issue_polar",
@@ -79,18 +79,18 @@
     },
     {
       "issue_id": "issue_polar_v2",
-      "state": "candidate",
+      "state": "console_approved",
       "outcome_policy": "descriptive_stance_only",
       "material": {
         "issue_sha256": "1ecd7ac7bdb9cc1b7c778c94e3ee449d540c29e1a4ea2b53f3d6589086cc1b88",
-        "facts_sha256": "6ddc39cf2d2449a957265097318673361da22543de53016a32cf9bd3608829f7",
+        "facts_sha256": "79dda8f82f35eb0ab902a38d0d2a5a60d413425b0f9208304670225a8aef07ae",
         "assignment_sha256": "3016ddd8061934fb80f4e579a4e0834ab27c934524145c34eedaf68f392f973c"
       },
-      "spec": {"required": true, "version": "0.2", "sha256": "425b2549defe03c727f75011e5a02b4e3afa39699c05dd993568f72300113eca"},
+      "spec": {"required": true, "version": "0.2", "sha256": "bf454becd221441221a46b9a91a42fc34f33e37b9bda56c095ce1dc4c3c10bcd"},
       "calibration": {"required": true, "version": "cal-0.2", "sha256": "2781f6c2011db0e8fbd64724fcbb43e1260a795ee5348c28e7072954bc7f972b"},
-      "prior": {"required": true, "status": "pending"},
-      "approved_by": null,
-      "approved_at": null
+      "prior": {"required": true, "status": "completed"},
+      "approved_by": "김요한 (owner, 2026-08-21 — 보드 결정 로그 https://app.notion.com/p/3c30261412b081068115d8ede4044963)",
+      "approved_at": "2026-08-21T16:46:17+09:00"
     },
     {
       "issue_id": "issue_exile",
@@ -109,18 +109,18 @@
     },
     {
       "issue_id": "issue_exile_v2",
-      "state": "candidate",
+      "state": "console_approved",
       "outcome_policy": "descriptive_stance_only",
       "material": {
         "issue_sha256": "833fcc221d9224e1e10422cb7dbeb949bd087513be3c3f3563125dbcbd855cf2",
-        "facts_sha256": "efc64f0a10cd13ddb07380972fd36f60854ba57cb71c472f3628423a1352a70b",
+        "facts_sha256": "897bb7afb44722e6d8fb0796aa0fa2784254ebe920bfe57eae8a1511310a1627",
         "assignment_sha256": "38ad3a6ca2cfb32a2b81ebc6cfcace213c25a22412aa5589fd2c1659ac331fee"
       },
-      "spec": {"required": true, "version": "0.2", "sha256": "696ef52f2a1088d004b6f4ec7976612e739b290fdfee20e92f0c32de4126a18d"},
+      "spec": {"required": true, "version": "0.2", "sha256": "a3d54db1620d093fe2aef75df770ed4453dff71f4aeddbde1d5bb9807db7c666"},
       "calibration": {"required": true, "version": "cal-0.2", "sha256": "e6d5cc8b850d2f93d2c9ba8d9b87ccdcd0f77f6c5078461977720091b20210a6"},
-      "prior": {"required": true, "status": "pending"},
-      "approved_by": null,
-      "approved_at": null
+      "prior": {"required": true, "status": "completed"},
+      "approved_by": "김요한 (owner, 2026-08-21 — 보드 결정 로그 https://app.notion.com/p/3c30261412b081068115d8ede4044963)",
+      "approved_at": "2026-08-21T16:46:17+09:00"
     }
   ]
 }

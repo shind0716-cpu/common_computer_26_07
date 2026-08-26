@@ -10,7 +10,7 @@ from modules import content_hash, detection_spec as ds
 from modules import paths
 
 ISSUE = "issue_exile_v2"
-MATERIAL_SHA256 = "efc64f0a10cd13ddb07380972fd36f60854ba57cb71c472f3628423a1352a70b"
+MATERIAL_SHA256 = "897bb7afb44722e6d8fb0796aa0fa2784254ebe920bfe57eae8a1511310a1627"  # 2026-08-21 prior 프로브 뒤 재동결(구 efc64f0a10cd…)
 ISSUE_SHA256 = "833fcc221d9224e1e10422cb7dbeb949bd087513be3c3f3563125dbcbd855cf2"
 ASSIGNMENT_SHA256 = "38ad3a6ca2cfb32a2b81ebc6cfcace213c25a22412aa5589fd2c1659ac331fee"
 FORBIDDEN_RESULT_KEYS = {

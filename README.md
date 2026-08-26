@@ -56,6 +56,8 @@ python -m modules.validate data/judgments/judgment_issue_esa_run001.json
 - 신동범: modules/debate_engine.py + modules/judge.py (수 20시)
 - 민옥(리더): 픽스처·ledger.py·게이트·통합·분석
 - 이론조 3인: judge 수동 검증 표본 30개 (금 오전)
+- **2026-08-21 갱신(요한 결정)**: 신동범 타 팀 이적. 구 패키지 A(debate_engine·judge·llm·authors_prompts·gen_dryrun2)는
+  **공용 코어**로 전환 — 개인 소유자 없음. 변경은 전체 테스트 통과 + WORKLOG 기록 + 보드 결정 로그 한 줄(계약 변경 시). 소유자 표기는 각 모듈 독스트링 첫 줄이 정본.
 
 ## 호환성 (OS 불문 동작 원칙)
 - Python 3.10 이상. 가상환경 권장: `python -m venv .venv`

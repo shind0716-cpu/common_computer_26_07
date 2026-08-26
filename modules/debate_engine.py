@@ -1,4 +1,4 @@
-"""[패키지 A · 신동범 · 마감 수 20시] 토론 엔진 — DelibTrace 저자 코드(discussion.py) 포팅.
+"""[공용 코어 · 8/21 요한 결정 (구 패키지 A · 신동범, 8/21 이적)] 토론 엔진 — DelibTrace 저자 코드(discussion.py) 포팅.
 
 계약: 입력 paths.facts(issue), paths.assignment(issue), config
       → 출력 paths.debate(issue, run)  (스키마 4번, 이벤트 jsonl)

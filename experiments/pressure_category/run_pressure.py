@@ -31,7 +31,6 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import sys
 from datetime import datetime, timezone
@@ -40,7 +39,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(ROOT))
 
-from modules import llm  # noqa: E402
+from modules import content_hash, llm  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
 MATERIALS_DIR = HERE / "materials"              # 재료(시나리오)가 놓이는 곳 (*.json)
@@ -98,8 +97,10 @@ def discover_materials() -> dict[str, Path]:
 
 def load_materials(path: Path) -> dict:
     doc = json.loads(path.read_text(encoding="utf-8"))
-    doc["_hash"] = hashlib.sha256(
-        path.read_bytes()).hexdigest()[:12]   # 재현성: 산출물이 어느 재료판인지
+    # 재현성: 산출물이 어느 재료판인지. 줄바꿈 정규화 뒤에 찍는다 —
+    # 날바이트로 찍으면 CRLF 작업본과 LF 체크아웃이 다른 지문을 낸다
+    # (2026-08-20 지문 사고, modules/content_hash.py 독스트링 참조).
+    doc["_hash"] = content_hash.sha256_file(path)[:12]
     doc["_path"] = str(path)
     return doc
 
@@ -344,7 +345,8 @@ class CallGate:
 
 
 def run_one(mat: dict, script_reg: dict, vset_reg: dict, model_key: str, script: str,
-            vset: str, rep: int, max_calls: int, dry: bool) -> Path:
+            vset: str, rep: int, max_calls: int, dry: bool,
+            reasoning: str = "default") -> Path:
     spec = script_reg[script]
     vspec = vset_reg[vset]
     r0_line, lines = resolve_script(mat, spec, vspec)
@@ -374,7 +376,8 @@ def run_one(mat: dict, script_reg: dict, vset_reg: dict, model_key: str, script:
     ckpt = out_dir / f"run_{run_id}.partial.jsonl"
 
     def obtain(p: str) -> str:
-        return llm.obtain_response(p, model=model_key, temperature=GEN_TEMPERATURE)
+        return llm.obtain_response(p, model=model_key, temperature=GEN_TEMPERATURE,
+                                   reasoning=reasoning)
 
     gate = CallGate(ckpt, max_calls, obtain, dry)
 
@@ -411,6 +414,7 @@ def run_one(mat: dict, script_reg: dict, vset_reg: dict, model_key: str, script:
         "aligned": vspec["aligned"], "rep": rep,
         "meta": {
             "model_key": model_key, "model_id": llm.resolve_model(model_key),
+            "reasoning": reasoning,   # 조건이다 — 산출물에 남아야 재현된다
             "temperature": GEN_TEMPERATURE, "rounds": ROUNDS,
             "note_budget": NOTE_BUDGET, "note_truncated": note_truncated, "dry": dry,
             "deviations": list(getattr(llm, "LAST_DEVIATIONS", [])),
@@ -426,6 +430,11 @@ def run_one(mat: dict, script_reg: dict, vset_reg: dict, model_key: str, script:
 def main() -> None:
     ap = argparse.ArgumentParser(description="압박×카테고리 각본 러너 (PREREG_v0)")
     ap.add_argument("--model", default="gpt", help="llm.py 모델 키")
+    # 사고 모드 — 기본 default 는 파라미터 미전송(종전 동작 그대로). glm 은 끄지 않으면
+    # <think> 가 본문 예산을 먹어 절단으로 즉사하므로 --reasoning off 가 사실상 필수다.
+    ap.add_argument("--reasoning", default="default",
+                    choices=["default", "off", "on"],
+                    help="추론 모드 (glm 은 off 권장 — 켜면 출력 절단)")
     # 각본 선택지 = 내장 C0/C1/C2 + scripts/ 등록분 (파일 안 script_id 가 이름)
     script_ids = sorted(set(SCRIPTS) | set(discover_scripts(None)))
     ap.add_argument("--scripts", nargs="*", default=list(SCRIPTS), choices=script_ids)
@@ -468,7 +477,8 @@ def main() -> None:
                          "(이해·드라이런 전용). 본실험은 팀 시나리오로 돌려라.")
 
     if not args.dry:
-        llm.preflight(args.model, temperature=GEN_TEMPERATURE)
+        llm.preflight(args.model, temperature=GEN_TEMPERATURE,
+                      reasoning=None if args.reasoning == "default" else args.reasoning)
     script_reg = discover_scripts(mat)
     missing = [s for s in args.scripts if s not in script_reg]
     if missing:
@@ -482,7 +492,8 @@ def main() -> None:
     print(f"[plan] {mat['issue_id']}{' (견본 — 드라이런 전용)' if mat.get('example') else ''} · "
           f"{args.model} — {len(planned)}판 (판당 8콜 + 반려 최대 3) · dry={args.dry} · 재료 {mat['_hash']}")
     for s, v, r in planned:
-        run_one(mat, script_reg, vset_reg, args.model, s, v, r, args.max_calls, args.dry)
+        run_one(mat, script_reg, vset_reg, args.model, s, v, r, args.max_calls, args.dry,
+                args.reasoning)
 
 
 if __name__ == "__main__":

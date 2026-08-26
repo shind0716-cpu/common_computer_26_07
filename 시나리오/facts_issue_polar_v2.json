@@ -4,7 +4,7 @@
   "created_at": "2026-08-20T00:00:00+09:00",
   "issue_id": "issue_polar_v2",
   "outcome_policy": "descriptive_stance_only",
-  "_note": "issue_polar v2 정본 후보(팀 검수 전). 불리 대칭 후송 4 : 대기 4, 중립 2, 양쪽 2. **fact_id 가 v1 과 다르다**(fact_polar_v2_NN, P-5A) — fact 03 명제가 바뀌었고 오부착을 막으려 namespace 전량 분리. 합칠 때는 (issue_id, fact_id) 쌍을 키로 잡아라. requirement·share·favors 없음 — 정답형 재료가 아니다. _unfavorable_to 는 fact truth 가 아니라 prereg 분석 메타이며(P-4A), _orientation=blocked 인 fact 11·12 는 calibration·owner 승인 전까지 favorable/unfavorable 집계에서 뺀다. fact 05(_boundary=historical_case_only)는 과거 회항 사례만 보존하고 현재 실패확률·필연을 추론하지 않는다(P-2A). fact 11(_boundary=accessibility_unknown)의 실제 접근 가능성은 unknown 이다(P-3A). **prior 프로브 미실행 — 값이 null 이다. v1 prior 를 이전하지 않는다(P-5A). 실호출 트랙에 올리기 전에 독립 probe 를 별도 승인·실행해야 한다.**",
+  "_note": "issue_polar v2 정본 후보(팀 검수 전). 불리 대칭 후송 4 : 대기 4, 중립 2, 양쪽 2. **fact_id 가 v1 과 다르다**(fact_polar_v2_NN, P-5A) — fact 03 명제가 바뀌었고 오부착을 막으려 namespace 전량 분리. 합칠 때는 (issue_id, fact_id) 쌍을 키로 잡아라. requirement·share·favors 없음 — 정답형 재료가 아니다. _unfavorable_to 는 fact truth 가 아니라 prereg 분석 메타이며(P-4A), _orientation=blocked 인 fact 11·12 는 calibration·owner 승인 전까지 favorable/unfavorable 집계에서 뺀다. fact 05(_boundary=historical_case_only)는 과거 회항 사례만 보존하고 현재 실패확률·필연을 추론하지 않는다(P-2A). fact 11(_boundary=accessibility_unknown)의 실제 접근 가능성은 unknown 이다(P-3A). **prior 프로브 미실행 — 값이 null 이다. v1 prior 를 이전하지 않는다(P-5A). 실호출 트랙에 올리기 전에 독립 probe 를 별도 승인·실행해야 한다.** → (2026-08-21 정정) prior 프로브 완료: gpt-mini · 온도 0 · camp-prior-v0.2 · known 0/12 · 요한 승인 48콜 중 12 · 원문 시나리오/prior_<issue>.json. 위 '미실행' 문장은 이력으로 남긴다.",
   "extractor": {
     "name": "manual",
     "ver": "1"
@@ -18,10 +18,10 @@
       ],
       "critical": true,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:48:21.398462+00:00"
       },
       "_unfavorable_to": "후송",
       "_perspective": "비행",
@@ -36,10 +36,10 @@
       ],
       "critical": true,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:48:21.398462+00:00"
       },
       "_unfavorable_to": "대기",
       "_perspective": "의무",
@@ -54,10 +54,10 @@
       ],
       "critical": true,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:48:21.398462+00:00"
       },
       "_unfavorable_to": "후송",
       "_perspective": "비행",
@@ -72,10 +72,10 @@
       ],
       "critical": true,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:48:21.398462+00:00"
       },
       "_unfavorable_to": "대기",
       "_perspective": "의무",
@@ -90,10 +90,10 @@
       ],
       "critical": true,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:48:21.398462+00:00"
       },
       "_unfavorable_to": "후송",
       "_perspective": "비행",
@@ -108,10 +108,10 @@
       ],
       "critical": true,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:48:21.398462+00:00"
       },
       "_unfavorable_to": "대기",
       "_perspective": "보급",
@@ -126,10 +126,10 @@
       ],
       "critical": true,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:48:21.398462+00:00"
       },
       "_unfavorable_to": "후송",
       "_perspective": "의무",
@@ -144,10 +144,10 @@
       ],
       "critical": true,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:48:21.398462+00:00"
       },
       "_unfavorable_to": "대기",
       "_perspective": "의무",
@@ -162,10 +162,10 @@
       ],
       "critical": false,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:48:21.398462+00:00"
       },
       "_unfavorable_to": null,
       "_perspective": "보급",
@@ -180,10 +180,10 @@
       ],
       "critical": false,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:48:21.398462+00:00"
       },
       "_unfavorable_to": null,
       "_perspective": "보급",
@@ -198,10 +198,10 @@
       ],
       "critical": true,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:48:21.398462+00:00"
       },
       "_unfavorable_to": "both",
       "_perspective": "보급",
@@ -216,10 +216,10 @@
       ],
       "critical": false,
       "prior": {
-        "score": null,
-        "probe_model": null,
-        "probe_prompt_ver": null,
-        "probed_at": null
+        "score": 0.0,
+        "probe_model": "gpt-mini",
+        "probe_prompt_ver": "camp-prior-v0.2",
+        "probed_at": "2026-08-21T06:48:21.398462+00:00"
       },
       "_unfavorable_to": "both",
       "_perspective": "비행",
