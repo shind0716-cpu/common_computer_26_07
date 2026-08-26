@@ -96,6 +96,7 @@ def scan_run(doc: dict, mat: dict) -> dict:
         "script": doc.get("script"), "value_set": doc.get("value_set"),
         "rep": doc.get("rep"), "aligned": doc.get("aligned"),
         "materials_hash": doc.get("materials_hash"), "dry": doc["meta"].get("dry"),
+        "value_once": doc["meta"].get("value_once", False),
         "essay_anchor_counts": [len(a) for a in essay_anchors],
         "note_anchor_counts": [len(a) for a in note_anchors],
         "note_anchors": note_anchors,

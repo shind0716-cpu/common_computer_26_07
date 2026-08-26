@@ -273,6 +273,12 @@ def _sec(title: str, body: str) -> str:
     return f"[{title}]\n{body}"
 
 
+def _val_sec(vspec: dict) -> str:
+    """가치 절 — value_once 모드의 r1 이후에는 statement 가 None 으로 들어와 생략된다."""
+    st = vspec.get("statement")
+    return "" if st is None else _sec("너의 가치", st) + "\n\n"
+
+
 def prompt_r0(mat: dict, vspec: dict, r0_line: str | None = None) -> str:
     press = (_sec("상대의 말", r0_line) + "\n\n") if r0_line else ""
     return ("다음 사안을 검토하라.\n\n" + _sec("사안", mat["stub"]) + "\n\n" +
@@ -283,7 +289,7 @@ def prompt_r0(mat: dict, vspec: dict, r0_line: str | None = None) -> str:
 
 def prompt_round(mat: dict, vspec: dict, note: str, line: str) -> str:
     return ("다음 사안을 검토하라.\n\n" + _sec("사안", mat["stub"]) + "\n\n" +
-            _sec("너의 가치", vspec["statement"]) + "\n\n" +
+            _val_sec(vspec) +
             _sec("너의 수첩", note) + "\n\n" +
             _sec("상대의 말", line) + "\n\n" +
             mat["prompts"]["round_task"])
@@ -300,7 +306,7 @@ def prompt_note(mat: dict, vspec: dict, r: int, note_prev: str | None, essay: st
     carrier = (_sec("알게 된 사실", facts_block(mat)) if r == 0
                else _sec("너의 수첩", note_prev or ""))
     return ("다음 사안을 검토하라.\n\n" + _sec("사안", mat["stub"]) + "\n\n" +
-            _sec("너의 가치", vspec["statement"]) + "\n\n" +
+            _val_sec(vspec) +
             carrier + "\n\n" + _sec("이번 라운드에 쓴 글", essay) + "\n\n" +
             note_instr(NOTE_BUDGET))
 
@@ -312,7 +318,7 @@ def prompt_note_retry(over_text: str) -> str:
 
 def prompt_final(mat: dict, vspec: dict, note: str) -> str:
     return ("다음 사안을 검토하라.\n\n" + _sec("사안", mat["stub"]) + "\n\n" +
-            _sec("너의 가치", vspec["statement"]) + "\n\n" +
+            _val_sec(vspec) +
             _sec("너의 수첩", note) + "\n\n" + mat["prompts"]["final_poll"])
 
 
@@ -346,7 +352,7 @@ class CallGate:
 
 def run_one(mat: dict, script_reg: dict, vset_reg: dict, model_key: str, script: str,
             vset: str, rep: int, max_calls: int, dry: bool,
-            reasoning: str = "default") -> Path:
+            reasoning: str = "default", value_once: bool = False) -> Path:
     spec = script_reg[script]
     vspec = vset_reg[vset]
     r0_line, lines = resolve_script(mat, spec, vspec)
@@ -367,7 +373,8 @@ def run_one(mat: dict, script_reg: dict, vset_reg: dict, model_key: str, script:
     run_id = f"{script}_{vset}_rep{rep}"
     # 재료별 분리 (run_solo --issue 전례) — run_id 에 재료가 없어서, 안 나누면 다른
     # 시나리오의 C1_A_rep1 이 같은 파일명이 되어 [skip] 으로 조용히 아무것도 안 한다.
-    out_dir = (RUNS_DIR / "_dry" if dry else RUNS_DIR) / model_key / mat["issue_id"]
+    issue_dir = mat["issue_id"] + ("__vonce" if value_once else "")
+    out_dir = (RUNS_DIR / "_dry" if dry else RUNS_DIR) / model_key / issue_dir
     out_dir.mkdir(parents=True, exist_ok=True)
     dst = out_dir / f"run_{run_id}.json"
     if dst.exists():
@@ -385,21 +392,22 @@ def run_one(mat: dict, script_reg: dict, vset_reg: dict, model_key: str, script:
     notes: list[str] = []
     note_truncated = False
 
+    vspec_later = dict(vspec, statement=None) if value_once else vspec   # r1+ 가치 미재주입
     for r in range(ROUNDS):
         p = (prompt_r0(mat, vspec, r0_line) if r == 0
-             else prompt_round(mat, vspec, notes[-1], lines[r - 1]))
+             else prompt_round(mat, vspec_later, notes[-1], lines[r - 1]))
         essays.append(gate.call(f"essay_r{r}", p))
         if r < ROUNDS - 1:
             note = gate.call(f"note_r{r}",
-                             prompt_note(mat, vspec, r, notes[-1] if notes else None,
-                                         essays[-1]))
+                             prompt_note(mat, vspec if r == 0 else vspec_later, r,
+                                         notes[-1] if notes else None, essays[-1]))
             if len(note) > NOTE_BUDGET:
                 note = gate.call(f"note_r{r}_retry", prompt_note_retry(note))
                 if len(note) > NOTE_BUDGET:
                     note, note_truncated = note[:NOTE_BUDGET], True
             notes.append(note)
 
-    poll = gate.call("final_poll", prompt_final(mat, vspec, notes[-1]))
+    poll = gate.call("final_poll", prompt_final(mat, vspec_later, notes[-1]))
     if not dry and poll.strip().strip("'\"*` \n") not in mat["options"]:
         # 형식 반려 1회 (수첩 반려와 같은 규율) — 하이쿠가 가치·수첩 충돌 시 에세이로
         # 답하는 사례 실측(8/26). 원답도 체크포인트에 남으니 정보 손실은 없다.
@@ -424,6 +432,7 @@ def run_one(mat: dict, script_reg: dict, vset_reg: dict, model_key: str, script:
             "reasoning": reasoning,   # 조건이다 — 산출물에 남아야 재현된다
             "temperature": GEN_TEMPERATURE, "rounds": ROUNDS,
             "note_budget": NOTE_BUDGET, "note_truncated": note_truncated, "dry": dry,
+            "value_once": value_once,
             "deviations": list(getattr(llm, "LAST_DEVIATIONS", [])),
             "finished_at": _now(),
         },
@@ -451,6 +460,8 @@ def main() -> None:
     ap.add_argument("--max-calls", type=int, default=16,
                     help="런 1개당 상한 (기본 8콜 + 수첩 반려 여유)")
     ap.add_argument("--dry", action="store_true", help="0콜 조립 리허설 (runs/_dry/)")
+    ap.add_argument("--value-once", action="store_true",
+                    help="가치문을 r0 에만 주입 — r1 이후·최종은 수첩만 (가치 재주입 축)")
     ap.add_argument("--allow-live", action="store_true",
                     help="실호출 허용 — PREREG_v0.md 로컬 커밋 후에만 켤 것")
     reg = discover_materials()
@@ -500,7 +511,7 @@ def main() -> None:
           f"{args.model} — {len(planned)}판 (판당 8콜 + 반려 최대 3) · dry={args.dry} · 재료 {mat['_hash']}")
     for s, v, r in planned:
         run_one(mat, script_reg, vset_reg, args.model, s, v, r, args.max_calls, args.dry,
-                args.reasoning)
+                args.reasoning, value_once=args.value_once)
 
 
 if __name__ == "__main__":
