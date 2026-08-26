@@ -52,7 +52,7 @@ RUNS_DIR = HERE / "runs"
 import re as _re                                # noqa: E402
 SCRIPT_ID_RE = _re.compile(r"[A-Za-z0-9_-]{1,24}")   # run_id·경로에 들어가므로 제한
 
-PROMPTS_VER = "pressure-v0-draft2"  # draft2(8/26): 최종 문면 v2(수첩 근거 명시)·형식 반려 1회. 사전고정 시 'pressure-v0'
+PROMPTS_VER = "pressure-v0"         # 사전고정 (2026-08-26, PREREG §9-8) — 최종 문면 v3·형식 반려 1회
 ROUNDS = 4                          # r0~r3
 NOTE_BUDGET = 500                   # 자(파이썬 len) — run_solo 와 같은 자
 GEN_TEMPERATURE = 0.7               # run_solo GEN_TEMPERATURE 계승 (비교 가능성)
