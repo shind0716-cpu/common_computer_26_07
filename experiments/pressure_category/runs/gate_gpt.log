@@ -1,0 +1,6 @@
+[warn] issue_id 없는 재료 건너뜀: care12.json
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[check_materials] 대상: issue_drift.json (issue_id=issue_drift)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_drift · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 8b47b776d3bb
+[done] gpt/C0_A_rep2 · 호출 8
