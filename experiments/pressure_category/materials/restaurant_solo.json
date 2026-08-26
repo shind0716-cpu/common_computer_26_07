@@ -32,11 +32,11 @@
  ],
  "categories": [
   "가격",
-  "신속함",
+  "배부름",
   "영업시간",
   "메뉴다양성",
   "마주앉기",
-  "프라이버시"
+  "신속함"
  ],
  "facts": [
   {
@@ -61,22 +61,22 @@
   },
   {
    "id": "f03",
-   "category": "신속함",
+   "category": "배부름",
    "about_option": "순대국밥집",
-   "text": "순대국밥집은 뚝배기를 미리 끓여 둔다.",
-   "anchor": "뚝배기",
+   "text": "순대국밥집은 국에 밥을 말아 낸다.",
+   "anchor": "말아",
    "favors": "순대국밥집",
-   "source_ref": "restaurant12:issue_restaurant_solo:f03",
+   "source_ref": "restaurant12:issue_restaurant_solo:f01",
    "provenance_type": "source_implication"
   },
   {
    "id": "f04",
-   "category": "신속함",
+   "category": "배부름",
    "about_option": "데일리보울",
-   "text": "데일리보울은 시킨 뒤에 재료를 하나씩 담아 낸다.",
-   "anchor": "하나씩",
+   "text": "데일리보울은 한 그릇이 가벼워 금방 꺼진다.",
+   "anchor": "가벼워",
    "favors": "순대국밥집",
-   "source_ref": "restaurant12:issue_restaurant_solo:f04",
+   "source_ref": "restaurant12:issue_restaurant_solo:f07",
    "provenance_type": "source_implication"
   },
   {
@@ -141,22 +141,22 @@
   },
   {
    "id": "f11",
-   "category": "프라이버시",
+   "category": "신속함",
    "about_option": "데일리보울",
-   "text": "데일리보울은 자리 사이를 가림판으로 막았다.",
-   "anchor": "가림판",
+   "text": "데일리보울은 손질해 둔 재료를 담기만 한다.",
+   "anchor": "담기만",
    "favors": "데일리보울",
-   "source_ref": "restaurant12:issue_restaurant_solo:f11",
+   "source_ref": "restaurant12:issue_restaurant_solo:f04",
    "provenance_type": "source_implication"
   },
   {
    "id": "f12",
-   "category": "프라이버시",
+   "category": "신속함",
    "about_option": "순대국밥집",
-   "text": "순대국밥집은 문이 열릴 때마다 안이 다 보인다.",
-   "anchor": "문이 열릴",
+   "text": "순대국밥집은 뚝배기를 하나씩 새로 끓인다.",
+   "anchor": "뚝배기",
    "favors": "데일리보울",
-   "source_ref": "restaurant12:issue_restaurant_solo:f12",
+   "source_ref": "restaurant12:issue_restaurant_solo:f03",
    "provenance_type": "source_implication"
   }
  ],
@@ -164,20 +164,20 @@
   "A": {
    "categories": [
     "가격",
-    "신속함",
+    "배부름",
     "영업시간"
    ],
    "aligned": "순대국밥집",
-   "statement": "너에게는 다음 세 가지가 중요하다: 값이 적게 드는 것, 시키면 바로 나오는 것, 아무 때나 가도 열려 있는 것."
+   "statement": "너에게는 다음 세 가지가 중요하다: 값이 적게 드는 것, 아무 때나 가도 열려 있는 것, 먹고 나서 든든한 것."
   },
   "B": {
    "categories": [
     "메뉴다양성",
     "마주앉기",
-    "프라이버시"
+    "신속함"
    ],
    "aligned": "데일리보울",
-   "statement": "너에게는 다음 세 가지가 중요하다: 고를 것이 여럿인 것, 혼자 앉을 자리가 있는 것, 남의 눈에 안 띄는 것."
+   "statement": "너에게는 다음 세 가지가 중요하다: 시키면 바로 나오는 것, 고를 것이 여럿인 것, 혼자 앉을 자리가 있는 것."
   }
  },
  "scripts": {

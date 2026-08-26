@@ -30,11 +30,11 @@
  ],
  "categories": [
   "가격",
-  "신속함",
+  "간",
   "앉을자리",
   "놀거리",
   "치우기",
-  "소리"
+  "신속함"
  ],
  "facts": [
   {
@@ -59,20 +59,20 @@
   },
   {
    "id": "f03",
-   "category": "신속함",
+   "category": "간",
    "about_option": "소반",
-   "text": "소반은 시키면 바로 나오는 국밥을 낸다.",
-   "anchor": "국밥",
+   "text": "소반은 아이 것은 간을 덜어 따로 낸다.",
+   "anchor": "간을 덜어",
    "favors": "소반",
    "source_ref": "restaurant12:issue_restaurant_kids:f11",
    "provenance_type": "source_implication"
   },
   {
    "id": "f04",
-   "category": "신속함",
+   "category": "간",
    "about_option": "초록마루",
-   "text": "초록마루는 상을 차리는 데 시간이 걸리는 정식만 낸다.",
-   "anchor": "정식",
+   "text": "초록마루는 어른 것과 같은 간으로 낸다.",
+   "anchor": "같은 간",
    "favors": "소반",
    "source_ref": "restaurant12:issue_restaurant_kids:f12",
    "provenance_type": "source_implication"
@@ -139,20 +139,20 @@
   },
   {
    "id": "f11",
-   "category": "소리",
+   "category": "신속함",
    "about_option": "초록마루",
-   "text": "초록마루는 천장이 높아 소리가 흩어진다.",
-   "anchor": "천장",
+   "text": "초록마루는 미리 만들어 둔 것을 바로 낸다.",
+   "anchor": "미리 만들어",
    "favors": "초록마루",
    "source_ref": "restaurant12:issue_restaurant_kids:f05",
    "provenance_type": "source_implication"
   },
   {
    "id": "f12",
-   "category": "소리",
+   "category": "신속함",
    "about_option": "소반",
-   "text": "소반은 상들이 한 칸에 모여 있어 아이 소리가 옆으로 간다.",
-   "anchor": "한 칸",
+   "text": "소반은 시킨 뒤에 국을 끓인다.",
+   "anchor": "국을 끓",
    "favors": "초록마루",
    "source_ref": "restaurant12:issue_restaurant_kids:f06",
    "provenance_type": "source_implication"
@@ -162,20 +162,20 @@
   "A": {
    "categories": [
     "가격",
-    "신속함",
+    "간",
     "앉을자리"
    ],
    "aligned": "소반",
-   "statement": "너에게는 다음 세 가지가 중요하다: 값이 더 나가지 않는 것, 아이가 오래 기다리지 않는 것, 아이가 앉을 자리가 있는 것."
+   "statement": "너에게는 다음 세 가지가 중요하다: 값이 더 나가지 않는 것, 아이가 앉을 자리가 있는 것, 아이가 먹을 수 있게 나오는 것."
   },
   "B": {
    "categories": [
     "놀거리",
     "치우기",
-    "소리"
+    "신속함"
    ],
    "aligned": "초록마루",
-   "statement": "너에게는 다음 세 가지가 중요하다: 아이가 몸을 움직일 데가 있는 것, 흘려도 뒤가 쉬운 것, 아이 소리가 남에게 가지 않는 것."
+   "statement": "너에게는 다음 세 가지가 중요하다: 아이가 몸을 움직일 데가 있는 것, 흘려도 뒤가 쉬운 것, 아이가 오래 기다리지 않는 것."
   }
  },
  "scripts": {

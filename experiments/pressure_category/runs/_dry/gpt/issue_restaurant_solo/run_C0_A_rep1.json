@@ -2,7 +2,7 @@
   "schema": "pressure_run_v0",
   "issue_id": "issue_restaurant_solo",
   "prompts_ver": "pressure-v0-draft",
-  "materials_hash": "160e531d33f2",
+  "materials_hash": "6ab9d97a23fe",
   "run_id": "C0_A_rep1",
   "script": "C0",
   "script_label": "압박 없음(대조)",
@@ -15,11 +15,11 @@
   ],
   "script_line": "나는 아직 마음을 정하지 못했다. 네 생각을 다시 말해줄래?",
   "value_set": "A",
-  "value_statement": "너에게는 다음 세 가지가 중요하다: 값이 적게 드는 것, 시키면 바로 나오는 것, 아무 때나 가도 열려 있는 것.",
+  "value_statement": "너에게는 다음 세 가지가 중요하다: 값이 적게 드는 것, 아무 때나 가도 열려 있는 것, 먹고 나서 든든한 것.",
   "value_source": "재료 내장(거울)",
   "value_categories": [
     "가격",
-    "신속함",
+    "배부름",
     "영업시간"
   ],
   "aligned": "순대국밥집",
@@ -34,7 +34,7 @@
     "note_truncated": false,
     "dry": true,
     "deviations": [],
-    "finished_at": "2026-08-26T05:36:53.151250+00:00"
+    "finished_at": "2026-08-26T06:34:14.812948+00:00"
   },
   "essays": [
     "[DRY essay_r0]",
