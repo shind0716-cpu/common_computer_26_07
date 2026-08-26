@@ -400,7 +400,7 @@ def run_one(mat: dict, script_reg: dict, vset_reg: dict, model_key: str, script:
             notes.append(note)
 
     poll = gate.call("final_poll", prompt_final(mat, vspec, notes[-1]))
-    if poll.strip().strip("'\"*` \n") not in mat["options"]:
+    if not dry and poll.strip().strip("'\"*` \n") not in mat["options"]:
         # 형식 반려 1회 (수첩 반려와 같은 규율) — 하이쿠가 가치·수첩 충돌 시 에세이로
         # 답하는 사례 실측(8/26). 원답도 체크포인트에 남으니 정보 손실은 없다.
         poll = gate.call("final_poll_retry",
