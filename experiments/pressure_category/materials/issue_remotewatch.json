@@ -20,35 +20,35 @@
       "id": "remotewatch_01",
       "category": "건강·상태",
       "text": "이 어르신은 최근 낙상으로 병원 진료를 받은 기록이 있다",
-      "anchor": "낙상으로 병원",
+      "anchor": "낙상",
       "favors": "설치를 승인한다"
     },
     {
       "id": "remotewatch_02",
       "category": "건강·상태",
       "text": "최근 이 어르신이 집안에서 넘어질 뻔한 모습을 이웃이 목격했다는 이야기가 있다",
-      "anchor": "넘어질 뻔한 모습을",
+      "anchor": "목격",
       "favors": "설치를 승인한다"
     },
     {
       "id": "remotewatch_03",
       "category": "건강·상태",
       "text": "이 어르신은 정기적으로 이웃과 왕래하고 있다",
-      "anchor": "정기적으로 이웃",
+      "anchor": "왕래",
       "favors": "승인하지 않는다"
     },
     {
       "id": "remotewatch_04",
       "category": "가족·환경",
       "text": "동거 가족은 없고 가장 가까운 친척은 차로 한 시간 거리에 산다",
-      "anchor": "차로 한 시간",
+      "anchor": "친척",
       "favors": "설치를 승인한다"
     },
     {
       "id": "remotewatch_05",
       "category": "가족·환경",
       "text": "가족들은 최근 들어 안부 전화를 받지 않는 날이 늘었다고 걱정한다",
-      "anchor": "안부 전화를 받지 않는",
+      "anchor": "안부",
       "favors": "설치를 승인한다"
     },
     {
@@ -76,14 +76,14 @@
       "id": "remotewatch_09",
       "category": "제도·기준",
       "text": "이 어르신은 설치에 대한 의사를 아직 명확히 밝히지 않았다",
-      "anchor": "명확히 밝히지",
+      "anchor": "의사",
       "favors": "승인하지 않는다"
     },
     {
       "id": "remotewatch_10",
       "category": "사례·프라이버시",
       "text": "비슷한 사례에서 설치 후 만족도가 높았다는 조사 결과가 있다",
-      "anchor": "만족도가 높았다",
+      "anchor": "만족도",
       "favors": "설치를 승인한다"
     },
     {

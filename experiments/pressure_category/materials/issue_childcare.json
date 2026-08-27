@@ -20,28 +20,28 @@
       "id": "childcare_01",
       "category": "아동",
       "text": "아이는 입구를 지나면 대체로 안정된다는 교사 관찰이 있다",
-      "anchor": "대체로 안정",
+      "anchor": "입구",
       "favors": "등원시킨다"
     },
     {
       "id": "childcare_02",
       "category": "아동",
       "text": "아이는 최근 낮잠 시간마다 힘들어한다는 기록이 있다",
-      "anchor": "낮잠 시간",
+      "anchor": "낮잠",
       "favors": "기다린다"
     },
     {
       "id": "childcare_03",
       "category": "아동",
       "text": "아이는 최근 동생이 태어나며 정서적으로 예민해진 시기다",
-      "anchor": "동생이 태어나",
+      "anchor": "동생",
       "favors": "기다린다"
     },
     {
       "id": "childcare_04",
       "category": "보호자",
       "text": "보호자는 등원 요일이 정해져 있지 않으면 돌봄 공백이 생긴다",
-      "anchor": "돌봄 공백",
+      "anchor": "공백",
       "favors": "등원시킨다"
     },
     {
@@ -55,7 +55,7 @@
       "id": "childcare_06",
       "category": "보호자",
       "text": "보호자는 아이의 등원 거부가 반복되면 상담을 받아볼 계획이다",
-      "anchor": "상담을 받아볼",
+      "anchor": "상담",
       "favors": "등원시킨다"
     },
     {
@@ -97,7 +97,7 @@
       "id": "childcare_12",
       "category": "또래·환경",
       "text": "또래 아이 하나는 이 아이가 며칠 안 보이면 먼저 안부를 묻는다는 이야기가 있다",
-      "anchor": "먼저 안부를 묻는다는",
+      "anchor": "안부",
       "favors": "등원시킨다"
     }
   ],

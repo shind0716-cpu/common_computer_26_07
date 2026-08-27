@@ -20,21 +20,21 @@
       "id": "elderdrive_01",
       "category": "부모",
       "text": "부모님은 최근 주차 중 가벼운 접촉 사고를 두 차례 냈다",
-      "anchor": "접촉 사고를 두 차례",
+      "anchor": "접촉",
       "favors": "면허 반납을 권한다"
     },
     {
       "id": "elderdrive_02",
       "category": "부모",
       "text": "부모님은 최근 건강검진에서 시력과 반응속도가 정상 범위로 나왔다",
-      "anchor": "정상 범위로",
+      "anchor": "시력",
       "favors": "당분간 계속 운전하게 둔다"
     },
     {
       "id": "elderdrive_03",
       "category": "부모",
       "text": "부모님은 운전을 그만두면 활동 반경이 크게 줄 것을 걱정한다",
-      "anchor": "활동 반경이",
+      "anchor": "반경",
       "favors": "당분간 계속 운전하게 둔다"
     },
     {
@@ -48,7 +48,7 @@
       "id": "elderdrive_05",
       "category": "가족",
       "text": "자녀 중 한 명은 대신 운전해 드릴 여건이 된다",
-      "anchor": "대신 운전해",
+      "anchor": "자녀",
       "favors": "면허 반납을 권한다"
     },
     {
@@ -62,42 +62,42 @@
       "id": "elderdrive_07",
       "category": "지역·안전",
       "text": "거주 지역은 대중교통 접근성이 낮은 편이다",
-      "anchor": "접근성이 낮은",
+      "anchor": "대중교통",
       "favors": "당분간 계속 운전하게 둔다"
     },
     {
       "id": "elderdrive_08",
       "category": "지역·안전",
       "text": "최근 그 지역에서 고령 운전자 관련 사고가 몇 차례 보도됐다",
-      "anchor": "몇 차례 보도",
+      "anchor": "보도",
       "favors": "면허 반납을 권한다"
     },
     {
       "id": "elderdrive_09",
       "category": "지역·안전",
       "text": "지자체에는 고령자 이동 지원 서비스가 일부 운영되고 있다",
-      "anchor": "이동 지원 서비스",
+      "anchor": "서비스",
       "favors": "면허 반납을 권한다"
     },
     {
       "id": "elderdrive_10",
       "category": "사회·제도",
       "text": "비슷한 연세에도 문제없이 운전하는 이웃 사례가 있다",
-      "anchor": "문제없이 운전하는",
+      "anchor": "이웃",
       "favors": "당분간 계속 운전하게 둔다"
     },
     {
       "id": "elderdrive_11",
       "category": "사회·제도",
       "text": "면허 자진 반납 시 지자체 혜택이 있다는 안내를 받은 적이 있다",
-      "anchor": "자진 반납 시",
+      "anchor": "혜택",
       "favors": "면허 반납을 권한다"
     },
     {
       "id": "elderdrive_12",
       "category": "사회·제도",
       "text": "본인 의사에 반해 면허를 반납시키는 강제 절차는 없다",
-      "anchor": "강제 절차는",
+      "anchor": "강제",
       "favors": "당분간 계속 운전하게 둔다"
     }
   ],

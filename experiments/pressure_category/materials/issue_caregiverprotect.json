@@ -20,7 +20,7 @@
       "id": "caregiverprotect_01",
       "category": "요양보호사",
       "text": "이 요양보호사는 해당 가정에서 위협적인 언행을 겪은 적이 있다고 보고했다",
-      "anchor": "위협적인 언행",
+      "anchor": "언행",
       "favors": "재배치해 거부를 인정한다"
     },
     {
@@ -41,14 +41,14 @@
       "id": "caregiverprotect_04",
       "category": "이용자·가족",
       "text": "이용자 가족은 그런 일이 없었다고 반박하고 있다",
-      "anchor": "그런 일이 없었다",
+      "anchor": "반박",
       "favors": "배치를 그대로 유지한다"
     },
     {
       "id": "caregiverprotect_05",
       "category": "이용자·가족",
       "text": "이용자는 이 요양보호사와의 관계가 좋았다는 다른 방문 기록이 있다",
-      "anchor": "관계가 좋았다",
+      "anchor": "관계",
       "favors": "배치를 그대로 유지한다"
     },
     {
@@ -62,14 +62,14 @@
       "id": "caregiverprotect_07",
       "category": "기관·관리",
       "text": "배치 변경 여부는 정해진 요건의 충족 개수로 판단하도록 규정돼 있다",
-      "anchor": "요건의 충족",
+      "anchor": "충족",
       "favors": "재배치해 거부를 인정한다"
     },
     {
       "id": "caregiverprotect_08",
       "category": "기관·관리",
       "text": "해당 지역에는 대체 배치할 인력이 마땅치 않은 상황이다",
-      "anchor": "대체 배치할",
+      "anchor": "인력",
       "favors": "배치를 그대로 유지한다"
     },
     {
@@ -97,7 +97,7 @@
       "id": "caregiverprotect_12",
       "category": "제도·안전",
       "text": "위험 상황이 반복되면 관리 책임 문제가 제기될 수 있다는 우려가 있다",
-      "anchor": "관리 책임 문제",
+      "anchor": "책임",
       "favors": "재배치해 거부를 인정한다"
     }
   ],
