@@ -27,7 +27,7 @@
       "id": "caregiverprotect_02",
       "category": "요양보호사",
       "text": "그 보고는 정식 사건 기록으로는 아직 남아 있지 않다",
-      "anchor": "사건 기록으로는",
+      "anchor": "정식",
       "favors": "배치를 그대로 유지한다"
     },
     {
@@ -55,7 +55,7 @@
       "id": "caregiverprotect_06",
       "category": "이용자·가족",
       "text": "이용자 가족과 아직 직접 대면 확인은 이뤄지지 않았다",
-      "anchor": "직접 대면 확인",
+      "anchor": "대면",
       "favors": "배치를 그대로 유지한다"
     },
     {
@@ -76,7 +76,7 @@
       "id": "caregiverprotect_09",
       "category": "기관·관리",
       "text": "기관 지침은 노동자의 위험 상황 배치 거부권을 원칙적으로 인정한다",
-      "anchor": "거부권을 원칙적으로",
+      "anchor": "지침",
       "favors": "재배치해 거부를 인정한다"
     },
     {
@@ -90,7 +90,7 @@
       "id": "caregiverprotect_11",
       "category": "제도·안전",
       "text": "그 이전 신고는 조사 결과 사실무근으로 종결된 바 있다",
-      "anchor": "사실무근으로",
+      "anchor": "사실무근",
       "favors": "배치를 그대로 유지한다"
     },
     {

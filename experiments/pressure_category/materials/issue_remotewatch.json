@@ -48,14 +48,14 @@
       "id": "remotewatch_05",
       "category": "가족·환경",
       "text": "가족들은 최근 들어 안부 전화를 받지 않는 날이 늘었다고 걱정한다",
-      "anchor": "안부",
+      "anchor": "전화",
       "favors": "설치를 승인한다"
     },
     {
       "id": "remotewatch_06",
       "category": "가족·환경",
       "text": "이 가정은 아직 신청서를 정식으로 제출하지 않은 상태다",
-      "anchor": "신청서",
+      "anchor": "신청",
       "favors": "승인하지 않는다"
     },
     {
@@ -69,7 +69,7 @@
       "id": "remotewatch_08",
       "category": "제도·기준",
       "text": "본인 동의 없는 설치는 원칙적으로 금지되어 있다",
-      "anchor": "원칙적으로 금지",
+      "anchor": "금지",
       "favors": "승인하지 않는다"
     },
     {
@@ -90,7 +90,7 @@
       "id": "remotewatch_11",
       "category": "사례·프라이버시",
       "text": "일부 이용자는 감시받는 느낌 때문에 불편을 호소한 적이 있다",
-      "anchor": "감시받는 느낌",
+      "anchor": "불편",
       "favors": "승인하지 않는다"
     },
     {

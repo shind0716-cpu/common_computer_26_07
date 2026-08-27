@@ -34,7 +34,7 @@
       "party": "늦게 오는 주민",
       "about_option": "지금 시간 그대로",
       "text": "늦게 오는 주민들은 문이 잠긴 뒤에 단지에 들어선다.",
-      "anchor": "문이 잠긴 뒤",
+      "anchor": "단지",
       "favors": "밤에도 열어 둠",
       "source_ref": "RC_F02",
       "provenance_type": "source_rewrite"
@@ -78,7 +78,7 @@
       "party": "늦게 오는 주민",
       "about_option": "지금 시간 그대로",
       "text": "늦게 오는 주민들은 집에서 품목을 나눠 묶기 시작했다.",
-      "anchor": "나눠 묶기",
+      "anchor": "묶기",
       "favors": "밤에도 열어 둠",
       "source_ref": "RC_F05",
       "provenance_type": "source_rewrite"

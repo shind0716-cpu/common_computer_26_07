@@ -100,7 +100,7 @@
       "party": "인근 주민",
       "about_option": "지금 자리에서 이어감",
       "text": "인근 동 주민들은 먹이가 남는 날 새와 벌레가 모이는 일을 걱정한다.",
-      "anchor": "새와 벌레",
+      "anchor": "먹이",
       "favors": "짚은 먼 자리로",
       "source_ref": "CF_F03",
       "provenance_type": "source_rewrite"
@@ -111,7 +111,7 @@
       "party": "인근 주민",
       "about_option": "짚은 먼 자리로",
       "text": "최근 넉 주 사이 사료가 오래 남은 날이 여러 날 있었다.",
-      "anchor": "오래 남은 날",
+      "anchor": "최근",
       "favors": "짚은 먼 자리로",
       "source_ref": "CF_F04",
       "provenance_type": "source_rewrite"

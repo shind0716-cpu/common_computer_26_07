@@ -38,7 +38,7 @@
       "party": "보호자",
       "about_option": "지금처럼 등원시킴",
       "text": "보호자는 등원 요일이 정해져야 그 시간에 일을 잡는다.",
-      "anchor": "등원 요일",
+      "anchor": "요일",
       "favors": "지금처럼 등원시킴",
       "source_ref": "childcare_04",
       "provenance_type": "source_implication"

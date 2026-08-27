@@ -62,35 +62,35 @@
       "id": "childcare_07",
       "category": "기관",
       "text": "기관은 정원 유지를 위해 규칙적인 등원을 권장한다",
-      "anchor": "정원 유지",
+      "anchor": "정원",
       "favors": "등원시킨다"
     },
     {
       "id": "childcare_08",
       "category": "기관",
       "text": "기관 교사는 무리한 등원이 아이의 불안을 키울 수 있다고 본다",
-      "anchor": "불안을 키울",
+      "anchor": "불안",
       "favors": "기다린다"
     },
     {
       "id": "childcare_09",
       "category": "기관",
       "text": "기관에는 적응 기간을 유연하게 두는 별도 절차가 있다",
-      "anchor": "적응 기간",
+      "anchor": "절차",
       "favors": "기다린다"
     },
     {
       "id": "childcare_10",
       "category": "또래·환경",
       "text": "또래 친구들은 아이가 오는 날을 반긴다는 이야기가 있다",
-      "anchor": "오는 날을 반긴다",
+      "anchor": "친구들",
       "favors": "등원시킨다"
     },
     {
       "id": "childcare_11",
       "category": "또래·환경",
       "text": "비슷한 사례에서 며칠 쉬고 나니 저절로 나아졌다는 이야기도 있다",
-      "anchor": "저절로 나아졌다",
+      "anchor": "사례",
       "favors": "기다린다"
     },
     {
