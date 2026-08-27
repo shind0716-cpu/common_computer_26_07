@@ -68,19 +68,37 @@ FACTS = [
      "만나지 않는다", 1),
 ]
 
-SPEC = {
-    "형태": "나열", "갈래": "하나",
-    "A": "너에게는 끼니, 날씨, 길목이 중요하다.",
-    "B": "너에게는 통행, 위생, 마주침이 중요하다.",
+# 관문 통과 뒤(§27) 트리오로 넓혔다 — 사실·카테고리·선택지는 바이트까지 같고 가치문만 다르다.
+VARIANTS = {
+    "cat_feeding_entry_list": {
+        "형태": "나열", "갈래": "하나",
+        "A": "너에게는 끼니, 날씨, 길목이 중요하다.",
+        "B": "너에게는 통행, 위생, 마주침이 중요하다.",
+        "note": "가치를 추상 낱말로 나열한다.",
+    },
+    "cat_feeding_entry_plain": {
+        "형태": "서술", "갈래": "하나",
+        "A": "너에게는 다음 세 가지가 중요하다: 고양이가 끼니를 거르지 않는 것, "
+             "놓아둔 것이 날씨를 타지 않는 것, 고양이가 지나다니는 자리에 있는 것.",
+        "B": "너에게는 다음 세 가지가 중요하다: 다니는 폭이 좁아지지 않는 것, "
+             "남은 것이 오래 놓여 있지 않는 것, 사람과 부딪히지 않는 것.",
+        "note": "가치를 **자리의 성질**로 푼다 — 갈래 하나.",
+    },
+    "cat_feeding_entry_party": {
+        "형태": "서술", "갈래": "둘",
+        "A": "너에게는 다음 세 가지가 중요하다: 고양이가 끼니를 거르지 않는 것, "
+             "챙기는 사람이 궂은 날에도 놓을 수 있는 것, 고양이가 이미 다니던 자리를 지키는 것.",
+        "B": "너에게는 다음 세 가지가 중요하다: 짐을 들고 드나드는 사람이 걸리지 않는 것, "
+             "그 동에 사는 사람이 남은 먹이를 겪지 않는 것, 고양이를 꺼리는 사람이 부딪히지 않는 것.",
+        "note": "가치를 **당사자의 필요**로 푼다 — 갈래 둘.",
+    },
 }
 
 STATUS = ("development_only — 두 자리를 다 이름 있는 자리로 둔 판(요한 제안), "
           "사람·독립 검토 전, 기울기 실호출 검증 전")
 
 
-def main():
-    base = json.loads(BASE.read_text(encoding="utf-8"))
-    name = "cat_feeding_entry_list"
+def build(name, SPEC, base):
     d = copy.deepcopy(base)
     d["issue_id"] = f"issue_{name}"
     d["status"] = STATUS
@@ -108,9 +126,25 @@ def main():
         "겨루는 상대": "cat_feeding_days_list (지금 자리 ↔ 창고 옆)",
         "형태": SPEC["형태"], "갈래": SPEC["갈래"],
     }
-    p = ROOT / "materials" / f"{name}.json"
-    p.write_text(json.dumps(d, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"  썼다 {p.name}  ({SPEC['형태']}·갈래 {SPEC['갈래']})")
+    return d
+
+
+def main():
+    """⚠ `cat_feeding_entry_list` 는 다시 쓰지 않는다.
+
+    2026-08-27 관문 4판 36콜이 그 파일(해시 `e55aa0e320f2`)로 돌았다. 한 글자만 고쳐도
+    해시가 바뀌고, 러너는 재개할 때 파일명만 보고 해시를 안 본다(§22-4). 그러면
+    커밋된 런이 가리키는 재료와 지금 재료가 어긋난 채로 남는다.
+    """
+    base = json.loads(BASE.read_text(encoding="utf-8"))
+    for name, spec in VARIANTS.items():
+        if name == "cat_feeding_entry_list":
+            print(f"  건너뜀 {name}.json — 관문이 이 파일로 돌았다 (해시 고정)")
+            continue
+        p = ROOT / "materials" / f"{name}.json"
+        p.write_text(json.dumps(build(name, spec, base), ensure_ascii=False, indent=2) + "\n",
+                     encoding="utf-8")
+        print(f"  썼다 {p.name}  ({spec['형태']}·갈래 {spec['갈래']})")
     return 0
 
 
