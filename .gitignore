@@ -30,3 +30,5 @@ __pycache__/
 # modules/ 를 그대로 찾는다 — 코드는 공용 코어를 빌려 쓰고 기록만 따로 쌓는 모양이다.
 # 무시하지 않으면 git add 가 gitlink(서브모듈)로 잡아 사고가 난다.
 experiments/odyssey_layers/
+
+experiments/pressure_category/HANDOFF_*.md
