@@ -1,0 +1,20 @@
+eol ① 보 - - - - 부 보 보 - - 보 - N
+eol ② 부 보 - - 보 - 보 부 - 부 - - N
+euthanasia ① 보 보 보 보 부 부 부 보 N
+euthanasia ② 보 보 보 보 보 부 변 보 N
+floor_noise ① 보 보 - - 부 보 부 - 부 보 보 보 N
+floor_noise ② 보 보 부 보 보 보 부 - 보 보 - - N
+garden_plot ① 부 보 - - 보 - 보 보 보 부 - 보 N
+garden_plot ② 보 보 보 보 보 보 - 부 보 - - - N
+recycling_room ① 보 부 부 보 보 보 - 부 - 변 보 변 N
+recycling_room ② - 부 부 부 부 보 - 보 보 - 보 변 N
+recycling_room_party ① 보 - 보 보 부 부 부 - 부 - 변 - N
+recycling_room_party ② 보 - 보 보 - 변 보 보 부 - 부 보 N
+remotewatch ① 부 부 보 변 보 보 보 보 보 부 보 부 N
+remotewatch ② 보 보 보 - 보 보 보 보 보 - - 보 N
+restaurant_anniversary ① 보 보 보 보 보 보 - - - - - - N
+restaurant_anniversary ② - - 부 보 보 보 보 부 보 보 보 보 N
+restaurant_biz_meeting ① - - - - - - 보 보 보 보 보 보 N
+restaurant_biz_meeting ② 보 보 보 보 보 보 - - - - - - N
+restaurant_brunch ① 보 부 보 보 보 보 - 보 - 부 - 보 N
+restaurant_brunch ② - - - - - - 보 보 보 부 보 보 N
