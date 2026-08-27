@@ -1,0 +1,152 @@
+{
+ "issue_ambulance": {
+  "batch": 1,
+  "slot1": "A",
+  "slot2": "B"
+ },
+ "issue_caregiverprotect": {
+  "batch": 1,
+  "slot1": "B",
+  "slot2": "A"
+ },
+ "issue_cat_feeding_party": {
+  "batch": 1,
+  "slot1": "B",
+  "slot2": "A"
+ },
+ "issue_cat_feeding_plainvalue": {
+  "batch": 1,
+  "slot1": "A",
+  "slot2": "B"
+ },
+ "issue_childcare": {
+  "batch": 1,
+  "slot1": "B",
+  "slot2": "A"
+ },
+ "issue_childcare_party": {
+  "batch": 1,
+  "slot1": "B",
+  "slot2": "A"
+ },
+ "issue_childcare_room": {
+  "batch": 1,
+  "slot1": "A",
+  "slot2": "B"
+ },
+ "issue_community_cat_feeding": {
+  "batch": 1,
+  "slot1": "A",
+  "slot2": "B"
+ },
+ "issue_community_room": {
+  "batch": 1,
+  "slot1": "A",
+  "slot2": "B"
+ },
+ "issue_elderdrive": {
+  "batch": 1,
+  "slot1": "B",
+  "slot2": "A"
+ },
+ "issue_eol": {
+  "batch": 2,
+  "slot1": "B",
+  "slot2": "A"
+ },
+ "issue_euthanasia": {
+  "batch": 2,
+  "slot1": "B",
+  "slot2": "A"
+ },
+ "issue_floor_noise": {
+  "batch": 2,
+  "slot1": "B",
+  "slot2": "A"
+ },
+ "issue_garden_plot": {
+  "batch": 2,
+  "slot1": "B",
+  "slot2": "A"
+ },
+ "issue_recycling_room": {
+  "batch": 2,
+  "slot1": "A",
+  "slot2": "B"
+ },
+ "issue_recycling_room_party": {
+  "batch": 2,
+  "slot1": "A",
+  "slot2": "B"
+ },
+ "issue_remotewatch": {
+  "batch": 2,
+  "slot1": "B",
+  "slot2": "A"
+ },
+ "issue_restaurant_anniversary": {
+  "batch": 2,
+  "slot1": "A",
+  "slot2": "B"
+ },
+ "issue_restaurant_biz_meeting": {
+  "batch": 2,
+  "slot1": "B",
+  "slot2": "A"
+ },
+ "issue_restaurant_brunch": {
+  "batch": 2,
+  "slot1": "A",
+  "slot2": "B"
+ },
+ "issue_restaurant_date": {
+  "batch": 3,
+  "slot1": "A",
+  "slot2": "B"
+ },
+ "issue_restaurant_elders": {
+  "batch": 3,
+  "slot1": "A",
+  "slot2": "B"
+ },
+ "issue_restaurant_kids": {
+  "batch": 3,
+  "slot1": "A",
+  "slot2": "B"
+ },
+ "issue_restaurant_office_lunch": {
+  "batch": 3,
+  "slot1": "B",
+  "slot2": "A"
+ },
+ "issue_restaurant_sanggyeollye": {
+  "batch": 3,
+  "slot1": "A",
+  "slot2": "B"
+ },
+ "issue_restaurant_sogaeting": {
+  "batch": 3,
+  "slot1": "A",
+  "slot2": "B"
+ },
+ "issue_restaurant_solo": {
+  "batch": 3,
+  "slot1": "A",
+  "slot2": "B"
+ },
+ "issue_smoking_area": {
+  "batch": 3,
+  "slot1": "B",
+  "slot2": "A"
+ },
+ "issue_smoking_area_party": {
+  "batch": 3,
+  "slot1": "B",
+  "slot2": "A"
+ },
+ "issue_workmind": {
+  "batch": 3,
+  "slot1": "B",
+  "slot2": "A"
+ }
+}
