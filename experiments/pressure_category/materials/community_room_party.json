@@ -121,7 +121,7 @@
       "party": "공부 모임",
       "about_option": "가운데 놓아두기",
       "text": "책상이 가운데 있으면 환기 설비 바람이 방 한쪽에서 막힌다.",
-      "anchor": "환기 설비",
+      "anchor": "환기",
       "favors": "벽으로 붙여 두기",
       "source_ref": "RM_F03",
       "provenance_type": "source_implication"

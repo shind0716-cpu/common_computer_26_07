@@ -45,7 +45,7 @@
       "party": "주민 모임",
       "about_option": "짚은 먼 자리로",
       "text": "주민 모임은 급식이 끊기면 고양이들이 쓰레기 보관 구역을 뒤진다고 말한다.",
-      "anchor": "쓰레기 보관 구역",
+      "anchor": "쓰레기",
       "favors": "지금 자리에서 이어감",
       "source_ref": "CF_F02",
       "provenance_type": "source_rewrite"
@@ -67,7 +67,7 @@
       "party": "주민 모임",
       "about_option": "짚은 먼 자리로",
       "text": "담당자가 늦는 날에는 남은 사료를 제때 거두지 못했다고 주민 모임은 적었다.",
-      "anchor": "늦는 날",
+      "anchor": "담당자",
       "favors": "지금 자리에서 이어감",
       "source_ref": "CF_F05",
       "provenance_type": "source_rewrite"

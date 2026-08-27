@@ -67,7 +67,7 @@
       "party": "늦게 오는 주민",
       "about_option": "밤에도 열어 둠",
       "text": "부피가 큰 상자는 현관 안에 두기 어렵다고 했다.",
-      "anchor": "부피가 큰 상자",
+      "anchor": "부피",
       "favors": "밤에도 열어 둠",
       "source_ref": "RC_F05",
       "provenance_type": "source_rewrite"

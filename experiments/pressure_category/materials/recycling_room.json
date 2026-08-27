@@ -102,7 +102,7 @@
       "category": "평온",
       "about_option": "밤에도 열어 둠",
       "text": "밤늦게 병과 캔을 넣는 소리가 아래층 침실까지 닿는다.",
-      "anchor": "아래층 침실",
+      "anchor": "아래층",
       "favors": "밤 열 시 마감",
       "source_ref": "RC_F03",
       "provenance_type": "source_implication"
@@ -112,7 +112,7 @@
       "category": "안전",
       "about_option": "밤 열 시 마감",
       "text": "문을 닫아 두면 밤사이 보관실에 낯선 사람이 들지 않는다.",
-      "anchor": "낯선 사람",
+      "anchor": "밤사이",
       "favors": "밤 열 시 마감",
       "source_ref": "pressure_adaptation_authored",
       "provenance_type": "pressure_adaptation_authored"
