@@ -1,0 +1,239 @@
+=== 1차 1단계 시작 2026-08-27T16:19:19+09:00 ===
+--- [1/30] issue_ambulance ---
+[check_materials] 대상: issue_ambulance.json (issue_id=issue_ambulance)
+  ⚠ 카테고리 '신고 내용' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+  ⚠ 카테고리 '환자 상태' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+  ⚠ 카테고리 '상황·환경' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0 · 경고 3건
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_ambulance · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 e1f08f1e6780
+[done] gpt/C0_A_rep1 · 호출 9
+[done] gpt/C0_B_rep1 · 호출 9
+--- [2/30] issue_caregiverprotect ---
+[check_materials] 대상: issue_caregiverprotect.json (issue_id=issue_caregiverprotect)
+  ⚠ 카테고리 '요양보호사' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+  ⚠ 카테고리 '기관·관리' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+  ⚠ 카테고리 '제도·안전' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0 · 경고 3건
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_caregiverprotect · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 5d52af973265
+[done] gpt/C0_A_rep1 · 호출 9
+[done] gpt/C0_B_rep1 · 호출 9
+--- [3/30] issue_cat_feeding_party ---
+[check_materials] 대상: cat_feeding_party.json (issue_id=issue_cat_feeding_party)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_cat_feeding_party · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 e64beb9f44e7
+[done] gpt/C0_A_rep1 · 호출 8
+[done] gpt/C0_B_rep1 · 호출 8
+--- [4/30] issue_cat_feeding_plainvalue ---
+[check_materials] 대상: cat_feeding_plainvalue.json (issue_id=issue_cat_feeding_plainvalue)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_cat_feeding_plainvalue · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 dd584f366467
+[done] gpt/C0_A_rep1 · 호출 8
+[done] gpt/C0_B_rep1 · 호출 8
+--- [5/30] issue_childcare ---
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+  ⚠ 카테고리 '아동' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+  ⚠ 카테고리 '보호자' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+  ⚠ 카테고리 '기관' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+  ⚠ 카테고리 '또래·환경' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0 · 경고 4건
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_childcare · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 8edd71acb639
+[done] gpt/C0_A_rep1 · 호출 9
+[done] gpt/C0_B_rep1 · 호출 9
+--- [6/30] issue_childcare_party ---
+[check_materials] 대상: childcare_party.json (issue_id=issue_childcare_party)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_childcare_party · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 1ee3dd197a77
+[done] gpt/C0_A_rep1 · 호출 8
+[done] gpt/C0_B_rep1 · 호출 8
+--- [7/30] issue_childcare_room ---
+[check_materials] 대상: childcare_room.json (issue_id=issue_childcare_room)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_childcare_room · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 8cdfc68efc6c
+[done] gpt/C0_A_rep1 · 호출 8
+[done] gpt/C0_B_rep1 · 호출 8
+--- [8/30] issue_community_cat_feeding ---
+[check_materials] 대상: community_cat_feeding.json (issue_id=issue_community_cat_feeding)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_community_cat_feeding · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 7d3f036fd62b
+[done] gpt/C0_A_rep1 · 호출 8
+[done] gpt/C0_B_rep1 · 호출 8
+--- [9/30] issue_community_room ---
+[check_materials] 대상: community_room_party.json (issue_id=issue_community_room)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_community_room · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 b9a22d30ebc5
+[done] gpt/C0_A_rep1 · 호출 8
+[done] gpt/C0_B_rep1 · 호출 8
+--- [10/30] issue_elderdrive ---
+[check_materials] 대상: issue_elderdrive.json (issue_id=issue_elderdrive)
+  ⚠ 카테고리 '부모' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+  ⚠ 카테고리 '가족' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+  ⚠ 카테고리 '지역·안전' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+  ⚠ 카테고리 '사회·제도' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0 · 경고 4건
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_elderdrive · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 49e6ee9e74f1
+[done] gpt/C0_A_rep1 · 호출 9
+[done] gpt/C0_B_rep1 · 호출 9
+--- [11/30] issue_eol ---
+[check_materials] 대상: issue_eol.json (issue_id=issue_eol)
+  ⚠ 카테고리 '환자' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+  ⚠ 카테고리 '가족' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+  ⚠ 카테고리 '의료진' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+  ⚠ 카테고리 '윤리·사회' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0 · 경고 4건
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_eol · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 67aa60670810
+[done] gpt/C0_A_rep1 · 호출 9
+[done] gpt/C0_B_rep1 · 호출 9
+--- [12/30] issue_euthanasia ---
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 8개 고유·구조 대칭·누출 0
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_euthanasia · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6f69e5b27adb
+[done] gpt/C0_A_rep1 · 호출 9
+[done] gpt/C0_B_rep1 · 호출 9
+--- [13/30] issue_floor_noise ---
+[check_materials] 대상: floor_noise_party.json (issue_id=issue_floor_noise)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_floor_noise · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 953e800c0ca1
+[done] gpt/C0_A_rep1 · 호출 8
+[done] gpt/C0_B_rep1 · 호출 8
+--- [14/30] issue_garden_plot ---
+[check_materials] 대상: garden_plot_party.json (issue_id=issue_garden_plot)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_garden_plot · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 c018b6d7605e
+[done] gpt/C0_A_rep1 · 호출 8
+[done] gpt/C0_B_rep1 · 호출 8
+--- [15/30] issue_recycling_room ---
+[check_materials] 대상: recycling_room.json (issue_id=issue_recycling_room)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_recycling_room · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 f3c6140ae683
+[done] gpt/C0_A_rep1 · 호출 8
+[done] gpt/C0_B_rep1 · 호출 8
+--- [16/30] issue_recycling_room_party ---
+[check_materials] 대상: recycling_room_party.json (issue_id=issue_recycling_room_party)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_recycling_room_party · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 cb24e2cb38f5
+[done] gpt/C0_A_rep1 · 호출 8
+[done] gpt/C0_B_rep1 · 호출 8
+--- [17/30] issue_remotewatch ---
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+  ⚠ 카테고리 '건강·상태' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+  ⚠ 카테고리 '가족·환경' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+  ⚠ 카테고리 '사례·프라이버시' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0 · 경고 3건
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_remotewatch · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 11bf523fb35c
+[done] gpt/C0_A_rep1 · 호출 9
+[done] gpt/C0_B_rep1 · 호출 9
+--- [18/30] issue_restaurant_anniversary ---
+[check_materials] 대상: restaurant_anniversary.json (issue_id=issue_restaurant_anniversary)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_restaurant_anniversary · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6486b950be80
+[done] gpt/C0_A_rep1 · 호출 8
+[done] gpt/C0_B_rep1 · 호출 8
+--- [19/30] issue_restaurant_biz_meeting ---
+[check_materials] 대상: restaurant_biz_meeting.json (issue_id=issue_restaurant_biz_meeting)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_restaurant_biz_meeting · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 37de05a5fd9d
+[done] gpt/C0_A_rep1 · 호출 8
+[done] gpt/C0_B_rep1 · 호출 8
+--- [20/30] issue_restaurant_brunch ---
+[check_materials] 대상: restaurant_brunch.json (issue_id=issue_restaurant_brunch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_restaurant_brunch · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 575e28f3d265
+[done] gpt/C0_A_rep1 · 호출 8
+[done] gpt/C0_B_rep1 · 호출 8
+--- [21/30] issue_restaurant_date ---
+[check_materials] 대상: restaurant_date.json (issue_id=issue_restaurant_date)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_restaurant_date · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 f41e4b404e5b
+[done] gpt/C0_A_rep1 · 호출 8
+[done] gpt/C0_B_rep1 · 호출 8
+--- [22/30] issue_restaurant_elders ---
+[check_materials] 대상: restaurant_elders.json (issue_id=issue_restaurant_elders)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_restaurant_elders · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 96c2c0101d47
+[done] gpt/C0_A_rep1 · 호출 8
+[done] gpt/C0_B_rep1 · 호출 8
+--- [23/30] issue_restaurant_kids ---
+[check_materials] 대상: restaurant_kids.json (issue_id=issue_restaurant_kids)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_restaurant_kids · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 12ee8781ee3f
+[done] gpt/C0_A_rep1 · 호출 8
+[done] gpt/C0_B_rep1 · 호출 8
+--- [24/30] issue_restaurant_office_lunch ---
+[check_materials] 대상: restaurant_office_lunch.json (issue_id=issue_restaurant_office_lunch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_restaurant_office_lunch · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 2cb192df0814
+[done] gpt/C0_A_rep1 · 호출 8
+[done] gpt/C0_B_rep1 · 호출 8
+--- [25/30] issue_restaurant_sanggyeollye ---
+[check_materials] 대상: restaurant_sanggyeollye.json (issue_id=issue_restaurant_sanggyeollye)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_restaurant_sanggyeollye · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6df0202a3375
+[done] gpt/C0_A_rep1 · 호출 8
+[done] gpt/C0_B_rep1 · 호출 8
+--- [26/30] issue_restaurant_sogaeting ---
+[check_materials] 대상: restaurant_sogaeting.json (issue_id=issue_restaurant_sogaeting)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_restaurant_sogaeting · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 9621ed5954bb
+[done] gpt/C0_A_rep1 · 호출 8
+[done] gpt/C0_B_rep1 · 호출 8
+--- [27/30] issue_restaurant_solo ---
+[check_materials] 대상: restaurant_solo.json (issue_id=issue_restaurant_solo)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_restaurant_solo · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6ab9d97a23fe
+[done] gpt/C0_A_rep1 · 호출 8
+[done] gpt/C0_B_rep1 · 호출 8
+--- [28/30] issue_smoking_area ---
+[check_materials] 대상: smoking_area.json (issue_id=issue_smoking_area)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_smoking_area · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 4db90d8868b8
+[done] gpt/C0_A_rep1 · 호출 8
+[done] gpt/C0_B_rep1 · 호출 8
+--- [29/30] issue_smoking_area_party ---
+[check_materials] 대상: smoking_area_party.json (issue_id=issue_smoking_area_party)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_smoking_area_party · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 72c4b7e16e70
+[done] gpt/C0_A_rep1 · 호출 8
+[done] gpt/C0_B_rep1 · 호출 8
+--- [30/30] issue_workmind ---
+[check_materials] 대상: issue_workmind.json (issue_id=issue_workmind)
+  ⚠ 카테고리 '당사자·의사' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+  ⚠ 카테고리 '동료·주변' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+  ⚠ 카테고리 '제도·절차' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+  ⚠ 카테고리 '위험·안전' 는 만장일치가 아님(2:1) — 소수파 사실 포함, 만장일치 재료와 생존율 직접 비교 금지
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0 · 경고 4건
+[warn] issue_id 없는 재료 건너뜀: restaurant12.json
+[plan] issue_workmind · gpt — 2판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 8d6b1aed3ea0
+[done] gpt/C0_A_rep1 · 호출 9
+[done] gpt/C0_B_rep1 · 호출 9
+=== 끝 2026-08-27T16:34:02+09:00 ===
+
+[exited with code 0]
