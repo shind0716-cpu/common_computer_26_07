@@ -15,6 +15,7 @@ Cohen's κ 를 낸다. 사전고정 `SELECTION_live30_2026-08-27.md` §21-6 이 
 한쪽만 주면 형식 검사만 한다. §21-6 판정선: κ ≥ 0.60 이면 계속, 미만이면 멈추고 보고.
 """
 import collections
+import json
 import pathlib
 import sys
 
@@ -22,8 +23,32 @@ LAB = {"보", "부", "변", "-", "–"}
 NORM = {"–": "-"}
 
 
+def _nfacts():
+    """재료마다 사실 개수가 다르다 — issue_euthanasia 만 8개다.
+
+    판독 줄의 재료 이름은 `issue_id` 에서 `issue_` 를 뗀 것이다
+    (팩의 `## issue_xxx` 제목과 짝이 맞는다).
+    """
+    root = pathlib.Path(__file__).resolve().parent
+    conc = json.loads((root / "CONCRETE_LIST_2026-08-27.json").read_text(encoding="utf-8"))["materials"]
+    out = {}
+    for p in (root / "materials").glob("*.json"):
+        try:
+            d = json.loads(p.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        iid = isinstance(d, dict) and d.get("issue_id")
+        if not iid or p.stem not in conc:
+            continue
+        k = len(conc[p.stem])
+        out[iid] = k
+        out[iid[6:] if iid.startswith("issue_") else iid] = k
+    return out
+
+
 def parse(path):
     rows, bad = {}, []
+    NF = _nfacts()
     for n, line in enumerate(pathlib.Path(path).read_text(encoding="utf-8").splitlines(), 1):
         s = line.strip()
         if not s:
@@ -31,10 +56,15 @@ def parse(path):
         if s.startswith("#"):
             break                              # 「갈린 자리」 아래는 안 본다
         t = s.split()
-        if len(t) < 14:
-            bad.append(f"{n}줄 토큰 {len(t)}개 (14 필요): {s[:40]}")
+        mat = t[0]
+        k = NF.get(mat)
+        if k is None:
+            bad.append(f"{n}줄 모르는 재료: {mat}")
             continue
-        mat, slot, judg, label = t[0], t[1], t[2:14], t[14] if len(t) > 14 else t[13]
+        if len(t) != k + 3:
+            bad.append(f"{n}줄 토큰 {len(t)}개 — {mat} 는 사실 {k}개라 {k+3}개 필요")
+            continue
+        slot, judg, label = t[1], t[2:2 + k], t[2 + k]
         if slot not in ("①", "②"):
             bad.append(f"{n}줄 판번호가 ①② 가 아님: {slot}")
             continue
