@@ -51,10 +51,20 @@ def author(iid):
 def load_all():
     key = json.loads((ROOT / "READ60_key.json").read_text(encoding="utf-8"))
     conc = json.loads((ROOT / "CONCRETE_LIST_2026-08-27.json").read_text(encoding="utf-8"))["materials"]
+    # 파일 이름 ≠ issue_id 인 벌이 있다 (community_room_party.json → issue_community_room).
+    # 구체 목록은 파일 이름으로, 열쇠·런은 issue_id 로 매겨져 있어 다리를 놓는다.
+    stem = {}
+    for p in (ROOT / "materials").glob("*.json"):
+        try:
+            d = json.loads(p.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        if isinstance(d, dict) and d.get("issue_id") and p.stem in conc:
+            stem[d["issue_id"]] = p.stem
     mats, runs = {}, {}
     for iid in key:
-        d = json.loads((ROOT / "materials" / f"{iid}.json").read_text(encoding="utf-8"))
-        order = list(conc[iid].keys())
+        d = json.loads((ROOT / "materials" / f"{stem[iid]}.json").read_text(encoding="utf-8"))
+        order = list(conc[stem[iid]].keys())
         assert order == [f["id"] for f in d["facts"]], f"{iid} 사실 순서 어긋남"
         mats[iid] = {
             "facts": {f["id"]: f for f in d["facts"]},

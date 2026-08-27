@@ -1,0 +1,177 @@
+==============================================================================
+① 관문 — 같은 (재료·gpt) 에서 A 와 B 가 다른 옵션을 고르면 통과 (§15-4)
+==============================================================================
+  O issue_ambulance                    A->정렬  B->정렬   다름
+  O issue_caregiverprotect             A->정렬  B->정렬   다름
+  X issue_cat_feeding_party            A->역  B->정렬   같음
+  X issue_cat_feeding_plainvalue       A->역  B->정렬   같음
+  X issue_childcare                    A->정렬  B->역   같음
+  O issue_childcare_party              A->역  B->역   다름
+  X issue_childcare_room               A->역  B->정렬   같음
+  X issue_community_cat_feeding        A->역  B->정렬   같음
+  O issue_community_room               A->정렬  B->정렬   다름
+  O issue_elderdrive                   A->정렬  B->정렬   다름
+  O issue_eol                          A->정렬  B->정렬   다름
+  X issue_euthanasia                   A->역  B->정렬   같음
+  X issue_floor_noise                  A->정렬  B->역   같음
+  O issue_garden_plot                  A->정렬  B->정렬   다름
+  O issue_recycling_room               A->정렬  B->정렬   다름
+  O issue_recycling_room_party         A->정렬  B->정렬   다름
+  X issue_remotewatch                  A->역  B->정렬   같음
+  O issue_restaurant_anniversary       A->정렬  B->정렬   다름
+  O issue_restaurant_biz_meeting       A->정렬  B->정렬   다름
+  O issue_restaurant_brunch            A->정렬  B->정렬   다름
+  X issue_restaurant_date              A->역  B->정렬   같음
+  O issue_restaurant_elders            A->정렬  B->정렬   다름
+  O issue_restaurant_kids              A->정렬  B->정렬   다름
+  O issue_restaurant_office_lunch      A->정렬  B->정렬   다름
+  O issue_restaurant_sanggyeollye      A->정렬  B->정렬   다름
+  O issue_restaurant_sogaeting         A->정렬  B->정렬   다름
+  O issue_restaurant_solo              A->정렬  B->정렬   다름
+  O issue_smoking_area                 A->정렬  B->정렬   다름
+  O issue_smoking_area_party           A->정렬  B->정렬   다름
+  O issue_workmind                     A->정렬  B->정렬   다름
+
+  통과 21/30 · 탈락 9
+  ※ §18-6-7-1 대로 탈락 쌍도 H0 에 넣는다. 통과/탈락을 나눠 보고하되 판정은 전체로.
+
+==============================================================================
+② H0 — 코더 A. 쌍마다 d = p안 − p밖 (§18-6)
+==============================================================================
+  재료                                 r0 안   r0 밖       d |    생존 안    생존 밖       d
+  issue_ambulance                    0.83   0.75  +0.08 |   0.90   0.89  +0.01
+  issue_caregiverprotect             0.92   0.83  +0.08 |   0.91   1.00  -0.09
+  issue_cat_feeding_party            0.58   0.50  +0.08 |   1.00   1.00  +0.00
+  issue_cat_feeding_plainvalue       0.92   0.83  +0.08 |   0.73   0.70  +0.03
+  issue_childcare                    0.83   0.83  +0.00 |   0.80   0.60  +0.20
+  issue_childcare_party              0.92   0.58  +0.33 |   0.91   1.00  -0.09
+  issue_childcare_room               0.92   0.75  +0.17 |   1.00   1.00  +0.00
+  issue_community_cat_feeding        0.83   0.67  +0.17 |   0.90   1.00  -0.10
+  issue_community_room               0.92   0.25  +0.67 |   0.82   0.33  +0.48
+  issue_elderdrive                   0.58   0.75  -0.17 |   0.86   1.00  -0.14
+  issue_eol                          0.92   0.83  +0.08 |   0.55   0.50  +0.05
+  issue_euthanasia                   1.00   1.00  +0.00 |   1.00   1.00  +0.00
+  issue_floor_noise                  0.92   0.58  +0.33 |   1.00   1.00  +0.00
+  issue_garden_plot                  0.92   0.33  +0.58 |   1.00   1.00  +0.00
+  issue_recycling_room               0.83   0.75  +0.08 |   1.00   1.00  +0.00
+  issue_recycling_room_party         0.83   0.67  +0.17 |   0.90   0.88  +0.03
+  issue_remotewatch                  0.75   1.00  -0.25 |   1.00   1.00  +0.00
+  issue_restaurant_anniversary       1.00   0.33  +0.67 |   1.00   1.00  +0.00
+  issue_restaurant_biz_meeting       1.00   0.00  +1.00 |   1.00    –      –  
+  issue_restaurant_brunch            1.00   0.58  +0.42 |   1.00   0.43  +0.57
+  issue_restaurant_date              0.92   0.25  +0.67 |   1.00   0.00  +1.00
+  issue_restaurant_elders            1.00   0.17  +0.83 |   1.00   1.00  +0.00
+  issue_restaurant_kids              1.00   0.25  +0.75 |   0.92   1.00  -0.08
+  issue_restaurant_office_lunch      1.00   0.67  +0.33 |   1.00   1.00  +0.00
+  issue_restaurant_sanggyeollye      0.92   0.17  +0.75 |   1.00   1.00  +0.00
+  issue_restaurant_sogaeting         1.00   0.67  +0.33 |   1.00   1.00  +0.00
+  issue_restaurant_solo              1.00   0.42  +0.58 |   0.92   0.60  +0.32
+  issue_smoking_area                 0.92   0.67  +0.25 |   1.00   1.00  +0.00
+  issue_smoking_area_party           0.92   0.67  +0.25 |   1.00   1.00  +0.00
+  issue_workmind                     0.75   0.75  +0.00 |   0.78   0.78  +0.00
+
+  (i) r0 진입: 쌍 30 · d>0 25 · d=0 3 · d<0 2 · 중앙 d +0.250
+     판정 지지   (지지선 20쌍 · 과반 16쌍)
+
+  (ii) 생존: 쌍 29 · d>0 9 · d=0 15 · d<0 5 · 중앙 d +0.000
+     판정 기각   (지지선 20쌍 · 과반 15쌍)
+
+  ▶ 2단계 진행 여부(머리말 규칙): max(25, 9) ≥ 16 → 진행
+
+==============================================================================
+② H0 — 헤르메스. 쌍마다 d = p안 − p밖 (§18-6)
+==============================================================================
+  재료                                 r0 안   r0 밖       d |    생존 안    생존 밖       d
+  issue_ambulance                    0.83   0.75  +0.08 |   1.00   1.00  +0.00
+  issue_caregiverprotect             0.92   0.83  +0.08 |   0.91   1.00  -0.09
+  issue_cat_feeding_party            0.58   0.58  +0.00 |   0.86   0.86  +0.00
+  issue_cat_feeding_plainvalue       0.92   0.83  +0.08 |   0.73   0.70  +0.03
+  issue_childcare                    0.83   0.75  +0.08 |   0.80   0.44  +0.36
+  issue_childcare_party              0.92   0.67  +0.25 |   0.91   0.88  +0.03
+  issue_childcare_room               0.92   0.75  +0.17 |   0.91   1.00  -0.09
+  issue_community_cat_feeding        0.83   0.67  +0.17 |   0.90   1.00  -0.10
+  issue_community_room               0.83   0.25  +0.58 |   0.70   0.33  +0.37
+  issue_elderdrive                   0.58   0.75  -0.17 |   0.86   0.78  +0.08
+  issue_eol                          0.92   0.83  +0.08 |   0.55   0.40  +0.15
+  issue_euthanasia                   1.00   1.00  +0.00 |   1.00   1.00  +0.00
+  issue_floor_noise                  1.00   0.67  +0.33 |   1.00   0.88  +0.12
+  issue_garden_plot                  0.92   0.42  +0.50 |   1.00   1.00  +0.00
+  issue_recycling_room               0.83   0.67  +0.17 |   1.00   1.00  +0.00
+  issue_recycling_room_party         0.92   0.67  +0.25 |   0.91   0.62  +0.28
+  issue_remotewatch                  0.75   1.00  -0.25 |   1.00   1.00  +0.00
+  issue_restaurant_anniversary       1.00   0.33  +0.67 |   1.00   1.00  +0.00
+  issue_restaurant_biz_meeting       1.00   0.00  +1.00 |   1.00    –      –  
+  issue_restaurant_brunch            1.00   0.58  +0.42 |   1.00   0.43  +0.57
+  issue_restaurant_date              0.92   0.25  +0.67 |   1.00   0.00  +1.00
+  issue_restaurant_elders            1.00   0.17  +0.83 |   1.00   1.00  +0.00
+  issue_restaurant_kids              1.00   0.25  +0.75 |   0.83   1.00  -0.17
+  issue_restaurant_office_lunch      1.00   0.67  +0.33 |   1.00   1.00  +0.00
+  issue_restaurant_sanggyeollye      0.92   0.17  +0.75 |   1.00   1.00  +0.00
+  issue_restaurant_sogaeting         1.00   0.67  +0.33 |   1.00   1.00  +0.00
+  issue_restaurant_solo              1.00   0.42  +0.58 |   0.83   0.60  +0.23
+  issue_smoking_area                 0.92   0.58  +0.33 |   1.00   1.00  +0.00
+  issue_smoking_area_party           0.92   0.58  +0.33 |   1.00   1.00  +0.00
+  issue_workmind                     0.75   0.75  +0.00 |   0.56   0.44  +0.11
+
+  (i) r0 진입: 쌍 30 · d>0 25 · d=0 3 · d<0 2 · 중앙 d +0.292
+     판정 지지   (지지선 20쌍 · 과반 16쌍)
+
+  (ii) 생존: 쌍 29 · d>0 12 · d=0 13 · d<0 4 · 중앙 d +0.000
+     판정 기각   (지지선 20쌍 · 과반 15쌍)
+
+  ▶ 2단계 진행 여부(머리말 규칙): max(25, 12) ≥ 16 → 진행
+
+==============================================================================
+③ 딸림 — 코더 A
+==============================================================================
+  갈래 둘(7)        n= 7  r0 중앙 d +0.333 (d>0 7)   생존 중앙 d +0.000 (d>0 2)
+  갈래 하나(5)       n= 5  r0 중앙 d +0.167 (d>0 5)   생존 중앙 d +0.000 (d>0 1)
+  요한(12)         n=12  r0 중앙 d +0.208 (d>0 12)   생존 중앙 d +0.000 (d>0 3)
+  현수(8)          n= 8  r0 중앙 d +0.000 (d>0 3)   생존 중앙 d +0.000 (d>0 3)
+  그루(10)         n=10  r0 중앙 d +0.667 (d>0 10)   생존 중앙 d +0.000 (d>0 3)
+  ※ 현수는 만장이 아니라 §5 규칙상 다른 저자와 같은 표에 더하지 않는다 — 나란히만.
+
+  캣맘 세 판본 (형태 효과와 갈래 효과를 가르는 자리, §15-3 H6):
+    issue_community_cat_feeding        r0 d +0.167 · 생존 d -0.100
+    issue_cat_feeding_plainvalue       r0 d +0.083 · 생존 d +0.027
+    issue_cat_feeding_party            r0 d +0.083 · 생존 d +0.000
+
+  H3′ — 「부분」이 가치 밖에 몰리나 (예상: 밖:안 ≥ 2:1)
+    r0    부분 안  60 · 밖  69 → 밖:안 = 1.15:1   2:1 미만 X
+          안 보256/부 60/변  2/탈 38  ·  밖 보130/부 69/변  7/탈150
+    last  부분 안  63 · 밖  61 → 밖:안 = 0.97:1   2:1 미만 X
+          안 보219/부 63/변 15/탈 59  ·  밖 보106/부 61/변 13/탈176
+
+==============================================================================
+③ 딸림 — 헤르메스
+==============================================================================
+  갈래 둘(7)        n= 7  r0 중앙 d +0.333 (d>0 6)   생존 중앙 d +0.034 (d>0 4)
+  갈래 하나(5)       n= 5  r0 중앙 d +0.167 (d>0 5)   생존 중앙 d +0.000 (d>0 1)
+  요한(12)         n=12  r0 중앙 d +0.250 (d>0 11)   생존 중앙 d +0.000 (d>0 5)
+  현수(8)          n= 8  r0 중앙 d +0.042 (d>0 4)   생존 중앙 d +0.040 (d>0 4)
+  그루(10)         n=10  r0 중앙 d +0.667 (d>0 10)   생존 중앙 d +0.000 (d>0 3)
+  ※ 현수는 만장이 아니라 §5 규칙상 다른 저자와 같은 표에 더하지 않는다 — 나란히만.
+
+  캣맘 세 판본 (형태 효과와 갈래 효과를 가르는 자리, §15-3 H6):
+    issue_community_cat_feeding        r0 d +0.167 · 생존 d -0.100
+    issue_cat_feeding_plainvalue       r0 d +0.083 · 생존 d +0.027
+    issue_cat_feeding_party            r0 d +0.000 · 생존 d +0.000
+
+  H3′ — 「부분」이 가치 밖에 몰리나 (예상: 밖:안 ≥ 2:1)
+    r0    부분 안  41 · 밖  56 → 밖:안 = 1.37:1   2:1 미만 X
+          안 보267/부 41/변 11/탈 37  ·  밖 보138/부 56/변 12/탈150
+    last  부분 안  39 · 밖  43 → 밖:안 = 1.10:1   2:1 미만 X
+          안 보227/부 39/변 28/탈 62  ·  밖 보108/부 43/변 18/탈187
+
+==============================================================================
+④ 기계값 대조 — 표식 문자열 검색 대 사람 판독 (코더 A 기준, §8-2)
+==============================================================================
+  표식 있음 397칸 · 없음 315칸 (표식 붙은 사실만)
+  표식 有: 보 312 · 부 76 · 변 5 · - 4
+  표식 無: 보 74 · 부 53 · 변 4 · - 184
+  → 놓침 131/524 = 25% · 오탐 4/397 = 1%
+
+==============================================================================
+⑤ 분모 진단 — r0 수첩에 오른 사실이 3개 이하인 판 (§15-4)
+==============================================================================
+  걸린 판 0 — 없다
