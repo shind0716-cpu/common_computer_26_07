@@ -520,3 +520,101 @@ original paragraph."* → 이 정도 명시만으로 보존이 개선된다(효�
    질문이므로. 완화 조건을 붙일 때 1순위 후보로 기록.
 3. **H2 의 「곡선 형태」 부분은 선행 있음**으로 적는다(초반 급락 후 완만 — 이 논문 §6-3).
    우리 기여는 **비율을 갈라 잰 것**과 **무엇이 먼저 죽는지**다.
+
+---
+
+## 13. 앵커 논문 본문 — 우리가 무엇을 하는지가 여기서 정확해진다 (2026-08-27)
+
+`The Deliberative Illusion` (arXiv 2606.03032v1, 2026-06-02). **로컬에 전문이 있다**
+(`arxiv_2606_03032.txt`, 13.7만 자). 카드가 아니라 원문을 읽었다.
+
+### 13-1. 멘토 8/21 지적이 원문으로 확인된다 **[표현 규율]**
+
+§3 축자:
+> *"**Factual Survival.** We measure fact retention at both the system and agent levels using
+> the **Jaccard index**, defined as J(X, Y) = |X ∩ Y| / |X ∪ Y|"*
+> f_system = J(∪Bi, ∪B̂i) · f_agent = (1/N) Σ J(Bi, B̂i)
+
+**헤드라인 「최대 72% 소거」는 사실 개수가 아니라 Jaccard 하락폭이다.**
+멘토가 8/21 에 지적한 바로 그것이 원문에 그대로 있다.
+
+그리고 이건 우리 결과 해석에 직접 걸린다. **Jaccard 는 분모가 합집합이라, 원본에 없는
+것을 더하기만 해도 점수가 떨어진다.** 우리가 8/27 판독에서 본 것 —
+`0.8L + 2L → 2.8L` · `수색 21일 → 7일` · 재료에 없는 `노약자` — 이 **추가**들은
+Jaccard 에서 **소실과 구별되지 않는다.**
+
+→ 우리는 보존/부분/탈락을 사람이 사실별로 세므로 **추가와 소실을 갈라 볼 수 있다.**
+이것을 사전고정에 기여로 적되, "논문이 틀렸다"가 아니라 **"지표가 그 둘을 합산한다"**로 쓴다.
+
+### 13-2. 손실의 대부분이 첫 라운드에서 난다 — 원문 표에 있다 **[H2 에 선행 있음]**
+
+§4 결과표(ETHICS·NEWS × Critical/All × Sys./Agent) 축자 전사, GPT-4.1 Full:
+
+| | Sys. Ret. | Agent Ret. |
+|---|---|---|
+| Pre-Debate | 1.00 | .964 |
+| **Round 1** | **.790 (−.210)** | **.350 (−.614)** |
+| Round 2 | .601 (−.399) | .247 (−.717) |
+| Round 3 | .465 (−.535) | .183 (−.781) |
+
+**Agent 수준에서 라운드 1에 이미 −.614 이고, 라운드 3까지 가야 −.781 이다.**
+**전체 손실의 79% 가 첫 라운드에서 난다.**
+
+우리 20판 실측(안/밖 격차가 r0 에서 40%p, 이후 11%p → 78% 가 r0)과 **거의 같은 비율**이다.
+
+→ **H2 는 재현 확인이 맞다.** §9-4 에서 표현을 낮추기로 한 것이 옳았고, 근거가 이제
+앵커 논문 자기 표다. 우리 기여는 **비율을 다시 재는 것이 아니라 "무엇이" 남는지**다.
+
+### 13-3. 논문도 critical / non-critical 을 가른다 — 그런데 기준이 다르다 **[핵심]**
+
+§3 축자:
+> *"We define a fact as **critical** if omitting it could change how the issue is interpreted,
+> which trade-offs are considered, or how the yes-or-no judgment should be made.
+> Non-critical facts provide general context, temporal details, or descriptive metadata."*
+
+**논문의 critical 은 사안에 대해 객관적으로 중요한가**이다. GPT-5 가 라벨을 붙인다.
+
+**우리 「가치 안/밖」은 그 에이전트에게 중요하다고 부여된 것인가**이다.
+같은 사실이 A벌에서는 안이고 B벌에서는 밖이다 — **거울이 그것을 만든다.**
+
+→ **이것이 우리 기여의 가장 정확한 문장이다**:
+> 논문은 **사안 기준**으로 무엇이 남는지를 잰다. 우리는 **부여된 가치 기준**으로 잰다.
+> 그래서 논문은 "중요한 사실이 사라진다"를 말할 수 있고, 우리는
+> **"누구에게 중요한가에 따라 사라지는 것이 갈린다"**를 말할 수 있다.
+
+논문은 사실을 나눠 주고(Bi ⊂ B) 사전 입장(θi ∈ {YES,NO})도 준다. 하지만 **어느 사실이
+그 에이전트의 입장 편인지에 따라 생존이 갈리는지는 안 잰다.** 우리 안/밖 격차가 그 자리다.
+
+### 13-4. 논문 스스로 다음 단계로 「사실 수준 기억」을 지목한다
+
+결론 축자:
+> *"A natural next step is to design **preservation-oriented multi-agent protocols**, such as
+> shared evidence ledgers, explicit caveat tracking, **fact-level memory**, or verification
+> checkpoints before consensus formation."*
+
+**우리 수첩이 그 `fact-level memory` 의 한 형태다.** 다만 우리는 보존을 도우려고 쓰는 게
+아니라 **무엇이 살아남는지 보려고** 쓴다 — 방향이 반대다. 논문은 처방으로 제안하고
+우리는 진단 장치로 쓴다.
+
+### 13-5. 그리고 상호작용이 범인이라는 통제가 이미 있다 **[우리 C0 의 문헌 짝]**
+
+§5 축자:
+> *"on NEWS, GPT-4.1 loses only **19.2%** of critical facts after three **no-interaction**
+> rounds, compared with **67.8%** under full discussion. This suggests that agents lose
+> evidence as they **respond to, summarize, and align** with one another."*
+
+**무상호작용 3라운드에서도 19.2% 가 사라진다.** 상호작용 없이 요약만 반복해도 손실이 있고,
+상호작용이 그것을 3.5배로 키운다.
+
+우리 C0(압박 없음)가 그 무상호작용 조건에 가깝다. **C0 에서도 소실이 나오는 것이 정상**이고,
+8/27 20판에서 C0 안/밖 격차가 C1·C2 와 비슷했던 것도 이 그림과 어긋나지 않는다.
+
+### 13-6. 사전고정에 반영
+
+1. **「소실」이라는 말을 헤드라인에 안 쓴다.** 앵커의 72% 는 Jaccard 하락폭이고, 우리는
+   보존/부분/탈락을 사실별로 센다. **우리 지표는 추가와 소실을 가른다** — 그게 차이다.
+2. **H2 는 재현 확인**으로 확정한다. 앵커 표에서 Agent Ret. 손실의 79% 가 라운드 1이다.
+   우리 78% 와 거의 같다.
+3. **기여 문장을 이렇게 고정한다** — "논문은 사안 기준으로, 우리는 부여된 가치 기준으로
+   무엇이 남는지를 잰다."
+4. **C0 에서도 소실이 나는 것을 예상에 적는다.** 앵커의 무상호작용 3라운드 19.2% 가 근거다.
