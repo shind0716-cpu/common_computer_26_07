@@ -462,6 +462,8 @@
     <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
       <label style="display:inline-flex;gap:5px;align-items:center;font-weight:400">실행
         <select id="pc_dry" style="width:auto"><option value="">live (실호출)</option><option value="1">dry (리허설)</option></select></label>
+      <label style="display:inline-flex;gap:5px;align-items:center;font-weight:400;cursor:pointer">
+        <input type="checkbox" id="pc_min2" checked style="width:auto"> 재료 1벌뿐인 줄 숨기기</label>
       <span id="pc_filters"></span>
     </div>
     <div class="est" id="pc_sum">탭에 들어오면 불러옵니다…</div>
@@ -2011,7 +2013,27 @@ function pcRender(){
     const gi=a.io.in.n?a.io.in.alive/a.io.in.n:null, go=a.io.out.n?a.io.out.alive/a.io.out.n:null;
     return [c,a,(gi!==null&&go!==null)?gi-go:null];
   }).sort((x,y)=>((y[2]===null?-9:y[2])-(x[2]===null?-9:x[2])) || (y[1].runs-x[1].runs));
-  ent.forEach(([c,a,gap])=>{
+  // 머리줄 — 이 화면이 보여주려는 한 문장: 카테고리 전체를 합친 「안 대 밖」.
+  // (카테고리 줄들은 그 격차가 어느 축에서 크고 작은지를 가르는 세부다.)
+  const tot={in:{n:0,alive:0,r0:0}, out:{n:0,alive:0,r0:0}};
+  ent.forEach(e=>['in','out'].forEach(k=>{ const s=e[1].io[k];
+    tot[k].n+=s.n; tot[k].alive+=s.alive; tot[k].r0+=s.r0; }));
+  if(tot.in.n+tot.out.n){
+    const tr=el('tr'); tr.style.fontWeight='700';
+    const g=(tot.in.n&&tot.out.n)?(tot.in.alive/tot.in.n-tot.out.alive/tot.out.n):null;
+    ['(전체 — 모든 카테고리 합산)','','',
+     pct(tot.in.r0,tot.in.n), pct(tot.in.alive,tot.in.n),
+     pct(tot.out.r0,tot.out.n), pct(tot.out.alive,tot.out.n),
+     g===null?'—':(g>0?'+':'')+Math.round(100*g)+'%p']
+      .forEach(v=>tr.append(el('td',null,String(v))));
+    t.append(tr);
+  }
+  const hideSmall=$('#pc_min2').checked;
+  const shown=ent.filter(e=>!hideSmall||e[1].mats.size>=2);
+  if(hideSmall&&shown.length<ent.length)
+    $('#pc_sum').innerHTML+=' · <span style="color:var(--dim)">재료 1벌뿐인 줄 '
+      +(ent.length-shown.length)+'개 숨김 — 그 재료 성질과 분리가 안 되는 줄</span>';
+  shown.forEach(([c,a,gap])=>{
     const tr=el('tr');
     if(PC.sel===c) tr.classList.add('sel');
     [c, a.mats.size, a.runs,
@@ -2054,6 +2076,7 @@ function pcDetail(){
   });
 }
 $('#pc_refresh').onclick=()=>pcLoad(true);
+$('#pc_min2').onchange=pcRender;
 $('#pc_dry').onchange=()=>{ PC.dry=$('#pc_dry').value==='1'; PC.rows=null; PC.sel=null;
   $('#pc_runs').innerHTML=''; $('#pc_dtitle').textContent='카테고리 상세'; pcLoad(true); };
 document.querySelectorAll('nav button').forEach(b=>{
