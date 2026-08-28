@@ -2028,3 +2028,72 @@ def api_pressure_batch_run(req: PressureBatchReq):
         threading.Thread(target=_pressure_batch_worker, args=(req, plan), daemon=True).start()
     return {"ok": True, "dry": req.dry, "runs": plan["runs"],
             "items": len(plan["items"]), "skipped": plan["skipped"]}
+# ═══ 압박 집계 — 카테고리별 결과 보기 (2026-08-28 추가) ═══
+# runs/ 원문을 채점기(scan_pressure.scan_run)와 **같은 자**로 읽어(import — 자를 두 벌
+# 만들지 않는다) 판별 카테고리 생존을 돌려준다. LLM 0콜 — 파일만 읽는 파생 계산이고
+# 아무것도 쓰지 않는다. 집계·필터는 화면 몫. ⚠ 표식 검색은 「있다」만 믿을 수 있다
+# (바꿔 말하면 놓친다 — 1차 실측 놓침 ~25%·헛짚음 1%). 화면이 이 경고를 함께 단다.
+
+
+@app.get("/api/pressure/catscan")
+def api_pressure_catscan(dry: bool = False):
+    if str(PRESSURE_DIR) not in sys.path:
+        sys.path.insert(0, str(PRESSURE_DIR))
+    try:
+        import importlib
+        scan = importlib.import_module("scan_pressure")
+        rp = importlib.import_module("run_pressure")
+    except Exception as e:
+        raise HTTPException(500, f"채점기 import 실패: {e}")
+    reg: dict = {}
+    for iid, path in rp.discover_materials().items():
+        try:
+            reg[iid] = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+    base = _pressure_runs_dir(dry)
+    rows = []
+    if base.exists():
+        for mdir in sorted(base.glob("*")):
+            if not mdir.is_dir() or mdir.name.startswith("_"):
+                continue
+            for p in sorted(mdir.glob("run_*.json")) + sorted(mdir.glob("*/run_*.json")):
+                if p.name.endswith(".final2.json"):
+                    continue          # 최종 재실행 산출물은 본 런에 합류해 읽는다 (스캐너 미러)
+                try:
+                    doc = json.loads(p.read_text(encoding="utf-8"))
+                    f2p = p.parent / (p.stem + ".final2.json")
+                    if f2p.exists():
+                        doc["_final2_choice"] = json.loads(
+                            f2p.read_text(encoding="utf-8")).get("choice")
+                except Exception:
+                    continue
+                mat = reg.get(doc.get("issue_id"))
+                if mat is None:
+                    continue
+                try:
+                    r = scan.scan_run(doc, mat)
+                except Exception:
+                    continue          # 깨진 런 하나가 집계 전체를 죽이지 않게
+                cat_facts: dict = {}
+                for f in mat.get("facts") or []:
+                    cat_facts.setdefault(f.get("category"), []).append(f.get("id"))
+                per_round = []
+                for ids in r.get("note_anchors") or []:
+                    s = set(ids)
+                    per_round.append({c: sum(1 for fid in fl if fid in s)
+                                      for c, fl in cat_facts.items()})
+                in_cats = [c for c in (doc.get("value_categories") or [])
+                           if c in (mat.get("categories") or [])]
+                rows.append({
+                    "issue_id": r["issue_id"], "model": r["model"], "run_id": r["run_id"],
+                    "script": r["script"], "value_set": r["value_set"], "rep": r["rep"],
+                    "dry": bool(r["dry"]), "value_once": r.get("value_once", False),
+                    "categories": mat.get("categories") or [],
+                    "cat_n_facts": {c: len(fl) for c, fl in cat_facts.items()},
+                    "in_value": in_cats,
+                    "cat_alive_last": r.get("cat_alive_last_note") or {},
+                    "cat_alive_rounds": per_round,
+                    "final_choice": r.get("final_choice"), "flipped": r.get("flipped"),
+                })
+    return {"dry": dry, "rows": rows}

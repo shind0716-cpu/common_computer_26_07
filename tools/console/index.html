@@ -78,6 +78,7 @@
     <span style="border-left:1px solid var(--line);margin:0 4px"></span>
     <button data-t="prun">압박 실행</button>
     <button data-t="pres">압박 결과</button>
+    <button data-t="pcat">압박 집계</button>
   </nav>
 </header>
 <main>
@@ -446,6 +447,32 @@
     <p class="why">글·수첩을 라운드 순서로. 수첩엔 글자 수·여백 병기. 맨 위에 이 판의
        각본 대사와 가치 세트, 맨 아래에 최종 선택 원문.</p>
     <div id="p_detail"><span class="empty">런을 고르세요</span></div>
+  </div>
+</section>
+<!-- ─── 압박 집계 — 카테고리별 결과 (2026-08-28 추가) ───────────────────── -->
+<section id="pcat">
+  <div class="panel">
+    <h2>카테고리별 결과 집계 <button class="alt" id="pc_refresh" style="padding:3px 10px;font-size:11px;margin-left:8px">새로고침</button></h2>
+    <p class="why">runs/ 원문을 채점기(scan_pressure)와 <b>같은 자</b>로 읽어(0콜) 카테고리
+       이름별로 모은다. 생존 = 마지막 수첩에 그 카테고리 사실의 표식이 1개 이상 남음(기계 검색) ·
+       r0 진입 = 첫 수첩에 1개 이상 오름. 안 = 그 판의 가치 세트에 든 카테고리, 밖 = 안 든 것.
+       ⚠ 표식은 「있다」만 믿을 수 있다 — 바꿔 말하면 놓친다(1차 실측 놓침 ~25%·헛짚음 1%).
+       수치가 걸리는 칸은 반드시 원문을 눈으로 확인. 같은 <b>이름</b>의 카테고리끼리만 묶인다 —
+       저자마다 이름을 다르게 지었으면 다른 줄이고, 재료 수가 적은 줄은 그 재료의 성질이 섞여 있다.</p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
+      <label style="display:inline-flex;gap:5px;align-items:center;font-weight:400">실행
+        <select id="pc_dry" style="width:auto"><option value="">live (실호출)</option><option value="1">dry (리허설)</option></select></label>
+      <span id="pc_filters"></span>
+    </div>
+    <div class="est" id="pc_sum">탭에 들어오면 불러옵니다…</div>
+    <div class="runlist" style="max-height:420px"><table id="pc_table"></table></div>
+  </div>
+  <div class="panel">
+    <h2 id="pc_dtitle">카테고리 상세</h2>
+    <p class="why">위 표에서 줄을 누르면 그 카테고리가 있는 판들이 여기 뜬다. 「사실 생존」은
+       그 카테고리 사실이 라운드별 수첩(r0→r1→r2)에 몇 개 남았는지 / 전체 개수.
+       「원문」을 누르면 압박 결과 탭의 라운드별 원문으로 간다.</p>
+    <div class="runlist" style="max-height:420px"><table id="pc_runs"></table></div>
   </div>
 </section>
 </main>
@@ -1918,6 +1945,120 @@ function pbBoot(){
   pbRenderMats();
   pbEstimate();
 }
+
+// ─── 압박 집계 — 카테고리별 결과 (2026-08-28 추가) ───
+// 채점은 서버(/api/pressure/catscan — scan_pressure 를 import)가 하고 여기는 모아 그리기만.
+const PC={rows:null, sel:null, dry:false};
+async function pcLoad(force){
+  if(PC.rows && !force){ pcRender(); return; }
+  $('#pc_sum').textContent='불러오는 중… (runs/ 전체를 읽습니다 — 몇 초 걸릴 수 있음)';
+  try{
+    const d=await (await fetch('/api/pressure/catscan'+(PC.dry?'?dry=true':''))).json();
+    PC.rows=d.rows||[];
+  }catch(e){ $('#pc_sum').textContent='불러오기 실패 — 서버 확인'; return; }
+  pcFilters(); pcRender();
+}
+function pcv(g){ return [...document.querySelectorAll('input[data-pcg='+g+']')].filter(c=>c.checked).map(c=>c.value); }
+function pcFilters(){
+  const host=$('#pc_filters'); host.innerHTML='';
+  const uniq=k=>[...new Set(PC.rows.map(r=>String(r[k])))].sort();
+  [['model','모델'],['script','각본'],['value_set','가치 세트']].forEach(([k,lab])=>{
+    const wrap=el('span'); wrap.style.cssText='margin-right:10px';
+    wrap.append(el('span','foot',lab+': '));
+    uniq(k).forEach(v=>{
+      const l=el('label'); l.style.cssText='display:inline-flex;gap:3px;margin:0 7px 0 2px;align-items:center;cursor:pointer;font-weight:400';
+      const c=el('input'); c.type='checkbox'; c.value=v; c.checked=true; c.dataset.pcg=k; c.style.width='auto';
+      c.onchange=pcRender;
+      l.append(c); l.append(document.createTextNode(v));
+      wrap.append(l);
+    });
+    host.append(wrap);
+  });
+}
+function pcMatch(r){
+  return pcv('model').includes(String(r.model))&&pcv('script').includes(String(r.script))
+    &&pcv('value_set').includes(String(r.value_set));
+}
+function pcAgg(){
+  const rows=PC.rows.filter(pcMatch);
+  const agg={};
+  rows.forEach(r=>{
+    (r.categories||[]).forEach(c=>{
+      const a=(agg[c]=agg[c]||{mats:new Set(), runs:0,
+        io:{in:{n:0,alive:0,r0:0}, out:{n:0,alive:0,r0:0}}});
+      a.mats.add(r.issue_id); a.runs++;
+      const s=a.io[(r.in_value||[]).includes(c)?'in':'out'];
+      s.n++;
+      if((r.cat_alive_last||{})[c]) s.alive++;
+      const rd=(r.cat_alive_rounds||[])[0];
+      if(rd && rd[c]>0) s.r0++;
+    });
+  });
+  return {rows, agg};
+}
+function pcRender(){
+  if(!PC.rows) return;
+  const {rows, agg}=pcAgg();
+  $('#pc_sum').innerHTML='<b>'+rows.length+'판</b> 집계 (필터 적용) · 카테고리 이름 '+Object.keys(agg).length+'개'
+    +' · <span style="color:var(--dim)">생존율 = 마지막 수첩 기계 생존 판수 / 그쪽(안·밖) 판수 · 격차가 큰 순서</span>';
+  const t=$('#pc_table'); t.innerHTML='';
+  const hr=el('tr');
+  ['카테고리','재료','판','안: r0 진입','안: 생존','밖: r0 진입','밖: 생존','격차(안−밖 생존)']
+    .forEach(h=>hr.append(el('th',null,h)));
+  t.append(hr);
+  const pct=(a,n)=>n?Math.round(100*a/n)+'% ('+a+'/'+n+')':'—';
+  const ent=Object.entries(agg).map(([c,a])=>{
+    const gi=a.io.in.n?a.io.in.alive/a.io.in.n:null, go=a.io.out.n?a.io.out.alive/a.io.out.n:null;
+    return [c,a,(gi!==null&&go!==null)?gi-go:null];
+  }).sort((x,y)=>((y[2]===null?-9:y[2])-(x[2]===null?-9:x[2])) || (y[1].runs-x[1].runs));
+  ent.forEach(([c,a,gap])=>{
+    const tr=el('tr');
+    if(PC.sel===c) tr.classList.add('sel');
+    [c, a.mats.size, a.runs,
+     pct(a.io.in.r0,a.io.in.n), pct(a.io.in.alive,a.io.in.n),
+     pct(a.io.out.r0,a.io.out.n), pct(a.io.out.alive,a.io.out.n),
+     gap===null?'— (한쪽뿐)':(gap>0?'+':'')+Math.round(100*gap)+'%p']
+      .forEach(v=>tr.append(el('td',null,String(v))));
+    tr.onclick=()=>{ PC.sel=c; pcRender(); pcDetail(); };
+    t.append(tr);
+  });
+  if(!ent.length){ const tr=el('tr'); const td=el('td','empty','대상 런 없음 — 필터를 확인하세요');
+    td.colSpan=8; tr.append(td); t.append(tr); }
+}
+function pcDetail(){
+  const c=PC.sel; const t=$('#pc_runs'); t.innerHTML='';
+  $('#pc_dtitle').textContent='카테고리 상세 — 「'+(c||'')+'」';
+  if(!c) return;
+  const hr=el('tr');
+  ['재료','모델','run_id','각본','세트','안/밖','사실 생존(r0→…/전체)','최종 선택','원문']
+    .forEach(h=>hr.append(el('th',null,h)));
+  t.append(hr);
+  PC.rows.filter(pcMatch).filter(r=>(r.categories||[]).includes(c)).forEach(r=>{
+    const side=(r.in_value||[]).includes(c)?'안':'밖';
+    const nf=(r.cat_n_facts||{})[c]||0;
+    const curve=((r.cat_alive_rounds||[]).map(rd=>rd[c]).join('→')||'—')+' / '+nf;
+    const tr=el('tr');
+    [r.issue_id, r.model, r.run_id, r.script, r.value_set, side, curve,
+     (r.final_choice||'판독불가')+(r.flipped?' ⚠뒤집힘':'')]
+      .forEach(v=>tr.append(el('td',null,String(v))));
+    const td=el('td');
+    const b=el('button','alt','원문'); b.style.cssText='padding:1px 8px;font-size:10px';
+    b.onclick=(ev)=>{ ev.stopPropagation();
+      const sel={model:r.model, run_id:r.run_id, materials:r.issue_id, issue_id:r.issue_id, dry:r.dry};
+      P.sel=sel;
+      document.querySelector('nav button[data-t=pres]').click();
+      pRenderRuns(); pLoadDetail(sel);
+    };
+    td.append(b); tr.append(td);
+    t.append(tr);
+  });
+}
+$('#pc_refresh').onclick=()=>pcLoad(true);
+$('#pc_dry').onchange=()=>{ PC.dry=$('#pc_dry').value==='1'; PC.rows=null; PC.sel=null;
+  $('#pc_runs').innerHTML=''; $('#pc_dtitle').textContent='카테고리 상세'; pcLoad(true); };
+document.querySelectorAll('nav button').forEach(b=>{
+  if(b.dataset.t==='pcat') b.addEventListener('click', ()=>pcLoad(false));
+});
 
 pboot();
 })();
