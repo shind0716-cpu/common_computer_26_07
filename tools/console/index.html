@@ -338,6 +338,42 @@
     </div>
   </div>
   <div class="panel">
+    <h2>일괄 실행 — 여러 시나리오를 한 번에 (2026-08-28 추가)</h2>
+    <p class="why">고른 시나리오를 <b>순차 큐</b>로 러너에 하나씩 넘긴다(동시 실행은 여전히 1개 —
+       비용 사고 방지). 재료·러너 파일은 무수정, 반복만 콘솔이 맡는다. 가치 세트는 내장 A·B 에
+       더해 <b>등록 세트(✎ ALL 류)까지</b> 걸 수 있다 — 단, 방향 각본(C1·C2 류) × 정렬 불명
+       세트 조합은 러너가 거부하므로 견적 단계에서 자동으로 빠지고 사유가 표시된다.
+       중단하면 지금 묶음까지 멈추고 남은 큐가 취소된다(호출 단위 체크포인트 보존).
+       이미 결과가 있는 런은 러너가 [skip] 하므로, 끊긴 일괄을 같은 조건으로 다시 걸면 이어서 돈다.</p>
+    <div style="display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:6px">
+      <button class="alt" id="pb_all">전체 선택</button>
+      <button class="alt" id="pb_none">전체 해제</button>
+      <span class="foot" id="pb_count"></span>
+    </div>
+    <div id="pb_mats" style="max-height:280px;overflow:auto;border:1px solid rgba(128,128,128,.35);border-radius:7px;padding:8px 12px;columns:2;column-gap:24px"></div>
+    <div class="grid" style="margin-top:12px">
+      <div><label>모델 (하나씩)<span class="h">모델을 바꿔 같은 일괄을 한 번 더 걸면 2모델 비교가 된다</span></label>
+        <select id="pb_model"></select></div>
+      <div><label>각본 (다중)<span class="h">기본 C0 만 — 필요하면 추가</span></label>
+        <div id="pb_scripts"></div></div>
+      <div><label>가치 세트 (다중)<span class="h">A·B = 내장 거울 · 등록 세트 = 그 재료에 등록된 ✎ 세트 전부(ALL 류)</span></label>
+        <div id="pb_vsets"></div></div>
+      <div><label>반복</label><div id="pb_reps"></div></div>
+    </div>
+    <div class="est" id="pb_est">시나리오를 고르세요.</div>
+    <div style="margin-top:10px;padding:10px 13px;border:1px solid #e0c3b0;border-radius:7px;background:#f7e6dc">
+      <label style="cursor:pointer;font-weight:600"><input type="checkbox" id="pb_confirm" style="width:auto;margin-right:6px">
+        PREREG_v0.md 를 <b>로컬 커밋</b>했습니까?
+        <span class="h">사전등록 관문 — 단일 실행과 같은 관문. 드라이런(0콜)은 확인 없이 가능.</span></label>
+    </div>
+    <div style="margin-top:14px;display:flex;gap:9px;align-items:center;flex-wrap:wrap">
+      <button class="go" id="pb_btnDry">일괄 드라이런 (0콜)</button>
+      <button class="alt" id="pb_btnRun">일괄 실행 (실호출 — 과금)</button>
+      <button class="alt" id="pb_btnStop">중단 (남은 큐 취소)</button>
+      <span class="foot" id="pb_msg">먼저 일괄 드라이런으로 몇 묶음이 도는지 확인하세요.</span>
+    </div>
+  </div>
+  <div class="panel">
     <h2>새 각본 등록 — 압박 문면 직접 짓기</h2>
     <p class="why">압박의 <b>문면과 타이밍</b>이 이 실험의 조작 변수다. 라운드마다 다른 대사
        (점증 압박)도, 첫 라운드부터 미는 것도 가능. 등록은 <b>새 이름으로 추가만</b> —
@@ -1580,6 +1616,7 @@ async function pPoll(){
   try{
     const d=await (await fetch('/api/log?since='+pcur)).json();
     P.current=d.current||{};
+    try{ pbTick(d); }catch(e){}
     const mine=P.current.kind==='pressure';
     if(!mine){
       pcur=d.next; alive=d.alive; P.alive=alive;
@@ -1727,8 +1764,161 @@ async function pboot(){
   document.querySelectorAll('nav button').forEach(b=>{
     if(b.dataset.t==='pres') b.addEventListener('click', pRefreshRuns);
   });
-  pEstimate(); pRefreshRuns(); pPoll();
+  pEstimate(); pRefreshRuns(); pbBoot(); pPoll();
 }
+// ─── 일괄 실행(배치) — 2026-08-28 추가. 여러 재료를 순차 큐로. ───
+// 위 단일 실행 코드는 무수정 — 체크박스 그룹은 data-pbg 로 분리해 pboot 의
+// data-pg 일괄 바인딩(onchange=pEstimate)에 얹히지 않게 한다.
+const PB={est:null};
+function pbv(group){
+  return [...document.querySelectorAll('input[data-pbg='+group+']')]
+    .filter(c=>c.checked).map(c=>c.value);
+}
+function pbCk(host, entries, group, checkedVals){
+  entries.forEach(([v,name])=>{
+    const l=el('label');
+    l.style.cssText='display:inline-flex;gap:4px;font-weight:400;margin:2px 12px 2px 0;align-items:center;cursor:pointer';
+    const c=el('input'); c.type='checkbox'; c.value=v;
+    c.checked=checkedVals.includes(v); c.dataset.pbg=group; c.style.width='auto';
+    c.onchange=pbEstimate;
+    l.append(c); l.append(document.createTextNode(name));
+    host.append(l);
+  });
+}
+function pbRenderMats(){
+  const host=$('#pb_mats'); const prev=pbv('pbmat'); host.innerHTML='';
+  Object.entries(P.meta.materials||{})
+    .filter(([k,v])=>!v.broken)
+    .sort((a,b)=>a[0]<b[0]?-1:1)
+    .forEach(([k,v])=>{
+      const l=el('label');
+      l.style.cssText='display:flex;gap:5px;font-weight:400;margin:1px 0;align-items:center;cursor:pointer;break-inside:avoid';
+      const c=el('input'); c.type='checkbox'; c.value=k; c.dataset.pbg='pbmat'; c.style.width='auto';
+      c.checked=prev.includes(k); c.onchange=pbEstimate;
+      l.append(c);
+      l.append(document.createTextNode(k+(v.example?' (견본 — 드라이런만)':'')));
+      host.append(l);
+    });
+  pbCount();
+}
+function pbCount(){ $('#pb_count').textContent='선택 '+pbv('pbmat').length+'개'; }
+function pbPayload(){
+  return {model:$('#pb_model').value, materials:pbv('pbmat'),
+          scripts:pbv('pbsc'), vsets:pbv('pbvs'),
+          include_custom:$('#pb_custom').checked,
+          reps:pbv('pbrp').map(Number)};
+}
+let pbEstTimer=null;
+function pbEstimate(){ pbCount(); clearTimeout(pbEstTimer); pbEstTimer=setTimeout(pbEstimateNow, 300); }
+async function pbEstimateNow(){
+  const p=pbPayload();
+  if(!p.materials.length){ $('#pb_est').textContent='시나리오를 고르세요.'; PB.est=null; pbButtons(); return; }
+  if(!p.scripts.length||!p.reps.length||(!p.vsets.length&&!p.include_custom)){
+    $('#pb_est').innerHTML='<span class="warn">각본/가치 세트/반복을 하나 이상 고르세요.</span>';
+    PB.est=null; pbButtons(); return;
+  }
+  let r,d;
+  try{
+    r=await fetch('/api/pressure/batch/estimate',{method:'POST',
+      headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});
+    d=await r.json();
+  }catch(e){ $('#pb_est').textContent='견적 실패 — 서버 확인'; PB.est=null; pbButtons(); return; }
+  if(!r.ok){ $('#pb_est').innerHTML='<span class="warn">'+(d.detail||'견적 실패')+'</span>';
+             PB.est=null; pbButtons(); return; }
+  PB.est=d;
+  let h='<b>재료 '+d.n_materials+'개 · '+d.items.length+'묶음 · 총 '+d.runs+'판 · 약 '
+    +d.calls+'~'+d.calls_max+'콜</b>'
+    +'<br><span style="color:var(--dim)">묶음 = 러너 호출 1번 (재료별 · 정렬 불명 세트는 무방향 각본만 따로) · 판당 8콜 + 수첩 반려 최대 +3콜</span>';
+  if(d.skipped&&d.skipped.length)
+    h+='<br><span class="warn">건너뜀 '+d.skipped.length+'건: '
+      +d.skipped.map(s=>s.material+' — '+s.why).join(' · ')+'</span>';
+  if(d.existing&&d.existing.length)
+    h+='<br><span class="warn">⚠ 이미 결과가 있어 러너가 [skip] 할 런 '+d.existing.length+'개 — 새로 도는 것은 '
+      +(d.runs-d.existing.length)+'판</span>';
+  $('#pb_est').innerHTML=h;
+  pbButtons();
+}
+function pbButtons(){
+  const busy=P.alive===true, ok=!!(PB.est&&PB.est.items&&PB.est.items.length);
+  $('#pb_btnDry').disabled=busy||!ok;
+  $('#pb_btnRun').disabled=busy||!ok||!$('#pb_confirm').checked;
+}
+async function pbRun(dry){
+  $('#pb_btnDry').disabled=true; $('#pb_btnRun').disabled=true;
+  const p={...pbPayload(), dry:dry, prereg_confirmed:$('#pb_confirm').checked};
+  $('#pb_msg').textContent=dry?'일괄 드라이런 시작 중…':'일괄 실행 시작 중…';
+  try{
+    const r=await fetch('/api/pressure/batch/run',{method:'POST',
+      headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});
+    const d=await r.json();
+    if(r.ok){
+      pcur=0; P.done=false; P.alive=true;
+      $('#p_log').textContent='';
+      $('#pb_msg').textContent=(dry?'일괄 드라이런 시작 (0콜)':'일괄 실행 시작 — 실호출')
+        +' · '+d.items+'묶음 '+d.runs+'판 — 로그는 아래 실행 로그 칸';
+    } else {
+      $('#pb_msg').textContent='✗ '+(d.detail||'');
+      pbButtons();
+    }
+  }catch(e){
+    $('#pb_msg').textContent='✗ 요청 실패 — 서버가 떠 있는지 확인';
+    pbButtons();
+  }
+}
+$('#pb_btnDry').onclick=()=>pbRun(true);
+$('#pb_btnRun').onclick=()=>pbRun(false);
+$('#pb_btnStop').onclick=async()=>{
+  if(P.alive && P.current && P.current.kind && P.current.kind!=='pressure'){
+    $('#pb_msg').textContent='지금 도는 것은 이 실험이 아닙니다 — 해당 탭에서 중단하세요.';
+    return;
+  }
+  const d=await (await fetch('/api/stop',{method:'POST'})).json();
+  $('#pb_msg').textContent=d.msg;
+};
+$('#pb_all').onclick=()=>{ document.querySelectorAll('input[data-pbg=pbmat]').forEach(c=>c.checked=true); pbEstimate(); };
+$('#pb_none').onclick=()=>{ document.querySelectorAll('input[data-pbg=pbmat]').forEach(c=>c.checked=false); pbEstimate(); };
+function pbTick(d){
+  const b=(d.current||{}).batch;
+  if(!b){ pbButtons(); return; }
+  if(!b.done){
+    if(b.i>0) $('#pb_msg').textContent='[ '+b.i+' / '+b.n+' ] '+b.material
+      +(b.fails?' · 실패 '+b.fails:'')+' — 진행 중';
+  } else if((d.current||{}).kind==='pressure' && !d.alive){
+    $('#pb_msg').textContent='일괄 끝 — 성공 '+(b.ok||0)+' · 실패 '+(b.fails||0)
+      +(b.cancelled?' · 사용자 중단':'')+' (자세한 것은 실행 로그)';
+  }
+  pbButtons();
+}
+function pbBoot(){
+  const ms=$('#pb_model'); ms.innerHTML='';
+  (P.meta.models||[]).forEach(m=>{
+    const o=el('option',null,m.key+(m.ready?'':' — '+m.reason)); o.value=m.key;
+    if(!m.ready) o.disabled=true; ms.append(o);
+  });
+  const rdy=(P.meta.models||[]).find(m=>m.ready);
+  if(rdy) ms.value=rdy.key;
+  ms.onchange=pbEstimate;
+  const entries=Object.entries(P.meta.scripts||{}).map(([k,v])=>{
+    const lab = typeof v==='string' ? k+' '+v : k+' '+(v.label||'')+(v.custom?' ✎':'');
+    return [k, lab];
+  });
+  $('#pb_scripts').innerHTML='';
+  pbCk($('#pb_scripts'), entries, 'pbsc', ['C0']);
+  $('#pb_vsets').innerHTML='';
+  pbCk($('#pb_vsets'), [['A','A (내장 거울)'],['B','B (내장 거울)']], 'pbvs', ['A','B']);
+  const l=el('label');
+  l.style.cssText='display:inline-flex;gap:4px;font-weight:400;margin:2px 12px 2px 0;align-items:center;cursor:pointer';
+  const c=el('input'); c.type='checkbox'; c.id='pb_custom'; c.checked=true; c.style.width='auto';
+  c.onchange=pbEstimate;
+  l.append(c); l.append(document.createTextNode('등록 세트 전부 (✎ ALL 류 — 재료마다 등록된 것)'));
+  $('#pb_vsets').append(l);
+  $('#pb_reps').innerHTML='';
+  pbCk($('#pb_reps'), [['1','1'],['2','2'],['3','3']], 'pbrp', ['1']);
+  $('#pb_confirm').onchange=pbButtons;
+  pbRenderMats();
+  pbEstimate();
+}
+
 pboot();
 })();
 </script>
