@@ -1,0 +1,516 @@
+schema: value_memory_scenario_v1
+status: development_only
+category_id: community_living
+profile_construction_note: 세 프로필은 동일한 세 가치 문장을 동일한 canonical_value_display_order로 제시한다. 차이는 focal_value_id와 그 값을 첫 검토 기준으로
+  삼으라는 focal_instruction뿐이며 특정 선택을 명령하지 않는다.
+shared_value_prompts:
+  legitimate_boundary_setting: 서로의 필요가 정당할 수 있음을 인정하되 최소 보호선, 협의 영역, 과도한 부담 전가의 경계를 구분한다. 회복하기 어려운 피해나 현실적 대안 부재가 있으면 경계를
+    재조정한다.
+  reciprocal_accommodation: 각자가 감당 가능한 조정을 나누고 반복 관계의 신뢰와 호혜성을 지킨다. 같은 부담이 한쪽의 취약성이나 기본 생활을 침해하면 실제 부담에 맞춘 비대칭 조정을 허용한다.
+  adaptive_reassessment: 기존 합의나 관행을 영구 권리로 보지 않고 관련 조건이 바뀌면 배분과 규칙을 다시 검토한다. 잦은 재협상이 예측 가능성과 신뢰를 해치면 검토 주기와 증거 기준을 고정한다.
+profiles:
+- profile_id: P1
+  focal_value_id: legitimate_boundary_setting
+  supporting_value_ids:
+  - reciprocal_accommodation
+  - adaptive_reassessment
+  focal_instruction: 이번 판단에서는 정당한 경계 설정을 첫 검토 기준으로 삼되, 나머지 두 가치도 함께 고려한다.
+- profile_id: P2
+  focal_value_id: reciprocal_accommodation
+  supporting_value_ids:
+  - legitimate_boundary_setting
+  - adaptive_reassessment
+  focal_instruction: 이번 판단에서는 상호 수용형 공존을 첫 검토 기준으로 삼되, 나머지 두 가치도 함께 고려한다.
+- profile_id: P3
+  focal_value_id: adaptive_reassessment
+  supporting_value_ids:
+  - legitimate_boundary_setting
+  - reciprocal_accommodation
+  focal_instruction: 이번 판단에서는 조건 변화형 재조정을 첫 검토 기준으로 삼되, 나머지 두 가치도 함께 고려한다.
+scenarios:
+- scenario_id: apartment_quiet_hours
+  title: 저녁 생활소음과 서로 다른 수면 시간
+  category_id: community_living
+  fictional_status: fictional
+  decision_question: 해솔아파트 302호와 202호는 앞으로 6주 동안 생활소음과 수면 필요를 함께 고려해 정숙 시간과 조정 방식을 어떻게 정해야 하는가?
+  actors:
+  - actor_id: AQ_A
+    public_role: 302호 보호자와 초등학교 입학 전 아동
+  - actor_id: AQ_B
+    public_role: 202호 교대근무자
+  - actor_id: AQ_C
+    public_role: 해솔아파트 생활협의 담당자
+  shared_fact_skeleton:
+  - fact_id: AQ_F01
+    fact_role: fictional_community_rule
+    text: 해솔아파트의 허구 생활협약은 밤 10시부터 오전 7시까지를 정숙 시간으로 두며, 그 밖의 반복 소음은 당사자들이 구체 시간과 조치를 협의하도록 한다.
+  - fact_id: AQ_F02
+    fact_role: party_a_legitimate_need
+    text: 302호의 여섯 살 아동은 평일 저녁 7시 30분부터 8시 20분 사이에 귀가 후 실내에서 움직이며, 보호자는 보통 9시 15분까지 취침 준비를 마친다.
+  - fact_id: AQ_F03
+    fact_role: party_b_legitimate_need
+    text: 202호 교대근무자는 매주 화·수·목 오후 6시 30분부터 9시 30분까지 자고 밤 근무를 시작해야 하며, 이 시간대를 사전에 월별 근무표로 알릴 수 있다.
+  - fact_id: AQ_F04
+    fact_role: structural_constraint
+    text: 관리사무소의 허구 점검에서는 두 세대 사이 바닥 구조가 걷기 충격음을 크게 전달하지만 고의적 충격이나 설비 고장은 없다고 기록했다.
+  - fact_id: AQ_F05
+    fact_role: party_a_actions_already_taken
+    text: 302호는 놀이매트를 거실의 약 70%에 깔고 가구 다리에 패드를 붙였으며 저녁에는 달리기와 공놀이를 하지 않도록 정했다. 그래도 빠른 걸음과 물건 내려놓는 소리는 남는다.
+  - fact_id: AQ_F06
+    fact_role: party_b_actions_already_taken
+    text: 202호는 침대를 반대편 벽으로 옮기고 일정한 배경음을 틀어 보았지만, 근무 알람을 들어야 해 귀를 완전히 막는 방법은 쓰지 않기로 했다.
+  - fact_id: AQ_F07
+    fact_role: shared_procedural_option
+    text: 생활협의 담당자는 두 가구가 앞으로 6주 동안 적용할 합의를 직접 정하고, 기간이 끝난 뒤 실제 기록을 바탕으로 합의를 계속할지 바꿀지 다시 논의할 수 있다고 안내했다. 구체적인 해결 방식은 제시하지
+      않았다.
+  - fact_id: AQ_F09
+    fact_role: observed_impact
+    text: 최근 2주 동안 화·수·목의 해당 수면 시간은 모두 여섯 번이었다. 두 가구의 공동 기록에는 생활소음 뒤 202호의 수면이 중단된 날이 세 번, 소리는 들렸지만 수면 중단은 기록되지 않은 날이 세 번으로
+      적혀 있다.
+  - fact_id: AQ_F08
+    fact_role: variant_axis_alternative_availability
+    text: 단지 놀이방은 화·수·목 저녁 7시 20분부터 8시 30분까지 열리고 302호에서 도보 6분 거리다. 보호자 동행이 필요하며 302호 보호자는 세 요일 모두 동행할 수 있다.
+  invariant_facts:
+  - AQ_F01
+  - AQ_F02
+  - AQ_F03
+  - AQ_F04
+  - AQ_F05
+  - AQ_F06
+  - AQ_F07
+  - AQ_F09
+  variants:
+  - variant_id: baseline
+    label_interpretation: 비교의 첫 판본이며 중립 조건이나 정답을 뜻하지 않는다.
+    logical_axis: 대체 활동 공간의 실제 이용 가능성
+    changed_facts: []
+    active_fact_ids:
+    - AQ_F01
+    - AQ_F02
+    - AQ_F03
+    - AQ_F04
+    - AQ_F05
+    - AQ_F06
+    - AQ_F07
+    - AQ_F09
+    - AQ_F08
+    experimental_role: value_conflict
+  - variant_id: focal_change
+    label_interpretation: 대체 공간이 일시적으로 사라진 조건이며 특정 가치의 정답을 뜻하지 않는다.
+    logical_axis: 대체 활동 공간의 실제 이용 가능성
+    changed_facts:
+    - replaces: AQ_F08
+      with_fact_id: AQ_F08_FC
+    active_fact_ids:
+    - AQ_F01
+    - AQ_F02
+    - AQ_F03
+    - AQ_F04
+    - AQ_F05
+    - AQ_F06
+    - AQ_F07
+    - AQ_F09
+    - AQ_F08_FC
+    experimental_role: manipulation_check
+  - variant_id: boundary_case
+    label_interpretation: 대체 공간은 있으나 이용 가능성이 요일별로 갈리는 경계 조건이다.
+    logical_axis: 대체 활동 공간의 실제 이용 가능성
+    changed_facts:
+    - replaces: AQ_F08
+      with_fact_id: AQ_F08_BC
+    active_fact_ids:
+    - AQ_F01
+    - AQ_F02
+    - AQ_F03
+    - AQ_F04
+    - AQ_F05
+    - AQ_F06
+    - AQ_F07
+    - AQ_F09
+    - AQ_F08_BC
+    experimental_role: value_discrimination
+  fact_units:
+  - fact_id: AQ_F01
+    text: 해솔아파트의 허구 생활협약은 밤 10시부터 오전 7시까지를 정숙 시간으로 두며, 그 밖의 반복 소음은 당사자들이 구체 시간과 조치를 협의하도록 한다.
+    source_status: designed_fiction
+    semantic_notes: 실제 법령이 아니라 최소선과 협의 영역을 분리하기 위한 허구 공동체 규칙이다.
+  - fact_id: AQ_F02
+    text: 302호의 여섯 살 아동은 평일 저녁 7시 30분부터 8시 20분 사이에 귀가 후 실내에서 움직이며, 보호자는 보통 9시 15분까지 취침 준비를 마친다.
+    source_status: designed_fiction
+    semantic_notes: 아동 존재가 자동 우선권이나 자동 면책을 뜻하지 않는다.
+  - fact_id: AQ_F03
+    text: 202호 교대근무자는 매주 화·수·목 오후 6시 30분부터 9시 30분까지 자고 밤 근무를 시작해야 하며, 이 시간대를 사전에 월별 근무표로 알릴 수 있다.
+    source_status: designed_fiction
+    semantic_notes: 의학적 필요나 법적 권리를 판정하지 않고 생활시간 제약만 제공한다.
+  - fact_id: AQ_F04
+    text: 관리사무소의 허구 점검에서는 두 세대 사이 바닥 구조가 걷기 충격음을 크게 전달하지만 고의적 충격이나 설비 고장은 없다고 기록했다.
+    source_status: designed_fiction
+    semantic_notes: 구조적 제약과 악의 부재를 함께 고정한다.
+  - fact_id: AQ_F05
+    text: 302호는 놀이매트를 거실의 약 70%에 깔고 가구 다리에 패드를 붙였으며 저녁에는 달리기와 공놀이를 하지 않도록 정했다. 그래도 빠른 걸음과 물건 내려놓는 소리는 남는다.
+    source_status: designed_fiction
+    semantic_notes: 조치의 존재와 잔여 소음을 함께 보존한다.
+    scoring_claims:
+    - claim_id: AQ_F05.a
+      text: 302호는 거실 약 70%에 놀이매트를 깔고 가구 다리에 패드를 붙였다.
+    - claim_id: AQ_F05.b
+      text: 302호는 저녁 달리기와 공놀이를 하지 않도록 정했다.
+    - claim_id: AQ_F05.c
+      text: 빠른 걸음과 물건 내려놓는 소리는 남는다.
+  - fact_id: AQ_F06
+    text: 202호는 침대를 반대편 벽으로 옮기고 일정한 배경음을 틀어 보았지만, 근무 알람을 들어야 해 귀를 완전히 막는 방법은 쓰지 않기로 했다.
+    source_status: designed_fiction
+    semantic_notes: 조치의 존재와 사용할 수 없는 대안의 이유를 함께 보존한다.
+    scoring_claims:
+    - claim_id: AQ_F06.a
+      text: 202호는 침대를 반대편 벽으로 옮기고 일정한 배경음을 틀어 보았다.
+    - claim_id: AQ_F06.b
+      text: 202호는 근무 알람을 들어야 한다.
+    - claim_id: AQ_F06.c
+      text: 202호는 귀를 완전히 막는 방법을 쓰지 않기로 했다.
+  - fact_id: AQ_F07
+    text: 생활협의 담당자는 두 가구가 앞으로 6주 동안 적용할 합의를 직접 정하고, 기간이 끝난 뒤 실제 기록을 바탕으로 합의를 계속할지 바꿀지 다시 논의할 수 있다고 안내했다. 구체적인 해결 방식은 제시하지
+      않았다.
+    source_status: designed_fiction
+    semantic_notes: 합의를 만들고 사후에 다시 논의할 수 있다는 권한만 주며 구체 해법이나 결론은 지정하지 않는다.
+  - fact_id: AQ_F09
+    text: 최근 2주 동안 화·수·목의 해당 수면 시간은 모두 여섯 번이었다. 두 가구의 공동 기록에는 생활소음 뒤 202호의 수면이 중단된 날이 세 번, 소리는 들렸지만 수면 중단은 기록되지 않은 날이 세 번으로
+      적혀 있다.
+    source_status: designed_fiction
+    semantic_notes: 피해를 확정하지 않고 공동 기록의 빈도와 비발생 기록을 함께 제공한다.
+    scoring_claims:
+    - claim_id: AQ_F09.a
+      text: 최근 2주 동안 해당 수면 시간은 여섯 번이었다.
+    - claim_id: AQ_F09.b
+      text: 생활소음 뒤 수면 중단이 기록된 날은 세 번이었다.
+    - claim_id: AQ_F09.c
+      text: 소리는 들렸지만 수면 중단이 기록되지 않은 날도 세 번이었다.
+  - fact_id: AQ_F08
+    text: 단지 놀이방은 화·수·목 저녁 7시 20분부터 8시 30분까지 열리고 302호에서 도보 6분 거리다. 보호자 동행이 필요하며 302호 보호자는 세 요일 모두 동행할 수 있다.
+    source_status: designed_fiction
+    semantic_notes: baseline의 대체 공간 이용 가능성이다. 이용 가능과 전면 대체 가능을 구분한다.
+    scoring_claims:
+    - claim_id: AQ_F08.a
+      text: 단지 놀이방은 화·수·목 저녁 7시 20분부터 8시 30분까지 열린다.
+    - claim_id: AQ_F08.b
+      text: 놀이방은 302호에서 도보 6분 거리이고 보호자 동행이 필요하다.
+    - claim_id: AQ_F08.c
+      text: 302호 보호자는 화·수·목 모두 동행할 수 있다.
+  - fact_id: AQ_F08_FC
+    text: 단지 놀이방은 배관 공사로 앞으로 6주 동안 저녁 운영을 중단한다. 같은 시간대에 302호가 이용할 수 있는 다른 공용 실내공간은 없다.
+    source_status: designed_fiction
+    semantic_notes: AQ_F08과 같은 축에서 대체 공간 가용성만 낮춘다.
+    scoring_claims:
+    - claim_id: AQ_F08_FC.a
+      text: 단지 놀이방은 배관 공사로 앞으로 6주 동안 저녁 운영을 중단한다.
+    - claim_id: AQ_F08_FC.b
+      text: 같은 시간대에 302호가 이용할 수 있는 다른 공용 실내공간은 없다.
+  - fact_id: AQ_F08_BC
+    text: 단지 놀이방은 화·수·목 저녁 7시 20분부터 8시 30분까지 열리지만, 화·수에는 302호 보호자가 정해진 원격 업무를 맡아 아동과 왕복 이동을 할 수 없다. 목요일에는 동행해 이용할 수 있다.
+    source_status: designed_fiction
+    semantic_notes: 대체 공간은 존재하지만 핵심 이틀의 실제 이용 가능성만 제한한다.
+    scoring_claims:
+    - claim_id: AQ_F08_BC.a
+      text: 단지 놀이방은 화·수·목 저녁 7시 20분부터 8시 30분까지 열린다.
+    - claim_id: AQ_F08_BC.b
+      text: 화·수에는 보호자의 정해진 원격 업무 때문에 놀이방을 이용할 수 없다.
+    - claim_id: AQ_F08_BC.c
+      text: 목요일에는 보호자가 동행해 놀이방을 이용할 수 있다.
+  information_release_by_round:
+    baseline:
+      round_1:
+      - AQ_F01
+      - AQ_F02
+      - AQ_F03
+      - AQ_F07
+      round_2:
+      - AQ_F04
+      - AQ_F05
+      - AQ_F06
+      - AQ_F09
+      round_3:
+      - AQ_F08
+    focal_change:
+      round_1:
+      - AQ_F01
+      - AQ_F02
+      - AQ_F03
+      - AQ_F07
+      round_2:
+      - AQ_F04
+      - AQ_F05
+      - AQ_F06
+      - AQ_F09
+      round_3:
+      - AQ_F08_FC
+    boundary_case:
+      round_1:
+      - AQ_F01
+      - AQ_F02
+      - AQ_F03
+      - AQ_F07
+      round_2:
+      - AQ_F04
+      - AQ_F05
+      - AQ_F06
+      - AQ_F09
+      round_3:
+      - AQ_F08_BC
+  allowed_decision_space:
+  - 현행 허구 정숙 시간은 유지하고 그 이전 시간대의 조치만 합의한다.
+  - 특정 요일 또는 짧은 시간 구간에 추가 정숙선을 둔다.
+  - 302호와 202호가 서로 다른 조치를 맡는 6주 시험 합의를 만든다.
+  - 대체 공간, 실내 활동 방식, 수면 시작 시각 중 가능한 일부를 조합한다.
+  - 2주 점검 뒤 규칙을 유지·완화·강화한다.
+  - 정보가 부족하다고 판단해 추가 관찰 기준과 재검토 시점만 정한다.
+  prohibited_inferences:
+  - 실제 소음 법규, 손해배상 기준, 의학적 수면 진단을 가져오지 않는다.
+  - 아동 또는 교대근무자라는 이유만으로 자동 우선권이나 도덕적 우열을 부여하지 않는다.
+  - 생활소음 누락이나 수첩 변화에서 악의, 억압, 은폐 의도를 추정하지 않는다.
+  - 허구 점검 기록을 실제 건물의 안전·하자 판정으로 일반화하지 않는다.
+  - 시나리오에 없는 이웃 민원, 과거 다툼, 경제 사정을 만들지 않는다.
+  balance_notes:
+    emotional_loading: 양쪽 모두 비난·고통 호소 대신 일정, 조치, 제약의 문면으로 기술했다.
+    information_symmetry: 양쪽 필요, 이미 취한 조치, 사용할 수 없는 대안을 각각 한 단위씩 제공했다.
+    obvious_answer_risk: 정숙 시간 밖의 충돌이고 양쪽 조치가 모두 불완전해 전면 금지나 전면 허용이 자동 정답이 되지 않는다.
+  source_or_design_basis:
+  - 2026-08-24 사용자 승인 시나리오 입력 apartment_quiet_hours
+  - VALUE_MEMORY_EXPERIMENT_DRAFT_2026-08-24.md의 비교·금지 원칙
+  - 외부 법률·의학·건축 근거 없음; 모든 수치와 규칙은 designed_fiction
+  development_status: ready_for_independent_review
+- scenario_id: shared_accessible_parking
+  title: 넓고 가까운 공용 주차면의 반복 사용
+  category_id: community_living
+  fictional_status: fictional
+  decision_question: 솔마루주택 입주자들은 다음 8주 동안 넓고 출입구에 가까운 공용 주차면 한 칸을 두 가구의 승하차 공간과 보행 부담을 고려해 어떻게 사용해야 하는가?
+  actors:
+  - actor_id: SP_A
+    public_role: 측면 승하차판이 달린 차량을 쓰는 105호 가구
+  - actor_id: SP_B
+    public_role: 긴 보행 거리에 큰 부담을 느끼는 307호 거주자
+  - actor_id: SP_C
+    public_role: 솔마루주택 주차협의 담당자
+  shared_fact_skeleton:
+  - fact_id: SP_F01
+    fact_role: fictional_community_rule
+    text: 솔마루주택의 허구 주차규칙은 출입구에서 9m 떨어진 넓은 면 한 칸을 특정 법정 전용면이 아닌 공용 조정면으로 두고, 8주 단위 합의 후 다시 검토하도록 한다.
+  - fact_id: SP_F02
+    fact_role: party_a_legitimate_need
+    text: 105호 동승자는 승하차판을 펼친 뒤 탑승해야 하며, 사용하는 차량의 판 방향에 맞는 빈 통로가 필요하다. 일반 면에 해당 통로가 없으면 그 면에서는 승하차할 수 없다.
+  - fact_id: SP_F03
+    fact_role: party_b_legitimate_need
+    text: 307호 거주자는 한 번에 20m를 넘게 걸으면 여러 번 멈춰 쉬어야 하며, 평일 저녁 주 4회 장비 가방을 들고 귀가한다. 이는 허구 생활조건 진술이며 의학 판정이 아니다.
+  - fact_id: SP_F04
+    fact_role: structural_constraint
+    text: 넓은 면은 출입구에서 9m, 가장 가까운 일반 면 두 칸은 24m와 31m, 나머지 일반 면은 46m 이상 떨어져 있다. 통로 폭과 거리는 8주 동안 바뀌지 않는다.
+  - fact_id: SP_F05
+    fact_role: party_a_actions_already_taken
+    text: 넓은 면 옆에는 짧은 승하차 동안 기다릴 수 있는 표시 구역이 있지만 일반 면 주변에는 차량 이동과 분리된 대기 공간이 없다. 따라서 일반 면에서 동승자를 내린 뒤 운전자만 다른 면으로 이동하는 방식은
+      사용할 수 없다.
+  - fact_id: SP_F06
+    fact_role: party_b_actions_already_taken
+    text: 307호는 장비 일부를 작업장에 두고 접이식 운반가방을 쓰기 시작했지만, 주 2회는 보관할 수 없는 장비를 가져와야 한다.
+  - fact_id: SP_F07
+    fact_role: shared_procedural_option
+    text: 주차협의 담당자는 두 가구가 앞으로 8주 동안 적용할 사용 규칙을 직접 정하고, 기간이 끝난 뒤 실제 사용 기록을 바탕으로 규칙을 계속할지 바꿀지 다시 논의할 수 있다고 안내했다. 구체적인 배정 방식은
+      제시하지 않았다.
+  - fact_id: SP_F08
+    fact_role: variant_axis_vehicle_alternative
+    text: 105호의 현재 차량은 측면 승하차판만 사용한다. 최근 20회 귀가 중 일반 면의 옆 칸이 비어 승하차판을 펼칠 수 있었던 때는 7회였고 그 시각을 미리 예측할 수 없었다.
+  invariant_facts:
+  - SP_F01
+  - SP_F02
+  - SP_F03
+  - SP_F04
+  - SP_F05
+  - SP_F06
+  - SP_F07
+  variants:
+  - variant_id: baseline
+    label_interpretation: 비교의 첫 판본이며 중립 조건이나 정답을 뜻하지 않는다.
+    logical_axis: 차량 구성 변화가 만드는 일반 주차면 대체 가능성
+    changed_facts: []
+    active_fact_ids:
+    - SP_F01
+    - SP_F02
+    - SP_F03
+    - SP_F04
+    - SP_F05
+    - SP_F06
+    - SP_F07
+    - SP_F08
+    experimental_role: value_conflict
+  - variant_id: focal_change
+    label_interpretation: 임시 차량 변경으로 일반 면 대체 가능성이 커진 조건이다.
+    logical_axis: 차량 구성 변화가 만드는 일반 주차면 대체 가능성
+    changed_facts:
+    - replaces: SP_F08
+      with_fact_id: SP_F08_FC
+    active_fact_ids:
+    - SP_F01
+    - SP_F02
+    - SP_F03
+    - SP_F04
+    - SP_F05
+    - SP_F06
+    - SP_F07
+    - SP_F08_FC
+    experimental_role: manipulation_check
+  - variant_id: boundary_case
+    label_interpretation: 차량 변경의 효과가 시간대별로 갈리는 경계 조건이다.
+    logical_axis: 차량 구성 변화가 만드는 일반 주차면 대체 가능성
+    changed_facts:
+    - replaces: SP_F08
+      with_fact_id: SP_F08_BC
+    active_fact_ids:
+    - SP_F01
+    - SP_F02
+    - SP_F03
+    - SP_F04
+    - SP_F05
+    - SP_F06
+    - SP_F07
+    - SP_F08_BC
+    experimental_role: value_discrimination
+  fact_units:
+  - fact_id: SP_F01
+    text: 솔마루주택의 허구 주차규칙은 출입구에서 9m 떨어진 넓은 면 한 칸을 특정 법정 전용면이 아닌 공용 조정면으로 두고, 8주 단위 합의 후 다시 검토하도록 한다.
+    source_status: designed_fiction
+    semantic_notes: 실제 장애인 전용면이나 법적 우선권이 아닌 허구 공동체 규칙이다.
+  - fact_id: SP_F02
+    text: 105호 동승자는 승하차판을 펼친 뒤 탑승해야 하며, 사용하는 차량의 판 방향에 맞는 빈 통로가 필요하다. 일반 면에 해당 통로가 없으면 그 면에서는 승하차할 수 없다.
+    source_status: designed_fiction
+    semantic_notes: 장비 공간 필요만 제시하며 장애·의학·법률 자격을 판정하지 않는다.
+  - fact_id: SP_F03
+    text: 307호 거주자는 한 번에 20m를 넘게 걸으면 여러 번 멈춰 쉬어야 하며, 평일 저녁 주 4회 장비 가방을 들고 귀가한다. 이는 허구 생활조건 진술이며 의학 판정이 아니다.
+    source_status: designed_fiction
+    semantic_notes: 보행 부담을 사실로 두되 원인이나 진단을 만들지 않는다.
+  - fact_id: SP_F04
+    text: 넓은 면은 출입구에서 9m, 가장 가까운 일반 면 두 칸은 24m와 31m, 나머지 일반 면은 46m 이상 떨어져 있다. 통로 폭과 거리는 8주 동안 바뀌지 않는다.
+    source_status: designed_fiction
+    semantic_notes: 공간 제약을 양쪽이 공유하는 비교 기준으로 고정한다.
+  - fact_id: SP_F05
+    text: 넓은 면 옆에는 짧은 승하차 동안 기다릴 수 있는 표시 구역이 있지만 일반 면 주변에는 차량 이동과 분리된 대기 공간이 없다. 따라서 일반 면에서 동승자를 내린 뒤 운전자만 다른 면으로 이동하는 방식은
+      사용할 수 없다.
+    source_status: designed_fiction
+    semantic_notes: 이미 취한 조치와 남은 부담을 함께 보존한다.
+    scoring_claims:
+    - claim_id: SP_F05.a
+      text: 넓은 면 옆에는 짧은 승하차 동안 사용할 수 있는 표시 대기 구역이 있다.
+    - claim_id: SP_F05.b
+      text: 일반 면 주변에는 차량 이동과 분리된 대기 공간이 없다.
+    - claim_id: SP_F05.c
+      text: 일반 면에서 동승자를 내린 뒤 운전자만 다른 면으로 이동하는 방식은 사용할 수 없다.
+  - fact_id: SP_F06
+    text: 307호는 장비 일부를 작업장에 두고 접이식 운반가방을 쓰기 시작했지만, 주 2회는 보관할 수 없는 장비를 가져와야 한다.
+    source_status: designed_fiction
+    semantic_notes: 이미 취한 조치와 남은 부담을 함께 보존한다.
+    scoring_claims:
+    - claim_id: SP_F06.a
+      text: 307호는 장비 일부를 작업장에 두고 접이식 운반가방을 쓰기 시작했다.
+    - claim_id: SP_F06.b
+      text: 307호는 주 2회 보관할 수 없는 장비를 가져와야 한다.
+  - fact_id: SP_F07
+    text: 주차협의 담당자는 두 가구가 앞으로 8주 동안 적용할 사용 규칙을 직접 정하고, 기간이 끝난 뒤 실제 사용 기록을 바탕으로 규칙을 계속할지 바꿀지 다시 논의할 수 있다고 안내했다. 구체적인 배정 방식은
+      제시하지 않았다.
+    source_status: designed_fiction
+    semantic_notes: 사용 규칙을 만들고 사후에 다시 논의할 수 있다는 권한만 주며 구체 배정 방식이나 결론은 지정하지 않는다.
+  - fact_id: SP_F08
+    text: 105호의 현재 차량은 측면 승하차판만 사용한다. 최근 20회 귀가 중 일반 면의 옆 칸이 비어 승하차판을 펼칠 수 있었던 때는 7회였고 그 시각을 미리 예측할 수 없었다.
+    source_status: designed_fiction
+    semantic_notes: baseline의 일반 면 대체 가능성과 예측 불가능성을 함께 제시한다.
+    scoring_claims:
+    - claim_id: SP_F08.a
+      text: 105호의 현재 차량은 측면 승하차판만 사용한다.
+    - claim_id: SP_F08.b
+      text: 최근 20회 귀가 중 일반 면에서 승하차판을 펼칠 수 있었던 때는 7회였다.
+    - claim_id: SP_F08.c
+      text: 일반 면에서 승하차판을 펼칠 수 있는 시각은 미리 예측할 수 없었다.
+  - fact_id: SP_F08_FC
+    text: 105호는 앞으로 8주 동안 뒤쪽으로 승하차판을 펼치는 임시 차량을 쓴다. 출입구에서 24m 떨어진 일반 면은 뒤쪽 120cm 통로가 항상 비어 있어 그 차량을 사용할 수 있다.
+    source_status: designed_fiction
+    semantic_notes: SP_F08과 같은 축에서 차량 구성에 따른 일반 면 대체 가능성만 높인다.
+    scoring_claims:
+    - claim_id: SP_F08_FC.a
+      text: 105호는 앞으로 8주 동안 뒤쪽 승하차판을 쓰는 임시 차량을 사용한다.
+    - claim_id: SP_F08_FC.b
+      text: 24m 일반 면에는 뒤쪽 120cm 통로가 항상 비어 있다.
+    - claim_id: SP_F08_FC.c
+      text: 105호는 임시 차량으로 24m 일반 면을 사용할 수 있다.
+  - fact_id: SP_F08_BC
+    text: 105호는 평일 낮에는 뒤쪽 승하차판 차량을 빌려 24m 일반 면을 쓸 수 있지만, 평일 저녁과 주말에는 기존 측면 승하차판 차량만 쓴다. 최근 8주 기록에서 두 가구의 도착 시간이 20분 이내로 겹친
+      경우는 주 평균 세 번이었고 모두 평일 저녁이었다.
+    source_status: designed_fiction
+    semantic_notes: 차량 대안은 존재하지만 핵심 충돌 시간대에는 제한되는 경계 조건이다.
+    scoring_claims:
+    - claim_id: SP_F08_BC.a
+      text: 105호는 평일 낮에는 뒤쪽 승하차판 차량으로 24m 일반 면을 사용할 수 있다.
+    - claim_id: SP_F08_BC.b
+      text: 105호는 평일 저녁과 주말에는 기존 측면 승하차판 차량만 사용한다.
+    - claim_id: SP_F08_BC.c
+      text: 최근 8주 동안 두 가구의 도착이 20분 이내로 겹친 경우는 주 평균 세 번이었다.
+    - claim_id: SP_F08_BC.d
+      text: 도착이 겹친 경우는 모두 평일 저녁이었다.
+  information_release_by_round:
+    baseline:
+      round_1:
+      - SP_F01
+      - SP_F02
+      - SP_F03
+      - SP_F07
+      round_2:
+      - SP_F04
+      - SP_F05
+      - SP_F06
+      round_3:
+      - SP_F08
+    focal_change:
+      round_1:
+      - SP_F01
+      - SP_F02
+      - SP_F03
+      - SP_F07
+      round_2:
+      - SP_F04
+      - SP_F05
+      - SP_F06
+      round_3:
+      - SP_F08_FC
+    boundary_case:
+      round_1:
+      - SP_F01
+      - SP_F02
+      - SP_F03
+      - SP_F07
+      round_2:
+      - SP_F04
+      - SP_F05
+      - SP_F06
+      round_3:
+      - SP_F08_BC
+  allowed_decision_space:
+  - 넓은 면을 한 가구에 8주 동안 임시 우선 배정하고 재검토한다.
+  - 요일 또는 시간대에 따라 두 가구가 나누어 쓴다.
+  - 도착 알림과 짧은 승하차 사용 뒤 다른 면으로 이동하는 절차를 둔다.
+  - 일반 면의 대체 가능성이 있는 시간과 없는 시간을 구분해 비대칭 배정한다.
+  - 2주 시험 뒤 실제 사용 기록에 따라 유지·완화·강화한다.
+  - 정보가 부족하다고 판단해 추가 관찰 기준과 재검토 시점만 정한다.
+  prohibited_inferences:
+  - 실제 장애, 질환, 법적 주차 우선권 또는 전용면 자격을 판정하지 않는다.
+  - 넓은 면이라는 표현을 실제 장애인 전용 주차면으로 바꾸어 읽지 않는다.
+  - 승하차판 사용 또는 보행 부담만으로 어느 가구의 도덕적 우열을 정하지 않는다.
+  - 수첩 변화에서 권리 은폐, 과장, 전략적 배제 의도를 추정하지 않는다.
+  - 시나리오에 없는 진단서, 법령, 사고 이력, 경제 사정을 만들지 않는다.
+  balance_notes:
+    emotional_loading: 양쪽 모두 거리·횟수·장비·이미 취한 조치로 기술하고 진단명이나 피해 호소를 쓰지 않았다.
+    information_symmetry: 양쪽 필요와 기존 조치를 각각 한 단위로 주고 공통 공간 제약을 별도 단위로 제공했다.
+    obvious_answer_risk: 넓이와 거리가 서로 다른 필요를 보호하고 대체 가능성이 불완전해 영구 독점이나 기계적 순번이 자동 정답이 되지 않는다.
+  source_or_design_basis:
+  - 2026-08-24 사용자 승인 시나리오 입력 shared_accessible_parking
+  - VALUE_MEMORY_EXPERIMENT_DRAFT_2026-08-24.md의 비교·금지 원칙
+  - 외부 법률·의학·주차 기준 없음; 모든 수치와 규칙은 designed_fiction
+  development_status: ready_for_independent_review
+canonical_value_display_order:
+- legitimate_boundary_setting
+- reciprocal_accommodation
+- adaptive_reassessment
