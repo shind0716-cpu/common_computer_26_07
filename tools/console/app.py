@@ -477,7 +477,7 @@ def api_estimate(req: RunReq):
 @app.post("/api/run")
 def api_run(req: RunReq):
     global _proc, _log, _current
-    if _proc is not None and _proc.poll() is None:
+    if (_proc is not None and _proc.poll() is None) or _batch_active():
         raise HTTPException(409, "이미 실행 중 — 끝나거나 중단한 뒤에 다시.")
     out = paths.debate(req.issue_id, req.run_id)
     if out.exists():
@@ -525,7 +525,7 @@ def api_log(since: int = 0):
     with _log_lock:
         lines = _log[since:]
         total = len(_log)
-    alive = _proc is not None and _proc.poll() is None
+    alive = (_proc is not None and _proc.poll() is None) or _batch_active()
     code = None if (_proc is None or alive) else _proc.returncode
     return {"lines": lines, "next": total, "alive": alive, "returncode": code,
             "current": _current}
@@ -533,6 +533,13 @@ def api_log(since: int = 0):
 
 @app.post("/api/stop")
 def api_stop():
+    # 일괄(배치) 큐가 돌고 있으면 남은 큐까지 취소한다 — 지금 묶음은 terminate.
+    # 러너의 호출 단위 체크포인트(.partial.jsonl)는 남으므로 재실행하면 이어간다.
+    if _batch_active():
+        _batch["cancel"] = True
+        if _proc is not None and _proc.poll() is None:
+            _proc.terminate()
+        return {"ok": True, "msg": "중단 요청 — 지금 묶음까지 멈추고 남은 큐 취소 (체크포인트 보존)"}
     if _proc is None or _proc.poll() is not None:
         return {"ok": False, "msg": "실행 중이 아님"}
     _proc.terminate()
@@ -1083,7 +1090,7 @@ def api_solo_run(req: SoloRunReq):
     동시 요청 2건이 러너 2개를 띄우는 사고(이중 과금·체크포인트 오염·고아)가 막힌다."""
     global _proc, _log, _current
     with _run_lock:
-        if _proc is not None and _proc.poll() is None:
+        if (_proc is not None and _proc.poll() is None) or _batch_active():
             raise HTTPException(409, "이미 실행 중 — 끝나거나 중단한 뒤에 다시.")
         _solo_validate(req)
         reasons = _solo_v2_reasons(req)
@@ -1567,7 +1574,7 @@ def api_pressure_run(req: PressureRunReq):
     전 구간이 _run_lock 안 — solo 와 같은 원자화(더블클릭 이중 실행 차단)."""
     global _proc, _log, _current
     with _run_lock:
-        if _proc is not None and _proc.poll() is None:
+        if (_proc is not None and _proc.poll() is None) or _batch_active():
             raise HTTPException(409, "이미 실행 중 — 끝나거나 중단한 뒤에 다시.")
         _pressure_validate(req)
         if not req.dry and not req.prereg_confirmed:
@@ -1803,3 +1810,290 @@ def api_pressure_detail(model: str, run_id: str, materials: str, dry: bool = Fal
             "meta": meta, "note_budget": budget,
             "essays": essays, "notes": notes,
             "final_poll": doc.get("final_poll")}
+# ═══ 압박 일괄 실행(배치) — 2026-08-28 추가 ═══
+# 여러 재료(시나리오)를 한 번에 — 콘솔이 러너를 재료별 서브프로세스로 **순차** 실행한다.
+# 러너(run_pressure.py)의 --materials 단일값 계약은 무수정(규약 5·7) — 반복은 콘솔 몫.
+# 동시 실행은 여전히 1개(비용 사고 방지): 큐가 도는 동안 debate·solo·압박 단일 실행은
+# 전부 409 로 잠긴다(_batch_active 를 세 실행 관문이 함께 본다).
+
+_batch: dict = {"active": False, "cancel": False, "i": 0, "n": 0,
+                "material": "", "fails": 0, "codes": []}
+
+
+def _batch_active() -> bool:
+    return bool(_batch.get("active"))
+
+
+class PressureBatchReq(BaseModel):
+    model: str = "gpt"
+    materials: list[str] = []
+    scripts: list[str] = ["C0"]
+    # 내장 거울 세트(A·B) 이름 — 재료마다 있는 것만 걸린다.
+    vsets: list[str] = ["A", "B"]
+    # 등록 세트(values/*.json — ALL 류 ✎)도 재료마다 전부 포함할지.
+    include_custom: bool = True
+    reps: list[int] = [1]
+    dry: bool = False
+    prereg_confirmed: bool = False
+
+
+def _pressure_batch_plan(req: PressureBatchReq) -> dict:
+    """일괄 계획 — 재료별 (각본×가치 세트) 유효 조합을 호출 전에 갈라낸다.
+
+    러너가 즉사시키는 조합 둘을 미리 빼는 것이 핵심:
+      ① 그 재료에 등록 안 된 가치 세트 (--vsets 검증 즉사) → 재료별 교집합만
+      ② 방향 각본(target=aligned/opposite) × 정렬 불명 세트 (build_script 즉사)
+         → 재료를 두 묶음으로 쪼갠다: [전체 각본 × 정렬 있는 세트] + [무방향 각본 × 정렬 불명 세트]
+    쪼개진 묶음 하나가 러너 호출 1번이다. 모르는 재료는 조용히 빼지 않고 400 — 오타가
+    "그 재료만 안 돌았다"로 조용히 사라지는 것을 막는다."""
+    if req.model not in PRESSURE_MODELS:
+        raise HTTPException(400, f"모르는 모델: {req.model} (가능: {', '.join(PRESSURE_MODELS)})")
+    if not req.materials:
+        raise HTTPException(400, "재료(시나리오)를 하나 이상 고르세요.")
+    if not (req.scripts and req.reps):
+        raise HTTPException(400, "각본/반복을 하나 이상 고르세요.")
+    if not (req.vsets or req.include_custom):
+        raise HTTPException(400, "가치 세트를 하나 이상 고르거나 등록 세트 포함을 켜세요.")
+    known_scripts = _pressure_scripts()
+    bad = [s for s in req.scripts if s not in known_scripts]
+    if bad:
+        raise HTTPException(400, f"모르는 각본: {bad}")
+    reg = _pressure_materials()
+    unknown = [m for m in req.materials if m not in reg]
+    if unknown:
+        raise HTTPException(400, f"모르는 재료: {unknown} — 오타이거나 파일이 없다.")
+    # 방향 각본 판별 — 내장 C1·C2 는 재료 파일이 target 을 정하지만 뜻이 방향 압박이라
+    # 고정으로 친다. 등록 각본은 파일의 target 필드.
+    directional = [s for s in req.scripts
+                   if s in ("C1", "C2")
+                   or (known_scripts[s].get("target") in ("aligned", "opposite"))]
+    neutral = [s for s in req.scripts if s not in directional]
+    items: list[dict] = []
+    skipped: list[dict] = []
+    seen: set = set()
+    for mid in req.materials:
+        if mid in seen:
+            continue
+        seen.add(mid)
+        m = reg[mid]
+        if m.get("broken"):
+            skipped.append({"material": mid, "why": "재료 파일이 깨져 있음"})
+            continue
+        if m.get("example") and not req.dry:
+            skipped.append({"material": mid, "why": "견본 재료 — 실호출 불가(드라이런만)"})
+            continue
+        vall = m.get("vsets") or {}
+        want = [v for v in req.vsets if v in vall]
+        if req.include_custom:
+            want += [k for k, v in vall.items() if v.get("custom") and k not in want]
+        if not want:
+            skipped.append({"material": mid, "why": "고른 가치 세트가 이 재료에 없음"})
+            continue
+        with_dir = [v for v in want if vall[v].get("aligned")]
+        no_dir = [v for v in want if not vall[v].get("aligned")]
+        if directional and no_dir:
+            skipped.append({"material": mid,
+                            "why": ("방향 각본(" + "·".join(directional) + ") × 정렬 불명 세트("
+                                    + "·".join(no_dir) + ") 조합 제외 — 러너가 거부하는 조합")})
+        if with_dir:
+            items.append({"material": mid, "scripts": list(req.scripts), "vsets": with_dir})
+        if no_dir and neutral:
+            items.append({"material": mid, "scripts": neutral, "vsets": no_dir})
+    runs = sum(len(it["scripts"]) * len(it["vsets"]) * len(req.reps) for it in items)
+    existing = []
+    for it in items:
+        base = _pressure_runs_dir(req.dry) / req.model / it["material"]
+        for s in it["scripts"]:
+            for v in it["vsets"]:
+                for n in req.reps:
+                    if (base / f"run_{s}_{v}_rep{n}.json").exists():
+                        existing.append(f"{it['material']}/{s}_{v}_rep{n}")
+    return {"items": items, "skipped": skipped, "runs": runs,
+            "calls": PRESSURE_CALLS_PER_RUN * runs,
+            "calls_max": (PRESSURE_CALLS_PER_RUN + PRESSURE_RETRY_MAX) * runs,
+            "existing": existing,
+            "n_materials": len({it["material"] for it in items})}
+
+
+@app.post("/api/pressure/batch/estimate")
+def api_pressure_batch_estimate(req: PressureBatchReq):
+    """일괄 견적 — 계획(묶음 목록·건너뜀 사유·판/콜 합계) 그대로 돌려준다."""
+    return _pressure_batch_plan(req)
+
+
+def _pressure_batch_worker(req: PressureBatchReq, plan: dict) -> None:
+    """큐 실행 — 묶음마다 러너 서브프로세스 1개, 순차. _proc 에 지금 것을 걸어 두므로
+    /api/stop 이 지금 묶음을 terminate 할 수 있고, cancel 플래그로 남은 큐를 접는다.
+    연속 실패 2회면 남은 큐를 스스로 접는다 — 키 죽음·러너 깨짐 같은 구조적 문제가
+    30번 반복되는 것을 막는다(재료 하나의 검사 실패는 1회 실패로 지나간다)."""
+    global _proc
+    runner = PRESSURE_DIR / "run_pressure.py"
+    items = plan["items"]
+    consec = 0
+    ok = fail = 0
+    try:
+        for k, it in enumerate(items, 1):
+            if _batch["cancel"]:
+                with _log_lock:
+                    _log.append(f"[batch] 중단 요청 — 남은 {len(items) - k + 1}개 묶음 취소")
+                break
+            _batch.update(i=k, material=it["material"])
+            _current["batch"] = {"i": k, "n": len(items), "material": it["material"],
+                                 "fails": fail, "done": False}
+            cmd = [sys.executable, "-X", "utf8", "-u", str(runner),
+                   "--model", req.model,
+                   "--materials", it["material"],
+                   "--scripts", *it["scripts"],
+                   "--vsets", *it["vsets"],
+                   "--reps", *[str(n) for n in req.reps]]
+            cmd.append("--dry" if req.dry else "--allow-live")
+            with _log_lock:
+                _log.append("")
+                _log.append(f"=== [{k}/{len(items)}] {it['material']} · 각본 {' '.join(it['scripts'])}"
+                            f" · 세트 {' '.join(it['vsets'])} ===")
+                _log.append("$ " + " ".join(cmd))
+            with _run_lock:
+                if _batch["cancel"]:
+                    continue
+                _proc = subprocess.Popen(cmd, cwd=str(ROOT), stdout=subprocess.PIPE,
+                                         stderr=subprocess.STDOUT, text=True, encoding="utf-8",
+                                         errors="replace", bufsize=1)
+            t = threading.Thread(target=_tail_reader, args=(_proc,), daemon=True)
+            t.start()
+            code = _proc.wait()
+            t.join(timeout=5)
+            _batch["codes"].append(code)
+            if code == 0:
+                ok += 1
+                consec = 0
+            elif not _batch["cancel"]:
+                fail += 1
+                consec += 1
+                _batch["fails"] = fail
+                with _log_lock:
+                    _log.append(f"[batch] ✗ {it['material']} 종료코드 {code} — 다음 묶음으로")
+                if consec >= 2:
+                    with _log_lock:
+                        _log.append(f"[batch] 연속 실패 {consec}회 — 구조적 문제로 보고 "
+                                    f"남은 {len(items) - k}개 묶음을 중단 (체크포인트 보존)")
+                    break
+    finally:
+        with _log_lock:
+            _log.append("")
+            _log.append(f"[batch] 끝 — 성공 {ok} · 실패 {fail} · 계획 {len(items)}묶음"
+                        + (" · 사용자 중단" if _batch["cancel"] else ""))
+        _current["batch"] = {"i": _batch["i"], "n": len(items), "material": "",
+                             "fails": fail, "done": True, "ok": ok,
+                             "cancelled": bool(_batch["cancel"])}
+        _batch["active"] = False
+
+
+@app.post("/api/pressure/batch/run")
+def api_pressure_batch_run(req: PressureBatchReq):
+    """일괄 실행 시작 — 관문은 단일 실행과 같다(사전등록 사람 확인·키 preflight·견본 차단).
+    전 구간 _run_lock 안(더블클릭 이중 큐 차단)."""
+    global _proc, _log, _current
+    with _run_lock:
+        if (_proc is not None and _proc.poll() is None) or _batch_active():
+            raise HTTPException(409, "이미 실행 중 — 끝나거나 중단한 뒤에 다시.")
+        plan = _pressure_batch_plan(req)
+        if not plan["items"]:
+            raise HTTPException(400, "돌 것이 없다 — 건너뜀 사유: "
+                                + "; ".join(f"{s['material']}({s['why']})" for s in plan["skipped"]))
+        if not req.dry and not req.prereg_confirmed:
+            raise HTTPException(400, "실호출 차단 — PREREG_v0.md 로컬 커밋 확인 체크가 "
+                                     "필요하다. 드라이런(0콜)은 확인 없이 가능.")
+        if not req.dry:
+            try:
+                llm.preflight(req.model)
+            except SystemExit as e:
+                raise HTTPException(400, str(e))
+            except KeyError as e:
+                raise HTTPException(400, str(e))
+        if not (PRESSURE_DIR / "run_pressure.py").exists():
+            raise HTTPException(500, "러너 없음: run_pressure.py")
+        with _log_lock:
+            _log = [f"[batch] {plan['n_materials']}재료 {len(plan['items'])}묶음 "
+                    f"{plan['runs']}판 · 예상 {plan['calls']}~{plan['calls_max']}콜 "
+                    f"· dry={req.dry} · model={req.model}"]
+            for s in plan["skipped"]:
+                _log.append(f"[batch] 건너뜀: {s['material']} — {s['why']}")
+            if plan["existing"]:
+                _log.append(f"[batch] 이미 결과가 있어 러너가 [skip] 할 런 {len(plan['existing'])}개")
+        _current = {"kind": "pressure", "model": req.model, "dry": req.dry,
+                    "batch": {"i": 0, "n": len(plan["items"]), "material": "",
+                              "fails": 0, "done": False}}
+        _batch.update(active=True, cancel=False, i=0, n=len(plan["items"]),
+                      material="", fails=0, codes=[])
+        threading.Thread(target=_pressure_batch_worker, args=(req, plan), daemon=True).start()
+    return {"ok": True, "dry": req.dry, "runs": plan["runs"],
+            "items": len(plan["items"]), "skipped": plan["skipped"]}
+# ═══ 압박 집계 — 카테고리별 결과 보기 (2026-08-28 추가) ═══
+# runs/ 원문을 채점기(scan_pressure.scan_run)와 **같은 자**로 읽어(import — 자를 두 벌
+# 만들지 않는다) 판별 카테고리 생존을 돌려준다. LLM 0콜 — 파일만 읽는 파생 계산이고
+# 아무것도 쓰지 않는다. 집계·필터는 화면 몫. ⚠ 표식 검색은 「있다」만 믿을 수 있다
+# (바꿔 말하면 놓친다 — 1차 실측 놓침 ~25%·헛짚음 1%). 화면이 이 경고를 함께 단다.
+
+
+@app.get("/api/pressure/catscan")
+def api_pressure_catscan(dry: bool = False):
+    if str(PRESSURE_DIR) not in sys.path:
+        sys.path.insert(0, str(PRESSURE_DIR))
+    try:
+        import importlib
+        scan = importlib.import_module("scan_pressure")
+        rp = importlib.import_module("run_pressure")
+    except Exception as e:
+        raise HTTPException(500, f"채점기 import 실패: {e}")
+    reg: dict = {}
+    for iid, path in rp.discover_materials().items():
+        try:
+            reg[iid] = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+    base = _pressure_runs_dir(dry)
+    rows = []
+    if base.exists():
+        for mdir in sorted(base.glob("*")):
+            if not mdir.is_dir() or mdir.name.startswith("_"):
+                continue
+            for p in sorted(mdir.glob("run_*.json")) + sorted(mdir.glob("*/run_*.json")):
+                if p.name.endswith(".final2.json"):
+                    continue          # 최종 재실행 산출물은 본 런에 합류해 읽는다 (스캐너 미러)
+                try:
+                    doc = json.loads(p.read_text(encoding="utf-8"))
+                    f2p = p.parent / (p.stem + ".final2.json")
+                    if f2p.exists():
+                        doc["_final2_choice"] = json.loads(
+                            f2p.read_text(encoding="utf-8")).get("choice")
+                except Exception:
+                    continue
+                mat = reg.get(doc.get("issue_id"))
+                if mat is None:
+                    continue
+                try:
+                    r = scan.scan_run(doc, mat)
+                except Exception:
+                    continue          # 깨진 런 하나가 집계 전체를 죽이지 않게
+                cat_facts: dict = {}
+                for f in mat.get("facts") or []:
+                    cat_facts.setdefault(f.get("category"), []).append(f.get("id"))
+                per_round = []
+                for ids in r.get("note_anchors") or []:
+                    s = set(ids)
+                    per_round.append({c: sum(1 for fid in fl if fid in s)
+                                      for c, fl in cat_facts.items()})
+                in_cats = [c for c in (doc.get("value_categories") or [])
+                           if c in (mat.get("categories") or [])]
+                rows.append({
+                    "issue_id": r["issue_id"], "model": r["model"], "run_id": r["run_id"],
+                    "script": r["script"], "value_set": r["value_set"], "rep": r["rep"],
+                    "dry": bool(r["dry"]), "value_once": r.get("value_once", False),
+                    "categories": mat.get("categories") or [],
+                    "cat_n_facts": {c: len(fl) for c, fl in cat_facts.items()},
+                    "in_value": in_cats,
+                    "cat_alive_last": r.get("cat_alive_last_note") or {},
+                    "cat_alive_rounds": per_round,
+                    "final_choice": r.get("final_choice"), "flipped": r.get("flipped"),
+                })
+    return {"dry": dry, "rows": rows}
