@@ -2035,6 +2035,25 @@ def api_pressure_batch_run(req: PressureBatchReq):
 # (바꿔 말하면 놓친다 — 1차 실측 놓침 ~25%·헛짚음 1%). 화면이 이 경고를 함께 단다.
 
 
+@app.get("/api/pressure/material")
+def api_pressure_material(issue_id: str):
+    """재료(시나리오) 원문 한 벌 — 콘솔 집계 탭의 「이 시나리오가 뭔가」 블록용 (0콜)."""
+    if str(PRESSURE_DIR) not in sys.path:
+        sys.path.insert(0, str(PRESSURE_DIR))
+    try:
+        import importlib
+        rp = importlib.import_module("run_pressure")
+    except Exception as e:
+        raise HTTPException(500, f"러너 import 실패: {e}")
+    path = rp.discover_materials().get(issue_id)
+    if path is None:
+        raise HTTPException(404, f"재료를 찾을 수 없음: {issue_id}")
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception as e:
+        raise HTTPException(500, f"재료 파일 읽기 실패: {e}")
+
+
 @app.get("/api/pressure/catscan")
 def api_pressure_catscan(dry: bool = False):
     if str(PRESSURE_DIR) not in sys.path:
