@@ -42,6 +42,7 @@
   table{width:100%;border-collapse:collapse;font-size:12px}
   th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
   th{background:var(--note);font-weight:600}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
   .cell{max-width:280px}
   .cell .meta{color:var(--dim);font-size:10px;margin-bottom:3px}
   .cell .txt{white-space:pre-wrap;word-break:break-word;max-height:130px;overflow:auto}
@@ -452,17 +453,23 @@
 <!-- ─── 압박 집계 — 카테고리별 결과 (2026-08-28 추가) ───────────────────── -->
 <section id="pcat">
   <div class="panel">
-    <h2>가치 카테고리별 결과 집계 <button class="alt" id="pc_refresh" style="padding:3px 10px;font-size:11px;margin-left:8px">새로고침</button></h2>
-    <p class="why">runs/ 원문을 채점기(scan_pressure)와 <b>같은 자</b>로 읽어(0콜) 카테고리
-       이름별로 모은다. 생존 = 마지막 수첩에 그 카테고리 사실의 표식이 1개 이상 남음(기계 검색) ·
-       r0 진입 = 첫 수첩에 1개 이상 오름. 안 = 그 판의 가치 세트에 든 카테고리, 밖 = 안 든 것.
-       ⚠ 표식은 「있다」만 믿을 수 있다 — 바꿔 말하면 놓친다(1차 실측 놓침 ~25%·헛짚음 1%).
-       수치가 걸리는 칸은 반드시 원문을 눈으로 확인. 같은 <b>이름</b>의 카테고리끼리만 묶인다 —
-       저자마다 이름을 다르게 지었으면 다른 줄이고, 재료 수가 적은 줄은 그 재료의 성질이 섞여 있다.</p>
+    <h2>압박 결과 집계 <button class="alt" id="pc_refresh" style="padding:3px 10px;font-size:11px;margin-left:8px">새로고침</button></h2>
+    <p class="why">runs/ 원문을 채점기(scan_pressure)와 <b>같은 자</b>로 읽는다(0콜). 기본은
+       <b>시나리오(재료)별</b> — 이 표가 답하는 질문 셋: ① 어느 재료에서 뒤집힘이 났나
+       ② 안(그 판의 가치 세트에 든 카테고리)과 밖의 수첩 생존 격차가 재료마다 얼마나 다른가
+       ③ 어느 재료가 판이 부족한가. 카테고리 이름은 재료마다 저자가 다르게 지어서
+       재료를 건너 묶으면 뜻이 흐려진다 — 카테고리 비교는 재료를 골라 <b>상세에서</b> 본다.
+       ⚠ 표식은 「있다」만 믿을 수 있다(1차 실측 놓침 ~25%·헛짚음 1%) — 걸리는 칸은 원문 확인.</p>
     <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
+      <label style="display:inline-flex;gap:5px;align-items:center;font-weight:400">보기
+        <select id="pc_view" style="width:auto">
+          <option value="scn">시나리오별</option>
+          <option value="cat">카테고리별 (재료 건너 합산 — 참고용)</option></select></label>
+      <label style="display:inline-flex;gap:5px;align-items:center;font-weight:400;cursor:pointer" id="pc_split_wrap">
+        <input type="checkbox" id="pc_split" style="width:auto"> 모델별로 나누기</label>
       <label style="display:inline-flex;gap:5px;align-items:center;font-weight:400">실행
         <select id="pc_dry" style="width:auto"><option value="">live (실호출)</option><option value="1">dry (리허설)</option></select></label>
-      <label style="display:inline-flex;gap:5px;align-items:center;font-weight:400;cursor:pointer">
+      <label style="display:inline-flex;gap:5px;align-items:center;font-weight:400;cursor:pointer" id="pc_min2_wrap">
         <input type="checkbox" id="pc_min2" checked style="width:auto"> 재료 1벌뿐인 줄 숨기기</label>
       <span id="pc_filters"></span>
     </div>
@@ -470,10 +477,11 @@
     <div class="runlist" style="max-height:420px"><table id="pc_table"></table></div>
   </div>
   <div class="panel">
-    <h2 id="pc_dtitle">카테고리 상세</h2>
-    <p class="why">위 표에서 줄을 누르면 그 카테고리가 있는 판들이 여기 뜬다. 「사실 생존」은
-       그 카테고리 사실이 라운드별 수첩(r0→r1→r2)에 몇 개 남았는지 / 전체 개수.
+    <h2 id="pc_dtitle">상세</h2>
+    <p class="why">위 표에서 줄을 누르면 상세가 여기 뜬다. 시나리오별 보기에선 그 재료의
+       각본×세트 격자(rep 단위 뒤집힘), 재료 안 카테고리 안/밖 비교, 판 목록.
        「원문」을 누르면 압박 결과 탭의 라운드별 원문으로 간다.</p>
+    <div id="pc_scn_detail"></div>
     <div class="runlist" style="max-height:420px"><table id="pc_runs"></table></div>
   </div>
 </section>
@@ -1950,7 +1958,12 @@ function pbBoot(){
 
 // ─── 압박 집계 — 카테고리별 결과 (2026-08-28 추가) ───
 // 채점은 서버(/api/pressure/catscan — scan_pressure 를 import)가 하고 여기는 모아 그리기만.
-const PC={rows:null, sel:null, dry:false};
+const PC={rows:null, sel:null, selInfo:null, dry:false, view:'scn', split:false};
+const pcPct=(a,n)=>n?Math.round(100*a/n)+'% ('+a+'/'+n+')':'\u2014';
+const pcCell=(a,n,tip)=>{ const td=el('td','num');
+  if(!n) td.textContent='—';
+  else td.innerHTML='<b>'+Math.round(100*a/n)+'%</b> <span style="color:var(--dim);font-size:10px">'+a+'/'+n+'</span>';
+  if(tip) td.title=tip; return td; };
 async function pcLoad(force){
   if(PC.rows && !force){ pcRender(); return; }
   $('#pc_sum').textContent='불러오는 중… (runs/ 전체를 읽습니다 — 몇 초 걸릴 수 있음)';
@@ -2000,6 +2013,124 @@ function pcAgg(){
 }
 function pcRender(){
   if(!PC.rows) return;
+  const w=$('#pc_min2_wrap'); if(w) w.style.display=(PC.view==='cat')?'inline-flex':'none';
+  const sw=$('#pc_split_wrap'); if(sw) sw.style.display=(PC.view==='cat')?'none':'inline-flex';
+  if(PC.view==='cat') pcRenderCat(); else pcRenderScn();
+}
+// ─── 시나리오(재료)별 집계 — 기본 보기 ───
+function pcAggScn(){
+  const rows=PC.rows.filter(pcMatch);
+  const agg={};
+  rows.forEach(r=>{
+    const key=PC.split? r.issue_id+' · '+r.model : r.issue_id;
+    const a=(agg[key]=agg[key]||{iid:r.issue_id, model:PC.split?String(r.model):null,
+      runs:0,flips:0,scripts:new Set(),sets:new Set(),
+      io:{in:{n:0,alive:0,r0:0}, out:{n:0,alive:0,r0:0}}});
+    a.runs++; if(r.flipped) a.flips++;
+    a.scripts.add(String(r.script)); a.sets.add(String(r.value_set));
+    (r.categories||[]).forEach(c=>{
+      const s=a.io[(r.in_value||[]).includes(c)?'in':'out'];
+      s.n++;
+      if((r.cat_alive_last||{})[c]) s.alive++;
+      const rd=(r.cat_alive_rounds||[])[0];
+      if(rd && rd[c]>0) s.r0++;
+    });
+  });
+  return {rows, agg};
+}
+function pcRenderScn(){
+  const {rows, agg}=pcAggScn();
+  const t=$('#pc_table'); t.innerHTML='';
+  const ids=Object.keys(agg);
+  const tot={n:0,flips:0, i:{n:0,alive:0}, o:{n:0,alive:0}};
+  Object.values(agg).forEach(a=>{ tot.n+=a.runs; tot.flips+=a.flips;
+    tot.i.n+=a.io.in.n; tot.i.alive+=a.io.in.alive;
+    tot.o.n+=a.io.out.n; tot.o.alive+=a.io.out.alive; });
+  const pi=tot.i.n?Math.round(100*tot.i.alive/tot.i.n):null,
+        po=tot.o.n?Math.round(100*tot.o.alive/tot.o.n):null;
+  $('#pc_sum').innerHTML='<b>'+rows.length+'판 · '+(PC.split?'재료×모델 ':'재료 ')+ids.length+'개</b> (필터 적용)'
+    +((pi!==null&&po!==null)
+      ?' — 가치로 준(안) 카테고리는 마지막 수첩에 <b>'+pi+'%</b> 남고, 안 준(밖) 쪽은 <b>'+po+'%</b> → 가치 효과 <b>'+((pi-po)>0?'+':'')+(pi-po)+'%p</b>':'')
+    +' · 최종 선택이 뒤집힌 판 <b>'+tot.flips+'</b>'+(tot.n?' ('+Math.round(100*tot.flips/tot.n)+'%)':'')
+    +'<br><span style="color:var(--dim)">칸에 마우스를 올리면 그 숫자가 무엇을 센 것인지 뜹니다 · 정렬: 뒤집힘 많은 줄 → 효과 큰 줄</span>';
+  const hr=el('tr');
+  const HEAD=[['재료','시나리오(재료) 이름 — 줄을 누르면 아래 상세'],
+   ['판','이 줄로 집계된 판(런) 수 — 현재 필터 적용'],
+   ['뒤집힘','최종 선택이 가치 정렬 답과 반대로 나온 판 수 — 판 단위'],
+   ['안: 수첩 생존','그 판의 가치 세트에 든 카테고리가 마지막 수첩에 남은 비율 — 카테고리×판 쌍 단위'],
+   ['밖: 수첩 생존','가치 세트에 안 든 카테고리가 마지막 수첩에 남은 비율 — 카테고리×판 쌍 단위'],
+   ['가치 효과','안 생존율 − 밖 생존율 (%p). 양수 = 가치로 준 쪽이 더 살아남음'],
+   ['돌린 조합','이 줄에서 돌린 각본 × 가치 세트']];
+  if(PC.split) HEAD.splice(1,0,['모델','이 줄이 집계한 모델']);
+  HEAD.forEach(([h,tip])=>{ const x=el('th',null,h); x.title=tip; hr.append(x); });
+  t.append(hr);
+  const NC=HEAD.length;
+  const ent=Object.entries(agg).map(([key,a])=>{
+    const gi=a.io.in.n?a.io.in.alive/a.io.in.n:null, go=a.io.out.n?a.io.out.alive/a.io.out.n:null;
+    return [key,a,(gi!==null&&go!==null)?gi-go:null];
+  }).sort((x,y)=>(y[1].flips-x[1].flips)
+    || ((y[2]===null?-9:Math.abs(y[2]))-(x[2]===null?-9:Math.abs(x[2]))));
+  // 합산 줄 — 나누기 켬: 모델별 한 줄씩 / 끔: 전체 한 줄
+  const totRow=(label,model,a)=>{
+    const tr=el('tr'); tr.style.fontWeight='700';
+    tr.append(el('td',null,label));
+    if(PC.split) tr.append(el('td',null,model||''));
+    tr.append(el('td','num',String(a.n)));
+    const fl=el('td','num',a.flips+'판'+(a.n?' '+Math.round(100*a.flips/a.n)+'%':''));
+    fl.title='최종 선택이 뒤집힌 판 ('+a.n+'판 중)'; tr.append(fl);
+    tr.append(pcCell(a.i.alive,a.i.n,'가치 세트에 든 카테고리×판 쌍 '+a.i.n+'개 중 '+a.i.alive+'개 — 마지막 수첩에 남음'));
+    tr.append(pcCell(a.o.alive,a.o.n,'가치 세트에 안 든 카테고리×판 쌍 '+a.o.n+'개 중 '+a.o.alive+'개 — 마지막 수첩에 남음'));
+    const gi=a.i.n?a.i.alive/a.i.n:null, go=a.o.n?a.o.alive/a.o.n:null;
+    const g=(gi!==null&&go!==null)?Math.round(100*(gi-go)):null;
+    const gd=el('td','num',g===null?'—':(g>0?'+':'')+g+'%p');
+    gd.title='안 생존율 − 밖 생존율'; tr.append(gd);
+    tr.append(el('td',null,''));
+    t.append(tr);
+  };
+  if(PC.split){
+    const pm={};
+    rows.forEach(r=>{ const m=String(r.model);
+      const a=(pm[m]=pm[m]||{n:0,flips:0,i:{n:0,alive:0},o:{n:0,alive:0}});
+      a.n++; if(r.flipped) a.flips++;
+      (r.categories||[]).forEach(c=>{
+        const sd=(r.in_value||[]).includes(c)?'i':'o';
+        a[sd].n++;
+        if((r.cat_alive_last||{})[c]) a[sd].alive++;
+      });
+    });
+    Object.entries(pm).sort((x,y)=>y[1].n-x[1].n)
+      .forEach(([m,a])=>totRow('(전체)',m,a));
+  } else if(tot.n){
+    totRow('(전체 — '+ids.length+'개 재료 합산)',null,
+      {n:tot.n,flips:tot.flips,i:tot.i,o:tot.o});
+  }
+  ent.forEach(([key,a,gap])=>{
+    const tr=el('tr');
+    if(PC.sel===key) tr.classList.add('sel');
+    tr.append(el('td',null,a.iid));
+    if(PC.split) tr.append(el('td',null,a.model||''));
+    const rn=el('td','num',String(a.runs));
+    rn.title='이 줄로 집계된 판 수 (필터 적용)'; tr.append(rn);
+    const fl=el('td');
+    if(a.flips){ fl.className='warn num';
+      fl.innerHTML='<b>'+a.flips+'판</b> <span style="font-size:10px">'+Math.round(100*a.flips/a.runs)+'%</span>'; }
+    else { fl.className='num'; fl.textContent='0'; }
+    fl.title='최종 선택이 가치 정렬 답과 반대로 나온 판 (이 줄 '+a.runs+'판 중 '+a.flips+'판)';
+    tr.append(fl);
+    tr.append(pcCell(a.io.in.alive,a.io.in.n,'가치 세트에 든 카테고리×판 쌍 '+a.io.in.n+'개 중 '+a.io.in.alive+'개 — 마지막 수첩에 그 카테고리 사실 표식이 남음'));
+    tr.append(pcCell(a.io.out.alive,a.io.out.n,'가치 세트에 안 든 카테고리×판 쌍 '+a.io.out.n+'개 중 '+a.io.out.alive+'개 — 마지막 수첩에 남음'));
+    const gd=el('td','num',gap===null?'—':(gap>0?'+':'')+Math.round(100*gap)+'%p');
+    gd.title='안 생존율 − 밖 생존율. 양수 = 가치로 준 쪽이 더 남음'; tr.append(gd);
+    tr.append(el('td',null,[...a.scripts].sort().join('·')+' × '+[...a.sets].sort().join('·')));
+    tr.onclick=()=>{ PC.sel=key; PC.selInfo={iid:a.iid, model:a.model}; pcRender(); pcDetail(); };
+    t.append(tr);
+  });
+  if(!ent.length){ const tr=el('tr'); const td=el('td','empty','대상 런 없음 — 필터를 확인하세요');
+    td.colSpan=NC; tr.append(td); t.append(tr); }
+}
+// ─── 카테고리별 집계 — 참고용 (재료 건너 이름 합산) ───
+function pcRenderCat(){
+  if(!PC.rows) return;
   const {rows, agg}=pcAgg();
   $('#pc_sum').innerHTML='<b>'+rows.length+'판</b> 집계 (필터 적용) · 카테고리 이름 '+Object.keys(agg).length+'개'
     +' · <span style="color:var(--dim)">생존율 = 마지막 수첩 기계 생존 판수 / 그쪽(안·밖) 판수 · 격차가 큰 순서</span>';
@@ -2047,8 +2178,165 @@ function pcRender(){
   if(!ent.length){ const tr=el('tr'); const td=el('td','empty','대상 런 없음 — 필터를 확인하세요');
     td.colSpan=8; tr.append(td); t.append(tr); }
 }
-function pcDetail(){
-  const c=PC.sel; const t=$('#pc_runs'); t.innerHTML='';
+function pcDetail(){ if(PC.view==='cat') pcDetailCat(); else pcDetailScn(); }
+async function pcDetailScn(){
+  const info=PC.selInfo; const iid=info&&info.iid;
+  const host=$('#pc_scn_detail'); host.innerHTML='';
+  const t=$('#pc_runs'); t.innerHTML='';
+  $('#pc_dtitle').textContent='재료 상세 — 「'+(iid||'')+'」'+(info&&info.model?' · '+info.model:'');
+  if(!iid) return;
+  let rows=PC.rows.filter(pcMatch).filter(r=>r.issue_id===iid);
+  if(info.model) rows=rows.filter(r=>String(r.model)===info.model);
+  if(!rows.length) return;
+  // ⓪ 이 시나리오가 뭔가 — 재료 원문 (캐시, 0콜)
+  const esc=x=>String(x==null?'':x).replace(/</g,'&lt;');
+  let mat=null;
+  try{
+    PC.mats=PC.mats||{};
+    if(!(iid in PC.mats))
+      PC.mats[iid]=await (await fetch('/api/pressure/material?issue_id='+encodeURIComponent(iid))).json();
+    mat=PC.mats[iid];
+  }catch(e){ mat=null; }
+  if(mat && mat.issue_id){
+    const box=el('div');
+    box.style.cssText='padding:10px 12px;border-radius:7px;background:var(--note);margin-bottom:8px;font-size:12px';
+    box.innerHTML='<div style="font-weight:600;margin-bottom:4px">이 시나리오 — 선택지: '
+      +esc((mat.options||[]).join(' ↔ '))+'</div>'
+      +'<div style="white-space:pre-wrap;max-height:160px;overflow:auto">'+esc(mat.stub)+'</div>';
+    const vs=mat.value_sets||{};
+    const vsLine=Object.entries(vs).map(([k,v])=>
+      '<b>'+esc(k)+'</b> → '+esc(v.aligned||'?')+' ('+esc((v.categories||[]).join('·'))+')').join(' &nbsp;·&nbsp; ');
+    if(vsLine){ const d=el('div'); d.style.cssText='margin-top:6px';
+      d.innerHTML='가치 세트(정렬 답·든 카테고리): '+vsLine; box.append(d); }
+    host.append(box);
+    const facts=mat.facts||[];
+    if(facts.length){
+      const det=document.createElement('details');
+      const sm=document.createElement('summary');
+      sm.textContent='사실 '+facts.length+'개 원문 — 카테고리·표식·편드는 쪽';
+      sm.style.cssText='cursor:pointer;font-weight:600;font-size:12px;margin:4px 0';
+      det.append(sm);
+      const ft=el('table'); const fhr=el('tr');
+      ['id','카테고리','사실','표식','편'].forEach(x=>fhr.append(el('th',null,x)));
+      ft.append(fhr);
+      facts.forEach(f=>{
+        const tr=el('tr');
+        [f.id,f.category,f.text,f.anchor||'',f.favors||'']
+          .forEach(v=>tr.append(el('td',null,String(v==null?'':v))));
+        ft.append(tr);
+      });
+      det.append(ft); host.append(det);
+    }
+    const det2=document.createElement('details');
+    const sm2=document.createElement('summary');
+    sm2.textContent='가치문·각본 대사 원문';
+    sm2.style.cssText='cursor:pointer;font-weight:600;font-size:12px;margin:4px 0 8px';
+    det2.append(sm2);
+    Object.entries(vs).forEach(([k,v])=>{
+      const d=el('div'); d.style.cssText='margin:4px 0;font-size:12px';
+      d.innerHTML='<b>세트 '+esc(k)+'</b> (정렬 답 '+esc(v.aligned||'?')+') — <span style="white-space:pre-wrap">'+esc(v.statement)+'</span>';
+      det2.append(d);
+    });
+    Object.entries(mat.scripts||{}).forEach(([k,v])=>{
+      const line=v.line||((v.lines||[]).join(' / '));
+      const d=el('div'); d.style.cssText='margin:4px 0;font-size:12px;color:var(--dim)';
+      d.innerHTML='<b style="color:var(--ink)">'+esc(k)+'</b> '+esc(v.label||'')+' — '+esc(line)
+        +(v.line_r0?('<br>r0: '+esc(v.line_r0)):'');
+      det2.append(d);
+    });
+    host.append(det2);
+  } else {
+    host.append(el('div','foot','재료 원문을 불러오지 못함 — 재료 파일이 없거나(삭제·개명) 서버가 재시작 전'));
+  }
+  const cap=(txt,top)=>{ const d=el('div',null,txt);
+    d.style.cssText='font-weight:600;font-size:12px;margin:'+(top?'12px':'2px')+' 0 2px'; return d; };
+  const sub=(txt)=>{ const d=el('div','foot',txt); d.style.margin='0 0 5px'; return d; };
+  // ① 어느 조합에서 뒤집혔나
+  const scripts=[...new Set(rows.map(r=>String(r.script)))].sort();
+  const sets=[...new Set(rows.map(r=>String(r.value_set)))].sort();
+  const gt=el('table'); const ghr=el('tr'); ghr.append(el('th',null,'각본↓ 세트→'));
+  sets.forEach(vs=>ghr.append(el('th',null,vs))); gt.append(ghr);
+  scripts.forEach(sc=>{
+    const tr=el('tr'); tr.append(el('th',null,sc));
+    sets.forEach(vs=>{
+      const cell=rows.filter(r=>String(r.script)===sc&&String(r.value_set)===vs)
+        .sort((a,b)=>(a.rep||0)-(b.rep||0));
+      const marks=cell.map(r=>r.flipped?'⚠':'○').join(' ');
+      const td=el('td',null,marks||'—');
+      td.title=cell.length
+        ? cell.map(r=>(r.flipped?'⚠ 뒤집힘':'○ 유지')+' — '+r.run_id).join('\n')
+        : '이 조합은 판 없음';
+      if(marks.includes('⚠')) td.className='warn';
+      tr.append(td);
+    });
+    gt.append(tr);
+  });
+  host.append(cap('어느 조합에서 뒤집혔나 — 각본 × 세트, 칸 안은 rep 순서',false));
+  host.append(sub('○ 최종 선택이 가치 정렬 답과 같음(유지) · ⚠ 반대(뒤집힘) · — 판 없음 · 칸에 마우스를 올리면 run_id'));
+  host.append(gt);
+  // ② 카테고리 안/밖 비교 — 거울 비교가 성립하는 자리
+  const cagg={};
+  rows.forEach(r=>{ (r.categories||[]).forEach(c=>{
+    const a=(cagg[c]=cagg[c]||{nf:(r.cat_n_facts||{})[c]||0,
+      io:{in:{n:0,alive:0,r0:0},out:{n:0,alive:0,r0:0}}});
+    const s=a.io[(r.in_value||[]).includes(c)?'in':'out'];
+    s.n++; if((r.cat_alive_last||{})[c]) s.alive++;
+    const rd=(r.cat_alive_rounds||[])[0]; if(rd&&rd[c]>0) s.r0++;
+  });});
+  const ct=el('table'); const chr=el('tr');
+  [['카테고리','재료가 정한 카테고리 이름'],
+   ['사실','이 카테고리에 속한 사실 개수'],
+   ['안: r0 진입','가치로 준 판에서, 첫 수첩(r0)에 이 카테고리 사실이 오른 비율'],
+   ['안: 최종 생존','가치로 준 판에서, 마지막 수첩까지 남은 비율'],
+   ['밖: r0 진입','가치로 안 준 판에서, 첫 수첩(r0)에 오른 비율'],
+   ['밖: 최종 생존','가치로 안 준 판에서, 마지막 수첩까지 남은 비율'],
+   ['가치 효과','안 최종 생존율 − 밖 최종 생존율 (%p)']]
+    .forEach(([h,tip])=>{ const x=el('th',null,h); x.title=tip; chr.append(x); });
+  ct.append(chr);
+  Object.entries(cagg).map(([c,a])=>{
+    const gi=a.io.in.n?a.io.in.alive/a.io.in.n:null, go=a.io.out.n?a.io.out.alive/a.io.out.n:null;
+    return [c,a,(gi!==null&&go!==null)?gi-go:null];
+  }).sort((x,y)=>((y[2]===null?-9:y[2])-(x[2]===null?-9:x[2])))
+  .forEach(([c,a,gap])=>{
+    const tr=el('tr');
+    tr.append(el('td',null,c));
+    tr.append(el('td','num',String(a.nf)));
+    tr.append(pcCell(a.io.in.r0,a.io.in.n,'「'+c+'」가 안(가치 줌)이었던 판 '+a.io.in.n+'개 중 '+a.io.in.r0+'개 — 첫 수첩(r0)에 사실 표식이 오름'));
+    tr.append(pcCell(a.io.in.alive,a.io.in.n,'안이었던 판 '+a.io.in.n+'개 중 '+a.io.in.alive+'개 — 마지막 수첩에 남음'));
+    tr.append(pcCell(a.io.out.r0,a.io.out.n,'밖(가치 안 줌)이었던 판 '+a.io.out.n+'개 중 '+a.io.out.r0+'개 — 첫 수첩(r0)에 오름'));
+    tr.append(pcCell(a.io.out.alive,a.io.out.n,'밖이었던 판 '+a.io.out.n+'개 중 '+a.io.out.alive+'개 — 마지막 수첩에 남음'));
+    const g=el('td','num',gap===null?'— (한쪽뿐)':(gap>0?'+':'')+Math.round(100*gap)+'%p');
+    g.title='안 최종 생존율 − 밖 최종 생존율'; tr.append(g);
+    ct.append(tr);
+  });
+  host.append(cap('카테고리별 — 가치로 줬을 때(안) 대 안 줬을 때(밖) 수첩 생존',true));
+  host.append(sub('같은 재료 안이라 이름·사실 수가 같은 조건 — 거울 비교는 여기서 성립. 세트 A에 든 카테고리는 A판에서 「안」, B판에서 「밖」이 된다.'));
+  host.append(ct);
+  // ③ 판 목록
+  host.append(cap('판 목록 — 「원문」으로 라운드별 원문 이동',true));
+  const hr2=el('tr');
+  ['모델','run_id','각본','세트','rep','최종 선택','원문'].forEach(h=>hr2.append(el('th',null,h)));
+  t.append(hr2);
+  rows.forEach(r=>{
+    const tr=el('tr');
+    [r.model, r.run_id, r.script, r.value_set, r.rep||'',
+     (r.final_choice||'판독불가')+(r.flipped?' ⚠뒤집힘':'')]
+      .forEach((v,i)=>{ const td=el('td',null,String(v));
+        if(i===5&&r.flipped) td.className='warn'; tr.append(td); });
+    const td=el('td');
+    const b=el('button','alt','원문'); b.style.cssText='padding:1px 8px;font-size:10px';
+    b.onclick=(ev)=>{ ev.stopPropagation();
+      const sel={model:r.model, run_id:r.run_id, materials:r.issue_id, issue_id:r.issue_id, dry:r.dry};
+      P.sel=sel;
+      document.querySelector('nav button[data-t=pres]').click();
+      pRenderRuns(); pLoadDetail(sel);
+    };
+    td.append(b); tr.append(td);
+    t.append(tr);
+  });
+}
+function pcDetailCat(){
+  const c=PC.sel; const t=$('#pc_runs'); t.innerHTML=''; $('#pc_scn_detail').innerHTML='';
   $('#pc_dtitle').textContent='카테고리 상세 — 「'+(c||'')+'」';
   if(!c) return;
   const hr=el('tr');
@@ -2077,8 +2365,15 @@ function pcDetail(){
 }
 $('#pc_refresh').onclick=()=>pcLoad(true);
 $('#pc_min2').onchange=pcRender;
-$('#pc_dry').onchange=()=>{ PC.dry=$('#pc_dry').value==='1'; PC.rows=null; PC.sel=null;
-  $('#pc_runs').innerHTML=''; $('#pc_dtitle').textContent='카테고리 상세'; pcLoad(true); };
+$('#pc_view').onchange=()=>{ PC.view=$('#pc_view').value; PC.sel=null; PC.selInfo=null;
+  $('#pc_scn_detail').innerHTML=''; $('#pc_runs').innerHTML='';
+  $('#pc_dtitle').textContent='상세'; pcRender(); };
+$('#pc_split').onchange=()=>{ PC.split=$('#pc_split').checked; PC.sel=null; PC.selInfo=null;
+  $('#pc_scn_detail').innerHTML=''; $('#pc_runs').innerHTML='';
+  $('#pc_dtitle').textContent='상세'; pcRender(); };
+$('#pc_dry').onchange=()=>{ PC.dry=$('#pc_dry').value==='1'; PC.rows=null; PC.sel=null; PC.selInfo=null;
+  $('#pc_scn_detail').innerHTML=''; $('#pc_runs').innerHTML='';
+  $('#pc_dtitle').textContent='상세'; pcLoad(true); };
 document.querySelectorAll('nav button').forEach(b=>{
   if(b.dataset.t==='pcat') b.addEventListener('click', ()=>pcLoad(false));
 });
