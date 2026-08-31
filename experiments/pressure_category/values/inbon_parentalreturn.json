@@ -1,7 +1,7 @@
 {
- "vset_id": "sajeong_smoking_party",
- "materials": "issue_smoking_area_party",
- "materials_hash": "72c4b7e16e70",
+ "vset_id": "inbon_parentalreturn",
+ "materials": "issue_parentalreturn",
+ "materials_hash": "2cb32fba6dc5",
  "items": [
   {
    "category": "보살핌",
@@ -28,5 +28,5 @@
    "content": "마음이 상한 사람을 남기는 결정은 좋은 결정이 아니다."
   }
  ],
- "note": "기획 1 「사정과 기준」 신념 세트 v1 (2026-08-31 요한). 카드 이름=한 단어 신념(측정 밖), 문장=주입 명제. 견인·탐침: TRACTION_belief1·PROBE_belief1_2026-08-31.md. materials_hash는 생성 시점 재료 지문 — 재료 개정 시 재검 필요."
+ "note": "기획 1 신념 세트 v1.1 — 「인본주의」(inbon)·「원칙주의」(wonchik), 구명 사정/기준에서 개명 (2026-08-31 요한). 카드 이름=한 단어 신념(측정 밖), 문장=주입 명제. 견인·탐침: TRACTION_belief1·PROBE_belief1_2026-08-31.md. materials_hash는 생성 시점 재료 지문 — 재료 개정 시 재검 필요."
 }
