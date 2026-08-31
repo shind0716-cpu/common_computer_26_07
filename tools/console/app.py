@@ -1706,6 +1706,78 @@ def api_pressure_valueset(req: PressureValueSetReq):
                      "방향 압박(C1/C2 류)은 러너가 거부합니다. C0 류(방향 없음)로만 쓰세요.")}
 
 
+class PressureBeliefReq(BaseModel):
+    stem: str                      # 이름 줄기 (영숫자·밑줄·하이픈 1~12자)
+    statement: str                 # 문면 — 모든 재료 공통, 그대로 [너의 가치] 칸에 들어감
+    # [{"materials": issue_id, "categories": [그 재료에서 이 신념이 무는 카테고리들]}]
+    # categories 빈 목록 = 무관(대조) 등록 — 문면은 들어가되 측정 밖.
+    targets: list[dict] = []
+
+
+@app.post("/api/pressure/belief")
+def api_pressure_belief(req: PressureBeliefReq):
+    """신념(범용 가치문) 일괄 등록 — 같은 문면을 여러 재료에 values/<줄기_재료>.json 로.
+
+    단건 등록(/api/pressure/valueset)과 같은 규율: 새 파일 추가만, 기존 세트 수정 불가.
+    파일은 구형 statement+categories 형식(러너 discover_value_sets 가 지원) — 문면이
+    재료마다 동일함을 파일 수준에서 보장한다. 정렬 답은 재료 favors 다수결 자동 계산.
+    전 대상 검증을 먼저 통과해야 한 파일이라도 쓴다(반쪽 등록 방지)."""
+    stem = (req.stem or "").strip()
+    if not re.fullmatch(r"[A-Za-z0-9_-]{1,12}", stem):
+        raise HTTPException(400, "이름 줄기는 영숫자·밑줄·하이픈 1~12자 — 재료 접미사가 붙어 24자 안에 들어가야 합니다")
+    statement = (req.statement or "").strip()
+    if not statement:
+        raise HTTPException(400, "문면이 비어 있습니다")
+    if not req.targets:
+        raise HTTPException(400, "재료를 하나 이상 고르세요")
+    reg = _pressure_materials()
+    # 전역 기존 id — 어느 재료든 충돌 금지 (러너 --vsets 선택지가 전역이다)
+    taken = {"A", "B"}
+    for m in reg.values():
+        taken |= set((m.get("vsets") or {}).keys())
+    vdir = PRESSURE_DIR / "values"
+    plan = []
+    for t in req.targets:
+        iid = str(t.get("materials") or "")
+        m = reg.get(iid)
+        if m is None or m.get("broken"):
+            raise HTTPException(400, f"모르는 재료: {iid}")
+        cats = [str(c).strip() for c in (t.get("categories") or []) if str(c).strip()]
+        bad = [c for c in cats if c not in (m.get("categories") or [])]
+        if bad:
+            raise HTTPException(400, f"{iid}: 재료에 없는 카테고리 {', '.join(bad)}")
+        # id = 줄기_재료약칭, 24자 절단 — 절단 충돌 시 숫자 꼬리
+        suffix = iid[6:] if iid.startswith("issue_") else iid
+        vid = f"{stem}_{suffix}"[:24]
+        k = 2
+        while vid in taken or vid in [p["vid"] for p in plan]:
+            vid = (f"{stem}_{suffix}"[:22] + str(k)); k += 1
+            if k > 9:
+                raise HTTPException(409, f"{iid}: 세트 id 를 만들 수 없습니다 — 줄기를 바꾸세요")
+        if (vdir / f"{vid}.json").exists():
+            raise HTTPException(409, f"파일이 이미 있습니다: {vid}.json — 줄기를 바꾸세요")
+        # 무관 등록: 측정 밖 이름 하나를 채워 러너의 빈-카테고리 스킵을 피한다
+        plan.append({"iid": iid, "vid": vid, "cats": cats or ["신념"]})
+    vdir.mkdir(parents=True, exist_ok=True)
+    for p in plan:
+        (vdir / f"{p['vid']}.json").write_text(
+            json.dumps({"vset_id": p["vid"], "materials": p["iid"],
+                        "statement": statement, "categories": p["cats"]},
+                       ensure_ascii=False, indent=2), encoding="utf-8")
+    reg = _pressure_materials()   # 재발견 — aligned 자동 계산 반영
+    results = []
+    for p in plan:
+        v = (reg[p["iid"]].get("vsets") or {}).get(p["vid"]) or {}
+        mapped = v.get("mapped") or []
+        aligned = v.get("aligned")
+        results.append({"materials": p["iid"], "vset_id": p["vid"],
+                        "file": f"{p['vid']}.json", "aligned": aligned, "mapped": mapped,
+                        "note": ("무관(대조) — 측정 카테고리 없음, C0 류만 가능" if not mapped
+                                 else None if aligned else
+                                 "정렬 불명(우세 동수) — 뒤집힘 측정·방향 압박 불가, C0 류만")})
+    return {"ok": True, "results": results}
+
+
 @app.get("/api/pressure/runs")
 def api_pressure_runs():
     """runs/<model>/ + runs/_dry/<model>/ 스캔 → 런 목록(최신순). _solo_scan 과 같은

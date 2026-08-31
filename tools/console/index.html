@@ -426,6 +426,26 @@
     </div>
   </div>
   <div class="panel">
+    <h2>신념 일괄 등록 — 같은 문면을 여러 재료에</h2>
+    <p class="why">신념(어떤 시나리오에서도 쓸 수 있는 범용 가치문) 하나를 고른 재료 전부에
+       등록한다. 문면은 모든 재료에서 같고, 재료마다 <b>이 신념이 무는 카테고리</b>만 체크한다 —
+       정렬 답은 체크한 카테고리의 favors 다수결로 자동 계산. 카테고리를 하나도 안 체크하면
+       <b>무관(대조) 등록</b>: 문면은 들어가되 측정 밖 — 방향 압박(C1/C2)은 러너가 거부하고
+       C0 류만 돈다(음성 대조용). 등록은 새 이름 추가만 — 문면을 고치려면 새 줄기로.</p>
+    <div class="grid">
+      <div><label>이름 줄기<span class="h">영숫자·밑줄·하이픈 1~12자 — 재료별로 「줄기_재료」 세트 id 가 생긴다</span></label>
+        <input type="text" id="bl_stem" placeholder="comm_deont"></div>
+    </div>
+    <div style="margin-top:8px"><label>문면 — 모든 재료 공통<span class="h">기존 가치문과 같은 틀 권장: "너는 이렇게 살아온 사람이다: … 믿는다." 두 문장. 여러 신념을 등록할 땐 길이·형식을 서로 맞출 것(문면 교락 방지)</span></label>
+      <textarea id="bl_stmt" rows="3" placeholder="너는 이렇게 살아온 사람이다: …"></textarea></div>
+    <div id="bl_mats" style="margin-top:10px"></div>
+    <div style="margin-top:8px;display:flex;gap:9px;align-items:center;flex-wrap:wrap">
+      <button class="alt" id="bl_btn">신념 등록 (선택 재료 전부)</button>
+      <span class="foot" id="bl_msg">전 재료 검증을 통과해야 등록됩니다 — 하나라도 틀리면 아무것도 안 씁니다.</span>
+    </div>
+    <div id="bl_res" style="margin-top:8px"></div>
+  </div>
+  <div class="panel">
     <h2>실행 로그</h2>
     <p class="why">호출 단위 체크포인트(.partial.jsonl)가 있어 중단해도 재실행하면 이어간다.
        실행 슬롯은 debate·단독과 공유 — 동시 실행은 1개다. 채점(카테고리 생존·뒤집힘 집계)은
@@ -1522,6 +1542,68 @@ $('#pv_btn').onclick=async()=>{
   pSyncMaterials(); pEstimate();
 };
 
+// ─── 신념 일괄 등록 — 같은 문면을 여러 재료의 values/*.json 로 ───
+function blRender(){
+  const host=$('#bl_mats'); if(!host||!P.meta) return; host.innerHTML='';
+  const cap=el('div'); cap.style.cssText='font-weight:600;font-size:12px;margin-bottom:5px';
+  cap.append(document.createTextNode('재료 선택 + 그 재료에서 이 신념이 무는 카테고리 체크 (체크 0개 = 무관 대조) '));
+  const ba=el('button','alt','전체 선택'); ba.style.cssText='padding:1px 8px;font-size:10px;margin-left:6px';
+  ba.onclick=()=>document.querySelectorAll('input[data-blm]').forEach(c=>c.checked=true);
+  const bn=el('button','alt','전체 해제'); bn.style.cssText='padding:1px 8px;font-size:10px;margin-left:4px';
+  bn.onclick=()=>document.querySelectorAll('input[data-blm],input[data-blc]').forEach(c=>c.checked=false);
+  cap.append(ba); cap.append(bn); host.append(cap);
+  Object.entries(P.meta.materials||{}).forEach(([iid,m])=>{
+    if(m.broken||m.example) return;
+    const row=el('div'); row.style.cssText='margin:3px 0;font-size:12px';
+    const l=el('label'); l.style.cssText='display:inline-flex;gap:5px;align-items:center;cursor:pointer;font-weight:600';
+    const c=el('input'); c.type='checkbox'; c.dataset.blm=iid; c.style.width='auto';
+    l.append(c); l.append(document.createTextNode(iid)); row.append(l);
+    const cats=el('span'); cats.style.cssText='margin-left:10px';
+    (m.categories||[]).forEach(cat=>{
+      const cl=el('label'); cl.style.cssText='display:inline-flex;gap:3px;margin:0 8px 0 0;align-items:center;cursor:pointer;font-weight:400';
+      const cc=el('input'); cc.type='checkbox'; cc.dataset.blc=iid; cc.value=cat; cc.style.width='auto';
+      cc.onchange=()=>{ if(cc.checked) c.checked=true; };
+      cl.append(cc); cl.append(document.createTextNode(cat)); cats.append(cl);
+    });
+    row.append(cats); host.append(row);
+  });
+}
+$('#bl_btn').onclick=async()=>{
+  const stem=$('#bl_stem').value.trim(), stmt=$('#bl_stmt').value.trim();
+  const targets=[...document.querySelectorAll('input[data-blm]')].filter(c=>c.checked)
+    .map(c=>({materials:c.dataset.blm,
+      categories:[...document.querySelectorAll('input[data-blc="'+c.dataset.blm+'"]')]
+        .filter(x=>x.checked).map(x=>x.value)}));
+  if(!stem||!stmt||!targets.length){
+    $('#bl_msg').innerHTML='<span class="warn">✗ 줄기·문면·재료를 채우세요</span>'; return; }
+  $('#bl_msg').textContent='등록 중…';
+  let r,d;
+  try{
+    r=await fetch('/api/pressure/belief',{method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({stem, statement:stmt, targets})});
+    d=await r.json();
+  }catch(e){ $('#bl_msg').innerHTML='<span class="warn">✗ 서버 연결 실패</span>'; return; }
+  if(!r.ok){ $('#bl_msg').innerHTML='<span class="warn">✗ '+(d.detail||'실패')+' — 아무것도 등록 안 됨</span>'; return; }
+  $('#bl_msg').textContent='✓ '+d.results.length+'개 재료에 등록됨 — 아래 표와 실행 폼·일괄 탭(등록 세트 전부)에 바로 뜬다';
+  const res=$('#bl_res'); res.innerHTML='';
+  const t=el('table'); const hr=el('tr');
+  ['재료','세트 id','정렬 답','무는 카테고리','비고'].forEach(h=>hr.append(el('th',null,h)));
+  t.append(hr);
+  d.results.forEach(x=>{
+    const tr=el('tr');
+    [x.materials, x.vset_id, x.aligned||'—',
+     (x.mapped||[]).join('·')||'무관(대조)', x.note||''].forEach((v,i)=>{
+      const td=el('td',null,String(v));
+      if(i===4&&x.note) td.className='warn';
+      tr.append(td); });
+    t.append(tr);
+  });
+  res.append(t);
+  try{ P.meta=await (await fetch('/api/pressure/meta')).json(); }catch(e){}
+  pSyncMaterials(); pEstimate();
+};
+
 // 시나리오를 고르면 가치 세트 칸의 라벨(카테고리·정렬 답)을 그 재료 것으로 다시 그린다.
 function pSyncMaterials(){
   const m=(P.meta.materials||{})[$('#p_materials').value];
@@ -1787,6 +1869,7 @@ async function pboot(){
   mats.value=real?real[0]:((P.meta.example_materials||[])[0]||'');
   pRenderScripts();
   pSyncMaterials();
+  blRender();
   ck($('#p_reps'), [['1','1'],['2','2'],['3','3']], 'prp');
   mats.addEventListener('change', ()=>{ pSyncMaterials(); pEstimate(); });
   if(!P.meta.runner_exists)
@@ -2274,6 +2357,28 @@ async function pcDetailScn(){
   host.append(cap('어느 조합에서 뒤집혔나 — 각본 × 세트, 칸 안은 rep 순서',false));
   host.append(sub('○ 최종 선택이 가치 정렬 답과 같음(유지) · ⚠ 반대(뒤집힘) · — 판 없음 · 칸에 마우스를 올리면 run_id'));
   host.append(gt);
+  // ①b 카테고리 생존 × 가치 세트 — "신념에 따라 어떤 정보가 죽고 사는가"의 화면
+  {
+    const sets2=[...new Set(rows.map(r=>String(r.value_set)))].sort();
+    const catsAll=[...new Set(rows.flatMap(r=>r.categories||[]))];
+    const st=el('table'); const shr=el('tr'); shr.append(el('th',null,'카테고리 \\ 세트'));
+    sets2.forEach(vs=>{ const h=el('th',null,vs);
+      h.title='이 세트(신념)를 준 판들에서, 각 카테고리 사실이 마지막 수첩에 남은 비율'; shr.append(h); });
+    st.append(shr);
+    catsAll.forEach(c=>{
+      const tr=el('tr'); tr.append(el('th',null,c));
+      sets2.forEach(vs=>{
+        const rr=rows.filter(r=>String(r.value_set)===vs&&(r.categories||[]).includes(c));
+        const alive=rr.filter(r=>(r.cat_alive_last||{})[c]).length;
+        tr.append(pcCell(alive,rr.length,'세트 「'+vs+'」 판 '+rr.length+'개 중 '+alive+'개 — 「'+c+'」 사실이 마지막 수첩에 남음'));
+      });
+      st.append(tr);
+    });
+    host.append(cap('카테고리 생존 × 가치 세트 — 세트(신념)마다 어떤 정보가 살아남는가',true));
+    const s2=el('div','foot','세로로 읽으면 그 세트의 편식 프로필, 가로로 읽으면 그 카테고리를 살리는 세트. 위 필터(각본·모델)가 그대로 적용된다 — 신념 비교는 C0만 걸고 볼 것.');
+    s2.style.margin='0 0 5px'; host.append(s2);
+    host.append(st);
+  }
   // ② 카테고리 안/밖 비교 — 거울 비교가 성립하는 자리
   const cagg={};
   rows.forEach(r=>{ (r.categories||[]).forEach(c=>{
