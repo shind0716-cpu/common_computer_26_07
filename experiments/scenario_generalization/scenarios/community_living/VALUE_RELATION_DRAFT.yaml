@@ -1,0 +1,495 @@
+schema: value_relation_draft_v1
+status: development_only
+category_id: community_living
+interpretation_note: 아래 관계는 결론의 정답이나 사실의 보존·삭제 명령이 아니다. 각 사실 또는 주장이 해당 가치에서 어떤 고려 방향을 열 수 있는지에 대한 실행 전 초안이다. conflicting 정보도
+  정확히 보존해 반박·양보·조건화할 수 있으며, 문맥상 두 방향이 가능하면 ambiguous를 쓴다.
+approved_value_ids:
+- legitimate_boundary_setting
+- reciprocal_accommodation
+- adaptive_reassessment
+relation_labels:
+- aligned
+- conflicting
+- neutral
+- ambiguous
+scenario_variant_codings:
+- scenario_id: apartment_quiet_hours
+  variant_id: baseline
+  core_items:
+  - item_id: AQ_F03
+    item_type: fact
+    item_summary: 202호의 화·수·목 저녁 수면 시간과 사전 예고 가능한 근무표
+    relation_codings:
+    - value_id: legitimate_boundary_setting
+      relation: aligned
+      relevance: core
+      coding_basis: 수면 시간은 정숙 최소선을 검토할 직접 조건이지만 자동 우선권은 아니다.
+      alternative_reading: 정숙 시간 밖의 필요이므로 전부 협의 영역이라고 읽을 수도 있다.
+      review_status: not_reviewed
+    - value_id: reciprocal_accommodation
+      relation: aligned
+      relevance: core
+      coding_basis: 월별 근무표의 예고 가능성은 상대가 감당 가능한 조정을 나눌 가능성을 연다.
+      alternative_reading: 예고 가능성이 한쪽의 반복 양보를 정당화하지는 않는다.
+      review_status: not_reviewed
+    - value_id: adaptive_reassessment
+      relation: ambiguous
+      relevance: supporting
+      coding_basis: 근무표는 재검토 자료지만 현재 문면만으로 기존 합의의 변화 여부는 알 수 없다.
+      alternative_reading: 월별 변동 자체를 정기 재검토 사유로 볼 수 있다.
+      review_status: not_reviewed
+  - item_id: AQ_F05
+    item_type: fact
+    item_summary: 302호가 이미 취한 완화 조치와 남은 생활소음
+    relation_codings:
+    - value_id: legitimate_boundary_setting
+      relation: ambiguous
+      relevance: core
+      coding_basis: 잔여 소음은 추가 경계를 지지할 수도, 이미 최소 조치를 했다는 근거가 될 수도 있다.
+      alternative_reading: 조치 개수보다 남은 피해의 크기를 우선해야 한다고 볼 수 있다.
+      review_status: not_reviewed
+    - value_id: reciprocal_accommodation
+      relation: aligned
+      relevance: core
+      coding_basis: 이미 감당한 조정과 추가 부담을 함께 계산하게 한다.
+      alternative_reading: 과거 조치가 현재의 추가 조정 의무를 면제하지는 않는다.
+      review_status: not_reviewed
+    - value_id: adaptive_reassessment
+      relation: neutral
+      relevance: supporting
+      coding_basis: 조치의 현재 상태를 주지만 조건 변화나 검토 주기를 직접 말하지 않는다.
+      alternative_reading: 조치 효과 점검을 재검토 근거로 쓸 수 있다.
+      review_status: not_reviewed
+  - item_id: AQ_F08
+    item_type: fact
+    item_summary: 화·수·목 모두 이용 가능한 대체 놀이공간
+    relation_codings:
+    - value_id: legitimate_boundary_setting
+      relation: ambiguous
+      relevance: core
+      coding_basis: 현실적 대안이 일부 있어 추가 경계의 부담을 낮추지만 전면 대체는 불가능하다.
+      alternative_reading: 이용 가능한 날만 경계를 강화하고 나머지는 협의 영역으로 둘 수 있다.
+      review_status: not_reviewed
+    - value_id: reciprocal_accommodation
+      relation: aligned
+      relevance: core
+      coding_basis: 일부 요일에 302호가 맡을 수 있는 구체 조정 수단을 제공한다.
+      alternative_reading: 보호자 동행 비용 때문에 상호 조정의 실제 부담이 클 수 있다.
+      review_status: not_reviewed
+    - value_id: adaptive_reassessment
+      relation: aligned
+      relevance: supporting
+      coding_basis: 6주 시험에서 이용 실적을 확인하고 규칙을 재검토할 측정 가능한 조건이다.
+      alternative_reading: 운영시간이 안정적이면 변화보다 고정 합의를 지지할 수도 있다.
+      review_status: not_reviewed
+  - item_id: AQ_F09
+    item_type: fact
+    item_summary: 최근 2주 6회 중 수면 중단 기록 3회와 비중단 기록 3회
+    relation_codings:
+    - value_id: legitimate_boundary_setting
+      relation: aligned
+      relevance: core
+      coding_basis: 실제 중단 기록과 비중단 기록을 함께 주어 보호선의 필요와 범위를 구분하게 한다.
+      alternative_reading: 공동 기록만으로 원인이나 회복 곤란 피해를 확정할 수는 없다.
+      review_status: not_reviewed
+    - value_id: reciprocal_accommodation
+      relation: aligned
+      relevance: supporting
+      coding_basis: 양쪽이 공유한 기록은 조정 부담과 시험 합의의 효과를 함께 논의할 자료가 된다.
+      alternative_reading: 기록 빈도만으로 각 가구가 감당할 수 있는 조정 비용은 알 수 없다.
+      review_status: not_reviewed
+    - value_id: adaptive_reassessment
+      relation: aligned
+      relevance: core
+      coding_basis: 중단과 비중단이 함께 있는 관찰 기록은 이후 합의를 유지·완화·강화할 비교 기준을 제공한다.
+      alternative_reading: 2주 기록은 짧아 장기 규칙 변경보다 추가 관찰을 지지할 수도 있다.
+      review_status: not_reviewed
+- scenario_id: apartment_quiet_hours
+  variant_id: focal_change
+  core_items:
+  - item_id: AQ_F03
+    item_type: fact
+    item_summary: 202호의 화·수·목 저녁 수면 시간과 사전 예고 가능한 근무표
+    relation_codings:
+    - value_id: legitimate_boundary_setting
+      relation: aligned
+      relevance: core
+      coding_basis: 수면 시간은 정숙 최소선을 검토할 직접 조건이다.
+      alternative_reading: 정숙 시간 밖이므로 전면 제한 대신 협의로 처리할 수 있다.
+      review_status: not_reviewed
+    - value_id: reciprocal_accommodation
+      relation: aligned
+      relevance: core
+      coding_basis: 예고 가능한 일정은 조정을 나눌 수 있게 한다.
+      alternative_reading: 예고 가능성이 상대에게 모든 부담을 지우는 근거는 아니다.
+      review_status: not_reviewed
+    - value_id: adaptive_reassessment
+      relation: ambiguous
+      relevance: supporting
+      coding_basis: 근무표는 재검토 자료지만 기존 조건 변화의 크기는 주어지지 않았다.
+      alternative_reading: 월별 근무일에 맞춘 정기 검토를 지지할 수 있다.
+      review_status: not_reviewed
+  - item_id: AQ_F05
+    item_type: fact
+    item_summary: 302호가 이미 취한 완화 조치와 남은 생활소음
+    relation_codings:
+    - value_id: legitimate_boundary_setting
+      relation: ambiguous
+      relevance: core
+      coding_basis: 추가 경계와 과도한 부담 전가를 동시에 검토하게 한다.
+      alternative_reading: 잔여 소음의 효과가 더 중요하다고 볼 수 있다.
+      review_status: not_reviewed
+    - value_id: reciprocal_accommodation
+      relation: aligned
+      relevance: core
+      coding_basis: 302호가 이미 맡은 조정 비용을 보여준다.
+      alternative_reading: 기존 조치만으로 호혜적 분담이 완료된 것은 아니다.
+      review_status: not_reviewed
+    - value_id: adaptive_reassessment
+      relation: neutral
+      relevance: supporting
+      coding_basis: 조건 변화보다 현재 조치 상태를 제공한다.
+      alternative_reading: 조치 효과의 재측정을 요구할 수 있다.
+      review_status: not_reviewed
+  - item_id: AQ_F08_FC
+    item_type: fact
+    item_summary: 6주간 대체 공용공간이 없음
+    relation_codings:
+    - value_id: legitimate_boundary_setting
+      relation: conflicting
+      relevance: core
+      coding_basis: 302호의 현실적 대안 부재는 추가 제한이 과도한 부담이 될 가능성을 높인다.
+      alternative_reading: 대안 부재가 202호 수면 최소선을 없애지는 않는다.
+      review_status: not_reviewed
+    - value_id: reciprocal_accommodation
+      relation: ambiguous
+      relevance: core
+      coding_basis: 302호가 맡을 수 있는 조정은 줄지만 실내 방식 조정은 여전히 가능하다.
+      alternative_reading: 대안이 없는 쪽에 더 적은 부담을 주는 비대칭 조정을 지지할 수 있다.
+      review_status: not_reviewed
+    - value_id: adaptive_reassessment
+      relation: aligned
+      relevance: core
+      coding_basis: 6주 공사는 기존 대안 전제를 바꾸는 명시적 임시 조건이다.
+      alternative_reading: 일시 변화이므로 영구 규칙 변경보다 종료 시점이 있는 예외를 지지할 수 있다.
+      review_status: not_reviewed
+  - item_id: AQ_F09
+    item_type: fact
+    item_summary: 최근 2주 6회 중 수면 중단 기록 3회와 비중단 기록 3회
+    relation_codings:
+    - value_id: legitimate_boundary_setting
+      relation: aligned
+      relevance: core
+      coding_basis: 실제 중단 기록과 비중단 기록을 함께 주어 보호선의 필요와 범위를 구분하게 한다.
+      alternative_reading: 공동 기록만으로 원인이나 회복 곤란 피해를 확정할 수는 없다.
+      review_status: not_reviewed
+    - value_id: reciprocal_accommodation
+      relation: aligned
+      relevance: supporting
+      coding_basis: 양쪽이 공유한 기록은 조정 부담과 시험 합의의 효과를 함께 논의할 자료가 된다.
+      alternative_reading: 기록 빈도만으로 각 가구가 감당할 수 있는 조정 비용은 알 수 없다.
+      review_status: not_reviewed
+    - value_id: adaptive_reassessment
+      relation: aligned
+      relevance: core
+      coding_basis: 중단과 비중단이 함께 있는 관찰 기록은 이후 합의를 유지·완화·강화할 비교 기준을 제공한다.
+      alternative_reading: 2주 기록은 짧아 장기 규칙 변경보다 추가 관찰을 지지할 수도 있다.
+      review_status: not_reviewed
+- scenario_id: apartment_quiet_hours
+  variant_id: boundary_case
+  core_items:
+  - item_id: AQ_F03
+    item_type: fact
+    item_summary: 202호의 화·수·목 저녁 수면 시간과 사전 예고 가능한 근무표
+    relation_codings:
+    - value_id: legitimate_boundary_setting
+      relation: aligned
+      relevance: core
+      coding_basis: 핵심 이틀의 수면 필요가 최소선 검토를 연다.
+      alternative_reading: 정숙 시간 밖의 필요라 협의 범위가 넓다고 볼 수 있다.
+      review_status: not_reviewed
+    - value_id: reciprocal_accommodation
+      relation: aligned
+      relevance: core
+      coding_basis: 요청 요일을 사전에 특정해 부담 분담을 설계할 수 있다.
+      alternative_reading: 특정 가능성이 302호의 돌봄 제약보다 우선하지는 않는다.
+      review_status: not_reviewed
+    - value_id: adaptive_reassessment
+      relation: ambiguous
+      relevance: supporting
+      coding_basis: 일정은 재검토 자료지만 그 자체가 변화 사실은 아니다.
+      alternative_reading: 월별 근무표에 맞춘 정기 검토를 지지할 수 있다.
+      review_status: not_reviewed
+  - item_id: AQ_F06
+    item_type: fact
+    item_summary: 202호가 이미 취한 조치와 알람 때문에 쓰지 못하는 대안
+    relation_codings:
+    - value_id: legitimate_boundary_setting
+      relation: aligned
+      relevance: core
+      coding_basis: 202호에게 남은 대안의 한계를 보여 최소 보호선 검토를 강화한다.
+      alternative_reading: 배경음 등 부분 대안이 남아 있어 절대선은 아니라고 볼 수 있다.
+      review_status: not_reviewed
+    - value_id: reciprocal_accommodation
+      relation: aligned
+      relevance: core
+      coding_basis: 202호도 조정 비용을 이미 부담했음을 보여준다.
+      alternative_reading: 알람 제약을 이유로 상대에게 추가 부담을 모두 전가할 수는 없다.
+      review_status: not_reviewed
+    - value_id: adaptive_reassessment
+      relation: neutral
+      relevance: supporting
+      coding_basis: 현재 대안 한계이지 조건 변화는 아니다.
+      alternative_reading: 조치 효과를 정기적으로 재확인할 자료가 될 수 있다.
+      review_status: not_reviewed
+  - item_id: AQ_F08_BC
+    item_type: fact
+    item_summary: 놀이공간은 열리지만 화·수 이용 불가, 목요일 이용 가능
+    relation_codings:
+    - value_id: legitimate_boundary_setting
+      relation: ambiguous
+      relevance: core
+      coding_basis: 나머지 하루에는 대안이 있지만 핵심 이틀에는 없어 경계를 요일별로 나눌 수 있다.
+      alternative_reading: 핵심 충돌일의 대안 부재를 이유로 추가 제한을 낮출 수 있다.
+      review_status: not_reviewed
+    - value_id: reciprocal_accommodation
+      relation: ambiguous
+      relevance: core
+      coding_basis: 양쪽 정당한 필요가 같은 이틀에 겹쳐 비대칭 또는 교대 조정의 근거가 된다.
+      alternative_reading: 이용 가능한 하루를 302호가 맡고 나머지 이틀은 다른 조치를 나눌 수 있다.
+      review_status: not_reviewed
+    - value_id: adaptive_reassessment
+      relation: aligned
+      relevance: core
+      coding_basis: 요일별 가용성을 반영한 세분화 규칙과 검토를 지지한다.
+      alternative_reading: 매주 조건이 같다면 잦은 재협상보다 6주 고정표가 나을 수 있다.
+      review_status: not_reviewed
+  - item_id: AQ_F09
+    item_type: fact
+    item_summary: 최근 2주 6회 중 수면 중단 기록 3회와 비중단 기록 3회
+    relation_codings:
+    - value_id: legitimate_boundary_setting
+      relation: aligned
+      relevance: core
+      coding_basis: 실제 중단 기록과 비중단 기록을 함께 주어 보호선의 필요와 범위를 구분하게 한다.
+      alternative_reading: 공동 기록만으로 원인이나 회복 곤란 피해를 확정할 수는 없다.
+      review_status: not_reviewed
+    - value_id: reciprocal_accommodation
+      relation: aligned
+      relevance: supporting
+      coding_basis: 양쪽이 공유한 기록은 조정 부담과 시험 합의의 효과를 함께 논의할 자료가 된다.
+      alternative_reading: 기록 빈도만으로 각 가구가 감당할 수 있는 조정 비용은 알 수 없다.
+      review_status: not_reviewed
+    - value_id: adaptive_reassessment
+      relation: aligned
+      relevance: core
+      coding_basis: 중단과 비중단이 함께 있는 관찰 기록은 이후 합의를 유지·완화·강화할 비교 기준을 제공한다.
+      alternative_reading: 2주 기록은 짧아 장기 규칙 변경보다 추가 관찰을 지지할 수도 있다.
+      review_status: not_reviewed
+- scenario_id: shared_accessible_parking
+  variant_id: baseline
+  core_items:
+  - item_id: SP_F02
+    item_type: fact
+    item_summary: 105호 동승자의 차량 방향별 승하차 통로 필요
+    relation_codings:
+    - value_id: legitimate_boundary_setting
+      relation: aligned
+      relevance: core
+      coding_basis: 넓은 면 또는 빈 옆 칸이 필요한 승하차 최소선을 검토하게 한다.
+      alternative_reading: 짧은 승하차 뒤 이동으로 최소선과 장기 주차를 분리할 수 있다.
+      review_status: not_reviewed
+    - value_id: reciprocal_accommodation
+      relation: aligned
+      relevance: core
+      coding_basis: 105호가 감당하기 어려운 공간 부담을 분담 설계에 포함한다.
+      alternative_reading: 공간 필요가 307호의 거리 부담을 자동으로 이기지는 않는다.
+      review_status: not_reviewed
+    - value_id: adaptive_reassessment
+      relation: neutral
+      relevance: supporting
+      coding_basis: 현재 차량 조건을 주지만 변화 여부는 말하지 않는다.
+      alternative_reading: 차량이 바뀌면 재검토할 기준선이 된다.
+      review_status: not_reviewed
+  - item_id: SP_F03
+    item_type: fact
+    item_summary: 307호의 20m 초과 보행 부담과 주 4회 귀가
+    relation_codings:
+    - value_id: legitimate_boundary_setting
+      relation: aligned
+      relevance: core
+      coding_basis: 가까운 면 접근이 보호선인지 검토할 직접 조건이다.
+      alternative_reading: 24m 일반 면이 가능한 날에는 협의 영역으로 볼 수 있다.
+      review_status: not_reviewed
+    - value_id: reciprocal_accommodation
+      relation: aligned
+      relevance: core
+      coding_basis: 형식적 순번이 만드는 실제 거리 부담을 계산하게 한다.
+      alternative_reading: 장비 없는 날의 부담은 달라질 수 있다.
+      review_status: not_reviewed
+    - value_id: adaptive_reassessment
+      relation: ambiguous
+      relevance: supporting
+      coding_basis: 생활시간과 장비 운반 빈도는 재검토 자료지만 변화 사실은 아니다.
+      alternative_reading: 주간 일정에 맞춘 고정 배정을 지지할 수 있다.
+      review_status: not_reviewed
+  - item_id: SP_F08
+    item_type: fact
+    item_summary: 일반 면 대체가 20회 중 7회이고 예측 불가
+    relation_codings:
+    - value_id: legitimate_boundary_setting
+      relation: ambiguous
+      relevance: core
+      coding_basis: 일부 대안은 있지만 신뢰할 수 없어 승하차 최소선과 영구 점유를 분리하게 한다.
+      alternative_reading: 7회 가능성을 예약·알림과 결합할 여지가 있다.
+      review_status: not_reviewed
+    - value_id: reciprocal_accommodation
+      relation: ambiguous
+      relevance: core
+      coding_basis: 양쪽이 대안을 나눌 여지가 있으나 예측 불가능성이 신뢰를 해친다.
+      alternative_reading: 시간대 기록으로 감당 가능한 분담을 만들 수 있다.
+      review_status: not_reviewed
+    - value_id: adaptive_reassessment
+      relation: aligned
+      relevance: core
+      coding_basis: 20회 기록은 8주 시험 뒤 재검토할 관찰 기준을 제공한다.
+      alternative_reading: 현재 차량이 계속되면 기존 배정을 유지할 근거로도 읽을 수 있다.
+      review_status: not_reviewed
+- scenario_id: shared_accessible_parking
+  variant_id: focal_change
+  core_items:
+  - item_id: SP_F02
+    item_type: fact
+    item_summary: 105호의 승하차 공간 필요
+    relation_codings:
+    - value_id: legitimate_boundary_setting
+      relation: aligned
+      relevance: core
+      coding_basis: 장비 사용 시 필요한 공간의 최소선은 차량 변경 뒤에도 남는다.
+      alternative_reading: 뒤쪽 통로가 있는 일반 면이 최소선을 충족할 수 있다.
+      review_status: not_reviewed
+    - value_id: reciprocal_accommodation
+      relation: aligned
+      relevance: core
+      coding_basis: 공간 부담을 실제 대안과 함께 분담하게 한다.
+      alternative_reading: 일반 면 사용 가능성이 커지면 105호가 더 조정할 수 있다.
+      review_status: not_reviewed
+    - value_id: adaptive_reassessment
+      relation: ambiguous
+      relevance: supporting
+      coding_basis: 원래 필요의 기준선이지만 변화 사실은 교체 팩트에 있다.
+      alternative_reading: 차량 변경 전후 필요 차이를 비교하는 기준이 된다.
+      review_status: not_reviewed
+  - item_id: SP_F03
+    item_type: fact
+    item_summary: 307호의 보행 거리 부담
+    relation_codings:
+    - value_id: legitimate_boundary_setting
+      relation: aligned
+      relevance: core
+      coding_basis: 가까운 면 접근의 최소선 검토를 연다.
+      alternative_reading: 24m 면도 기준을 넘지만 31m·46m 이상 면보다 부담이 작아 부분 대안으로 볼 수 있다.
+      review_status: not_reviewed
+    - value_id: reciprocal_accommodation
+      relation: aligned
+      relevance: core
+      coding_basis: 거리 부담을 형식적 순번보다 실제 부담으로 계산하게 한다.
+      alternative_reading: 장비 없는 날에는 다른 조정이 가능할 수 있다.
+      review_status: not_reviewed
+    - value_id: adaptive_reassessment
+      relation: ambiguous
+      relevance: supporting
+      coding_basis: 생활조건은 재검토 자료지만 새 변화는 아니다.
+      alternative_reading: 차량 변화와 함께 기존 배정 전제를 다시 볼 근거가 된다.
+      review_status: not_reviewed
+  - item_id: SP_F08_FC
+    item_type: fact
+    item_summary: 8주간 뒤쪽 승하차 차량과 24m 일반 면 사용 가능
+    relation_codings:
+    - value_id: legitimate_boundary_setting
+      relation: ambiguous
+      relevance: core
+      coding_basis: 105호의 최소 공간을 다른 면이 충족하므로 넓은 면의 장기 점유 경계를 좁힐 수 있다.
+      alternative_reading: 24m 이동과 동승자 대기의 구체 부담은 여전히 협의해야 한다.
+      review_status: not_reviewed
+    - value_id: reciprocal_accommodation
+      relation: aligned
+      relevance: core
+      coding_basis: 105호가 감당할 수 있는 현실적 대안이 생겨 조정 분담 폭이 넓어진다.
+      alternative_reading: 차량 변경 자체가 105호에게 이미 큰 조정 비용일 수 있다.
+      review_status: not_reviewed
+    - value_id: adaptive_reassessment
+      relation: aligned
+      relevance: core
+      coding_basis: 8주 임시 차량은 기존 배정의 전제를 명시적으로 바꾸며 종료 시 재검토가 필요하다.
+      alternative_reading: 임시 조건이므로 영구 재배정보다 기간 한정 규칙을 지지한다.
+      review_status: not_reviewed
+- scenario_id: shared_accessible_parking
+  variant_id: boundary_case
+  core_items:
+  - item_id: SP_F03
+    item_type: fact
+    item_summary: 307호의 보행 거리 부담과 평일 저녁 귀가
+    relation_codings:
+    - value_id: legitimate_boundary_setting
+      relation: aligned
+      relevance: core
+      coding_basis: 충돌 시간대의 가까운 면 접근 최소선을 검토하게 한다.
+      alternative_reading: 24m 면이 가능한 조건에서는 보호선이 달라질 수 있다.
+      review_status: not_reviewed
+    - value_id: reciprocal_accommodation
+      relation: aligned
+      relevance: core
+      coding_basis: 시간대별 실제 부담을 대칭 횟수보다 우선해 보게 한다.
+      alternative_reading: 장비가 없는 날에는 부담이 줄 수 있다.
+      review_status: not_reviewed
+    - value_id: adaptive_reassessment
+      relation: ambiguous
+      relevance: supporting
+      coding_basis: 생활시간은 배정표를 검토할 자료지만 그 자체는 변화가 아니다.
+      alternative_reading: 평일 저녁 중심의 고정 규칙을 지지할 수 있다.
+      review_status: not_reviewed
+  - item_id: SP_F06
+    item_type: fact
+    item_summary: 307호가 이미 취한 조치와 주 2회 남는 장비 부담
+    relation_codings:
+    - value_id: legitimate_boundary_setting
+      relation: ambiguous
+      relevance: supporting
+      coding_basis: 이미 줄인 부담과 여전히 남는 날을 분리하게 한다.
+      alternative_reading: 남은 주 2회만 별도 최소선을 둘 수 있다.
+      review_status: not_reviewed
+    - value_id: reciprocal_accommodation
+      relation: aligned
+      relevance: core
+      coding_basis: 307호도 가능한 조정을 맡았음을 보여준다.
+      alternative_reading: 기존 조치가 추가 분담을 면제하지는 않는다.
+      review_status: not_reviewed
+    - value_id: adaptive_reassessment
+      relation: neutral
+      relevance: supporting
+      coding_basis: 현재 조치 상태이며 변화 시점은 없다.
+      alternative_reading: 주 2회 기록을 정기 검토 기준으로 쓸 수 있다.
+      review_status: not_reviewed
+  - item_id: SP_F08_BC
+    item_type: fact
+    item_summary: 대체 차량은 낮에만 가능하고 주 평균 세 번의 충돌은 모두 평일 저녁
+    relation_codings:
+    - value_id: legitimate_boundary_setting
+      relation: ambiguous
+      relevance: core
+      coding_basis: 낮에는 대안이 있지만 저녁에는 없어 시간대별 최소선과 협의 영역을 나눌 수 있다.
+      alternative_reading: 저녁에는 양쪽 최소 필요가 직접 충돌하므로 단일 우선권을 피할 수 있다.
+      review_status: not_reviewed
+    - value_id: reciprocal_accommodation
+      relation: ambiguous
+      relevance: core
+      coding_basis: 시간대별 대안 차이로 비대칭 분담과 예약을 모두 지지할 수 있다.
+      alternative_reading: 핵심 저녁에는 어느 쪽 조정도 가볍지 않아 교대나 짧은 승하차 공유가 필요할 수 있다.
+      review_status: not_reviewed
+    - value_id: adaptive_reassessment
+      relation: aligned
+      relevance: core
+      coding_basis: 차량 가용 시간이 달라져 기존 일괄 배정을 시간대별로 재검토할 근거가 된다.
+      alternative_reading: 반복 일정이 고정돼 있다면 매회 협상보다 8주 고정 시간표가 낫다.
+      review_status: not_reviewed

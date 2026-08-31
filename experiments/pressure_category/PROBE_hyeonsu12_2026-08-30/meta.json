@@ -1,0 +1,230 @@
+{
+ "issue_ambulance": {
+  "file": "issue_ambulance.json",
+  "check_rc": 0,
+  "check_warns": [],
+  "options": [
+   "신고 지점 즉시 출동",
+   "예비 배치 지점 우선"
+  ],
+  "vsets": {
+   "A": {
+    "aligned": "신고 지점 즉시 출동",
+    "chars": 576
+   },
+   "B": {
+    "aligned": "예비 배치 지점 우선",
+    "chars": 587
+   }
+  }
+ },
+ "issue_caregiverprotect": {
+  "file": "issue_caregiverprotect.json",
+  "check_rc": 0,
+  "check_warns": [],
+  "options": [
+   "원래 배치 유지",
+   "다른 보호사로 교체"
+  ],
+  "vsets": {
+   "A": {
+    "aligned": "원래 배치 유지",
+    "chars": 589
+   },
+   "B": {
+    "aligned": "다른 보호사로 교체",
+    "chars": 602
+   }
+  }
+ },
+ "issue_carebalance": {
+  "file": "issue_carebalance.json",
+  "check_rc": 0,
+  "check_warns": [],
+  "options": [
+   "형제 직접 돌봄",
+   "방문요양 서비스"
+  ],
+  "vsets": {
+   "A": {
+    "aligned": "형제 직접 돌봄",
+    "chars": 543
+   },
+   "B": {
+    "aligned": "방문요양 서비스",
+    "chars": 546
+   }
+  }
+ },
+ "issue_childcare": {
+  "file": "issue_childcare.json",
+  "check_rc": 0,
+  "check_warns": [],
+  "options": [
+   "해맑은어린이집",
+   "소담숲어린이집"
+  ],
+  "vsets": {
+   "A": {
+    "aligned": "해맑은어린이집",
+    "chars": 522
+   },
+   "B": {
+    "aligned": "소담숲어린이집",
+    "chars": 543
+   }
+  }
+ },
+ "issue_elderdrive": {
+  "file": "issue_elderdrive.json",
+  "check_rc": 0,
+  "check_warns": [],
+  "options": [
+   "직접 운전",
+   "이동지원 서비스"
+  ],
+  "vsets": {
+   "A": {
+    "aligned": "직접 운전",
+    "chars": 534
+   },
+   "B": {
+    "aligned": "이동지원 서비스",
+    "chars": 541
+   }
+  }
+ },
+ "issue_eol": {
+  "file": "issue_eol.json",
+  "check_rc": 0,
+  "check_warns": [],
+  "options": [
+   "인애종합병원",
+   "소망호스피스"
+  ],
+  "vsets": {
+   "A": {
+    "aligned": "인애종합병원",
+    "chars": 549
+   },
+   "B": {
+    "aligned": "소망호스피스",
+    "chars": 559
+   }
+  }
+ },
+ "issue_euthanasia": {
+  "file": "issue_euthanasia.json",
+  "check_rc": 0,
+  "check_warns": [],
+  "options": [
+   "원래 보호소",
+   "임시보호 전문 단체"
+  ],
+  "vsets": {
+   "A": {
+    "aligned": "원래 보호소",
+    "chars": 545
+   },
+   "B": {
+    "aligned": "임시보호 전문 단체",
+    "chars": 543
+   }
+  }
+ },
+ "issue_examaccom": {
+  "file": "issue_examaccom.json",
+  "check_rc": 0,
+  "check_warns": [],
+  "options": [
+   "표준 학사지원팀",
+   "개별 맞춤 지원팀"
+  ],
+  "vsets": {
+   "A": {
+    "aligned": "표준 학사지원팀",
+    "chars": 515
+   },
+   "B": {
+    "aligned": "개별 맞춤 지원팀",
+    "chars": 528
+   }
+  }
+ },
+ "issue_parentalreturn": {
+  "file": "issue_parentalreturn.json",
+  "check_rc": 0,
+  "check_warns": [],
+  "options": [
+   "원래 업무팀",
+   "다른 업무팀"
+  ],
+  "vsets": {
+   "A": {
+    "aligned": "원래 업무팀",
+    "chars": 600
+   },
+   "B": {
+    "aligned": "다른 업무팀",
+    "chars": 611
+   }
+  }
+ },
+ "issue_remotewatch": {
+  "file": "issue_remotewatch.json",
+  "check_rc": 0,
+  "check_warns": [],
+  "options": [
+   "원격 모니터링",
+   "자원봉사자 방문"
+  ],
+  "vsets": {
+   "A": {
+    "aligned": "원격 모니터링",
+    "chars": 547
+   },
+   "B": {
+    "aligned": "자원봉사자 방문",
+    "chars": 548
+   }
+  }
+ },
+ "issue_shelter": {
+  "file": "issue_shelter.json",
+  "check_rc": 0,
+  "check_warns": [],
+  "options": [
+   "지역 순찰조",
+   "전문 아웃리치팀"
+  ],
+  "vsets": {
+   "A": {
+    "aligned": "지역 순찰조",
+    "chars": 529
+   },
+   "B": {
+    "aligned": "전문 아웃리치팀",
+    "chars": 525
+   }
+  }
+ },
+ "issue_workmind": {
+  "file": "issue_workmind.json",
+  "check_rc": 0,
+  "check_warns": [],
+  "options": [
+   "사내 EAP",
+   "외부 개인 상담"
+  ],
+  "vsets": {
+   "A": {
+    "aligned": "사내 EAP",
+    "chars": 508
+   },
+   "B": {
+    "aligned": "외부 개인 상담",
+    "chars": 514
+   }
+  }
+ }
+}
