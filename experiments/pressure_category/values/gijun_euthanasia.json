@@ -1,0 +1,32 @@
+{
+ "vset_id": "gijun_euthanasia",
+ "materials": "issue_euthanasia",
+ "materials_hash": "84fbacbedd4e",
+ "items": [
+  {
+   "category": "일관",
+   "content": "같은 경우는 같게 다루는 것이 옳다."
+  },
+  {
+   "category": "약속",
+   "content": "한 번 정한 것은 지켜질 때 비로소 값이 있다."
+  },
+  {
+   "category": "자격",
+   "content": "받을 몫은 쌓아 온 기여에서 나온다."
+  },
+  {
+   "category": "형평",
+   "content": "한 사람만을 위한 특별한 길은 나머지 모두에게 진 빚이다."
+  },
+  {
+   "category": "절차",
+   "content": "결정은 순서와 방식을 밟아 내리는 것이 옳다."
+  },
+  {
+   "category": "선례",
+   "content": "오늘의 편의는 내일의 선례가 된다."
+  }
+ ],
+ "note": "기획 1 「사정과 기준」 신념 세트 v1 (2026-08-31 요한). 카드 이름=한 단어 신념(측정 밖), 문장=주입 명제. 견인·탐침: TRACTION_belief1·PROBE_belief1_2026-08-31.md. materials_hash는 생성 시점 재료 지문 — 재료 개정 시 재검 필요."
+}
