@@ -1,0 +1,92 @@
+{
+  "pack": "PACK_B",
+  "coder_labels": [
+    "CODER_1",
+    "CODER_2"
+  ],
+  "disagreements": [
+    {
+      "id": "B-06",
+      "fields": {
+        "fact_5": {
+          "CODER_1": false,
+          "CODER_2": true
+        }
+      }
+    },
+    {
+      "id": "B-26",
+      "fields": {
+        "fact_5": {
+          "CODER_1": false,
+          "CODER_2": true
+        },
+        "fact_11": {
+          "CODER_1": false,
+          "CODER_2": true
+        }
+      }
+    },
+    {
+      "id": "B-29",
+      "fields": {
+        "fact_6": {
+          "CODER_1": false,
+          "CODER_2": true
+        }
+      }
+    },
+    {
+      "id": "B-30",
+      "fields": {
+        "fact_8": {
+          "CODER_1": false,
+          "CODER_2": true
+        }
+      }
+    },
+    {
+      "id": "B-44",
+      "fields": {
+        "fact_1": {
+          "CODER_1": false,
+          "CODER_2": true
+        },
+        "fact_3": {
+          "CODER_1": false,
+          "CODER_2": true
+        },
+        "fact_10": {
+          "CODER_1": false,
+          "CODER_2": true
+        },
+        "fact_12": {
+          "CODER_1": false,
+          "CODER_2": true
+        }
+      }
+    },
+    {
+      "id": "B-50",
+      "fields": {
+        "fact_10": {
+          "CODER_1": false,
+          "CODER_2": true
+        }
+      }
+    },
+    {
+      "id": "B-51",
+      "fields": {
+        "fact_8": {
+          "CODER_1": false,
+          "CODER_2": true
+        },
+        "fact_9": {
+          "CODER_1": false,
+          "CODER_2": true
+        }
+      }
+    }
+  ]
+}

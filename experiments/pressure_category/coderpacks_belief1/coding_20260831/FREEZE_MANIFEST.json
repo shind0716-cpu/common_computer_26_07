@@ -1,0 +1,42 @@
+{
+  "experiment": "belief1_blind_coding",
+  "seed": 20260831,
+  "completed_at": "2026-08-31T20:45:32+09:00",
+  "status": "complete",
+  "key_join_policy": {
+    "key_withheld_from_initial_coders": true,
+    "key_withheld_from_adjudicators": true,
+    "all_packs_frozen_before_key_open": true,
+    "last_pack_frozen_at": "2026-08-31T20:40:36+09:00",
+    "key_sha256": "fc08a316d8dedce140b506eeb553c3a0a5c9b25572a1b875658d8f7a19fda68e"
+  },
+  "analysis_status": {
+    "PACK_A": "preregistered_P5",
+    "PACK_B": "post_hoc_exploratory",
+    "PACK_C": "post_hoc_exploratory"
+  },
+  "validation": {
+    "PACK_A": "frozen; 66 items; all disagreements adjudicated",
+    "PACK_B": "frozen; 66 items; 792 judgments; 14-card independent audit; audit disagreements adjudicated",
+    "PACK_C": "frozen; 33 items; all requested-field disagreements adjudicated",
+    "key_join": "A=66, B=66 with 12 fact IDs each, C=33; exact blind-ID sets matched",
+    "unit_tests": "8 passed",
+    "semantic_checks": "source-quote, option-membership, relation, ID-set, fact-number, and null-evidence checks passed"
+  },
+  "sha256": {
+    "PACK_A_FREEZE.json": "4e694c4fa80bfdcb42d2f49095a71c08703788dc1db3831ac107fd2a2ba94143",
+    "PACK_B_FREEZE.json": "9a17da0830ceb1b906eaa33a0f228e1faa776c18ec55b1e86f4d9a0d3800113a",
+    "PACK_C_FREEZE.json": "a5913d8a2498310a54736b9a002775ba8ddda15de8624a2a225e6939cb962a51",
+    "PACK_A_KEYED_01.json": "ef87f56aeea92f31a6e0f935101a1379b0c624e2dae4c71c342d8fa506032189",
+    "PACK_B_KEYED_01.json": "06e3c8bbf4acaf415e43ec73d62227b7552912cf05d71631f65145b227accdb7",
+    "PACK_C_KEYED_01.json": "32b5da21bf6c43775f9fffcd9898f679e1c6d428eaf15d586ccb56b024aeb361",
+    "KEYED_SUMMARY.json": "699287b4602f4735c768be9f8a84e24dfacf8997f0978059cab3c2850da0c7a5",
+    "FINAL_REPORT.md": "645266a030b00c17b58e2f565506ffffefbcd712c4d40b57ac889b3e95f66a01"
+  },
+  "limitations": [
+    "PACK_B and PACK_C are post-hoc exploratory.",
+    "PACK_B has independent double coding only for the prespecified 14-card sample; 52 cards are primary-coder-only.",
+    "AI cross-model agreement is not human inter-rater reliability.",
+    "PACK_A q2 political-orientation agreement was 1/66 and is strongly adjudicator-dependent."
+  ]
+}

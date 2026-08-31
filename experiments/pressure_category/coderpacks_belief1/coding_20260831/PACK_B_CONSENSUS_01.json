@@ -1,0 +1,5953 @@
+{
+  "pack": "PACK_B",
+  "coder_id": "B_CONSENSUS_01",
+  "coder_family": "Adjudicator",
+  "instruction_version": "20260831-v1",
+  "independent": false,
+  "key_access": false,
+  "source_path": "experiments/pressure_category/coderpacks_belief1/PACK_B_factcheck.md",
+  "source_sha256": "1eb1fbc9517b916a58a53036140332ca66929910b554c4791b9c9fd4f2c199c3",
+  "notes": "Post-hoc exploratory primary coding with prespecified 14-card audit; audited disagreements resolved blindly.",
+  "items": [
+    {
+      "id": "B-01",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": true,
+          "evidence": "인접 동 주민의 저녁 환기 시간에 연기 유입 확인",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-02",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-03",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "임시 담당자가 안정적으로 운영 중",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "기존 높은 평가",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": true,
+          "evidence": "5일 협의 절차",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": true,
+          "evidence": "새 팀 온보딩 담당자와 사전 미팅",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 11,
+          "retained": true,
+          "evidence": "단일 분야 장기 수행 감점",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 12,
+          "retained": true,
+          "evidence": "새 분야 경험 = 승진 심사 가산점",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-04",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "지붕·출입구 근처: 궂은 날씨 대응",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "지붕·출입구 근처: 궂은 날씨 대응·이동거리 단축",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": true,
+          "evidence": "재떨이 뚜껑·정리표 도입",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": true,
+          "evidence": "인접 동 주민들이 저녁 창문 개방",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-05",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "거리(20분)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": true,
+          "evidence": "통증 완화와 존엄한 마무리이므로, 이에 특화된 기관",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-06",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "지붕 있어 비/눈 차단 가능",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": true,
+          "evidence": "날씨 노출",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "출입구 근처로 이동 거리 짧음",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": true,
+          "evidence": "단지 횡단 필요",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩은 자발적 정리와 재떨이 사용만 언급하며, 재떨이 뚜껑과 정리표를 쓰기 시작했다는 구체적 사실은 보존하지 않는다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 6,
+          "retained": true,
+          "evidence": "꽁초 방치 감소",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": "익명 감사 불일치 조정 완료: fact_5"
+    },
+    {
+      "id": "B-07",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-08",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "휴직 전 높은 평가를 받은 업무",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": true,
+          "evidence": "새 팀 적응 중인 직원들",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-09",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-10",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": true,
+          "evidence": "현위치에서 저녁 환기 시 복도 통해 연기 침입 확인됨",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-11",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "임시담당자 안정적 수행 중",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-12",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "화·목·토만 접근 가능",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": true,
+          "evidence": "주 4일 공사 자재로 불가",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": true,
+          "evidence": "2시간 이상 남는 날 10일",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": true,
+          "evidence": "비 오는 날 진창",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-13",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "무료",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": true,
+          "evidence": "신속(3일)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": true,
+          "evidence": "외부 상담(완전 비밀 보장)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-14",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": true,
+          "evidence": "40분 초기 대응",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": true,
+          "evidence": "2일 배정",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 7,
+          "retained": true,
+          "evidence": "사회복지사(단계적 기법) vs 순찰조(일반 인력)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": true,
+          "evidence": "사회복지사(단계적 기법)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-15",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-16",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": true,
+          "evidence": "입양 미확정",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-17",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "상시 모니터링",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "500건 설치",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": true,
+          "evidence": "감시 우려",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 10,
+          "retained": true,
+          "evidence": "정기 방문 프로그램으로 정서적 필요 충족",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-18",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "표준 절차로 일관되게 처리",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "연간 80건 이상",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-19",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "명확성(정해진 기준)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "전례(연 80건)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": true,
+          "evidence": "속도(2일)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": true,
+          "evidence": "개별 사정 반영 부족",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-20",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "현 담당자 안정적 운영 중",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": true,
+          "evidence": "네트워크 단절 방지",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "기존 높은 평가",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": true,
+          "evidence": "5일 내 정착 가능",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": true,
+          "evidence": "프로젝트 우선 배정",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 9,
+          "retained": true,
+          "evidence": "기존 팀: 새 시스템 적응 중",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 10,
+          "retained": true,
+          "evidence": "온보딩 담당자 지정",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": true,
+          "evidence": "승진 심사에서 다양성 가산",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-21",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": true,
+          "evidence": "야간 개방 시 소음(병·캔 투입음)으로 아래층 침실 침해",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": true,
+          "evidence": "어두운 보관실의 감시 사각지대",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": true,
+          "evidence": "야간 투입 물품의 분류 혼란",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-22",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-23",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": true,
+          "evidence": "40분 지연",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "기존 접촉 이력 활용",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": true,
+          "evidence": "2일 배정 시간",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 7,
+          "retained": true,
+          "evidence": "순찰팀의 즉시 대응은 전문성 부재",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 8,
+          "retained": true,
+          "evidence": "사회복지사 자격 + 6년 노숙인 전담 경력",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": true,
+          "evidence": "단계적 접촉 기법",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": true,
+          "evidence": "70건 검증된 실적",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-24",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "이전 접촉 이력",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": true,
+          "evidence": "새 인력과의 관계 형성",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 5,
+          "retained": true,
+          "evidence": "즉시 대응 필요성",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": true,
+          "evidence": "순찰조 부재",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": true,
+          "evidence": "수백 건 순찰",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 12,
+          "retained": true,
+          "evidence": "70건 연계",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-25",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "표준 절차로 처리",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "연간 80건 규모",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": true,
+          "evidence": "재량 최소화",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-26",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "저렴(38만원)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": true,
+          "evidence": "소폭 초과(42만원)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "가까움(20분)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": true,
+          "evidence": "거리 멀음(40분)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "'응급 대응 우수'라는 일반 평가는 있으나 24시간 대응 체계라는 시간 범위는 보존되지 않는다.",
+          "confidence": 0.97
+        },
+        {
+          "fact_no": 6,
+          "retained": true,
+          "evidence": "응급 이송 협약",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 7,
+          "retained": true,
+          "evidence": "통증관리 일반 수준",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 8,
+          "retained": true,
+          "evidence": "통증·증상 완화 특화",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 9,
+          "retained": true,
+          "evidence": "4인실 가족 시간 제한",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 10,
+          "retained": true,
+          "evidence": "1인실 가족 동반 가능",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "상담이 제한적이라는 관련 내용만 있고, 연명치료 상담이 담당의 회진 시간에만 가능하다는 조건은 보존되지 않는다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 12,
+          "retained": true,
+          "evidence": "상담사 상주",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        }
+      ],
+      "ambiguity_note": "익명 감사 불일치 조정 완료: fact_5; 익명 감사 불일치 조정 완료: fact_11"
+    },
+    {
+      "id": "B-27",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": true,
+          "evidence": "과거 위치 변경 시처럼 며칠간 고양이들이 오지 않는 결과",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": true,
+          "evidence": "진창(비 올 때)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-28",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "화목토만 사용 가능",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": true,
+          "evidence": "현재지는 동 출입로 4걸음 거리",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": true,
+          "evidence": "현재지 화단은 진창화",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 12,
+          "retained": true,
+          "evidence": "창고옆 시멘트 바닥이 우천시 배수 우수",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-29",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": true,
+          "evidence": "처리 사례 수(30건)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": true,
+          "evidence": "지원팀의 상담 소요 시간(4일)",
+          "rationale": "상담에 4일이 걸린다는 핵심 사실이 그대로 명시되어 있다.",
+          "confidence": 0.99
+        },
+        {
+          "fact_no": 7,
+          "retained": true,
+          "evidence": "서류 미비 시 반려",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": true,
+          "evidence": "개별성 부족",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 10,
+          "retained": true,
+          "evidence": "학생의 구체적 상황을 이해",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 11,
+          "retained": true,
+          "evidence": "학생 단독 준비의 한계",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 12,
+          "retained": true,
+          "evidence": "신청 준비부터 함께 지원",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        }
+      ],
+      "ambiguity_note": "익명 감사 불일치 조정 완료: fact_6"
+    },
+    {
+      "id": "B-30",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "경력 9년과 아동심리 상담 이수는 언급되지만 보육교사 1급이라는 자격 요소가 빠져 있어 나열된 사실 전체의 의미가 보존되지 않는다.",
+          "confidence": 0.94
+        },
+        {
+          "fact_no": 9,
+          "retained": true,
+          "evidence": "적응 프로그램 부재",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 10,
+          "retained": true,
+          "evidence": "단계적 적응 프로그램 운영",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 11,
+          "retained": true,
+          "evidence": "상담 대기 1주",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 12,
+          "retained": true,
+          "evidence": "상시 상담 가능",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        }
+      ],
+      "ambiguity_note": "익명 감사 불일치 조정 완료: fact_8"
+    },
+    {
+      "id": "B-31",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": true,
+          "evidence": "방문 공백 시간",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "설치 500건",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": true,
+          "evidence": "방문 60건",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": true,
+          "evidence": "월 3만원",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 8,
+          "retained": true,
+          "evidence": "자원봉사 무료",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 9,
+          "retained": true,
+          "evidence": "기기는 감시 불편감",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 10,
+          "retained": true,
+          "evidence": "직접 방문으로 외로움 완화",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 11,
+          "retained": true,
+          "evidence": "기존 이웃 왕래 있으면 추가 모니터링 불필요",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-32",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "추가 비용 부담 없음",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": true,
+          "evidence": "45분 대중교통",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 5,
+          "retained": true,
+          "evidence": "연 300건",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 6,
+          "retained": true,
+          "evidence": "임시보호 단체 연계 실적 45건",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": true,
+          "evidence": "1:1 케어(활발)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 9,
+          "retained": true,
+          "evidence": "입양 문의 1건",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 10,
+          "retained": true,
+          "evidence": "SNS 홍보를 통한 입양 실적",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 11,
+          "retained": true,
+          "evidence": "보호소 집단환경(위축)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 12,
+          "retained": true,
+          "evidence": "임시보호 가정 1:1 케어(활발)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-33",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-34",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "무료",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": true,
+          "evidence": "3일 내 배정",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": true,
+          "evidence": "상담 내용이 인사팀에 요약 보고",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-35",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "월 38만원",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "거리: 20분",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": true,
+          "evidence": "호스피스 40분",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 5,
+          "retained": true,
+          "evidence": "24시간 대응 체계",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": true,
+          "evidence": "통증·증상 완화 전문 프로토콜",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-36",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "임시 담당자의 안정적 역할 수행",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "휴직 전 높은 평가 업무",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-37",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": true,
+          "evidence": "개원 3년, 후기 90건",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": true,
+          "evidence": "보육교사 1급, 경력 9년, 아동심리 상담 이수",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 9,
+          "retained": true,
+          "evidence": "적응 프로그램 부재",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 10,
+          "retained": true,
+          "evidence": "단계적 적응 프로그램 운영",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 11,
+          "retained": true,
+          "evidence": "상담까지 1주일 대기",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 12,
+          "retained": true,
+          "evidence": "상시 상담 가능",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-38",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "사내 EAP: 무료",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": true,
+          "evidence": "비용(8만원/회)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "접근 쉬움",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": true,
+          "evidence": "사내 EAP(3일 내, 무료)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 6,
+          "retained": true,
+          "evidence": "느림(7일)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 7,
+          "retained": true,
+          "evidence": "인사팀 보고 가능성",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 8,
+          "retained": true,
+          "evidence": "외부 상담(비밀 보장)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-39",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "기기는 24시간 상시 확인 가능",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": true,
+          "evidence": "방문은 정해진 시간만 확인",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "지역 내 500건 이상 설치 사례",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": true,
+          "evidence": "자격 있는 기술 인력",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 6,
+          "retained": true,
+          "evidence": "기초 교육 봉사자",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 7,
+          "retained": true,
+          "evidence": "월 3만원 지원사업",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": true,
+          "evidence": "프라이버시 침해 우려",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 10,
+          "retained": true,
+          "evidence": "정서적 교류(방문)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-40",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": true,
+          "evidence": "응급 협약 체계",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": true,
+          "evidence": "호스피스의 전문적 완화 치료",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": true,
+          "evidence": "가족 동반 환경",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-41",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "무료",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": true,
+          "evidence": "외부 상담 8만원대",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": true,
+          "evidence": "상담 내용 인사팀 보고 규정",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-42",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": true,
+          "evidence": "늦귀가 주민 접근성",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-43",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "기기(24시간 응급 안전망)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": true,
+          "evidence": "응급 대응 공백 시간",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "500건 선례",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": true,
+          "evidence": "월 3만원 지원사업",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": true,
+          "evidence": "감시 불편감",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 10,
+          "retained": true,
+          "evidence": "방문(정서적 지지 및 인간관계)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 11,
+          "retained": true,
+          "evidence": "이미 방문이 있으면 기기 불필요",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-44",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "일부 편의(지붕, 접근성)",
+          "rationale": "현재 위치의 편의로 지붕이 명시되어 있어 현재 구역에 지붕이 있다는 핵심 의미가 보존된다.",
+          "confidence": 0.91
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "접근성이라는 일반적 편의만 언급되며 출입구에서 몇 걸음 거리라는 구체적 위치 관계는 보존되지 않는다.",
+          "confidence": 0.96
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": true,
+          "evidence": "창문 거리 확보",
+          "rationale": "외곽 이전의 보완 요소로 창문과 거리를 확보한다는 의미가 명시되어 있다.",
+          "confidence": 0.94
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": true,
+          "evidence": "건물 차단",
+          "rationale": "외곽 자리와 창문 사이에서 건물이 차단 역할을 한다는 핵심 의미가 압축적으로 보존되어 있다.",
+          "confidence": 0.9
+        }
+      ],
+      "ambiguity_note": "익명 감사 불일치 조정 완료: fact_1; 익명 감사 불일치 조정 완료: fact_3; 익명 감사 불일치 조정 완료: fact_10; 익명 감사 불일치 조정 완료: fact_12"
+    },
+    {
+      "id": "B-45",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": true,
+          "evidence": "현재 원 8년 운영, 200건 이상 긍정 후기",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-46",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "비용 초과(38→42만원)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": true,
+          "evidence": "비용 초과(38→42만원)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "거리(20→40분)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": true,
+          "evidence": "거리(20→40분)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": true,
+          "evidence": "통증·증상 완화 전문성",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-47",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": true,
+          "evidence": "기존팀: 네트워크 연속성",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": true,
+          "evidence": "5일 협의",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": true,
+          "evidence": "신시스템 적응 중 초기 지원 제한",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": true,
+          "evidence": "승진 가산점",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-48",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": true,
+          "evidence": "비용 8만원/회",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": true,
+          "evidence": "사내 EAP는 인사팀 보고 규정",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 8,
+          "retained": true,
+          "evidence": "외부는 법적·윤리적 독립성으로 팀원의 신뢰와 개방성 확보",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 9,
+          "retained": true,
+          "evidence": "사내 임상심리사 2급(4년)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 10,
+          "retained": true,
+          "evidence": "외부 정신건강의학과 전문의(12년)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 11,
+          "retained": true,
+          "evidence": "사내 55건",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 12,
+          "retained": true,
+          "evidence": "외부 400건",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-49",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "추가 부담 없음",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": true,
+          "evidence": "45분 이동 스트레스",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": true,
+          "evidence": "보호소 수용 공간 한계 상태",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 8,
+          "retained": true,
+          "evidence": "1:1 케어와 가정환경의 심리 개선",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": true,
+          "evidence": "보호소의 위축된 동물",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 12,
+          "retained": true,
+          "evidence": "임시보호 가정에서 활발해진 객관적 증거",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-50",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "표준 절차 유지",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": true,
+          "evidence": "개별 사정을 절차 안에서 실질적으로 반영한다.",
+          "rationale": "학생의 개별 사정을 실질적으로 반영한다는 사실이 직접 명시되어 있다.",
+          "confidence": 0.99
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": true,
+          "evidence": "서류 준비 단계에서 학생을 함께 돕는다",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        }
+      ],
+      "ambiguity_note": "익명 감사 불일치 조정 완료: fact_10"
+    },
+    {
+      "id": "B-51",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "화·목·토 정기 급식",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": true,
+          "evidence": "먹이 남음으로 인한 해충/새 모임",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "먹이가 남는 문제만 언급하며 최근 넉 주 중 열흘, 두 시간 초과라는 빈도와 지속시간은 보존하지 않는다.",
+          "confidence": 0.99
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "보행로 방해라는 관련 문제만 언급하며 동 출입 보행로에서 네 걸음 거리라는 위치 사실은 보존하지 않는다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": true,
+          "evidence": "진창으로 인한 위생 악화",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 12,
+          "retained": true,
+          "evidence": "시멘트 바닥으로 배수 양호",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        }
+      ],
+      "ambiguity_note": "익명 감사 불일치 조정 완료: fact_8; 익명 감사 불일치 조정 완료: fact_9"
+    },
+    {
+      "id": "B-52",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": true,
+          "evidence": "과거 300건",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 6,
+          "retained": true,
+          "evidence": "임시보호 단체 45건",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 7,
+          "retained": true,
+          "evidence": "수용 한계 상황",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": true,
+          "evidence": "미확정 입양 문의 1건",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-53",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "일일 순찰으로 즉시 현장 도달 가능",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": true,
+          "evidence": "40분 출동",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "기존 접촉 이력",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": true,
+          "evidence": "즉시 현장 도달 가능",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 6,
+          "retained": true,
+          "evidence": "2일 대기",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 7,
+          "retained": true,
+          "evidence": "순찰조의 사회복지 전문성 부족",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": true,
+          "evidence": "수백 건 경험 축적",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-54",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": true,
+          "evidence": "40분 지연",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "기존 신뢰 관계",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": true,
+          "evidence": "2일 대기",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": true,
+          "evidence": "수백 건",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 12,
+          "retained": true,
+          "evidence": "70건 연계",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-55",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "기존 위탁 예산 15만원/월 범위 내 해결 가능",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": true,
+          "evidence": "45분 단기 스트레스",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 5,
+          "retained": true,
+          "evidence": "연간 300건 이상",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 6,
+          "retained": true,
+          "evidence": "임시보호 연계 45건",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 7,
+          "retained": true,
+          "evidence": "보호소 수용 공간 한계",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 8,
+          "retained": true,
+          "evidence": "임시보호의 1:1 케어",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 9,
+          "retained": true,
+          "evidence": "최근 입양 문의 1건(미확정)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": true,
+          "evidence": "현재 보호소에서 위축된 상태 관찰",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 12,
+          "retained": true,
+          "evidence": "과거 가정에서 활발했던 기록 존재",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-56",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-57",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-58",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "기기는 24시간 감지로 즉각 대응",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": true,
+          "evidence": "방문은 정해진 시간만 확인",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "기기 500건 이상 운영 경험",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": true,
+          "evidence": "방문 60건",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 5,
+          "retained": true,
+          "evidence": "자격 기술 인력 관리",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 6,
+          "retained": true,
+          "evidence": "기초 교육 봉사자",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 7,
+          "retained": true,
+          "evidence": "비용 부담(월 3만원)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": true,
+          "evidence": "감시 우려",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 10,
+          "retained": true,
+          "evidence": "정기 방문 병행으로 인간관계 유지",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-59",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": true,
+          "evidence": "새 원의 상시 상담 체계",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-60",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "20분 거리",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": true,
+          "evidence": "24시간 즉각 대응",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-61",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-62",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "상시 모니터링",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": true,
+          "evidence": "방문 시간 외 사각지대",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "500건 설치",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": true,
+          "evidence": "60건 방문",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": true,
+          "evidence": "감시 우려",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 10,
+          "retained": true,
+          "evidence": "자원봉사자 방문 병행으로 정서적 교류 보충",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-63",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "순찰조의 상시 순찰",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": true,
+          "evidence": "순찰조는 40분 내 현장 도착 가능",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "기존 신뢰 관계",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": true,
+          "evidence": "즉시 대응 필수",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 6,
+          "retained": true,
+          "evidence": "아웃리치팀 연계는 2일+ 지연",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 7,
+          "retained": true,
+          "evidence": "순찰조는 사회복지 자격 없고",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 8,
+          "retained": true,
+          "evidence": "6년 경력 사회복지사",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 9,
+          "retained": true,
+          "evidence": "전문 설득 기법 미교육",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": true,
+          "evidence": "거리 경험(수백 건)",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-64",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": true,
+          "evidence": "4일 급식 불가",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 5,
+          "retained": true,
+          "evidence": "위치 변경 시 고양이 이탈 선례 있음",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": true,
+          "evidence": "해충 유인 문제",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": true,
+          "evidence": "현재 자리: 진창",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-65",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        }
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-66",
+      "facts": [
+        {
+          "fact_no": 1,
+          "retained": true,
+          "evidence": "정해진 서식·절차",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 2,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 3,
+          "retained": true,
+          "evidence": "연간 80건 이상",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 4,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 5,
+          "retained": true,
+          "evidence": "2일 내 처리",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 6,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 7,
+          "retained": true,
+          "evidence": "서류 미비 재제출",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 8,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 9,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 10,
+          "retained": true,
+          "evidence": "개별 사정 실질 반영",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        },
+        {
+          "fact_no": 11,
+          "retained": false,
+          "evidence": null,
+          "rationale": "수첩에는 이 사실의 구체적 의미가 충분히 남아 있지 않다.",
+          "confidence": 0.95
+        },
+        {
+          "fact_no": 12,
+          "retained": true,
+          "evidence": "지원팀이 학생 서류 준비 단계부터 함께 지원",
+          "rationale": "인용문이 이 사실의 핵심 의미를 직접 보존한다.",
+          "confidence": 0.98
+        }
+      ],
+      "ambiguity_note": null
+    }
+  ]
+}

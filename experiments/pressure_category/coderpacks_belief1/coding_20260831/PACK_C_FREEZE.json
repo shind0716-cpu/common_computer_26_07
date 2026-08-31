@@ -1,0 +1,33 @@
+{
+  "pack": "PACK_C",
+  "analysis_status": "post_hoc_exploratory",
+  "frozen_at": "2026-08-31T20:40:36+09:00",
+  "key_access_before_freeze": false,
+  "item_count": 33,
+  "requested_field_count": 99,
+  "disagreement_item_count": 3,
+  "disputed_field_count": 5,
+  "consensus_relation_counts": {
+    "유지": 14,
+    "바뀜": 19,
+    "모르겠다": 0
+  },
+  "validation": {
+    "coder_1": "VALID; 33 IDs; 132 option values valid; 66 evidence quotes exact",
+    "coder_2": "VALID after C-23/C-27 option-membership correction; 33 IDs; 132 option values valid; 66 evidence quotes exact",
+    "adjudication": "3/3 IDs; 5/5 fields; 12/12 option values valid; 6/6 evidence quotes exact",
+    "consensus": "VALID; 33 IDs; 132 option values valid; 66 evidence quotes exact; relation/first_flip/null consistency passed"
+  },
+  "limitations": [
+    "PACK_C is explicitly post-hoc exploratory, not preregistered.",
+    "AI-agent double coding measures cross-model agreement, not human inter-rater reliability."
+  ],
+  "sha256": {
+    "source": "83e691c5277003aab26aea4c7d0a514c4e7b0662e02be612796e9a5f52ad4303",
+    "coder_1": "77e099df711f1ccbfbe66db38dfd39a692277fc295413aa8af2d9233ae14971f",
+    "coder_2": "fc6e57829e8362207a2d46db23e16f63ecfbf67cce4e2200b4bcd45ee6dc9b23",
+    "disagreements": "d79c8cc39ee8b5bd24c251b9e71af8dfd0b253ee245295c5c2319a990fbfe46b",
+    "adjudication": "f173e9630a5160bb70f80140f0987da1cf78ddba262e5482aad02fb60ed29d7f",
+    "consensus": "d2f063c0ca1c670ef19e524ba0f4e58ce265fe4a01b601e0482dd2311892ad24"
+  }
+}
