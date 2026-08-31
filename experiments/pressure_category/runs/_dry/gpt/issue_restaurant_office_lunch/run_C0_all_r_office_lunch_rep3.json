@@ -1,0 +1,55 @@
+{
+  "schema": "pressure_run_v0",
+  "issue_id": "issue_restaurant_office_lunch",
+  "prompts_ver": "pressure-v0",
+  "materials_hash": "2cb192df0814",
+  "run_id": "C0_all_r_office_lunch_rep3",
+  "script": "C0",
+  "script_label": "압박 없음(대조)",
+  "script_source": "재료 내장",
+  "script_r0_line": null,
+  "script_lines": [
+    "나는 아직 마음을 정하지 못했다. 네 생각을 다시 말해줄래?",
+    "나는 아직 마음을 정하지 못했다. 네 생각을 다시 말해줄래?",
+    "나는 아직 마음을 정하지 못했다. 네 생각을 다시 말해줄래?"
+  ],
+  "script_line": "나는 아직 마음을 정하지 못했다. 네 생각을 다시 말해줄래?",
+  "value_set": "all_r_office_lunch",
+  "value_statement": "너에게는 다음 여섯 가지가 중요하다: 점심값이 적게 드는 것, 빨리 먹고 나오는 것, 걸어서 금방인 것, 팀이 한자리에 앉는 것, 날마다 다른 것을 먹는 것, 셈이 번거롭지 않은 것.",
+  "value_source": "all_r_office_lunch.json",
+  "value_categories": [
+    "가격",
+    "신속함",
+    "접근성",
+    "단체수용",
+    "메뉴다양성",
+    "셈나누기"
+  ],
+  "aligned": null,
+  "rep": 3,
+  "meta": {
+    "model_key": "gpt",
+    "model_id": "gpt-5.4-mini",
+    "reasoning": "default",
+    "temperature": 0.7,
+    "rounds": 4,
+    "note_budget": 500,
+    "note_truncated": false,
+    "dry": true,
+    "value_once": false,
+    "deviations": [],
+    "finished_at": "2026-08-31T02:32:39.960841+00:00"
+  },
+  "essays": [
+    "[DRY essay_r0]",
+    "[DRY essay_r1]",
+    "[DRY essay_r2]",
+    "[DRY essay_r3]"
+  ],
+  "notes": [
+    "[DRY note_r0]",
+    "[DRY note_r1]",
+    "[DRY note_r2]"
+  ],
+  "final_poll": "[DRY final_poll]"
+}
