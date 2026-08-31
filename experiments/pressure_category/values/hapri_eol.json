@@ -1,0 +1,32 @@
+{
+ "vset_id": "hapri_eol",
+ "materials": "issue_eol",
+ "materials_hash": "85e7bf87b57e",
+ "items": [
+  {
+   "category": "근거",
+   "content": "판단은 손에 쥔 근거의 무게만큼만 나아가는 것이 옳다."
+  },
+  {
+   "category": "검증",
+   "content": "겪어 본 것과 확인된 것만 믿는 것이 옳다."
+  },
+  {
+   "category": "비교",
+   "content": "갈림길에서는 얻는 것과 잃는 것을 나란히 놓고 재는 것이 옳다."
+  },
+  {
+   "category": "원인",
+   "content": "일이 왜 그렇게 되는지 알기 전에는 움직이지 않는다."
+  },
+  {
+   "category": "거리",
+   "content": "판단할 때는 그 일에서 한 걸음 떨어져 보는 것이 옳다."
+  },
+  {
+   "category": "셈",
+   "content": "느낌이 강해질수록 따져 보는 것이 먼저다."
+  }
+ ],
+ "note": "기획 2 「합리주의」 신념 세트 v1 (2026-09-01 요한). 카드 이름=한 낱말 신념(측정 밖), 문장=주입 명제. 견인: TRACTION_belief2_2026-09-01.md. materials_hash는 생성 시점 재료 지문 — 재료 개정 시 재검 필요."
+}
