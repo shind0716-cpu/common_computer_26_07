@@ -102,3 +102,37 @@ hospital_escort·kimjang_share(가족의 정 vs 배려가 세트 안에서 충�
 - gpt 시작: 기존 8 + **caregiverprotect·ambulance·carebalance** — caregiverprotect가
   강하나 나머지가 중·약.
 → 하이쿠안이 견인이 좋고, 신념·압박에 민감한 모델이라는 1차 취지와도 맞다(권고).
+
+## 7. 최종 명단 확정 + 4·5단계 이행 (8/31 덧붙임 — 요한 "오키오키")
+
+**확정: 하이쿠 시작, 11벌** = childcare · euthanasia · examaccom · remotewatch ·
+workmind · recycling_room · smoking_area_party · cat_feeding_days_list + 교체 3벌
+**eol · shelter · parentalreturn** (무견인 ⑥⑩⑪ 제외). 혼조 주의 2벌(workmind·
+recycling_room)은 명단 유지하되 판독 때 표기.
+
+교체 3벌 그리드 (①~⑫ = §1 문장 순):
+
+| 세트·카드 | eol | shelter | parentalreturn |
+|---|---|---|---|
+| ㄱ 보살핌 | B | A | ~B |
+| ㄱ 사람 | B | A | – |
+| ㄱ 경청 | ~B | ~B | – |
+| ㄱ 다침 | ~A | A | – |
+| ㄱ 융통 | – | – | ~B |
+| ㄱ 마음 | B | ~A | ~B |
+| ㄴ 일관 | A | ~B | A |
+| ㄴ 약속 | A | – | A |
+| ㄴ 자격 | – | – | A |
+| ㄴ 형평 | – | – | ~A |
+| ㄴ 절차 | A | B | A |
+| ㄴ 선례 | A | B | A |
+
+(eol: ㄱB/ㄴA · shelter: ㄱA/ㄴB — 반대 매핑 · parentalreturn: ㄱ~B/ㄴA)
+
+**4단계 완료**: values/ 에 세트 파일 22개(sajeong_*·gijun_* × 11재료) — items 카드
+6장 + 생성 시점 재료 지문(materials_hash) 기록. **5단계 완료**: 하이쿠 드라이런 11재료
+× 6판 = 66판 전부 통과(check_materials 11/11 · 표식 누출 0 · 등록 실패 0), 조립 검증
+(statement = 여섯 문장 원문 그대로 · aligned 없음 = C0 전용 확인).
+
+**실호출 정지선 대기**: 2세트 × 11재료 × C0 × rep3 = 66판 ≈ 550~600콜(claude-haiku).
+남은 전제: PREREG 절 추가(코더 축·눈금·판정선 사전고정) + 요한 승인.
