@@ -1,0 +1,22 @@
+{
+  "vset_id": "allb1_shelter",
+  "materials": "issue_shelter",
+  "materials_hash": "aa3eef04c672",
+  "derived_from": {
+    "value_sets": [
+      "A",
+      "B"
+    ],
+    "rule": "exact_clause_union"
+  },
+  "statement": "너에게는 다음 여섯 가지가 중요하다: 즉시 접근 가능한 것, 이미 쌓인 신뢰를 활용하는 것, 지체 없이 대응하는 것, 전문적인 훈련을 받은 것, 무리하지 않는 접근 방식, 검증된 연계 실적.",
+  "categories": [
+    "접근성",
+    "관계형성",
+    "응대속도",
+    "전문성",
+    "완충방법",
+    "이용사례"
+  ],
+  "note": "belief1 ALL 보충판(2026-09-01). 현행 A+B 가치문의 구절을 그대로 병합. materials_hash는 LF 정규화 재료 지문."
+}

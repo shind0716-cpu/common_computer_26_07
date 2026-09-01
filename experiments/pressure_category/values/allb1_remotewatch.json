@@ -1,0 +1,22 @@
+{
+  "vset_id": "allb1_remotewatch",
+  "materials": "issue_remotewatch",
+  "materials_hash": "6cab37beb5f6",
+  "derived_from": {
+    "value_sets": [
+      "A",
+      "B"
+    ],
+    "rule": "exact_clause_union"
+  },
+  "statement": "너에게는 다음 여섯 가지가 중요하다: 언제든 확인 가능한 것, 검증된 방식을 쓰는 것, 전문적인 관리를 받는 것, 부담 없는 비용, 사람 사이의 교류가 있는 것, 실제로 필요한지 따져보는 것.",
+  "categories": [
+    "상시성",
+    "이용사례",
+    "전문성",
+    "비용",
+    "정서교류",
+    "타당성"
+  ],
+  "note": "belief1 ALL 보충판(2026-09-01). 현행 A+B 가치문의 구절을 그대로 병합. materials_hash는 LF 정규화 재료 지문."
+}

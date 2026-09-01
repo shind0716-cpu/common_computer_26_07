@@ -1,0 +1,22 @@
+{
+  "vset_id": "allb1_cat_days",
+  "materials": "issue_cat_feeding_days_list",
+  "materials_hash": "945f4957b5ae",
+  "derived_from": {
+    "value_sets": [
+      "A",
+      "B"
+    ],
+    "rule": "exact_clause_union"
+  },
+  "statement": "너에게는 끼니, 연속, 익숙함, 위생, 통행, 배수가 중요하다.",
+  "categories": [
+    "끼니",
+    "연속",
+    "익숙함",
+    "위생",
+    "통행",
+    "배수"
+  ],
+  "note": "belief1 ALL 보충판(2026-09-01). 현행 A+B 가치문의 구절을 그대로 병합. materials_hash는 LF 정규화 재료 지문."
+}

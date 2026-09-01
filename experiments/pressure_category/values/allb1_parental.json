@@ -1,0 +1,22 @@
+{
+  "vset_id": "allb1_parental",
+  "materials": "issue_parentalreturn",
+  "materials_hash": "2cb32fba6dc5",
+  "derived_from": {
+    "value_sets": [
+      "A",
+      "B"
+    ],
+    "rule": "exact_clause_union"
+  },
+  "statement": "너에게는 다음 여섯 가지가 중요하다: 업무 공백이 없는 것, 쌓아온 경력을 살리는 것, 빠르게 정리되는 것, 새로운 기회를 여는 것, 적응 과정에서 도움받을 수 있는 것, 장기적인 평가에 유리한 것.",
+  "categories": [
+    "안정성",
+    "숙련도",
+    "응대속도",
+    "성장기회",
+    "적응지원",
+    "승진반영"
+  ],
+  "note": "belief1 ALL 보충판(2026-09-01). 현행 A+B 가치문의 구절을 그대로 병합. materials_hash는 LF 정규화 재료 지문."
+}

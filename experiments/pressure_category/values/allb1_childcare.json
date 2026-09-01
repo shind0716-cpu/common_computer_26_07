@@ -1,0 +1,22 @@
+{
+  "vset_id": "allb1_childcare",
+  "materials": "issue_childcare",
+  "materials_hash": "bfce840c767a",
+  "derived_from": {
+    "value_sets": [
+      "A",
+      "B"
+    ],
+    "rule": "exact_clause_union"
+  },
+  "statement": "너에게는 다음 여섯 가지가 중요하다: 부담 없는 비용, 가까운 거리, 오래 쌓인 운영 이력, 전문적인 케어, 아이 속도에 맞춘 적응 지원, 문제가 생겼을 때 바로 상담받을 수 있는 것.",
+  "categories": [
+    "비용",
+    "접근성",
+    "운영이력",
+    "전문성",
+    "적응지원",
+    "상담응대"
+  ],
+  "note": "belief1 ALL 보충판(2026-09-01). 현행 A+B 가치문의 구절을 그대로 병합. materials_hash는 LF 정규화 재료 지문."
+}

@@ -1,0 +1,22 @@
+{
+  "vset_id": "allb1_eol",
+  "materials": "issue_eol",
+  "materials_hash": "85e7bf87b57e",
+  "derived_from": {
+    "value_sets": [
+      "A",
+      "B"
+    ],
+    "rule": "exact_clause_union"
+  },
+  "statement": "너에게는 다음 여섯 가지가 중요하다: 부담 없는 비용, 자주 오갈 수 있는 거리, 응급 상황에 바로 대응 가능한 것, 증상을 세심하게 돌보는 것, 가족과 온전히 함께할 공간, 필요할 때 언제든 상담받을 수 있는 것.",
+  "categories": [
+    "비용",
+    "접근성",
+    "대응체계",
+    "돌봄강도",
+    "공간",
+    "상담접근성"
+  ],
+  "note": "belief1 ALL 보충판(2026-09-01). 현행 A+B 가치문의 구절을 그대로 병합. materials_hash는 LF 정규화 재료 지문."
+}

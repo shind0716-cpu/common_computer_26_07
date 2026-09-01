@@ -1,0 +1,22 @@
+{
+  "vset_id": "allb1_examaccom",
+  "materials": "issue_examaccom",
+  "materials_hash": "bedab586e8b7",
+  "derived_from": {
+    "value_sets": [
+      "A",
+      "B"
+    ],
+    "rule": "exact_clause_union"
+  },
+  "statement": "너에게는 다음 여섯 가지가 중요하다: 절차가 명확한 것, 전례가 충분히 쌓여 있는 것, 처리가 빠른 것, 형식적 결격에 유연한 것, 개별 사정이 반영되는 것, 준비 과정에서 도움받을 수 있는 것.",
+  "categories": [
+    "예측가능성",
+    "이용사례",
+    "응대속도",
+    "유연성",
+    "개별반영도",
+    "행정부담"
+  ],
+  "note": "belief1 ALL 보충판(2026-09-01). 현행 A+B 가치문의 구절을 그대로 병합. materials_hash는 LF 정규화 재료 지문."
+}

@@ -1,0 +1,129 @@
+{
+  "schema": "pressure_all11_manifest_v1",
+  "created_at": "2026-09-01",
+  "scope": "PREREG_belief1 same 11 materials; C0 ALL baseline only",
+  "generation_rule": "Current material value_sets A+B exact-clause union. Existing semantically valid ALL files are reused and pinned here.",
+  "counts": {
+    "total": 11,
+    "rebuilt_stale": 6,
+    "new_missing": 3,
+    "reused_valid": 2
+  },
+  "entries": [
+    {
+      "issue_id": "issue_childcare",
+      "status": "rebuilt_stale",
+      "material_file": "materials/issue_childcare.json",
+      "materials_hash": "bfce840c767a",
+      "vset_id": "allb1_childcare",
+      "value_file": "values/allb1_childcare.json",
+      "value_sha256": "bef3cc1004e5a43d0267c703840741e6610323bc3d4edeb6c55361bf743bf0dc",
+      "supersedes": "values/all_childcare.json"
+    },
+    {
+      "issue_id": "issue_euthanasia",
+      "status": "rebuilt_stale",
+      "material_file": "materials/issue_euthanasia.json",
+      "materials_hash": "84fbacbedd4e",
+      "vset_id": "allb1_euthanasia",
+      "value_file": "values/allb1_euthanasia.json",
+      "value_sha256": "ae91dc974bfb414fd468cbec5555a830abc9f1c717bfb17cd14971a33efb44f5",
+      "supersedes": "values/all_euthanasia.json"
+    },
+    {
+      "issue_id": "issue_examaccom",
+      "status": "new_missing",
+      "material_file": "materials/issue_examaccom.json",
+      "materials_hash": "bedab586e8b7",
+      "vset_id": "allb1_examaccom",
+      "value_file": "values/allb1_examaccom.json",
+      "value_sha256": "5c90da49d549e037176e9e3880b47a5ca52979d5b25ccf2e7edaee01b65b35b3",
+      "supersedes": null
+    },
+    {
+      "issue_id": "issue_remotewatch",
+      "status": "rebuilt_stale",
+      "material_file": "materials/issue_remotewatch.json",
+      "materials_hash": "6cab37beb5f6",
+      "vset_id": "allb1_remotewatch",
+      "value_file": "values/allb1_remotewatch.json",
+      "value_sha256": "1594946cd4732c792b47c66d67c596a06443269b9f67831eeef12851076565c8",
+      "supersedes": "values/all_remotewatch.json"
+    },
+    {
+      "issue_id": "issue_workmind",
+      "status": "rebuilt_stale",
+      "material_file": "materials/issue_workmind.json",
+      "materials_hash": "661cb97a56ee",
+      "vset_id": "allb1_workmind",
+      "value_file": "values/allb1_workmind.json",
+      "value_sha256": "86c741ac4084b5e33d6d25003091584ff6e0031a5c0d0d334fcc0789d2f690dc",
+      "supersedes": "values/all_workmind.json"
+    },
+    {
+      "issue_id": "issue_recycling_room",
+      "status": "reused_valid",
+      "material_file": "materials/recycling_room.json",
+      "materials_hash": "f3c6140ae683",
+      "vset_id": "all_recycling_room",
+      "value_file": "values/all_recycling_room.json",
+      "value_sha256": "b7661c0be463b8c55ab6c4b77d88e95808e35137cf299847158944e32116119a",
+      "supersedes": null
+    },
+    {
+      "issue_id": "issue_smoking_area_party",
+      "status": "reused_valid",
+      "material_file": "materials/smoking_area_party.json",
+      "materials_hash": "72c4b7e16e70",
+      "vset_id": "all_smoking_area_party",
+      "value_file": "values/all_smoking_area_party.json",
+      "value_sha256": "3877b2af650ed0ffd134daf384c3f057dd061491ae6ba9464d741e5de98faf86",
+      "supersedes": null
+    },
+    {
+      "issue_id": "issue_cat_feeding_days_list",
+      "status": "new_missing",
+      "material_file": "materials/cat_feeding_days_list.json",
+      "materials_hash": "945f4957b5ae",
+      "vset_id": "allb1_cat_days",
+      "value_file": "values/allb1_cat_days.json",
+      "value_sha256": "87320d98c0e0bf85959b136735dedc89df5e7ad76c7dea49c1f949a1fc100184",
+      "supersedes": null
+    },
+    {
+      "issue_id": "issue_eol",
+      "status": "rebuilt_stale",
+      "material_file": "materials/issue_eol.json",
+      "materials_hash": "85e7bf87b57e",
+      "vset_id": "allb1_eol",
+      "value_file": "values/allb1_eol.json",
+      "value_sha256": "f90ff48681dd1a9229726589cd82c8bbcc0d9d89cfba37ef8b2fd6ca30a08631",
+      "supersedes": "values/all_eol.json"
+    },
+    {
+      "issue_id": "issue_shelter",
+      "status": "rebuilt_stale",
+      "material_file": "materials/issue_shelter.json",
+      "materials_hash": "aa3eef04c672",
+      "vset_id": "allb1_shelter",
+      "value_file": "values/allb1_shelter.json",
+      "value_sha256": "ab1531263abc578cd87a55572bb3da8878fcc0e76d0cc16ac4577dcbafbbd9fa",
+      "supersedes": "values/all_shelter.json"
+    },
+    {
+      "issue_id": "issue_parentalreturn",
+      "status": "new_missing",
+      "material_file": "materials/issue_parentalreturn.json",
+      "materials_hash": "2cb32fba6dc5",
+      "vset_id": "allb1_parental",
+      "value_file": "values/allb1_parental.json",
+      "value_sha256": "a590b872452e273aa14fe46634e15e94cd46090ccebc1ffa118e9e346c6b3170",
+      "supersedes": null
+    }
+  ],
+  "notes": [
+    "Old ALL files and historical runs are preserved; rebuilt entries use new allb1_* IDs.",
+    "The two reused files lack embedded materials_hash; this manifest pins their material and value hashes.",
+    "Do not relabel or merge historical ALL runs with this manifest without matching value_sha256 provenance."
+  ]
+}
