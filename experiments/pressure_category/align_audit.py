@@ -71,6 +71,8 @@ SKIP_DIRS = ("_dry", "_scout", "_stale_hash", "_collision")
     "GUIDE_scenario_writing_2026-08-25.md": "§2 표식 한계 — 한계 절의 근거",
     "READPLAN_ab_2026-09-01.md": "A/B 를 belief1 방식으로 물을 문항 초안",
     "PREREG_packW_2026-09-01.md": "팩 가 사전고정 — 판독 전에 걸어 둔 예측과 판정선",
+    "PREREG_all34_2026-09-01.md": "3모델 ALL 균형 사전고정 — 왜 34벌인지·세트가 두 벌로 갈린 내력",
+    "ALL34_RESULT_2026-09-01.md": "**3모델 ALL 결과.** P1·P2 적중·P3 빗나감, 판당 총 적재량 표",
 }
 원장 = {   # 근거로는 살아 있으나 읽을 것은 아니다. 인용할 때만 연다
     "READ60_pack_b1_r0.md": None, "READ60_pack_b1_last.md": None,
