@@ -91,6 +91,22 @@ def sign_p(pos, neg):
     return min(1.0, 2 * sum(math.comb(n, i) for i in range(lo + 1)) / 2 ** n)
 
 
+def kappa(cod, key, ids):
+    """코더 둘의 Cohen κ. **범위를 준 ids 로만 잰다** — 22벌 표에 30벌 값을 앉히지 않는다."""
+    a, b = [], []
+    for iid in ids:
+        slot = {key[iid]["slot1"]: "①", key[iid]["slot2"]: "②"}
+        for s in "AB":
+            for tag in ("r0", "last"):
+                a += cod["코더 A"][(iid, slot[s])][tag]
+                b += cod["헤르메스"][(iid, slot[s])][tag]
+    n = len(a)
+    cats = sorted(set(a) | set(b))
+    po = sum(1 for x, y in zip(a, b) if x == y) / n
+    pe = sum((a.count(c) / n) * (b.count(c) / n) for c in cats)
+    return n, (po - pe) / (1 - pe)
+
+
 def side_of(M, s, fid):
     return "안" if M["facts"][fid]["category"] in M["sets"][s] else "밖"
 
@@ -99,6 +115,7 @@ def main() -> int:
     key, mats, drift, runs = load_aligned()
     cod = {n: S.load_coding(p) for n, p in (("코더 A", "READ60_coderA"), ("헤르메스", "READ60_hermes"))}
     gate = {i for i in mats if runs[(i, "A")]["final_poll"] != runs[(i, "B")]["final_poll"]}
+    nk, kap = kappa(cod, key, sorted(mats))
 
     L = [f"# 보고서 재료 — 인용할 수치 (2026-09-01, 기계 생성물)", "",
          "> `report_stock.py` 가 찍는다. **글이 아니라 재료다.** 표마다 머리에 어느 기준인지 적혀 있고,",
@@ -114,9 +131,11 @@ def main() -> int:
           f"| 조건 | 압박 없음(C0) × 가치 세트 A·B × 반복 1 |",
           f"| 판 | {2*len(mats)} (재료 {len(mats)}벌 × 2) |",
           f"| 판독 칸 | {len(mats)*2*12*2:,} (사실 12 × 판 {2*len(mats)} × 첫·마지막 수첩) |",
-          f"| 코더 | 2인 독립 · 1차 전체 일치도 κ 0.817 |",
+          f"| 코더 | 2인 독립 · **이 22벌 1,056칸 일치도 κ {kap:.3f}** |",
           f"| 뺀 벌 | {', '.join(x.replace('issue_','') for x in sorted(drift))} |", "",
-          "**쓴 22벌**: " + ", ".join(sorted(x.replace("issue_", "") for x in mats)), ""]
+          "**쓴 22벌**: " + ", ".join(sorted(x.replace("issue_", "") for x in mats)), "",
+          f"> κ 주의 — 위 값은 **이 22벌 {nk:,}칸**으로 다시 잰 것이다. 1차 전체 30벌 1,424칸은 κ 0.817 이다.",
+          "> 범위가 다른 두 값이라 섞어 쓰지 않는다 (2026-09-01 피어 감사 지적).", ""]
 
     # ── B 주 결과
     rows = []

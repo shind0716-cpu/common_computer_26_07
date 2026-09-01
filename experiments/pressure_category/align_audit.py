@@ -184,6 +184,32 @@ def scan_valuesets(cur: dict):
     return ok, bad
 
 
+def scan_fingerprints(cur: dict):
+    """③-2 지문 — 세트·각본이 적어 둔 `materials_hash` 가 현행 재료 지문과 같은가.
+
+    카테고리 대조(③)는 **재료 카테고리를 지목하는 세트에만** 걸린다. 신념 세트와 서열 세트는
+    카드 이름을 `items[].category` 에 두는데 그건 일부러 재료 밖 낱말이라 대조 상대가 아니다.
+    그런 세트도 `materials_hash` 는 갖고 있으므로 **지문으로는 잴 수 있다.**
+    2026-09-01 피어 감사 지적 — ③ 만으로는 세트 69개와 각본 49개가 통째로 안 보였다.
+    """
+    out = {}
+    for kind, folder in (("가치 세트", "values"), ("압박 각본", "scripts")):
+        ok = nohash = drift = 0
+        bad = []
+        for q in sorted((HERE / folder).glob("*.json")):
+            d = json.loads(q.read_text(encoding="utf-8"))
+            h, iid = d.get("materials_hash"), d.get("materials")
+            if h is None:
+                nohash += 1
+            elif iid in cur and h == cur[iid][1]:
+                ok += 1
+            else:
+                drift += 1
+                bad.append((q.stem, iid, h, cur.get(iid, ("", "없음"))[1]))
+        out[kind] = {"일치": ok, "지문 없음": nohash, "어긋남": drift, "목록": bad}
+    return out
+
+
 def sign_p(pos: int, neg: int) -> float:
     n = pos + neg
     if n == 0:
@@ -227,6 +253,7 @@ def main() -> int:
     tally, drift = scan_runs(cur)
     key, mats, aligned, drifted = scan_reading(cur)
     vok, vbad = scan_valuesets(cur)
+    fp = scan_fingerprints(cur)
     judged = {n: rejudge(key, mats, p) for n, p in
               (("코더 A", "READ60_coderA"), ("헤르메스", "READ60_hermes"))}
 
@@ -259,6 +286,14 @@ def main() -> int:
           "", "어긋남: " + ", ".join(f"`{x}`" for x in sorted(vbad)), "",
           "전부 재료 개정 전에 만든 옛 올세트다. 지우지 않고 두되 **기준선으로 쓰지 않는다** —",
           "지목하는 낱말이 현행 재료의 카테고리와 한 개도 안 겹친다.",
+          "", "### ③-2. 지문 — 세트·각본이 적어 둔 재료 지문", "",
+          "위 카테고리 대조는 **재료 카테고리를 지목하는 세트에만** 걸린다. 신념 세트와 서열 세트는",
+          "카드 이름을 `items[].category` 에 두는데 그건 일부러 재료 밖 낱말이라 대조 상대가 아니다.",
+          "그런 세트도 `materials_hash` 는 갖고 있으므로 지문으로 잰다. 각본도 같다.", "",
+          "| 무엇 | 지문 일치 | 지문 없음 | 어긋남 |", "|---|---:|---:|---:|"] + [
+          f"| {k} | {v['일치']} | {v['지문 없음']} | {v['어긋남']} |" for k, v in fp.items()] + [
+          "",
+          "지문 없는 것은 지문 칸이 생기기 전에 만든 옛 세트다(카테고리 대조로만 잰다).",
           "", "## ④ 주 판정 재계산 — 판독이 맞는 22쌍만", "",
           "눈금은 `analyze_stage1.py` 머리말 그대로다. 살았다 = 보 ∪ 부 ∪ 변, 짝 단위 `d = p안 − p밖`.", "",
           "| 코더 | 층 | 쌍 | 양수 | 음수 | 동점 | 중앙 d | 부호검정 p |", "|---|---|---:|---:|---:|---:|---:|---:|"]
@@ -271,6 +306,13 @@ def main() -> int:
           "**§23 의 30쌍 판정과 견주면 방향이 같고 더 선명하다** — 30쌍에서 (i) 25/30 · 중앙 +0.250 이던 것이",
           "22쌍에서 22/22 · 중앙 +0.333 이 된다. 빠진 여덟 벌은 §23-6 이 이미 「격차가 0에 가깝다」고",
           "적어 둔 현수 재료다. (ii) 는 두 기준 모두 기각이고 동점이 절반이라는 천장도 그대로다.",
+          "",
+          "⚠ **관문 수도 기준에 따라 다르다** (2026-09-01 피어 감사). 관문은 `run_C0_{A,B}_rep1.json` 의",
+          "`final_poll` 둘만 보는데, 개정된 여덟 벌은 8/31 판으로 갈렸다. **8/27 판 기준 21/30 ·",
+          "현행 판 기준 23/30** 이다(childcare 가 8/27 에는 같은 답이라 탈락, 8/31 에는 갈려 통과).",
+          "판을 바꾼 커밋은 `8d8fcaa`(재료 재업로드) 뿐 아니라 **`6466eb3`**(8/31, 옛 판 18개를",
+          "`_stale_hash` 로 옮기고 같은 경로를 새 판으로 채움)이다. §23 의 21/30 은 8/27 기준이고,",
+          "위 22쌍 재판정은 **판독과 판이 둘 다 8/27 인 22벌**만 쓰므로 안이 맞는다(확인함).",
           "",
           "## 그래서 무엇을 쓸 수 있나", "",
           "| 산출물 | 근거 | 판정 |", "|---|---|---|",
@@ -309,7 +351,9 @@ def main() -> int:
     print(f"찍었다: {OUT.name}")
     print(f"원자료 — 밑줄 폴더 밖 어긋남 {len(drift)}판")
     print(f"판독  — 정렬 {len(aligned)} · 어긋남 {len(drifted)}")
-    print(f"세트  — 정렬 {len(vok)} · 어긋남 {len(vbad)}")
+    print(f"세트  — 카테고리 정렬 {len(vok)} · 어긋남 {len(vbad)}")
+    for k, v in fp.items():
+        print(f"지문  — {k}: 일치 {v['일치']} · 지문없음 {v['지문 없음']} · 어긋남 {v['어긋남']}")
     for cn, r in judged.items():
         v = r["r0"]
         print(f"재판정 {cn}: (i) {v['양수']}/{v['쌍']} · 중앙 {v['중앙']:+.3f} · p {v['p']:.2g}")
