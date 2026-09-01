@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "pack",
+    "coder_artifacts",
+    "items"
+  ],
+  "properties": {
+    "schema": {
+      "enum": [
+        "all11_gpt_consensus_v1",
+        "all11_gpt_consensus_v2"
+      ]
+    },
+    "pack": {
+      "enum": [
+        "PACK_A",
+        "PACK_B",
+        "PACK_C"
+      ]
+    },
+    "coder_artifacts": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "coder_id",
+          "sha256"
+        ],
+        "properties": {
+          "coder_id": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "fields"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "fields": {
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "value",
+                "coding_status",
+                "provenance"
+              ],
+              "properties": {
+                "value": {},
+                "coding_status": {
+                  "enum": [
+                    "audited_agreement",
+                    "adjudicated",
+                    "unresolved"
+                  ]
+                },
+                "provenance": {
+                  "type": "object",
+                  "required": [
+                    "coder_1",
+                    "coder_2"
+                  ],
+                  "properties": {
+                    "coder_1": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "coder_id",
+                        "artifact_sha256",
+                        "value"
+                      ],
+                      "properties": {
+                        "coder_id": {
+                          "type": "string"
+                        },
+                        "artifact_sha256": {
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{64}$"
+                        },
+                        "value": {}
+                      }
+                    },
+                    "coder_2": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "coder_id",
+                        "artifact_sha256",
+                        "value"
+                      ],
+                      "properties": {
+                        "coder_id": {
+                          "type": "string"
+                        },
+                        "artifact_sha256": {
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{64}$"
+                        },
+                        "value": {}
+                      }
+                    },
+                    "adjudication": {
+                      "type": "object"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

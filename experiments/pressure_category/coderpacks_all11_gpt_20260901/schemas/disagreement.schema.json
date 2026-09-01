@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "pack",
+    "coder_labels",
+    "coder_artifact_sha256",
+    "disagreements"
+  ],
+  "properties": {
+    "schema": {
+      "const": "all11_gpt_disagreements_v2"
+    },
+    "pack": {
+      "enum": [
+        "PACK_A",
+        "PACK_B",
+        "PACK_C"
+      ]
+    },
+    "coder_labels": {
+      "const": [
+        "CODER_1",
+        "CODER_2"
+      ]
+    },
+    "coder_artifact_sha256": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    },
+    "disagreements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "source_item",
+          "fields"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "source_item": {
+            "type": "object"
+          },
+          "fields": {
+            "type": "object",
+            "minProperties": 1
+          }
+        }
+      }
+    }
+  }
+}

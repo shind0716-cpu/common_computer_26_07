@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "pack",
+    "adjudicator_receipt_sha256",
+    "resolutions"
+  ],
+  "properties": {
+    "schema": {
+      "const": "all11_gpt_adjudication_v1"
+    },
+    "pack": {
+      "enum": [
+        "PACK_A",
+        "PACK_B",
+        "PACK_C"
+      ]
+    },
+    "adjudicator_receipt_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "resolutions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "fields"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "fields": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "coding_status",
+                "value"
+              ],
+              "properties": {
+                "coding_status": {
+                  "enum": [
+                    "adjudicated",
+                    "unresolved"
+                  ]
+                },
+                "value": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

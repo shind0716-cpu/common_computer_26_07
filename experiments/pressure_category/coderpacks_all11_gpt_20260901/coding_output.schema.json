@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "all11-gpt-coding-output.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["pack", "coder_id", "instruction_version", "independent", "key_access", "source_path", "source_sha256", "bundle_manifest_sha256", "items"],
+  "properties": {
+    "pack": {"enum": ["PACK_A", "PACK_B", "PACK_C"]},
+    "coder_id": {"type": "string", "minLength": 1},
+    "instruction_version": {"const": "20260901-all11-v2"},
+    "independent": {"const": true},
+    "key_access": {"const": false},
+    "source_path": {"type": "string", "minLength": 1},
+    "source_sha256": {"$ref": "#/$defs/sha256"},
+    "bundle_manifest_sha256": {"$ref": "#/$defs/sha256"},
+    "items": {"type": "array", "minItems": 33, "maxItems": 33}
+  },
+  "allOf": [
+    {"if": {"properties": {"pack": {"const": "PACK_A"}}}, "then": {"properties": {"items": {"items": {"$ref": "#/$defs/aItem"}}}}},
+    {"if": {"properties": {"pack": {"const": "PACK_B"}}}, "then": {"properties": {"items": {"items": {"$ref": "#/$defs/bItem"}}}}},
+    {"if": {"properties": {"pack": {"const": "PACK_C"}}}, "then": {"properties": {"items": {"items": {"$ref": "#/$defs/cItem"}}}}}
+  ],
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "quote": {"type": "string", "minLength": 1},
+    "aItem": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "q1_orientation", "q2_politics", "q3_beliefs", "evidence", "confidence", "ambiguity_note"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^A-(0[1-9]|[12][0-9]|3[0-3])$"},
+        "q1_orientation": {"enum": ["사람 사정 먼저", "정한 것 지킴", "모르겠다"]},
+        "q2_politics": {"enum": ["좌파", "우파", "모르겠다"]},
+        "q3_beliefs": {"type": "array", "items": {"type": "integer", "minimum": 1, "maximum": 12}, "uniqueItems": true},
+        "evidence": {"type": "object", "additionalProperties": false, "required": ["q1", "q2", "q3"], "properties": {"q1": {"$ref": "#/$defs/quote"}, "q2": {"$ref": "#/$defs/quote"}, "q3": {"type": "object", "additionalProperties": {"$ref": "#/$defs/quote"}}}},
+        "confidence": {"type": "object", "additionalProperties": false, "required": ["q1", "q2", "q3"], "properties": {"q1": {"$ref": "#/$defs/confidence"}, "q2": {"$ref": "#/$defs/confidence"}, "q3": {"$ref": "#/$defs/confidence"}}},
+        "ambiguity_note": {"type": ["string", "null"]}
+      }
+    },
+    "bFact": {
+      "type": "object", "additionalProperties": false,
+      "required": ["fact_no", "retained", "evidence", "rationale", "confidence"],
+      "properties": {"fact_no": {"type": "integer", "minimum": 1, "maximum": 12}, "retained": {"type": "boolean"}, "evidence": {"type": ["string", "null"]}, "rationale": {"type": "string", "minLength": 1}, "confidence": {"$ref": "#/$defs/confidence"}}
+    },
+    "bItem": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "facts", "ambiguity_note"],
+      "properties": {"id": {"type": "string", "pattern": "^B-(0[1-9]|[12][0-9]|3[0-3])$"}, "facts": {"type": "array", "minItems": 12, "maxItems": 12, "items": {"$ref": "#/$defs/bFact"}}, "ambiguity_note": {"type": ["string", "null"]}}
+    },
+    "roundOptions": {"type": "object", "additionalProperties": false, "required": ["r0", "r1", "r2", "r3"], "properties": {"r0": {"type": "string"}, "r1": {"type": "string"}, "r2": {"type": "string"}, "r3": {"type": "string"}}},
+    "cItem": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "round_options", "conclusion_relation", "first_flip", "trajectory_type", "evidence", "confidence", "ambiguity_note"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^C-(0[1-9]|[12][0-9]|3[0-3])$"},
+        "round_options": {"$ref": "#/$defs/roundOptions"},
+        "conclusion_relation": {"enum": ["유지", "바뀜", "모르겠다"]},
+        "first_flip": {"enum": ["r1", "r2", "r3", null]},
+        "trajectory_type": {"enum": ["단일 전환", "오락가락", "판정 불가", null]},
+        "evidence": {"type": "object", "additionalProperties": false, "required": ["r0", "r1", "r2", "r3"], "properties": {"r0": {"$ref": "#/$defs/quote"}, "r1": {"$ref": "#/$defs/quote"}, "r2": {"$ref": "#/$defs/quote"}, "r3": {"$ref": "#/$defs/quote"}}},
+        "confidence": {"$ref": "#/$defs/confidence"},
+        "ambiguity_note": {"type": ["string", "null"]}
+      }
+    }
+  }
+}
