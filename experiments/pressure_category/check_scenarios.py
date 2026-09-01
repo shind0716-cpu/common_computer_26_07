@@ -108,7 +108,9 @@ def inspect(path: Path, live: collections.Counter) -> dict | None:
         "anchor_avg": round(sum(len(a.split()) for a in anchors) / len(anchors), 1),
         "anchor_max": max(len(a.split()) for a in anchors),
         "multiword": [a for a in anchors if len(a.split()) > 1],
-        "josa": [a for a in anchors if re.search(r"(와|과|및)\s", a)],
+        # 이 키 이름은 아래 josa_errors 와 겹치면 안 된다 — 겹치면 파이썬이 조용히 뒤엣것을
+        # 남기고 이 검사가 늘 0건이 된다 (2026-09-01 실측: 그 상태로 재료 17건을 놓쳤다).
+        "anchor_josa": [a for a in anchors if re.search(r"(와|과|및)\s", a)],
         "digit": [a for a in anchors if re.search(r"\d", a)],
         "copy": copy_ratio,
         "josa": josa_errors(d),
@@ -140,7 +142,7 @@ def main() -> int:
     print("\n=== 기계가 잡은 것 ===")
     findings = [
         ("표식이 두 낱말 이상 (GUIDE §2 — 줄여 쓰면 놓친다)", "multiword", lambda v: len(v) >= 6),
-        ("표식에 와/과/및 (§2-2 갈래 하나 — 가운뎃점이 된다)", "josa", bool),
+        ("표식에 와/과/및 (§2-2 갈래 하나 — 가운뎃점이 된다)", "anchor_josa", bool),
         ("수치 표식 (2026-08-25 검수로 금지)", "digit", bool),
         ("표식이 사실 문장의 40% 넘음 — 요약이 아니라 복사", "copy", lambda v: len(v) >= 3),
     ]

@@ -1,0 +1,847 @@
+{
+ "pack": "PACK_W",
+ "seed": 20260901,
+ "built_at_note": "판독 전에는 열지 않는다",
+ "items": [
+  {
+   "item": "W-01",
+   "issue_id": "issue_restaurant_sogaeting",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "9621ed5954bb",
+   "given": [
+    "메뉴다양성",
+    "영업시간",
+    "프라이버시"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-02",
+   "issue_id": "issue_ambulance",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "cf1983562ad4",
+   "given": [
+    "숙련도",
+    "응대속도",
+    "접근성"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-03",
+   "issue_id": "issue_restaurant_office_lunch",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "2cb192df0814",
+   "given": [
+    "가격",
+    "신속함",
+    "접근성"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-04",
+   "issue_id": "issue_childcare_room",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "8cdfc68efc6c",
+   "given": [
+    "안전",
+    "이동권",
+    "접근성"
+   ],
+   "leak_given": 1,
+   "leak_other": 0
+  },
+  {
+   "item": "W-05",
+   "issue_id": "issue_cat_feeding_party",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "e64beb9f44e7",
+   "given": [
+    "남은먹이",
+    "낸말",
+    "다니는길"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-06",
+   "issue_id": "issue_community_cat_feeding",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "7d3f036fd62b",
+   "given": [
+    "안전",
+    "위생",
+    "이동권"
+   ],
+   "leak_given": 2,
+   "leak_other": 0
+  },
+  {
+   "item": "W-07",
+   "issue_id": "issue_restaurant_sanggyeollye",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "6df0202a3375",
+   "given": [
+    "가격",
+    "앉을자리",
+    "접근성"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-08",
+   "issue_id": "issue_caregiverprotect",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "af21d42a102f",
+   "given": [
+    "신뢰성우려",
+    "안전관리",
+    "위험대응"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-09",
+   "issue_id": "issue_childcare_party",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "1ee3dd197a77",
+   "given": [
+    "낮쉼",
+    "마음결",
+    "문앞걸음"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-10",
+   "issue_id": "issue_smoking_area_party",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "72c4b7e16e70",
+   "given": [
+    "냄새",
+    "바람",
+    "환기"
+   ],
+   "leak_given": 3,
+   "leak_other": 0
+  },
+  {
+   "item": "W-11",
+   "issue_id": "issue_restaurant_brunch",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "575e28f3d265",
+   "given": [
+    "가격",
+    "이용시간자유",
+    "접근성"
+   ],
+   "leak_given": 1,
+   "leak_other": 0
+  },
+  {
+   "item": "W-12",
+   "issue_id": "issue_childcare",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "bfce840c767a",
+   "given": [
+    "상담응대",
+    "적응지원",
+    "전문성"
+   ],
+   "leak_given": 1,
+   "leak_other": 1
+  },
+  {
+   "item": "W-13",
+   "issue_id": "issue_elderdrive",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "be132e6715f6",
+   "given": [
+    "비용",
+    "응급대응",
+    "즉시가용성"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-14",
+   "issue_id": "issue_floor_noise",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "953e800c0ca1",
+   "given": [
+    "근무연속",
+    "알람청취",
+    "저녁수면"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-15",
+   "issue_id": "issue_smoking_area",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "4db90d8868b8",
+   "given": [
+    "위생",
+    "이동권",
+    "평온"
+   ],
+   "leak_given": 3,
+   "leak_other": 0
+  },
+  {
+   "item": "W-16",
+   "issue_id": "issue_elderdrive",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "be132e6715f6",
+   "given": [
+    "사회적신호",
+    "신뢰도",
+    "안전역량"
+   ],
+   "leak_given": 0,
+   "leak_other": 1
+  },
+  {
+   "item": "W-17",
+   "issue_id": "issue_childcare_party",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "1ee3dd197a77",
+   "given": [
+    "맡길때",
+    "살펴봄",
+    "자리남김"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-18",
+   "issue_id": "issue_ambulance",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "cf1983562ad4",
+   "given": [
+    "예비자원",
+    "이동여건",
+    "확인상태"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-19",
+   "issue_id": "issue_recycling_room",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "f3c6140ae683",
+   "given": [
+    "안전",
+    "위생",
+    "평온"
+   ],
+   "leak_given": 3,
+   "leak_other": 0
+  },
+  {
+   "item": "W-20",
+   "issue_id": "issue_restaurant_anniversary",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "6486b950be80",
+   "given": [
+    "발렛편의",
+    "전문서비스",
+    "코스구성"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-21",
+   "issue_id": "issue_restaurant_solo",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "6ab9d97a23fe",
+   "given": [
+    "가격",
+    "배부름",
+    "영업시간"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-22",
+   "issue_id": "issue_garden_plot",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "c018b6d7605e",
+   "given": [
+    "다니는품",
+    "맡아온일",
+    "물대기"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-23",
+   "issue_id": "issue_euthanasia",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "84fbacbedd4e",
+   "given": [
+    "비용",
+    "이용사례",
+    "접근성"
+   ],
+   "leak_given": 1,
+   "leak_other": 0
+  },
+  {
+   "item": "W-24",
+   "issue_id": "issue_smoking_area",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "4db90d8868b8",
+   "given": [
+    "안전",
+    "접근성",
+    "편의"
+   ],
+   "leak_given": 3,
+   "leak_other": 0
+  },
+  {
+   "item": "W-25",
+   "issue_id": "issue_smoking_area_party",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "72c4b7e16e70",
+   "given": [
+    "궂은날",
+    "오가는길",
+    "치워온일"
+   ],
+   "leak_given": 0,
+   "leak_other": 2
+  },
+  {
+   "item": "W-26",
+   "issue_id": "issue_community_room",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "b9a22d30ebc5",
+   "given": [
+    "공기흐름",
+    "바닥공간",
+    "인원수용"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-27",
+   "issue_id": "issue_restaurant_date",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "f41e4b404e5b",
+   "given": [
+    "가격",
+    "여유",
+    "접근성"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-28",
+   "issue_id": "issue_floor_noise",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "953e800c0ca1",
+   "given": [
+    "귀가생활",
+    "아동활동",
+    "취침준비"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-29",
+   "issue_id": "issue_cat_feeding_plainvalue",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "dd584f366467",
+   "given": [
+    "돌봄",
+    "접근성",
+    "책임"
+   ],
+   "leak_given": 0,
+   "leak_other": 1
+  },
+  {
+   "item": "W-30",
+   "issue_id": "issue_community_cat_feeding",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "7d3f036fd62b",
+   "given": [
+    "돌봄",
+    "접근성",
+    "책임"
+   ],
+   "leak_given": 3,
+   "leak_other": 0
+  },
+  {
+   "item": "W-31",
+   "issue_id": "issue_restaurant_biz_meeting",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "37de05a5fd9d",
+   "given": [
+    "자리보장",
+    "접근성",
+    "조용함"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-32",
+   "issue_id": "issue_restaurant_kids",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "12ee8781ee3f",
+   "given": [
+    "가격",
+    "간",
+    "앉을자리"
+   ],
+   "leak_given": 1,
+   "leak_other": 0
+  },
+  {
+   "item": "W-33",
+   "issue_id": "issue_restaurant_elders",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "96c2c0101d47",
+   "given": [
+    "가격",
+    "룸조용함",
+    "상차림"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-34",
+   "issue_id": "issue_restaurant_solo",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "6ab9d97a23fe",
+   "given": [
+    "마주앉기",
+    "메뉴다양성",
+    "신속함"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-35",
+   "issue_id": "issue_remotewatch",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "6cab37beb5f6",
+   "given": [
+    "상시성",
+    "이용사례",
+    "전문성"
+   ],
+   "leak_given": 1,
+   "leak_other": 1
+  },
+  {
+   "item": "W-36",
+   "issue_id": "issue_restaurant_anniversary",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "6486b950be80",
+   "given": [
+    "가격",
+    "디저트옵션",
+    "소요시간"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-37",
+   "issue_id": "issue_childcare_room",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "8cdfc68efc6c",
+   "given": [
+    "위생",
+    "편의",
+    "평온"
+   ],
+   "leak_given": 3,
+   "leak_other": 0
+  },
+  {
+   "item": "W-38",
+   "issue_id": "issue_eol",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "85e7bf87b57e",
+   "given": [
+    "공간",
+    "돌봄강도",
+    "상담접근성"
+   ],
+   "leak_given": 1,
+   "leak_other": 1
+  },
+  {
+   "item": "W-39",
+   "issue_id": "issue_childcare",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "bfce840c767a",
+   "given": [
+    "비용",
+    "운영이력",
+    "접근성"
+   ],
+   "leak_given": 1,
+   "leak_other": 0
+  },
+  {
+   "item": "W-40",
+   "issue_id": "issue_restaurant_office_lunch",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "2cb192df0814",
+   "given": [
+    "단체수용",
+    "메뉴다양성",
+    "셈나누기"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-41",
+   "issue_id": "issue_eol",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "85e7bf87b57e",
+   "given": [
+    "대응체계",
+    "비용",
+    "접근성"
+   ],
+   "leak_given": 1,
+   "leak_other": 0
+  },
+  {
+   "item": "W-42",
+   "issue_id": "issue_restaurant_kids",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "12ee8781ee3f",
+   "given": [
+    "놀거리",
+    "신속함",
+    "치우기"
+   ],
+   "leak_given": 0,
+   "leak_other": 1
+  },
+  {
+   "item": "W-43",
+   "issue_id": "issue_restaurant_sogaeting",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "9621ed5954bb",
+   "given": [
+    "가격",
+    "마주앉기",
+    "접근성"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-44",
+   "issue_id": "issue_restaurant_biz_meeting",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "37de05a5fd9d",
+   "given": [
+    "가격",
+    "신속함",
+    "업무환경"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-45",
+   "issue_id": "issue_remotewatch",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "6cab37beb5f6",
+   "given": [
+    "비용",
+    "정서교류",
+    "타당성"
+   ],
+   "leak_given": 1,
+   "leak_other": 0
+  },
+  {
+   "item": "W-46",
+   "issue_id": "issue_recycling_room_party",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "cb24e2cb38f5",
+   "given": [
+    "밤소리",
+    "지나는데",
+    "해본일"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-47",
+   "issue_id": "issue_workmind",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "661cb97a56ee",
+   "given": [
+    "비밀보장",
+    "이용사례",
+    "전문성"
+   ],
+   "leak_given": 1,
+   "leak_other": 2
+  },
+  {
+   "item": "W-48",
+   "issue_id": "issue_restaurant_date",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "f41e4b404e5b",
+   "given": [
+    "그날차림",
+    "분위기",
+    "프라이버시"
+   ],
+   "leak_given": 1,
+   "leak_other": 0
+  },
+  {
+   "item": "W-49",
+   "issue_id": "issue_euthanasia",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "84fbacbedd4e",
+   "given": [
+    "입양연계",
+    "정서상태",
+    "케어방식"
+   ],
+   "leak_given": 0,
+   "leak_other": 1
+  },
+  {
+   "item": "W-50",
+   "issue_id": "issue_community_room",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "b9a22d30ebc5",
+   "given": [
+    "모임준비",
+    "앉을자리",
+    "화면보기"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-51",
+   "issue_id": "issue_recycling_room",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "f3c6140ae683",
+   "given": [
+    "이동권",
+    "접근성",
+    "편의"
+   ],
+   "leak_given": 3,
+   "leak_other": 1
+  },
+  {
+   "item": "W-52",
+   "issue_id": "issue_workmind",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "661cb97a56ee",
+   "given": [
+    "비용",
+    "응대속도",
+    "접근성"
+   ],
+   "leak_given": 2,
+   "leak_other": 1
+  },
+  {
+   "item": "W-53",
+   "issue_id": "issue_restaurant_sanggyeollye",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "6df0202a3375",
+   "given": [
+    "격식",
+    "서비스품질",
+    "프라이버시"
+   ],
+   "leak_given": 1,
+   "leak_other": 0
+  },
+  {
+   "item": "W-54",
+   "issue_id": "issue_restaurant_elders",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "96c2c0101d47",
+   "given": [
+    "신속함",
+    "이동편의",
+    "차림읽기"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-55",
+   "issue_id": "issue_cat_feeding_plainvalue",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "dd584f366467",
+   "given": [
+    "안전",
+    "위생",
+    "이동권"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-56",
+   "issue_id": "issue_garden_plot",
+   "run_id": "C0_B_rep1",
+   "value_set": "B",
+   "materials_hash": "c018b6d7605e",
+   "given": [
+    "돌봄약속",
+    "일나눔",
+    "차례"
+   ],
+   "leak_given": 1,
+   "leak_other": 0
+  },
+  {
+   "item": "W-57",
+   "issue_id": "issue_recycling_room_party",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "cb24e2cb38f5",
+   "given": [
+    "갈라둔것",
+    "돌아오는시각",
+    "집안보관"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-58",
+   "issue_id": "issue_cat_feeding_party",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "e64beb9f44e7",
+   "given": [
+    "급식지속",
+    "돌보러가기",
+    "뒤처리"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-59",
+   "issue_id": "issue_caregiverprotect",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "af21d42a102f",
+   "given": [
+    "관계연속성",
+    "숙련도",
+    "이용사례"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  },
+  {
+   "item": "W-60",
+   "issue_id": "issue_restaurant_brunch",
+   "run_id": "C0_A_rep1",
+   "value_set": "A",
+   "materials_hash": "575e28f3d265",
+   "given": [
+    "메뉴다양성",
+    "인테리어",
+    "커피디저트"
+   ],
+   "leak_given": 0,
+   "leak_other": 0
+  }
+ ]
+}
