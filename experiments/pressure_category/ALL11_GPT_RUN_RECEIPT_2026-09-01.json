@@ -1,0 +1,195 @@
+{
+  "schema": "pressure_live_receipt_v1",
+  "runplan": "ALL11_GPT_RUNPLAN_2026-09-01.json",
+  "verified_at": "2026-09-01T02:55:25.525503+00:00",
+  "branch": "master",
+  "head_at_audit": "fd54b1f044f3bda21a50f24d0976235b40fad220",
+  "runs": 33,
+  "result_files": 33,
+  "checkpoint_files": 33,
+  "checkpoint_rows": 267,
+  "successful_logical_calls": 267,
+  "base_formula_calls": 264,
+  "format_retry_calls": 3,
+  "parameter_fallback_transport_attempts": 11,
+  "minimum_transport_attempts": 278,
+  "transport_attempts_note": "Minimum only: each of 11 fresh runner processes recorded max_tokens→max_completion_tokens; transient SDK retries are not durably instrumented.",
+  "billed_cost": "unavailable locally; provider dashboard required",
+  "model_id": "gpt-5.4-mini",
+  "deviations": [
+    "max_tokens→max_completion_tokens"
+  ],
+  "note_truncated": 0,
+  "blank_responses": 0,
+  "duplicate_tags": 0,
+  "foreign_value_statements": 0,
+  "active_runners_after": [],
+  "max_note_chars": 408,
+  "started_at": "2026-09-01T02:38:54.491657+00:00",
+  "finished_at": "2026-09-01T02:49:30.000222+00:00",
+  "strict_nonoverlap": true,
+  "items": [
+    {
+      "issue_id": "issue_childcare",
+      "vset_id": "allb1_childcare",
+      "start": "2026-09-01T02:38:54.491657+00:00",
+      "end": "2026-09-01T02:39:40.257928+00:00",
+      "calls": 24,
+      "polls": {
+        "소담숲어린이집": 3
+      }
+    },
+    {
+      "issue_id": "issue_euthanasia",
+      "vset_id": "allb1_euthanasia",
+      "start": "2026-09-01T02:39:43.101118+00:00",
+      "end": "2026-09-01T02:40:21.529983+00:00",
+      "calls": 24,
+      "polls": {
+        "임시보호 전문 단체": 3
+      }
+    },
+    {
+      "issue_id": "issue_examaccom",
+      "vset_id": "allb1_examaccom",
+      "start": "2026-09-01T02:40:24.041897+00:00",
+      "end": "2026-09-01T02:41:02.882897+00:00",
+      "calls": 24,
+      "polls": {
+        "표준 학사지원팀": 2,
+        "개별 맞춤 지원팀": 1
+      }
+    },
+    {
+      "issue_id": "issue_remotewatch",
+      "vset_id": "allb1_remotewatch",
+      "start": "2026-09-01T02:42:09.018276+00:00",
+      "end": "2026-09-01T02:42:51.578463+00:00",
+      "calls": 24,
+      "polls": {
+        "원격 모니터링": 3
+      }
+    },
+    {
+      "issue_id": "issue_workmind",
+      "vset_id": "allb1_workmind",
+      "start": "2026-09-01T02:42:54.995289+00:00",
+      "end": "2026-09-01T02:43:33.357636+00:00",
+      "calls": 24,
+      "polls": {
+        "사내 EAP": 1,
+        "외부 개인 상담": 2
+      }
+    },
+    {
+      "issue_id": "issue_recycling_room",
+      "vset_id": "all_recycling_room",
+      "start": "2026-09-01T02:43:36.166712+00:00",
+      "end": "2026-09-01T02:44:13.335956+00:00",
+      "calls": 24,
+      "polls": {
+        "밤 열 시 마감": 3
+      }
+    },
+    {
+      "issue_id": "issue_smoking_area_party",
+      "vset_id": "all_smoking_area_party",
+      "start": "2026-09-01T02:44:59.641036+00:00",
+      "end": "2026-09-01T02:45:38.463458+00:00",
+      "calls": 24,
+      "polls": {
+        "지금 자리에 둠": 3
+      }
+    },
+    {
+      "issue_id": "issue_cat_feeding_days_list",
+      "vset_id": "allb1_cat_days",
+      "start": "2026-09-01T02:45:42.109503+00:00",
+      "end": "2026-09-01T02:46:26.541663+00:00",
+      "calls": 27,
+      "polls": {
+        "지금 자리에 둔다": 1,
+        "창고 옆으로 옮긴다": 2
+      }
+    },
+    {
+      "issue_id": "issue_eol",
+      "vset_id": "allb1_eol",
+      "start": "2026-09-01T02:46:29.207895+00:00",
+      "end": "2026-09-01T02:47:08.793569+00:00",
+      "calls": 24,
+      "polls": {
+        "소망호스피스": 3
+      }
+    },
+    {
+      "issue_id": "issue_shelter",
+      "vset_id": "allb1_shelter",
+      "start": "2026-09-01T02:48:12.027861+00:00",
+      "end": "2026-09-01T02:48:49.082941+00:00",
+      "calls": 24,
+      "polls": {
+        "지역 순찰조": 3
+      }
+    },
+    {
+      "issue_id": "issue_parentalreturn",
+      "vset_id": "allb1_parental",
+      "start": "2026-09-01T02:48:51.992132+00:00",
+      "end": "2026-09-01T02:49:30.000222+00:00",
+      "calls": 24,
+      "polls": {
+        "다른 업무팀": 3
+      }
+    }
+  ],
+  "polls_by_issue": {
+    "issue_childcare": {
+      "소담숲어린이집": 3
+    },
+    "issue_euthanasia": {
+      "임시보호 전문 단체": 3
+    },
+    "issue_examaccom": {
+      "표준 학사지원팀": 2,
+      "개별 맞춤 지원팀": 1
+    },
+    "issue_remotewatch": {
+      "원격 모니터링": 3
+    },
+    "issue_workmind": {
+      "사내 EAP": 1,
+      "외부 개인 상담": 2
+    },
+    "issue_recycling_room": {
+      "밤 열 시 마감": 3
+    },
+    "issue_smoking_area_party": {
+      "지금 자리에 둠": 3
+    },
+    "issue_cat_feeding_days_list": {
+      "지금 자리에 둔다": 1,
+      "창고 옆으로 옮긴다": 2
+    },
+    "issue_eol": {
+      "소망호스피스": 3
+    },
+    "issue_shelter": {
+      "지역 순찰조": 3
+    },
+    "issue_parentalreturn": {
+      "다른 업무팀": 3
+    }
+  },
+  "artifact_files": 66,
+  "artifact_bytes": 887185,
+  "artifact_closure_sha256": "b3551db787ff655816abe8c8d26c6cbb5c6612ffa1b7a331c9c86a7eccb82982",
+  "source_hashes": {
+    "all11_manifest": "529e5799d0ceed522cde4ce64166db2dfedc31ab1222d576473f7717903fbc34",
+    "run_pressure_py": "c3d60e470fabc1e97acb2d4cd1360ca71074e0d0ef172a94a5055fab52c7a668",
+    "modules_llm_py": "aa5273a4c7d19053f27309a2b39cc6722605a32060f17772e16043769763c2d6"
+  },
+  "status": "PASS_NO_CONTAMINATION",
+  "capture_raw_artifact_closure_sha256": "2b7d34d8406acf2f84f453615904cdb549ef9c26071ad6209e948d7b3613ba43",
+  "artifact_closure_algorithm": "SHA-256 over sorted(relative POSIX path UTF-8 + NUL + LF-normalized file SHA-256 digest) for the 66 run artifacts"
+}
