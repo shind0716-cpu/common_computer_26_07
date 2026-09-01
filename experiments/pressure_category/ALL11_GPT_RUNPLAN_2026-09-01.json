@@ -1,0 +1,134 @@
+{
+  "schema": "pressure_live_runplan_v1",
+  "created_at": "2026-09-01T11:37:55+09:00",
+  "approval": "user approved GPT ALL live execution in batches of three scenarios",
+  "source_commit": "b658a2477ad2cf6c8dfd0136e592874127144b0b",
+  "source_hashes": {
+    "all11_manifest": "529e5799d0ceed522cde4ce64166db2dfedc31ab1222d576473f7717903fbc34",
+    "run_pressure_py": "c3d60e470fabc1e97acb2d4cd1360ca71074e0d0ef172a94a5055fab52c7a668",
+    "modules_llm_py": "aa5273a4c7d19053f27309a2b39cc6722605a32060f17772e16043769763c2d6"
+  },
+  "model": {
+    "key": "gpt",
+    "resolved_id": "gpt-5.4-mini",
+    "provider": "openai",
+    "reasoning": "default",
+    "temperature": 0.7,
+    "max_output_tokens": 2048
+  },
+  "condition": {
+    "script": "C0",
+    "reps": [
+      1,
+      2,
+      3
+    ],
+    "value_once": false,
+    "max_logical_calls_per_run": 11,
+    "expected_logical_calls_per_run": 8
+  },
+  "batches": [
+    {
+      "batch": 1,
+      "items": [
+        {
+          "issue_id": "issue_childcare",
+          "vset_id": "allb1_childcare"
+        },
+        {
+          "issue_id": "issue_euthanasia",
+          "vset_id": "allb1_euthanasia"
+        },
+        {
+          "issue_id": "issue_examaccom",
+          "vset_id": "allb1_examaccom"
+        }
+      ],
+      "expected_runs": 9,
+      "expected_logical_calls": 72
+    },
+    {
+      "batch": 2,
+      "items": [
+        {
+          "issue_id": "issue_remotewatch",
+          "vset_id": "allb1_remotewatch"
+        },
+        {
+          "issue_id": "issue_workmind",
+          "vset_id": "allb1_workmind"
+        },
+        {
+          "issue_id": "issue_recycling_room",
+          "vset_id": "all_recycling_room"
+        }
+      ],
+      "expected_runs": 9,
+      "expected_logical_calls": 72
+    },
+    {
+      "batch": 3,
+      "items": [
+        {
+          "issue_id": "issue_smoking_area_party",
+          "vset_id": "all_smoking_area_party"
+        },
+        {
+          "issue_id": "issue_cat_feeding_days_list",
+          "vset_id": "allb1_cat_days"
+        },
+        {
+          "issue_id": "issue_eol",
+          "vset_id": "allb1_eol"
+        }
+      ],
+      "expected_runs": 9,
+      "expected_logical_calls": 72
+    },
+    {
+      "batch": 4,
+      "items": [
+        {
+          "issue_id": "issue_shelter",
+          "vset_id": "allb1_shelter"
+        },
+        {
+          "issue_id": "issue_parentalreturn",
+          "vset_id": "allb1_parental"
+        }
+      ],
+      "expected_runs": 6,
+      "expected_logical_calls": 48
+    }
+  ],
+  "totals": {
+    "materials": 11,
+    "runs": 33,
+    "expected_successful_logical_calls": 264,
+    "batch_shape": [
+      3,
+      3,
+      3,
+      2
+    ]
+  },
+  "execution": "One run_pressure process at a time inside each batch; audit and explicit GO before the next batch.",
+  "allowed_deviations": [
+    "max_tokens→max_completion_tokens"
+  ],
+  "hard_stop_conditions": [
+    "more than one active run_pressure.py process",
+    "nonzero runner exit or blank/fallback response",
+    "missing, duplicate, or foreign checkpoint tags",
+    "result count/run_id/model/material/value-source mismatch",
+    "note_truncated=true",
+    "material/value/runner/llm hash drift",
+    "deviation outside allowed list"
+  ],
+  "cost_evidence": {
+    "logical_calls": "runner done logs and unique checkpoint tags",
+    "transport_attempts": "warning/log evidence only; runner has no durable transport ledger",
+    "billed_cost": "not available locally; provider dashboard required"
+  },
+  "outputs": "experiments/pressure_category/runs/gpt/<issue_id>/run_C0_<vset_id>_rep{1,2,3}.{json,partial.jsonl}"
+}
