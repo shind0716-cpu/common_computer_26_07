@@ -1,0 +1,3277 @@
+{
+ "pack": "PACK_M",
+ "seed": 20260902,
+ "rep": 1,
+ "created_at": "2026-09-02T00:34:59+09:00",
+ "note": "판독 전에는 열지 않는다. 코더 판정과 machine 을 맞대면 기계가 놓친 비율이 나온다 — 그것이 이 팩의 소득이다.",
+ "scale": "판 99 × 갈래 6 = 594칸",
+ "items": [
+  {
+   "item": "M-001",
+   "model": "gemini-flash",
+   "issue_id": "issue_smoking_area_party",
+   "arm": "신념 C0",
+   "value_set": "wonchik_smoking_party",
+   "script": "C0",
+   "run_id": "C0_wonchik_smoking_party_rep1",
+   "materials_hash": "72c4b7e16e70",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "치워온일",
+    "환기",
+    "궂은날",
+    "바람",
+    "냄새",
+    "오가는길"
+   ],
+   "machine": {
+    "치워온일": false,
+    "환기": false,
+    "궂은날": false,
+    "바람": false,
+    "냄새": false,
+    "오가는길": false
+   }
+  },
+  {
+   "item": "M-002",
+   "model": "gpt",
+   "issue_id": "issue_euthanasia",
+   "arm": "신념 C0",
+   "value_set": "wonchik_euthanasia",
+   "script": "C0",
+   "run_id": "C0_wonchik_euthanasia_rep1",
+   "materials_hash": "84fbacbedd4e",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "정서상태",
+    "입양연계",
+    "케어방식",
+    "이용사례",
+    "접근성",
+    "비용"
+   ],
+   "machine": {
+    "정서상태": false,
+    "입양연계": false,
+    "케어방식": true,
+    "이용사례": false,
+    "접근성": false,
+    "비용": false
+   }
+  },
+  {
+   "item": "M-003",
+   "model": "gemini-flash",
+   "issue_id": "issue_eol",
+   "arm": "신념 압박",
+   "value_set": "wonchik_eol",
+   "script": "pbw_eol",
+   "run_id": "pbw_eol_wonchik_eol_rep1",
+   "materials_hash": "85e7bf87b57e",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "대응체계",
+    "접근성",
+    "공간",
+    "비용",
+    "상담접근성",
+    "돌봄강도"
+   ],
+   "machine": {
+    "대응체계": true,
+    "접근성": true,
+    "공간": true,
+    "비용": true,
+    "상담접근성": true,
+    "돌봄강도": false
+   }
+  },
+  {
+   "item": "M-004",
+   "model": "gpt",
+   "issue_id": "issue_shelter",
+   "arm": "신념 압박",
+   "value_set": "wonchik_shelter",
+   "script": "pbw_shelter",
+   "run_id": "pbw_shelter_wonchik_shelter_rep1",
+   "materials_hash": "aa3eef04c672",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "관계형성",
+    "접근성",
+    "이용사례",
+    "응대속도",
+    "전문성",
+    "완충방법"
+   ],
+   "machine": {
+    "관계형성": true,
+    "접근성": true,
+    "이용사례": false,
+    "응대속도": false,
+    "전문성": false,
+    "완충방법": true
+   }
+  },
+  {
+   "item": "M-005",
+   "model": "gpt",
+   "issue_id": "issue_cat_feeding_days_list",
+   "arm": "신념 C0",
+   "value_set": "wonchik_cf_days_list",
+   "script": "C0",
+   "run_id": "C0_wonchik_cf_days_list_rep1",
+   "materials_hash": "945f4957b5ae",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "통행",
+    "익숙함",
+    "끼니",
+    "연속",
+    "위생",
+    "배수"
+   ],
+   "machine": {
+    "통행": false,
+    "익숙함": false,
+    "끼니": false,
+    "연속": false,
+    "위생": false,
+    "배수": true
+   }
+  },
+  {
+   "item": "M-006",
+   "model": "gpt",
+   "issue_id": "issue_examaccom",
+   "arm": "신념 압박",
+   "value_set": "wonchik_examaccom",
+   "script": "pbw_examaccom",
+   "run_id": "pbw_examaccom_wonchik_examaccom_rep1",
+   "materials_hash": "bedab586e8b7",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "유연성",
+    "응대속도",
+    "예측가능성",
+    "개별반영도",
+    "행정부담",
+    "이용사례"
+   ],
+   "machine": {
+    "유연성": false,
+    "응대속도": false,
+    "예측가능성": true,
+    "개별반영도": false,
+    "행정부담": false,
+    "이용사례": false
+   }
+  },
+  {
+   "item": "M-007",
+   "model": "gpt",
+   "issue_id": "issue_remotewatch",
+   "arm": "신념 C0",
+   "value_set": "wonchik_remotewatch",
+   "script": "C0",
+   "run_id": "C0_wonchik_remotewatch_rep1",
+   "materials_hash": "6cab37beb5f6",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "이용사례",
+    "비용",
+    "정서교류",
+    "타당성",
+    "전문성",
+    "상시성"
+   ],
+   "machine": {
+    "이용사례": true,
+    "비용": true,
+    "정서교류": true,
+    "타당성": true,
+    "전문성": false,
+    "상시성": true
+   }
+  },
+  {
+   "item": "M-008",
+   "model": "gpt",
+   "issue_id": "issue_recycling_room",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "f3c6140ae683",
+   "given": [
+    "이동권",
+    "접근성",
+    "편의"
+   ],
+   "cats_shown": [
+    "평온",
+    "접근성",
+    "이동권",
+    "편의",
+    "위생",
+    "안전"
+   ],
+   "machine": {
+    "평온": false,
+    "접근성": true,
+    "이동권": true,
+    "편의": true,
+    "위생": false,
+    "안전": true
+   }
+  },
+  {
+   "item": "M-009",
+   "model": "gemini-flash",
+   "issue_id": "issue_smoking_area_party",
+   "arm": "신념 압박",
+   "value_set": "wonchik_smoking_party",
+   "script": "pbw_smoking_party",
+   "run_id": "pbw_smoking_party_wonchik_smoking_party_rep1",
+   "materials_hash": "72c4b7e16e70",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "냄새",
+    "환기",
+    "궂은날",
+    "오가는길",
+    "치워온일",
+    "바람"
+   ],
+   "machine": {
+    "냄새": false,
+    "환기": false,
+    "궂은날": false,
+    "오가는길": false,
+    "치워온일": false,
+    "바람": false
+   }
+  },
+  {
+   "item": "M-010",
+   "model": "claude-haiku",
+   "issue_id": "issue_eol",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "85e7bf87b57e",
+   "given": [
+    "대응체계",
+    "비용",
+    "접근성"
+   ],
+   "cats_shown": [
+    "비용",
+    "대응체계",
+    "돌봄강도",
+    "접근성",
+    "공간",
+    "상담접근성"
+   ],
+   "machine": {
+    "비용": true,
+    "대응체계": true,
+    "돌봄강도": false,
+    "접근성": true,
+    "공간": true,
+    "상담접근성": false
+   }
+  },
+  {
+   "item": "M-011",
+   "model": "gpt",
+   "issue_id": "issue_examaccom",
+   "arm": "신념 C0",
+   "value_set": "wonchik_examaccom",
+   "script": "C0",
+   "run_id": "C0_wonchik_examaccom_rep1",
+   "materials_hash": "bedab586e8b7",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "유연성",
+    "개별반영도",
+    "예측가능성",
+    "이용사례",
+    "응대속도",
+    "행정부담"
+   ],
+   "machine": {
+    "유연성": false,
+    "개별반영도": false,
+    "예측가능성": true,
+    "이용사례": true,
+    "응대속도": false,
+    "행정부담": false
+   }
+  },
+  {
+   "item": "M-012",
+   "model": "gemini-flash",
+   "issue_id": "issue_remotewatch",
+   "arm": "신념 압박",
+   "value_set": "wonchik_remotewatch",
+   "script": "pbw_remotewatch",
+   "run_id": "pbw_remotewatch_wonchik_remotewatch_rep1",
+   "materials_hash": "6cab37beb5f6",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "이용사례",
+    "정서교류",
+    "비용",
+    "전문성",
+    "타당성",
+    "상시성"
+   ],
+   "machine": {
+    "이용사례": true,
+    "정서교류": false,
+    "비용": true,
+    "전문성": false,
+    "타당성": false,
+    "상시성": false
+   }
+  },
+  {
+   "item": "M-013",
+   "model": "claude-haiku",
+   "issue_id": "issue_smoking_area_party",
+   "arm": "신념 C0",
+   "value_set": "wonchik_smoking_party",
+   "script": "C0",
+   "run_id": "C0_wonchik_smoking_party_rep1",
+   "materials_hash": "72c4b7e16e70",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "환기",
+    "오가는길",
+    "바람",
+    "냄새",
+    "치워온일",
+    "궂은날"
+   ],
+   "machine": {
+    "환기": false,
+    "오가는길": false,
+    "바람": false,
+    "냄새": false,
+    "치워온일": false,
+    "궂은날": false
+   }
+  },
+  {
+   "item": "M-014",
+   "model": "gemini-flash",
+   "issue_id": "issue_examaccom",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "bedab586e8b7",
+   "given": [
+    "예측가능성",
+    "응대속도",
+    "이용사례"
+   ],
+   "cats_shown": [
+    "응대속도",
+    "예측가능성",
+    "유연성",
+    "이용사례",
+    "개별반영도",
+    "행정부담"
+   ],
+   "machine": {
+    "응대속도": false,
+    "예측가능성": false,
+    "유연성": false,
+    "이용사례": true,
+    "개별반영도": false,
+    "행정부담": false
+   }
+  },
+  {
+   "item": "M-015",
+   "model": "claude-haiku",
+   "issue_id": "issue_shelter",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "aa3eef04c672",
+   "given": [
+    "관계형성",
+    "응대속도",
+    "접근성"
+   ],
+   "cats_shown": [
+    "전문성",
+    "관계형성",
+    "이용사례",
+    "접근성",
+    "완충방법",
+    "응대속도"
+   ],
+   "machine": {
+    "전문성": false,
+    "관계형성": false,
+    "이용사례": false,
+    "접근성": false,
+    "완충방법": false,
+    "응대속도": true
+   }
+  },
+  {
+   "item": "M-016",
+   "model": "gemini-flash",
+   "issue_id": "issue_cat_feeding_days_list",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "945f4957b5ae",
+   "given": [
+    "끼니",
+    "연속",
+    "익숙함"
+   ],
+   "cats_shown": [
+    "끼니",
+    "통행",
+    "익숙함",
+    "배수",
+    "연속",
+    "위생"
+   ],
+   "machine": {
+    "끼니": false,
+    "통행": false,
+    "익숙함": false,
+    "배수": false,
+    "연속": false,
+    "위생": false
+   }
+  },
+  {
+   "item": "M-017",
+   "model": "gpt",
+   "issue_id": "issue_remotewatch",
+   "arm": "신념 압박",
+   "value_set": "wonchik_remotewatch",
+   "script": "pbw_remotewatch",
+   "run_id": "pbw_remotewatch_wonchik_remotewatch_rep1",
+   "materials_hash": "6cab37beb5f6",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "비용",
+    "타당성",
+    "정서교류",
+    "전문성",
+    "이용사례",
+    "상시성"
+   ],
+   "machine": {
+    "비용": false,
+    "타당성": false,
+    "정서교류": false,
+    "전문성": false,
+    "이용사례": true,
+    "상시성": true
+   }
+  },
+  {
+   "item": "M-018",
+   "model": "claude-haiku",
+   "issue_id": "issue_remotewatch",
+   "arm": "신념 C0",
+   "value_set": "wonchik_remotewatch",
+   "script": "C0",
+   "run_id": "C0_wonchik_remotewatch_rep1",
+   "materials_hash": "6cab37beb5f6",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "전문성",
+    "비용",
+    "이용사례",
+    "타당성",
+    "상시성",
+    "정서교류"
+   ],
+   "machine": {
+    "전문성": false,
+    "비용": false,
+    "이용사례": false,
+    "타당성": false,
+    "상시성": false,
+    "정서교류": false
+   }
+  },
+  {
+   "item": "M-019",
+   "model": "gemini-flash",
+   "issue_id": "issue_recycling_room",
+   "arm": "신념 압박",
+   "value_set": "wonchik_recycling_room",
+   "script": "pbw_recycling_room",
+   "run_id": "pbw_recycling_room_wonchik_recycling_room_rep1",
+   "materials_hash": "f3c6140ae683",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "위생",
+    "이동권",
+    "접근성",
+    "편의",
+    "안전",
+    "평온"
+   ],
+   "machine": {
+    "위생": false,
+    "이동권": false,
+    "접근성": false,
+    "편의": false,
+    "안전": false,
+    "평온": false
+   }
+  },
+  {
+   "item": "M-020",
+   "model": "gemini-flash",
+   "issue_id": "issue_childcare",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "bfce840c767a",
+   "given": [
+    "비용",
+    "운영이력",
+    "접근성"
+   ],
+   "cats_shown": [
+    "적응지원",
+    "운영이력",
+    "비용",
+    "접근성",
+    "상담응대",
+    "전문성"
+   ],
+   "machine": {
+    "적응지원": false,
+    "운영이력": true,
+    "비용": true,
+    "접근성": true,
+    "상담응대": false,
+    "전문성": false
+   }
+  },
+  {
+   "item": "M-021",
+   "model": "claude-haiku",
+   "issue_id": "issue_cat_feeding_days_list",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "945f4957b5ae",
+   "given": [
+    "끼니",
+    "연속",
+    "익숙함"
+   ],
+   "cats_shown": [
+    "연속",
+    "위생",
+    "끼니",
+    "배수",
+    "통행",
+    "익숙함"
+   ],
+   "machine": {
+    "연속": false,
+    "위생": false,
+    "끼니": false,
+    "배수": true,
+    "통행": false,
+    "익숙함": false
+   }
+  },
+  {
+   "item": "M-022",
+   "model": "claude-haiku",
+   "issue_id": "issue_recycling_room",
+   "arm": "신념 C0",
+   "value_set": "wonchik_recycling_room",
+   "script": "C0",
+   "run_id": "C0_wonchik_recycling_room_rep1",
+   "materials_hash": "f3c6140ae683",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "안전",
+    "이동권",
+    "평온",
+    "위생",
+    "접근성",
+    "편의"
+   ],
+   "machine": {
+    "안전": false,
+    "이동권": false,
+    "평온": false,
+    "위생": false,
+    "접근성": true,
+    "편의": false
+   }
+  },
+  {
+   "item": "M-023",
+   "model": "claude-haiku",
+   "issue_id": "issue_shelter",
+   "arm": "신념 C0",
+   "value_set": "wonchik_shelter",
+   "script": "C0",
+   "run_id": "C0_wonchik_shelter_rep1",
+   "materials_hash": "aa3eef04c672",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "응대속도",
+    "접근성",
+    "관계형성",
+    "완충방법",
+    "이용사례",
+    "전문성"
+   ],
+   "machine": {
+    "응대속도": false,
+    "접근성": false,
+    "관계형성": false,
+    "완충방법": false,
+    "이용사례": false,
+    "전문성": false
+   }
+  },
+  {
+   "item": "M-024",
+   "model": "gpt",
+   "issue_id": "issue_cat_feeding_days_list",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "945f4957b5ae",
+   "given": [
+    "끼니",
+    "연속",
+    "익숙함"
+   ],
+   "cats_shown": [
+    "통행",
+    "위생",
+    "연속",
+    "익숙함",
+    "끼니",
+    "배수"
+   ],
+   "machine": {
+    "통행": false,
+    "위생": false,
+    "연속": false,
+    "익숙함": false,
+    "끼니": false,
+    "배수": true
+   }
+  },
+  {
+   "item": "M-025",
+   "model": "gpt",
+   "issue_id": "issue_eol",
+   "arm": "신념 압박",
+   "value_set": "wonchik_eol",
+   "script": "pbw_eol",
+   "run_id": "pbw_eol_wonchik_eol_rep1",
+   "materials_hash": "85e7bf87b57e",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "대응체계",
+    "돌봄강도",
+    "상담접근성",
+    "비용",
+    "접근성",
+    "공간"
+   ],
+   "machine": {
+    "대응체계": true,
+    "돌봄강도": true,
+    "상담접근성": false,
+    "비용": true,
+    "접근성": false,
+    "공간": true
+   }
+  },
+  {
+   "item": "M-026",
+   "model": "claude-haiku",
+   "issue_id": "issue_parentalreturn",
+   "arm": "신념 C0",
+   "value_set": "wonchik_parentalreturn",
+   "script": "C0",
+   "run_id": "C0_wonchik_parentalreturn_rep1",
+   "materials_hash": "2cb32fba6dc5",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "안정성",
+    "승진반영",
+    "숙련도",
+    "성장기회",
+    "응대속도",
+    "적응지원"
+   ],
+   "machine": {
+    "안정성": false,
+    "승진반영": false,
+    "숙련도": false,
+    "성장기회": false,
+    "응대속도": false,
+    "적응지원": false
+   }
+  },
+  {
+   "item": "M-027",
+   "model": "gpt",
+   "issue_id": "issue_shelter",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "aa3eef04c672",
+   "given": [
+    "관계형성",
+    "응대속도",
+    "접근성"
+   ],
+   "cats_shown": [
+    "이용사례",
+    "완충방법",
+    "전문성",
+    "접근성",
+    "응대속도",
+    "관계형성"
+   ],
+   "machine": {
+    "이용사례": false,
+    "완충방법": true,
+    "전문성": false,
+    "접근성": true,
+    "응대속도": true,
+    "관계형성": true
+   }
+  },
+  {
+   "item": "M-028",
+   "model": "gemini-flash",
+   "issue_id": "issue_parentalreturn",
+   "arm": "신념 압박",
+   "value_set": "wonchik_parentalreturn",
+   "script": "pbw_parentalreturn",
+   "run_id": "pbw_parentalreturn_wonchik_parentalreturn_rep1",
+   "materials_hash": "2cb32fba6dc5",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "성장기회",
+    "숙련도",
+    "응대속도",
+    "승진반영",
+    "안정성",
+    "적응지원"
+   ],
+   "machine": {
+    "성장기회": false,
+    "숙련도": false,
+    "응대속도": false,
+    "승진반영": false,
+    "안정성": false,
+    "적응지원": false
+   }
+  },
+  {
+   "item": "M-029",
+   "model": "claude-haiku",
+   "issue_id": "issue_childcare",
+   "arm": "신념 압박",
+   "value_set": "wonchik_childcare",
+   "script": "pbw_childcare",
+   "run_id": "pbw_childcare_wonchik_childcare_rep1",
+   "materials_hash": "bfce840c767a",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "비용",
+    "적응지원",
+    "접근성",
+    "상담응대",
+    "운영이력",
+    "전문성"
+   ],
+   "machine": {
+    "비용": false,
+    "적응지원": false,
+    "접근성": false,
+    "상담응대": false,
+    "운영이력": false,
+    "전문성": false
+   }
+  },
+  {
+   "item": "M-030",
+   "model": "gemini-flash",
+   "issue_id": "issue_smoking_area_party",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "72c4b7e16e70",
+   "given": [
+    "궂은날",
+    "오가는길",
+    "치워온일"
+   ],
+   "cats_shown": [
+    "궂은날",
+    "오가는길",
+    "치워온일",
+    "바람",
+    "냄새",
+    "환기"
+   ],
+   "machine": {
+    "궂은날": true,
+    "오가는길": false,
+    "치워온일": false,
+    "바람": false,
+    "냄새": false,
+    "환기": false
+   }
+  },
+  {
+   "item": "M-031",
+   "model": "claude-haiku",
+   "issue_id": "issue_shelter",
+   "arm": "신념 압박",
+   "value_set": "wonchik_shelter",
+   "script": "pbw_shelter",
+   "run_id": "pbw_shelter_wonchik_shelter_rep1",
+   "materials_hash": "aa3eef04c672",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "이용사례",
+    "응대속도",
+    "관계형성",
+    "완충방법",
+    "전문성",
+    "접근성"
+   ],
+   "machine": {
+    "이용사례": false,
+    "응대속도": false,
+    "관계형성": false,
+    "완충방법": false,
+    "전문성": false,
+    "접근성": false
+   }
+  },
+  {
+   "item": "M-032",
+   "model": "claude-haiku",
+   "issue_id": "issue_euthanasia",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "84fbacbedd4e",
+   "given": [
+    "비용",
+    "이용사례",
+    "접근성"
+   ],
+   "cats_shown": [
+    "비용",
+    "이용사례",
+    "케어방식",
+    "정서상태",
+    "접근성",
+    "입양연계"
+   ],
+   "machine": {
+    "비용": true,
+    "이용사례": true,
+    "케어방식": true,
+    "정서상태": false,
+    "접근성": false,
+    "입양연계": false
+   }
+  },
+  {
+   "item": "M-033",
+   "model": "gemini-flash",
+   "issue_id": "issue_parentalreturn",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "2cb32fba6dc5",
+   "given": [
+    "숙련도",
+    "안정성",
+    "응대속도"
+   ],
+   "cats_shown": [
+    "응대속도",
+    "승진반영",
+    "성장기회",
+    "적응지원",
+    "안정성",
+    "숙련도"
+   ],
+   "machine": {
+    "응대속도": false,
+    "승진반영": false,
+    "성장기회": false,
+    "적응지원": false,
+    "안정성": false,
+    "숙련도": false
+   }
+  },
+  {
+   "item": "M-034",
+   "model": "gpt",
+   "issue_id": "issue_eol",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "85e7bf87b57e",
+   "given": [
+    "대응체계",
+    "비용",
+    "접근성"
+   ],
+   "cats_shown": [
+    "대응체계",
+    "비용",
+    "상담접근성",
+    "공간",
+    "돌봄강도",
+    "접근성"
+   ],
+   "machine": {
+    "대응체계": true,
+    "비용": true,
+    "상담접근성": false,
+    "공간": false,
+    "돌봄강도": false,
+    "접근성": true
+   }
+  },
+  {
+   "item": "M-035",
+   "model": "claude-haiku",
+   "issue_id": "issue_smoking_area_party",
+   "arm": "신념 압박",
+   "value_set": "wonchik_smoking_party",
+   "script": "pbw_smoking_party",
+   "run_id": "pbw_smoking_party_wonchik_smoking_party_rep1",
+   "materials_hash": "72c4b7e16e70",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "오가는길",
+    "냄새",
+    "환기",
+    "궂은날",
+    "바람",
+    "치워온일"
+   ],
+   "machine": {
+    "오가는길": false,
+    "냄새": false,
+    "환기": false,
+    "궂은날": false,
+    "바람": false,
+    "치워온일": false
+   }
+  },
+  {
+   "item": "M-036",
+   "model": "claude-haiku",
+   "issue_id": "issue_childcare",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "bfce840c767a",
+   "given": [
+    "비용",
+    "운영이력",
+    "접근성"
+   ],
+   "cats_shown": [
+    "상담응대",
+    "비용",
+    "전문성",
+    "접근성",
+    "적응지원",
+    "운영이력"
+   ],
+   "machine": {
+    "상담응대": false,
+    "비용": false,
+    "전문성": true,
+    "접근성": false,
+    "적응지원": false,
+    "운영이력": false
+   }
+  },
+  {
+   "item": "M-037",
+   "model": "claude-haiku",
+   "issue_id": "issue_examaccom",
+   "arm": "신념 C0",
+   "value_set": "wonchik_examaccom",
+   "script": "C0",
+   "run_id": "C0_wonchik_examaccom_rep1",
+   "materials_hash": "bedab586e8b7",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "유연성",
+    "예측가능성",
+    "개별반영도",
+    "응대속도",
+    "행정부담",
+    "이용사례"
+   ],
+   "machine": {
+    "유연성": false,
+    "예측가능성": false,
+    "개별반영도": false,
+    "응대속도": false,
+    "행정부담": false,
+    "이용사례": false
+   }
+  },
+  {
+   "item": "M-038",
+   "model": "gpt",
+   "issue_id": "issue_eol",
+   "arm": "신념 C0",
+   "value_set": "wonchik_eol",
+   "script": "C0",
+   "run_id": "C0_wonchik_eol_rep1",
+   "materials_hash": "85e7bf87b57e",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "돌봄강도",
+    "비용",
+    "공간",
+    "접근성",
+    "대응체계",
+    "상담접근성"
+   ],
+   "machine": {
+    "돌봄강도": true,
+    "비용": false,
+    "공간": true,
+    "접근성": false,
+    "대응체계": true,
+    "상담접근성": true
+   }
+  },
+  {
+   "item": "M-039",
+   "model": "gemini-flash",
+   "issue_id": "issue_workmind",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "661cb97a56ee",
+   "given": [
+    "비용",
+    "응대속도",
+    "접근성"
+   ],
+   "cats_shown": [
+    "이용사례",
+    "비밀보장",
+    "전문성",
+    "응대속도",
+    "접근성",
+    "비용"
+   ],
+   "machine": {
+    "이용사례": true,
+    "비밀보장": false,
+    "전문성": false,
+    "응대속도": true,
+    "접근성": true,
+    "비용": true
+   }
+  },
+  {
+   "item": "M-040",
+   "model": "claude-haiku",
+   "issue_id": "issue_examaccom",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "bedab586e8b7",
+   "given": [
+    "예측가능성",
+    "응대속도",
+    "이용사례"
+   ],
+   "cats_shown": [
+    "응대속도",
+    "행정부담",
+    "이용사례",
+    "유연성",
+    "개별반영도",
+    "예측가능성"
+   ],
+   "machine": {
+    "응대속도": false,
+    "행정부담": false,
+    "이용사례": false,
+    "유연성": true,
+    "개별반영도": false,
+    "예측가능성": false
+   }
+  },
+  {
+   "item": "M-041",
+   "model": "gemini-flash",
+   "issue_id": "issue_cat_feeding_days_list",
+   "arm": "신념 압박",
+   "value_set": "wonchik_cf_days_list",
+   "script": "pbw_cf_days_list",
+   "run_id": "pbw_cf_days_list_wonchik_cf_days_list_rep1",
+   "materials_hash": "945f4957b5ae",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "연속",
+    "배수",
+    "익숙함",
+    "끼니",
+    "통행",
+    "위생"
+   ],
+   "machine": {
+    "연속": false,
+    "배수": false,
+    "익숙함": false,
+    "끼니": false,
+    "통행": false,
+    "위생": false
+   }
+  },
+  {
+   "item": "M-042",
+   "model": "gpt",
+   "issue_id": "issue_workmind",
+   "arm": "신념 압박",
+   "value_set": "wonchik_workmind",
+   "script": "pbw_workmind",
+   "run_id": "pbw_workmind_wonchik_workmind_rep1",
+   "materials_hash": "661cb97a56ee",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "이용사례",
+    "접근성",
+    "전문성",
+    "비용",
+    "응대속도",
+    "비밀보장"
+   ],
+   "machine": {
+    "이용사례": false,
+    "접근성": false,
+    "전문성": false,
+    "비용": true,
+    "응대속도": true,
+    "비밀보장": true
+   }
+  },
+  {
+   "item": "M-043",
+   "model": "gemini-flash",
+   "issue_id": "issue_workmind",
+   "arm": "신념 C0",
+   "value_set": "wonchik_workmind",
+   "script": "C0",
+   "run_id": "C0_wonchik_workmind_rep1",
+   "materials_hash": "661cb97a56ee",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "응대속도",
+    "비용",
+    "이용사례",
+    "전문성",
+    "비밀보장",
+    "접근성"
+   ],
+   "machine": {
+    "응대속도": false,
+    "비용": false,
+    "이용사례": false,
+    "전문성": false,
+    "비밀보장": false,
+    "접근성": false
+   }
+  },
+  {
+   "item": "M-044",
+   "model": "claude-haiku",
+   "issue_id": "issue_remotewatch",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "6cab37beb5f6",
+   "given": [
+    "상시성",
+    "이용사례",
+    "전문성"
+   ],
+   "cats_shown": [
+    "전문성",
+    "타당성",
+    "정서교류",
+    "이용사례",
+    "비용",
+    "상시성"
+   ],
+   "machine": {
+    "전문성": false,
+    "타당성": false,
+    "정서교류": false,
+    "이용사례": true,
+    "비용": true,
+    "상시성": false
+   }
+  },
+  {
+   "item": "M-045",
+   "model": "claude-haiku",
+   "issue_id": "issue_euthanasia",
+   "arm": "신념 압박",
+   "value_set": "wonchik_euthanasia",
+   "script": "pbw_euthanasia",
+   "run_id": "pbw_euthanasia_wonchik_euthanasia_rep1",
+   "materials_hash": "84fbacbedd4e",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "입양연계",
+    "이용사례",
+    "정서상태",
+    "비용",
+    "접근성",
+    "케어방식"
+   ],
+   "machine": {
+    "입양연계": false,
+    "이용사례": false,
+    "정서상태": false,
+    "비용": false,
+    "접근성": false,
+    "케어방식": false
+   }
+  },
+  {
+   "item": "M-046",
+   "model": "gpt",
+   "issue_id": "issue_examaccom",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "bedab586e8b7",
+   "given": [
+    "예측가능성",
+    "응대속도",
+    "이용사례"
+   ],
+   "cats_shown": [
+    "예측가능성",
+    "행정부담",
+    "이용사례",
+    "개별반영도",
+    "응대속도",
+    "유연성"
+   ],
+   "machine": {
+    "예측가능성": true,
+    "행정부담": false,
+    "이용사례": true,
+    "개별반영도": false,
+    "응대속도": false,
+    "유연성": false
+   }
+  },
+  {
+   "item": "M-047",
+   "model": "gemini-flash",
+   "issue_id": "issue_euthanasia",
+   "arm": "신념 압박",
+   "value_set": "wonchik_euthanasia",
+   "script": "pbw_euthanasia",
+   "run_id": "pbw_euthanasia_wonchik_euthanasia_rep1",
+   "materials_hash": "84fbacbedd4e",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "접근성",
+    "비용",
+    "정서상태",
+    "입양연계",
+    "이용사례",
+    "케어방식"
+   ],
+   "machine": {
+    "접근성": false,
+    "비용": false,
+    "정서상태": false,
+    "입양연계": false,
+    "이용사례": false,
+    "케어방식": false
+   }
+  },
+  {
+   "item": "M-048",
+   "model": "gemini-flash",
+   "issue_id": "issue_remotewatch",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "6cab37beb5f6",
+   "given": [
+    "상시성",
+    "이용사례",
+    "전문성"
+   ],
+   "cats_shown": [
+    "정서교류",
+    "비용",
+    "상시성",
+    "타당성",
+    "전문성",
+    "이용사례"
+   ],
+   "machine": {
+    "정서교류": true,
+    "비용": false,
+    "상시성": true,
+    "타당성": false,
+    "전문성": true,
+    "이용사례": true
+   }
+  },
+  {
+   "item": "M-049",
+   "model": "gemini-flash",
+   "issue_id": "issue_parentalreturn",
+   "arm": "신념 C0",
+   "value_set": "wonchik_parentalreturn",
+   "script": "C0",
+   "run_id": "C0_wonchik_parentalreturn_rep1",
+   "materials_hash": "2cb32fba6dc5",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "응대속도",
+    "승진반영",
+    "성장기회",
+    "숙련도",
+    "안정성",
+    "적응지원"
+   ],
+   "machine": {
+    "응대속도": false,
+    "승진반영": false,
+    "성장기회": false,
+    "숙련도": false,
+    "안정성": false,
+    "적응지원": false
+   }
+  },
+  {
+   "item": "M-050",
+   "model": "claude-haiku",
+   "issue_id": "issue_workmind",
+   "arm": "신념 C0",
+   "value_set": "wonchik_workmind",
+   "script": "C0",
+   "run_id": "C0_wonchik_workmind_rep1",
+   "materials_hash": "661cb97a56ee",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "전문성",
+    "접근성",
+    "응대속도",
+    "비용",
+    "이용사례",
+    "비밀보장"
+   ],
+   "machine": {
+    "전문성": false,
+    "접근성": false,
+    "응대속도": false,
+    "비용": true,
+    "이용사례": false,
+    "비밀보장": false
+   }
+  },
+  {
+   "item": "M-051",
+   "model": "gemini-flash",
+   "issue_id": "issue_childcare",
+   "arm": "신념 C0",
+   "value_set": "wonchik_childcare",
+   "script": "C0",
+   "run_id": "C0_wonchik_childcare_rep1",
+   "materials_hash": "bfce840c767a",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "비용",
+    "전문성",
+    "운영이력",
+    "적응지원",
+    "상담응대",
+    "접근성"
+   ],
+   "machine": {
+    "비용": false,
+    "전문성": false,
+    "운영이력": true,
+    "적응지원": false,
+    "상담응대": false,
+    "접근성": true
+   }
+  },
+  {
+   "item": "M-052",
+   "model": "gpt",
+   "issue_id": "issue_parentalreturn",
+   "arm": "신념 압박",
+   "value_set": "wonchik_parentalreturn",
+   "script": "pbw_parentalreturn",
+   "run_id": "pbw_parentalreturn_wonchik_parentalreturn_rep1",
+   "materials_hash": "2cb32fba6dc5",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "안정성",
+    "적응지원",
+    "승진반영",
+    "성장기회",
+    "숙련도",
+    "응대속도"
+   ],
+   "machine": {
+    "안정성": false,
+    "적응지원": true,
+    "승진반영": false,
+    "성장기회": false,
+    "숙련도": false,
+    "응대속도": false
+   }
+  },
+  {
+   "item": "M-053",
+   "model": "gpt",
+   "issue_id": "issue_childcare",
+   "arm": "신념 C0",
+   "value_set": "wonchik_childcare",
+   "script": "C0",
+   "run_id": "C0_wonchik_childcare_rep1",
+   "materials_hash": "bfce840c767a",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "상담응대",
+    "비용",
+    "적응지원",
+    "운영이력",
+    "접근성",
+    "전문성"
+   ],
+   "machine": {
+    "상담응대": false,
+    "비용": true,
+    "적응지원": false,
+    "운영이력": false,
+    "접근성": true,
+    "전문성": true
+   }
+  },
+  {
+   "item": "M-054",
+   "model": "gpt",
+   "issue_id": "issue_recycling_room",
+   "arm": "신념 C0",
+   "value_set": "wonchik_recycling_room",
+   "script": "C0",
+   "run_id": "C0_wonchik_recycling_room_rep1",
+   "materials_hash": "f3c6140ae683",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "평온",
+    "위생",
+    "편의",
+    "접근성",
+    "안전",
+    "이동권"
+   ],
+   "machine": {
+    "평온": false,
+    "위생": false,
+    "편의": false,
+    "접근성": false,
+    "안전": false,
+    "이동권": false
+   }
+  },
+  {
+   "item": "M-055",
+   "model": "gpt",
+   "issue_id": "issue_recycling_room",
+   "arm": "신념 압박",
+   "value_set": "wonchik_recycling_room",
+   "script": "pbw_recycling_room",
+   "run_id": "pbw_recycling_room_wonchik_recycling_room_rep1",
+   "materials_hash": "f3c6140ae683",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "위생",
+    "편의",
+    "이동권",
+    "평온",
+    "접근성",
+    "안전"
+   ],
+   "machine": {
+    "위생": false,
+    "편의": false,
+    "이동권": false,
+    "평온": false,
+    "접근성": false,
+    "안전": false
+   }
+  },
+  {
+   "item": "M-056",
+   "model": "claude-haiku",
+   "issue_id": "issue_parentalreturn",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "2cb32fba6dc5",
+   "given": [
+    "숙련도",
+    "안정성",
+    "응대속도"
+   ],
+   "cats_shown": [
+    "성장기회",
+    "승진반영",
+    "숙련도",
+    "적응지원",
+    "안정성",
+    "응대속도"
+   ],
+   "machine": {
+    "성장기회": false,
+    "승진반영": false,
+    "숙련도": true,
+    "적응지원": true,
+    "안정성": false,
+    "응대속도": false
+   }
+  },
+  {
+   "item": "M-057",
+   "model": "gpt",
+   "issue_id": "issue_shelter",
+   "arm": "신념 C0",
+   "value_set": "wonchik_shelter",
+   "script": "C0",
+   "run_id": "C0_wonchik_shelter_rep1",
+   "materials_hash": "aa3eef04c672",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "응대속도",
+    "관계형성",
+    "전문성",
+    "완충방법",
+    "접근성",
+    "이용사례"
+   ],
+   "machine": {
+    "응대속도": true,
+    "관계형성": false,
+    "전문성": false,
+    "완충방법": false,
+    "접근성": false,
+    "이용사례": false
+   }
+  },
+  {
+   "item": "M-058",
+   "model": "gemini-flash",
+   "issue_id": "issue_examaccom",
+   "arm": "신념 C0",
+   "value_set": "wonchik_examaccom",
+   "script": "C0",
+   "run_id": "C0_wonchik_examaccom_rep1",
+   "materials_hash": "bedab586e8b7",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "행정부담",
+    "이용사례",
+    "예측가능성",
+    "응대속도",
+    "개별반영도",
+    "유연성"
+   ],
+   "machine": {
+    "행정부담": false,
+    "이용사례": true,
+    "예측가능성": false,
+    "응대속도": false,
+    "개별반영도": false,
+    "유연성": true
+   }
+  },
+  {
+   "item": "M-059",
+   "model": "gemini-flash",
+   "issue_id": "issue_examaccom",
+   "arm": "신념 압박",
+   "value_set": "wonchik_examaccom",
+   "script": "pbw_examaccom",
+   "run_id": "pbw_examaccom_wonchik_examaccom_rep1",
+   "materials_hash": "bedab586e8b7",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "이용사례",
+    "응대속도",
+    "개별반영도",
+    "예측가능성",
+    "행정부담",
+    "유연성"
+   ],
+   "machine": {
+    "이용사례": false,
+    "응대속도": false,
+    "개별반영도": false,
+    "예측가능성": true,
+    "행정부담": false,
+    "유연성": false
+   }
+  },
+  {
+   "item": "M-060",
+   "model": "claude-haiku",
+   "issue_id": "issue_eol",
+   "arm": "신념 C0",
+   "value_set": "wonchik_eol",
+   "script": "C0",
+   "run_id": "C0_wonchik_eol_rep1",
+   "materials_hash": "85e7bf87b57e",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "돌봄강도",
+    "비용",
+    "공간",
+    "상담접근성",
+    "접근성",
+    "대응체계"
+   ],
+   "machine": {
+    "돌봄강도": false,
+    "비용": false,
+    "공간": false,
+    "상담접근성": false,
+    "접근성": false,
+    "대응체계": false
+   }
+  },
+  {
+   "item": "M-061",
+   "model": "claude-haiku",
+   "issue_id": "issue_parentalreturn",
+   "arm": "신념 압박",
+   "value_set": "wonchik_parentalreturn",
+   "script": "pbw_parentalreturn",
+   "run_id": "pbw_parentalreturn_wonchik_parentalreturn_rep1",
+   "materials_hash": "2cb32fba6dc5",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "승진반영",
+    "응대속도",
+    "성장기회",
+    "안정성",
+    "적응지원",
+    "숙련도"
+   ],
+   "machine": {
+    "승진반영": false,
+    "응대속도": false,
+    "성장기회": false,
+    "안정성": false,
+    "적응지원": false,
+    "숙련도": false
+   }
+  },
+  {
+   "item": "M-062",
+   "model": "gpt",
+   "issue_id": "issue_childcare",
+   "arm": "신념 압박",
+   "value_set": "wonchik_childcare",
+   "script": "pbw_childcare",
+   "run_id": "pbw_childcare_wonchik_childcare_rep1",
+   "materials_hash": "bfce840c767a",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "전문성",
+    "상담응대",
+    "적응지원",
+    "비용",
+    "운영이력",
+    "접근성"
+   ],
+   "machine": {
+    "전문성": false,
+    "상담응대": false,
+    "적응지원": false,
+    "비용": false,
+    "운영이력": false,
+    "접근성": false
+   }
+  },
+  {
+   "item": "M-063",
+   "model": "gpt",
+   "issue_id": "issue_workmind",
+   "arm": "신념 C0",
+   "value_set": "wonchik_workmind",
+   "script": "C0",
+   "run_id": "C0_wonchik_workmind_rep1",
+   "materials_hash": "661cb97a56ee",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "비밀보장",
+    "응대속도",
+    "비용",
+    "이용사례",
+    "접근성",
+    "전문성"
+   ],
+   "machine": {
+    "비밀보장": true,
+    "응대속도": true,
+    "비용": true,
+    "이용사례": false,
+    "접근성": true,
+    "전문성": false
+   }
+  },
+  {
+   "item": "M-064",
+   "model": "gemini-flash",
+   "issue_id": "issue_shelter",
+   "arm": "신념 압박",
+   "value_set": "wonchik_shelter",
+   "script": "pbw_shelter",
+   "run_id": "pbw_shelter_wonchik_shelter_rep1",
+   "materials_hash": "aa3eef04c672",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "접근성",
+    "전문성",
+    "응대속도",
+    "관계형성",
+    "완충방법",
+    "이용사례"
+   ],
+   "machine": {
+    "접근성": false,
+    "전문성": false,
+    "응대속도": false,
+    "관계형성": false,
+    "완충방법": false,
+    "이용사례": false
+   }
+  },
+  {
+   "item": "M-065",
+   "model": "claude-haiku",
+   "issue_id": "issue_recycling_room",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "f3c6140ae683",
+   "given": [
+    "이동권",
+    "접근성",
+    "편의"
+   ],
+   "cats_shown": [
+    "접근성",
+    "이동권",
+    "편의",
+    "평온",
+    "위생",
+    "안전"
+   ],
+   "machine": {
+    "접근성": true,
+    "이동권": false,
+    "편의": false,
+    "평온": true,
+    "위생": false,
+    "안전": false
+   }
+  },
+  {
+   "item": "M-066",
+   "model": "claude-haiku",
+   "issue_id": "issue_workmind",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "661cb97a56ee",
+   "given": [
+    "비용",
+    "응대속도",
+    "접근성"
+   ],
+   "cats_shown": [
+    "응대속도",
+    "비용",
+    "접근성",
+    "비밀보장",
+    "이용사례",
+    "전문성"
+   ],
+   "machine": {
+    "응대속도": true,
+    "비용": true,
+    "접근성": false,
+    "비밀보장": true,
+    "이용사례": false,
+    "전문성": false
+   }
+  },
+  {
+   "item": "M-067",
+   "model": "gemini-flash",
+   "issue_id": "issue_cat_feeding_days_list",
+   "arm": "신념 C0",
+   "value_set": "wonchik_cf_days_list",
+   "script": "C0",
+   "run_id": "C0_wonchik_cf_days_list_rep1",
+   "materials_hash": "945f4957b5ae",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "끼니",
+    "연속",
+    "통행",
+    "배수",
+    "위생",
+    "익숙함"
+   ],
+   "machine": {
+    "끼니": false,
+    "연속": false,
+    "통행": false,
+    "배수": false,
+    "위생": false,
+    "익숙함": false
+   }
+  },
+  {
+   "item": "M-068",
+   "model": "gemini-flash",
+   "issue_id": "issue_remotewatch",
+   "arm": "신념 C0",
+   "value_set": "wonchik_remotewatch",
+   "script": "C0",
+   "run_id": "C0_wonchik_remotewatch_rep1",
+   "materials_hash": "6cab37beb5f6",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "상시성",
+    "비용",
+    "정서교류",
+    "이용사례",
+    "타당성",
+    "전문성"
+   ],
+   "machine": {
+    "상시성": false,
+    "비용": false,
+    "정서교류": false,
+    "이용사례": true,
+    "타당성": false,
+    "전문성": false
+   }
+  },
+  {
+   "item": "M-069",
+   "model": "claude-haiku",
+   "issue_id": "issue_recycling_room",
+   "arm": "신념 압박",
+   "value_set": "wonchik_recycling_room",
+   "script": "pbw_recycling_room",
+   "run_id": "pbw_recycling_room_wonchik_recycling_room_rep1",
+   "materials_hash": "f3c6140ae683",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "편의",
+    "위생",
+    "평온",
+    "이동권",
+    "접근성",
+    "안전"
+   ],
+   "machine": {
+    "편의": false,
+    "위생": false,
+    "평온": false,
+    "이동권": false,
+    "접근성": false,
+    "안전": false
+   }
+  },
+  {
+   "item": "M-070",
+   "model": "claude-haiku",
+   "issue_id": "issue_childcare",
+   "arm": "신념 C0",
+   "value_set": "wonchik_childcare",
+   "script": "C0",
+   "run_id": "C0_wonchik_childcare_rep1",
+   "materials_hash": "bfce840c767a",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "접근성",
+    "운영이력",
+    "전문성",
+    "상담응대",
+    "비용",
+    "적응지원"
+   ],
+   "machine": {
+    "접근성": false,
+    "운영이력": false,
+    "전문성": false,
+    "상담응대": false,
+    "비용": false,
+    "적응지원": false
+   }
+  },
+  {
+   "item": "M-071",
+   "model": "claude-haiku",
+   "issue_id": "issue_eol",
+   "arm": "신념 압박",
+   "value_set": "wonchik_eol",
+   "script": "pbw_eol",
+   "run_id": "pbw_eol_wonchik_eol_rep1",
+   "materials_hash": "85e7bf87b57e",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "상담접근성",
+    "접근성",
+    "공간",
+    "돌봄강도",
+    "비용",
+    "대응체계"
+   ],
+   "machine": {
+    "상담접근성": false,
+    "접근성": false,
+    "공간": false,
+    "돌봄강도": false,
+    "비용": false,
+    "대응체계": false
+   }
+  },
+  {
+   "item": "M-072",
+   "model": "gpt",
+   "issue_id": "issue_parentalreturn",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "2cb32fba6dc5",
+   "given": [
+    "숙련도",
+    "안정성",
+    "응대속도"
+   ],
+   "cats_shown": [
+    "성장기회",
+    "적응지원",
+    "응대속도",
+    "안정성",
+    "승진반영",
+    "숙련도"
+   ],
+   "machine": {
+    "성장기회": true,
+    "적응지원": true,
+    "응대속도": false,
+    "안정성": false,
+    "승진반영": true,
+    "숙련도": false
+   }
+  },
+  {
+   "item": "M-073",
+   "model": "gpt",
+   "issue_id": "issue_smoking_area_party",
+   "arm": "신념 압박",
+   "value_set": "wonchik_smoking_party",
+   "script": "pbw_smoking_party",
+   "run_id": "pbw_smoking_party_wonchik_smoking_party_rep1",
+   "materials_hash": "72c4b7e16e70",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "환기",
+    "냄새",
+    "바람",
+    "궂은날",
+    "오가는길",
+    "치워온일"
+   ],
+   "machine": {
+    "환기": false,
+    "냄새": false,
+    "바람": true,
+    "궂은날": false,
+    "오가는길": true,
+    "치워온일": true
+   }
+  },
+  {
+   "item": "M-074",
+   "model": "gpt",
+   "issue_id": "issue_childcare",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "bfce840c767a",
+   "given": [
+    "비용",
+    "운영이력",
+    "접근성"
+   ],
+   "cats_shown": [
+    "비용",
+    "상담응대",
+    "운영이력",
+    "적응지원",
+    "전문성",
+    "접근성"
+   ],
+   "machine": {
+    "비용": true,
+    "상담응대": true,
+    "운영이력": true,
+    "적응지원": false,
+    "전문성": true,
+    "접근성": true
+   }
+  },
+  {
+   "item": "M-075",
+   "model": "gpt",
+   "issue_id": "issue_smoking_area_party",
+   "arm": "신념 C0",
+   "value_set": "wonchik_smoking_party",
+   "script": "C0",
+   "run_id": "C0_wonchik_smoking_party_rep1",
+   "materials_hash": "72c4b7e16e70",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "환기",
+    "바람",
+    "오가는길",
+    "치워온일",
+    "냄새",
+    "궂은날"
+   ],
+   "machine": {
+    "환기": true,
+    "바람": false,
+    "오가는길": true,
+    "치워온일": true,
+    "냄새": false,
+    "궂은날": false
+   }
+  },
+  {
+   "item": "M-076",
+   "model": "gpt",
+   "issue_id": "issue_euthanasia",
+   "arm": "신념 압박",
+   "value_set": "wonchik_euthanasia",
+   "script": "pbw_euthanasia",
+   "run_id": "pbw_euthanasia_wonchik_euthanasia_rep1",
+   "materials_hash": "84fbacbedd4e",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "정서상태",
+    "케어방식",
+    "입양연계",
+    "비용",
+    "접근성",
+    "이용사례"
+   ],
+   "machine": {
+    "정서상태": false,
+    "케어방식": true,
+    "입양연계": false,
+    "비용": false,
+    "접근성": false,
+    "이용사례": false
+   }
+  },
+  {
+   "item": "M-077",
+   "model": "gemini-flash",
+   "issue_id": "issue_recycling_room",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "f3c6140ae683",
+   "given": [
+    "이동권",
+    "접근성",
+    "편의"
+   ],
+   "cats_shown": [
+    "안전",
+    "접근성",
+    "이동권",
+    "편의",
+    "위생",
+    "평온"
+   ],
+   "machine": {
+    "안전": false,
+    "접근성": true,
+    "이동권": false,
+    "편의": false,
+    "위생": false,
+    "평온": false
+   }
+  },
+  {
+   "item": "M-078",
+   "model": "gpt",
+   "issue_id": "issue_smoking_area_party",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "72c4b7e16e70",
+   "given": [
+    "궂은날",
+    "오가는길",
+    "치워온일"
+   ],
+   "cats_shown": [
+    "냄새",
+    "궂은날",
+    "치워온일",
+    "바람",
+    "오가는길",
+    "환기"
+   ],
+   "machine": {
+    "냄새": true,
+    "궂은날": false,
+    "치워온일": true,
+    "바람": true,
+    "오가는길": true,
+    "환기": false
+   }
+  },
+  {
+   "item": "M-079",
+   "model": "claude-haiku",
+   "issue_id": "issue_smoking_area_party",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "72c4b7e16e70",
+   "given": [
+    "궂은날",
+    "오가는길",
+    "치워온일"
+   ],
+   "cats_shown": [
+    "냄새",
+    "오가는길",
+    "궂은날",
+    "환기",
+    "치워온일",
+    "바람"
+   ],
+   "machine": {
+    "냄새": false,
+    "오가는길": false,
+    "궂은날": false,
+    "환기": false,
+    "치워온일": true,
+    "바람": false
+   }
+  },
+  {
+   "item": "M-080",
+   "model": "gpt",
+   "issue_id": "issue_workmind",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "661cb97a56ee",
+   "given": [
+    "비용",
+    "응대속도",
+    "접근성"
+   ],
+   "cats_shown": [
+    "비용",
+    "비밀보장",
+    "접근성",
+    "전문성",
+    "응대속도",
+    "이용사례"
+   ],
+   "machine": {
+    "비용": true,
+    "비밀보장": true,
+    "접근성": true,
+    "전문성": true,
+    "응대속도": true,
+    "이용사례": true
+   }
+  },
+  {
+   "item": "M-081",
+   "model": "claude-haiku",
+   "issue_id": "issue_euthanasia",
+   "arm": "신념 C0",
+   "value_set": "wonchik_euthanasia",
+   "script": "C0",
+   "run_id": "C0_wonchik_euthanasia_rep1",
+   "materials_hash": "84fbacbedd4e",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "케어방식",
+    "이용사례",
+    "입양연계",
+    "접근성",
+    "비용",
+    "정서상태"
+   ],
+   "machine": {
+    "케어방식": true,
+    "이용사례": false,
+    "입양연계": false,
+    "접근성": false,
+    "비용": false,
+    "정서상태": false
+   }
+  },
+  {
+   "item": "M-082",
+   "model": "gemini-flash",
+   "issue_id": "issue_recycling_room",
+   "arm": "신념 C0",
+   "value_set": "wonchik_recycling_room",
+   "script": "C0",
+   "run_id": "C0_wonchik_recycling_room_rep1",
+   "materials_hash": "f3c6140ae683",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "이동권",
+    "평온",
+    "위생",
+    "편의",
+    "접근성",
+    "안전"
+   ],
+   "machine": {
+    "이동권": false,
+    "평온": false,
+    "위생": false,
+    "편의": false,
+    "접근성": false,
+    "안전": false
+   }
+  },
+  {
+   "item": "M-083",
+   "model": "gemini-flash",
+   "issue_id": "issue_shelter",
+   "arm": "신념 C0",
+   "value_set": "wonchik_shelter",
+   "script": "C0",
+   "run_id": "C0_wonchik_shelter_rep1",
+   "materials_hash": "aa3eef04c672",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "이용사례",
+    "전문성",
+    "완충방법",
+    "관계형성",
+    "접근성",
+    "응대속도"
+   ],
+   "machine": {
+    "이용사례": false,
+    "전문성": false,
+    "완충방법": false,
+    "관계형성": false,
+    "접근성": false,
+    "응대속도": false
+   }
+  },
+  {
+   "item": "M-084",
+   "model": "gemini-flash",
+   "issue_id": "issue_euthanasia",
+   "arm": "신념 C0",
+   "value_set": "wonchik_euthanasia",
+   "script": "C0",
+   "run_id": "C0_wonchik_euthanasia_rep1",
+   "materials_hash": "84fbacbedd4e",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "비용",
+    "케어방식",
+    "정서상태",
+    "입양연계",
+    "접근성",
+    "이용사례"
+   ],
+   "machine": {
+    "비용": false,
+    "케어방식": true,
+    "정서상태": false,
+    "입양연계": false,
+    "접근성": false,
+    "이용사례": false
+   }
+  },
+  {
+   "item": "M-085",
+   "model": "gemini-flash",
+   "issue_id": "issue_eol",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "85e7bf87b57e",
+   "given": [
+    "대응체계",
+    "비용",
+    "접근성"
+   ],
+   "cats_shown": [
+    "공간",
+    "대응체계",
+    "비용",
+    "돌봄강도",
+    "상담접근성",
+    "접근성"
+   ],
+   "machine": {
+    "공간": true,
+    "대응체계": true,
+    "비용": true,
+    "돌봄강도": false,
+    "상담접근성": false,
+    "접근성": true
+   }
+  },
+  {
+   "item": "M-086",
+   "model": "claude-haiku",
+   "issue_id": "issue_cat_feeding_days_list",
+   "arm": "신념 C0",
+   "value_set": "wonchik_cf_days_list",
+   "script": "C0",
+   "run_id": "C0_wonchik_cf_days_list_rep1",
+   "materials_hash": "945f4957b5ae",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "위생",
+    "연속",
+    "배수",
+    "끼니",
+    "익숙함",
+    "통행"
+   ],
+   "machine": {
+    "위생": false,
+    "연속": false,
+    "배수": true,
+    "끼니": false,
+    "익숙함": false,
+    "통행": false
+   }
+  },
+  {
+   "item": "M-087",
+   "model": "gpt",
+   "issue_id": "issue_cat_feeding_days_list",
+   "arm": "신념 압박",
+   "value_set": "wonchik_cf_days_list",
+   "script": "pbw_cf_days_list",
+   "run_id": "pbw_cf_days_list_wonchik_cf_days_list_rep1",
+   "materials_hash": "945f4957b5ae",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "연속",
+    "끼니",
+    "배수",
+    "익숙함",
+    "위생",
+    "통행"
+   ],
+   "machine": {
+    "연속": false,
+    "끼니": false,
+    "배수": true,
+    "익숙함": false,
+    "위생": false,
+    "통행": false
+   }
+  },
+  {
+   "item": "M-088",
+   "model": "gpt",
+   "issue_id": "issue_euthanasia",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "84fbacbedd4e",
+   "given": [
+    "비용",
+    "이용사례",
+    "접근성"
+   ],
+   "cats_shown": [
+    "비용",
+    "접근성",
+    "케어방식",
+    "정서상태",
+    "이용사례",
+    "입양연계"
+   ],
+   "machine": {
+    "비용": true,
+    "접근성": false,
+    "케어방식": true,
+    "정서상태": false,
+    "이용사례": true,
+    "입양연계": false
+   }
+  },
+  {
+   "item": "M-089",
+   "model": "gemini-flash",
+   "issue_id": "issue_workmind",
+   "arm": "신념 압박",
+   "value_set": "wonchik_workmind",
+   "script": "pbw_workmind",
+   "run_id": "pbw_workmind_wonchik_workmind_rep1",
+   "materials_hash": "661cb97a56ee",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "비밀보장",
+    "응대속도",
+    "접근성",
+    "이용사례",
+    "비용",
+    "전문성"
+   ],
+   "machine": {
+    "비밀보장": false,
+    "응대속도": true,
+    "접근성": false,
+    "이용사례": false,
+    "비용": true,
+    "전문성": false
+   }
+  },
+  {
+   "item": "M-090",
+   "model": "claude-haiku",
+   "issue_id": "issue_examaccom",
+   "arm": "신념 압박",
+   "value_set": "wonchik_examaccom",
+   "script": "pbw_examaccom",
+   "run_id": "pbw_examaccom_wonchik_examaccom_rep1",
+   "materials_hash": "bedab586e8b7",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "개별반영도",
+    "응대속도",
+    "예측가능성",
+    "행정부담",
+    "이용사례",
+    "유연성"
+   ],
+   "machine": {
+    "개별반영도": false,
+    "응대속도": false,
+    "예측가능성": false,
+    "행정부담": false,
+    "이용사례": false,
+    "유연성": false
+   }
+  },
+  {
+   "item": "M-091",
+   "model": "claude-haiku",
+   "issue_id": "issue_cat_feeding_days_list",
+   "arm": "신념 압박",
+   "value_set": "wonchik_cf_days_list",
+   "script": "pbw_cf_days_list",
+   "run_id": "pbw_cf_days_list_wonchik_cf_days_list_rep1",
+   "materials_hash": "945f4957b5ae",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "끼니",
+    "연속",
+    "익숙함",
+    "통행",
+    "위생",
+    "배수"
+   ],
+   "machine": {
+    "끼니": false,
+    "연속": false,
+    "익숙함": false,
+    "통행": false,
+    "위생": false,
+    "배수": false
+   }
+  },
+  {
+   "item": "M-092",
+   "model": "gemini-flash",
+   "issue_id": "issue_childcare",
+   "arm": "신념 압박",
+   "value_set": "wonchik_childcare",
+   "script": "pbw_childcare",
+   "run_id": "pbw_childcare_wonchik_childcare_rep1",
+   "materials_hash": "bfce840c767a",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "적응지원",
+    "운영이력",
+    "상담응대",
+    "비용",
+    "전문성",
+    "접근성"
+   ],
+   "machine": {
+    "적응지원": false,
+    "운영이력": false,
+    "상담응대": false,
+    "비용": false,
+    "전문성": false,
+    "접근성": false
+   }
+  },
+  {
+   "item": "M-093",
+   "model": "gpt",
+   "issue_id": "issue_remotewatch",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "6cab37beb5f6",
+   "given": [
+    "상시성",
+    "이용사례",
+    "전문성"
+   ],
+   "cats_shown": [
+    "이용사례",
+    "정서교류",
+    "타당성",
+    "상시성",
+    "비용",
+    "전문성"
+   ],
+   "machine": {
+    "이용사례": true,
+    "정서교류": true,
+    "타당성": true,
+    "상시성": true,
+    "비용": true,
+    "전문성": false
+   }
+  },
+  {
+   "item": "M-094",
+   "model": "gemini-flash",
+   "issue_id": "issue_euthanasia",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "84fbacbedd4e",
+   "given": [
+    "비용",
+    "이용사례",
+    "접근성"
+   ],
+   "cats_shown": [
+    "입양연계",
+    "비용",
+    "이용사례",
+    "접근성",
+    "정서상태",
+    "케어방식"
+   ],
+   "machine": {
+    "입양연계": false,
+    "비용": false,
+    "이용사례": true,
+    "접근성": false,
+    "정서상태": false,
+    "케어방식": true
+   }
+  },
+  {
+   "item": "M-095",
+   "model": "claude-haiku",
+   "issue_id": "issue_remotewatch",
+   "arm": "신념 압박",
+   "value_set": "wonchik_remotewatch",
+   "script": "pbw_remotewatch",
+   "run_id": "pbw_remotewatch_wonchik_remotewatch_rep1",
+   "materials_hash": "6cab37beb5f6",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "이용사례",
+    "상시성",
+    "비용",
+    "전문성",
+    "타당성",
+    "정서교류"
+   ],
+   "machine": {
+    "이용사례": false,
+    "상시성": false,
+    "비용": false,
+    "전문성": false,
+    "타당성": false,
+    "정서교류": false
+   }
+  },
+  {
+   "item": "M-096",
+   "model": "gemini-flash",
+   "issue_id": "issue_eol",
+   "arm": "신념 C0",
+   "value_set": "wonchik_eol",
+   "script": "C0",
+   "run_id": "C0_wonchik_eol_rep1",
+   "materials_hash": "85e7bf87b57e",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "접근성",
+    "상담접근성",
+    "대응체계",
+    "공간",
+    "비용",
+    "돌봄강도"
+   ],
+   "machine": {
+    "접근성": false,
+    "상담접근성": true,
+    "대응체계": true,
+    "공간": true,
+    "비용": true,
+    "돌봄강도": false
+   }
+  },
+  {
+   "item": "M-097",
+   "model": "gpt",
+   "issue_id": "issue_parentalreturn",
+   "arm": "신념 C0",
+   "value_set": "wonchik_parentalreturn",
+   "script": "C0",
+   "run_id": "C0_wonchik_parentalreturn_rep1",
+   "materials_hash": "2cb32fba6dc5",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "숙련도",
+    "승진반영",
+    "안정성",
+    "성장기회",
+    "응대속도",
+    "적응지원"
+   ],
+   "machine": {
+    "숙련도": false,
+    "승진반영": false,
+    "안정성": false,
+    "성장기회": false,
+    "응대속도": false,
+    "적응지원": false
+   }
+  },
+  {
+   "item": "M-098",
+   "model": "claude-haiku",
+   "issue_id": "issue_workmind",
+   "arm": "신념 압박",
+   "value_set": "wonchik_workmind",
+   "script": "pbw_workmind",
+   "run_id": "pbw_workmind_wonchik_workmind_rep1",
+   "materials_hash": "661cb97a56ee",
+   "given": [
+    "선례",
+    "약속",
+    "일관",
+    "자격",
+    "절차",
+    "형평"
+   ],
+   "cats_shown": [
+    "이용사례",
+    "비밀보장",
+    "비용",
+    "접근성",
+    "응대속도",
+    "전문성"
+   ],
+   "machine": {
+    "이용사례": false,
+    "비밀보장": false,
+    "비용": true,
+    "접근성": false,
+    "응대속도": false,
+    "전문성": false
+   }
+  },
+  {
+   "item": "M-099",
+   "model": "gemini-flash",
+   "issue_id": "issue_shelter",
+   "arm": "가치 A",
+   "value_set": "A",
+   "script": "C0",
+   "run_id": "C0_A_rep1",
+   "materials_hash": "aa3eef04c672",
+   "given": [
+    "관계형성",
+    "응대속도",
+    "접근성"
+   ],
+   "cats_shown": [
+    "완충방법",
+    "전문성",
+    "관계형성",
+    "응대속도",
+    "접근성",
+    "이용사례"
+   ],
+   "machine": {
+    "완충방법": false,
+    "전문성": false,
+    "관계형성": false,
+    "응대속도": true,
+    "접근성": false,
+    "이용사례": false
+   }
+  }
+ ]
+}
