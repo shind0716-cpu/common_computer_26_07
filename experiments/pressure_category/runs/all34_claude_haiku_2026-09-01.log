@@ -1,0 +1,109 @@
+=== ALL34 claude-haiku 시작 2026-09-01T18:01:01+09:00 ===
+--- [배치 1] issue_ambulance / allb1_ambulance / rep 1 2 3 ---
+[check_materials] 대상: issue_ambulance.json (issue_id=issue_ambulance)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_ambulance · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 cf1983562ad4
+[done] claude-haiku/C0_allb1_ambulance_rep1 · 호출 8
+[done] claude-haiku/C0_allb1_ambulance_rep2 · 호출 9
+[done] claude-haiku/C0_allb1_ambulance_rep3 · 호출 9
+--- [배치 1] issue_caregiverprotect / allb1_caregiverprotect / rep 1 2 3 ---
+[check_materials] 대상: issue_caregiverprotect.json (issue_id=issue_caregiverprotect)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_caregiverprotect · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 af21d42a102f
+[done] claude-haiku/C0_allb1_caregiverprotect_rep1 · 호출 8
+[done] claude-haiku/C0_allb1_caregiverprotect_rep2 · 호출 9
+[done] claude-haiku/C0_allb1_caregiverprotect_rep3 · 호출 9
+--- [배치 1] issue_cat_feeding_days_list / allb1_cat_days / rep 1 2 3 ---
+[check_materials] 대상: cat_feeding_days_list.json (issue_id=issue_cat_feeding_days_list)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_cat_feeding_days_list · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 945f4957b5ae
+[done] claude-haiku/C0_allb1_cat_days_rep1 · 호출 9
+[done] claude-haiku/C0_allb1_cat_days_rep2 · 호출 10
+[done] claude-haiku/C0_allb1_cat_days_rep3 · 호출 9
+=== 끝 2026-09-01T18:05:30+09:00 ===
+=== ALL34 claude-haiku 시작 2026-09-01T18:05:41+09:00 ===
+--- [배치 1] issue_ambulance / allb1_ambulance / rep 1 2 3 ---
+[check_materials] 대상: issue_ambulance.json (issue_id=issue_ambulance)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_ambulance · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 cf1983562ad4
+[skip] claude-haiku/C0_allb1_ambulance_rep1 — 결과 존재
+[skip] claude-haiku/C0_allb1_ambulance_rep2 — 결과 존재
+[skip] claude-haiku/C0_allb1_ambulance_rep3 — 결과 존재
+--- [배치 1] issue_caregiverprotect / allb1_caregiverprotect / rep 1 2 3 ---
+[check_materials] 대상: issue_caregiverprotect.json (issue_id=issue_caregiverprotect)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_caregiverprotect · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 af21d42a102f
+[skip] claude-haiku/C0_allb1_caregiverprotect_rep1 — 결과 존재
+[skip] claude-haiku/C0_allb1_caregiverprotect_rep2 — 결과 존재
+[skip] claude-haiku/C0_allb1_caregiverprotect_rep3 — 결과 존재
+--- [배치 1] issue_cat_feeding_days_list / allb1_cat_days / rep 1 2 3 ---
+[check_materials] 대상: cat_feeding_days_list.json (issue_id=issue_cat_feeding_days_list)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_cat_feeding_days_list · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 945f4957b5ae
+[skip] claude-haiku/C0_allb1_cat_days_rep1 — 결과 존재
+[skip] claude-haiku/C0_allb1_cat_days_rep2 — 결과 존재
+[skip] claude-haiku/C0_allb1_cat_days_rep3 — 결과 존재
+--- [배치 2] issue_childcare / allb1_childcare / rep 1 2 3 ---
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[done] claude-haiku/C0_allb1_childcare_rep1 · 호출 9
+[done] claude-haiku/C0_allb1_childcare_rep2 · 호출 9
+[done] claude-haiku/C0_allb1_childcare_rep3 · 호출 10
+--- [배치 2] issue_elderdrive / allb1_elderdrive / rep 1 2 3 ---
+[check_materials] 대상: issue_elderdrive.json (issue_id=issue_elderdrive)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_elderdrive · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 be132e6715f6
+[done] claude-haiku/C0_allb1_elderdrive_rep1 · 호출 8
+[done] claude-haiku/C0_allb1_elderdrive_rep2 · 호출 10
+[done] claude-haiku/C0_allb1_elderdrive_rep3 · 호출 8
+--- [배치 2] issue_eol / allb1_eol / rep 1 2 3 ---
+[check_materials] 대상: issue_eol.json (issue_id=issue_eol)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_eol · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 85e7bf87b57e
+[done] claude-haiku/C0_allb1_eol_rep1 · 호출 9
+[done] claude-haiku/C0_allb1_eol_rep2 · 호출 9
+[done] claude-haiku/C0_allb1_eol_rep3 · 호출 8
+--- [배치 3] issue_euthanasia / allb1_euthanasia / rep 1 2 3 ---
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[done] claude-haiku/C0_allb1_euthanasia_rep1 · 호출 9
+[done] claude-haiku/C0_allb1_euthanasia_rep2 · 호출 8
+[done] claude-haiku/C0_allb1_euthanasia_rep3 · 호출 8
+--- [배치 3] issue_examaccom / allb1_examaccom / rep 1 2 3 ---
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[done] claude-haiku/C0_allb1_examaccom_rep1 · 호출 8
+[done] claude-haiku/C0_allb1_examaccom_rep2 · 호출 8
+[done] claude-haiku/C0_allb1_examaccom_rep3 · 호출 8
+--- [배치 3] issue_parentalreturn / allb1_parental / rep 1 2 3 ---
+[check_materials] 대상: issue_parentalreturn.json (issue_id=issue_parentalreturn)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_parentalreturn · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 2cb32fba6dc5
+[done] claude-haiku/C0_allb1_parental_rep1 · 호출 9
+[done] claude-haiku/C0_allb1_parental_rep2 · 호출 9
+[done] claude-haiku/C0_allb1_parental_rep3 · 호출 9
+--- [배치 4] issue_remotewatch / allb1_remotewatch / rep 1 2 3 ---
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_remotewatch · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[done] claude-haiku/C0_allb1_remotewatch_rep1 · 호출 8
+[done] claude-haiku/C0_allb1_remotewatch_rep2 · 호출 9
+[done] claude-haiku/C0_allb1_remotewatch_rep3 · 호출 9
+--- [배치 4] issue_shelter / allb1_shelter / rep 1 2 3 ---
+[check_materials] 대상: issue_shelter.json (issue_id=issue_shelter)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_shelter · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 aa3eef04c672
+[done] claude-haiku/C0_allb1_shelter_rep1 · 호출 9
+[done] claude-haiku/C0_allb1_shelter_rep2 · 호출 9
+[done] claude-haiku/C0_allb1_shelter_rep3 · 호출 9
+--- [배치 4] issue_workmind / allb1_workmind / rep 1 2 3 ---
+[check_materials] 대상: issue_workmind.json (issue_id=issue_workmind)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_workmind · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 661cb97a56ee
+[done] claude-haiku/C0_allb1_workmind_rep1 · 호출 9
+[done] claude-haiku/C0_allb1_workmind_rep2 · 호출 10
+[done] claude-haiku/C0_allb1_workmind_rep3 · 호출 9
+=== 끝 2026-09-01T18:19:39+09:00 ===
