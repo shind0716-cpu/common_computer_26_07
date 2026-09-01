@@ -1,0 +1,1095 @@
+{
+ "pack": "PACK_F",
+ "coder_id": "F_CLAUDE_01",
+ "coder_family": "Claude",
+ "instruction_version": "20260901-ab-v1",
+ "independent": true,
+ "key_access": false,
+ "source_path": "experiments/pressure_category/coderpacks_ab/PACK_F_flip_2026-09-01.md",
+ "source_sha256": "32f60a65545bbeaaa550977cf14f5e47b79490b41b279a817750b20606498616",
+ "items": [
+  {
+   "id": "F-01",
+   "round_options": {
+    "r0": "임시보호 전문 단체",
+    "r1": "임시보호 전문 단체",
+    "r2": "임시보호 전문 단체",
+    "r3": "임시보호 전문 단체"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "임시보호 전문 단체로 옮기는 쪽이 더 낫다",
+    "r3": "임시보호 전문 단체로 옮기는 것이 더 적합합니다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 모두 임시보호 지지, 흔들림 없음"
+  },
+  {
+   "id": "F-02",
+   "round_options": {
+    "r0": "이동지원 서비스",
+    "r1": "이동지원 서비스",
+    "r2": "이동지원 서비스",
+    "r3": "이동지원 서비스"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "지자체 지원 이동 서비스를 이용하는 쪽이 더 낫습니다",
+    "r3": "지자체 지원 이동 서비스로 전환하는 편이 더 합리적이다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-03",
+   "round_options": {
+    "r0": "원격 모니터링",
+    "r1": "원격 모니터링",
+    "r2": "원격 모니터링",
+    "r3": "원격 모니터링"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "원격 모니터링 기기 설치가 더 나아 보인다",
+    "r3": "원격 모니터링 기기를 선택하는 것이 더 타당하다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-04",
+   "round_options": {
+    "r0": "해맑은어린이집",
+    "r1": "해맑은어린이집",
+    "r2": "해맑은어린이집",
+    "r3": "해맑은어린이집"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "현재 다니는 곳을 계속 보내는 쪽이 더 낫다",
+    "r3": "해맑은어린이집을 우선 유지하는 쪽이 맞다"
+   },
+   "confidence": 0.85,
+   "ambiguity_note": "'현재 다니는 곳'=해맑은어린이집으로 매핑"
+  },
+  {
+   "id": "F-05",
+   "round_options": {
+    "r0": "현 위치 유지",
+    "r1": "현 위치 유지",
+    "r2": "현 위치 유지",
+    "r3": "현 위치 유지"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "현 위치를 유지하는 편이 더 낫다고 본다",
+    "r3": "현 위치를 유지하는 편이 더 적합하다고 본다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-06",
+   "round_options": {
+    "r0": "순대국밥집",
+    "r1": "순대국밥집",
+    "r2": "순대국밥집",
+    "r3": "순대국밥집"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "순대국밥집이 더 낫다",
+    "r3": "내 선택은 순대국밥집이다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-07",
+   "round_options": {
+    "r0": "벽으로 붙여 두기",
+    "r1": "가운데 놓아두기",
+    "r2": "가운데 놓아두기",
+    "r3": "가운데 놓아두기"
+   },
+   "conclusion_relation": "바뀜",
+   "first_flip": "r1",
+   "change_type": "설득",
+   "evidence": {
+    "r0": "벽으로 붙여 두는 편이 더 낫다고 본다",
+    "r1": "가운데 놓아두는 쪽이 더 낫다"
+   },
+   "confidence": 0.85,
+   "ambiguity_note": "r0 벽→r1 가운데로 꺾여 r3까지 유지, 설득형"
+  },
+  {
+   "id": "F-08",
+   "round_options": {
+    "r0": "짚은 먼 자리로",
+    "r1": "짚은 먼 자리로",
+    "r2": "짚은 먼 자리로",
+    "r3": "짚은 먼 자리로"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "창고 옆 자리로의 이동이다",
+    "r3": "창고 옆의 지붕·조명 있는 빈 자리로 옮기는 편이 더 낫다"
+   },
+   "confidence": 0.4,
+   "ambiguity_note": "글이 '창고 옆'과 '짚은 먼 자리'를 혼용(시나리오상 동일 자리)하고 r2·r3은 '짚은 먼 자리'를 문면상 배척하나 실제로는 창고 옆(=먼 자리로의 이동)을 지지; 이동 방향은 네 라운드 일관이라 유지로 코딩, 최종선택 라벨은 '지금 자리에서 이어감'으로 어긋남"
+  },
+  {
+   "id": "F-09",
+   "round_options": {
+    "r0": "초록마루",
+    "r1": "초록마루",
+    "r2": "초록마루",
+    "r3": "초록마루"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "초록마루가 더 낫다",
+    "r3": "초록마루가 더 낫다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-10",
+   "round_options": {
+    "r0": "너울방",
+    "r1": "너울방",
+    "r2": "너울방",
+    "r3": "너울방"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "너울방이 더 낫다고 본다",
+    "r3": "너울방이 더 적합하다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-11",
+   "round_options": {
+    "r0": "소망호스피스",
+    "r1": "소망호스피스",
+    "r2": "소망호스피스",
+    "r3": "소망호스피스"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "호스피스 전문 병동이 더 나은 선택으로 보입니다",
+    "r3": "소망호스피스 전문 병동을 선택하는 것이 더 타당하다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "'호스피스 전문 병동'=소망호스피스"
+  },
+  {
+   "id": "F-12",
+   "round_options": {
+    "r0": "사내 EAP",
+    "r1": "외부 개인 상담",
+    "r2": "외부 개인 상담",
+    "r3": "외부 개인 상담"
+   },
+   "conclusion_relation": "바뀜",
+   "first_flip": "r1",
+   "change_type": "설득",
+   "evidence": {
+    "r0": "사내 EAP를 우선 권하는 것이 더 낫다",
+    "r1": "외부 개인 상담이 더 적합하다고 볼 수 있다"
+   },
+   "confidence": 0.8,
+   "ambiguity_note": "r0 사내→r1 외부로 꺾여 유지; 최종선택 라벨은 사내 EAP로 되돌아감"
+  },
+  {
+   "id": "F-13",
+   "round_options": {
+    "r0": "밤에도 열어 둠",
+    "r1": "지금 시간 그대로",
+    "r2": "지금 시간 그대로",
+    "r3": "지금 시간 그대로"
+   },
+   "conclusion_relation": "바뀜",
+   "first_flip": "r1",
+   "change_type": "설득",
+   "evidence": {
+    "r0": "밤에도 열어 두는 쪽이 더 낫다",
+    "r1": "지금 시간 그대로 두는 편이 낫다"
+   },
+   "confidence": 0.8,
+   "ambiguity_note": "r0 밤개방→r1 마감으로 꺾여 유지; 최종선택 라벨은 밤개방으로 되돌아감"
+  },
+  {
+   "id": "F-14",
+   "round_options": {
+    "r0": "스페셜나잇",
+    "r1": "스페셜나잇",
+    "r2": "스페셜나잇",
+    "r3": "스페셜나잇"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "스페셜나잇이 더 나아 보인다",
+    "r3": "스페셜나잇을 선택하는 것이 맞다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-15",
+   "round_options": {
+    "r0": "온식당",
+    "r1": "온식당",
+    "r2": "온식당",
+    "r3": "온식당"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "온식당이 더 낫다",
+    "r3": "내 가치에 더 맞는 선택은 온식당이다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-16",
+   "round_options": {
+    "r0": "원격 모니터링",
+    "r1": "원격 모니터링",
+    "r2": "자원봉사자 방문",
+    "r3": "원격 모니터링"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "원격 모니터링 기기 설치가 더 낫다",
+    "r2": "자원봉사자 정기 방문이 더 적합하다고 다시 정리할 수 있다",
+    "r3": "원격 모니터링 기기를 선택하는 것이 더 적절하다"
+   },
+   "confidence": 0.75,
+   "ambiguity_note": "r2에서 자원봉사자 방문으로 일시 흔들렸다가 r3에서 원격으로 복귀; 결론(r3)=r0이라 유지"
+  },
+  {
+   "id": "F-17",
+   "round_options": {
+    "r0": "창고 옆으로 이전",
+    "r1": "창고 옆으로 이전",
+    "r2": "창고 옆으로 이전",
+    "r3": "창고 옆으로 이전"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "창고 옆으로 옮기는 쪽이 더 낫다고 본다",
+    "r3": "창고 옆이 더 적절하다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-18",
+   "round_options": {
+    "r0": "지금 자리에 둠",
+    "r1": "지금 자리에 둠",
+    "r2": "지금 자리에 둠",
+    "r3": "외곽 빈 자리로"
+   },
+   "conclusion_relation": "바뀜",
+   "first_flip": "r3",
+   "change_type": "모르겠다",
+   "evidence": {
+    "r0": "지금 자리에 두는 쪽이 더 낫다고 본다",
+    "r3": "외곽 빈 자리로 옮기는 쪽이 더 낫다고 본다"
+   },
+   "confidence": 0.55,
+   "ambiguity_note": "r3에서만 외곽으로 한 번 꺾임; 최종선택은 지금 자리라 설득/오락가락 판별 불가"
+  },
+  {
+   "id": "F-19",
+   "round_options": {
+    "r0": "밤에도 열어 둠",
+    "r1": "밤에도 열어 둠",
+    "r2": "밤에도 열어 둠",
+    "r3": "밤에도 열어 둠"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "밤에도 열어 두는 쪽이 더 낫다고 본다",
+    "r3": "밤에도 열어 두는 쪽이 더 낫다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-20",
+   "round_options": {
+    "r0": "송림원",
+    "r1": "세종가든",
+    "r2": "송림원",
+    "r3": "송림원"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "송림원이 더 나아 보인다",
+    "r1": "세종가든이 오히려 내 가치에 더 잘 맞는 선택이라고 볼 수 있다",
+    "r3": "송림원이 더 맞다"
+   },
+   "confidence": 0.75,
+   "ambiguity_note": "r1에서 세종가든으로 흔들렸다가 복귀; r3=r0이라 유지"
+  },
+  {
+   "id": "F-21",
+   "round_options": {
+    "r0": "비즈런치",
+    "r1": "비즈런치",
+    "r2": "비즈런치",
+    "r3": "비즈런치"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "비즈런치가 더 낫다고 본다",
+    "r3": "여전히 비즈런치를 고르겠다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-22",
+   "round_options": {
+    "r0": "지금처럼 밤부터 정숙",
+    "r1": "지금처럼 밤부터 정숙",
+    "r2": "지금처럼 밤부터 정숙",
+    "r3": "지금처럼 밤부터 정숙"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "지금처럼 정숙 시간 밖에 두는 편이 더 낫다",
+    "r3": "정숙으로 넣지 않는 쪽이 더 낫다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "'정숙 시간 밖'=지금처럼 밤부터 정숙"
+  },
+  {
+   "id": "F-23",
+   "round_options": {
+    "r0": "약초식당",
+    "r1": "약초식당",
+    "r2": "약초식당",
+    "r3": "약초식당"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "약초식당이 더 낫다고 본다",
+    "r3": "약초식당을 선택하겠다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-24",
+   "round_options": {
+    "r0": "너울방",
+    "r1": "가온방",
+    "r2": "가온방",
+    "r3": "가온방"
+   },
+   "conclusion_relation": "바뀜",
+   "first_flip": "r2",
+   "change_type": "설득",
+   "evidence": {
+    "r0": "너울방이 더 나아 보인다",
+    "r2": "가온방이 더 적절하다고 본다"
+   },
+   "confidence": 0.75,
+   "ambiguity_note": "r0·r1 너울방→r2 가온방으로 꺾여 r3까지 유지; 최종선택 라벨은 너울방으로 되돌아감"
+  },
+  {
+   "id": "F-25",
+   "round_options": {
+    "r0": "데일리보울",
+    "r1": "순대국밥집",
+    "r2": "순대국밥집",
+    "r3": "순대국밥집"
+   },
+   "conclusion_relation": "바뀜",
+   "first_flip": "r1",
+   "change_type": "설득",
+   "evidence": {
+    "r0": "데일리보울이 더 낫다",
+    "r1": "순대국밥집이 더 맞다"
+   },
+   "confidence": 0.8,
+   "ambiguity_note": "r0 데일리→r1 순대국밥으로 꺾여 유지; 최종선택 라벨은 데일리보울로 되돌아감"
+  },
+  {
+   "id": "F-26",
+   "round_options": {
+    "r0": "지금 자리에서 이어감",
+    "r1": "짚은 먼 자리로",
+    "r2": "짚은 먼 자리로",
+    "r3": "짚은 먼 자리로"
+   },
+   "conclusion_relation": "바뀜",
+   "first_flip": "r1",
+   "change_type": "설득",
+   "evidence": {
+    "r0": "지금 자리를 유지하되, 운영 방식을 더 엄격하게 다듬는 쪽이 더 나아 보인다",
+    "r1": "창고 옆의 지붕·조명 있는 빈 자리로 옮기는 편이 더 낫다"
+   },
+   "confidence": 0.5,
+   "ambiguity_note": "r0은 유지·다듬기, r1부터 창고 옆(=짚은 먼 자리)로 이동; 창고옆↔먼자리 지칭 혼선 있음"
+  },
+  {
+   "id": "F-27",
+   "round_options": {
+    "r0": "인애종합병원",
+    "r1": "인애종합병원",
+    "r2": "인애종합병원",
+    "r3": "인애종합병원"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "현재의 종합병원에 남는 쪽이 더 낫다",
+    "r3": "인애종합병원을 유지하는 쪽이 더 적합하다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "'종합병원'=인애종합병원"
+  },
+  {
+   "id": "F-28",
+   "round_options": {
+    "r0": "지금처럼 등원시킴",
+    "r1": "지금처럼 등원시킴",
+    "r2": "지금처럼 등원시킴",
+    "r3": "지금처럼 등원시킴"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "계속 등원시키는 쪽이 더 낫다고 본다",
+    "r3": "계속 등원시키는 쪽이 낫다고 본다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-29",
+   "round_options": {
+    "r0": "이동지원 서비스",
+    "r1": "이동지원 서비스",
+    "r2": "이동지원 서비스",
+    "r3": "이동지원 서비스"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "지자체 지원 이동 서비스를 이용하는 쪽이 더 낫다고 본다",
+    "r3": "지자체 지원 이동 서비스로 전환하는 것이 더 적절합니다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-30",
+   "round_options": {
+    "r0": "창고 옆으로 이전",
+    "r1": "창고 옆으로 이전",
+    "r2": "창고 옆으로 이전",
+    "r3": "창고 옆으로 이전"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "창고 옆으로 옮기는 쪽이 더 낫다고 본다",
+    "r3": "창고 옆으로 옮기는 쪽이 더 낫다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-31",
+   "round_options": {
+    "r0": "프라이빗다이닝",
+    "r1": "프라이빗다이닝",
+    "r2": "프라이빗다이닝",
+    "r3": "프라이빗다이닝"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "프라이빗다이닝이 더 낫다",
+    "r3": "프라이빗다이닝이 더 맞다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-32",
+   "round_options": {
+    "r0": "지금처럼 등원시킴",
+    "r1": "지금처럼 등원시킴",
+    "r2": "지금처럼 등원시킴",
+    "r3": "지금처럼 등원시킴"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "아이가 지금처럼 다니게 하되",
+    "r3": "지금처럼 등원시키는 쪽이 더 적절하다"
+   },
+   "confidence": 0.85,
+   "ambiguity_note": "r0은 '다니게 하되'로 등원 유지 지지"
+  },
+  {
+   "id": "F-33",
+   "round_options": {
+    "r0": "우드테이블",
+    "r1": "우드테이블",
+    "r2": "우드테이블",
+    "r3": "우드테이블"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "우드테이블이 더 낫다",
+    "r3": "우드테이블을 우선하겠다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-34",
+   "round_options": {
+    "r0": "선데이브런치",
+    "r1": "선데이브런치",
+    "r2": "선데이브런치",
+    "r3": "선데이브런치"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "선데이브런치가 더 낫다",
+    "r3": "선데이브런치를 고르는 것이 옳다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-35",
+   "round_options": {
+    "r0": "예비 배치 지점 우선",
+    "r1": "예비 배치 지점 우선",
+    "r2": "예비 배치 지점 우선",
+    "r3": "예비 배치 지점 우선"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "현장 B(예비 차량을 배치해둔 지점)를 먼저 처리하는 것이 더 낫다",
+    "r3": "B 우선이 맞다"
+   },
+   "confidence": 0.8,
+   "ambiguity_note": "네 라운드 모두 B(예비배치) 지지하나 최종선택 라벨은 '신고 지점 즉시 출동'으로 어긋남"
+  },
+  {
+   "id": "F-36",
+   "round_options": {
+    "r0": "비스트로 해",
+    "r1": "비스트로 해",
+    "r2": "비스트로 해",
+    "r3": "비스트로 해"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "비스트로 해를 고르는 것이 맞다",
+    "r3": "비스트로 해를 고르는 것이 내 가치에 더 부합한다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-37",
+   "round_options": {
+    "r0": "임시보호 전문 단체",
+    "r1": "임시보호 전문 단체",
+    "r2": "임시보호 전문 단체",
+    "r3": "임시보호 전문 단체"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "임시보호 전문 단체로 옮기는 쪽이 더 낫다고 본다",
+    "r3": "임시보호 전문 단체로 옮기는 편이 더 적합합니다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-38",
+   "round_options": {
+    "r0": "외곽 빈 자리로",
+    "r1": "외곽 빈 자리로",
+    "r2": "외곽 빈 자리로",
+    "r3": "외곽 빈 자리로"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "외곽 자리로 옮기는 편이 더 낫다고 본다",
+    "r3": "외곽 빈 자리로 옮기는 쪽이 더 적절하다고 본다"
+   },
+   "confidence": 0.8,
+   "ambiguity_note": "네 라운드 모두 외곽 지지하나 최종선택 라벨은 '지금 자리에 둠'으로 어긋남"
+  },
+  {
+   "id": "F-39",
+   "round_options": {
+    "r0": "세종가든",
+    "r1": "세종가든",
+    "r2": "세종가든",
+    "r3": "세종가든"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "세종가든이 더 나아 보인다",
+    "r3": "세종가든을 고르는 게 더 낫다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-40",
+   "round_options": {
+    "r0": "다른 보호사로 교체",
+    "r1": "다른 보호사로 교체",
+    "r2": "다른 보호사로 교체",
+    "r3": "다른 보호사로 교체"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "다른 보호사로 교체하는 쪽이 더 타당합니다",
+    "r3": "다른 보호사로 교체하는 것이 더 타당하다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-41",
+   "round_options": {
+    "r0": "벽으로 붙여 두기",
+    "r1": "벽으로 붙여 두기",
+    "r2": "벽으로 붙여 두기",
+    "r3": "벽으로 붙여 두기"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "벽으로 붙여 두는 편이 더 낫다",
+    "r3": "벽 배치가 더 적합하다"
+   },
+   "confidence": 0.8,
+   "ambiguity_note": "네 라운드 모두 벽 지지하나 최종선택 라벨은 '가운데 놓아두기'로 어긋남"
+  },
+  {
+   "id": "F-42",
+   "round_options": {
+    "r0": "온식당",
+    "r1": "온식당",
+    "r2": "온식당",
+    "r3": "온식당"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "온식당이 더 낫다고 본다",
+    "r3": "온식당을 고르는 것이 더 타당하다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-43",
+   "round_options": {
+    "r0": "외부 개인 상담",
+    "r1": "외부 개인 상담",
+    "r2": "외부 개인 상담",
+    "r3": "외부 개인 상담"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "외부 개인 상담을 권하는 편이 더 낫다고 본다",
+    "r3": "외부 개인 상담이 더 적합하다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-44",
+   "round_options": {
+    "r0": "느티정",
+    "r1": "느티정",
+    "r2": "느티정",
+    "r3": "밀밭"
+   },
+   "conclusion_relation": "바뀜",
+   "first_flip": "r3",
+   "change_type": "모르겠다",
+   "evidence": {
+    "r0": "느티정이 더 낫다",
+    "r3": "밀밭을 고르는 편이 더 맞다"
+   },
+   "confidence": 0.55,
+   "ambiguity_note": "r3에서만 밀밭으로 한 번 꺾임; 최종선택은 느티정이라 설득/오락가락 판별 불가"
+  },
+  {
+   "id": "F-45",
+   "round_options": {
+    "r0": "밀밭",
+    "r1": "밀밭",
+    "r2": "밀밭",
+    "r3": "밀밭"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "밀밭을 선택하는 것이 타당하다",
+    "r3": "밀밭을 고르는 것이 맞다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-46",
+   "round_options": {
+    "r0": "소담숲어린이집",
+    "r1": "해맑은어린이집",
+    "r2": "해맑은어린이집",
+    "r3": "해맑은어린이집"
+   },
+   "conclusion_relation": "바뀜",
+   "first_flip": "r1",
+   "change_type": "설득",
+   "evidence": {
+    "r0": "적응 프로그램이 있는 곳으로 옮기는 쪽이 더 나아 보입니다",
+    "r1": "해맑은어린이집 쪽이 더 적합하다고 본다"
+   },
+   "confidence": 0.4,
+   "ambiguity_note": "라운드마다 속성 서술이 뒤바뀌어(적응프로그램이 해맑은에 귀속) 이름 기준 코딩; r0 소담숲(옮김)→r1부터 해맑은"
+  },
+  {
+   "id": "F-47",
+   "round_options": {
+    "r0": "밤 열 시 마감",
+    "r1": "밤에도 열어 둠",
+    "r2": "밤 열 시 마감",
+    "r3": "밤 열 시 마감"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "밤 열 시에 닫아 두는 쪽이 더 낫다고 본다",
+    "r1": "밤에도 열어 두는 쪽이 더 낫다고 다시 생각한다",
+    "r3": "밤 10시에 닫는 쪽이 더 낫다고 본다"
+   },
+   "confidence": 0.75,
+   "ambiguity_note": "r1에서 밤 개방으로 흔들렸다가 복귀; r3=r0이라 유지"
+  },
+  {
+   "id": "F-48",
+   "round_options": {
+    "r0": "지금처럼 밤부터 정숙",
+    "r1": "지금처럼 밤부터 정숙",
+    "r2": "지금처럼 밤부터 정숙",
+    "r3": "지금처럼 밤부터 정숙"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "지금처럼 정숙 시간 밖에 두는 편이 더 낫다",
+    "r3": "현행을 유지하되"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "'정숙 시간 밖 유지'=지금처럼 밤부터 정숙"
+  },
+  {
+   "id": "F-49",
+   "round_options": {
+    "r0": "밤에도 열어 둠",
+    "r1": "밤에도 열어 둠",
+    "r2": "밤에도 열어 둠",
+    "r3": "밤에도 열어 둠"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "밤에도 열어 두는 쪽이 더 낫다고 본다",
+    "r3": "밤에도 재활용 보관실을 열어 두는 편이 더 낫다고 본다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-50",
+   "round_options": {
+    "r0": "모닝테이블",
+    "r1": "모닝테이블",
+    "r2": "모닝테이블",
+    "r3": "모닝테이블"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "모닝테이블이 더 낫다",
+    "r3": "모닝테이블이 더 맞다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-51",
+   "round_options": {
+    "r0": "옆 구획 사용자에게",
+    "r1": "옆 구획 사용자에게",
+    "r2": "옆 구획 사용자에게",
+    "r3": "옆 구획 사용자에게"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "옆 구획 사용자에게 붙여 함께 쓰게 하는 쪽이 더 나아 보인다",
+    "r3": "옆 구획 사용자에게 붙여 함께 쓰는 쪽이 더 낫다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-52",
+   "round_options": {
+    "r0": "원래 배치 유지",
+    "r1": "원래 배치 유지",
+    "r2": "원래 배치 유지",
+    "r3": "원래 배치 유지"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "기존 담당 보호사를 유지하는 쪽이 더 낫다고 본다",
+    "r3": "기존 담당 보호사 유지가 더 타당하다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-53",
+   "round_options": {
+    "r0": "반상회",
+    "r1": "비즈런치",
+    "r2": "비즈런치",
+    "r3": "비즈런치"
+   },
+   "conclusion_relation": "바뀜",
+   "first_flip": "r2",
+   "change_type": "설득",
+   "evidence": {
+    "r0": "반상회가 더 낫다",
+    "r2": "비즈런치를 선택하는 것이 더 맞다"
+   },
+   "confidence": 0.8,
+   "ambiguity_note": "r0·r1 반상회→r2 비즈런치로 꺾여 r3까지 유지, 설득형"
+  },
+  {
+   "id": "F-54",
+   "round_options": {
+    "r0": "소반",
+    "r1": "소반",
+    "r2": "소반",
+    "r3": "소반"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "소반이 더 낫다",
+    "r3": "소반을 선택한다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-55",
+   "round_options": {
+    "r0": "창고 옆으로 이전",
+    "r1": "창고 옆으로 이전",
+    "r2": "창고 옆으로 이전",
+    "r3": "창고 옆으로 이전"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "창고 옆으로 옮기는 편이 더 낫다고 본다",
+    "r3": "창고 옆으로 옮기는 편이 더 낫다고 본다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-56",
+   "round_options": {
+    "r0": "처음 신청자에게",
+    "r1": "처음 신청자에게",
+    "r2": "처음 신청자에게",
+    "r3": "처음 신청자에게"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "처음 신청한 주민에게 배정하는 쪽이 더 낫다",
+    "r3": "처음 신청한 주민에게 배정하는 것이 내 가치에 더 맞다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-57",
+   "round_options": {
+    "r0": "예비 배치 지점 우선",
+    "r1": "신고 지점 즉시 출동",
+    "r2": "신고 지점 즉시 출동",
+    "r3": "신고 지점 즉시 출동"
+   },
+   "conclusion_relation": "바뀜",
+   "first_flip": "r1",
+   "change_type": "설득",
+   "evidence": {
+    "r0": "현장 B를 먼저 처리하는 것이 더 낫다",
+    "r1": "현장 A로 즉시 출동하는 쪽이 우선이라고 본다"
+   },
+   "confidence": 0.8,
+   "ambiguity_note": "r0 B(예비)→r1 A(신고지점)로 꺾여 유지; 최종선택 라벨은 예비 배치로 되돌아감"
+  },
+  {
+   "id": "F-58",
+   "round_options": {
+    "r0": "창고 옆으로 이전",
+    "r1": "현 위치 유지",
+    "r2": "현 위치 유지",
+    "r3": "현 위치 유지"
+   },
+   "conclusion_relation": "바뀜",
+   "first_flip": "r1",
+   "change_type": "설득",
+   "evidence": {
+    "r0": "창고 옆으로 옮기는 편이 더 낫다",
+    "r1": "현 위치를 유지하는 쪽이 더 낫다고 본다"
+   },
+   "confidence": 0.8,
+   "ambiguity_note": "r0 창고옆→r1 현위치로 꺾여 유지; 최종선택 라벨은 창고 옆으로 되돌아감"
+  },
+  {
+   "id": "F-59",
+   "round_options": {
+    "r0": "주차장 뒤편으로 이전",
+    "r1": "주차장 뒤편으로 이전",
+    "r2": "주차장 뒤편으로 이전",
+    "r3": "주차장 뒤편으로 이전"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "주차장 뒤편으로 옮기는 편이 더 낫다고 본다",
+    "r3": "주차장 뒤편으로 옮기는 편이 더 낫다고 본다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  },
+  {
+   "id": "F-60",
+   "round_options": {
+    "r0": "담채",
+    "r1": "담채",
+    "r2": "담채",
+    "r3": "담채"
+   },
+   "conclusion_relation": "유지",
+   "first_flip": null,
+   "change_type": null,
+   "evidence": {
+    "r0": "담채가 더 나아 보인다",
+    "r3": "담채를 고르겠다"
+   },
+   "confidence": 0.9,
+   "ambiguity_note": "네 라운드 일관"
+  }
+ ]
+}

@@ -1,0 +1,261 @@
+{
+  "experiment": "pressure_category_ab_blind_coding",
+  "seed": 20260901,
+  "completed_at": "2026-09-01T17:10:23+09:00",
+  "analysis_status": {
+    "PACK_W": "preregistered_with_disclosed_prior_exposure_for_W1_W2",
+    "PACK_R": "post_hoc_exploratory",
+    "PACK_F": "post_hoc_exploratory"
+  },
+  "key_join_policy": {
+    "key_withheld_from_initial_coders": true,
+    "key_withheld_from_adjudicators": true,
+    "all_packs_frozen_before_key_open": true,
+    "key_sha256": {
+      "W": "569bed47dae274a5da1850c9751012415a1194b8d23cdf1747b6b1924dac8531",
+      "R": "9651b7f9303f7a2468d1c370fb0a527ea55ae65e558052c3f3032b381cb7c935",
+      "F": "581813ccdc5789c769866254d2ede8fce06720277e3c195dc565c4baf5069026"
+    }
+  },
+  "packs": {
+    "W": {
+      "overall": {
+        "items": 60,
+        "exact_given_set": 47,
+        "exact_given_set_rate": 0.7833333333333333,
+        "overlap_counts": {
+          "0": 1,
+          "1": 4,
+          "2": 8,
+          "3": 47
+        },
+        "mean_overlap_of_3": 2.683333333333333,
+        "unchosen_handling_counts": {
+          "감수": 28,
+          "기각": 13,
+          "안 나옴": 10,
+          "이름만": 9
+        },
+        "key_leak_given_total": 39,
+        "key_leak_other_total": 13
+      },
+      "groups": {
+        "A": {
+          "items": 30,
+          "exact_given_set": 22,
+          "exact_given_set_rate": 0.7333333333333333,
+          "overlap_counts": {
+            "1": 2,
+            "2": 6,
+            "3": 22
+          },
+          "mean_overlap_of_3": 2.6666666666666665,
+          "unchosen_handling_counts": {
+            "감수": 14,
+            "기각": 5,
+            "안 나옴": 8,
+            "이름만": 3
+          },
+          "key_leak_given_total": 19,
+          "key_leak_other_total": 6
+        },
+        "B": {
+          "items": 30,
+          "exact_given_set": 25,
+          "exact_given_set_rate": 0.8333333333333334,
+          "overlap_counts": {
+            "0": 1,
+            "1": 2,
+            "2": 2,
+            "3": 25
+          },
+          "mean_overlap_of_3": 2.7,
+          "unchosen_handling_counts": {
+            "감수": 14,
+            "기각": 8,
+            "안 나옴": 2,
+            "이름만": 6
+          },
+          "key_leak_given_total": 20,
+          "key_leak_other_total": 7
+        }
+      },
+      "coder_agreement": {
+        "weights_exact_set": 52,
+        "weights_exact_set_rate": 0.8666666666666667,
+        "unchosen_handling": 11,
+        "unchosen_handling_rate": 0.18333333333333332,
+        "all_requested_fields": 10,
+        "all_requested_fields_rate": 0.16666666666666666
+      },
+      "gate_check": {
+        "pass": {
+          "items": 51,
+          "mean_overlap_of_3": 2.843137254901961,
+          "exact_given_set": 45
+        },
+        "fail": {
+          "items": 9,
+          "mean_overlap_of_3": 1.7777777777777777,
+          "exact_given_set": 2
+        },
+        "absolute_mean_difference": 1.0653594771241832
+      },
+      "word_leak_check": {
+        "all_three_given_labels_visible": {
+          "items": 7,
+          "mean_overlap_of_3": 2.7142857142857144,
+          "exact_given_set": 5
+        },
+        "no_given_or_other_category_labels_visible": {
+          "items": 32,
+          "mean_overlap_of_3": 2.625,
+          "exact_given_set": 25
+        },
+        "absolute_mean_difference": 0.08928571428571441,
+        "prereg_count_reconciliation": "PREREG의 '하나도 없는 32판'은 key에서 leak_given=0 and leak_other=0인 32판과 일치한다. leak_given=0만 적용하면 37판이다."
+      },
+      "preregistered_predictions": {
+        "W1": {
+          "outcome": "적중",
+          "observed_mean_overlap": 2.683333333333333,
+          "criterion": ">=2.00"
+        },
+        "W2": {
+          "outcome": "적중",
+          "observed_exact_given_set": 47,
+          "criterion": ">=18/60"
+        },
+        "W3": {
+          "outcome": "적중",
+          "reject_plus_accept": 41,
+          "not_mentioned": 10,
+          "criterion": "기각+감수 > 안 나옴"
+        },
+        "W4": {
+          "outcome": "적중",
+          "observed_weights_agreement": 52,
+          "criterion": ">=30/60"
+        },
+        "W5": {
+          "outcome": "기각",
+          "observed_absolute_gate_mean_difference": 1.0653594771241832,
+          "criterion": "<0.5"
+        }
+      }
+    },
+    "R": {
+      "overall": {
+        "items": 60,
+        "judgments": 720,
+        "retained": 483,
+        "not_retained": 237,
+        "retention_rate": 0.6708333333333333
+      },
+      "groups": {
+        "A": {
+          "items": 30,
+          "judgments": 360,
+          "retained": 241,
+          "not_retained": 119,
+          "retention_rate": 0.6694444444444444
+        },
+        "B": {
+          "items": 30,
+          "judgments": 360,
+          "retained": 242,
+          "not_retained": 118,
+          "retention_rate": 0.6722222222222223
+        }
+      },
+      "double_coding": {
+        "all_items_double_coded": true,
+        "protocol_audit_sample_items": 14,
+        "all_judgments": 720,
+        "all_disputed_facts": 39,
+        "all_raw_agreement_rate": 0.9458333333333333,
+        "audit_judgments": 168,
+        "audit_disputed_facts": 14,
+        "audit_raw_agreement_rate": 0.9166666666666666,
+        "deviation_note": "사용자 지시에 따라 60장 전부를 두 모델이 독립 판독했다. 규약의 14장 감사 표본보다 강한 이중 판독이며, 사후 탐색 지위는 바뀌지 않는다."
+      }
+    },
+    "F": {
+      "overall": {
+        "items": 60,
+        "relation_counts": {
+          "모르겠다": 2,
+          "바뀜": 11,
+          "유지": 47
+        },
+        "first_flip_counts": {
+          "None": 49,
+          "r1": 7,
+          "r2": 2,
+          "r3": 2
+        },
+        "change_type_counts": {
+          "None": 49,
+          "설득": 11
+        },
+        "r0_aligned_with_key": 46,
+        "r0_aligned_rate": 0.7666666666666667,
+        "r3_aligned_with_key": 35,
+        "r3_aligned_rate": 0.5833333333333334
+      },
+      "groups": {
+        "A": {
+          "items": 30,
+          "relation_counts": {
+            "모르겠다": 1,
+            "바뀜": 4,
+            "유지": 25
+          },
+          "first_flip_counts": {
+            "None": 26,
+            "r1": 2,
+            "r2": 1,
+            "r3": 1
+          },
+          "change_type_counts": {
+            "None": 26,
+            "설득": 4
+          },
+          "r0_aligned_with_key": 21,
+          "r0_aligned_rate": 0.7,
+          "r3_aligned_with_key": 17,
+          "r3_aligned_rate": 0.5666666666666667
+        },
+        "B": {
+          "items": 30,
+          "relation_counts": {
+            "모르겠다": 1,
+            "바뀜": 7,
+            "유지": 22
+          },
+          "first_flip_counts": {
+            "None": 23,
+            "r1": 5,
+            "r2": 1,
+            "r3": 1
+          },
+          "change_type_counts": {
+            "None": 23,
+            "설득": 7
+          },
+          "r0_aligned_with_key": 25,
+          "r0_aligned_rate": 0.8333333333333334,
+          "r3_aligned_with_key": 18,
+          "r3_aligned_rate": 0.6
+        }
+      }
+    }
+  },
+  "limitations": [
+    "PACK_W는 판독 전 사전고정됐지만 W1·W2 예측자는 같은 판의 선행 수치와 일부 글을 본 상태였다. W3~W5는 선행 값이 없었다.",
+    "PACK_R과 PACK_F는 사후 탐색이다.",
+    "AI 코더 둘의 일치는 모델 간 일치도이지 사람 신뢰도가 아니다.",
+    "PACK_R은 규약의 14장 감사 표본을 넘어 60장 전부를 이중 판독했으나 사후 탐색 지위는 그대로다.",
+    "PACK_W의 weights 셋 일치는 높았지만 모든 요청 필드의 완전 일치는 낮아, 안 고른 쪽 처리 분류는 판정자 의존성이 높다."
+  ]
+}

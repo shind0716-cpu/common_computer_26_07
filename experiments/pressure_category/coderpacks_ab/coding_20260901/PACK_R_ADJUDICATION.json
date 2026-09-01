@@ -1,0 +1,321 @@
+{
+  "pack": "PACK_R",
+  "adjudicator_id": "MAIN_HERMES_R_01",
+  "key_access": false,
+  "blind_labels": true,
+  "source_disagreements_sha256": "430a7c41127620891d98ca63cc31acb629d97e668e7e15c34120e2dba05472c0",
+  "resolutions": [
+    {
+      "id": "R-05",
+      "fact_no": 10,
+      "retained": false,
+      "quote": null,
+      "rationale": "수첩의 막연한 “약속”은 신청서에 돌볼 요일을 적었다는 구체 사실을 보존하지 않는다.",
+      "confidence": 0.96
+    },
+    {
+      "id": "R-05",
+      "fact_no": 12,
+      "retained": false,
+      "quote": null,
+      "rationale": "수첩은 제초 기여와 막연한 약속만 언급하며 공동 물통 운반 분담 약속은 남기지 않았다.",
+      "confidence": 0.97
+    },
+    {
+      "id": "R-09",
+      "fact_no": 3,
+      "retained": false,
+      "quote": null,
+      "rationale": "빠른 걸음이 소음이라는 내용만 있고 매트와 가구 패드를 깔았는데도 소리가 남았다는 사실은 보존되지 않았다.",
+      "confidence": 0.95
+    },
+    {
+      "id": "R-09",
+      "fact_no": 8,
+      "retained": true,
+      "quote": "지금처럼 정숙 시간 밖에 두는 편이 낫다",
+      "rationale": "“지금처럼” 정숙 시간 밖이라고 명시해 현행 규칙상 해당 저녁이 정숙 시간에 들지 않는다는 뜻을 보존한다.",
+      "confidence": 0.98
+    },
+    {
+      "id": "R-11",
+      "fact_no": 11,
+      "retained": false,
+      "quote": null,
+      "rationale": "수첩은 예약 없이 즉시 가능한 상담을 말하므로 다음 주에나 가능하다는 사실을 보존하지 않는다.",
+      "confidence": 0.99
+    },
+    {
+      "id": "R-12",
+      "fact_no": 5,
+      "retained": true,
+      "quote": "바로 시작하는 편의보다",
+      "rationale": "배치를 그대로 둘 때의 장점으로 곧바로 시작하는 편의를 명시해 사실의 핵심 의미를 보존한다.",
+      "confidence": 0.88
+    },
+    {
+      "id": "R-17",
+      "fact_no": 3,
+      "retained": false,
+      "quote": null,
+      "rationale": "필요 시 이용 가능하다고 했지만 야간·새벽 불가도 명시되어 언제든 제약 없이 이동 가능하다는 뜻은 보존되지 않는다.",
+      "confidence": 0.99
+    },
+    {
+      "id": "R-17",
+      "fact_no": 11,
+      "retained": false,
+      "quote": null,
+      "rationale": "고령 운전자 사고 예방 흐름은 언급하지만 그 지역 사고가 여러 차례 보도됐다는 구체 사실은 남아 있지 않다.",
+      "confidence": 0.97
+    },
+    {
+      "id": "R-18",
+      "fact_no": 1,
+      "retained": true,
+      "quote": "현 위치는 동 현관/앞 보도와 붙어 있어 주민 동선과 겹치고",
+      "rationale": "현 구역이 동 현관에 붙어 있고 주민의 드나드는 동선과 겹친다는 말로 위치와 경로의 의미를 보존한다.",
+      "confidence": 0.88
+    },
+    {
+      "id": "R-23",
+      "fact_no": 1,
+      "retained": true,
+      "quote": "늦게 오는 주민들은 문이 잠기면",
+      "rationale": "늦게 오는 주민과 이미 잠긴 문이라는 시간 관계를 직접 보존한다.",
+      "confidence": 0.94
+    },
+    {
+      "id": "R-24",
+      "fact_no": 5,
+      "retained": false,
+      "quote": null,
+      "rationale": "빠른 배정이라는 일반 장점만 있고 신청 후 3일 이내라는 기간은 보존되지 않았으며 실제 상담은 7일이라고 적었다.",
+      "confidence": 0.96
+    },
+    {
+      "id": "R-25",
+      "fact_no": 4,
+      "retained": false,
+      "quote": null,
+      "rationale": "새 보호사의 자격·경력은 언급하지만 이 가정 첫 방문과 관계 형성 필요는 남아 있지 않다.",
+      "confidence": 0.99
+    },
+    {
+      "id": "R-27",
+      "fact_no": 1,
+      "retained": false,
+      "quote": null,
+      "rationale": "잠겼을 때 바로 버릴 수 없다는 불편은 관련되지만 문 앞에서 그대로 돌아선다는 행동 사실은 보존되지 않았다.",
+      "confidence": 0.93
+    },
+    {
+      "id": "R-28",
+      "fact_no": 4,
+      "retained": false,
+      "quote": null,
+      "rationale": "사료가 오래 남은 날이 있었다는 결과만 있고 담당자가 늦어 제때 거두지 못했다는 원인·주체는 보존되지 않았다.",
+      "confidence": 0.96
+    },
+    {
+      "id": "R-30",
+      "fact_no": 7,
+      "retained": true,
+      "quote": "인접 동 창문 환기 때",
+      "rationale": "인접 동이 창문을 열어 환기하는 때를 명시해 사실의 핵심 의미를 보존한다.",
+      "confidence": 0.91
+    },
+    {
+      "id": "R-31",
+      "fact_no": 11,
+      "retained": false,
+      "quote": null,
+      "rationale": "완충판 등 대책이 필요하다고만 했으며 일층 주민이 이미 설치해 병 굴러가는 소리를 줄였다는 사실은 남기지 않았다.",
+      "confidence": 0.98
+    },
+    {
+      "id": "R-33",
+      "fact_no": 1,
+      "retained": false,
+      "quote": null,
+      "rationale": "닫으면 일부 주민이 불편하다는 일반 내용뿐이며 잠긴 문 앞에서 돌아선다는 구체 행동은 보존되지 않았다.",
+      "confidence": 0.96
+    },
+    {
+      "id": "R-33",
+      "fact_no": 2,
+      "retained": true,
+      "quote": "밤에 열어두면 늦은 주민은 편하지만",
+      "rationale": "밤 개방이 늦게 오는 주민의 이용 편의를 준다는 뜻으로 귀가 시간에 곧장 이용 가능하다는 의미를 보존한다.",
+      "confidence": 0.9
+    },
+    {
+      "id": "R-33",
+      "fact_no": 12,
+      "retained": false,
+      "quote": null,
+      "rationale": "안전·위생·정돈의 일반 평가만 있고 밤에 넣은 봉투의 품목이 아침에 섞여 있다는 사실은 남아 있지 않다.",
+      "confidence": 0.99
+    },
+    {
+      "id": "R-34",
+      "fact_no": 4,
+      "retained": false,
+      "quote": null,
+      "rationale": "소반이 아이 음식을 덜 간해 낸다는 사실만으로 초록마루가 어른과 같은 간으로 낸다는 사실은 유추될 뿐 보존되지 않는다.",
+      "confidence": 0.98
+    },
+    {
+      "id": "R-34",
+      "fact_no": 6,
+      "retained": false,
+      "quote": null,
+      "rationale": "초록마루에서 어른 의자에 방석을 얹어 아이를 앉힌다는 내용은 수첩에 없다.",
+      "confidence": 0.99
+    },
+    {
+      "id": "R-35",
+      "fact_no": 10,
+      "retained": false,
+      "quote": null,
+      "rationale": "너울방의 게시판이나 아이 그림을 붙이는 벽에 관한 내용은 수첩에 없다.",
+      "confidence": 0.99
+    },
+    {
+      "id": "R-37",
+      "fact_no": 1,
+      "retained": false,
+      "quote": null,
+      "rationale": "물길이 이어지는 편의만 언급하며 빈 구획이 옆 구획과만 연결된다는 배타적 연결 사실은 보존하지 않는다.",
+      "confidence": 0.97
+    },
+    {
+      "id": "R-38",
+      "fact_no": 3,
+      "retained": true,
+      "quote": "비용·접근성·속도는 사내 EAP가 유리하지만",
+      "rationale": "사내 EAP가 접근성에서 외부보다 유리하다고 명시해 사내 상담실의 접근성 우위를 보존한다.",
+      "confidence": 0.93
+    },
+    {
+      "id": "R-39",
+      "fact_no": 4,
+      "retained": true,
+      "quote": "형광등/종이컵은 단점이지만 우선순위 아님.",
+      "rationale": "모닝테이블의 단점으로 형광등을 직접 지목해 해당 설비의 존재를 보존한다.",
+      "confidence": 0.91
+    },
+    {
+      "id": "R-39",
+      "fact_no": 6,
+      "retained": true,
+      "quote": "형광등/종이컵은 단점이지만 우선순위 아님.",
+      "rationale": "모닝테이블의 단점으로 종이컵을 직접 지목해 커피 제공 방식의 의미를 보존한다.",
+      "confidence": 0.91
+    },
+    {
+      "id": "R-40",
+      "fact_no": 9,
+      "retained": false,
+      "quote": null,
+      "rationale": "낮잠 리듬과 부담 완화는 언급하지만 낮잠 시간마다 힘들어한다는 기록 자체는 보존되지 않았다.",
+      "confidence": 0.97
+    },
+    {
+      "id": "R-44",
+      "fact_no": 3,
+      "retained": false,
+      "quote": null,
+      "rationale": "메뉴가 하나이고 뚝배기를 끓인다는 내용은 국에 밥을 말아 낸다는 사실을 보존하지 않는다.",
+      "confidence": 0.99
+    },
+    {
+      "id": "R-44",
+      "fact_no": 9,
+      "retained": false,
+      "quote": null,
+      "rationale": "혼자 앉기 편하다는 일반 평가만 있고 벽을 보고 앉는 긴 자리라는 구체 배치는 남아 있지 않다.",
+      "confidence": 0.98
+    },
+    {
+      "id": "R-44",
+      "fact_no": 10,
+      "retained": false,
+      "quote": null,
+      "rationale": "혼자 앉는 편의가 덜하다는 평가만으로 네 명 상에서 낯선 사람과 합석한다는 사실은 보존되지 않는다.",
+      "confidence": 0.98
+    },
+    {
+      "id": "R-44",
+      "fact_no": 11,
+      "retained": false,
+      "quote": null,
+      "rationale": "선택지가 많고 비교적 빠르다는 내용만 있으며 손질된 재료를 담기만 한다는 조리 방식은 남아 있지 않다.",
+      "confidence": 0.98
+    },
+    {
+      "id": "R-45",
+      "fact_no": 4,
+      "retained": false,
+      "quote": null,
+      "rationale": "인애종합병원의 20분 거리만 명시하며 호스피스가 대중교통 40분이라는 사실은 보존하지 않는다.",
+      "confidence": 0.99
+    },
+    {
+      "id": "R-45",
+      "fact_no": 7,
+      "retained": false,
+      "quote": null,
+      "rationale": "호스피스의 특화 프로토콜만 언급되어 인애종합병원이 일반 병동 기준이라는 사실은 대조로 유추될 뿐이다.",
+      "confidence": 0.98
+    },
+    {
+      "id": "R-46",
+      "fact_no": 1,
+      "retained": true,
+      "quote": "우드테이블은 차와 밥을 한 값으로 내고",
+      "rationale": "우드테이블이 차와 밥을 한 가격으로 제공한다는 사실을 그대로 보존한다.",
+      "confidence": 0.99
+    },
+    {
+      "id": "R-47",
+      "fact_no": 5,
+      "retained": false,
+      "quote": null,
+      "rationale": "정숙 시간을 앞당길 때 취침 준비도 당겨진다고 했을 뿐 현재 아홉 시쯤 준비를 마친다는 시각은 보존되지 않았다.",
+      "confidence": 0.98
+    },
+    {
+      "id": "R-49",
+      "fact_no": 7,
+      "retained": true,
+      "quote": "미끄럼틀/비닐장판 여부는 핵심 아님.",
+      "rationale": "핵심이 아니라고 배제하면서도 초록마루의 미끄럼틀 존재를 명시적으로 보존한다.",
+      "confidence": 0.94
+    },
+    {
+      "id": "R-49",
+      "fact_no": 9,
+      "retained": true,
+      "quote": "미끄럼틀/비닐장판 여부는 핵심 아님.",
+      "rationale": "핵심이 아니라고 배제하면서도 초록마루의 비닐장판 존재를 명시적으로 보존한다.",
+      "confidence": 0.94
+    },
+    {
+      "id": "R-51",
+      "fact_no": 2,
+      "retained": false,
+      "quote": null,
+      "rationale": "옮긴 뒤 적응하도록 꾸준히 관리하라는 결론만 있으며 과거 이동 때 고양이가 며칠 오지 않았다는 사실은 보존되지 않았다.",
+      "confidence": 0.98
+    },
+    {
+      "id": "R-54",
+      "fact_no": 4,
+      "retained": false,
+      "quote": null,
+      "rationale": "사료가 오래 남았다는 결과와 향후 즉시 회수 방침만 있고 담당자가 늦어 제때 거두지 못했다는 사실은 보존되지 않았다.",
+      "confidence": 0.97
+    }
+  ]
+}

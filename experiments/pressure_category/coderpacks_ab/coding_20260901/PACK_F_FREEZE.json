@@ -1,0 +1,18 @@
+{
+  "pack": "PACK_F",
+  "freeze_id": "PACK_F_FREEZE_01",
+  "key_opened": false,
+  "files": {
+    "PACK_F_SOL_01.json": "7aa11b5029013b2921881310bc2ac4694887378d22ad95f3a5f185ccd4390387",
+    "PACK_F_CLAUDE_01.json": "ab4c57255a98b85a6629740757678c9fcf1a1ec957d28ef8721ab68ce9694511",
+    "PACK_F_DISAGREEMENTS.json": "5cd896fc86e3aeb4de1efcaf6ffe91518856996886b878acf86d00aceeb20bd6",
+    "PACK_F_ADJUDICATION.json": "fa09c6b0d1aa804202c7e60807c0689ec97fe19fffc38eac0bac8a3941565107",
+    "PACK_F_CONSENSUS_01.json": "2ed86f02427a6f356f2392558cd9d204a74ef5d7272cd571f00ee1fb05f7fabf",
+    "PACK_F_flip_2026-09-01.md": "32f60a65545bbeaaa550977cf14f5e47b79490b41b279a817750b20606498616"
+  },
+  "counts": {
+    "items": 60,
+    "disagreements": 6,
+    "adjudications": 6
+  }
+}

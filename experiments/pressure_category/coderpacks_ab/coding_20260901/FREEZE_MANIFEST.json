@@ -1,0 +1,44 @@
+{
+  "experiment": "pressure_category_ab_blind_coding",
+  "seed": 20260901,
+  "completed_at": "2026-09-01T17:10:23+09:00",
+  "status": "complete",
+  "key_join_policy": {
+    "key_withheld_from_initial_coders": true,
+    "key_withheld_from_adjudicators": true,
+    "all_packs_frozen_before_key_open": true,
+    "key_sha256": {
+      "W": "569bed47dae274a5da1850c9751012415a1194b8d23cdf1747b6b1924dac8531",
+      "R": "9651b7f9303f7a2468d1c370fb0a527ea55ae65e558052c3f3032b381cb7c935",
+      "F": "581813ccdc5789c769866254d2ede8fce06720277e3c195dc565c4baf5069026"
+    }
+  },
+  "analysis_status": {
+    "PACK_W": "preregistered_with_disclosed_prior_exposure_for_W1_W2",
+    "PACK_R": "post_hoc_exploratory",
+    "PACK_F": "post_hoc_exploratory"
+  },
+  "validation": {
+    "PACK_W": "frozen; 60 items; all disagreements adjudicated",
+    "PACK_R": "frozen; 60 items; 720 fact judgments; all 60 cards double-coded; all disagreements adjudicated",
+    "PACK_F": "frozen; 60 items; all requested-field disagreements adjudicated",
+    "key_join": "W=60, R=60 with 12 fact IDs each, F=60; exact blind-ID sets matched"
+  },
+  "sha256": {
+    "PACK_W_FREEZE.json": "6179264aeed21ee9ac50e4d175937ca00136f0b3b1a54a83b467bb8f5cdade29",
+    "PACK_R_FREEZE.json": "ec685a1918244a2c8c6ec68445ff7237142e72ddb35fa0a9f0a71fcb020ecc9b",
+    "PACK_F_FREEZE.json": "e3c88f588dfc874164fa5a4f29de589a9bf72cfd1bd4763a1efa9df6e4f755cc",
+    "PACK_W_KEYED_01.json": "21c2fec5a2b878290ff195bf4661d8332f8743a6879816fff180087a436cdf2d",
+    "PACK_R_KEYED_01.json": "79c96862dee31ad17829b583726c0373ae60f26fd893e54e5edea0ca64f4cc49",
+    "PACK_F_KEYED_01.json": "4ab5b7d9d2e9ebc4f62bbfe6d9817ece2b980299f7d4c57c20f56bde2cb3fdc9",
+    "KEYED_SUMMARY.json": "b9d12e97454ac4354b2bce092f315936dcf8417fa9ac8b548eb72c5cc39bc0e2",
+    "FINAL_REPORT.md": "b3dbc446b3c90e4b60ccbfdcb7f1d5936f6ddd4871d0a12ec8db7b1772814de5"
+  },
+  "limitations": [
+    "PACK_W는 판독 전 사전고정됐지만 W1·W2 예측자는 같은 판의 선행 수치와 일부 글을 본 상태였다. W3~W5는 선행 값이 없었다.",
+    "PACK_R과 PACK_F는 사후 탐색이다.",
+    "AI 코더 둘의 일치는 모델 간 일치도이지 사람 신뢰도가 아니다.",
+    "PACK_R은 규약의 14장 감사 표본을 넘어 60장 전부를 이중 판독했으나 사후 탐색 지위는 그대로다.",
+    "PACK_W의 weights 셋 일치는 높았지만 모든 요청 필드의 완전 일치는 낮아, 안 고른 쪽 처리 분류는 판정자 의존성이 높다."
+  ]
+}
