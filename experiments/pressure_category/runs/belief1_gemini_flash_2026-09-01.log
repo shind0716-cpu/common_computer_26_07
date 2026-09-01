@@ -1,0 +1,112 @@
+=== belief1 gemini-flash 시작 2026-09-01T18:54:43+09:00 ===
+--- [1/11] issue_childcare / wonchik_childcare / pbw_childcare ---
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[done] gemini-flash/C0_wonchik_childcare_rep1 · 호출 10
+[done] gemini-flash/C0_wonchik_childcare_rep2 · 호출 11
+[done] gemini-flash/C0_wonchik_childcare_rep3 · 호출 10
+[done] gemini-flash/pbw_childcare_wonchik_childcare_rep1 · 호출 8
+[done] gemini-flash/pbw_childcare_wonchik_childcare_rep2 · 호출 8
+[done] gemini-flash/pbw_childcare_wonchik_childcare_rep3 · 호출 8
+--- [2/11] issue_euthanasia / wonchik_euthanasia / pbw_euthanasia ---
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[done] gemini-flash/C0_wonchik_euthanasia_rep1 · 호출 10
+[done] gemini-flash/C0_wonchik_euthanasia_rep2 · 호출 8
+[done] gemini-flash/C0_wonchik_euthanasia_rep3 · 호출 9
+[done] gemini-flash/pbw_euthanasia_wonchik_euthanasia_rep1 · 호출 8
+[done] gemini-flash/pbw_euthanasia_wonchik_euthanasia_rep2 · 호출 9
+[done] gemini-flash/pbw_euthanasia_wonchik_euthanasia_rep3 · 호출 8
+--- [3/11] issue_examaccom / wonchik_examaccom / pbw_examaccom ---
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[done] gemini-flash/C0_wonchik_examaccom_rep1 · 호출 8
+[done] gemini-flash/C0_wonchik_examaccom_rep2 · 호출 8
+[done] gemini-flash/C0_wonchik_examaccom_rep3 · 호출 9
+[done] gemini-flash/pbw_examaccom_wonchik_examaccom_rep1 · 호출 8
+[done] gemini-flash/pbw_examaccom_wonchik_examaccom_rep2 · 호출 9
+[done] gemini-flash/pbw_examaccom_wonchik_examaccom_rep3 · 호출 8
+--- [4/11] issue_remotewatch / wonchik_remotewatch / pbw_remotewatch ---
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_remotewatch · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[done] gemini-flash/C0_wonchik_remotewatch_rep1 · 호출 9
+[done] gemini-flash/C0_wonchik_remotewatch_rep2 · 호출 9
+[done] gemini-flash/C0_wonchik_remotewatch_rep3 · 호출 8
+[done] gemini-flash/pbw_remotewatch_wonchik_remotewatch_rep1 · 호출 10
+[done] gemini-flash/pbw_remotewatch_wonchik_remotewatch_rep2 · 호출 8
+[done] gemini-flash/pbw_remotewatch_wonchik_remotewatch_rep3 · 호출 8
+--- [5/11] issue_workmind / wonchik_workmind / pbw_workmind ---
+[check_materials] 대상: issue_workmind.json (issue_id=issue_workmind)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_workmind · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 661cb97a56ee
+[done] gemini-flash/C0_wonchik_workmind_rep1 · 호출 8
+[done] gemini-flash/C0_wonchik_workmind_rep2 · 호출 8
+[done] gemini-flash/C0_wonchik_workmind_rep3 · 호출 8
+[done] gemini-flash/pbw_workmind_wonchik_workmind_rep1 · 호출 9
+[done] gemini-flash/pbw_workmind_wonchik_workmind_rep2 · 호출 9
+[done] gemini-flash/pbw_workmind_wonchik_workmind_rep3 · 호출 8
+--- [6/11] issue_recycling_room / wonchik_recycling_room / pbw_recycling_room ---
+[check_materials] 대상: recycling_room.json (issue_id=issue_recycling_room)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_recycling_room · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 f3c6140ae683
+[done] gemini-flash/C0_wonchik_recycling_room_rep1 · 호출 8
+[done] gemini-flash/C0_wonchik_recycling_room_rep2 · 호출 8
+[done] gemini-flash/C0_wonchik_recycling_room_rep3 · 호출 8
+[done] gemini-flash/pbw_recycling_room_wonchik_recycling_room_rep1 · 호출 9
+[done] gemini-flash/pbw_recycling_room_wonchik_recycling_room_rep2 · 호출 9
+[done] gemini-flash/pbw_recycling_room_wonchik_recycling_room_rep3 · 호출 8
+--- [7/11] issue_smoking_area_party / wonchik_smoking_party / pbw_smoking_party ---
+[check_materials] 대상: smoking_area_party.json (issue_id=issue_smoking_area_party)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_smoking_area_party · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 72c4b7e16e70
+[done] gemini-flash/C0_wonchik_smoking_party_rep1 · 호출 8
+[done] gemini-flash/C0_wonchik_smoking_party_rep2 · 호출 9
+[done] gemini-flash/C0_wonchik_smoking_party_rep3 · 호출 8
+[done] gemini-flash/pbw_smoking_party_wonchik_smoking_party_rep1 · 호출 8
+[done] gemini-flash/pbw_smoking_party_wonchik_smoking_party_rep2 · 호출 8
+[done] gemini-flash/pbw_smoking_party_wonchik_smoking_party_rep3 · 호출 8
+--- [8/11] issue_cat_feeding_days_list / wonchik_cf_days_list / pbw_cf_days_list ---
+[check_materials] 대상: cat_feeding_days_list.json (issue_id=issue_cat_feeding_days_list)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_cat_feeding_days_list · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 945f4957b5ae
+[done] gemini-flash/C0_wonchik_cf_days_list_rep1 · 호출 10
+[done] gemini-flash/C0_wonchik_cf_days_list_rep2 · 호출 10
+[done] gemini-flash/C0_wonchik_cf_days_list_rep3 · 호출 11
+[done] gemini-flash/pbw_cf_days_list_wonchik_cf_days_list_rep1 · 호출 10
+[done] gemini-flash/pbw_cf_days_list_wonchik_cf_days_list_rep2 · 호출 9
+[done] gemini-flash/pbw_cf_days_list_wonchik_cf_days_list_rep3 · 호출 9
+--- [9/11] issue_eol / wonchik_eol / pbw_eol ---
+[check_materials] 대상: issue_eol.json (issue_id=issue_eol)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_eol · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 85e7bf87b57e
+[done] gemini-flash/C0_wonchik_eol_rep1 · 호출 8
+[done] gemini-flash/C0_wonchik_eol_rep2 · 호출 8
+[done] gemini-flash/C0_wonchik_eol_rep3 · 호출 8
+[done] gemini-flash/pbw_eol_wonchik_eol_rep1 · 호출 9
+[done] gemini-flash/pbw_eol_wonchik_eol_rep2 · 호출 8
+[done] gemini-flash/pbw_eol_wonchik_eol_rep3 · 호출 10
+--- [10/11] issue_shelter / wonchik_shelter / pbw_shelter ---
+[check_materials] 대상: issue_shelter.json (issue_id=issue_shelter)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_shelter · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 aa3eef04c672
+[done] gemini-flash/C0_wonchik_shelter_rep1 · 호출 9
+[done] gemini-flash/C0_wonchik_shelter_rep2 · 호출 9
+[done] gemini-flash/C0_wonchik_shelter_rep3 · 호출 8
+[done] gemini-flash/pbw_shelter_wonchik_shelter_rep1 · 호출 8
+[done] gemini-flash/pbw_shelter_wonchik_shelter_rep2 · 호출 9
+[done] gemini-flash/pbw_shelter_wonchik_shelter_rep3 · 호출 8
+--- [11/11] issue_parentalreturn / wonchik_parentalreturn / pbw_parentalreturn ---
+[check_materials] 대상: issue_parentalreturn.json (issue_id=issue_parentalreturn)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_parentalreturn · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 2cb32fba6dc5
+[done] gemini-flash/C0_wonchik_parentalreturn_rep1 · 호출 8
+[done] gemini-flash/C0_wonchik_parentalreturn_rep2 · 호출 8
+[done] gemini-flash/C0_wonchik_parentalreturn_rep3 · 호출 8
+[done] gemini-flash/pbw_parentalreturn_wonchik_parentalreturn_rep1 · 호출 9
+[done] gemini-flash/pbw_parentalreturn_wonchik_parentalreturn_rep2 · 호출 9
+[done] gemini-flash/pbw_parentalreturn_wonchik_parentalreturn_rep3 · 호출 8
+=== 끝 2026-09-01T19:17:01+09:00 ===
