@@ -8,11 +8,15 @@
   "source_author": "그루(원문 12가지)",
   "why_rebuilt": "파생 10벌은 카테고리가 상황 축(분위기·격식·프라이버시…)으로 옮겨가, 원문 공통 가치 6개 중 셋(가격·이동·대기)만 닿고 평점·리뷰수는 0벌이었다. 원문 공통 가치를 신념 세트로 쓰려면 무대도 그 축으로 서야 한다.",
   "categories_are_common_values": "원문 「공통 가치 6가지」와 1:1 — 값=①가격 · 주차=②주차 · 오는길=③이동 · 평판=④평점 · 후기수=⑤리뷰 개수 · 대기=⑥대기",
-  "fact_provenance": "값·평판·주차·오는길·대기는 원문 특징에서 옮겼다. 후기수는 원문이 대부분 평점만 주고 개수를 안 줘 새로 썼다(원문 공통 가치의 100건 하한을 지켰다). 원문에 한쪽 값이 비어 있던 칸(오는길 일부·주차 일부)도 새로 쓰되 원문 서술과 어긋나지 않게 맞췄다.",
-  "balance": "카테고리 3:3 · 사실 6:6. 원문이 4:2로 기운 무대(회사 점심)는 대기 축에서 원문이 준 두 서술 중 반대 면을 골라 맞췄다.",
+  "fact_provenance": "칸 단위 출처는 facts[].provenance_type 에 있다 — 이 재료 12칸 중 원문 그대로 9 · 새로 씀 3. 뜻: source_stated=원문 진술 그대로 / source_elaborated=원문은 질로만 말했고 수치를 새로 씀 (방향은 원문 그대로) / source_selected=원문이 양면을 다 줘 그중 한 면을 골랐음 / source_reframed=원문과 같은 사실을 반대 면에서 적었음 (예약 없으면 오래 → 예약하면 바로) / source_inverted=원문이 두 식당을 같은 방향으로 말해 갈림이 없어, 한쪽을 뒤집어 씀 / authored=원문에 대응 항목이 없어 새로 씀",
+  "balance": "카테고리 3:3 · 사실 6:6. 원문만으로 3:3 이 안 되는 무대가 있어 대기 축에서 손댔다 — 회사 점심은 원문이 4:2 라 원문이 준 두 서술 중 반대 면을 골랐고, 기념일·상견례는 원문이 두 식당의 대기를 다 나쁘게만 말해 갈림이 없어서 한쪽을 뒤집어 썼다. 어느 칸인지는 fact_provenance_exceptions 에 있다.",
   "naming": "옵션 이름은 원문 그대로 뒀다. 7번(혼밥식당/1인테이블)은 두 이름이 다 무대를 되풀이하지만, 원문 기준이 이 재료의 목적이라 바꾸지 않았다.",
-  "caution": "카테고리가 곧 공통 가치이므로, 이 무대에 쓸 신념 문장은 카테고리 낱말을 쓰지 말고 뜻으로 풀어 써야 한다. 안 그러면 지목(A/B 가치 세트)과 같아져 이 트랙이 재려는 것이 사라진다.",
-  "source_scenario_no": 6
+  "caution": "카테고리가 곧 공통 가치이므로, 이 무대에 쓸 신념 문장은 카테고리 낱말을 쓰지 말고 뜻으로 풀어 써야 한다. 안 그러면 지목(A/B 가치 세트)과 같아져 이 트랙이 재려는 것이 사라진다. 또 하나 — check_materials(규칙 v1)는 표식 고유성·구조 대칭·누출만 본다. 사실 문면이 원문과 맞는지도, provenance_type 이 진실인지도 검사 범위 밖이다. 12/12 통과는 「구조가 성립한다」까지만 말해 준다.",
+  "source_scenario_no": 6,
+  "fact_provenance_exceptions": [
+   "없음 — 12칸 전부 원문 그대로이거나 새로 씀"
+  ],
+  "fact_provenance_note": "2026-09-01 정정. 처음 지을 때 144칸 전부를 source_stated 로 찍어 두었으나 사실과 달랐다 — 검증에서 잡혀 칸 단위로 다시 매겼다. 후기수는 24칸 중 23칸이 새로 쓴 것이고 1칸(한잔골목 350건)만 원문 인용이다. 「원문 공통 가치의 100건 하한을 지켰다」던 앞선 기록은 사실이 아니어서 지웠다 — 24칸 중 10칸이 100건 미만이다. 원문 식당들도 공통 가치를 어기므로(예: 무드하우스 4만 5천원 대 공통 가치 ① 2~3만원) 하한 준수는 애초에 요구 사항이 아니었다."
  },
  "stub": "온 가족이 모여 저녁을 먹을 곳을 가족한상과 온가족식탁 가운데 한 곳으로 정해야 한다.",
  "options": [
@@ -35,7 +39,7 @@
    "text": "가족한상 쪽은 차를 스물다섯 대까지 댈 수 있다.",
    "anchor": "스물다섯 대",
    "favors": "가족한상",
-   "source_ref": "restaurant12_source:6:주차",
+   "source_ref": "식당_시나리오_12가지.md:180",
    "provenance_type": "source_stated"
   },
   {
@@ -45,7 +49,7 @@
    "text": "온가족식탁 쪽은 차를 열 대까지 댈 수 있다.",
    "anchor": "열 대까지",
    "favors": "가족한상",
-   "source_ref": "restaurant12_source:6:주차",
+   "source_ref": "식당_시나리오_12가지.md:197",
    "provenance_type": "source_stated"
   },
   {
@@ -55,7 +59,7 @@
    "text": "가족한상 쪽은 남들이 매긴 점수가 4.2점이다.",
    "anchor": "4.2점",
    "favors": "가족한상",
-   "source_ref": "restaurant12_source:6:평판",
+   "source_ref": "식당_시나리오_12가지.md:188",
    "provenance_type": "source_stated"
   },
   {
@@ -65,7 +69,7 @@
    "text": "온가족식탁 쪽은 남들이 매긴 점수가 4.0점이다.",
    "anchor": "4.0점",
    "favors": "가족한상",
-   "source_ref": "restaurant12_source:6:평판",
+   "source_ref": "식당_시나리오_12가지.md:200",
    "provenance_type": "source_stated"
   },
   {
@@ -75,8 +79,8 @@
    "text": "가족한상 쪽은 겪어 본 사람이 남긴 글이 240건이다.",
    "anchor": "240건",
    "favors": "가족한상",
-   "source_ref": "restaurant12_source:6:후기수",
-   "provenance_type": "source_stated"
+   "source_ref": "authored",
+   "provenance_type": "authored"
   },
   {
    "id": "f06",
@@ -85,8 +89,8 @@
    "text": "온가족식탁 쪽은 겪어 본 사람이 남긴 글이 70건이다.",
    "anchor": "70건",
    "favors": "가족한상",
-   "source_ref": "restaurant12_source:6:후기수",
-   "provenance_type": "source_stated"
+   "source_ref": "authored",
+   "provenance_type": "authored"
   },
   {
    "id": "f07",
@@ -95,7 +99,7 @@
    "text": "가족한상 쪽은 한 사람에 3만 5천원이 든다.",
    "anchor": "3만 5천원",
    "favors": "온가족식탁",
-   "source_ref": "restaurant12_source:6:값",
+   "source_ref": "식당_시나리오_12가지.md:182",
    "provenance_type": "source_stated"
   },
   {
@@ -105,7 +109,7 @@
    "text": "온가족식탁 쪽은 한 사람에 2만원이 든다.",
    "anchor": "2만원",
    "favors": "온가족식탁",
-   "source_ref": "restaurant12_source:6:값",
+   "source_ref": "식당_시나리오_12가지.md:193",
    "provenance_type": "source_stated"
   },
   {
@@ -115,8 +119,8 @@
    "text": "가족한상 쪽은 지하철역에서 걸어 14분이다.",
    "anchor": "걸어 14분",
    "favors": "온가족식탁",
-   "source_ref": "restaurant12_source:6:오는길",
-   "provenance_type": "source_stated"
+   "source_ref": "authored",
+   "provenance_type": "authored"
   },
   {
    "id": "f10",
@@ -125,7 +129,7 @@
    "text": "온가족식탁 쪽은 지하철역에서 걸어 8분이다.",
    "anchor": "걸어 8분",
    "favors": "온가족식탁",
-   "source_ref": "restaurant12_source:6:오는길",
+   "source_ref": "식당_시나리오_12가지.md:198",
    "provenance_type": "source_stated"
   },
   {
@@ -135,7 +139,7 @@
    "text": "가족한상 쪽은 주말 저녁에는 사십 분쯤 기다린다.",
    "anchor": "사십 분",
    "favors": "온가족식탁",
-   "source_ref": "restaurant12_source:6:대기",
+   "source_ref": "식당_시나리오_12가지.md:184,189",
    "provenance_type": "source_stated"
   },
   {
@@ -145,7 +149,7 @@
    "text": "온가족식탁 쪽은 자리가 빨리 비어 오래 기다리지 않는다.",
    "anchor": "빨리 비어",
    "favors": "온가족식탁",
-   "source_ref": "restaurant12_source:6:대기",
+   "source_ref": "식당_시나리오_12가지.md:201",
    "provenance_type": "source_stated"
   }
  ],

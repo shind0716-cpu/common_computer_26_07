@@ -1,15 +1,15 @@
 {
  "vset_id": "rest6_list_date",
  "materials": "issue_src_date",
- "materials_hash": "79f6813dcc3e",
+ "materials_hash": "a059010a91a4",
  "items": [
   {
    "category": "값선",
-   "content": "값이 내가 정해 둔 선을 넘으면 안 된다."
+   "content": "치르는 돈이 내가 정해 둔 선을 넘으면 안 된다."
   },
   {
    "category": "차자리",
-   "content": "차를 대기 어려운 곳은 곤란하다."
+   "content": "차 댈 곳이 없으면 곤란하다."
   },
   {
    "category": "오는품",
