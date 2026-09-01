@@ -2126,6 +2126,19 @@ def api_pressure_material(issue_id: str):
         raise HTTPException(500, f"재료 파일 읽기 실패: {e}")
 
 
+@app.get("/api/pressure/labels")
+def api_pressure_labels():
+    """담화 라벨 — LABELS_c2_discourse_*.json (2026-09-01, 담화 경로 LLM 분류) 최신
+    파일을 그대로 읽는다(0콜·읽기 전용). 라벨 정의·산식은
+    experiments/pressure_category/READOUT_haiku_baseline_2026-09-01.md §12."""
+    files = sorted(PRESSURE_DIR.glob("LABELS_c2_discourse_*.json"))
+    if not files:
+        raise HTTPException(404, "라벨 파일 없음 — LABELS_c2_discourse_*.json")
+    doc = json.loads(files[-1].read_text(encoding="utf-8"))
+    doc["file"] = files[-1].name
+    return doc
+
+
 @app.get("/api/pressure/catscan")
 def api_pressure_catscan(dry: bool = False):
     if str(PRESSURE_DIR) not in sys.path:

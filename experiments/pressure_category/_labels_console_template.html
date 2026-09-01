@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>C2 담화 라벨 콘솔</title>
+<style>
+:root{--bg:#f9f9f7;--card:#fcfcfb;--ink:#0b0b0b;--dim:#52514e;--mut:#898781;
+ --line:#e1e0d9;--chipbg:#f0efec}
+@media (prefers-color-scheme:dark){:root{--bg:#0d0d0d;--card:#1a1a19;--ink:#fff;
+ --dim:#c3c2b7;--mut:#898781;--line:#2c2c2a;--chipbg:#262624}}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font:14px/1.65 "Noto Sans KR",system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:1060px;margin:0 auto;padding:28px 18px 70px}
+h1{font-size:20px;margin:0 0 2px}
+.sub{color:var(--mut);font-size:12px;margin-bottom:16px}
+.tiles{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 18px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:8px;
+ padding:8px 14px;cursor:pointer;user-select:none}
+.tile.on{outline:2px solid var(--ink)}
+.tile b{font-size:20px;font-variant-numeric:tabular-nums;display:block;line-height:1.2}
+.tile span{font-size:11.5px;color:var(--dim)}
+.dot{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px;vertical-align:0}
+table{width:100%;border-collapse:collapse;background:var(--card);font-size:13px}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-weight:500;font-size:12px}
+.chip{display:inline-block;color:#fff;border-radius:5px;padding:2px 7px;margin:1px 2px;
+ font-size:11.5px;cursor:pointer;white-space:nowrap}
+.chip:hover{filter:brightness(1.12)}
+#detail{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;z-index:5}
+#detail.open{display:flex;align-items:flex-start;justify-content:center;overflow:auto}
+.panel{background:var(--card);max-width:820px;width:94%;margin:36px 0;border-radius:10px;
+ padding:22px 26px;border:1px solid var(--line)}
+.panel h2{font-size:16px;margin:0 0 4px}
+.path{font-size:13px;margin:8px 0 2px}
+.path b{padding:2px 7px;border-radius:5px;color:#fff}
+.meta{font-size:12px;color:var(--dim);margin:4px 0 10px}
+.ess{border-top:1px solid var(--line);padding:9px 0}
+.ess h3{font-size:12.5px;margin:0 0 4px;color:var(--dim)}
+.ess pre{white-space:pre-wrap;font:13px/1.65 inherit;margin:0}
+.x{float:right;cursor:pointer;font-size:18px;color:var(--mut);border:0;background:none}
+.grade{background:var(--chipbg);border-radius:7px;padding:8px 12px;font-size:12px;
+ color:var(--dim);margin-bottom:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>C2 담화 라벨 콘솔 — 하이쿠 240판</h1>
+<div class="sub">담화 경로 LLM 분류(2026-09-01) × 스캔 결합 · 라벨 정의는 READOUT §12 · 칩을 누르면 원문</div>
+<div class="grade" id="grade"></div>
+<div class="tiles" id="tiles"></div>
+<table><thead><tr><th style="width:190px">재료</th><th>A판 (rep1·2·3)</th><th>B판 (rep1·2·3)</th></tr></thead>
+<tbody id="tb"></tbody></table>
+</div>
+<div id="detail"><div class="panel" id="panel"></div></div>
+<script>
+const D=/*__DATA__*/null;
+if(!D){document.body.innerHTML='<div style="padding:40px;font-family:sans-serif">이 파일은 템플릿(껍데기)입니다 — <b>make_labels_console.py</b> 를 실행해 생성되는 <b>CONSOLE_labels_*.html</b> 을 여세요.</div>';throw new Error('template file');}
+let filt=null;
+const g=document.getElementById('grade');
+g.textContent=`등급: 탐색 — ${D.meta.method} · 이중판독 일치 pattern ${D.meta.agreement.pattern}, 라운드 ${D.meta.agreement.rounds} · ${D.meta.grade}`;
+const all=Object.values(D.issues).flat();
+function tiles(){
+  const c={}; all.forEach(r=>c[r.label]=(c[r.label]||0)+1);
+  document.getElementById('tiles').innerHTML=D.order.filter(k=>c[k]).map(k=>
+    `<div class="tile ${filt===k?'on':''}" data-k="${k}"><b>${c[k]}</b>
+     <span><i class="dot" style="background:${D.color[k]}"></i>${k}</span></div>`).join('')
+    +`<div class="tile ${filt===null?'on':''}" data-k=""><b>${all.length}</b><span>전체</span></div>`;
+  document.querySelectorAll('.tile').forEach(t=>t.onclick=()=>{filt=t.dataset.k||null;draw();});
+}
+function chip(r,i){
+  const dimmed=filt&&r.label!==filt;
+  return `<span class="chip" data-i="${r.issue_id}" data-r="${r.run_id}"
+    style="background:${D.color[r.label]};opacity:${dimmed?.18:1}"
+    title="${r.label} · ${r.pattern}${r.shift_round?' · R'+r.shift_round+' 전향':''}">${r.run_id.replace('C2_','')}</span>`;
+}
+function draw(){
+  tiles();
+  document.getElementById('tb').innerHTML=Object.keys(D.issues).sort().map(iid=>{
+    const rs=D.issues[iid];
+    const a=rs.filter(r=>r.run_id.includes('_A_')), b=rs.filter(r=>r.run_id.includes('_B_'));
+    return `<tr><td>${iid.replace('issue_','')}</td><td>${a.map(chip).join('')}</td><td>${b.map(chip).join('')}</td></tr>`;
+  }).join('');
+  document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>open_(c.dataset.i,c.dataset.r));
+}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function open_(iid,rid){
+  const r=D.issues[iid].find(x=>x.run_id===rid);
+  const st=[r.r0,r.r1,r.r2,r.r3];
+  const path=st.map((s,i)=>{
+    const isPush=s===r.pushed, isAl=s===r.aligned;
+    const col=isPush?'#d03b3b':(isAl?'#2a78d6':'#898781');
+    return `R${i} <b style="background:${col}">${esc(s)}</b>`;}).join(' → ');
+  let h=`<button class="x" onclick="document.getElementById('detail').classList.remove('open')">✕</button>
+  <h2>${iid.replace('issue_','')} · ${r.run_id} — <span style="color:${D.color[r.label]}">${r.label}</span></h2>
+  <div class="meta">패턴 ${r.pattern}${r.shift_round?' · R'+r.shift_round+' 전향':''} ·
+   <span style="color:#2a78d6">■ 가치 정렬: ${esc(r.aligned)}</span> ·
+   <span style="color:#d03b3b">■ 압박 방향: ${esc(r.pushed)}</span> ·
+   최종 선택: <b>${esc(r.final_choice)}</b> (구 잣대 flip=${r.flipped_old_metric})</div>
+  <div class="path">${path} → 최종 <b style="background:${r.final_choice===r.pushed?'#d03b3b':'#2a78d6'}">${esc(r.final_choice)}</b></div>
+  ${r.note?`<div class="meta">코더 메모: ${esc(r.note)}</div>`:''}
+  <div class="meta">가치문: ${esc(r.value_statement)}<br>압박 대사: ${esc(r.script_line)}</div>`;
+  r.essays.forEach((e,i)=>{h+=`<div class="ess"><h3>R${i} 에세이</h3><pre>${esc(e)}</pre></div>`;
+    if(r.notes[i]!==undefined)h+=`<div class="ess"><h3>수첩 ${i}</h3><pre>${esc(r.notes[i])}</pre></div>`;});
+  document.getElementById('panel').innerHTML=h;
+  document.getElementById('detail').classList.add('open');
+  document.getElementById('detail').scrollTop=0;
+}
+document.getElementById('detail').onclick=e=>{if(e.target.id==='detail')e.target.classList.remove('open')};
+draw();
+</script>
+</body>
+</html>

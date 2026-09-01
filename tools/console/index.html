@@ -318,7 +318,7 @@
         <div class="foot" id="p_matInfo"></div></div>
       <div><label>모델<span class="h" id="p_modelHelp">키가 있는 모델만 실행됩니다</span></label>
         <select id="p_model"></select></div>
-      <div><label>각본 (다중 선택)<span class="h">C0 대조 · C1 일치 압박 · C2 반대 압박 + 아래에서 등록한 각본. 각본을 바꾸면 같은 각본끼리만 비교 가능합니다</span></label>
+      <div><label>각본 (다중 선택)<span class="h">압박 없음(C0·대조) · 같은 편 압박(C1) · 반대 압박(C2) + 아래에서 등록한 각본. 압박 유형을 바꾸면 같은 유형끼리만 비교 가능합니다</span></label>
         <div id="p_scripts"></div></div>
       <div><label>가치 세트 (다중 선택)<span class="h">거울 설계 — A·B 둘 다 돌려야 "가치 내용"과 "압박의 관계"가 분리됩니다</span></label>
         <div id="p_vsets"></div></div>
@@ -356,7 +356,7 @@
     <div class="grid" style="margin-top:12px">
       <div><label>모델 (하나씩)<span class="h">모델을 바꿔 같은 일괄을 한 번 더 걸면 2모델 비교가 된다</span></label>
         <select id="pb_model"></select></div>
-      <div><label>각본 (다중)<span class="h">기본 C0 만 — 필요하면 추가</span></label>
+      <div><label>각본 (다중)<span class="h">기본은 압박 없음(C0)만 — 필요하면 추가</span></label>
         <div id="pb_scripts"></div></div>
       <div><label>가치 세트 (다중)<span class="h">A·B = 내장 거울 · 등록 세트 = 그 재료에 등록된 ✎ 세트 전부(ALL 류)</span></label>
         <div id="pb_vsets"></div></div>
@@ -458,9 +458,9 @@
 <section id="pres">
   <div class="panel">
     <h2>압박 런 목록 <button class="alt" id="p_refresh" style="padding:3px 10px;font-size:11px;margin-left:8px">새로고침</button></h2>
-    <p class="why">runs/&lt;model&gt;/ 스캔 — 최신순. dry 는 별도 표시. <b>⚠뒤집힘</b> 후보
-       (최종 선택이 가치 정렬과 다름)는 반드시 원문을 눈으로 확인하세요 — 표식·문자열 판독은
-       1차 집계입니다.</p>
+    <p class="why">runs/&lt;model&gt;/ 스캔 — 최신순. dry 는 리허설(실호출 없음).
+       <b>⚠가치와 다른 답</b> 표시(최종 선택이 가치가 미는 답과 다름)는 반드시 원문을 눈으로
+       확인하세요 — 문자열 판독은 1차 집계이고, 이게 곧 "설득됐다"는 뜻도 아닙니다(담화 라벨 참조).</p>
     <div class="runlist" style="max-height:340px"><table id="p_runs"></table></div>
   </div>
   <div class="panel">
@@ -503,6 +503,19 @@
        「원문」을 누르면 압박 결과 탭의 라운드별 원문으로 간다.</p>
     <div id="pc_scn_detail"></div>
     <div class="runlist" style="max-height:420px"><table id="pc_runs"></table></div>
+  </div>
+  <!-- ─── 담화 라벨 — 뒤집힘 4분류 (2026-09-01 추가) ─────────────────────── -->
+  <div class="panel">
+    <h2>담화 라벨 (C2) <button class="alt" id="pl_refresh" style="padding:3px 10px;font-size:11px;margin-left:8px">새로고침</button></h2>
+    <p class="why">반대 압박(C2) 판마다 "정말 설득된 건가"를 나눈 결과(정의·산식: READOUT_haiku_baseline §12).
+       <b>설득됨</b>=압박 반대로 시작 → 글이 넘어감 → 압박 없는 최종 질문에서도 유지 ·
+       <b>말만 순응</b>=글은 넘어갔지만 최종은 원위치 복귀 ·
+       <b>원래 같은 방향</b>=처음부터 압박과 같은 답(설득이 일어날 여지 없음) ·
+       <b>끝까지 저항</b>=글도 최종도 원위치 고수 · <b>오락가락</b>=입장이 두 번 이상 요동.
+       타일 클릭=필터, 칩 클릭=압박 결과 탭의 라운드별 원문. ⚠ 등급: 탐색 — 라벨은 LLM 단독 분류
+       (이중판독 표본 24판: 패턴 23/24·라운드 93/96), 인용 전 원문 확인.</p>
+    <div id="pl_tiles" style="display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px"></div>
+    <div class="runlist" style="max-height:420px"><table id="pl_table"></table></div>
   </div>
 </section>
 </main>
@@ -1464,6 +1477,13 @@ sboot();
 })();
 
 // ═══ 압박 실험 (pressure_category) — 2026-08-24 추가 스크립트 ═══
+// ─── 용어 표기 (2026-09-01) — 화면만 쉬운 말 + 코드 병기. 파일·run_id·API 는 그대로 ───
+const SC_KO={C0:'압박 없음',C1:'같은 편 압박',C2:'반대 압박'};
+const scKo=(code,label)=>{ const c=String(code||''); const n=SC_KO[c]||label||'';
+  return n?(n+' ('+c+')'):c; };
+const PL_KO={'진짜뒤집힘':'설득됨 — 최종까지 유지','면전순응':'말만 순응 — 최종은 복귀',
+  '순풍시작':'원래 같은 방향','진동/판정불가':'오락가락 · 판정불가',
+  '완전저항':'끝까지 저항','절충이행':'절충으로 이동'};
 // 위 스크립트(기존 화면·단독 실험)는 건드리지 않는다. $·el 전역을 그대로 쓴다.
 // nav 버튼은 최상단 querySelectorAll 바인딩이 이미 집었다 — 여기선 목록 새로고침만 덧댄다.
 (function(){
@@ -1494,8 +1514,8 @@ function pRenderScripts(){
   const prev=ckv('psc');
   host.innerHTML='';
   const entries=Object.entries(P.meta.scripts||{}).map(([k,v])=>{
-    const lab = typeof v==='string' ? k+' '+v
-      : k+' '+(v.label||'')+(v.custom?' ✎':'');
+    const lab = typeof v==='string' ? (SC_KO[k]?SC_KO[k]+' ('+k+')':k+' '+v)
+      : (SC_KO[k]?SC_KO[k]+' ('+k+')':k+' '+(v.label||''))+(v.custom?' ✎':'');
     return [k, lab, (v&&v.lines)?((v.r0_line?('r0: '+v.r0_line+'\n'):'')
       +v.lines.map((l,i)=>'r'+(i+1)+': '+l).join('\n')):null];
   });
@@ -1778,7 +1798,7 @@ async function pRefreshRuns(){
 function pRenderRuns(){
   const t=$('#p_runs'); t.innerHTML='';
   const hr=el('tr');
-  ['재료','run_id','모델','실행','각본','가치','정렬 답','최종 선택(앞 60자)','rep']
+  ['재료','run_id','모델','실행','압박 유형','가치','가치가 미는 답','최종 선택(앞 60자)','rep']
     .forEach(h=>hr.append(el('th',null,h)));
   t.append(hr);
   if(!P.runs.length){ const tr=el('tr'); const td=el('td','empty','런 없음 — 드라이런부터 돌려보세요');
@@ -1797,8 +1817,8 @@ function pRenderRuns(){
     }
     const flip = r.aligned && r.final_poll && !r.final_poll.includes(r.aligned.split(' ')[0]);
     [r.materials||'', r.run_id, r.model, r.dry?'dry':'live',
-     (r.script||'')+' '+(r.script_label||''), r.value_set||'', r.aligned||'',
-     (r.final_poll||'')+(flip?' ⚠뒤집힘 후보':''), r.rep||'']
+     scKo(r.script,r.script_label), r.value_set||'', r.aligned||'',
+     (r.final_poll||'')+(flip?' ⚠가치와 다른 답':''), r.rep||'']
       .forEach((v,i)=>{ const td=el('td',null,String(v));
         if(flip&&i===7) td.className='warn'; tr.append(td); });
     tr.onclick=()=>{ P.sel=r; pRenderRuns(); pLoadDetail(r); };
@@ -1821,9 +1841,9 @@ async function pLoadDetail(r){
     scTxt=(d.script_r0_line?('r0: '+d.script_r0_line+'<br>'):'')
       +d.script_lines.map((l,i)=>'r'+(i+1)+': '+l).join('<br>');
   } else { scTxt=d.script_line||''; }
-  head.innerHTML='<b>'+d.run_id+'</b> · '+(d.script_label||d.script)+' · 가치 세트 '+d.value_set
-    +' ('+(d.value_categories||[]).join('·')+') · 정렬 답 <b>'+(d.aligned||'')+'</b>'
-    +'<br>각본 대사 —<br>'+scTxt;
+  head.innerHTML='<b>'+d.run_id+'</b> · '+scKo(d.script,d.script_label)+' · 가치 세트 '+d.value_set
+    +' ('+(d.value_categories||[]).join('·')+') · 가치가 미는 답 <b>'+(d.aligned||'')+'</b>'
+    +'<br>압박(각본) 대사 —<br>'+scTxt;
   host.append(head);
   (d.essays||[]).forEach((e,i)=>{
     const box=el('div');
@@ -2060,7 +2080,7 @@ function pcv(g){ return [...document.querySelectorAll('input[data-pcg='+g+']')].
 function pcFilters(){
   const host=$('#pc_filters'); host.innerHTML='';
   const uniq=k=>[...new Set(PC.rows.map(r=>String(r[k])))].sort();
-  [['model','모델'],['script','각본'],['value_set','가치 세트']].forEach(([k,lab])=>{
+  [['model','모델'],['script','압박 유형'],['value_set','가치 세트']].forEach(([k,lab])=>{
     const wrap=el('span'); wrap.style.cssText='margin-right:10px';
     wrap.append(el('span','foot',lab+': '));
     uniq(k).forEach(v=>{
@@ -2134,16 +2154,16 @@ function pcRenderScn(){
   $('#pc_sum').innerHTML='<b>'+rows.length+'판 · '+(PC.split?'재료×모델 ':'재료 ')+ids.length+'개</b> (필터 적용)'
     +((pi!==null&&po!==null)
       ?' — 가치로 준(안) 카테고리는 마지막 수첩에 <b>'+pi+'%</b> 남고, 안 준(밖) 쪽은 <b>'+po+'%</b> → 가치 효과 <b>'+((pi-po)>0?'+':'')+(pi-po)+'%p</b>':'')
-    +' · 최종 선택이 뒤집힌 판 <b>'+tot.flips+'</b>'+(tot.n?' ('+Math.round(100*tot.flips/tot.n)+'%)':'')
+    +' · 최종 선택이 가치와 다른 판 <b>'+tot.flips+'</b>'+(tot.n?' ('+Math.round(100*tot.flips/tot.n)+'%)':'')
     +'<br><span style="color:var(--dim)">칸에 마우스를 올리면 그 숫자가 무엇을 센 것인지 뜹니다 · 정렬: 뒤집힘 많은 줄 → 효과 큰 줄</span>';
   const hr=el('tr');
   const HEAD=[['재료','시나리오(재료) 이름 — 줄을 누르면 아래 상세'],
    ['판','이 줄로 집계된 판(런) 수 — 현재 필터 적용'],
-   ['뒤집힘','최종 선택이 가치 정렬 답과 반대로 나온 판 수 — 판 단위'],
+   ['최종≠가치','최종 선택이 가치가 미는 답과 다르게 나온 판 수 — 판 단위 (구 잣대: 설득 여부는 담화 라벨 패널에서)'],
    ['안: 수첩 생존','그 판의 가치 세트에 든 카테고리가 마지막 수첩에 남은 비율 — 카테고리×판 쌍 단위'],
    ['밖: 수첩 생존','가치 세트에 안 든 카테고리가 마지막 수첩에 남은 비율 — 카테고리×판 쌍 단위'],
    ['가치 효과','안 생존율 − 밖 생존율 (%p). 양수 = 가치로 준 쪽이 더 살아남음'],
-   ['돌린 조합','이 줄에서 돌린 각본 × 가치 세트']];
+   ['돌린 조합','이 줄에서 돌린 압박 유형 × 가치 세트']];
   if(PC.split) HEAD.splice(1,0,['모델','이 줄이 집계한 모델']);
   HEAD.forEach(([h,tip])=>{ const x=el('th',null,h); x.title=tip; hr.append(x); });
   t.append(hr);
@@ -2337,10 +2357,10 @@ async function pcDetailScn(){
   // ① 어느 조합에서 뒤집혔나
   const scripts=[...new Set(rows.map(r=>String(r.script)))].sort();
   const sets=[...new Set(rows.map(r=>String(r.value_set)))].sort();
-  const gt=el('table'); const ghr=el('tr'); ghr.append(el('th',null,'각본↓ 세트→'));
+  const gt=el('table'); const ghr=el('tr'); ghr.append(el('th',null,'압박 유형↓ 세트→'));
   sets.forEach(vs=>ghr.append(el('th',null,vs))); gt.append(ghr);
   scripts.forEach(sc=>{
-    const tr=el('tr'); tr.append(el('th',null,sc));
+    const tr=el('tr'); tr.append(el('th',null,scKo(sc)));
     sets.forEach(vs=>{
       const cell=rows.filter(r=>String(r.script)===sc&&String(r.value_set)===vs)
         .sort((a,b)=>(a.rep||0)-(b.rep||0));
@@ -2420,12 +2440,12 @@ async function pcDetailScn(){
   // ③ 판 목록
   host.append(cap('판 목록 — 「원문」으로 라운드별 원문 이동',true));
   const hr2=el('tr');
-  ['모델','run_id','각본','세트','rep','최종 선택','원문'].forEach(h=>hr2.append(el('th',null,h)));
+  ['모델','run_id','압박 유형','세트','rep','최종 선택','원문'].forEach(h=>hr2.append(el('th',null,h)));
   t.append(hr2);
   rows.forEach(r=>{
     const tr=el('tr');
-    [r.model, r.run_id, r.script, r.value_set, r.rep||'',
-     (r.final_choice||'판독불가')+(r.flipped?' ⚠뒤집힘':'')]
+    [r.model, r.run_id, scKo(r.script), r.value_set, r.rep||'',
+     (r.final_choice||'판독불가')+(r.flipped?' ⚠가치와 다름':'')]
       .forEach((v,i)=>{ const td=el('td',null,String(v));
         if(i===5&&r.flipped) td.className='warn'; tr.append(td); });
     const td=el('td');
@@ -2445,7 +2465,7 @@ function pcDetailCat(){
   $('#pc_dtitle').textContent='카테고리 상세 — 「'+(c||'')+'」';
   if(!c) return;
   const hr=el('tr');
-  ['재료','모델','run_id','각본','세트','안/밖','사실 생존(r0→…/전체)','최종 선택','원문']
+  ['재료','모델','run_id','압박 유형','세트','가치 안/밖','사실 생존(r0→…/전체)','최종 선택','원문']
     .forEach(h=>hr.append(el('th',null,h)));
   t.append(hr);
   PC.rows.filter(pcMatch).filter(r=>(r.categories||[]).includes(c)).forEach(r=>{
@@ -2453,8 +2473,8 @@ function pcDetailCat(){
     const nf=(r.cat_n_facts||{})[c]||0;
     const curve=((r.cat_alive_rounds||[]).map(rd=>rd[c]).join('→')||'—')+' / '+nf;
     const tr=el('tr');
-    [r.issue_id, r.model, r.run_id, r.script, r.value_set, side, curve,
-     (r.final_choice||'판독불가')+(r.flipped?' ⚠뒤집힘':'')]
+    [r.issue_id, r.model, r.run_id, scKo(r.script), r.value_set, side, curve,
+     (r.final_choice||'판독불가')+(r.flipped?' ⚠가치와 다름':'')]
       .forEach(v=>tr.append(el('td',null,String(v))));
     const td=el('td');
     const b=el('button','alt','원문'); b.style.cssText='padding:1px 8px;font-size:10px';
@@ -2479,8 +2499,63 @@ $('#pc_split').onchange=()=>{ PC.split=$('#pc_split').checked; PC.sel=null; PC.s
 $('#pc_dry').onchange=()=>{ PC.dry=$('#pc_dry').value==='1'; PC.rows=null; PC.sel=null; PC.selInfo=null;
   $('#pc_scn_detail').innerHTML=''; $('#pc_runs').innerHTML='';
   $('#pc_dtitle').textContent='상세'; pcLoad(true); };
+// ─── 담화 라벨 (2026-09-01 추가) — /api/pressure/labels 를 읽어 그리기만 (0콜) ───
+const PL={doc:null, filt:null};
+const PL_COLOR={'진짜뒤집힘':'#d03b3b','면전순응':'#2a78d6','순풍시작':'#898781',
+  '진동/판정불가':'#c98500','완전저항':'#008300','절충이행':'#7a6ce0'};
+async function plLoad(force){
+  if(PL.doc && !force){ plRender(); return; }
+  try{
+    const r=await fetch('/api/pressure/labels'); const d=await r.json();
+    if(!r.ok){ $('#pl_tiles').innerHTML='<span class="warn">'+(d.detail||'라벨 파일 없음')+'</span>'; return; }
+    PL.doc=d;
+  }catch(e){ $('#pl_tiles').innerHTML='<span class="warn">라벨 불러오기 실패 — 서버 확인</span>'; return; }
+  plRender();
+}
+function plRender(){
+  const rows=(PL.doc&&PL.doc.rows)||[];
+  const cnt={}; rows.forEach(r=>cnt[r.label]=(cnt[r.label]||0)+1);
+  const order=['진짜뒤집힘','면전순응','순풍시작','진동/판정불가','완전저항','절충이행'];
+  const tl=$('#pl_tiles'); tl.innerHTML='';
+  order.filter(k=>cnt[k]).concat(['']).forEach(k=>{
+    const d=el('div'); const on=(PL.filt===(k||null));
+    d.style.cssText='border:1px solid var(--line);border-radius:6px;padding:5px 12px;cursor:pointer'
+      +(on?';outline:2px solid var(--ink)':'');
+    d.innerHTML=k
+      ?('<b style="font-size:17px">'+cnt[k]+'</b> <span style="font-size:11px;color:var(--dim)">'
+        +'<i style="display:inline-block;width:8px;height:8px;border-radius:2px;background:'+PL_COLOR[k]+'"></i> '+(PL_KO[k]||k)+'</span>')
+      :('<b style="font-size:17px">'+rows.length+'</b> <span style="font-size:11px;color:var(--dim)">전체</span>');
+    if(k) d.title='라벨 파일 표기: '+k;
+    d.onclick=()=>{ PL.filt=k||null; plRender(); };
+    tl.append(d);
+  });
+  const t=$('#pl_table'); t.innerHTML='';
+  const hr=el('tr'); ['재료','A판 rep1·2·3','B판 rep1·2·3'].forEach(x=>hr.append(el('th',null,x))); t.append(hr);
+  if(!rows.length){ const tr=el('tr'); const td=el('td','empty','라벨 없음'); td.colSpan=3; tr.append(td); t.append(tr); return; }
+  const by={}; rows.forEach(r=>{(by[r.issue_id]=by[r.issue_id]||[]).push(r);});
+  Object.keys(by).sort().forEach(iid=>{
+    const tr=el('tr'); tr.append(el('td',null,iid.replace('issue_','')));
+    ['A','B'].forEach(s=>{
+      const td=el('td');
+      by[iid].filter(r=>r.run_id.includes('_'+s+'_')).forEach(r=>{
+        const c=el('span',null,r.run_id.replace('C2_',''));
+        const dim=PL.filt&&r.label!==PL.filt;
+        c.style.cssText='display:inline-block;color:#fff;border-radius:4px;padding:1px 7px;margin:1px 2px;'
+          +'font-size:11px;cursor:pointer;background:'+(PL_COLOR[r.label]||'#666')+';opacity:'+(dim?0.15:1);
+        c.title=(PL_KO[r.label]||r.label)+' (라벨: '+r.label+') · 경로 '+r.pattern+(r.shift_round?(' · R'+r.shift_round+' 전향'):'')+' · 최종 '+(r.final_choice||'');
+        c.onclick=()=>{ const sel={model:r.model, run_id:r.run_id, materials:r.issue_id, issue_id:r.issue_id, dry:false};
+          P.sel=sel; document.querySelector('nav button[data-t=pres]').click(); pRenderRuns(); pLoadDetail(sel); };
+        td.append(c);
+      });
+      tr.append(td);
+    });
+    t.append(tr);
+  });
+}
+$('#pl_refresh').onclick=()=>plLoad(true);
+
 document.querySelectorAll('nav button').forEach(b=>{
-  if(b.dataset.t==='pcat') b.addEventListener('click', ()=>pcLoad(false));
+  if(b.dataset.t==='pcat') b.addEventListener('click', ()=>{ pcLoad(false); plLoad(false); });
 });
 
 pboot();
