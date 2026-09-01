@@ -1,0 +1,36 @@
+{
+  "pack": "PACK_B",
+  "analysis_status": "post_hoc_exploratory",
+  "frozen_at": "2026-08-31T19:50:15+09:00",
+  "key_access_before_freeze": false,
+  "item_count": 66,
+  "judgment_count": 792,
+  "primary_only_item_count": 52,
+  "audit_item_count": 14,
+  "audit_judgment_count": 168,
+  "audit_disagreement_item_count": 7,
+  "audit_disputed_fact_count": 12,
+  "consensus_retained_count": 255,
+  "consensus_not_retained_count": 537,
+  "validation": {
+    "primary": "VALID; 66 IDs; 792 judgments; 250/250 retained quotes exact; 542/542 rejected evidence null",
+    "audit": "VALID; 14 IDs; 168 judgments; 81/81 retained quotes exact; 87/87 rejected evidence null",
+    "adjudication": "7/7 IDs; 12/12 fields; 5/5 retained quotes exact; 7/7 rejected evidence null",
+    "consensus": "VALID; 66 IDs; 792 judgments; 255/255 retained quotes exact; 537/537 rejected evidence null"
+  },
+  "limitations": [
+    "PACK_B is explicitly post-hoc exploratory, not preregistered.",
+    "Only the prespecified 14-card sample was independently double-coded.",
+    "The remaining 52 cards are primary-coder-only exploratory evidence."
+  ],
+  "sha256": {
+    "source": "1eb1fbc9517b916a58a53036140332ca66929910b554c4791b9c9fd4f2c199c3",
+    "audit_sample": "556d560634b3920ae5617827b6f56287f42b9d9fe6bcdf13dc4149e3b51f974e",
+    "primary": "394abf48b2412936af26175962cbe26f01f762ba749b2598b9181cbd7152a6cd",
+    "primary_audit_subset": "765bb732d4037a9749c3da96e23bee5593ca2493d4fbaf013bd04cbf1a6047f0",
+    "audit": "04ec86f0ad1af5865a2b1837ab9c08e1e212e3339b217a03e63ef565507babb8",
+    "disagreements": "e763af255eab416543c71f00809cfe9bda8041566f9c58d21cf1c922b6bad291",
+    "adjudication": "b670adb344d2388559ef9e1e071106d1e88861a448e793fab3183e105cac5010",
+    "consensus": "c661292e390d7bfb33a0c2203734ea959bf26f013197c5d53f870d69b6fea54c"
+  }
+}

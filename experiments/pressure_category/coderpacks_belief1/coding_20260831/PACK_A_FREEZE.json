@@ -1,0 +1,25 @@
+{
+  "pack": "PACK_A",
+  "analysis_status": "preregistered_P5",
+  "frozen_at": "2026-08-31T19:22:00+09:00",
+  "key_access_before_freeze": false,
+  "item_count": 66,
+  "disagreement_item_count": 66,
+  "disputed_field_count": 118,
+  "validation": {
+    "coder_1": "VALID",
+    "coder_2": "VALID",
+    "adjudication_ids": "66/66",
+    "adjudication_fields": "118/118",
+    "adjudication_exact_quotes": "118/118",
+    "consensus": "VALID"
+  },
+  "sha256": {
+    "source": "05eb98982dea1c3b4087f07fc5d96b7df0d3f8f524227dedfa5942784da4a9ec",
+    "coder_1": "6a6cea00d61c53feff2a83424c7502f7801a6a96ffc45e46618f6161de2f9576",
+    "coder_2": "3d710cd8f31c8bc3c360cb88308fe38e5453e0894ad22bc24280da62df4f8d25",
+    "disagreements": "005964af2e68323463a912c366696b38106a26b5d954d671b1afdce19c26d49a",
+    "adjudication": "1425ee2578c8ff8c06dd17d5ad7af3694e7b632701776c9c8d24cca56b594407",
+    "consensus": "a4a426b6e559e9f21a529d188cbe54281c062f33bd567b794611298b31cf54aa"
+  }
+}

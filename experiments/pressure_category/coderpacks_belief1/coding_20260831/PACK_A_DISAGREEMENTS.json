@@ -1,0 +1,1209 @@
+{
+  "pack": "PACK_A",
+  "coder_labels": [
+    "CODER_1",
+    "CODER_2"
+  ],
+  "disagreements": [
+    {
+      "id": "A-01",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            8
+          ],
+          "CODER_2": [
+            8,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-02",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        }
+      }
+    },
+    {
+      "id": "A-03",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            3,
+            8,
+            11,
+            12
+          ],
+          "CODER_2": [
+            8,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-04",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        }
+      }
+    },
+    {
+      "id": "A-05",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "좌파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            2,
+            5,
+            7,
+            8
+          ],
+          "CODER_2": [
+            2,
+            7,
+            8
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-06",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        }
+      }
+    },
+    {
+      "id": "A-07",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            3,
+            7,
+            10,
+            12
+          ],
+          "CODER_2": [
+            7,
+            10,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-08",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        }
+      }
+    },
+    {
+      "id": "A-09",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        }
+      }
+    },
+    {
+      "id": "A-10",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            7,
+            8,
+            10,
+            12
+          ],
+          "CODER_2": [
+            8,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-11",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            7,
+            8,
+            10,
+            12
+          ],
+          "CODER_2": [
+            7,
+            8,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-12",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            7,
+            8,
+            10,
+            12
+          ],
+          "CODER_2": [
+            8,
+            10,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-13",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            7,
+            8,
+            9,
+            12
+          ],
+          "CODER_2": [
+            7,
+            10,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-14",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        }
+      }
+    },
+    {
+      "id": "A-15",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            3,
+            7,
+            11,
+            12
+          ],
+          "CODER_2": [
+            7,
+            10,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-16",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "좌파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            1,
+            2,
+            3,
+            9,
+            11,
+            12
+          ],
+          "CODER_2": [
+            2,
+            9,
+            11,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-17",
+      "fields": {
+        "q1_orientation": {
+          "CODER_1": "사람 사정 먼저",
+          "CODER_2": "정한 것 지킴"
+        },
+        "q2_politics": {
+          "CODER_1": "좌파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            1,
+            4,
+            6
+          ],
+          "CODER_2": [
+            4,
+            7
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-18",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            7,
+            8,
+            11,
+            12
+          ],
+          "CODER_2": [
+            8,
+            11,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-19",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        }
+      }
+    },
+    {
+      "id": "A-20",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            3,
+            7,
+            10,
+            11,
+            12
+          ],
+          "CODER_2": [
+            7,
+            10,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-21",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            1,
+            8,
+            10,
+            12
+          ],
+          "CODER_2": [
+            8,
+            10,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-22",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "좌파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            2,
+            5,
+            7,
+            9,
+            11
+          ],
+          "CODER_2": [
+            2,
+            7,
+            9
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-23",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            3,
+            7,
+            10,
+            12
+          ],
+          "CODER_2": [
+            7,
+            10
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-24",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        }
+      }
+    },
+    {
+      "id": "A-25",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            8,
+            9,
+            11,
+            12
+          ],
+          "CODER_2": [
+            9,
+            11,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-26",
+      "fields": {
+        "q1_orientation": {
+          "CODER_1": "사람 사정 먼저",
+          "CODER_2": "정한 것 지킴"
+        },
+        "q2_politics": {
+          "CODER_1": "좌파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            3,
+            4,
+            11,
+            12
+          ],
+          "CODER_2": [
+            4,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-27",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            7,
+            8,
+            12
+          ],
+          "CODER_2": [
+            7,
+            8,
+            10
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-28",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        }
+      }
+    },
+    {
+      "id": "A-29",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            3,
+            7,
+            8,
+            11,
+            12
+          ],
+          "CODER_2": [
+            8,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-30",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        }
+      }
+    },
+    {
+      "id": "A-31",
+      "fields": {
+        "q1_orientation": {
+          "CODER_1": "사람 사정 먼저",
+          "CODER_2": "정한 것 지킴"
+        },
+        "q2_politics": {
+          "CODER_1": "좌파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            5,
+            7,
+            9,
+            12
+          ],
+          "CODER_2": [
+            7,
+            9,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-32",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            8,
+            11,
+            12
+          ],
+          "CODER_2": [
+            8,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-33",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        }
+      }
+    },
+    {
+      "id": "A-34",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            3,
+            7,
+            10,
+            11,
+            12
+          ],
+          "CODER_2": [
+            7,
+            10,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-35",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            1,
+            3,
+            8
+          ],
+          "CODER_2": [
+            8
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-36",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        }
+      }
+    },
+    {
+      "id": "A-37",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        }
+      }
+    },
+    {
+      "id": "A-38",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "좌파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            2,
+            3,
+            5,
+            7,
+            9,
+            11
+          ],
+          "CODER_2": [
+            2,
+            9
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-39",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            3,
+            7,
+            8,
+            11,
+            12
+          ],
+          "CODER_2": [
+            7,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-40",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        }
+      }
+    },
+    {
+      "id": "A-41",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "좌파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            2,
+            5,
+            7,
+            9
+          ],
+          "CODER_2": [
+            2,
+            7,
+            9
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-42",
+      "fields": {
+        "q1_orientation": {
+          "CODER_1": "사람 사정 먼저",
+          "CODER_2": "정한 것 지킴"
+        },
+        "q2_politics": {
+          "CODER_1": "좌파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            2,
+            3,
+            7,
+            8,
+            10,
+            11
+          ],
+          "CODER_2": [
+            7,
+            8,
+            10
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-43",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            1,
+            7,
+            10,
+            11,
+            12
+          ],
+          "CODER_2": [
+            7,
+            10,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-44",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            3,
+            8,
+            12
+          ],
+          "CODER_2": [
+            8,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-45",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            7,
+            8,
+            10,
+            12
+          ],
+          "CODER_2": [
+            7,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-46",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            7,
+            11,
+            12
+          ],
+          "CODER_2": [
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-47",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            8,
+            9,
+            11
+          ],
+          "CODER_2": [
+            8,
+            9
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-48",
+      "fields": {
+        "q1_orientation": {
+          "CODER_1": "사람 사정 먼저",
+          "CODER_2": "정한 것 지킴"
+        },
+        "q2_politics": {
+          "CODER_1": "좌파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            2,
+            5,
+            7,
+            10,
+            11,
+            12
+          ],
+          "CODER_2": [
+            7,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-49",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        }
+      }
+    },
+    {
+      "id": "A-50",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        }
+      }
+    },
+    {
+      "id": "A-51",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "좌파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            3,
+            8
+          ],
+          "CODER_2": [
+            2,
+            3,
+            8
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-52",
+      "fields": {
+        "q1_orientation": {
+          "CODER_1": "사람 사정 먼저",
+          "CODER_2": "정한 것 지킴"
+        },
+        "q2_politics": {
+          "CODER_1": "좌파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            1,
+            3,
+            7,
+            11
+          ],
+          "CODER_2": [
+            7,
+            11
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-53",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        }
+      }
+    },
+    {
+      "id": "A-54",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        }
+      }
+    },
+    {
+      "id": "A-55",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            7,
+            9,
+            10,
+            12
+          ],
+          "CODER_2": [
+            9,
+            10,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-56",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            3,
+            7,
+            10,
+            11,
+            12
+          ],
+          "CODER_2": [
+            7,
+            10,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-57",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "좌파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            1,
+            3,
+            11
+          ],
+          "CODER_2": [
+            2,
+            3
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-58",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            7,
+            10,
+            11,
+            12
+          ],
+          "CODER_2": [
+            7,
+            10,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-59",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        }
+      }
+    },
+    {
+      "id": "A-60",
+      "fields": {
+        "q1_orientation": {
+          "CODER_1": "사람 사정 먼저",
+          "CODER_2": "정한 것 지킴"
+        },
+        "q2_politics": {
+          "CODER_1": "좌파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            1,
+            2,
+            7,
+            8,
+            9
+          ],
+          "CODER_2": [
+            7,
+            8,
+            9,
+            10
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-61",
+      "fields": {
+        "q3_beliefs": {
+          "CODER_1": [
+            1,
+            3,
+            8,
+            11,
+            12
+          ],
+          "CODER_2": [
+            4,
+            11
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-62",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            8,
+            11,
+            12
+          ],
+          "CODER_2": [
+            8,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-63",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            7,
+            8,
+            10,
+            11,
+            12
+          ],
+          "CODER_2": [
+            7,
+            8,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-64",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        }
+      }
+    },
+    {
+      "id": "A-65",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "좌파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            1,
+            2,
+            3
+          ],
+          "CODER_2": [
+            1,
+            3
+          ]
+        }
+      }
+    },
+    {
+      "id": "A-66",
+      "fields": {
+        "q2_politics": {
+          "CODER_1": "우파",
+          "CODER_2": "모르겠다"
+        },
+        "q3_beliefs": {
+          "CODER_1": [
+            1,
+            7,
+            10,
+            11,
+            12
+          ],
+          "CODER_2": [
+            7,
+            10,
+            11,
+            12
+          ]
+        }
+      }
+    }
+  ]
+}

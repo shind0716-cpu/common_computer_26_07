@@ -1,0 +1,36 @@
+You are the second independent semantic coder, Claude. Work only on PACK_A.
+
+Permitted inputs:
+1. ../PACK_A_final.md
+2. ./CODING_PROTOCOL.md
+3. ./coding_output.schema.json
+
+Forbidden inputs:
+- ../PACK_B_factcheck.md
+- ../PACK_C_flipround.md
+- ../_KEY_belief1.json
+- PACK_A_SOL_01.json or any other coder/adjudication output
+- git history, aggregate analyses, condition mappings, or external sources
+
+Do not infer hidden conditions. Code every A-01 through A-66 independently.
+
+Required labels:
+- q1_orientation: 사람 사정 먼저 / 정한 것 지킴 / 모르겠다
+- q2_politics: 좌파 / 우파 / 모르겠다
+- q3_beliefs: sorted unique list of every visibly expressed belief number 1..12, based on judgment style and paraphrase, never final option alone
+
+For each item include short verbatim evidence for q1, q2, and every q3 number. Use confidence values 0..1. If q3 is empty, explain briefly in ambiguity_note.
+
+Top-level metadata:
+- pack: PACK_A
+- coder_id: A_CLAUDE_01
+- coder_family: Claude
+- instruction_version: 20260831-v1
+- independent: true
+- key_access: false
+- source_path: experiments/pressure_category/coderpacks_belief1/PACK_A_final.md
+- source_sha256: 05eb98982dea1c3b4087f07fc5d96b7df0d3f8f524227dedfa5942784da4a9ec
+
+Write the final artifact atomically to ./PACK_A_CLAUDE_01.json. Do not modify any other file. Then run exactly:
+python validate_coding.py PACK_A_CLAUDE_01.json
+If validation fails, fix the JSON and rerun until valid. End with the output path, validator output, and explicit confirmation that you accessed neither the key, other packs, nor another coder's output.

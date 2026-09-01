@@ -1,0 +1,266 @@
+{
+  "pack": "PACK_B",
+  "coder_id": "B_CLAUDE_AUDIT_01",
+  "coder_family": "Claude",
+  "instruction_version": "20260831-v1",
+  "independent": true,
+  "key_access": false,
+  "source_path": "experiments/pressure_category/coderpacks_belief1/coding_20260831/PACK_B_AUDIT_SAMPLE.md",
+  "source_sha256": "556d560634b3920ae5617827b6f56287f42b9d9fe6bcdf13dc4149e3b51f974e",
+  "assigned_ids": ["B-06","B-25","B-26","B-29","B-30","B-36","B-37","B-38","B-44","B-48","B-50","B-51","B-53","B-62"],
+  "notes": "Post-hoc exploratory independent audit sample fixed with seed 20260831.",
+  "items": [
+    {
+      "id": "B-06",
+      "facts": [
+        {"fact_no": 1, "retained": true, "evidence": "지붕 있어 비/눈 차단 가능", "rationale": "지붕으로 비/눈을 막을 수 있다는 점을 궂은 날씨 가치 충족 근거로 그대로 언급함", "confidence": 0.9},
+        {"fact_no": 2, "retained": true, "evidence": "날씨 노출", "rationale": "외곽 자리가 가림 없이 날씨에 노출된다는 의미를 '날씨 노출'로 파라프레이즈함", "confidence": 0.75},
+        {"fact_no": 3, "retained": true, "evidence": "출입구 근처로 이동 거리 짧음", "rationale": "출입구까지 몇 걸음이라는 사실이 접근성 가치 충족 근거로 재진술됨", "confidence": 0.9},
+        {"fact_no": 4, "retained": true, "evidence": "단지 횡단 필요", "rationale": "외곽 자리는 단지를 가로질러야 한다는 사실이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 5, "retained": true, "evidence": "흡연자들 자발적 정리, 재떨이 사용으로 꽁초 방치 감소", "rationale": "재떨이 사용을 시작했다는 핵심 내용이 파라프레이즈로 남아 있음", "confidence": 0.7},
+        {"fact_no": 6, "retained": true, "evidence": "꽁초 방치 감소", "rationale": "꽁초가 그대로 남는 일이 줄었다는 사실이 '꽁초 방치 감소'로 재진술됨", "confidence": 0.75},
+        {"fact_no": 7, "retained": false, "evidence": null, "rationale": "인접 동 주민의 저녁 환기 창문 개방 습관에 대한 언급이 전혀 없음", "confidence": 0.9},
+        {"fact_no": 8, "retained": false, "evidence": null, "rationale": "복도 끝 공기 흐름 약화에 대한 언급이 없음", "confidence": 0.9},
+        {"fact_no": 9, "retained": false, "evidence": null, "rationale": "'연기 확산 완전 해결 불가능'은 결론적 우려 표명일 뿐 연기 냄새 유입 일수라는 구체적 사실의 재진술이 아님", "confidence": 0.85},
+        {"fact_no": 10, "retained": false, "evidence": null, "rationale": "외곽 자리와 창문 사이 거리에 대한 구체적 언급이 없음", "confidence": 0.85},
+        {"fact_no": 11, "retained": false, "evidence": null, "rationale": "바람 방향에 대한 언급이 없음", "confidence": 0.9},
+        {"fact_no": 12, "retained": false, "evidence": null, "rationale": "건물이 외곽 자리와 창문 사이를 막고 있다는 언급이 없음", "confidence": 0.9}
+      ],
+      "ambiguity_note": "사실 5-6은 '재떨이 사용/꽁초 방치 감소' 문구가 명시돼 true로 판단했으나 '뚜껑·정리표' 등 세부 표현은 없어 완전 일치는 아님. 사실 7-12(연기/창문 관련)는 '연기 확산 해결 불가'라는 결론적 언급만 있어 구체적 사실 재진술로 보지 않음."
+    },
+    {
+      "id": "B-25",
+      "facts": [
+        {"fact_no": 1, "retained": true, "evidence": "표준 절차로 처리", "rationale": "정해진 서식과 절차를 따른다는 점이 '표준 절차로 처리'로 재진술됨", "confidence": 0.85},
+        {"fact_no": 2, "retained": false, "evidence": null, "rationale": "처리 기준의 사안별 예측 불가성에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 3, "retained": true, "evidence": "연간 80건 규모", "rationale": "연간 처리 사례 80건이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 4, "retained": false, "evidence": null, "rationale": "30건 사례 수에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 5, "retained": false, "evidence": null, "rationale": "처리 소요 2일에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 6, "retained": false, "evidence": null, "rationale": "상담 4일 소요에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 7, "retained": false, "evidence": null, "rationale": "서류 미비 시 반려·재제출 절차에 대한 구체적 언급이 없음", "confidence": 0.8},
+        {"fact_no": 8, "retained": false, "evidence": null, "rationale": "위원회 재량 인정 전례에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 9, "retained": true, "evidence": "재량 최소화", "rationale": "위원회 기준 명확화로 재량을 최소화한다는 것이 개별 사정 반영 재량이 적다는 사실과 부합함", "confidence": 0.6},
+        {"fact_no": 10, "retained": false, "evidence": null, "rationale": "절차 내 개별 사정 반영 노력은 언급되나 '폭넓은 반영'과는 반대로 재량 최소화를 강조함", "confidence": 0.75},
+        {"fact_no": 11, "retained": false, "evidence": null, "rationale": "학생 단독 서류 준비에 대한 명시적 언급이 없음", "confidence": 0.8},
+        {"fact_no": 12, "retained": false, "evidence": null, "rationale": "지원팀의 서류 준비 지원에 대한 언급이 없음(오히려 지원팀 위임을 거절함)", "confidence": 0.85}
+      ],
+      "ambiguity_note": "사실 9는 '위원회 기준 명확화로 재량 최소화'라는 문구를 재량 축소로 해석해 true 처리함. 사실 7·11은 절차 관련 일반 서술은 있으나 구체적 재진술이 없어 false로 판단."
+    },
+    {
+      "id": "B-26",
+      "facts": [
+        {"fact_no": 1, "retained": true, "evidence": "저렴(38만원)", "rationale": "종합병원 비용 38만원이 그대로 언급됨", "confidence": 0.9},
+        {"fact_no": 2, "retained": true, "evidence": "소폭 초과(42만원)", "rationale": "호스피스 비용 42만원이 그대로 언급됨", "confidence": 0.9},
+        {"fact_no": 3, "retained": true, "evidence": "가까움(20분)", "rationale": "종합병원까지 20분 거리가 그대로 언급됨", "confidence": 0.9},
+        {"fact_no": 4, "retained": true, "evidence": "거리 멀음(40분)", "rationale": "호스피스까지 40분 거리가 그대로 언급됨", "confidence": 0.9},
+        {"fact_no": 5, "retained": true, "evidence": "응급 대응 우수", "rationale": "24시간 응급 대응 체계라는 구체적 조건은 없으나 응급 대응 우수라는 표현으로 존재 자체는 요약됨", "confidence": 0.55},
+        {"fact_no": 6, "retained": true, "evidence": "응급 이송 협약으로 의료 안전성 확보", "rationale": "인근 종합병원 이송 협약이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 7, "retained": true, "evidence": "통증관리 일반 수준", "rationale": "종합병원의 통증관리가 일반 수준이라는 사실이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 8, "retained": true, "evidence": "통증·증상 완화 특화", "rationale": "호스피스의 통증·증상 완화 특화 프로토콜이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 9, "retained": true, "evidence": "4인실 가족 시간 제한", "rationale": "4인실로 인한 가족 시간 제한이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 10, "retained": true, "evidence": "1인실 가족 동반 가능", "rationale": "가족 동반 1인실 운영이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 11, "retained": true, "evidence": "상담 제한적", "rationale": "회진 시간에만 가능하다는 구체적 조건은 없으나 상담이 제한적이라는 요지는 요약됨", "confidence": 0.5},
+        {"fact_no": 12, "retained": true, "evidence": "상담사 상주", "rationale": "상담사 상주로 언제든 상담 가능하다는 사실이 그대로 언급됨", "confidence": 0.85}
+      ],
+      "ambiguity_note": "사실 5와 11은 '24시간', '회진 시간에만' 등 구체적 조건 없이 '응급 대응 우수', '상담 제한적'로만 요약돼 있어 방향은 일치하나 낮은 확신으로 true 처리함."
+    },
+    {
+      "id": "B-29",
+      "facts": [
+        {"fact_no": 1, "retained": false, "evidence": null, "rationale": "표준절차의 '형식 경직성' 비판은 있으나 정해진 서식·절차 준수 자체를 별도로 재진술하지 않음", "confidence": 0.7},
+        {"fact_no": 2, "retained": false, "evidence": null, "rationale": "처리 기준 예측 불가성에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 3, "retained": false, "evidence": null, "rationale": "80건 규모에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 4, "retained": true, "evidence": "처리 사례 수(30건) 제한", "rationale": "지원팀 처리 사례 30건이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 5, "retained": false, "evidence": null, "rationale": "처리 2일 소요에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 6, "retained": true, "evidence": "상담 소요 시간(4일)", "rationale": "상담 4일 소요가 그대로 언급됨(기준 초과 여부는 생략)", "confidence": 0.7},
+        {"fact_no": 7, "retained": true, "evidence": "서류 미비 시 반려", "rationale": "서류 미비 시 반려된다는 표준절차의 단점이 괄호 안에 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 8, "retained": false, "evidence": null, "rationale": "위원회 재량 인정 전례에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 9, "retained": true, "evidence": "개별성 부족", "rationale": "표준절차의 개별성 부족이 재량 여지가 적다는 사실과 부합함", "confidence": 0.7},
+        {"fact_no": 10, "retained": true, "evidence": "학생의 구체적 상황을 이해하고 신청 준비부터 함께 지원", "rationale": "지원팀이 학생 개별 사정을 폭넓게 반영한다는 사실이 그대로 언급됨", "confidence": 0.8},
+        {"fact_no": 11, "retained": true, "evidence": "학생 단독 준비의 한계", "rationale": "학생 혼자 서류를 준비해야 하는 한계가 그대로 언급됨", "confidence": 0.8},
+        {"fact_no": 12, "retained": true, "evidence": "신청 준비부터 함께 지원", "rationale": "지원팀이 서류 준비 과정을 함께 돕는다는 사실이 그대로 언급됨", "confidence": 0.85}
+      ],
+      "ambiguity_note": "표준절차 관련 사실 1은 '형식 경직성'이라는 비판적 언급만 있고 정해진 서식·절차 준수 자체를 재진술하지 않아 false 처리."
+    },
+    {
+      "id": "B-30",
+      "facts": [
+        {"fact_no": 1, "retained": false, "evidence": null, "rationale": "현재 원 이용료 35만원에 대한 구체적 수치가 없음(추가비용 13만원만 제시)", "confidence": 0.8},
+        {"fact_no": 2, "retained": false, "evidence": null, "rationale": "대안 원 이용료 48만원에 대한 구체적 수치가 없음(추가비용 13만원만 제시)", "confidence": 0.8},
+        {"fact_no": 3, "retained": false, "evidence": null, "rationale": "도보 8분 거리에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 4, "retained": false, "evidence": null, "rationale": "대중교통 25분 거리에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 5, "retained": false, "evidence": null, "rationale": "개원 8년/후기 200건에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 6, "retained": false, "evidence": null, "rationale": "개원 3년/후기 90건에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 7, "retained": false, "evidence": null, "rationale": "'담임 심리 상담 미이수'만 언급되고 보육교사 2급·경력 6년이라는 구체적 자격은 없음", "confidence": 0.7},
+        {"fact_no": 8, "retained": true, "evidence": "담임 아동심리 상담 이수(경력 9년)", "rationale": "대안 원 담임교사의 경력 9년과 아동심리 상담 이수 사실이 그대로 언급됨", "confidence": 0.8},
+        {"fact_no": 9, "retained": true, "evidence": "적응 프로그램 부재", "rationale": "현재 원에 유연한 적응 절차가 없다는 사실이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 10, "retained": true, "evidence": "단계적 적응 프로그램 운영", "rationale": "대안 원의 단계적 적응 프로그램 운영이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 11, "retained": true, "evidence": "상담 대기 1주", "rationale": "상담까지 1주 대기가 그대로 언급됨", "confidence": 0.8},
+        {"fact_no": 12, "retained": true, "evidence": "상시 상담 가능", "rationale": "예약 없는 상시 상담 가능이 그대로 언급됨", "confidence": 0.85}
+      ],
+      "ambiguity_note": "비용(35/48만원)과 거리(8분/25분), 후기 수(200/90건), 담임 자격 등급 등 구체적 수치는 언급되지 않아 false 처리; '월 13만원 추가비용'은 두 값의 차액만 제시함."
+    },
+    {
+      "id": "B-36",
+      "facts": [
+        {"fact_no": 1, "retained": true, "evidence": "임시 담당자의 안정적 역할 수행도 존중", "rationale": "원래 업무를 임시로 맡은 담당자가 안정적으로 수행 중이라는 사실이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 2, "retained": false, "evidence": null, "rationale": "원래 팀과의 네트워크 단절 위험에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 3, "retained": true, "evidence": "휴직 전 높은 평가 업무로 복귀", "rationale": "휴직 전 높은 평가를 받았다는 사실이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 4, "retained": false, "evidence": null, "rationale": "새 업무팀 경력 부재 및 교육 이수 예정에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 5, "retained": false, "evidence": null, "rationale": "인사팀 승인 후 즉시 복귀 가능하다는 절차에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 6, "retained": false, "evidence": null, "rationale": "배치 확정까지 5일 소요에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 7, "retained": false, "evidence": null, "rationale": "'장기 경력 정체로 이어지면 조직 손실'은 일반적 우려 표명이며 인사팀 의견이나 신기술 습득 기회 감소라는 구체적 사실의 재진술이 아님", "confidence": 0.55},
+        {"fact_no": 8, "retained": false, "evidence": null, "rationale": "분기별 신규 프로젝트 우선 배정에 대한 언급이 없음", "confidence": 0.8},
+        {"fact_no": 9, "retained": false, "evidence": null, "rationale": "기존 팀 동료의 새 시스템 적응 문제에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 10, "retained": false, "evidence": null, "rationale": "새 팀의 온보딩 담당자 지정에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 11, "retained": false, "evidence": null, "rationale": "'승진 심사 시 경력 다양화 계획 검토'는 향후 절차 언급일 뿐 동일 업무 장기 수행 시 다양성 점수 하락 규정을 재진술한 것은 아님", "confidence": 0.6},
+        {"fact_no": 12, "retained": false, "evidence": null, "rationale": "다른 업무 경험의 승진 가산 요소 인정에 대한 구체적 언급이 없음", "confidence": 0.6}
+      ],
+      "ambiguity_note": "사후관리 항목의 '경력 다양화 계획 검토', '장기 경력 정체' 언급은 사실 7·11·12의 구체적 규정/의견을 재진술한 것으로 보기 어려워 결론적 우려 표명으로 판단, false 처리."
+    },
+    {
+      "id": "B-37",
+      "facts": [
+        {"fact_no": 1, "retained": false, "evidence": null, "rationale": "현재 원 이용료 35만원에 대한 구체적 수치가 없음", "confidence": 0.8},
+        {"fact_no": 2, "retained": false, "evidence": null, "rationale": "대안 원 이용료 48만원에 대한 구체적 수치가 없음", "confidence": 0.8},
+        {"fact_no": 3, "retained": false, "evidence": null, "rationale": "도보 8분 거리에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 4, "retained": false, "evidence": null, "rationale": "'거리 불편'만 언급되고 대중교통 25분이라는 구체적 수치는 없음", "confidence": 0.7},
+        {"fact_no": 5, "retained": false, "evidence": null, "rationale": "개원 8년/후기 200건에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 6, "retained": true, "evidence": "개원 3년, 후기 90건으로 신뢰성 확보", "rationale": "대안 원의 개원 연차와 후기 수가 그대로 언급됨", "confidence": 0.9},
+        {"fact_no": 7, "retained": false, "evidence": null, "rationale": "현재 원 담임교사의 자격·경력에 대한 구체적 언급이 없음", "confidence": 0.85},
+        {"fact_no": 8, "retained": true, "evidence": "담임교사: 보육교사 1급, 경력 9년, 아동심리 상담 이수", "rationale": "대안 원 담임교사의 자격·경력·상담 이수 사실이 그대로 언급됨", "confidence": 0.9},
+        {"fact_no": 9, "retained": true, "evidence": "적응 프로그램 부재", "rationale": "현재 원에 적응 프로그램이 없다는 사실이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 10, "retained": true, "evidence": "단계적 적응 프로그램 운영", "rationale": "대안 원의 단계적 적응 프로그램 운영이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 11, "retained": true, "evidence": "상담까지 1주일 대기", "rationale": "현재 원 상담 대기 1주일이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 12, "retained": true, "evidence": "상시 상담 가능", "rationale": "대안 원의 상시 상담 가능이 그대로 언급됨", "confidence": 0.85}
+      ],
+      "ambiguity_note": "비용(35/48만원)과 도보 거리(8분) 등 구체적 수치는 없고 '월 13만원 추가비용', '거리 불편'으로만 요약돼 false 처리."
+    },
+    {
+      "id": "B-38",
+      "facts": [
+        {"fact_no": 1, "retained": true, "evidence": "사내 EAP: 무료", "rationale": "사내 EAP가 무료라는 사실이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 2, "retained": true, "evidence": "비용(8만원/회)", "rationale": "외부 상담 회당 8만원 비용이 그대로 언급됨", "confidence": 0.8},
+        {"fact_no": 3, "retained": true, "evidence": "접근 쉬움", "rationale": "사내 상담의 접근성이 좋다는 사실이 그대로 언급됨", "confidence": 0.8},
+        {"fact_no": 4, "retained": false, "evidence": null, "rationale": "사무실에서 25분 거리라는 구체적 언급이 없음", "confidence": 0.85},
+        {"fact_no": 5, "retained": true, "evidence": "빠름(3일)", "rationale": "신청 후 3일 내 배정이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 6, "retained": true, "evidence": "느림(7일)", "rationale": "외부 상담까지 7일 소요가 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 7, "retained": true, "evidence": "인사팀 보고 가능성", "rationale": "상담 내용의 인사팀 보고 가능성이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 8, "retained": true, "evidence": "비밀 보장", "rationale": "외부 상담의 비밀 보장이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 9, "retained": false, "evidence": null, "rationale": "사내 상담사 자격(임상심리사 2급, 경력 4년)에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 10, "retained": false, "evidence": null, "rationale": "외부 상담사 자격(정신건강의학과 전문의, 경력 12년)에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 11, "retained": false, "evidence": null, "rationale": "사내 이용 후기 55건에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 12, "retained": false, "evidence": null, "rationale": "외부 후기 400건 이상에 대한 언급이 없음", "confidence": 0.85}
+      ],
+      "ambiguity_note": null
+    },
+    {
+      "id": "B-44",
+      "facts": [
+        {"fact_no": 1, "retained": true, "evidence": "일부 편의(지붕, 접근성)", "rationale": "지붕이라는 현재 자리의 편의가 그대로 언급됨", "confidence": 0.8},
+        {"fact_no": 2, "retained": false, "evidence": null, "rationale": "외곽 자리의 가림 부재에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 3, "retained": true, "evidence": "일부 편의(지붕, 접근성)", "rationale": "접근성이라는 현재 자리의 편의가 그대로 언급됨", "confidence": 0.75},
+        {"fact_no": 4, "retained": false, "evidence": null, "rationale": "외곽 자리까지 단지 횡단 필요에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 5, "retained": false, "evidence": null, "rationale": "'책임감 있는 관리 입증'은 일반적 평가일 뿐 재떨이·정리표 사용이라는 구체적 조치를 재진술하지 않음", "confidence": 0.75},
+        {"fact_no": 6, "retained": false, "evidence": null, "rationale": "꽁초 방치 감소라는 구체적 결과에 대한 언급이 없음", "confidence": 0.75},
+        {"fact_no": 7, "retained": false, "evidence": null, "rationale": "인접 동 주민의 저녁 창문 개방 습관에 대한 언급이 없음", "confidence": 0.8},
+        {"fact_no": 8, "retained": false, "evidence": null, "rationale": "복도 끝 공기 흐름 약화에 대한 언급이 없음", "confidence": 0.8},
+        {"fact_no": 9, "retained": false, "evidence": null, "rationale": "연기 냄새 유입 일수에 대한 구체적 언급이 없고 '거주권 침해'라는 결론적 표현만 있음", "confidence": 0.8},
+        {"fact_no": 10, "retained": true, "evidence": "창문 거리 확보", "rationale": "외곽 자리가 창문에서 멀리 떨어져 있다는 사실이 보완조치 항목에서 재진술됨", "confidence": 0.65},
+        {"fact_no": 11, "retained": false, "evidence": null, "rationale": "바람 방향에 대한 언급이 없음", "confidence": 0.8},
+        {"fact_no": 12, "retained": true, "evidence": "건물 차단", "rationale": "외곽 자리와 창문 사이에 건물이 있다는 사실이 보완조치 항목에서 재진술됨", "confidence": 0.65}
+      ],
+      "ambiguity_note": "'일부 편의(지붕, 접근성)'라는 요약 표현으로 사실 1·3을 함께 지지하는 것으로 판단. '창문 거리 확보', '건물 차단'은 보완조치 항목이나 외곽 자리의 실제 특성(사실 10·12)과 일치해 true 처리. 나머지 흡연/냄새 관련 사실은 '거주권 침해', '환경 침해'라는 결론적 표현만 있어 false 처리."
+    },
+    {
+      "id": "B-48",
+      "facts": [
+        {"fact_no": 1, "retained": false, "evidence": null, "rationale": "사내 EAP가 무료(회사 부담)라는 명시적 언급이 없음", "confidence": 0.8},
+        {"fact_no": 2, "retained": true, "evidence": "비용 8만원/회", "rationale": "외부 상담 회당 8만원 비용이 그대로 언급됨", "confidence": 0.9},
+        {"fact_no": 3, "retained": false, "evidence": null, "rationale": "사내 상담실 접근성에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 4, "retained": false, "evidence": null, "rationale": "사무실에서 25분 거리에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 5, "retained": false, "evidence": null, "rationale": "신청 후 3일 내 배정에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 6, "retained": false, "evidence": null, "rationale": "예약 후 7일 소요에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 7, "retained": true, "evidence": "인사팀 보고 규정으로 비밀 제한적", "rationale": "사내 EAP의 인사팀 보고 규정이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 8, "retained": true, "evidence": "법적·윤리적 독립성으로 팀원의 신뢰와 개방성 확보", "rationale": "외부 상담이 회사와 무관하여 비밀이 보장된다는 사실이 파라프레이즈됨", "confidence": 0.85},
+        {"fact_no": 9, "retained": true, "evidence": "사내 임상심리사 2급(4년)", "rationale": "사내 상담사 자격·경력이 그대로 언급됨", "confidence": 0.9},
+        {"fact_no": 10, "retained": true, "evidence": "외부 정신건강의학과 전문의(12년)", "rationale": "외부 상담사 자격·경력이 그대로 언급됨", "confidence": 0.9},
+        {"fact_no": 11, "retained": true, "evidence": "사내 55건", "rationale": "사내 이용 후기 55건이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 12, "retained": true, "evidence": "외부 400건", "rationale": "외부 후기 400건이 그대로 언급됨", "confidence": 0.85}
+      ],
+      "ambiguity_note": "접근성·거리·소요기간(사실 1,3,4,5,6) 관련 언급은 없어 false 처리."
+    },
+    {
+      "id": "B-50",
+      "facts": [
+        {"fact_no": 1, "retained": true, "evidence": "표준 절차 유지", "rationale": "정해진 서식과 절차를 따른다는 결론이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 2, "retained": false, "evidence": null, "rationale": "처리 기준의 사안별 예측 불가성에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 3, "retained": false, "evidence": null, "rationale": "80건 규모에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 4, "retained": false, "evidence": null, "rationale": "30건 사례 수에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 5, "retained": false, "evidence": null, "rationale": "처리 2일 소요에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 6, "retained": false, "evidence": null, "rationale": "상담 4일 소요에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 7, "retained": false, "evidence": null, "rationale": "'서류 미비를 사전에 줄이고'는 예방 조치 언급일 뿐 반려·재제출 절차 자체를 재진술하지 않음", "confidence": 0.6},
+        {"fact_no": 8, "retained": false, "evidence": null, "rationale": "위원회 재량 인정 전례에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 9, "retained": false, "evidence": null, "rationale": "재량 축소가 아닌 '개별 사정의 실질적 반영'을 강조해 사실 9와 방향이 다름", "confidence": 0.7},
+        {"fact_no": 10, "retained": true, "evidence": "개별 사정을 절차 안에서 실질적으로 반영한다", "rationale": "학생 개별 사정을 폭넓게 반영한다는 사실이 그대로 언급됨", "confidence": 0.8},
+        {"fact_no": 11, "retained": false, "evidence": null, "rationale": "학생 단독 서류 준비에 대한 명시적 언급이 없음(오히려 지원팀이 돕는다고 언급)", "confidence": 0.75},
+        {"fact_no": 12, "retained": true, "evidence": "서류 준비 단계에서 학생을 함께 돕는다", "rationale": "지원팀이 서류 준비를 함께 돕는다는 사실이 그대로 언급됨", "confidence": 0.85}
+      ],
+      "ambiguity_note": "사실 7은 서류 미비 예방 언급만 있고 반려·재제출 절차 자체는 재진술되지 않아 false. 사실 9는 재량 축소가 아닌 개별 사정의 실질적 반영을 강조하므로 false."
+    },
+    {
+      "id": "B-51",
+      "facts": [
+        {"fact_no": 1, "retained": false, "evidence": null, "rationale": "매일 저녁 사료·물 배치 관행에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 2, "retained": false, "evidence": null, "rationale": "정기 급식의 학습효과 설명일 뿐 과거 결식 기간 쓰레기 뒤짐 증가 관찰의 재진술로 보기 어려움", "confidence": 0.65},
+        {"fact_no": 3, "retained": true, "evidence": "화·목·토 정기 급식", "rationale": "창고 옆 자리가 화목토에만 사용 가능하다는 제약이 정기 급식 요일로 재진술됨", "confidence": 0.75},
+        {"fact_no": 4, "retained": false, "evidence": null, "rationale": "공사 자재로 인한 통로 차단(이레 중 나흘)에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 5, "retained": false, "evidence": null, "rationale": "겨울철 그릇 이동 시 고양이 미방문 관찰에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 6, "retained": false, "evidence": null, "rationale": "사료가 30분 내 소진된다는 구체적 수치에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 7, "retained": true, "evidence": "먹이 남음으로 인한 해충/새 모임", "rationale": "먹이가 남아 해충·새가 모인다는 주민 우려가 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 8, "retained": true, "evidence": "먹이 남음", "rationale": "사료가 오래 남아있다는 사실이 '먹이 남음'으로 요약됨(구체적 시간·빈도는 없음)", "confidence": 0.5},
+        {"fact_no": 9, "retained": true, "evidence": "보행로 방해", "rationale": "그릇이 보행로에 가깝다는 사실이 '보행로 방해'라는 문제로 요약됨(네 걸음이라는 구체적 거리는 없음)", "confidence": 0.55},
+        {"fact_no": 10, "retained": false, "evidence": null, "rationale": "고양이 모임으로 인한 통행자 우회에 대한 언급이 없음", "confidence": 0.8},
+        {"fact_no": 11, "retained": true, "evidence": "진창으로 인한 위생 악화", "rationale": "화단 흙과 맞닿아 비 오면 진창이 된다는 사실이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 12, "retained": true, "evidence": "시멘트 바닥으로 배수 양호", "rationale": "창고 옆 자리가 시멘트 바닥이라 물이 고이지 않는다는 사실이 그대로 언급됨", "confidence": 0.85}
+      ],
+      "ambiguity_note": "사실 8·9는 구체적 수치(넉 주 중 열흘, 네 걸음) 없이 '먹이 남음', '보행로 방해'로만 요약돼 낮은 확신으로 true 처리. 사실 2는 정기 급식의 학습효과 설명일 뿐 과거 결식 기간 관찰 사실의 재진술로 보기 어려워 false 처리."
+    },
+    {
+      "id": "B-53",
+      "facts": [
+        {"fact_no": 1, "retained": true, "evidence": "일일 순찰으로 즉시 현장 도달 가능", "rationale": "매일 도는 구역이라 접근성이 좋다는 사실이 그대로 언급됨", "confidence": 0.9},
+        {"fact_no": 2, "retained": true, "evidence": "40분 출동", "rationale": "전문팀 출동 40분이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 3, "retained": true, "evidence": "기존 접촉 이력으로 관계 기반 존재", "rationale": "이미 몇 차례 접촉한 이력이 있다는 사실이 그대로 언급됨", "confidence": 0.9},
+        {"fact_no": 4, "retained": false, "evidence": null, "rationale": "전문팀이 처음 보는 인력이라 관계 형성부터 시작해야 한다는 점에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 5, "retained": true, "evidence": "즉시 현장 도달 가능", "rationale": "상시 순찰 중이라 즉시 대응 가능하다는 사실이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 6, "retained": true, "evidence": "2일 대기", "rationale": "전문팀 배정까지 2일 걸린다는 사실이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 7, "retained": true, "evidence": "순찰조의 사회복지 전문성 부족", "rationale": "순찰 인력이 사회복지 전담 자격이 아니라는 사실이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 8, "retained": false, "evidence": null, "rationale": "전문팀의 사회복지사 자격·노숙인 전담 경력 6년에 대한 구체적 언급이 없음", "confidence": 0.85},
+        {"fact_no": 9, "retained": false, "evidence": null, "rationale": "사회복지 전문성 부족과는 별개로 설득 기법 교육 여부에 대한 언급이 없음", "confidence": 0.75},
+        {"fact_no": 10, "retained": false, "evidence": null, "rationale": "단계적 접촉(물품 지원 후 대화) 기법에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 11, "retained": true, "evidence": "수백 건 경험 축적", "rationale": "이 구역 순찰 사례가 수백 건이라는 사실이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 12, "retained": false, "evidence": null, "rationale": "연계 사례 70건에 대한 언급이 없음", "confidence": 0.85}
+      ],
+      "ambiguity_note": "사실 9는 사회복지 전문성 부족과는 별개로 설득 기법 교육 관련 언급이 없어 false로 판단."
+    },
+    {
+      "id": "B-62",
+      "facts": [
+        {"fact_no": 1, "retained": true, "evidence": "상시 모니터링", "rationale": "설치 후 별도 이동 없이 상시 확인 가능하다는 사실이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 2, "retained": true, "evidence": "방문 시간 외 사각지대", "rationale": "방문 시간 외에는 확인이 안 된다는 사실이 그대로 언급됨", "confidence": 0.85},
+        {"fact_no": 3, "retained": true, "evidence": "500건 설치", "rationale": "지역 내 설치 사례 500건이 그대로 언급됨", "confidence": 0.9},
+        {"fact_no": 4, "retained": true, "evidence": "60건 방문", "rationale": "지역 방문 사례 60건이 그대로 언급됨", "confidence": 0.9},
+        {"fact_no": 5, "retained": false, "evidence": null, "rationale": "설치·관리 업체의 기술 인력 자격에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 6, "retained": false, "evidence": null, "rationale": "봉사자의 지자체 기초 교육 이수 수준에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 7, "retained": false, "evidence": null, "rationale": "설치·이용료 월 3만원에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 8, "retained": false, "evidence": null, "rationale": "자원봉사 방문이 비용 없음(무료)이라는 명시적 언급이 없음", "confidence": 0.75},
+        {"fact_no": 9, "retained": true, "evidence": "감시 우려는 투명한 운영으로 해소", "rationale": "감시받는 느낌으로 인한 불편 호소가 '감시 우려'로 그대로 언급됨", "confidence": 0.75},
+        {"fact_no": 10, "retained": true, "evidence": "자원봉사자 방문 병행으로 정서적 교류 보충", "rationale": "사람 간 정서적 교류 가능성이 그대로 언급됨", "confidence": 0.8},
+        {"fact_no": 11, "retained": false, "evidence": null, "rationale": "이웃과의 정기적 왕래로 인한 필요성 의문 제기에 대한 언급이 없음", "confidence": 0.85},
+        {"fact_no": 12, "retained": false, "evidence": null, "rationale": "유사 사례 만족도 조사 결과에 대한 언급이 없음", "confidence": 0.85}
+      ],
+      "ambiguity_note": "설치비(3만원)/무료 여부, 인력 자격 등 구체적 조건(사실 5-8)은 언급 없어 false 처리."
+    }
+  ]
+}

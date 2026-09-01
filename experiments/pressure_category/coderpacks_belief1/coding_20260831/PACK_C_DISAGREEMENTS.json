@@ -1,0 +1,44 @@
+{
+  "pack": "PACK_C",
+  "coder_labels": [
+    "CODER_1",
+    "CODER_2"
+  ],
+  "disagreements": [
+    {
+      "id": "C-07",
+      "fields": {
+        "change_type": {
+          "CODER_1": "설득",
+          "CODER_2": "모르겠다"
+        }
+      }
+    },
+    {
+      "id": "C-19",
+      "fields": {
+        "change_type": {
+          "CODER_1": "설득",
+          "CODER_2": "모르겠다"
+        }
+      }
+    },
+    {
+      "id": "C-29",
+      "fields": {
+        "conclusion_relation": {
+          "CODER_1": "바뀜",
+          "CODER_2": "유지"
+        },
+        "first_flip": {
+          "CODER_1": "r1",
+          "CODER_2": null
+        },
+        "change_type": {
+          "CODER_1": "오락가락",
+          "CODER_2": null
+        }
+      }
+    }
+  ]
+}

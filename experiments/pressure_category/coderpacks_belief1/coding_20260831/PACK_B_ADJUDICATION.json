@@ -1,0 +1,118 @@
+{
+  "pack": "PACK_B",
+  "adjudicator_id": "B_ADJ_01",
+  "coder_family": "Adjudicator",
+  "instruction_version": "20260831-v1",
+  "independent": true,
+  "key_access": false,
+  "source_disagreement_sha256": "e763af255eab416543c71f00809cfe9bda8041566f9c58d21cf1c922b6bad291",
+  "resolutions": [
+    {
+      "id": "B-06",
+      "fields": {
+        "fact_5": {
+          "value": false,
+          "evidence": null,
+          "rationale": "수첩은 자발적 정리와 재떨이 사용만 언급하며, 재떨이 뚜껑과 정리표를 쓰기 시작했다는 구체적 사실은 보존하지 않는다.",
+          "confidence": 0.98
+        }
+      }
+    },
+    {
+      "id": "B-26",
+      "fields": {
+        "fact_5": {
+          "value": false,
+          "evidence": null,
+          "rationale": "'응급 대응 우수'라는 일반 평가는 있으나 24시간 대응 체계라는 시간 범위는 보존되지 않는다.",
+          "confidence": 0.97
+        },
+        "fact_11": {
+          "value": false,
+          "evidence": null,
+          "rationale": "상담이 제한적이라는 관련 내용만 있고, 연명치료 상담이 담당의 회진 시간에만 가능하다는 조건은 보존되지 않는다.",
+          "confidence": 0.98
+        }
+      }
+    },
+    {
+      "id": "B-29",
+      "fields": {
+        "fact_6": {
+          "value": true,
+          "evidence": "지원팀의 상담 소요 시간(4일)",
+          "rationale": "상담에 4일이 걸린다는 핵심 사실이 그대로 명시되어 있다.",
+          "confidence": 0.99
+        }
+      }
+    },
+    {
+      "id": "B-30",
+      "fields": {
+        "fact_8": {
+          "value": false,
+          "evidence": null,
+          "rationale": "경력 9년과 아동심리 상담 이수는 언급되지만 보육교사 1급이라는 자격 요소가 빠져 있어 나열된 사실 전체의 의미가 보존되지 않는다.",
+          "confidence": 0.94
+        }
+      }
+    },
+    {
+      "id": "B-44",
+      "fields": {
+        "fact_1": {
+          "value": true,
+          "evidence": "일부 편의(지붕, 접근성)",
+          "rationale": "현재 위치의 편의로 지붕이 명시되어 있어 현재 구역에 지붕이 있다는 핵심 의미가 보존된다.",
+          "confidence": 0.91
+        },
+        "fact_3": {
+          "value": false,
+          "evidence": null,
+          "rationale": "접근성이라는 일반적 편의만 언급되며 출입구에서 몇 걸음 거리라는 구체적 위치 관계는 보존되지 않는다.",
+          "confidence": 0.96
+        },
+        "fact_10": {
+          "value": true,
+          "evidence": "창문 거리 확보",
+          "rationale": "외곽 이전의 보완 요소로 창문과 거리를 확보한다는 의미가 명시되어 있다.",
+          "confidence": 0.94
+        },
+        "fact_12": {
+          "value": true,
+          "evidence": "건물 차단",
+          "rationale": "외곽 자리와 창문 사이에서 건물이 차단 역할을 한다는 핵심 의미가 압축적으로 보존되어 있다.",
+          "confidence": 0.9
+        }
+      }
+    },
+    {
+      "id": "B-50",
+      "fields": {
+        "fact_10": {
+          "value": true,
+          "evidence": "개별 사정을 절차 안에서 실질적으로 반영한다.",
+          "rationale": "학생의 개별 사정을 실질적으로 반영한다는 사실이 직접 명시되어 있다.",
+          "confidence": 0.99
+        }
+      }
+    },
+    {
+      "id": "B-51",
+      "fields": {
+        "fact_8": {
+          "value": false,
+          "evidence": null,
+          "rationale": "먹이가 남는 문제만 언급하며 최근 넉 주 중 열흘, 두 시간 초과라는 빈도와 지속시간은 보존하지 않는다.",
+          "confidence": 0.99
+        },
+        "fact_9": {
+          "value": false,
+          "evidence": null,
+          "rationale": "보행로 방해라는 관련 문제만 언급하며 동 출입 보행로에서 네 걸음 거리라는 위치 사실은 보존하지 않는다.",
+          "confidence": 0.98
+        }
+      }
+    }
+  ]
+}
