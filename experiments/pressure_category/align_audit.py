@@ -39,6 +39,7 @@ import collections
 import json
 import math
 import statistics
+import subprocess
 import sys
 from pathlib import Path
 
@@ -210,6 +211,43 @@ def scan_fingerprints(cur: dict):
     return out
 
 
+def locate_old_materials(drifted: list):
+    """②-2 §23 을 돌려보려면 재료 판본이 어디 있나 — 지문에서 좌표를 역추적한다.
+
+    §23 재현에는 세 겹이 8/27 판본이어야 한다: 판 · 판독 · **재료**. 앞의 둘은 트리에 있는데
+    (판은 `_stale_hash/`, 판독은 `READ60_*`) **재료는 git 이력에만 있다.** 그래서 「유효하다」가
+    「돌려볼 수 있다」가 되려면 좌표가 적혀 있어야 한다(2026-09-01 피어 지적).
+
+    좌표를 손으로 적지 않고 **지문에서 찾는다** — `_stale_hash` 판이 적어 둔 `materials_hash`
+    와 같은 지문을 내는 판본을 이력에서 고른다. 커밋 하나로 안 묶인다는 것이 실측으로 나왔다:
+    `issue_euthanasia` 는 `a17936e` 에서 지워졌다가 `8d8fcaa` 에서 다시 생겨 `8d8fcaa^` 에 없다.
+    """
+    want = {}
+    for q in (HERE / "runs/_stale_hash").rglob("run_*.json"):
+        d = json.loads(q.read_text(encoding="utf-8"))
+        if d.get("issue_id") in drifted and str(d.get("script")) == "C0"                 and str(d.get("value_set")) in ("A", "B"):
+            want.setdefault(d["issue_id"], set()).add(d.get("materials_hash"))
+    rows = []
+    for iid in drifted:
+        hs = sorted(want.get(iid, []))
+        h = hs[0] if len(hs) == 1 else None
+        rel = f"experiments/pressure_category/materials/{iid}.json"
+        found = None
+        if h:
+            log = subprocess.run(["git", "log", "--format=%h %ad", "--date=short", "--all", "--", rel],
+                                 capture_output=True, text=True, encoding="utf-8",
+                                 cwd=HERE.parents[1])
+            for line in (log.stdout or "").splitlines():
+                rev = line.split()[0]
+                blob = subprocess.run(["git", "show", f"{rev}:{rel}"], capture_output=True,
+                                      cwd=HERE.parents[1]).stdout
+                if blob and content_hash.sha256_bytes(blob)[:12] == h:
+                    found = (rev, line.split()[1])
+                    break
+        rows.append((iid, h or "·".join(hs) or "없음", found))
+    return rows
+
+
 def sign_p(pos: int, neg: int) -> float:
     n = pos + neg
     if n == 0:
@@ -254,6 +292,7 @@ def main() -> int:
     key, mats, aligned, drifted = scan_reading(cur)
     vok, vbad = scan_valuesets(cur)
     fp = scan_fingerprints(cur)
+    oldmat = locate_old_materials(sorted(drifted))
     judged = {n: rejudge(key, mats, p) for n, p in
               (("코더 A", "READ60_coderA"), ("헤르메스", "READ60_hermes"))}
 
@@ -288,6 +327,19 @@ def main() -> int:
           "둘 다 **판독과 판이 같은 시점을 가리킨다.** 없는 것은 세 번째 — 「현행 판 + 새 판독」이고,",
           "그건 **여덟 벌을 다시 읽어야 존재한다.** §23 을 인용할 때는 여덟 벌의 판이 지금",
           "`runs/gpt/` 가 아니라 `_stale_hash/` 에 있다는 것만 적으면 된다.",
+          "", "### ②-2. §23 을 돌려보려면 — 재료 판본이 어디 있나", "",
+          "세 겹이 8/27 판본이어야 하는데 **재료만 트리에 없다.** 지문에서 역추적한 좌표다 —",
+          "커밋을 믿지 말고 지문으로 확인하면 된다.", "",
+          "| 재료 | `_stale_hash` 판이 적은 지문 | 그 판본이 있는 커밋 |", "|---|---|---|"] + [
+          f"| {iid.replace('issue_','')} | `{h}` | " +
+          (f"`{rev}` ({day})" if found else "**못 찾음**") + " |"
+          for iid, h, found in ((a, b, c) for a, b, c in oldmat)
+          for rev, day in [found or ("", "")]] + [
+          "",
+          "**커밋 하나로 안 묶인다.** `issue_euthanasia` 는 `a17936e` 에서 지워졌다가 `8d8fcaa` 에서",
+          "다시 생겨 `8d8fcaa^` 에 없다 — 그 판본은 `abfb629` 에 있다. 나머지 일곱은 `8d8fcaa^` 다.",
+          "",
+          "판독은 `READ60_*` 그대로, 판은 `runs/_stale_hash/gpt/` 다. 셋을 맞추면 §23 이 돌아간다.",
           "", "## ③ 가치 세트 — 세트의 카테고리가 현행 재료와 같은가", "",
           f"카테고리를 지목하는 세트 **{len(vok)+len(vbad)}개** 중 정렬 **{len(vok)}** · 어긋남 **{len(vbad)}**.",
           "", "어긋남: " + ", ".join(f"`{x}`" for x in sorted(vbad)), "",

@@ -1,0 +1,22 @@
+{
+  "vset_id": "allb1_elderdrive",
+  "materials": "issue_elderdrive",
+  "materials_hash": "be132e6715f6",
+  "derived_from": {
+    "value_sets": [
+      "A",
+      "B"
+    ],
+    "rule": "exact_clause_union"
+  },
+  "statement": "너에게는 다음 여섯 가지가 중요하다: 추가 부담이 없는 것, 원할 때 바로 움직일 수 있는 것, 응급 시 지체 없는 것, 훈련된 사람에게 맡기는 것, 검증된 신뢰를 우선하는 것, 사회적으로 권장되는 방향을 따르는 것.",
+  "categories": [
+    "비용",
+    "즉시가용성",
+    "응급대응",
+    "안전역량",
+    "신뢰도",
+    "사회적신호"
+  ],
+  "note": "belief1 ALL 3모델 균형판(2026-09-01). 현행 A+B 가치문의 구절을 그대로 병합 — build_allsets_b1.py 가 짓고 기존 9개 재생성 대조를 통과했다."
+}

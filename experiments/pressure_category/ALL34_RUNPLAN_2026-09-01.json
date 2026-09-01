@@ -1,0 +1,703 @@
+{
+  "schema": "pressure_live_runplan_v1",
+  "plan_id": "ALL34_3MODEL_2026-09-01",
+  "created_at": "2026-09-01T17:59:06+09:00",
+  "approval": "요한 2026-09-01 — 34벌로 가고 모델별 배치로 따라잡는다",
+  "source_commit": "fec15cf43ecb792a8a9b94c440a56e28b40c08df",
+  "source_hashes": {
+    "run_pressure_py": "c3d60e470fabc1e97acb2d4cd1360ca71074e0d0ef172a94a5055fab52c7a668",
+    "build_allsets_b1_py": "f5aa9c7c1be9e60b35fed1d3f8ad141dc7e2b2573ce2d65c79234b3cec198c49"
+  },
+  "condition": {
+    "script": "C0",
+    "reps": [
+      1,
+      2,
+      3
+    ],
+    "value_once": false,
+    "max_logical_calls_per_run": 11,
+    "expected_logical_calls_per_run": 8
+  },
+  "target_materials": 34,
+  "value_sets": {
+    "issue_cat_feeding_party": "all_cat_feeding_party",
+    "issue_cat_feeding_plainvalue": "all_cat_feeding_plainval",
+    "issue_childcare_party": "all_childcare_party",
+    "issue_childcare_room": "all_childcare_room",
+    "issue_community_cat_feeding": "all_community_cat_feedin",
+    "issue_community_room": "all_community_room",
+    "issue_floor_noise": "all_floor_noise",
+    "issue_garden_plot": "all_garden_plot",
+    "issue_restaurant_anniversary": "all_r_anniversary",
+    "issue_restaurant_biz_meeting": "all_r_biz_meeting",
+    "issue_restaurant_brunch": "all_r_brunch",
+    "issue_restaurant_date": "all_r_date",
+    "issue_restaurant_elders": "all_r_elders",
+    "issue_restaurant_kids": "all_r_kids",
+    "issue_restaurant_office_lunch": "all_r_office_lunch",
+    "issue_restaurant_sanggyeollye": "all_r_sanggyeollye",
+    "issue_restaurant_sogaeting": "all_r_sogaeting",
+    "issue_restaurant_solo": "all_r_solo",
+    "issue_recycling_room": "all_recycling_room",
+    "issue_recycling_room_party": "all_recycling_room_party",
+    "issue_smoking_area": "all_smoking_area",
+    "issue_smoking_area_party": "all_smoking_area_party",
+    "issue_ambulance": "allb1_ambulance",
+    "issue_caregiverprotect": "allb1_caregiverprotect",
+    "issue_cat_feeding_days_list": "allb1_cat_days",
+    "issue_childcare": "allb1_childcare",
+    "issue_elderdrive": "allb1_elderdrive",
+    "issue_eol": "allb1_eol",
+    "issue_euthanasia": "allb1_euthanasia",
+    "issue_examaccom": "allb1_examaccom",
+    "issue_parentalreturn": "allb1_parental",
+    "issue_remotewatch": "allb1_remotewatch",
+    "issue_shelter": "allb1_shelter",
+    "issue_workmind": "allb1_workmind"
+  },
+  "excluded_stale_sets": [
+    {
+      "vset_id": "all_ambulance",
+      "issue_id": "issue_ambulance",
+      "reason": "겹침 0/6"
+    },
+    {
+      "vset_id": "all_caregiverprotect",
+      "issue_id": "issue_caregiverprotect",
+      "reason": "겹침 0/6"
+    },
+    {
+      "vset_id": "all_childcare",
+      "issue_id": "issue_childcare",
+      "reason": "겹침 0/6"
+    },
+    {
+      "vset_id": "all_elderdrive",
+      "issue_id": "issue_elderdrive",
+      "reason": "겹침 0/6"
+    },
+    {
+      "vset_id": "all_eol",
+      "issue_id": "issue_eol",
+      "reason": "겹침 0/6"
+    },
+    {
+      "vset_id": "all_euthanasia",
+      "issue_id": "issue_euthanasia",
+      "reason": "겹침 0/6"
+    },
+    {
+      "vset_id": "all_remotewatch",
+      "issue_id": "issue_remotewatch",
+      "reason": "겹침 0/6"
+    },
+    {
+      "vset_id": "all_shelter",
+      "issue_id": "issue_shelter",
+      "reason": "겹침 0/6"
+    },
+    {
+      "vset_id": "all_workmind",
+      "issue_id": "issue_workmind",
+      "reason": "겹침 0/6"
+    }
+  ],
+  "models": {
+    "claude-haiku": {
+      "missing_materials": 12,
+      "expected_runs": 36,
+      "expected_logical_calls": 288,
+      "max_logical_calls": 396,
+      "batches": [
+        {
+          "batch": 1,
+          "items": [
+            {
+              "issue_id": "issue_ambulance",
+              "vset_id": "allb1_ambulance",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "cf1983562ad4"
+            },
+            {
+              "issue_id": "issue_caregiverprotect",
+              "vset_id": "allb1_caregiverprotect",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "af21d42a102f"
+            },
+            {
+              "issue_id": "issue_cat_feeding_days_list",
+              "vset_id": "allb1_cat_days",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "945f4957b5ae"
+            }
+          ],
+          "expected_runs": 9
+        },
+        {
+          "batch": 2,
+          "items": [
+            {
+              "issue_id": "issue_childcare",
+              "vset_id": "allb1_childcare",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "bfce840c767a"
+            },
+            {
+              "issue_id": "issue_elderdrive",
+              "vset_id": "allb1_elderdrive",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "be132e6715f6"
+            },
+            {
+              "issue_id": "issue_eol",
+              "vset_id": "allb1_eol",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "85e7bf87b57e"
+            }
+          ],
+          "expected_runs": 9
+        },
+        {
+          "batch": 3,
+          "items": [
+            {
+              "issue_id": "issue_euthanasia",
+              "vset_id": "allb1_euthanasia",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "84fbacbedd4e"
+            },
+            {
+              "issue_id": "issue_examaccom",
+              "vset_id": "allb1_examaccom",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "bedab586e8b7"
+            },
+            {
+              "issue_id": "issue_parentalreturn",
+              "vset_id": "allb1_parental",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "2cb32fba6dc5"
+            }
+          ],
+          "expected_runs": 9
+        },
+        {
+          "batch": 4,
+          "items": [
+            {
+              "issue_id": "issue_remotewatch",
+              "vset_id": "allb1_remotewatch",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "6cab37beb5f6"
+            },
+            {
+              "issue_id": "issue_shelter",
+              "vset_id": "allb1_shelter",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "aa3eef04c672"
+            },
+            {
+              "issue_id": "issue_workmind",
+              "vset_id": "allb1_workmind",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "661cb97a56ee"
+            }
+          ],
+          "expected_runs": 9
+        }
+      ]
+    },
+    "gemini-flash": {
+      "missing_materials": 12,
+      "expected_runs": 36,
+      "expected_logical_calls": 288,
+      "max_logical_calls": 396,
+      "batches": [
+        {
+          "batch": 1,
+          "items": [
+            {
+              "issue_id": "issue_ambulance",
+              "vset_id": "allb1_ambulance",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "cf1983562ad4"
+            },
+            {
+              "issue_id": "issue_caregiverprotect",
+              "vset_id": "allb1_caregiverprotect",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "af21d42a102f"
+            },
+            {
+              "issue_id": "issue_cat_feeding_days_list",
+              "vset_id": "allb1_cat_days",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "945f4957b5ae"
+            }
+          ],
+          "expected_runs": 9
+        },
+        {
+          "batch": 2,
+          "items": [
+            {
+              "issue_id": "issue_childcare",
+              "vset_id": "allb1_childcare",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "bfce840c767a"
+            },
+            {
+              "issue_id": "issue_elderdrive",
+              "vset_id": "allb1_elderdrive",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "be132e6715f6"
+            },
+            {
+              "issue_id": "issue_eol",
+              "vset_id": "allb1_eol",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "85e7bf87b57e"
+            }
+          ],
+          "expected_runs": 9
+        },
+        {
+          "batch": 3,
+          "items": [
+            {
+              "issue_id": "issue_euthanasia",
+              "vset_id": "allb1_euthanasia",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "84fbacbedd4e"
+            },
+            {
+              "issue_id": "issue_examaccom",
+              "vset_id": "allb1_examaccom",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "bedab586e8b7"
+            },
+            {
+              "issue_id": "issue_parentalreturn",
+              "vset_id": "allb1_parental",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "2cb32fba6dc5"
+            }
+          ],
+          "expected_runs": 9
+        },
+        {
+          "batch": 4,
+          "items": [
+            {
+              "issue_id": "issue_remotewatch",
+              "vset_id": "allb1_remotewatch",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "6cab37beb5f6"
+            },
+            {
+              "issue_id": "issue_shelter",
+              "vset_id": "allb1_shelter",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "aa3eef04c672"
+            },
+            {
+              "issue_id": "issue_workmind",
+              "vset_id": "allb1_workmind",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "661cb97a56ee"
+            }
+          ],
+          "expected_runs": 9
+        }
+      ]
+    },
+    "gpt": {
+      "missing_materials": 23,
+      "expected_runs": 69,
+      "expected_logical_calls": 552,
+      "max_logical_calls": 759,
+      "batches": [
+        {
+          "batch": 1,
+          "items": [
+            {
+              "issue_id": "issue_ambulance",
+              "vset_id": "allb1_ambulance",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "cf1983562ad4"
+            },
+            {
+              "issue_id": "issue_caregiverprotect",
+              "vset_id": "allb1_caregiverprotect",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "af21d42a102f"
+            },
+            {
+              "issue_id": "issue_cat_feeding_party",
+              "vset_id": "all_cat_feeding_party",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "e64beb9f44e7"
+            }
+          ],
+          "expected_runs": 9
+        },
+        {
+          "batch": 2,
+          "items": [
+            {
+              "issue_id": "issue_cat_feeding_plainvalue",
+              "vset_id": "all_cat_feeding_plainval",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "dd584f366467"
+            },
+            {
+              "issue_id": "issue_childcare_party",
+              "vset_id": "all_childcare_party",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "1ee3dd197a77"
+            },
+            {
+              "issue_id": "issue_childcare_room",
+              "vset_id": "all_childcare_room",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "8cdfc68efc6c"
+            }
+          ],
+          "expected_runs": 9
+        },
+        {
+          "batch": 3,
+          "items": [
+            {
+              "issue_id": "issue_community_cat_feeding",
+              "vset_id": "all_community_cat_feedin",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "7d3f036fd62b"
+            },
+            {
+              "issue_id": "issue_community_room",
+              "vset_id": "all_community_room",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "b9a22d30ebc5"
+            },
+            {
+              "issue_id": "issue_elderdrive",
+              "vset_id": "allb1_elderdrive",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "be132e6715f6"
+            }
+          ],
+          "expected_runs": 9
+        },
+        {
+          "batch": 4,
+          "items": [
+            {
+              "issue_id": "issue_floor_noise",
+              "vset_id": "all_floor_noise",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "953e800c0ca1"
+            },
+            {
+              "issue_id": "issue_garden_plot",
+              "vset_id": "all_garden_plot",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "c018b6d7605e"
+            },
+            {
+              "issue_id": "issue_recycling_room_party",
+              "vset_id": "all_recycling_room_party",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "cb24e2cb38f5"
+            }
+          ],
+          "expected_runs": 9
+        },
+        {
+          "batch": 5,
+          "items": [
+            {
+              "issue_id": "issue_restaurant_anniversary",
+              "vset_id": "all_r_anniversary",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "6486b950be80"
+            },
+            {
+              "issue_id": "issue_restaurant_biz_meeting",
+              "vset_id": "all_r_biz_meeting",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "37de05a5fd9d"
+            },
+            {
+              "issue_id": "issue_restaurant_brunch",
+              "vset_id": "all_r_brunch",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "575e28f3d265"
+            }
+          ],
+          "expected_runs": 9
+        },
+        {
+          "batch": 6,
+          "items": [
+            {
+              "issue_id": "issue_restaurant_date",
+              "vset_id": "all_r_date",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "f41e4b404e5b"
+            },
+            {
+              "issue_id": "issue_restaurant_elders",
+              "vset_id": "all_r_elders",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "96c2c0101d47"
+            },
+            {
+              "issue_id": "issue_restaurant_kids",
+              "vset_id": "all_r_kids",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "12ee8781ee3f"
+            }
+          ],
+          "expected_runs": 9
+        },
+        {
+          "batch": 7,
+          "items": [
+            {
+              "issue_id": "issue_restaurant_office_lunch",
+              "vset_id": "all_r_office_lunch",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "2cb192df0814"
+            },
+            {
+              "issue_id": "issue_restaurant_sanggyeollye",
+              "vset_id": "all_r_sanggyeollye",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "6df0202a3375"
+            },
+            {
+              "issue_id": "issue_restaurant_sogaeting",
+              "vset_id": "all_r_sogaeting",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "9621ed5954bb"
+            }
+          ],
+          "expected_runs": 9
+        },
+        {
+          "batch": 8,
+          "items": [
+            {
+              "issue_id": "issue_restaurant_solo",
+              "vset_id": "all_r_solo",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "6ab9d97a23fe"
+            },
+            {
+              "issue_id": "issue_smoking_area",
+              "vset_id": "all_smoking_area",
+              "reps": [
+                1,
+                2,
+                3
+              ],
+              "materials_hash": "4db90d8868b8"
+            }
+          ],
+          "expected_runs": 6
+        }
+      ]
+    }
+  },
+  "totals": {
+    "runs": 141,
+    "calls": 1128,
+    "max": 1551
+  }
+}
