@@ -1,0 +1,23 @@
+{
+  "accepted_outputs": 0,
+  "attempted_launches": 2,
+  "bundle_root": "C:\\Users\\u\\AppData\\Local\\Temp\\coder-path-20260902-f4ve0n6f",
+  "errors": [
+    {
+      "coder_id": "A_CLAUDE_PATH_01",
+      "error": "JSONDecodeError: Expecting value: line 1 column 2 (char 1)"
+    },
+    {
+      "coder_id": "B_SOL_PATH_01",
+      "error": "ValueError: P-45: round 1 non-local evidence"
+    }
+  ],
+  "families": [],
+  "outputs": {
+    "A_CLAUDE_PATH_01": "e699fa6f8c90acf284772209675ba19ba42cc8fb525a18966abaa58d4222210a",
+    "B_SOL_PATH_01": "fab6df28a8e8b8c11e99611fb073d899180a17f05432d5fe0182ebb48dd79106"
+  },
+  "pack_sha256": "a91725d6cfc537d052e5c0a21dae3d604d25052dcf265ee85f7228b6cac04c61",
+  "planned_launches": 2,
+  "status": "HARD_STOP"
+}

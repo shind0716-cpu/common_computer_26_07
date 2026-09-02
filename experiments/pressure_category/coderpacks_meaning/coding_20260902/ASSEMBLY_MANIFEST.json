@@ -1,0 +1,23 @@
+{
+  "claude": {
+    "assembled_sha256": "d3826fbe651459bc64740c5c4c9bb0128c523642b3c9a17ea1136a87f2d9a006",
+    "cells": 594,
+    "items": 99,
+    "method": "M001-M014 fresh prefix supplement + verbatim parsed M015-M099 suffix from rejected raw",
+    "prefix_raw_sha256": "3565c4c74bed31e371d5db511fc17cadec9115d60696866ffe7e910527385908",
+    "rejected_raw_sha256": "adf8cdb872830dfed6f8a0133044d355368e0576b33df4fb1f4db57f7f9845f9",
+    "salvage_sha256": "f90bbd8c04555156a69cb9ec7f2a22b6987f94067468310243d854e742d96264"
+  },
+  "key_access": false,
+  "schema": "pack_m_assembly_manifest_v1",
+  "sol": {
+    "cells": 594,
+    "corrected_sha256": "2a9809c340043e3dc2732c60e5673aa8474f260ed9bf059e7fba9041b4a74a42",
+    "expanded_sha256": "17d7853706b3f750751b22a56f019a3e9173f507ed3a07c7633bf51b96d7c7d5",
+    "fix_raw_sha256": "93c87e2476679cce74b960577d84800a061a520c37cf4630b6d5a310e02b51e6",
+    "items": 99,
+    "method": "two approved evidence coordinates replaced; all other values deep-identical",
+    "raw_sha256": "325ee607182902a44623315dcdd1c57130ef59e320467cf41bd12d2a8530219d"
+  },
+  "status": "ASSEMBLED_VALID"
+}

@@ -1,0 +1,39 @@
+{
+  "cap": 3,
+  "entries": [
+    {
+      "adjudicator_id": "CLAUDE_ADJ_M_CHUNK_1",
+      "chunk": 1,
+      "completed_at": "2026-09-02T04:12:24.905229+00:00",
+      "family": "Claude",
+      "output_sha256": "777a2eb3f25211b295e7ebbb68b68499c6f1a24712e47df4f25a2c9a2e93dadd",
+      "prompt_sha256": "fa15268ff635e6bbd3226e52558dc023696229acdaad3120f2396ab8e8532222",
+      "reserved_at": "2026-09-02T04:06:57.630094+00:00",
+      "source_sha256": "35144aaabd949c03d88491ca5caca904e82c3e9fd5da658cc315893972ba23bc",
+      "status": "RAW_COMPLETE"
+    },
+    {
+      "adjudicator_id": "CLAUDE_ADJ_M_CHUNK_2",
+      "chunk": 2,
+      "completed_at": "2026-09-02T04:16:56.674569+00:00",
+      "family": "Claude",
+      "output_sha256": "3a520c769c908f3442e590268aef209b83c83aa330dc896677e1cfe5234eb000",
+      "prompt_sha256": "c760992541863a425a7a57b7411ef220b6f3ae2f730e51f5fb8eaf4a717c9246",
+      "reserved_at": "2026-09-02T04:12:24.932039+00:00",
+      "source_sha256": "04cf1f70555616d1e7a5d68b63defd6e6111ef71239c9688b216eba490855131",
+      "status": "RAW_COMPLETE"
+    },
+    {
+      "adjudicator_id": "CLAUDE_ADJ_M_CHUNK_3",
+      "chunk": 3,
+      "completed_at": "2026-09-02T04:21:56.159723+00:00",
+      "family": "Claude",
+      "output_sha256": "e8351c232cd5b7528464967017f7eab7ea9084aa9b31cae71ce3a9a049852d3b",
+      "prompt_sha256": "c4fe8ea37b890df7f0efa799715b7e46c31b99ccfa30c377e99e529c639948a5",
+      "reserved_at": "2026-09-02T04:16:56.707798+00:00",
+      "source_sha256": "cd4188e5b5551b869a8d928d1c10676414e11352022cf594ca264a75353473fb",
+      "status": "RAW_COMPLETE"
+    }
+  ],
+  "schema": "pack_m_adjudication_call_ledger_v1"
+}

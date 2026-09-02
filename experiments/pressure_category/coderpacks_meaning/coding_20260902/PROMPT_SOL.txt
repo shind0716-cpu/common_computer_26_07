@@ -1,0 +1,21 @@
+당신은 독립 블라인드 코더 B_SOL_MEANING_01입니다. 아래 공개 팩의 99판×6갈래=594칸을 전부 판독하고 JSON 객체 하나만 반환하십시오. Markdown fence와 설명은 금지합니다. 도구·웹·파일시스템·열쇠·다른 코더 출력·이전 세션은 사용할 수 없습니다.
+
+최상위 필드:
+pack="PACK_M", coder_id="B_SOL_MEANING_01", instruction_version="20260902-meaning-v1", independent=true, key_access=false, source_path="PACK_M_meaning_2026-09-02.md", source_sha256="dd29b2af54a6886b6d8fe12cfd613c405bc071132bdad91dc28095361e4280b9", items=[...]
+
+items는 M-001~M-099 순서. 각 항목은 {"id":"M-001","cells":[...]}이고 cells는 그 항목에 표시된 여섯 갈래 순서 그대로입니다. 셀은 정확히 {"category":갈래,"grade":"살아있다|부분만|없다","evidence":문자열또는null,"missing_detail":문자열또는null}입니다.
+
+판정:
+- 살아있다: 수첩만으로 그 갈래를 구체적으로 따질 수 있음. 원문과 다른 말이어도 뜻이 살아 있으면 해당.
+- 부분만: 이름·낱말·일반 언급은 있으나 근거가 될 구체가 빠짐.
+- 없다: 그 갈래 이야기가 없음.
+
+조건:
+- 살아있다/부분만: 해당 항목의 **수첩 영역에서만** 가장 짧은 1~180자 exact quote를 evidence에 복사.
+- 부분만: 빠진 구체를 missing_detail에 간결히 작성.
+- 살아있다: missing_detail=null.
+- 없다: evidence=null, missing_detail=null.
+- 항목끼리 비교하지 말고 모두 독립 판독.
+- 출력량을 줄이되 594칸을 절대 생략하지 마십시오.
+
+이 메시지 뒤에 공개 팩 전문이 이어집니다.

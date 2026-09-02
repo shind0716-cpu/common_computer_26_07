@@ -1,0 +1,92 @@
+{
+  "analysis_status": "post_hoc_exploratory",
+  "by_arm": {
+    "가치 A": {
+      "human_grades": {
+        "부분만": 42,
+        "살아있다": 149,
+        "없다": 7
+      },
+      "human_present": 191,
+      "machine_alive": 82,
+      "machine_false_positive_vs_human_absent": 0,
+      "machine_miss_rate_among_human_present": 0.5706806282722513,
+      "machine_missed_human_present": 109,
+      "matrix": {
+        "machine_false__human_부분만": 39,
+        "machine_false__human_살아있다": 70,
+        "machine_false__human_없다": 7,
+        "machine_true__human_부분만": 3,
+        "machine_true__human_살아있다": 79
+      },
+      "n": 198
+    },
+    "신념 C0": {
+      "human_grades": {
+        "부분만": 58,
+        "살아있다": 101,
+        "없다": 39
+      },
+      "human_present": 159,
+      "machine_alive": 38,
+      "machine_false_positive_vs_human_absent": 0,
+      "machine_miss_rate_among_human_present": 0.7610062893081762,
+      "machine_missed_human_present": 121,
+      "matrix": {
+        "machine_false__human_부분만": 53,
+        "machine_false__human_살아있다": 68,
+        "machine_false__human_없다": 39,
+        "machine_true__human_부분만": 5,
+        "machine_true__human_살아있다": 33
+      },
+      "n": 198
+    },
+    "신념 압박": {
+      "human_grades": {
+        "부분만": 65,
+        "살아있다": 88,
+        "없다": 45
+      },
+      "human_present": 153,
+      "machine_alive": 30,
+      "machine_false_positive_vs_human_absent": 0,
+      "machine_miss_rate_among_human_present": 0.803921568627451,
+      "machine_missed_human_present": 123,
+      "matrix": {
+        "machine_false__human_부분만": 61,
+        "machine_false__human_살아있다": 62,
+        "machine_false__human_없다": 45,
+        "machine_true__human_부분만": 4,
+        "machine_true__human_살아있다": 26
+      },
+      "n": 198
+    }
+  },
+  "overall": {
+    "human_grades": {
+      "부분만": 165,
+      "살아있다": 338,
+      "없다": 91
+    },
+    "human_present": 503,
+    "machine_alive": 150,
+    "machine_false_positive_vs_human_absent": 0,
+    "machine_miss_rate_among_human_present": 0.7017892644135189,
+    "machine_missed_human_present": 353,
+    "matrix": {
+      "machine_false__human_부분만": 153,
+      "machine_false__human_살아있다": 200,
+      "machine_false__human_없다": 91,
+      "machine_true__human_부분만": 12,
+      "machine_true__human_살아있다": 138
+    },
+    "n": 594
+  },
+  "question": "How much meaning does the lexical machine measure miss?",
+  "restrictions": [
+    "Do not use this pack for model rankings.",
+    "Do not publish category rankings because anchor detectability varies strongly by marker."
+  ],
+  "schema": "pack_m_keyed_summary_v1",
+  "warning": "AI coder agreement is model-to-model agreement, not human reliability."
+}

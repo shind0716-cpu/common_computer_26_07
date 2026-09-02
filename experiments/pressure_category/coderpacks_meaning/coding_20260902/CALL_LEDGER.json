@@ -1,0 +1,94 @@
+{
+  "cap": 6,
+  "cap_revisions": [
+    {
+      "approved_replacements": 2,
+      "at": "2026-09-02T03:20:19.148273+00:00",
+      "from": 2,
+      "reason": "user-approved two single-output replacements after reset",
+      "to": 4
+    },
+    {
+      "approved_replacements": 2,
+      "at": "2026-09-02T03:56:39.555121+00:00",
+      "from": 4,
+      "reason": "timeout-fallback best-judgement: Claude missing-prefix supplement plus Sol two-quote correction",
+      "to": 6
+    }
+  ],
+  "entries": [
+    {
+      "bundle": "C:\\Users\\u\\AppData\\Local\\Temp\\coder-meaning-20260902-d5x48wbl\\A_CLAUDE_MEANING_01",
+      "coder_id": "A_CLAUDE_MEANING_01",
+      "completed_at": "2026-09-02T02:58:52.776011+00:00",
+      "family": "Claude",
+      "output_sha256": "adf8cdb872830dfed6f8a0133044d355368e0576b33df4fb1f4db57f7f9845f9",
+      "pack_sha256": "dd29b2af54a6886b6d8fe12cfd613c405bc071132bdad91dc28095361e4280b9",
+      "prompt_sha256": "be61979f966bdaa648ebac9fadc73fea62c5fd91437f3d04de39ac0c5584a538",
+      "reserved_at": "2026-09-02T02:41:09.395315+00:00",
+      "schema_sha256": "c987afb6795cc25115300c77e3cec041eda681c9fde64831f581a533a6bb88cb",
+      "status": "RAW_COMPLETE"
+    },
+    {
+      "bundle": "C:\\Users\\u\\AppData\\Local\\Temp\\coder-meaning-20260902-d5x48wbl\\B_SOL_MEANING_01",
+      "coder_id": "B_SOL_MEANING_01",
+      "completed_at": "2026-09-02T02:58:55.773853+00:00",
+      "error": "RuntimeError: coder runtime failed with exit 1: Traceback (most recent call last):\r\n  File \"D:\\ms\\common_computer_26_07\\experiments\\pressure_category\\coderpacks_all11_gpt_20260901\\sol_toolless_runner.py\", line 98, in <module>\r\n    raise SystemExit(main())\r\n                     ^^^^^^\r\n  File \"D:\\ms\\common_computer_26_07\\experiments\\pressure_category\\coderpacks_all11_gpt_20260901\\sol_toolless_runner.py\", line 74, in main\r\n    content, response_model, request_id = _run_stateless_codex_response(client, resolved, user_input)\r\n                    ",
+      "pack_sha256": "dd29b2af54a6886b6d8fe12cfd613c405bc071132bdad91dc28095361e4280b9",
+      "prompt_sha256": "813b8505b37c509e8a1fc8af5443332eaf052da7b30dbecea80d0a24afee34da",
+      "reserved_at": "2026-09-02T02:58:52.802327+00:00",
+      "schema_sha256": "c987afb6795cc25115300c77e3cec041eda681c9fde64831f581a533a6bb88cb",
+      "status": "FAILED"
+    },
+    {
+      "bundle": "C:\\Users\\u\\AppData\\Local\\Temp\\coder-meaning-v2-20260902-oxofqaf9\\A_CLAUDE_MEANING_02",
+      "coder_id": "A_CLAUDE_MEANING_02",
+      "completed_at": "2026-09-02T03:45:03.018725+00:00",
+      "error": "RuntimeError: coder runtime failed with exit 1: ",
+      "pack_sha256": "dd29b2af54a6886b6d8fe12cfd613c405bc071132bdad91dc28095361e4280b9",
+      "prompt_sha256": "aeede675e5f1ae99f1ac00249cb5cfb3b542c04b034f8b3513d46bb0274fd3f6",
+      "replacement_for": "A_CLAUDE_MEANING_01",
+      "reserved_at": "2026-09-02T03:20:19.187591+00:00",
+      "schema_sha256": "b958072a287df9a436c5a2aa8154a8ea6f8bfdea1934d8c605a68d08e88652dd",
+      "status": "FAILED"
+    },
+    {
+      "bundle": "C:\\Users\\u\\AppData\\Local\\Temp\\coder-meaning-v2-20260902-oxofqaf9\\B_SOL_MEANING_02",
+      "coder_id": "B_SOL_MEANING_02",
+      "completed_at": "2026-09-02T03:50:39.751439+00:00",
+      "family": "Hermes-Sol",
+      "output_sha256": "325ee607182902a44623315dcdd1c57130ef59e320467cf41bd12d2a8530219d",
+      "pack_sha256": "dd29b2af54a6886b6d8fe12cfd613c405bc071132bdad91dc28095361e4280b9",
+      "prompt_sha256": "d81f8286040d0b485c7551a45ab2d2409e33c3d073f1ced719f26bda20a6dcc4",
+      "replacement_for": "B_SOL_MEANING_01",
+      "reserved_at": "2026-09-02T03:45:03.032670+00:00",
+      "schema_sha256": "b958072a287df9a436c5a2aa8154a8ea6f8bfdea1934d8c605a68d08e88652dd",
+      "status": "RAW_COMPLETE"
+    },
+    {
+      "bundle": "C:\\Users\\u\\AppData\\Local\\Temp\\coder-meaning-recovery-20260902-c2bbpf0r\\A_CLAUDE_MEANING_PREFIX_03",
+      "coder_id": "A_CLAUDE_MEANING_PREFIX_03",
+      "completed_at": "2026-09-02T04:00:57.038222+00:00",
+      "family": "Claude",
+      "output_sha256": "3565c4c74bed31e371d5db511fc17cadec9115d60696866ffe7e910527385908",
+      "prompt_sha256": "99bcdfdec9be5a3f6b27c9e1ea0f53fcc70b8109c7d1c34ab6efc50a3dfb89db",
+      "reserved_at": "2026-09-02T03:56:39.577031+00:00",
+      "source_path": "PACK_M_PREFIX_M001_M014.md",
+      "source_sha256": "4016ba66de01696fcb2656df9952aa37e03b88c52d44903148cca3658a80009b",
+      "status": "RAW_COMPLETE"
+    },
+    {
+      "bundle": "C:\\Users\\u\\AppData\\Local\\Temp\\coder-meaning-recovery-20260902-c2bbpf0r\\B_SOL_MEANING_02_QUOTE_FIX",
+      "coder_id": "B_SOL_MEANING_02_QUOTE_FIX",
+      "completed_at": "2026-09-02T04:01:05.091366+00:00",
+      "family": "Hermes-Sol",
+      "output_sha256": "93c87e2476679cce74b960577d84800a061a520c37cf4630b6d5a310e02b51e6",
+      "prompt_sha256": "7802bbb95ac9232c3d860121233c805bf1cbf56ded5b5be4ec22a286fdb65f38",
+      "reserved_at": "2026-09-02T04:00:57.049020+00:00",
+      "source_path": "PACK_M_ITEM_M080.md",
+      "source_sha256": "37de7c0ab95f4a2a68802fe116273a59b99ad20b6526a44acd645b4991ea733a",
+      "status": "RAW_COMPLETE"
+    }
+  ],
+  "schema": "pack_m_call_ledger_v1"
+}

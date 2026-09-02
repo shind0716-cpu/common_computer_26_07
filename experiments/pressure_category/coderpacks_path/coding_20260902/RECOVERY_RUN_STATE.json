@@ -1,0 +1,14 @@
+{
+  "accepted_recovery": 3,
+  "attempted_launches": 5,
+  "bundle_root": "C:\\Users\\u\\AppData\\Local\\Temp\\coder-path-recovery-20260902-3t24yors",
+  "errors": [],
+  "outputs": {
+    "A_CLAUDE_PATH_RECOVERY_02": "e489b4af757c54e5a514c0ed6289ad4a572fcccbe3e102242d25a5b434a4d447",
+    "A_CLAUDE_PATH_RECOVERY_03": "9fd45b983a05659a5257d92bd3d50efc7a2d7dfb9404591c89c58ddb9f051eaf",
+    "B_SOL_PATH_QUOTE_FIX_02": "8733fbe88a7ba0f47cbab9dd6e8471ea21c72042046281c072cf9a843a9f2610"
+  },
+  "recovery_launches": 3,
+  "status": "RECOVERY_RAW_ACCEPTED",
+  "transport_cap": 5
+}

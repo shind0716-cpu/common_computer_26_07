@@ -1,0 +1,21 @@
+{
+  "attempted_launches": 4,
+  "bundle_root": "C:\\Users\\u\\AppData\\Local\\Temp\\coder-meaning-v2-20260902-oxofqaf9",
+  "errors": [
+    {
+      "coder_id": "A_CLAUDE_MEANING_02",
+      "error": "RuntimeError: coder runtime failed with exit 1: "
+    }
+  ],
+  "families": [
+    "Hermes-Sol"
+  ],
+  "outputs": {
+    "A_CLAUDE_MEANING_01": "adf8cdb872830dfed6f8a0133044d355368e0576b33df4fb1f4db57f7f9845f9",
+    "B_SOL_MEANING_02": "325ee607182902a44623315dcdd1c57130ef59e320467cf41bd12d2a8530219d"
+  },
+  "pack_sha256": "dd29b2af54a6886b6d8fe12cfd613c405bc071132bdad91dc28095361e4280b9",
+  "replacement_launches": 2,
+  "status": "HARD_STOP",
+  "transport_cap": 4
+}

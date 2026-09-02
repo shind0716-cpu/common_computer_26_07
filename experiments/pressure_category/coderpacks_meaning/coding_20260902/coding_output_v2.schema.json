@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object", "additionalProperties": false,
+  "required": ["pack","coder_id","instruction_version","independent","key_access","source_path","source_sha256","items"],
+  "properties": {
+    "pack":{"const":"PACK_M"}, "coder_id":{"type":"string","minLength":1},
+    "instruction_version":{"const":"20260902-meaning-v2-compact"},
+    "independent":{"const":true}, "key_access":{"const":false},
+    "source_path":{"const":"PACK_M_meaning_2026-09-02.md"},
+    "source_sha256":{"const":"dd29b2af54a6886b6d8fe12cfd613c405bc071132bdad91dc28095361e4280b9"},
+    "items":{"type":"array","minItems":99,"maxItems":99,"items":{"type":"array","minItems":2,"maxItems":2,"prefixItems":[{"type":"string","pattern":"^M-[0-9]{3}$"},{"type":"array","minItems":6,"maxItems":6,"items":{"type":"array","minItems":4,"maxItems":4,"prefixItems":[{"type":"string","minLength":1},{"enum":["살아있다","부분만","없다"]},{"type":["string","null"]},{"type":["string","null"]}]}}]}}
+  }
+}

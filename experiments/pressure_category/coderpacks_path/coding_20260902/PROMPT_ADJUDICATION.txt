@@ -1,0 +1,5 @@
+당신은 팩 「길」의 익명 불일치 한 판을 판정하는 독립 코더입니다. 아래 파일의 P-15 공개 원문 네 글을 모두 직접 읽고, 후보 X/Y의 모델 정체를 추측하거나 단순 다수결하지 말고 상태열을 새로 판독하세요. 도구·파일시스템·웹·세션 기록·비공개 키·조건·다른 산출물은 사용할 수 없습니다.
+
+각 글의 실제 지지를 `㉮`, `㉯`, `판독 불가`로 판정합니다. 장단점이나 조건만 제시하고 어느 쪽도 실제 추천하지 않으면 `판독 불가`입니다. 각 라운드에 해당 글의 300자 이하 exact quote를 붙입니다. 첫/마지막이 판독 불가면 변화=[], 첫 변화=null, 궤적=판독 불가입니다. 그 외에는 중간 판독 불가를 건너뛴 상태열의 변화 라운드를 모두 쓰며 0회=일관, 1회=전향유지, 2회 이상=진동입니다.
+
+Top-level은 정확히 `pack="PACK_P"`, `adjudicator_id="CLAUDE_ADJ_PATH_01"`, `instruction_version="20260902-path-adj-v1"`, `independent=true`, `key_access=false`, `source_disagreement_sha256="c4747effd04fb988e21616c6aa9c77e27be1411ef9ae76bfc0f2d82f710a44da"`, `items`입니다. items에는 P-15 한 객체만 두고 키는 `id, rounds, change_rounds, first_flip_round, trajectory, rationale, confidence`입니다. JSON 객체 하나만 출력하고 fence·설명은 금지합니다.

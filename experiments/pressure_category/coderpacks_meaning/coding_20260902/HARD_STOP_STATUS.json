@@ -1,0 +1,30 @@
+{
+  "schema": "pack_m_run_status_v1",
+  "status": "HARD_STOP",
+  "analysis_status": "post_hoc_exploratory",
+  "initial_transport_cap": 2,
+  "attempted_launches": 2,
+  "accepted_outputs": 0,
+  "rejected_outputs": [
+    {
+      "coder_id": "A_CLAUDE_MEANING_01",
+      "reason": "TRUNCATED_PREFIX_INVALID_JSON",
+      "raw_preserved": "A_CLAUDE_MEANING_01_RAW.json",
+      "raw_sha256": "adf8cdb872830dfed6f8a0133044d355368e0576b33df4fb1f4db57f7f9845f9",
+      "observed_first_complete_item": "M-015",
+      "observed_bytes": 74238,
+      "receipt": "A_CLAUDE_MEANING_01_LAUNCH_RECEIPT.json"
+    },
+    {
+      "coder_id": "B_SOL_MEANING_01",
+      "reason": "RUNTIME_FAILURE_NO_OUTPUT",
+      "raw_preserved": null,
+      "receipt": null,
+      "failure_preserved_in": ["CALL_LEDGER.json", "RUN_STATE.json"]
+    }
+  ],
+  "private_key_released": false,
+  "automatic_retry": false,
+  "recommended_recovery": "Split the fixed ordered pack into three 33-item chunks per model family; six fresh tool-less replacement launches. Reassemble and validate 99 items/594 cells before comparison.",
+  "approval_required": true
+}

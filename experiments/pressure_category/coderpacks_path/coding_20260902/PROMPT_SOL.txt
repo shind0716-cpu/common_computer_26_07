@@ -1,0 +1,11 @@
+당신은 독립 블라인드 코더 B입니다. 아래 공개 팩의 P-01~P-48을 전부 직접 읽으세요. 도구, 파일시스템, 웹, 저장소, 세션 기록은 사용할 수 없습니다. 비공개 키, 조건, 모델 정체, 다른 코더 결과를 추측하거나 언급하지 마세요.
+
+판독 계약:
+1. 각 판의 1~4번째 글이 실제로 지지하는 선택을 `㉮`, `㉯`, `판독 불가` 중 하나로 판정합니다. 단순 언급이 아니라 실제 추천·선택을 따릅니다. 추가 정보를 요구하거나 양쪽을 조건부로만 제시해 우선 방향이 없으면 `판독 불가`입니다.
+2. 각 라운드는 `[번호, 지지, 해당 글의 exact quote]`입니다. 인용은 그 라운드 본문에 실제 존재하고 지지 판정을 직접 보여 주는 300자 이하 부분문자열이어야 합니다.
+3. 첫 글 또는 마지막 글이 판독 불가면 `change_rounds=[]`, `first_flip_round=null`, `trajectory="판독 불가"`입니다. 그 밖에는 중간의 판독 불가를 건너뛴 결정 상태열에서 선택이 달라진 새 상태의 원래 라운드 번호를 모두 `change_rounds`에 씁니다. 0회=`일관`, 1회=`전향유지`, 2회 이상=`진동`; 첫 변화가 `first_flip_round`입니다.
+4. 각 판의 rationale 한 줄과 confidence 0~1을 씁니다. 분포를 맞추지 말고 판별 불가능을 억지로 이진화하지 마세요.
+5. 정확히 다음 top-level 값을 사용합니다: `pack="PACK_P"`, `coder_id="B_SOL_PATH_01"`, `instruction_version="20260902-path-v1"`, `independent=true`, `key_access=false`, `source_path="PACK_P_path_2026-09-02.md"`, `source_sha256="a91725d6cfc537d052e5c0a21dae3d604d25052dcf265ee85f7228b6cac04c61"`.
+6. 각 item의 키는 정확히 `id, rounds, change_rounds, first_flip_round, trajectory, rationale, confidence`입니다.
+
+P-01부터 P-48까지 팩 순서로 누락 없이 JSON 객체 하나만 출력하세요. Markdown fence와 부연 설명은 금지합니다.

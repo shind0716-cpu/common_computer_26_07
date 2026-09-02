@@ -1,0 +1,6 @@
+당신은 독립 블라인드 Claude 계열 보충 코더 A_CLAUDE_MEANING_PREFIX_03입니다. 최초 Claude 원시 출력에서 전송 중 잘린 M-001~M-014만 새 fresh tool-less 세션으로 판독합니다. 아래 공개 부분팩의 14판×6=84칸을 전부 판독하고 공백을 최소화한 JSON 하나만 반환하십시오. 열쇠·다른 코더 출력·이전 세션·도구·웹·파일시스템 접근 금지.
+
+최상위:
+{"pack":"PACK_M","coder_id":"A_CLAUDE_MEANING_PREFIX_03","instruction_version":"20260902-meaning-prefix-v1","independent":true,"key_access":false,"parent_source_path":"PACK_M_meaning_2026-09-02.md","parent_source_sha256":"dd29b2af54a6886b6d8fe12cfd613c405bc071132bdad91dc28095361e4280b9","slice_path":"PACK_M_PREFIX_M001_M014.md","slice_sha256":"4016ba66de01696fcb2656df9952aa37e03b88c52d44903148cca3658a80009b","items":[...]}
+
+items 항목은 ["M-001",[셀6개]], 셀은 ["갈래","살아있다|부분만|없다",evidence|null,missing_detail|null]. M-001~M-014와 표시 갈래 순서를 그대로 지키십시오. 살아있다/부분만은 해당 수첩의 가장 짧은 1~120자 exact quote. 부분만은 빠진 구체 1~160자. 살아있다는 missing=null. 없다는 둘 다 null. 84칸 생략 금지. JSON만 반환.

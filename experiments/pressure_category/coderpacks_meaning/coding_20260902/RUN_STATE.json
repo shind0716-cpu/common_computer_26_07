@@ -1,0 +1,19 @@
+{
+  "attempted_launches": 2,
+  "bundle_root": "C:\\Users\\u\\AppData\\Local\\Temp\\coder-meaning-20260902-d5x48wbl",
+  "errors": [
+    {
+      "coder_id": "B_SOL_MEANING_01",
+      "error": "RuntimeError: coder runtime failed with exit 1: Traceback (most recent call last):\r\n  File \"D:\\ms\\common_computer_26_07\\experiments\\pressure_category\\coderpacks_all11_gpt_20260901\\sol_toolless_runner.py\", line 98, in <module>\r\n    raise SystemExit(main())\r\n                     ^^^^^^\r\n  File \"D:\\ms\\common_computer_26_07\\experiments\\pressure_category\\coderpacks_all11_gpt_20260901\\sol_toolless_runner.py\", line 74, in main\r\n    content, response_model, request_id = _run_stateless_codex_response(client, resolved, user_input)\r\n                    "
+    }
+  ],
+  "families": [
+    "Claude"
+  ],
+  "outputs": {
+    "A_CLAUDE_MEANING_01": "adf8cdb872830dfed6f8a0133044d355368e0576b33df4fb1f4db57f7f9845f9"
+  },
+  "pack_sha256": "dd29b2af54a6886b6d8fe12cfd613c405bc071132bdad91dc28095361e4280b9",
+  "planned_launches": 2,
+  "status": "HARD_STOP"
+}

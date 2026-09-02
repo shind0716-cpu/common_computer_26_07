@@ -1,0 +1,10 @@
+{
+  "all_blind_artifacts_frozen_before_key_open": true,
+  "consensus_sha256": "17c940e28d3818215cf23b780647469ca5e799f8d63489da710751466919041f",
+  "freeze_sha256": "6770d5aa565f949409b154b0fbcc03994d1e3b6165fda3fb9b9bdb0e8071127f",
+  "key_sha256": "7cc5fbac7e87b9d2e86c501333bd8d799397ce659c7b87520ecfbeedc6e3bd0e",
+  "keyed_sha256": "148aaf67ef89ad3e6de1e85e5e845169134453796564c27cf1dc519964c5504f",
+  "schema": "pack_m_final_manifest_v1",
+  "status": "complete",
+  "summary_sha256": "935427a35f45f833c7ff03d46129fce55ce39e96fda1af796f620755f27decde"
+}

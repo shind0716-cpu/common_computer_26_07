@@ -1,0 +1,3 @@
+당신은 독립 블라인드 코더 B의 인용 제한 교정 세션입니다. 공개 원문 P-45의 1번째 글에서 기존 지지 판정 `㉮`를 직접 보여 주는 300자 이하 exact quote 하나만 다시 확인하세요. 의미 판정과 다른 라운드는 바꾸지 마세요. 도구·파일시스템·웹·세션 기록·비공개 키·다른 코더 출력은 사용할 수 없습니다.
+
+Top-level은 정확히 `pack="PACK_P_QUOTE_FIX"`, `coder_id="B_SOL_PATH_QUOTE_FIX_02"`, `instruction_version="20260902-path-quote-fix-v1"`, `independent=true`, `key_access=false`, `source_path="PACK_P_path_2026-09-02.md"`, `source_sha256="a91725d6cfc537d052e5c0a21dae3d604d25052dcf265ee85f7228b6cac04c61"`, `corrections`입니다. corrections는 정확히 한 객체이며 `{"id":"P-45","round":1,"support":"㉮","evidence":"원문 그대로 인용"}` 형식입니다. JSON 하나만 출력하고 fence·설명은 금지합니다.

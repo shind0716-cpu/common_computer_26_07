@@ -1,0 +1,77 @@
+{
+  "approved_expansions": [
+    {
+      "approved_at": "2026-09-02T05:25:13.285247+00:00",
+      "new_cap": 5,
+      "old_cap": 2,
+      "scope": "Claude P-01..P-21 + Claude P-22..P-42 + Sol P-45 round-1 quote only"
+    }
+  ],
+  "cap": 5,
+  "entries": [
+    {
+      "bundle": "C:\\Users\\u\\AppData\\Local\\Temp\\coder-path-20260902-f4ve0n6f\\A_CLAUDE_PATH_01",
+      "coder_id": "A_CLAUDE_PATH_01",
+      "completed_at": "2026-09-02T05:15:46.390975+00:00",
+      "error": "JSONDecodeError: Expecting value: line 1 column 2 (char 1)",
+      "output_sha256": "e699fa6f8c90acf284772209675ba19ba42cc8fb525a18966abaa58d4222210a",
+      "pack_sha256": "a91725d6cfc537d052e5c0a21dae3d604d25052dcf265ee85f7228b6cac04c61",
+      "prompt_sha256": "a90b69e4cfbd1fdfddaa90913f2d7f4030f939031e2b89a169f3b311d66682e2",
+      "reserved_at": "2026-09-02T05:09:32.760118+00:00",
+      "schema_sha256": "f39e70c36cbb25209069929b39a18499bf7a92925198a313222f7af0d472887c",
+      "status": "FAILED_OR_REJECTED"
+    },
+    {
+      "bundle": "C:\\Users\\u\\AppData\\Local\\Temp\\coder-path-20260902-f4ve0n6f\\B_SOL_PATH_01",
+      "coder_id": "B_SOL_PATH_01",
+      "completed_at": "2026-09-02T05:19:24.722726+00:00",
+      "error": "ValueError: P-45: round 1 non-local evidence",
+      "output_sha256": "fab6df28a8e8b8c11e99611fb073d899180a17f05432d5fe0182ebb48dd79106",
+      "pack_sha256": "a91725d6cfc537d052e5c0a21dae3d604d25052dcf265ee85f7228b6cac04c61",
+      "prompt_sha256": "d796c6ed5ed25eaac8826039a4501f025e557a36896862f44ba518674947fa38",
+      "reserved_at": "2026-09-02T05:15:46.435644+00:00",
+      "schema_sha256": "f39e70c36cbb25209069929b39a18499bf7a92925198a313222f7af0d472887c",
+      "status": "FAILED_OR_REJECTED"
+    },
+    {
+      "bundle": "C:\\Users\\u\\AppData\\Local\\Temp\\coder-path-recovery-20260902-3t24yors\\A_CLAUDE_PATH_RECOVERY_02",
+      "coder_id": "A_CLAUDE_PATH_RECOVERY_02",
+      "completed_at": "2026-09-02T05:28:47.772433+00:00",
+      "family": "Claude",
+      "model": "claude-opus-5",
+      "output_sha256": "e489b4af757c54e5a514c0ed6289ad4a572fcccbe3e102242d25a5b434a4d447",
+      "pack_sha256": "135d1892187c681db5aed3e850bbe00aec30f250ab9278c77b641f281bba1797",
+      "prompt_sha256": "628af13c3cde33490d8ecb9d81f535183bda820e91d55f489b86d713d1dff712",
+      "reserved_at": "2026-09-02T05:25:13.317795+00:00",
+      "schema_sha256": "04717b5dbcecd708dfe58f89b6f1739adc747089b01cd2e82347119be6c3e7f4",
+      "status": "ACCEPTED"
+    },
+    {
+      "bundle": "C:\\Users\\u\\AppData\\Local\\Temp\\coder-path-recovery-20260902-3t24yors\\A_CLAUDE_PATH_RECOVERY_03",
+      "coder_id": "A_CLAUDE_PATH_RECOVERY_03",
+      "completed_at": "2026-09-02T05:31:45.196929+00:00",
+      "family": "Claude",
+      "model": "claude-opus-5",
+      "output_sha256": "9fd45b983a05659a5257d92bd3d50efc7a2d7dfb9404591c89c58ddb9f051eaf",
+      "pack_sha256": "74fec2785a82df585c78ba750d2c9626b33c672f371ac0ee983b5d48a6e37454",
+      "prompt_sha256": "ec750a81d147dc459ba0f89300c7bc449f563a8e1fe0326688a43627312cf02a",
+      "reserved_at": "2026-09-02T05:28:47.796022+00:00",
+      "schema_sha256": "04717b5dbcecd708dfe58f89b6f1739adc747089b01cd2e82347119be6c3e7f4",
+      "status": "ACCEPTED"
+    },
+    {
+      "bundle": "C:\\Users\\u\\AppData\\Local\\Temp\\coder-path-recovery-20260902-3t24yors\\B_SOL_PATH_QUOTE_FIX_02",
+      "coder_id": "B_SOL_PATH_QUOTE_FIX_02",
+      "completed_at": "2026-09-02T05:31:54.021101+00:00",
+      "family": "Hermes-Sol",
+      "model": "gpt-5.6-sol",
+      "output_sha256": "8733fbe88a7ba0f47cbab9dd6e8471ea21c72042046281c072cf9a843a9f2610",
+      "pack_sha256": "a91725d6cfc537d052e5c0a21dae3d604d25052dcf265ee85f7228b6cac04c61",
+      "prompt_sha256": "1e35cbfece62c0a282edd8fbe625e38c7d6c3f780e4380bb73860b2616ac6781",
+      "reserved_at": "2026-09-02T05:31:45.228133+00:00",
+      "schema_sha256": "e46e376676aa70bb7cd9f58243ed6993f798c47aebe57503ac75fb3665cdbad2",
+      "status": "ACCEPTED"
+    }
+  ],
+  "schema": "pack_p_call_ledger_v1"
+}

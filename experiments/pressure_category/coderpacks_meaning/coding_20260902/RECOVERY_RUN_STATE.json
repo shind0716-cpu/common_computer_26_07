@@ -1,0 +1,18 @@
+{
+  "attempted_launches": 6,
+  "bundle_root": "C:\\Users\\u\\AppData\\Local\\Temp\\coder-meaning-recovery-20260902-c2bbpf0r",
+  "errors": [],
+  "families": [
+    "Claude",
+    "Hermes-Sol"
+  ],
+  "outputs": {
+    "A_CLAUDE_MEANING_01": "adf8cdb872830dfed6f8a0133044d355368e0576b33df4fb1f4db57f7f9845f9",
+    "A_CLAUDE_MEANING_PREFIX_03": "3565c4c74bed31e371d5db511fc17cadec9115d60696866ffe7e910527385908",
+    "B_SOL_MEANING_02": "325ee607182902a44623315dcdd1c57130ef59e320467cf41bd12d2a8530219d",
+    "B_SOL_MEANING_02_QUOTE_FIX": "93c87e2476679cce74b960577d84800a061a520c37cf4630b6d5a310e02b51e6"
+  },
+  "recovery_launches": 2,
+  "status": "RECOVERY_RAW_COMPLETE",
+  "transport_cap": 6
+}

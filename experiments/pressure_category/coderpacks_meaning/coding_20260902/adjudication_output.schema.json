@@ -1,0 +1,8 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema","type":"object","additionalProperties":false,
+  "required":["schema","adjudicator_id","instruction_version","independent","key_access","source_disagreements_sha256","chunk","chunk_sha256","resolutions"],
+  "properties":{
+    "schema":{"const":"pack_m_adjudication_chunk_v1"},"adjudicator_id":{"type":"string","minLength":1},"instruction_version":{"const":"20260902-meaning-adjudication-v1"},"independent":{"const":true},"key_access":{"const":false},"source_disagreements_sha256":{"const":"0d26337e65ccb6b38263939738ae34df5d995ede4f1c6990359464c22bb4c154"},"chunk":{"type":"integer","minimum":1,"maximum":3},"chunk_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "resolutions":{"type":"array","minItems":55,"maxItems":55,"items":{"type":"array","minItems":6,"maxItems":6,"prefixItems":[{"type":"string","pattern":"^M-[0-9]{3}$"},{"type":"string","minLength":1},{"enum":["살아있다","부분만","없다"]},{"type":["string","null"]},{"type":["string","null"]},{"type":"string","minLength":1}]}}
+  }
+}

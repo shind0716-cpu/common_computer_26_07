@@ -1,0 +1,19 @@
+{
+  "cap": 1,
+  "entries": [
+    {
+      "adjudicator_id": "CLAUDE_ADJ_PATH_01",
+      "bundle": "C:\\Users\\u\\AppData\\Local\\Temp\\coder-path-adj-20260902-sf4banib\\CLAUDE_ADJ_PATH_01",
+      "completed_at": "2026-09-02T05:34:27.403402+00:00",
+      "family": "Claude",
+      "model": "claude-opus-5",
+      "output_sha256": "76ceb32782baaba4d33803a04f58c9501cfbaf06658473b4035562d9acdeb946",
+      "prompt_sha256": "d1b333fe413e94d1cb37754469058214d3cf2bba2934527b3c0cee717a3cca7a",
+      "reserved_at": "2026-09-02T05:33:54.127498+00:00",
+      "schema_sha256": "9e5526c3ba54406ecbb0d9319ced1a6366f252417cf0d72292a6e19bea1ed6a8",
+      "source_sha256": "c4747effd04fb988e21616c6aa9c77e27be1411ef9ae76bfc0f2d82f710a44da",
+      "status": "ACCEPTED"
+    }
+  ],
+  "schema": "pack_p_adjudication_ledger_v1"
+}

@@ -1,0 +1,16 @@
+{
+  "attempted_launches": 3,
+  "cap": 3,
+  "errors": [],
+  "families": [
+    "Claude",
+    "Claude",
+    "Claude"
+  ],
+  "outputs": {
+    "CLAUDE_ADJ_M_CHUNK_1": "777a2eb3f25211b295e7ebbb68b68499c6f1a24712e47df4f25a2c9a2e93dadd",
+    "CLAUDE_ADJ_M_CHUNK_2": "3a520c769c908f3442e590268aef209b83c83aa330dc896677e1cfe5234eb000",
+    "CLAUDE_ADJ_M_CHUNK_3": "e8351c232cd5b7528464967017f7eab7ea9084aa9b31cae71ce3a9a049852d3b"
+  },
+  "status": "ADJUDICATION_RAW_COMPLETE"
+}

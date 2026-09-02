@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["pack","coder_id","instruction_version","independent","key_access","source_path","source_sha256","items"],
+  "properties": {
+    "pack": {"const": "PACK_P"},
+    "coder_id": {"type": "string", "minLength": 1},
+    "instruction_version": {"const": "20260902-path-v1"},
+    "independent": {"const": true},
+    "key_access": {"const": false},
+    "source_path": {"const": "PACK_P_path_2026-09-02.md"},
+    "source_sha256": {"const": "a91725d6cfc537d052e5c0a21dae3d604d25052dcf265ee85f7228b6cac04c61"},
+    "items": {
+      "type": "array", "minItems": 48, "maxItems": 48,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id","rounds","change_rounds","first_flip_round","trajectory","rationale","confidence"],
+        "properties": {
+          "id": {"type":"string","pattern":"^P-[0-9]{2}$"},
+          "rounds": {
+            "type":"array","minItems":4,"maxItems":4,
+            "items": {
+              "type":"array","minItems":3,"maxItems":3,
+              "prefixItems":[{"type":"integer","minimum":1,"maximum":4},{"enum":["㉮","㉯","판독 불가"]},{"type":"string","minLength":1,"maxLength":300}],
+              "items": false
+            }
+          },
+          "change_rounds":{"type":"array","uniqueItems":true,"items":{"type":"integer","minimum":2,"maximum":4}},
+          "first_flip_round":{"type":["integer","null"],"minimum":2,"maximum":4},
+          "trajectory":{"enum":["일관","전향유지","진동","판독 불가"]},
+          "rationale":{"type":"string","minLength":1,"maxLength":500},
+          "confidence":{"type":"number","minimum":0,"maximum":1}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+당신은 독립 블라인드 코더 A의 제한 복구 세션 3입니다. 아래 공개 부분팩 P-22~P-42만 전부 직접 읽으세요. 도구·파일시스템·웹·세션 기록·비공개 키·다른 출력은 사용할 수 없습니다.
+
+각 판의 네 글이 실제 지지하는 선택을 `㉮`, `㉯`, `판독 불가`로 판정하고 `[라운드, 지지, 해당 글의 300자 이하 exact quote]` 네 개를 냅니다. 추가 정보나 양쪽 조건만 있어 우선 방향이 없으면 판독 불가입니다. 첫/마지막이 판독 불가면 변화=[], 첫 변화=null, 궤적=판독 불가. 그 밖에는 중간 판독 불가를 건너뛴 상태열에서 바뀐 새 상태의 원래 라운드 번호를 change_rounds에 모두 쓰고, 0회=일관, 1회=전향유지, 2회 이상=진동, 첫 변화가 first_flip_round입니다.
+
+Top-level은 정확히 `pack="PACK_P_RECOVERY"`, `coder_id="A_CLAUDE_PATH_RECOVERY_03"`, `instruction_version="20260902-path-recovery-v1"`, `independent=true`, `key_access=false`, `source_path="PACK_P_PREFIX_P22_P42.md"`, `source_sha256="74fec2785a82df585c78ba750d2c9626b33c672f371ac0ee983b5d48a6e37454"`, `items`입니다. 각 item 키는 `id, rounds, change_rounds, first_flip_round, trajectory, rationale, confidence`입니다. P-22~P-42 순서의 JSON 객체 하나만 출력하고 fence·설명은 금지합니다.

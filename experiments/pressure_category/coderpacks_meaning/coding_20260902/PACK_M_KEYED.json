@@ -1,0 +1,4166 @@
+{
+  "consensus_sha256": "17c940e28d3818215cf23b780647469ca5e799f8d63489da710751466919041f",
+  "freeze_sha256": "6770d5aa565f949409b154b0fbcc03994d1e3b6165fda3fb9b9bdb0e8071127f",
+  "items": [
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "치워온일",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "환기",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "궂은날",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "바람",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "냄새",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "오가는길",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-001"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "정서상태",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "입양연계",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "케어방식",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "비용",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-002"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "대응체계",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "공간",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": true
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "상담접근성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": true
+        },
+        {
+          "category": "돌봄강도",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        }
+      ],
+      "id": "M-003"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "관계형성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "완충방법",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        }
+      ],
+      "id": "M-004"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "통행",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "익숙함",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "끼니",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "연속",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "위생",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "배수",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        }
+      ],
+      "id": "M-005"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "유연성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "예측가능성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "개별반영도",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "행정부담",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-006"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "정서교류",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": true
+        },
+        {
+          "category": "타당성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": true
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "상시성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        }
+      ],
+      "id": "M-007"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "평온",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "이동권",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "편의",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "위생",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "안전",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        }
+      ],
+      "id": "M-008"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "냄새",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "환기",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "궂은날",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "오가는길",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "치워온일",
+          "consensus_status": "adjudicated",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "바람",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        }
+      ],
+      "id": "M-009"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "대응체계",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "돌봄강도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "공간",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "상담접근성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-010"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "유연성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "개별반영도",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "예측가능성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "행정부담",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-011"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "정서교류",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "타당성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "상시성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-012"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "환기",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "오가는길",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "바람",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "냄새",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "치워온일",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "궂은날",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        }
+      ],
+      "id": "M-013"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "예측가능성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "유연성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "개별반영도",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "행정부담",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-014"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "관계형성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "완충방법",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        }
+      ],
+      "id": "M-015"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "끼니",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "통행",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "익숙함",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "배수",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "연속",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "위생",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-016"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "비용",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "타당성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "정서교류",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "상시성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        }
+      ],
+      "id": "M-017"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "타당성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "상시성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "정서교류",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-018"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "위생",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "이동권",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "편의",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "안전",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "평온",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-019"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "적응지원",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "운영이력",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "상담응대",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-020"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "연속",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "위생",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "끼니",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "배수",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "통행",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "익숙함",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-021"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "안전",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "이동권",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "평온",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "위생",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": true
+        },
+        {
+          "category": "편의",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-022"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "관계형성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "완충방법",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-023"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "통행",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "위생",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "연속",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "익숙함",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "끼니",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "배수",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        }
+      ],
+      "id": "M-024"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "대응체계",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "돌봄강도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "상담접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "비용",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": true
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "공간",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        }
+      ],
+      "id": "M-025"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "안정성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "승진반영",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "숙련도",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "성장기회",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "적응지원",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-026"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "완충방법",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "관계형성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        }
+      ],
+      "id": "M-027"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "성장기회",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "숙련도",
+          "consensus_status": "adjudicated",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "승진반영",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "안정성",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "적응지원",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-028"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "적응지원",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "상담응대",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "운영이력",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-029"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "궂은날",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "오가는길",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "치워온일",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "바람",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "냄새",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "환기",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-030"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "관계형성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "완충방법",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        }
+      ],
+      "id": "M-031"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "케어방식",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "정서상태",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "입양연계",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-032"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "승진반영",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "성장기회",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "적응지원",
+          "consensus_status": "adjudicated",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "안정성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "숙련도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-033"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "대응체계",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "상담접근성",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "공간",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "돌봄강도",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        }
+      ],
+      "id": "M-034"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "오가는길",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "냄새",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "환기",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "궂은날",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "바람",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "치워온일",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        }
+      ],
+      "id": "M-035"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "상담응대",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "적응지원",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "운영이력",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-036"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "유연성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "예측가능성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "개별반영도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "행정부담",
+          "consensus_status": "adjudicated",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-037"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "돌봄강도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "비용",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "공간",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "대응체계",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "상담접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        }
+      ],
+      "id": "M-038"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "비밀보장",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        }
+      ],
+      "id": "M-039"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "행정부담",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "유연성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "개별반영도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "예측가능성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-040"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "연속",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "배수",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "익숙함",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "끼니",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "통행",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "위생",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-041"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "이용사례",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "비밀보장",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        }
+      ],
+      "id": "M-042"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "비밀보장",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        }
+      ],
+      "id": "M-043"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "타당성",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "정서교류",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "상시성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-044"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "입양연계",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "정서상태",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "비용",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "케어방식",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-045"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "예측가능성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "행정부담",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "개별반영도",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "유연성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-046"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "비용",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "정서상태",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "입양연계",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "케어방식",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-047"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "정서교류",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": true
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "상시성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "타당성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        }
+      ],
+      "id": "M-048"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "승진반영",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "성장기회",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "숙련도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "안정성",
+          "consensus_status": "adjudicated",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "적응지원",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-049"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "비밀보장",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-050"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "운영이력",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "적응지원",
+          "consensus_status": "adjudicated",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "상담응대",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        }
+      ],
+      "id": "M-051"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "안정성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "적응지원",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "승진반영",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "성장기회",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "숙련도",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        }
+      ],
+      "id": "M-052"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "상담응대",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "적응지원",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "운영이력",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        }
+      ],
+      "id": "M-053"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "평온",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "위생",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "편의",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "안전",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "이동권",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-054"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "위생",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "편의",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "이동권",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "평온",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "안전",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-055"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "성장기회",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "승진반영",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "숙련도",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "적응지원",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "안정성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-056"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "응대속도",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "관계형성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "완충방법",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "adjudicated",
+          "human_grade": "없다",
+          "machine": false
+        }
+      ],
+      "id": "M-057"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "행정부담",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "예측가능성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "개별반영도",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "유연성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": true
+        }
+      ],
+      "id": "M-058"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "이용사례",
+          "consensus_status": "adjudicated",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "개별반영도",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "예측가능성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "행정부담",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "유연성",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-059"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "돌봄강도",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "공간",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "상담접근성",
+          "consensus_status": "adjudicated",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "대응체계",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-060"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "승진반영",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "성장기회",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "안정성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "적응지원",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "숙련도",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-061"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "전문성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "상담응대",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "적응지원",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "비용",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "운영이력",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-062"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "비밀보장",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-063"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "관계형성",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "완충방법",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-064"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "접근성",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "이동권",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "편의",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "평온",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "위생",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "안전",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-065"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "비용",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "비밀보장",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-066"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "끼니",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "연속",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "통행",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "배수",
+          "consensus_status": "adjudicated",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "위생",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "익숙함",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-067"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "상시성",
+          "consensus_status": "adjudicated",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "정서교류",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "타당성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-068"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "편의",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "위생",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "평온",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "이동권",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "안전",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-069"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "운영이력",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "상담응대",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "적응지원",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-070"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "상담접근성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "공간",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "돌봄강도",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "대응체계",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        }
+      ],
+      "id": "M-071"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "성장기회",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "적응지원",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "안정성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "승진반영",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "숙련도",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-072"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "환기",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "냄새",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "바람",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "궂은날",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "오가는길",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "치워온일",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        }
+      ],
+      "id": "M-073"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "상담응대",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "운영이력",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "적응지원",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        }
+      ],
+      "id": "M-074"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "환기",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "바람",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "오가는길",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "치워온일",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "냄새",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "궂은날",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-075"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "정서상태",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "케어방식",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "입양연계",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "비용",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-076"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "안전",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "이동권",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "편의",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "위생",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "평온",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-077"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "냄새",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "궂은날",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "치워온일",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "바람",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "오가는길",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "환기",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-078"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "냄새",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "오가는길",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "궂은날",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "환기",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "치워온일",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "바람",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        }
+      ],
+      "id": "M-079"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "비밀보장",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        }
+      ],
+      "id": "M-080"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "케어방식",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": true
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "입양연계",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "정서상태",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-081"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "이동권",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "평온",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "위생",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "편의",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "안전",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-082"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "완충방법",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "관계형성",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-083"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "비용",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "케어방식",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "정서상태",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "입양연계",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-084"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "공간",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "대응체계",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "돌봄강도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "상담접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        }
+      ],
+      "id": "M-085"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "위생",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "연속",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "배수",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "끼니",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "익숙함",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "통행",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-086"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "연속",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "끼니",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "배수",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "익숙함",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "위생",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "통행",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-087"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "케어방식",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "정서상태",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "입양연계",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-088"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "비밀보장",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-089"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "개별반영도",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "예측가능성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "행정부담",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "유연성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-090"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "끼니",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "연속",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "익숙함",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "통행",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "위생",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "배수",
+          "consensus_status": "adjudicated",
+          "human_grade": "없다",
+          "machine": false
+        }
+      ],
+      "id": "M-091"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "적응지원",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "운영이력",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "상담응대",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        }
+      ],
+      "id": "M-092"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "정서교류",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": true
+        },
+        {
+          "category": "타당성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": true
+        },
+        {
+          "category": "상시성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-093"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "입양연계",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "비용",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "정서상태",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "케어방식",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": true
+        }
+      ],
+      "id": "M-094"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "상시성",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "타당성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "정서교류",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-095"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "상담접근성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "대응체계",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "공간",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "돌봄강도",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        }
+      ],
+      "id": "M-096"
+    },
+    {
+      "arm": "신념 C0",
+      "cells": [
+        {
+          "category": "숙련도",
+          "consensus_status": "adjudicated",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "승진반영",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "안정성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "성장기회",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "적응지원",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        }
+      ],
+      "id": "M-097"
+    },
+    {
+      "arm": "신념 압박",
+      "cells": [
+        {
+          "category": "이용사례",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        },
+        {
+          "category": "비밀보장",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "비용",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": true
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "agreement",
+          "human_grade": "없다",
+          "machine": false
+        }
+      ],
+      "id": "M-098"
+    },
+    {
+      "arm": "가치 A",
+      "cells": [
+        {
+          "category": "완충방법",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "전문성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "관계형성",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": false
+        },
+        {
+          "category": "응대속도",
+          "consensus_status": "agreement",
+          "human_grade": "살아있다",
+          "machine": true
+        },
+        {
+          "category": "접근성",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        },
+        {
+          "category": "이용사례",
+          "consensus_status": "adjudicated",
+          "human_grade": "부분만",
+          "machine": false
+        }
+      ],
+      "id": "M-099"
+    }
+  ],
+  "key_sha256": "7cc5fbac7e87b9d2e86c501333bd8d799397ce659c7b87520ecfbeedc6e3bd0e",
+  "schema": "pack_m_keyed_v1"
+}

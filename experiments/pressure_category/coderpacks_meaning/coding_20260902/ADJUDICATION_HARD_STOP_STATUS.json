@@ -1,0 +1,35 @@
+{
+  "schema": "pack_m_adjudication_status_v1",
+  "status": "HARD_STOP",
+  "analysis_status": "post_hoc_exploratory",
+  "adjudication_call_cap": 3,
+  "attempted_launches": 3,
+  "raw_chunks_received": 3,
+  "accepted_chunks": 0,
+  "failure_class": "SYSTEMATIC_ENUM_NULL",
+  "failure_coordinates": [
+    ["M-009", "치워온일"],
+    ["M-028", "숙련도"],
+    ["M-033", "적응지원"],
+    ["M-037", "행정부담"],
+    ["M-049", "안정성"],
+    ["M-051", "적응지원"],
+    ["M-057", "이용사례"],
+    ["M-059", "이용사례"],
+    ["M-060", "상담접근성"],
+    ["M-067", "배수"],
+    ["M-068", "상시성"],
+    ["M-091", "배수"]
+  ],
+  "observed_value": null,
+  "expected_enum": "없다",
+  "diagnostic_only": "Mapping null to 없다 makes all three chunks pass every remaining contract check; no normalized artifact has been accepted or written.",
+  "raw_preserved": [
+    "ADJUDICATION_CHUNK_1_RAW.json",
+    "ADJUDICATION_CHUNK_2_RAW.json",
+    "ADJUDICATION_CHUNK_3_RAW.json"
+  ],
+  "private_key_released": false,
+  "automatic_repair": false,
+  "approval_required": true
+}

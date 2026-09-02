@@ -1,0 +1,28 @@
+{
+  "schema": "pack_m_recovery_acceptance_v1",
+  "status": "CODER_OUTPUTS_ACCEPTED_AWAITING_ADJUDICATION",
+  "analysis_status": "post_hoc_exploratory",
+  "transport_cap": 6,
+  "attempted_launches": 6,
+  "accepted_coder_artifacts": [
+    {
+      "coder_id": "A_CLAUDE_MEANING_COMPOSITE_01_03",
+      "sha256": "d3826fbe651459bc64740c5c4c9bb0128c523642b3c9a17ea1136a87f2d9a006",
+      "items": 99,
+      "cells": 594,
+      "provenance": "M-001..014 fresh supplement + verbatim salvage M-015..099 from rejected raw"
+    },
+    {
+      "coder_id": "B_SOL_MEANING_02_CORRECTED",
+      "sha256": "17d7853706b3f750751b22a56f019a3e9173f507ed3a07c7633bf51b96d7c7d5",
+      "items": 99,
+      "cells": 594,
+      "provenance": "complete compact output + approved exact-quote correction at two coordinates"
+    }
+  ],
+  "grade_agreements": 429,
+  "grade_disagreements": 165,
+  "disagreements_sha256": "0d26337e65ccb6b38263939738ae34df5d995ede4f1c6990359464c22bb4c154",
+  "private_key_released": false,
+  "next_gate": "anonymous semantic adjudication of all 165 cells"
+}

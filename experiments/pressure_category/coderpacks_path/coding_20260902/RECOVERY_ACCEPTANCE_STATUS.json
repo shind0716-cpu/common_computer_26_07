@@ -1,0 +1,35 @@
+{
+  "accepted": {
+    "A_CLAUDE_PATH_COMPOSITE_01_03.json": "750da1b932fa7e2361fd5ae8d1256b3d9f3394ffbbfa970c34cbbd37b9e8bc48",
+    "B_SOL_PATH_CORRECTED_01_02.json": "961ef2f3fda66d5c7d99c887b2e7a31343506bd3337e3bee2bf5a0e3f0801537"
+  },
+  "claude_composite_parts": [
+    {
+      "artifact": "A_CLAUDE_PATH_RECOVERY_02_RAW.json",
+      "ids": "P-01..P-21",
+      "sha256": "e489b4af757c54e5a514c0ed6289ad4a572fcccbe3e102242d25a5b434a4d447"
+    },
+    {
+      "artifact": "A_CLAUDE_PATH_RECOVERY_03_RAW.json",
+      "ids": "P-22..P-42",
+      "sha256": "9fd45b983a05659a5257d92bd3d50efc7a2d7dfb9404591c89c58ddb9f051eaf"
+    },
+    {
+      "artifact": "A_CLAUDE_PATH_01_RAW.json",
+      "ids": "P-43..P-48 salvage",
+      "sha256": "e699fa6f8c90acf284772209675ba19ba42cc8fb525a18966abaa58d4222210a"
+    }
+  ],
+  "key_access": false,
+  "sol_correction": {
+    "allowed_coordinate": [
+      "P-45",
+      1,
+      "evidence"
+    ],
+    "fix_sha256": "8733fbe88a7ba0f47cbab9dd6e8471ea21c72042046281c072cf9a843a9f2610",
+    "raw_sha256": "fab6df28a8e8b8c11e99611fb073d899180a17f05432d5fe0182ebb48dd79106"
+  },
+  "status": "CODER_OUTPUTS_ACCEPTED_AWAITING_COMPARISON",
+  "transport_attempts": 5
+}

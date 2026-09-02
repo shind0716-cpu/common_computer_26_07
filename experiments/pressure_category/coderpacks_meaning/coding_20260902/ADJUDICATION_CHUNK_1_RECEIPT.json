@@ -1,0 +1,83 @@
+{
+  "arguments": [
+    "--print",
+    "--output-format",
+    "json",
+    "--model",
+    "claude-opus-5",
+    "--safe-mode",
+    "--tools",
+    "",
+    "--disable-slash-commands",
+    "--no-session-persistence",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "{\"mcpServers\":{}}",
+    "--permission-mode",
+    "dontAsk",
+    "--setting-sources",
+    "",
+    "--settings",
+    "{}",
+    "--session-id",
+    "34a5a4d3-99c6-b409-9aa4-2fc1b8b2ad4e"
+  ],
+  "bundle_path": "C:\\Users\\u\\AppData\\Local\\Temp\\coder-meaning-adjudication-20260902-58oi59ag\\CLAUDE_ADJ_M_CHUNK_1",
+  "bundle_sha256": "69e7041b0b06d4321ab0f2a81c7999625d22408dd64a63f3a43438492d60c76d",
+  "ended_at": "2026-09-02T04:12:24.900484+00:00",
+  "executable": "claude",
+  "exit_code": 0,
+  "fresh_process": true,
+  "input_sha256": "38c707268f2fb1f0a769e97459ee21cdd6d381994544d78833d88b1da43023a4",
+  "launch_nonce": "34a5a4d399c6b4099aa42fc1b8b2ad4e",
+  "output_sha256": "777a2eb3f25211b295e7ebbb68b68499c6f1a24712e47df4f25a2c9a2e93dadd",
+  "pid": 25132,
+  "ppid": 7772,
+  "preexisting_family_pids": [
+    192,
+    1672,
+    3636,
+    5092,
+    6480,
+    11652,
+    12164,
+    13048,
+    14944,
+    15712,
+    19952,
+    22308,
+    24436,
+    24692,
+    29724,
+    31140
+  ],
+  "process_create_time": 1788322017.7196572,
+  "provider_auxiliary_models": [
+    "claude-haiku-4-5-20251001"
+  ],
+  "provider_request_id": "34a5a4d3-99c6-b409-9aa4-2fc1b8b2ad4e",
+  "provider_resolved_identity": {
+    "family": "Claude",
+    "model": "claude-opus-5",
+    "provider": "anthropic",
+    "source": "provider-response"
+  },
+  "requested_identity": {
+    "family": "Claude",
+    "model": "claude-opus-5",
+    "provider": "anthropic"
+  },
+  "resumed": false,
+  "runtime_controls": {
+    "agent_loop": false,
+    "mcp_servers": 0,
+    "session_persistence": false,
+    "tool_choice": "none",
+    "tools_sent": 0
+  },
+  "schema": "all11_gpt_launch_receipt_v2",
+  "session_id": "34a5a4d3-99c6-b409-9aa4-2fc1b8b2ad4e",
+  "started_at": "2026-09-02T04:06:57.708773+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "2efd5169b4b53009405df6ddb7ce8c8366aa149069e33ba0a8262fcf1e497c16"
+}

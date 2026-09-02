@@ -1,0 +1,6 @@
+당신은 팩 「뜻」 익명 판정의 enum 교정자입니다. 아래 12칸은 최초 판정자가 grade를 JSON null로 냈고 evidence·missing도 null이며 이유에는 해당 갈래가 전혀 없다고 적었습니다. 각 원문과 이유를 직접 읽고, 계약 enum `없다`가 맞는지 확인하십시오. 모델 정체·조건·기계 키·다른 판정은 보지 않습니다. 도구·웹·파일시스템·이전 세션 접근 금지.
+
+JSON 하나만 반환:
+{"schema":"pack_m_adjudication_null_fix_v1","corrector_id":"SOL_ADJ_NULL_FIX_01","instruction_version":"20260902-adj-null-fix-v1","independent":true,"key_access":false,"source_pack_sha256":"7c35d8f88bcb7eb44203542e704affe17b4ebe12c0e220d225ab73713e9d3cb9","confirmations":[["M-009","치워온일","없다"],...]}
+
+제시 순서대로 정확히 12개를 내십시오. 각 칸이 정말 없다면 `없다`; 그렇지 않다면 계약을 임의 변경하지 말고 `교정 거부`라고 쓰십시오. JSON 이외 출력 금지.

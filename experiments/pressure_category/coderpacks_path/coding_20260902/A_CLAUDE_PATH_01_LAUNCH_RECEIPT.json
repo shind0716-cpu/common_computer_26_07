@@ -1,0 +1,80 @@
+{
+  "arguments": [
+    "--print",
+    "--output-format",
+    "json",
+    "--model",
+    "claude-opus-5",
+    "--safe-mode",
+    "--tools",
+    "",
+    "--disable-slash-commands",
+    "--no-session-persistence",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "{\"mcpServers\":{}}",
+    "--permission-mode",
+    "dontAsk",
+    "--setting-sources",
+    "",
+    "--settings",
+    "{}",
+    "--session-id",
+    "b8a4eb33-a051-363e-58ec-7b05924454cd"
+  ],
+  "bundle_path": "C:\\Users\\u\\AppData\\Local\\Temp\\coder-path-20260902-f4ve0n6f\\A_CLAUDE_PATH_01",
+  "bundle_sha256": "6a8aebff12323a303816c6abe21c728a8fcc9a0de48b0efc5af58a1b8d695d24",
+  "ended_at": "2026-09-02T05:15:46.372429+00:00",
+  "executable": "claude",
+  "exit_code": 0,
+  "fresh_process": true,
+  "input_sha256": "ffba232859ce7e0b6addb2be91f77696bb34ccd57826bc8ef473b953cc662f1d",
+  "launch_nonce": "b8a4eb33a051363e58ec7b05924454cd",
+  "output_sha256": "e699fa6f8c90acf284772209675ba19ba42cc8fb525a18966abaa58d4222210a",
+  "pid": 31284,
+  "ppid": 10652,
+  "preexisting_family_pids": [
+    192,
+    3636,
+    6480,
+    11652,
+    12164,
+    13048,
+    14944,
+    15712,
+    19952,
+    22308,
+    24436,
+    29724,
+    31140
+  ],
+  "process_create_time": 1788325772.849219,
+  "provider_auxiliary_models": [
+    "claude-haiku-4-5-20251001"
+  ],
+  "provider_request_id": "b8a4eb33-a051-363e-58ec-7b05924454cd",
+  "provider_resolved_identity": {
+    "family": "Claude",
+    "model": "claude-opus-5",
+    "provider": "anthropic",
+    "source": "provider-response"
+  },
+  "requested_identity": {
+    "family": "Claude",
+    "model": "claude-opus-5",
+    "provider": "anthropic"
+  },
+  "resumed": false,
+  "runtime_controls": {
+    "agent_loop": false,
+    "mcp_servers": 0,
+    "session_persistence": false,
+    "tool_choice": "none",
+    "tools_sent": 0
+  },
+  "schema": "all11_gpt_launch_receipt_v2",
+  "session_id": "b8a4eb33-a051-363e-58ec-7b05924454cd",
+  "started_at": "2026-09-02T05:09:32.846725+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "17108c0f910a2f6e74c583d39fe30a1f7efe929916eac147fe5cdcd6e1f9eda1"
+}

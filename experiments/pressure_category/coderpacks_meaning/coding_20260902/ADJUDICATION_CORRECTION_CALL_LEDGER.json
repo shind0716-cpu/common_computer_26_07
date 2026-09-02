@@ -1,0 +1,16 @@
+{
+  "cap": 1,
+  "entries": [
+    {
+      "completed_at": "2026-09-02T04:27:31.211662+00:00",
+      "corrector_id": "SOL_ADJ_NULL_FIX_01",
+      "family": "Hermes-Sol",
+      "output_sha256": "a70044278cfe65b2ddec8f43603b0cdd48e793c8ee10fa63575ec35f536b2038",
+      "prompt_sha256": "e264b86a06b2514b5edfa3b03efeeb606cde63fd6604f96631f0ee6a67dcb31a",
+      "reserved_at": "2026-09-02T04:27:11.974341+00:00",
+      "source_sha256": "7c35d8f88bcb7eb44203542e704affe17b4ebe12c0e220d225ab73713e9d3cb9",
+      "status": "RAW_COMPLETE"
+    }
+  ],
+  "schema": "pack_m_adjudication_correction_ledger_v1"
+}
