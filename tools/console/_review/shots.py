@@ -121,8 +121,8 @@ def main() -> int:
     console_n = sum(1 for e in errors if e["kind"] in ("console", "page"))
     http_n = sum(1 for e in errors if e["kind"] == "http")
     (out / "errors.txt").write_text(
-        "\n".join(f"[{e['tab']}] {e['kind']}: {e['text']}" for e in errors) + "\n", encoding="utf-8")
-    (out / "errors.json").write_text(json.dumps(errors, ensure_ascii=False, indent=1), encoding="utf-8")
+        "\n".join(f"[{e['tab']}] {e['kind']}: {e['text']}" for e in errors) + "\n", encoding="utf-8", newline="\n")
+    (out / "errors.json").write_text(json.dumps(errors, ensure_ascii=False, indent=1), encoding="utf-8", newline="\n")
     print(f"[shots] console errors (console+pageerror): {console_n} ; http >=400 responses: {http_n}")
     print(f"[shots] saved to {out}")
     return 0
