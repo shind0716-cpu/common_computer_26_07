@@ -21,6 +21,15 @@ C1 은 「가치 편으로 미는」 압박이고 C2 는 「반대로 미는」 
 
   모델 × 세트(A·B) × 각본(C0·C1·C2) × 라운드 × 안/밖 → 사실 보존율
 
+## 올세트
+
+가치 여섯을 전부 주는 판(`all_*`·`allb1_*`)도 함께 센다. 여섯을 다 주면 **밖이 없어서**
+안/밖을 못 가르므로 전체만 센다. 비교는 **판당 남은 사실 수(12 중)** 로 한다 — 올세트는
+12사실이 전부 「안」이고 A/B 는 6+6 이라, 비율로 견주면 분모가 달라 헷갈린다.
+
+구판 올세트 아홉 벌(현행 재료 카테고리와 **겹침 0/6**)은 뺀다. 목록은
+`ALL34_RUNPLAN_2026-09-01.json` 의 `excluded_stale_sets` 를 그대로 읽는다 — 손으로 안 적는다.
+
 ## 잣대
 
 글자 기준 ②(그대로·접어서, `aggregate_all11.probe`) — `report_rounds.py` 와 같은 자다.
@@ -53,6 +62,15 @@ MODELS = ["claude-haiku", "gemini-flash", "gpt"]
           "pbw": "반대로 미는 압박"}
 
 
+def 구판올세트() -> set[str]:
+    """런플랜이 적어 둔 구판 올세트 세트 id — 손으로 안 적는다."""
+    p = HERE / "ALL34_RUNPLAN_2026-09-01.json"
+    if not p.exists():
+        return set()
+    d = json.loads(p.read_text(encoding="utf-8"))
+    return {x["vset_id"] for x in d.get("excluded_stale_sets", [])}
+
+
 def hit(anchor: str, note: str) -> bool:
     return 0 < A.probe(anchor, note)[0] <= 2
 
@@ -72,6 +90,7 @@ def materials() -> dict:
 def load():
     """(model, iid, kind, vset, cond, rep, given, notes, mat) 를 흘린다."""
     mats = materials()
+    구판 = 구판올세트()
     for p in (HERE / "runs").glob("*/*/run_*.json"):
         if "_dry" in p.parts or "_stale" in str(p):
             continue
@@ -90,6 +109,10 @@ def load():
         elif vs.startswith("wonchik_"):
             kind = "신념"
             cond = "C0" if script == "C0" else "pbw" if script.startswith("pbw_") else None
+        elif vs.startswith(("all_", "allb1_")):
+            if vs in 구판:
+                continue                      # 겹침 0/6 — 안/밖 개념이 안 서는 세트
+            kind, cond = "올세트", (script if script in ("C0", "C1", "C2") else None)
         else:
             continue
         notes = d.get("notes") or []
@@ -128,7 +151,7 @@ def main() -> int:
         for model, iid, kind, *_ in rows:
             ran[(kind, model)].add(iid)
         keep = {}
-        for kind in ("A/B", "신념"):
+        for kind in ("A/B", "신념", "올세트"):
             sets = [ran[(kind, m)] for m in MODELS if ran[(kind, m)]]
             keep[kind] = set.intersection(*sets) if sets else set()
 
@@ -138,7 +161,7 @@ def main() -> int:
     for model, iid, kind, vs, cond, rep, given, notes, mat in rows:
         if keep is not None and iid not in keep[kind]:
             continue
-        축 = vs if kind == "A/B" else "신념"
+        축 = vs if kind == "A/B" else kind
         판[(model, 축, cond)] += 1
         재료[(model, 축, cond)].add(iid)
         for r, note in enumerate(notes[:3]):
@@ -147,15 +170,34 @@ def main() -> int:
                 S[(model, 축, cond, r, side, "n")] += 1
                 S[(model, 축, cond, r, side, "k")] += hit(f["anchor"], note)
 
+    # ── 올세트 대 A/B — **두 갈래를 다 돈 재료에서만** 센다. 분모가 다르면 재료 교락이다.
+    #    비율이 아니라 판당 사실 수로 견준다(올세트는 12 가 전부 「안」, A/B 는 6+6).
+    갈래재료 = collections.defaultdict(set)
+    for r in rows:
+        if keep is None or r[1] in keep[r[2]]:
+            갈래재료[r[2]].add(r[1])
+    공통 = 갈래재료["A/B"] & 갈래재료["올세트"]
+    C = collections.Counter()
+    for model, iid, kind, vs, cond, rep, given, notes, mat in rows:
+        if kind not in ("A/B", "올세트") or iid not in 공통:
+            continue
+        if keep is not None and iid not in keep[kind]:
+            continue
+        C[(model, kind, cond, "판")] += 1
+        for r, note in enumerate(notes[:3]):
+            C[(model, kind, cond, r)] += sum(hit(f["anchor"], note) for f in mat["facts"])
+
     today = datetime.now(KST).strftime("%Y-%m-%d")
-    out = {"schema": "pressure_facts_v2",
+    out = {"schema": "pressure_facts_v3",
            "created_at": datetime.now(KST).isoformat(timespec="seconds"),
            "measure": "글자 기준 ②(그대로·접어서) · **사실 잣대** · 수첩 r0·r1·r2",
            "grade": "탐색 — 말 바꿔 쓴 것을 놓치므로 아래로 치우친 값",
            "축": "A/B 는 준 세트(A·B)로 가른다 — 압박이 미는 방향이 세트마다 반대다",
            "matched": bool(args.matched), "trimmed": trimmed,
-           "runs": {}, "materials": {}, "series": {}}
-    축들 = ["A", "B", "신념"]
+           "올세트공통재료": sorted(공통),
+           "runs": {}, "materials": {}, "series": {},
+           "올세트대AB": {"|".join(str(x) for x in k): v for k, v in C.items()}}
+    축들 = ["A", "B", "올세트", "신념"]
     for m in MODELS:
         out["series"][m] = {}
         for 축 in 축들:
@@ -228,14 +270,42 @@ def main() -> int:
             같 = "**같다**" if d["A"] * d["B"] > 0 else "다르다" if d["A"] * d["B"] < 0 else "0"
             L.append(f"| {m} | {cond} {각본뜻[cond]} | {d['A']:+.1f}%p | {d['B']:+.1f}%p | {같} |")
 
-    L += ["", "## 4. 읽을 때", "",
+    L += ["", "## 4. 올세트 대 A/B — 여섯을 다 주면 수첩에 더 담기나", "",
+          f"**두 갈래를 다 돈 재료 {len(공통)}벌에서만** 셌다. 비율이 아니라 "
+          "**판당 남은 사실 수(12 중)** 다 —", 
+          "올세트는 12사실이 전부 「안」이고 A/B 는 6+6 이라 비율로 견주면 분모가 어긋난다.", "",
+          "| 모델 | 갈래 | 각본 | 판 | r0 | r1 | r2 |", "|---|---|---|---:|---:|---:|---:|"]
+    for m in MODELS:
+        for 갈래 in ("올세트", "A/B"):
+            for cond in ("C0", "C1", "C2"):
+                n = C[(m, 갈래, cond, "판")]
+                if not n:
+                    continue
+                L.append(f"| {m} | {갈래} | {cond} {각본뜻[cond]} | {n} | "
+                         + " | ".join(f"{C[(m, 갈래, cond, r)] / n:.2f}" for r in range(3)) + " |")
+    L += ["", "차이(올세트 − A/B, 압박 없는 판):", "",
+          "> **검산.** `ALL34_RESULT_2026-09-01.md` §1-2 가 마지막 수첩으로 공표한 값이",
+          "> haiku −0.02 · gemini −0.28 · gpt +0.28 이다. 아래 r2 열이 그것과 같아야 한다 —",
+          "> 집계기가 다르고 코드 길이 다른데 같은 수가 나오면 둘 다 맞을 가능성이 올라간다.", "",
+          "| 모델 | r0 | r1 | r2 |", "|---|---:|---:|---:|"]
+    for m in MODELS:
+        no, na = C[(m, "올세트", "C0", "판")], C[(m, "A/B", "C0", "판")]
+        if not (no and na):
+            continue
+        L.append(f"| {m} | " + " | ".join(
+            f"{C[(m, '올세트', 'C0', r)] / no - C[(m, 'A/B', 'C0', r)] / na:+.2f}"
+            for r in range(3)) + " |")
+
+    L += ["", "## 5. 읽을 때", "",
           "- **분모가 카테고리 잣대의 두 배다.** 사실 12개를 따로 세므로 판당 12칸이다.",
           "- 격차는 **거울 설계가 지킨다** — 같은 사실이 A판에서는 안, B판에서는 밖이다.",
           "- 신념 세트는 카테고리를 지목하지 않으므로 **안/밖을 못 가른다**(전체만).",
           "- 절대값이 아니라 서열과 방향으로 읽는다.",
           "- **반복을 세트마다 맞춰 잘랐다**(최대 3).",
-          "- **재료 40벌이 전부 `development_only`(사람·독립 검토 전)다** — 압박 트랙 재료는",
-          "  승인 절차를 안 거쳤다. 발표에 쓰려면 이 한계를 먼저 적어야 한다.",
+          "- **재료 지위 표기(`development_only`)를 미승인으로 읽지 마라.** 요한 확인(9/2): "
+          "그 승인 절차는 **폐기됐다** — 표기는 절차의 잔재다. 다만 캣맘 계열은 장소를 "
+          "아파트 현관으로 바꾸고 가치문을 넣는 개정을 여러 차례 거쳤고 **마지막 개정에서 "
+          "앵커 검수가 빠졌다**(요한 확인). 그 계열 수치는 따로 읽는다.",
           "- **§2 의 세트별 격차 「수준」을 세트끼리 견주지 마라.** 한 세트 안의 격차에는",
           "  「가치 효과」와 「그 갈래가 원래 잘 남는가」가 섞인다. haiku A 5.1%p 대 B 23.1%p",
           "  는 대부분 갈래 차이다 — 거울로 상쇄된 값은 둘을 합친 것이다.",

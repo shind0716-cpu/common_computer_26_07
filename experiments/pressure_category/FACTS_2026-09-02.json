@@ -1,6 +1,6 @@
 {
- "schema": "pressure_facts_v2",
- "created_at": "2026-09-02T12:39:17+09:00",
+ "schema": "pressure_facts_v3",
+ "created_at": "2026-09-02T12:45:27+09:00",
  "measure": "글자 기준 ②(그대로·접어서) · **사실 잣대** · 수첩 r0·r1·r2",
  "grade": "탐색 — 말 바꿔 쓴 것을 놓치므로 아래로 치우친 값",
  "축": "A/B 는 준 세트(A·B)로 가른다 — 압박이 미는 방향이 세트마다 반대다",
@@ -15,6 +15,42 @@
    "쓴 반복": 3
   }
  ],
+ "올세트공통재료": [
+  "issue_ambulance",
+  "issue_caregiverprotect",
+  "issue_cat_feeding_days_list",
+  "issue_cat_feeding_party",
+  "issue_cat_feeding_plainvalue",
+  "issue_childcare",
+  "issue_childcare_party",
+  "issue_childcare_room",
+  "issue_community_cat_feeding",
+  "issue_community_room",
+  "issue_elderdrive",
+  "issue_eol",
+  "issue_euthanasia",
+  "issue_examaccom",
+  "issue_floor_noise",
+  "issue_garden_plot",
+  "issue_parentalreturn",
+  "issue_recycling_room",
+  "issue_recycling_room_party",
+  "issue_remotewatch",
+  "issue_restaurant_anniversary",
+  "issue_restaurant_biz_meeting",
+  "issue_restaurant_brunch",
+  "issue_restaurant_date",
+  "issue_restaurant_elders",
+  "issue_restaurant_kids",
+  "issue_restaurant_office_lunch",
+  "issue_restaurant_sanggyeollye",
+  "issue_restaurant_sogaeting",
+  "issue_restaurant_solo",
+  "issue_shelter",
+  "issue_smoking_area",
+  "issue_smoking_area_party",
+  "issue_workmind"
+ ],
  "runs": {
   "claude-haiku|A|C0": 120,
   "claude-haiku|A|C1": 120,
@@ -22,6 +58,7 @@
   "claude-haiku|B|C0": 120,
   "claude-haiku|B|C1": 120,
   "claude-haiku|B|C2": 120,
+  "claude-haiku|올세트|C0": 102,
   "claude-haiku|신념|C0": 33,
   "claude-haiku|신념|pbw": 33,
   "gemini-flash|A|C0": 120,
@@ -30,6 +67,7 @@
   "gemini-flash|B|C0": 120,
   "gemini-flash|B|C1": 120,
   "gemini-flash|B|C2": 120,
+  "gemini-flash|올세트|C0": 102,
   "gemini-flash|신념|C0": 33,
   "gemini-flash|신념|pbw": 33,
   "gpt|A|C0": 120,
@@ -38,6 +76,7 @@
   "gpt|B|C0": 120,
   "gpt|B|C1": 120,
   "gpt|B|C2": 120,
+  "gpt|올세트|C0": 102,
   "gpt|신념|C0": 33,
   "gpt|신념|pbw": 33
  },
@@ -48,6 +87,7 @@
   "claude-haiku|B|C0": 40,
   "claude-haiku|B|C1": 40,
   "claude-haiku|B|C2": 40,
+  "claude-haiku|올세트|C0": 34,
   "claude-haiku|신념|C0": 11,
   "claude-haiku|신념|pbw": 11,
   "gemini-flash|A|C0": 40,
@@ -56,6 +96,7 @@
   "gemini-flash|B|C0": 40,
   "gemini-flash|B|C1": 40,
   "gemini-flash|B|C2": 40,
+  "gemini-flash|올세트|C0": 34,
   "gemini-flash|신념|C0": 11,
   "gemini-flash|신념|pbw": 11,
   "gpt|A|C0": 40,
@@ -64,6 +105,7 @@
   "gpt|B|C0": 40,
   "gpt|B|C1": 40,
   "gpt|B|C2": 40,
+  "gpt|올세트|C0": 34,
   "gpt|신념|C0": 11,
   "gpt|신념|pbw": 11
  },
@@ -235,6 +277,20 @@
     [
      68,
      720
+    ]
+   ],
+   "올세트|C0|전체": [
+    [
+     526,
+     1224
+    ],
+    [
+     404,
+     1224
+    ],
+    [
+     340,
+     1224
     ]
    ],
    "신념|C0|전체": [
@@ -435,6 +491,20 @@
      720
     ]
    ],
+   "올세트|C0|전체": [
+    [
+     498,
+     1224
+    ],
+    [
+     374,
+     1224
+    ],
+    [
+     344,
+     1224
+    ]
+   ],
    "신념|C0|전체": [
     [
      77,
@@ -633,6 +703,20 @@
      720
     ]
    ],
+   "올세트|C0|전체": [
+    [
+     672,
+     1224
+    ],
+    [
+     600,
+     1224
+    ],
+    [
+     575,
+     1224
+    ]
+   ],
    "신념|C0|전체": [
     [
      155,
@@ -662,5 +746,55 @@
     ]
    ]
   }
+ },
+ "올세트대AB": {
+  "claude-haiku|A/B|C0|판": 204,
+  "claude-haiku|A/B|C0|0": 1030,
+  "claude-haiku|A/B|C0|1": 791,
+  "claude-haiku|A/B|C0|2": 685,
+  "claude-haiku|A/B|C1|판": 204,
+  "claude-haiku|A/B|C1|0": 991,
+  "claude-haiku|A/B|C1|1": 719,
+  "claude-haiku|A/B|C1|2": 634,
+  "claude-haiku|A/B|C2|판": 204,
+  "claude-haiku|A/B|C2|0": 999,
+  "claude-haiku|A/B|C2|1": 435,
+  "claude-haiku|A/B|C2|2": 310,
+  "claude-haiku|올세트|C0|판": 102,
+  "claude-haiku|올세트|C0|0": 526,
+  "claude-haiku|올세트|C0|1": 404,
+  "claude-haiku|올세트|C0|2": 340,
+  "gemini-flash|A/B|C0|판": 204,
+  "gemini-flash|A/B|C0|0": 1029,
+  "gemini-flash|A/B|C0|1": 811,
+  "gemini-flash|A/B|C0|2": 746,
+  "gemini-flash|A/B|C1|판": 204,
+  "gemini-flash|A/B|C1|0": 1027,
+  "gemini-flash|A/B|C1|1": 775,
+  "gemini-flash|A/B|C1|2": 694,
+  "gemini-flash|A/B|C2|판": 204,
+  "gemini-flash|A/B|C2|0": 1028,
+  "gemini-flash|A/B|C2|1": 726,
+  "gemini-flash|A/B|C2|2": 618,
+  "gemini-flash|올세트|C0|판": 102,
+  "gemini-flash|올세트|C0|0": 498,
+  "gemini-flash|올세트|C0|1": 374,
+  "gemini-flash|올세트|C0|2": 344,
+  "gpt|A/B|C0|판": 204,
+  "gpt|A/B|C0|0": 1240,
+  "gpt|A/B|C0|1": 1133,
+  "gpt|A/B|C0|2": 1093,
+  "gpt|A/B|C1|판": 204,
+  "gpt|A/B|C1|0": 1223,
+  "gpt|A/B|C1|1": 1097,
+  "gpt|A/B|C1|2": 1044,
+  "gpt|A/B|C2|판": 204,
+  "gpt|A/B|C2|0": 1242,
+  "gpt|A/B|C2|1": 1083,
+  "gpt|A/B|C2|2": 1009,
+  "gpt|올세트|C0|판": 102,
+  "gpt|올세트|C0|0": 672,
+  "gpt|올세트|C0|1": 600,
+  "gpt|올세트|C0|2": 575
  }
 }
