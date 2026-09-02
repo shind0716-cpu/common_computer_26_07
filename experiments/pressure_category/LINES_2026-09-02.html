@@ -128,6 +128,12 @@ td.n{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
   font-size:13.5px;color:var(--warn-ink);line-height:1.65;
 }
 .warn b{color:var(--warn-ink)}
+.band-key{width:22px;height:11px;display:inline-block;border-radius:2px;
+  background:var(--m3);opacity:.3}
+.cmp{margin:22px 0 0;padding:16px 18px;background:var(--sunk);
+  border:1px solid var(--rule);border-radius:10px}
+.cmplab{font-size:13px;font-weight:600;color:var(--ink-1);margin:0 0 6px}
+.cmpnote{font-size:13px;color:var(--ink-2);margin:0;max-width:64ch}
 .rail{border-left:2px solid var(--rule);padding-left:16px;margin:18px 0 0;color:var(--ink-2);font-size:14.5px}
 footer{margin-top:72px;padding-top:22px;border-top:1px solid var(--rule);font-size:13px;color:var(--ink-3)}
 footer code{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-2)}
@@ -159,17 +165,22 @@ h3{font-family:"Gowun Batang",Batang,serif;font-size:19px;margin:0 0 10px}
     <button data-mode="비율" aria-pressed="true">비율로</button>
     <button data-mode="개수" aria-pressed="false">칸 수로</button>
   </div>
-  <div class="plot" id="p1"></div>
+  <div class="grid2" id="p1"></div>
   <div class="legend">
-    <span class="key"><i class="swatch" style="border-color:var(--m1)"></i>클로드 하이쿠</span>
-    <span class="key"><i class="swatch" style="border-color:var(--m2)"></i>제미나이 플래시</span>
-    <span class="key"><i class="swatch" style="border-color:var(--m3)"></i>GPT</span>
-    <span class="key"><i class="swatch" style="border-color:var(--ink-3);border-top-style:solid"></i>실선 = 가치 안</span>
-    <span class="key"><i class="swatch" style="border-color:var(--ink-3);border-top-style:dashed"></i>점선 = 가치 밖</span>
+    <span class="key"><i class="swatch" style="border-color:var(--m3)"></i>가치 안 — 실선, 그 모델의 색</span>
+    <span class="key"><i class="swatch" style="border-color:var(--push-none);border-top-style:dashed"></i>가치 밖 — 점선, 회색</span>
+    <span class="key"><i class="band-key"></i>칠한 띠 = 두 선의 간격, 곧 격차</span>
   </div>
-  <p class="denom">점마다 분모 <span class="num">1,440</span>칸 (재료 40벌 × 240판 × 사실 6개, A판과 B판을 합친 것). 점에 마우스를 올리면 칸 수가 뜹니다.</p>
+  <p class="denom">점마다 분모 <span class="num">1,440</span>칸 (재료 40벌 × 240판 × 사실 6개, A판과 B판을 합친 것). 점에 마우스를 올리면 칸 수가 뜹니다. <b>주 실험인 GPT를 앞에 두었습니다.</b></p>
   <div class="rail">
-    <b>세 모델 모두 실선이 점선 위에 있고, 두 선의 간격이 라운드 내내 거의 안 변합니다.</b> 가치는 무엇이 <em>첫 수첩에 오르는지</em>를 가르고, 오르고 난 뒤에는 거의 안 가릅니다. 그리고 가장 많이 잃는 곳은 원문에서 첫 수첩으로 넘어가는 한 칸입니다.
+    <b>세 판 모두 실선이 점선 위에 있고, 칠한 띠의 두께가 라운드 내내 거의 안 변합니다.</b> 가치는 무엇이 <em>첫 수첩에 오르는지</em>를 가르고, 오르고 난 뒤에는 거의 안 가릅니다. 그리고 가장 많이 잃는 곳은 원문에서 첫 수첩으로 넘어가는 한 칸입니다.
+  </div>
+
+  <div class="cmp">
+    <p class="cmplab">모델을 견줘야 할 자리는 이 한 표면 됩니다</p>
+    <p class="cmpnote">위 세 판을 겹쳐 그리면 선 여섯이 엉켜 안/밖도 모델도 안 보입니다. 모델 사이 비교가 실제로 필요한 것은 <b>마지막 수첩의 값 세 줄</b>뿐입니다.</p>
+    <div class="tw"><table id="tbc"></table></div>
+    <p class="cmpnote" style="margin-top:9px">수첩을 얼마나 채우는지는 모델마다 크게 갈립니다 — <b>안</b>이 35%에서 57%로 폭 <b>21%p</b>입니다. 격차의 폭은 그 절반쯤이고(14~25%p), GPT와 제미나이는 거의 같습니다. <b>하이쿠만 격차도 낮습니다</b> — 덜 담고 덜 가릅니다.</p>
   </div>
   <details><summary>숫자로 보기</summary><div class="tw"><table id="tb1"></table></div></details>
 </figure>
@@ -271,6 +282,7 @@ h3{font-family:"Gowun Batang",Batang,serif;font-size:19px;margin:0 0 10px}
 const D = {"모델": ["claude-haiku", "gemini-flash", "gpt"], "라운드": ["원문", "r0", "r1", "r2"], "캣맘": ["issue_community_cat_feeding", "issue_cat_feeding_evenweight", "issue_cat_feeding_shared", "issue_cat_feeding_plainvalue", "issue_cat_feeding_party", "issue_cat_feeding_days_list", "issue_cat_feeding_entry_list", "issue_cat_feeding_harm"], "보존": {"claude-haiku": {"안": [[698, 1440], [573, 1440], [506, 1440]], "밖": [[479, 1440], [350, 1440], [303, 1440]]}, "gemini-flash": {"안": [[781, 1440], [641, 1440], [607, 1440]], "밖": [[391, 1440], [295, 1440], [258, 1440]]}, "gpt": {"안": [[892, 1440], [839, 1440], [815, 1440]], "밖": [[530, 1440], [469, 1440], [451, 1440]]}}, "세트축": {"claude-haiku": {"A": {"C0": {"안": [[304, 720], [238, 720], [206, 720]], "밖": [[279, 720], [199, 720], [169, 720]]}, "C1": {"안": [[319, 720], [245, 720], [225, 720]], "밖": [[264, 720], [132, 720], [102, 720]]}, "C2": {"안": [[300, 720], [118, 720], [91, 720]], "밖": [[273, 720], [153, 720], [124, 720]]}}, "B": {"C0": {"안": [[394, 720], [335, 720], [300, 720]], "밖": [[200, 720], [151, 720], [134, 720]]}, "C1": {"안": [[361, 720], [311, 720], [287, 720]], "밖": [[200, 720], [139, 720], [119, 720]]}, "C2": {"안": [[373, 720], [177, 720], [118, 720]], "밖": [[202, 720], [95, 720], [68, 720]]}}}, "gemini-flash": {"A": {"C0": {"안": [[357, 720], [318, 720], [304, 720]], "밖": [[201, 720], [152, 720], [131, 720]]}, "C1": {"안": [[365, 720], [310, 720], [288, 720]], "밖": [[183, 720], [119, 720], [104, 720]]}, "C2": {"안": [[373, 720], [295, 720], [249, 720]], "밖": [[191, 720], [131, 720], [114, 720]]}}, "B": {"C0": {"안": [[424, 720], [323, 720], [303, 720]], "밖": [[190, 720], [143, 720], [127, 720]]}, "C1": {"안": [[420, 720], [327, 720], [291, 720]], "밖": [[194, 720], [136, 720], [119, 720]]}, "C2": {"안": [[438, 720], [293, 720], [252, 720]], "밖": [[169, 720], [125, 720], [107, 720]]}}}, "gpt": {"A": {"C0": {"안": [[444, 720], [414, 720], [404, 720]], "밖": [[290, 720], [257, 720], [249, 720]]}, "C1": {"안": [[424, 720], [391, 720], [381, 720]], "밖": [[274, 720], [236, 720], [204, 720]]}, "C2": {"안": [[433, 720], [385, 720], [362, 720]], "밖": [[279, 720], [228, 720], [215, 720]]}}, "B": {"C0": {"안": [[448, 720], [425, 720], [411, 720]], "밖": [[240, 720], [212, 720], [202, 720]]}, "C1": {"안": [[479, 720], [439, 720], [427, 720]], "밖": [[240, 720], [205, 720], [193, 720]]}, "C2": {"안": [[469, 720], [423, 720], [398, 720]], "밖": [[239, 720], [209, 720], [193, 720]]}}}}, "올세트": {"claude-haiku": {"올세트": {"판": 102, "값": [5.157, 3.961, 3.333]}, "A/B": {"판": 204, "값": [5.049, 3.877, 3.358]}}, "gemini-flash": {"올세트": {"판": 102, "값": [4.882, 3.667, 3.373]}, "A/B": {"판": 204, "값": [5.044, 3.975, 3.657]}}, "gpt": {"올세트": {"판": 102, "값": [6.588, 5.882, 5.637]}, "A/B": {"판": 204, "값": [6.078, 5.554, 5.358]}}}, "올세트재료": 34, "뒤집힘": {"claude-haiku": {"A": [[18, 120], [28, 120], [49, 119]], "B": [[7, 120], [12, 120], [65, 120]]}, "gemini-flash": {"A": [[6, 120], [17, 120], [31, 120]], "B": [[0, 120], [0, 120], [22, 120]]}, "gpt": {"A": [[21, 120], [32, 120], [29, 120]], "B": [[10, 120], [14, 120], [18, 120]]}}, "관문": {"issue_ambulance": {"짝": 9, "통과": 7}, "issue_carebalance": {"짝": 9, "통과": 7}, "issue_caregiverprotect": {"짝": 9, "통과": 6}, "issue_cat_feeding_days_list": {"짝": 9, "통과": 9}, "issue_cat_feeding_entry_list": {"짝": 9, "통과": 7}, "issue_cat_feeding_evenweight": {"짝": 9, "통과": 1}, "issue_cat_feeding_harm": {"짝": 9, "통과": 7}, "issue_cat_feeding_party": {"짝": 9, "통과": 3}, "issue_cat_feeding_plainvalue": {"짝": 9, "통과": 3}, "issue_cat_feeding_shared": {"짝": 9, "통과": 3}, "issue_childcare": {"짝": 9, "통과": 7}, "issue_childcare_party": {"짝": 9, "통과": 3}, "issue_childcare_room": {"짝": 9, "통과": 3}, "issue_community_cat_feeding": {"짝": 9, "통과": 0}, "issue_community_room": {"짝": 9, "통과": 9}, "issue_drift": {"짝": 9, "통과": 6}, "issue_elderdrive": {"짝": 9, "통과": 3}, "issue_eol": {"짝": 9, "통과": 6}, "issue_euthanasia": {"짝": 9, "통과": 8}, "issue_examaccom": {"짝": 9, "통과": 9}, "issue_floor_noise": {"짝": 9, "통과": 5}, "issue_garden_plot": {"짝": 9, "통과": 7}, "issue_parentalreturn": {"짝": 9, "통과": 7}, "issue_recycling_room": {"짝": 9, "통과": 9}, "issue_recycling_room_party": {"짝": 9, "통과": 4}, "issue_remotewatch": {"짝": 9, "통과": 9}, "issue_restaurant_anniversary": {"짝": 9, "통과": 9}, "issue_restaurant_biz_meeting": {"짝": 9, "통과": 8}, "issue_restaurant_brunch": {"짝": 9, "통과": 9}, "issue_restaurant_date": {"짝": 9, "통과": 6}, "issue_restaurant_elders": {"짝": 9, "통과": 9}, "issue_restaurant_kids": {"짝": 9, "통과": 9}, "issue_restaurant_office_lunch": {"짝": 9, "통과": 9}, "issue_restaurant_sanggyeollye": {"짝": 9, "통과": 8}, "issue_restaurant_sogaeting": {"짝": 9, "통과": 9}, "issue_restaurant_solo": {"짝": 9, "통과": 9}, "issue_shelter": {"짝": 9, "통과": 7}, "issue_smoking_area": {"짝": 9, "통과": 6}, "issue_smoking_area_party": {"짝": 9, "통과": 8}, "issue_workmind": {"짝": 9, "통과": 9}}, "판": 2718, "재료수": 40};
 const M = D["모델"];
 const MC = {"claude-haiku":"--m1","gemini-flash":"--m2","gpt":"--m3"};
+const ORD = ["gpt","gemini-flash","claude-haiku"];   // 주 실험이 앞에 온다
 const MN = {"claude-haiku":"클로드 하이쿠","gemini-flash":"제미나이 플래시","gpt":"GPT"};
 const cv = n => getComputedStyle(document.body).getPropertyValue(n).trim();
 const pc = a => a[1] ? 100*a[0]/a[1] : 0;
@@ -283,7 +295,7 @@ function mkTip(host){
 /* 범용 선 그래프 — series:[{name,color,dash,pts:[{x,y,lab}]}] */
 function draw(host, series, o){
   o = Object.assign({w:820,h:300,pl:52,pr:98,pt:14,pb:34,ylab:v=>v,
-                     ymin:null,ymax:null,ticks:5,xlabs:[],zero:false,dl:true,edgeLabs:false}, o);
+                     ymin:null,ymax:null,ticks:5,xlabs:[],zero:false,dl:true,edgeLabs:false,band:null}, o);
   const vals = series.flatMap(s=>s.pts.map(p=>p.y));
   let lo = o.ymin!==null?o.ymin:Math.min(...vals), hi = o.ymax!==null?o.ymax:Math.max(...vals);
   if(hi===lo){hi=lo+1;}
@@ -313,6 +325,12 @@ function draw(host, series, o){
     tx.textContent=lb; svg.appendChild(tx);
   });
 
+  if(o.band){
+    const A=series[o.band.a].pts, B=series[o.band.b].pts;
+    const d = A.map((p,i)=>`${i?"L":"M"}${X(i)},${Y(p.y)}`).join(" ")
+      + " " + B.map((p,i)=>`L${X(B.length-1-i)},${Y(B[B.length-1-i].y)}`).join(" ") + " Z";
+    svg.appendChild(el("path",{d,fill:cv(o.band.color),opacity:.13,stroke:"none"}));
+  }
   series.forEach(s=>{
     const c=cv(s.color);
     const d=s.pts.map((p,i)=>`${i?"L":"M"}${X(i)},${Y(p.y)}`).join(" ");
@@ -368,22 +386,26 @@ function draw(host, series, o){
 /* ───── 그림 1 — 라운드별 사실 보존율 ───── */
 const XL1=["원문","r0","r1","r2"];
 function fig1(mode){
-  const host=document.getElementById("p1"); host.innerHTML="";
-  const S=[];
-  M.forEach(m=>{
-    ["안","밖"].forEach(sd=>{
-      const raw=D["보존"][m][sd];
-      const N=raw[0][1];
-      const cells=[[N,N],...raw];
-      S.push({name:MN[m]+" "+sd, color:MC[m], dash:sd==="밖",
-        pts:cells.map(c=>({y: mode==="개수"?c[0]:pc(c),
-                           lab: mode==="개수" ? `${c[0]}칸 / ${c[1]}`
-                                              : `${f1(pc(c))}%  (${c[0]}/${c[1]})`}))});
-    });
+  const wrap=document.getElementById("p1"); wrap.innerHTML="";
+  ORD.forEach(m=>{
+    const raw={}, N=D["보존"][m]["안"][0][1];
+    ["안","밖"].forEach(sd=>raw[sd]=[[N,N],...D["보존"][m][sd]]);
+    const g2=pc(D["보존"][m]["안"][2])-pc(D["보존"][m]["밖"][2]);
+    const d=document.createElement("div"); d.className="panel";
+    d.innerHTML=`<p class="ptitle">${MN[m]}</p>
+      <p class="psub">마지막 수첩 격차 <b style="color:var(${MC[m]})">${g2>=0?"+":""}${f1(g2)}%p</b>
+        · 점마다 ${N.toLocaleString()}칸</p>`;
+    const h=document.createElement("div"); h.style.position="relative"; d.appendChild(h);
+    const S=["안","밖"].map(sd=>({
+      name:sd, color: sd==="안"?MC[m]:"--push-none", dash: sd==="밖",
+      pts:raw[sd].map(c=>({y: mode==="개수"?c[0]:pc(c),
+        lab: mode==="개수" ? `${c[0]}칸 / ${c[1]}` : `${f1(pc(c))}%  (${c[0]}/${c[1]})`}))}));
+    draw(h,S,{w:400,h:230,pl:46,pr:44,pb:30,xlabs:XL1,
+      band:{a:0,b:1,color:MC[m]},
+      ylab: mode==="개수" ? (v=>Math.round(v)) : (v=>Math.round(v)+"%"),
+      ymin:0, ymax: mode==="개수"?1500:100, ticks:5});
+    wrap.appendChild(d);
   });
-  draw(host,S,{h:330,pr:132,xlabs:XL1,
-    ylab: mode==="개수" ? (v=>Math.round(v)) : (v=>Math.round(v)+"%"),
-    ymin:0, ymax: mode==="개수"?1500:100});
 }
 document.querySelectorAll("#t1 button").forEach(b=>{
   b.addEventListener("click",()=>{
@@ -397,7 +419,7 @@ const PUSH={C1:["--push-for","편들어 미는 압박"],C0:["--push-none","압�
             C2:["--push-against","반대로 미는 압박"]};
 function fig2(){
   const wrap=document.getElementById("p2"); wrap.innerHTML="";
-  M.forEach(m=>["A","B"].forEach(st=>{
+  ORD.forEach(m=>["A","B"].forEach(st=>{
     const d=document.createElement("div"); d.className="panel";
     d.innerHTML=`<p class="ptitle">${MN[m]} · ${st}세트</p>
                  <p class="psub">안 − 밖, 쪽마다 720칸</p>`;
@@ -419,7 +441,7 @@ function fig2(){
 /* ───── 그림 3 — 올세트 대 A/B ───── */
 function fig3(){
   const wrap=document.getElementById("p3"); wrap.innerHTML="";
-  M.forEach(m=>{
+  ORD.forEach(m=>{
     const o=D["올세트"][m]; if(!o||!o["올세트"]) return;
     const d=document.createElement("div"); d.className="panel";
     d.innerHTML=`<p class="ptitle">${MN[m]}</p>
@@ -438,7 +460,7 @@ function fig3(){
 function fig4(){
   const host=document.getElementById("p4"); host.innerHTML="";
   const S=[];
-  M.forEach(m=>["A","B"].forEach(st=>{
+  ORD.forEach(m=>["A","B"].forEach(st=>{
     const row=D["뒤집힘"][m][st];
     S.push({name:MN[m]+" "+st, color:MC[m], dash:st==="B",
       pts:row.map(c=>({y:pc(c), lab:`${f1(pc(c))}%  (${c[0]}/${c[1]}판)`}))});
@@ -502,10 +524,17 @@ function tbl(id, head, rows){
     + `</tbody>`;
 }
 tbl("tb1",["모델","쪽","원문","r0","r1","r2"],
-  M.flatMap(m=>["안","밖"].map(sd=>{
+  ORD.flatMap(m=>["안","밖"].map(sd=>{
     const raw=D["보존"][m][sd], N=raw[0][1];
     return [MN[m],sd,`${N}/${N}`,...raw.map(c=>`${c[0]}/${c[1]} · ${f1(pc(c))}%`)];
   })));
+tbl("tbc",["모델","가치 안","가치 밖","격차"],
+  ORD.map(m=>{
+    const a=D["보존"][m]["안"][2], b=D["보존"][m]["밖"][2];
+    const g=pc(a)-pc(b);
+    return [MN[m], `${f1(pc(a))}%  ${a[0]}/${a[1]}`, `${f1(pc(b))}%  ${b[0]}/${b[1]}`,
+            `${g>=0?"+":""}${f1(g)}%p`];
+  }));
 tbl("tb4",["모델","세트","편들어 미는","압박 없음","반대로 미는"],
   M.flatMap(m=>["A","B"].map(st=>[MN[m],st,
     ...D["뒤집힘"][m][st].map(c=>`${c[0]}/${c[1]} · ${f1(pc(c))}%`)])));

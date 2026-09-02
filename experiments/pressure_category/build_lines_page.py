@@ -226,6 +226,12 @@ td.n{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
   font-size:13.5px;color:var(--warn-ink);line-height:1.65;
 }
 .warn b{color:var(--warn-ink)}
+.band-key{width:22px;height:11px;display:inline-block;border-radius:2px;
+  background:var(--m3);opacity:.3}
+.cmp{margin:22px 0 0;padding:16px 18px;background:var(--sunk);
+  border:1px solid var(--rule);border-radius:10px}
+.cmplab{font-size:13px;font-weight:600;color:var(--ink-1);margin:0 0 6px}
+.cmpnote{font-size:13px;color:var(--ink-2);margin:0;max-width:64ch}
 .rail{border-left:2px solid var(--rule);padding-left:16px;margin:18px 0 0;color:var(--ink-2);font-size:14.5px}
 footer{margin-top:72px;padding-top:22px;border-top:1px solid var(--rule);font-size:13px;color:var(--ink-3)}
 footer code{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-2)}
@@ -236,6 +242,7 @@ JS = r"""
 const D = __DATA__;
 const M = D["모델"];
 const MC = {"claude-haiku":"--m1","gemini-flash":"--m2","gpt":"--m3"};
+const ORD = ["gpt","gemini-flash","claude-haiku"];   // 주 실험이 앞에 온다
 const MN = {"claude-haiku":"클로드 하이쿠","gemini-flash":"제미나이 플래시","gpt":"GPT"};
 const cv = n => getComputedStyle(document.body).getPropertyValue(n).trim();
 const pc = a => a[1] ? 100*a[0]/a[1] : 0;
@@ -248,7 +255,7 @@ function mkTip(host){
 /* 범용 선 그래프 — series:[{name,color,dash,pts:[{x,y,lab}]}] */
 function draw(host, series, o){
   o = Object.assign({w:820,h:300,pl:52,pr:98,pt:14,pb:34,ylab:v=>v,
-                     ymin:null,ymax:null,ticks:5,xlabs:[],zero:false,dl:true,edgeLabs:false}, o);
+                     ymin:null,ymax:null,ticks:5,xlabs:[],zero:false,dl:true,edgeLabs:false,band:null}, o);
   const vals = series.flatMap(s=>s.pts.map(p=>p.y));
   let lo = o.ymin!==null?o.ymin:Math.min(...vals), hi = o.ymax!==null?o.ymax:Math.max(...vals);
   if(hi===lo){hi=lo+1;}
@@ -278,6 +285,12 @@ function draw(host, series, o){
     tx.textContent=lb; svg.appendChild(tx);
   });
 
+  if(o.band){
+    const A=series[o.band.a].pts, B=series[o.band.b].pts;
+    const d = A.map((p,i)=>`${i?"L":"M"}${X(i)},${Y(p.y)}`).join(" ")
+      + " " + B.map((p,i)=>`L${X(B.length-1-i)},${Y(B[B.length-1-i].y)}`).join(" ") + " Z";
+    svg.appendChild(el("path",{d,fill:cv(o.band.color),opacity:.13,stroke:"none"}));
+  }
   series.forEach(s=>{
     const c=cv(s.color);
     const d=s.pts.map((p,i)=>`${i?"L":"M"}${X(i)},${Y(p.y)}`).join(" ");
@@ -333,22 +346,26 @@ function draw(host, series, o){
 /* ───── 그림 1 — 라운드별 사실 보존율 ───── */
 const XL1=["원문","r0","r1","r2"];
 function fig1(mode){
-  const host=document.getElementById("p1"); host.innerHTML="";
-  const S=[];
-  M.forEach(m=>{
-    ["안","밖"].forEach(sd=>{
-      const raw=D["보존"][m][sd];
-      const N=raw[0][1];
-      const cells=[[N,N],...raw];
-      S.push({name:MN[m]+" "+sd, color:MC[m], dash:sd==="밖",
-        pts:cells.map(c=>({y: mode==="개수"?c[0]:pc(c),
-                           lab: mode==="개수" ? `${c[0]}칸 / ${c[1]}`
-                                              : `${f1(pc(c))}%  (${c[0]}/${c[1]})`}))});
-    });
+  const wrap=document.getElementById("p1"); wrap.innerHTML="";
+  ORD.forEach(m=>{
+    const raw={}, N=D["보존"][m]["안"][0][1];
+    ["안","밖"].forEach(sd=>raw[sd]=[[N,N],...D["보존"][m][sd]]);
+    const g2=pc(D["보존"][m]["안"][2])-pc(D["보존"][m]["밖"][2]);
+    const d=document.createElement("div"); d.className="panel";
+    d.innerHTML=`<p class="ptitle">${MN[m]}</p>
+      <p class="psub">마지막 수첩 격차 <b style="color:var(${MC[m]})">${g2>=0?"+":""}${f1(g2)}%p</b>
+        · 점마다 ${N.toLocaleString()}칸</p>`;
+    const h=document.createElement("div"); h.style.position="relative"; d.appendChild(h);
+    const S=["안","밖"].map(sd=>({
+      name:sd, color: sd==="안"?MC[m]:"--push-none", dash: sd==="밖",
+      pts:raw[sd].map(c=>({y: mode==="개수"?c[0]:pc(c),
+        lab: mode==="개수" ? `${c[0]}칸 / ${c[1]}` : `${f1(pc(c))}%  (${c[0]}/${c[1]})`}))}));
+    draw(h,S,{w:400,h:230,pl:46,pr:44,pb:30,xlabs:XL1,
+      band:{a:0,b:1,color:MC[m]},
+      ylab: mode==="개수" ? (v=>Math.round(v)) : (v=>Math.round(v)+"%"),
+      ymin:0, ymax: mode==="개수"?1500:100, ticks:5});
+    wrap.appendChild(d);
   });
-  draw(host,S,{h:330,pr:132,xlabs:XL1,
-    ylab: mode==="개수" ? (v=>Math.round(v)) : (v=>Math.round(v)+"%"),
-    ymin:0, ymax: mode==="개수"?1500:100});
 }
 document.querySelectorAll("#t1 button").forEach(b=>{
   b.addEventListener("click",()=>{
@@ -362,7 +379,7 @@ const PUSH={C1:["--push-for","편들어 미는 압박"],C0:["--push-none","압�
             C2:["--push-against","반대로 미는 압박"]};
 function fig2(){
   const wrap=document.getElementById("p2"); wrap.innerHTML="";
-  M.forEach(m=>["A","B"].forEach(st=>{
+  ORD.forEach(m=>["A","B"].forEach(st=>{
     const d=document.createElement("div"); d.className="panel";
     d.innerHTML=`<p class="ptitle">${MN[m]} · ${st}세트</p>
                  <p class="psub">안 − 밖, 쪽마다 720칸</p>`;
@@ -384,7 +401,7 @@ function fig2(){
 /* ───── 그림 3 — 올세트 대 A/B ───── */
 function fig3(){
   const wrap=document.getElementById("p3"); wrap.innerHTML="";
-  M.forEach(m=>{
+  ORD.forEach(m=>{
     const o=D["올세트"][m]; if(!o||!o["올세트"]) return;
     const d=document.createElement("div"); d.className="panel";
     d.innerHTML=`<p class="ptitle">${MN[m]}</p>
@@ -403,7 +420,7 @@ function fig3(){
 function fig4(){
   const host=document.getElementById("p4"); host.innerHTML="";
   const S=[];
-  M.forEach(m=>["A","B"].forEach(st=>{
+  ORD.forEach(m=>["A","B"].forEach(st=>{
     const row=D["뒤집힘"][m][st];
     S.push({name:MN[m]+" "+st, color:MC[m], dash:st==="B",
       pts:row.map(c=>({y:pc(c), lab:`${f1(pc(c))}%  (${c[0]}/${c[1]}판)`}))});
@@ -467,10 +484,17 @@ function tbl(id, head, rows){
     + `</tbody>`;
 }
 tbl("tb1",["모델","쪽","원문","r0","r1","r2"],
-  M.flatMap(m=>["안","밖"].map(sd=>{
+  ORD.flatMap(m=>["안","밖"].map(sd=>{
     const raw=D["보존"][m][sd], N=raw[0][1];
     return [MN[m],sd,`${N}/${N}`,...raw.map(c=>`${c[0]}/${c[1]} · ${f1(pc(c))}%`)];
   })));
+tbl("tbc",["모델","가치 안","가치 밖","격차"],
+  ORD.map(m=>{
+    const a=D["보존"][m]["안"][2], b=D["보존"][m]["밖"][2];
+    const g=pc(a)-pc(b);
+    return [MN[m], `${f1(pc(a))}%  ${a[0]}/${a[1]}`, `${f1(pc(b))}%  ${b[0]}/${b[1]}`,
+            `${g>=0?"+":""}${f1(g)}%p`];
+  }));
 tbl("tb4",["모델","세트","편들어 미는","압박 없음","반대로 미는"],
   M.flatMap(m=>["A","B"].map(st=>[MN[m],st,
     ...D["뒤집힘"][m][st].map(c=>`${c[0]}/${c[1]} · ${f1(pc(c))}%`)])));
@@ -511,17 +535,22 @@ BODY = r"""<meta charset="utf-8">
     <button data-mode="비율" aria-pressed="true">비율로</button>
     <button data-mode="개수" aria-pressed="false">칸 수로</button>
   </div>
-  <div class="plot" id="p1"></div>
+  <div class="grid2" id="p1"></div>
   <div class="legend">
-    <span class="key"><i class="swatch" style="border-color:var(--m1)"></i>클로드 하이쿠</span>
-    <span class="key"><i class="swatch" style="border-color:var(--m2)"></i>제미나이 플래시</span>
-    <span class="key"><i class="swatch" style="border-color:var(--m3)"></i>GPT</span>
-    <span class="key"><i class="swatch" style="border-color:var(--ink-3);border-top-style:solid"></i>실선 = 가치 안</span>
-    <span class="key"><i class="swatch" style="border-color:var(--ink-3);border-top-style:dashed"></i>점선 = 가치 밖</span>
+    <span class="key"><i class="swatch" style="border-color:var(--m3)"></i>가치 안 — 실선, 그 모델의 색</span>
+    <span class="key"><i class="swatch" style="border-color:var(--push-none);border-top-style:dashed"></i>가치 밖 — 점선, 회색</span>
+    <span class="key"><i class="band-key"></i>칠한 띠 = 두 선의 간격, 곧 격차</span>
   </div>
-  <p class="denom">점마다 분모 <span class="num">1,440</span>칸 (재료 40벌 × 240판 × 사실 6개, A판과 B판을 합친 것). 점에 마우스를 올리면 칸 수가 뜹니다.</p>
+  <p class="denom">점마다 분모 <span class="num">1,440</span>칸 (재료 40벌 × 240판 × 사실 6개, A판과 B판을 합친 것). 점에 마우스를 올리면 칸 수가 뜹니다. <b>주 실험인 GPT를 앞에 두었습니다.</b></p>
   <div class="rail">
-    <b>세 모델 모두 실선이 점선 위에 있고, 두 선의 간격이 라운드 내내 거의 안 변합니다.</b> 가치는 무엇이 <em>첫 수첩에 오르는지</em>를 가르고, 오르고 난 뒤에는 거의 안 가릅니다. 그리고 가장 많이 잃는 곳은 원문에서 첫 수첩으로 넘어가는 한 칸입니다.
+    <b>세 판 모두 실선이 점선 위에 있고, 칠한 띠의 두께가 라운드 내내 거의 안 변합니다.</b> 가치는 무엇이 <em>첫 수첩에 오르는지</em>를 가르고, 오르고 난 뒤에는 거의 안 가릅니다. 그리고 가장 많이 잃는 곳은 원문에서 첫 수첩으로 넘어가는 한 칸입니다.
+  </div>
+
+  <div class="cmp">
+    <p class="cmplab">모델을 견줘야 할 자리는 이 한 표면 됩니다</p>
+    <p class="cmpnote">위 세 판을 겹쳐 그리면 선 여섯이 엉켜 안/밖도 모델도 안 보입니다. 모델 사이 비교가 실제로 필요한 것은 <b>마지막 수첩의 값 세 줄</b>뿐입니다.</p>
+    <div class="tw"><table id="tbc"></table></div>
+    <p class="cmpnote" style="margin-top:9px">수첩을 얼마나 채우는지는 모델마다 크게 갈립니다 — <b>안</b>이 35%에서 57%로 폭 <b>21%p</b>입니다. 격차의 폭은 그 절반쯤이고(14~25%p), GPT와 제미나이는 거의 같습니다. <b>하이쿠만 격차도 낮습니다</b> — 덜 담고 덜 가릅니다.</p>
   </div>
   <details><summary>숫자로 보기</summary><div class="tw"><table id="tb1"></table></div></details>
 </figure>
