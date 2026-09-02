@@ -65,3 +65,7 @@ python -m modules.validate data/judgments/judgment_issue_esa_run001.json
 - .env 만들기 — Windows: `copy .env.example .env` / Mac·Linux: `cp .env.example .env`
 - 데이터 파일 안 한국어가 깨져 보이면 코드가 아니라 편집기 인코딩 설정 문제 (UTF-8로 열 것)
 - 줄바꿈은 .gitattributes가 LF로 통일 — CRLF 관련 diff 노이즈는 무시하고 pull 우선
+
+## 실험 콘솔 켜는 법 (2026-09-03 추가)
+
+리포 루트의 `run_console.bat`을 더블클릭하면 `http://127.0.0.1:8021`에 콘솔이 뜬다. 설치·API 키·흔한 오류·탭 설명은 `tools/console/README.md`.
