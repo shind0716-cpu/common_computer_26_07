@@ -76,6 +76,10 @@ SKIP_DIRS = ("_dry", "_scout", "_stale_hash", "_collision")
     "PROBE_belief_models_2026-09-01.md": "신념 18문장 탐침 — 세 모델이 같은 방향으로 읽나, hapri 첫 탐침",
     "PREREG_belief1_models_2026-09-01.md": "신념 모델 축 사전고정 — M1~M6, 기준선 표(하이쿠 공표값 재현 확인)",
     "ALL34_RESULT_2026-09-01.md": "**3모델 ALL 결과.** P1·P2 적중·P3 빗나감, 판당 총 적재량 표",
+    "BELIEF1_MODELS_RESULT_2026-09-01.md": "**신념 모델 축 채점.** M1~M6, 판당 사실·기울기·견인 표",
+    "ANCHOR_VARIANCE_2026-09-02.md": "**표식 변동성.** 무엇이 서고 무엇이 무너지나 — 카테고리 서열을 쓰기 전에 연다",
+    "ROUNDS_2026-09-02.md": "라운드별 — 첫 수첩에서 가장 많이 잃는다, 수첩 버릇 표",
+    "CASES_2026-09-02.md": "**수첩 케이스 열 편** 원문. 정성 서술은 여기서 가져온다",
 }
 원장 = {   # 근거로는 살아 있으나 읽을 것은 아니다. 인용할 때만 연다
     "READ60_pack_b1_r0.md": None, "READ60_pack_b1_last.md": None,
@@ -96,6 +100,9 @@ SKIP_DIRS = ("_dry", "_scout", "_stale_hash", "_collision")
     "PROBLEM_care12_2026-08-26.md": "현수 재료 검토 — 판독이 어긋난 여덟 벌 쪽",
     "REVIEW_care12_favors_2026-08-26.md": "같음",
     "GATE_FAIL_DIAGNOSIS_2026-08-27.md": "관문 탈락 진단 — 캣맘은 1차에서 전부 탈락해 보고서에 안 든다",
+    "CATS_gpt_2026-09-01.md": "카테고리 서열 — **표식 운을 타서 아홉 줄 순위는 못 쓴다**(ANCHOR_VARIANCE). 두 무리 구분만 살아 남는다",
+    "CODED_haiku_baseline_2026-09-01.md": "민옥 담당 판독 원장(344KB). 이 보고서는 gpt 판을 쓴다",
+    "READOUT_haiku_baseline_2026-09-01.md": "같음 — 민옥 담당",
     "LIMITS_cat_feeding_2026-08-25.md": "같음",
     "HANDOFF_CAT_FEEDING_REVIEW_2026-08-25.md": "같음",
     "READOUT_track2_2026-08-25.md": "제안 — 사전고정 전이고 안 돌았다",
@@ -291,6 +298,54 @@ def rejudge(key: dict, mats: dict, prefix: str):
     return out
 
 
+# ── 문서 지위 줄 · 원장 파일 ───────────────────────────────────────────────
+# CLAUDE.md 는 문서가 첫 몇 줄에 자기 지위(확정/제안/사전고정/근거 자료/데모)를
+# 적게 한다. 그런데 **트랙 문서 일부에 그 줄이 없다.** 위 독서 목록이 지위를 대신
+# 들고 있지만, 파일만 열어 본 사람에게는 안 보인다.
+#
+# 남의 담당 문서는 **고치지 않는다**(규약 5). 여기서는 세어서 보이기만 하고,
+# 고칠지는 소유자가 정한다. 그래서 소유자를 같이 찍는다.
+#
+# 그리고 *.json · *.jsonl 은 이 감사기가 여태 아예 안 봤다. 문서가 아니라
+# 원장·입력·산출이라 「읽는다/안 읽는다」 축이 안 맞는데, **안 보는 것과 축이 다른
+# 것은 다르다.** 갈래만이라도 세어 둔다.
+
+def 지위줄(p):
+    """문서 앞머리에서 지위 줄을 찾는다. 없으면 None."""
+    try:
+        head = p.read_text(encoding="utf-8", errors="replace").split(chr(10))[:8]
+    except Exception:
+        return None
+    for ln in head:
+        if "지위" in ln:
+            return ln.strip("> #*").replace("지위:", "").strip()[:60]
+    return None
+
+
+def 주인(rel):
+    import subprocess
+    try:
+        r = subprocess.run(["git", "log", "--diff-filter=A", "--format=%an", "--", rel],
+                           cwd=ROOT, capture_output=True, text=True,
+                           encoding="utf-8", errors="replace").stdout.strip().split(chr(10))
+        return r[-1] if r and r[0] else "(추적 안 됨)"
+    except Exception:
+        return "(모름)"
+
+
+def 원장갈래(name):
+    n = name
+    if n.startswith("_") or n == "scan_snapshot.json":
+        return "작업 파일"
+    if n.startswith(("READ20_", "READ60_", "LABELS_", "CODED_")):
+        return "판독 원장"
+    if n.startswith(("AGG_", "CATS_", "ROUNDS_", "ALL34_RESULT", "BELIEF1_", "PROBE_")):
+        return "집계 산출"
+    if n.startswith(("ALL11_", "ALL34_RUNPLAN", "CONCRETE_LIST")):
+        return "실행 계획·영수증"
+    return "그 밖"
+
+
 def main() -> int:
     cur = current_materials()
     tally, drift = scan_runs(cur)
@@ -302,6 +357,7 @@ def main() -> int:
               (("코더 A", "READ60_coderA"), ("헤르메스", "READ60_hermes"))}
 
     L = ["# 정렬 대장 — 지금 원자료로 무엇을 말할 수 있나 (2026-09-01, 기계 생성물)",
+         "> 지위: **근거 자료** (기계 생성물 — 손으로 고치지 마라. `align_audit.py` 를 고친다).", "",
          "",
          "> `align_audit.py` 가 찍는다. **기준은 지금 `runs/` 에 있는 판**이고, 재료·판독·세트가",
          "> 그 판과 맞는지를 본다. 밑줄 폴더(드라이런·정찰·격리)는 원자료 대조에서 뺐다.",
@@ -407,6 +463,31 @@ def main() -> int:
     if unclassified:
         L += ["", "> ⚠ **분류 안 된 문서가 있다.** `align_audit.py` 의 표에 한 줄 적어야 한다 — ",
               "> " + ", ".join(f"`{n}`" for n in unclassified)]
+    # ── ④ 지위 줄 없는 문서 · ⑤ 원장 파일
+    miss = [n for n in sorted(here) if 지위줄(HERE / n) is None]
+    L += ["", "## 문서 안에 지위 줄이 없는 것", "",
+          "위 목록이 지위를 대신 들고 있지만 **파일만 연 사람에게는 안 보인다.**",
+          "남의 담당 문서는 고치지 않는다 — 세어서 보이기만 한다.", ""]
+    if miss:
+        L += ["| 문서 | 주인 |", "|---|---|"]
+        for n in miss:
+            L.append("| `" + n + "` | " + 주인("experiments/pressure_category/" + n) + " |")
+    else:
+        L.append("없다.")
+    js = sorted(list(HERE.glob("*.json")) + list(HERE.glob("*.jsonl")))
+    g = {}
+    for q in js:
+        g.setdefault(원장갈래(q.name), []).append((q.name, q.stat().st_size // 1024))
+    L += ["", "## 트랙 바로 아래 원장 파일", "",
+          "`*.json` · `*.jsonl` **" + str(len(js)) + "개**. 문서가 아니라 원장이라",
+          "「읽는다/안 읽는다」 축이 안 맞는다 — 갈래와 크기만 적는다.", "",
+          "| 갈래 | 개수 | KB | 큰 것부터 |", "|---|---:|---:|---|"]
+    for k in sorted(g, key=lambda x: -sum(v for _, v in g[x])):
+        v = sorted(g[k], key=lambda x: -x[1])
+        L.append("| " + k + " | " + str(len(v)) + " | " + str(sum(x for _, x in v)) + " | "
+                 + " · ".join("`" + n + "`" for n, _ in v[:4])
+                 + (" …" if len(v) > 4 else "") + " |")
+
     L += ["", "## 다음에 이 사고를 안 내려면", "",
           "재료를 고칠 때 그 재료를 가리키는 것이 셋이다 — **판 · 판독 · 세트**. 지금까지 판은",
           "격리로 챙겼고(`_stale_hash`) 세트는 새로 지었지만 **판독은 챙기는 자리가 없었다.**",
@@ -427,6 +508,10 @@ def main() -> int:
     un = sorted(here - set(연다) - set(원장) - set(닫음))
     print(f"문서 {len(here)}편 — 연다 {len(연다)} · 원장 {len(원장)} · 닫음 {len(닫음)}"
           + (f" · ⚠ 분류 안 됨 {len(un)}: {', '.join(un)}" if un else ""))
+    m2 = [n for n in sorted(here) if 지위줄(HERE / n) is None]
+    print(f"지위 줄 없는 문서 {len(m2)}편" + (" — " + ", ".join(m2) if m2 else ""))
+    j2 = list(HERE.glob("*.json")) + list(HERE.glob("*.jsonl"))
+    print(f"원장 파일 {len(j2)}개 · {sum(q.stat().st_size for q in j2) // 1024}KB")
     return 0
 
 

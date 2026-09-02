@@ -1,4 +1,6 @@
 # 쓸 수 있는 재료 — 표식 기반 수치를 인용할 수 있는가 (2026-09-01, 기계 생성물)
+> 지위: **근거 자료** (기계 생성물 — 손으로 고치지 마라. `usable_materials.py` 를 고친다).
+
 
 > `usable_materials.py` 가 찍는다. 판정은 **죽은 카테고리 수** 하나로 한다 —
 > 실호출 전 판에서 한 번도 안 잡힌 카테고리는 사실이 없어서인지 잣대가 못 본
@@ -11,49 +13,49 @@
 | 등급 | 재료 | 판 | 카테고리 생존율 | 죽은 카테고리 | 와/과 표식 | 어긋난 가치 세트 |
 |:-:|---|---:|---:|---|---|---|
 | **A** | drift | 71 | 75.8% | — | — | — |
-| **A** | restaurant_anniversary | 60 | 73.6% | — | — | — |
-| **A** | childcare_room | 60 | 72.8% | — | — | — |
-| **A** | restaurant_sogaeting | 60 | 72.5% | — | — | — |
-| **A** | restaurant_sanggyeollye | 60 | 71.1% | — | — | — |
-| **A** | eol | 69 | 66.7% | — | — | all_eol |
+| **A** | restaurant_anniversary | 63 | 74.6% | — | — | — |
+| **A** | childcare_room | 63 | 73.5% | — | — | — |
+| **A** | restaurant_sogaeting | 63 | 73.5% | — | — | — |
+| **A** | restaurant_sanggyeollye | 63 | 72.5% | — | — | — |
+| **A** | eol | 87 | 68.6% | — | — | all_eol |
 | **A** | cat_feeding_shared | 56 | 66.1% | — | 「새와 벌레」 | — |
-| **A** | restaurant_biz_meeting | 60 | 61.9% | — | — | — |
+| **A** | restaurant_biz_meeting | 63 | 63.8% | — | — | — |
+| **A** | restaurant_date | 63 | 61.6% | — | — | — |
 | **A** | cat_feeding_evenweight | 60 | 60.6% | — | 「새와 벌레」 | — |
-| **A** | restaurant_date | 60 | 60.6% | — | — | — |
-| **A** | childcare_party | 60 | 59.7% | — | — | — |
-| **A** | restaurant_elders | 60 | 58.3% | — | — | — |
-| **A** | cat_feeding_plainvalue | 64 | 57.6% | — | 「새와 벌레」 | — |
-| **A** | community_cat_feeding | 66 | 56.6% | — | 「새와 벌레」 | — |
-| **A** | restaurant_brunch | 60 | 53.6% | — | — | — |
-| **A** | elderdrive | 60 | 53.3% | — | — | all_elderdrive |
-| **A** | smoking_area | 60 | 53.3% | — | — | — |
-| **A** | workmind | 69 | 53.1% | — | — | all_workmind |
-| **A** | restaurant_kids | 60 | 50.3% | — | — | — |
-| **A** | childcare | 69 | 46.1% | — | — | all_childcare |
-| **A** | restaurant_office_lunch | 60 | 44.4% | — | — | — |
-| **A** | cat_feeding_party | 62 | 43.8% | — | 「사료와 물」 | — |
+| **A** | childcare_party | 63 | 60.1% | — | — | — |
+| **A** | restaurant_elders | 63 | 60.1% | — | — | — |
+| **A** | cat_feeding_plainvalue | 67 | 58.0% | — | 「새와 벌레」 | — |
+| **A** | community_cat_feeding | 69 | 57.2% | — | 「새와 벌레」 | — |
+| **A** | restaurant_brunch | 63 | 55.6% | — | — | — |
+| **A** | smoking_area | 63 | 54.0% | — | — | — |
+| **A** | elderdrive | 69 | 53.4% | — | — | all_elderdrive |
+| **A** | restaurant_kids | 63 | 52.6% | — | — | — |
+| **A** | workmind | 87 | 52.3% | — | — | all_workmind |
+| **A** | restaurant_office_lunch | 63 | 46.0% | — | — | — |
+| **A** | cat_feeding_party | 65 | 44.9% | — | 「사료와 물」 | — |
+| **A** | childcare | 87 | 43.3% | — | — | all_childcare |
 | **A** | cat_feeding_harm | 54 | 43.2% | — | 「새와 벌레」 | — |
-| **A** | remotewatch | 69 | 40.8% | — | — | all_remotewatch |
-| **A** | garden_plot | 60 | 37.2% | — | — | — |
-| **A** | caregiverprotect | 60 | 36.9% | — | — | all_caregiverprotect |
-| **A** | floor_noise | 60 | 35.6% | — | — | — |
-| **A** | smoking_area_party | 69 | 30.4% | — | — | — |
-| **A** | restaurant_solo | 60 | 30.3% | — | — | — |
-| **A** | examaccom | 63 | 29.4% | — | — | — |
-| **A** | euthanasia | 69 | 29.0% | — | — | all_euthanasia |
-| **A** | recycling_room | 69 | 28.7% | — | — | — |
-| **B** | recycling_room_party | 60 | 40.0% | 돌아오는시각 | — | — |
-| **B** | parentalreturn | 63 | 26.5% | 안정성 | — | — |
-| **B** | community_room | 60 | 25.0% | 인원수용 | — | — |
-| **B** | shelter | 69 | 22.5% | 이용사례 | — | all_shelter |
+| **A** | remotewatch | 87 | 40.6% | — | — | all_remotewatch |
+| **A** | caregiverprotect | 69 | 38.2% | — | — | all_caregiverprotect |
+| **A** | garden_plot | 63 | 38.1% | — | — | — |
+| **A** | floor_noise | 63 | 37.3% | — | — | — |
+| **A** | restaurant_solo | 63 | 31.5% | — | — | — |
+| **A** | examaccom | 81 | 29.8% | — | — | — |
+| **A** | smoking_area_party | 81 | 29.2% | — | — | — |
+| **A** | euthanasia | 87 | 28.5% | — | — | all_euthanasia |
+| **A** | recycling_room | 81 | 25.3% | — | — | — |
+| **B** | recycling_room_party | 63 | 40.2% | 돌아오는시각 | — | — |
+| **B** | community_room | 63 | 24.9% | 인원수용 | — | — |
+| **B** | parentalreturn | 81 | 23.7% | 안정성 | — | — |
+| **B** | shelter | 87 | 21.8% | 이용사례 | — | all_shelter |
 | **B** | notice_vote | 18 | 19.4% | 때 | — | — |
-| **B** | ambulance | 60 | 15.0% | 응대속도 | — | all_ambulance |
+| **B** | ambulance | 69 | 16.7% | 응대속도 | — | all_ambulance |
 | **B** | study_seat | 18 | 14.8% | 혼자있기 · 조용함 | — | — |
 | **B** | book_room | 18 | 13.0% | 돈 | — | — |
 | **B** | rehab_exercise | 18 | 8.3% | 지원맞춤 · 깨끗함 | — | — |
 | **B** | summer_pool | 18 | 8.3% | 돈 · 자리 | — | — |
 | **C** | carebalance | 54 | 34.3% | 관계친밀도 · 응대속도 · 지속가능성 | — | — |
-| **C** | cat_feeding_days_list | 63 | 14.3% | 연속 · 익숙함 · 위생 · 통행 | 「매일 저녁 사료와 물」 · 「목요일과 토요일」 · 「새와 벌레」 | — |
+| **C** | cat_feeding_days_list | 81 | 14.0% | 연속 · 익숙함 · 위생 · 통행 | 「매일 저녁 사료와 물」 · 「목요일과 토요일」 · 「새와 벌레」 | — |
 | **C** | paint_care | 18 | 13.9% | 전문성 · 이용사례 · 자리 · 깨끗함 | — | — |
 | **C** | playground_floor | 18 | 10.2% | 이용사례 · 몸다침 · 마음 | — | — |
 | **C** | festival_yard | 18 | 9.3% | 때 · 돈 · 혼자있기 | — | — |
