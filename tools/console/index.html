@@ -59,6 +59,18 @@
   .diff div{padding:9px;border-radius:6px;background:var(--note)}
   .diff .chg{background:#f7e6dc}
   .foot{color:var(--dim);font-size:11px;margin-top:6px}
+  /* 보관 그룹(2026-09-03): 7~8월 탭을 접어 둔다 — details/summary 라 JS 0줄 */
+  nav details.archive{position:relative;margin-left:6px}
+  nav details.archive summary{list-style:none;cursor:pointer;padding:6px 12px;border:1px dashed var(--line);
+    border-radius:6px;font-size:12.5px;color:var(--dim);user-select:none}
+  nav details.archive summary::-webkit-details-marker{display:none}
+  nav details.archive[open] summary{background:var(--note);color:var(--ink)}
+  nav details.archive .archive-tabs{position:absolute;right:0;top:calc(100% + 6px);z-index:30;
+    display:flex;flex-wrap:wrap;align-items:center;gap:2px;width:520px;padding:8px;
+    background:var(--panel);border:1px solid var(--line);border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.08)}
+  nav details.archive .archive-cap{flex-basis:100%;font-size:11px;color:var(--dim);margin:4px 4px 2px}
+  .archive-band{background:var(--note);border:1px dashed var(--line);border-radius:8px;padding:8px 14px;
+    font-size:12px;color:var(--dim);margin-bottom:14px}
 </style>
 </head>
 <body>
@@ -66,28 +78,135 @@
   <h1>실험 콘솔 v0</h1>
   <span class="sub" id="hdr" title="옛 이름: 설정 사전 8축 · 수첩 · 개입">AI가 대화하면서 사실을 잃어 가는 과정을 돌려 보고 들여다보는 도구</span>
   <nav>
-    <button data-t="scn" title="옛 이름: 시나리오">토론 시나리오</button>
-    <button data-t="setup" class="on" title="옛 이름: 설정 · 실행">토론 설정·실행</button>
-    <button data-t="notes" title="옛 이름: 수첩 매트릭스">토론 수첩·채점</button>
-    <button data-t="iv" title="옛 이름: 개입 모드">토론 개입 실험</button>
-    <!-- 단독 실험 (memory_structure) — WORKORDER_SOLO_TAB 2026-08-18 추가 영역 -->
+    <button data-t="guide" class="on" title="처음 보는 사람을 위한 안내 — 이 콘솔이 무엇이고 어디부터 보면 되는지">안내</button>
     <span style="border-left:1px solid var(--line);margin:0 4px"></span>
-    <button data-t="srun">단독 실행</button>
-    <button data-t="sres">단독 결과</button>
-    <button data-t="sgrid" title="옛 이름: 생존 격자">단독 생존 격자</button>
-    <!-- 압박 실험 (pressure_category) — 2026-08-24 추가 영역 -->
-    <span style="border-left:1px solid var(--line);margin:0 4px"></span>
-    <button data-t="prun">압박 실행</button>
-    <button data-t="pres">압박 결과</button>
-    <button data-t="pcat">압박 집계</button>
+    <!-- 압박 실험 (pressure_category) — 2026-08-24 추가 영역. 지금 실제로 쓰는 트랙 -->
+    <button data-t="prun" title="압박 실험을 돌린다 — 시나리오·가치 세트·압박 각본을 고르고 연습/실제 실행">압박 실행</button>
+    <button data-t="pres" title="돌린 판의 목록과 라운드별 원문">압박 결과</button>
+    <button data-t="pcat" title="여러 판을 모아 시나리오별·카테고리별로 센 표 + 설득 여부 분류">압박 집계</button>
     <!-- 발표 모드 (2026-09-02 추가) — 별도 자족 페이지. 탭이 아니라 새 창 링크 -->
     <a href="/present" target="_blank" title="9/2 보고서 결과를 한 장으로 보는 별도 페이지(새 창) — 소넷(다른 Claude 모델)이 사람처럼 읽어 채점한 318판 · 조건 스위치 · 실물 판 브라우저 (experiments/pressure_category/CONSOLE_present_*.html)" style="margin-left:6px;padding:4px 10px;border:1px solid var(--line);border-radius:6px;text-decoration:none;font-size:12.5px">발표 모드 ↗</a>
+    <!-- 보관: 7~8월 실험(토론 4탭·단독 3탭). 라우트·기능·JS 그대로, 접어 두기만 한다 (2026-09-03) -->
+    <details class="archive" id="navArchive">
+      <summary data-toggle="archive" title="7~8월 실험 화면(토론 4탭 · 단독 3탭) — 지금은 기록으로 남긴 것. 눌러서 펼침">보관 ▸</summary>
+      <div class="archive-tabs">
+        <span class="archive-cap">토론 실험 (7월)</span>
+        <button data-t="scn" title="구: 시나리오">토론 시나리오</button>
+        <button data-t="setup" title="구: 설정 · 실행">토론 설정·실행</button>
+        <button data-t="notes" title="구: 수첩 매트릭스">토론 수첩·채점</button>
+        <button data-t="iv" title="구: 개입 모드">토론 개입 실험</button>
+        <span class="archive-cap">단독 실험 (8/18)</span>
+        <button data-t="srun">단독 실행</button>
+        <button data-t="sres">단독 결과</button>
+        <button data-t="sgrid" title="구: 생존 격자">단독 생존 격자</button>
+      </div>
+    </details>
   </nav>
 </header>
 <main>
 
+<!-- ─── 안내 (2026-09-03 신설) — 처음 보는 사람용. 기능 없음, 글과 그림만 ───────── -->
+<section id="guide" class="on">
+  <div class="panel">
+    <h2>이 콘솔은 무엇인가</h2>
+    <p class="why" style="font-size:13px;color:var(--ink)">
+      AI 여럿이 대화로 일을 나눠 하면 처음에 알던 사실이 대화 끝에는 사라져 있다. 이 콘솔은 그 현상을 <b>작게 재현해서 돌리고, 무엇이 언제 사라지는지 들여다보는</b> 도구다.<br>
+      지금 실제로 쓰는 실험은 <b>압박 실험</b> 하나다: AI 하나에게 시나리오와 가치 세트를 주고, 상대 역할은 정해진 대본으로 압박하며, 라운드마다 남기는 <b>수첩</b>(500자 메모)에서 어떤 사실이 먼저 사라지는지 잰다.<br>
+      토론 실험(7월)과 단독 실험(8월)은 앞선 단계의 화면이고, 오른쪽 위 <b>「보관 ▸」</b>에 접어 두었다. 결과 보고서 한 장은 <b>「발표 모드 ↗」</b>(새 창).
+    </p>
+  </div>
+
+  <div class="panel">
+    <h2>압박 실험은 이렇게 흘러간다</h2>
+    <div style="overflow-x:auto">
+    <svg viewBox="0 0 980 150" width="100%" style="max-width:980px;min-width:720px;display:block;font-family:inherit" role="img" aria-label="시나리오 → 가치 세트·압박 각본 → 실행 → 결과 → 집계">
+      <defs><marker id="gArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--dim)"/></marker></defs>
+      <g style="font-size:13px">
+        <rect x="8" y="22" width="170" height="78" rx="9" style="fill:var(--note);stroke:var(--line)"/>
+        <text x="93" y="47" text-anchor="middle" style="fill:var(--ink);font-weight:600">① 시나리오</text>
+        <text x="93" y="68" text-anchor="middle" style="fill:var(--dim);font-size:11.5px">상황 + 선택지 2개</text>
+        <text x="93" y="85" text-anchor="middle" style="fill:var(--dim);font-size:11.5px">+ 카테고리별 사실</text>
+
+        <line x1="180" y1="61" x2="204" y2="61" style="stroke:var(--dim);stroke-width:1.5" marker-end="url(#gArrow)"/>
+
+        <rect x="206" y="22" width="200" height="78" rx="9" style="fill:var(--note);stroke:var(--line)"/>
+        <text x="306" y="47" text-anchor="middle" style="fill:var(--ink);font-weight:600">② 가치 세트 + 압박 각본</text>
+        <text x="306" y="68" text-anchor="middle" style="fill:var(--dim);font-size:11.5px">“이 카테고리가 중요하다” 문장(A/B)</text>
+        <text x="306" y="85" text-anchor="middle" style="fill:var(--dim);font-size:11.5px">상대 대본: 없음 C0 · 같은 편 C1 · 반대 C2</text>
+
+        <line x1="408" y1="61" x2="432" y2="61" style="stroke:var(--dim);stroke-width:1.5" marker-end="url(#gArrow)"/>
+
+        <rect x="434" y="22" width="180" height="78" rx="9" style="fill:var(--panel);stroke:var(--accent);stroke-width:1.5"/>
+        <text x="524" y="47" text-anchor="middle" style="fill:var(--ink);font-weight:600">③ 실행 (한 판)</text>
+        <text x="524" y="68" text-anchor="middle" style="fill:var(--dim);font-size:11.5px">라운드 0~3: 글 쓰기 + 수첩 500자</text>
+        <text x="524" y="85" text-anchor="middle" style="fill:var(--dim);font-size:11.5px">마지막에 답 하나 (최종 선택)</text>
+
+        <line x1="616" y1="61" x2="640" y2="61" style="stroke:var(--dim);stroke-width:1.5" marker-end="url(#gArrow)"/>
+
+        <rect x="642" y="22" width="150" height="78" rx="9" style="fill:var(--note);stroke:var(--line)"/>
+        <text x="717" y="47" text-anchor="middle" style="fill:var(--ink);font-weight:600">④ 결과</text>
+        <text x="717" y="68" text-anchor="middle" style="fill:var(--dim);font-size:11.5px">판 목록 · 라운드별 원문</text>
+        <text x="717" y="85" text-anchor="middle" style="fill:var(--dim);font-size:11.5px">(압박 결과 탭)</text>
+
+        <line x1="794" y1="61" x2="818" y2="61" style="stroke:var(--dim);stroke-width:1.5" marker-end="url(#gArrow)"/>
+
+        <rect x="820" y="22" width="152" height="78" rx="9" style="fill:var(--note);stroke:var(--line)"/>
+        <text x="896" y="47" text-anchor="middle" style="fill:var(--ink);font-weight:600">⑤ 집계</text>
+        <text x="896" y="68" text-anchor="middle" style="fill:var(--dim);font-size:11.5px">어떤 사실이 남았나</text>
+        <text x="896" y="85" text-anchor="middle" style="fill:var(--dim);font-size:11.5px">(압박 집계 탭)</text>
+
+        <text x="8" y="130" style="fill:var(--dim);font-size:11.5px">①~② 고르기와 ③ 실행은 「압박 실행」 탭 · 한 판 = 라운드 4번 + 최종 선택 · 사실은 라운드 0에만 주고 그 뒤로는 수첩에 적은 것만 기억으로 남는다</text>
+      </g>
+    </svg>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>탭마다 무엇을 보나</h2>
+    <table style="font-size:12.5px">
+      <tr><th style="width:150px">탭</th><th>무엇을 보는 화면인가</th></tr>
+      <tr><td><b>압박 실행</b></td><td>실험을 돌린다. 시나리오·가치 세트·압박 각본·반복 횟수를 고르고 <b>연습 실행</b>(AI 호출 0)으로 보낼 글을 확인한 뒤, 사전등록 확인을 켜고 <b>실제 실행</b>(요금 발생). 여러 시나리오를 한 번에 거는 일괄 실행, 새 각본·가치 세트·신념 등록도 여기.</td></tr>
+      <tr><td><b>압박 결과</b></td><td>돌린 판의 목록. 한 줄을 누르면 그 판의 라운드별 글·수첩·최종 선택 원문이 뜬다. <b>⚠가치와 다른 답</b> 표시는 반드시 원문으로 확인.</td></tr>
+      <tr><td><b>압박 집계</b></td><td>여러 판을 모아 센 표 — 시나리오별로 “가치로 준 카테고리의 사실은 마지막 수첩에 얼마나 남았나(안)”와 “안 준 쪽(밖)”의 차이, 최종 선택이 가치와 다른 판 수. 아래에는 반대 압박 판의 <b>설득 여부 분류</b>.</td></tr>
+      <tr><td><b>발표 모드 ↗</b></td><td>9/2 보고서의 결과를 한 장으로 보는 별도 페이지(새 창). 이 콘솔의 집계와는 <b>채점 방식이 다르다</b>(아래 ‘단어 찾기’ 참조).</td></tr>
+      <tr><td>보관 ▸ 토론 4탭</td><td>7월 실험: AI 여럿이 사실을 나눠 갖고 토론하는 판(시나리오 고르기 · 설정과 실행 · 수첩 표와 채점 · 수첩을 고쳐서 결론이 바뀌나 보는 개입 실험). 지금은 기록용.</td></tr>
+      <tr><td>보관 ▸ 단독 3탭</td><td>8월 실험: AI 하나가 혼자 4번 글을 쓰며 기억 조건(전부/수첩만/직전 글만)에 따라 사실이 얼마나 남나(실행 · 결과 · 사실×라운드 생존 격자). 지금은 기록용.</td></tr>
+    </table>
+  </div>
+
+  <div class="panel">
+    <h2>자주 쓰는 말</h2>
+    <table style="font-size:12.5px">
+      <tr><th style="width:190px">말</th><th>뜻</th></tr>
+      <tr><td><b>판</b></td><td>한 번의 대화 실험 = 라운드 4번 + 최종 선택. 파일에서는 <code>run_id</code>가 판의 이름이고, 단독 탭에서는 ‘런’이라고 부른다(같은 단위).</td></tr>
+      <tr><td><b>수첩</b></td><td>AI가 라운드마다 다음 라운드의 자기에게 남기는 500자 메모. 사실 목록은 라운드 0에만 주므로, 수첩에 안 적은 사실은 다음 라운드에 정말로 없다.</td></tr>
+      <tr><td><b>시나리오</b> (팀 문서: 재료)</td><td>상황 설명 + 선택지 2개 + 카테고리별 사실 한 벌. 파일은 <code>experiments/pressure_category/materials/</code>.</td></tr>
+      <tr><td><b>카테고리</b> (9/2 보고서: 항목)</td><td>사실을 묶는 주제(비용·거리·대응 …). 카테고리마다 같은 수의 사실(보통 2개)이 있고, 사실마다 어느 선택지에 유리한지(<code>favors</code>)가 적혀 있다.</td></tr>
+      <tr><td><b>가치 세트</b></td><td>AI에게 주는 “너에게는 이 카테고리들이 중요하다” 문장. 기본 제공 A·B는 서로 반대 선택지를 편들도록 짝지어져 있다(거울 설계). 직접 등록한 세트(✎)와 <b>신념</b>(어느 시나리오에나 쓰는 범용 문장)도 같은 자리에 들어간다. 9/2 보고서의 ‘가치 문장·원칙 문장·라벨 한 문장’이 전부 여기 해당.</td></tr>
+      <tr><td><b>압박 각본</b> (C0 / C1 / C2)</td><td>상대 역할이 라운드마다 하는 말의 대본. 압박 없음(C0, 비교 기준) · 같은 편 압박(C1, 가치와 같은 쪽으로 밈) · 반대 압박(C2, 반대쪽으로 밈). AI가 뭐라 하든 대사는 바뀌지 않는다.</td></tr>
+      <tr><td><b>가치가 미는 답</b> (팀 문서: 정렬 답)</td><td>그 가치 세트가 편드는 선택지. <b>가치와 다른 답</b>은 최종 선택이 이것과 다르다는 사실만 말하고, 설득됐다는 뜻은 아니다(팀 문서의 ‘뒤집힘’).</td></tr>
+      <tr><td><b>안 / 밖 · 안−밖 차이</b></td><td>안 = 그 판의 가치 세트에 든 카테고리, 밖 = 안 든 카테고리. 각각의 사실이 마지막 수첩에 남은 비율을 세고, 그 차이(%p)를 본다. 양수면 가치로 준 쪽이 더 남은 것.</td></tr>
+      <tr><td><b>표식 · 단어 찾기 채점</b></td><td>사실마다 그 사실에만 나오도록 정해 둔 고유한 말(숫자·이름 등). 이 콘솔의 집계는 전부 표식이 수첩에 남았는지 <b>글자로 찾는</b> 1차 채점이라, 말을 바꿔 쓰면 놓친다(놓침 ~25%). 9/2 보고서의 조건 비교 수치는 소넷이 판 전체를 읽어 채점한 것이라 이 콘솔 숫자와 같지 않다.</td></tr>
+      <tr><td><b>설득 여부 분류</b> (팀 문서: 담화 라벨)</td><td>반대 압박(C2) 판의 글 흐름을 다섯 가지로 나눈 것 — 결정까지 바뀜 / 말만 바뀜 / 처음부터 같은 편 / 안 바뀜 / 왔다갔다. 다른 AI 모델이 분류한 탐색 등급이라 인용 전에 원문 확인.</td></tr>
+      <tr><td><b>연습 실행 / 실제 실행 / 콜</b></td><td>연습 실행(dry) = AI 호출 0으로 AI에게 보낼 글(프롬프트)만 만들어 <code>runs/_dry/</code>에 남기는 실행. 실제 실행(live) = 요금 발생. 콜 = AI 호출 1번(판마다 8콜 + 수첩 다시 쓰기 최대 3콜). 실제 실행은 사전등록 문서(PREREG_v0.md)를 커밋했다는 확인을 켜야 열린다.</td></tr>
+      <tr><td><b>반복</b> (rep)</td><td>같은 조건을 몇 번 돌렸는지의 순번(1·2·3). 판 이름 끝의 <code>rep1</code>이 그것.</td></tr>
+    </table>
+  </div>
+
+  <div class="panel">
+    <h2>처음이라면 이 순서로</h2>
+    <ol style="margin:0;padding-left:22px;font-size:13px;line-height:1.8">
+      <li><b>압박 결과</b> 탭에서 판 하나를 눌러 라운드별 원문을 읽는다 — “한 판”이 어떤 것인지 감을 잡는 데 5분이면 된다.</li>
+      <li><b>압박 집계</b> 탭에서 시나리오 한 줄을 눌러 상세를 본다 — 어느 카테고리가 살아남고 어느 쪽이 사라졌는지가 표로 보인다.</li>
+      <li>직접 돌려 보려면 <b>압박 실행</b> 탭: 시나리오·가치 세트(A·B)·압박 각본(C0·C1·C2)을 고르고 <b>연습 실행</b>으로 보낼 글을 확인 → 사전등록 확인을 켜고 <b>실제 실행</b>. 결과는 압박 결과 탭에 바로 뜬다.</li>
+    </ol>
+    <p class="foot" style="margin-top:10px">켜는 법·API 키·흔한 오류는 <code>tools/console/README.md</code>. 이 화면은 설명만 있고 아무것도 실행하지 않는다.</p>
+  </div>
+</section>
+
 <!-- ─── 시나리오 ────────────────────────────────────────────────────── -->
 <section id="scn">
+  <div class="archive-band">이 화면은 7~8월 실험용이며 지금은 기록으로 남긴 것 — 지금 쓰는 실험은 위 <b>압박 실행 · 압박 결과 · 압박 집계</b> 탭</div>
   <div class="panel">
     <h2>시나리오 고르기</h2>
     <p class="why">실험을 돌리기 전에 "이 시나리오가 무엇을 묻고, 누가 무엇을 아는가"를
@@ -134,7 +253,8 @@
 </section>
 
 <!-- ─── 설정 · 실행 ─────────────────────────────────────────────────── -->
-<section id="setup" class="on">
+<section id="setup">
+  <div class="archive-band">이 화면은 7~8월 실험용이며 지금은 기록으로 남긴 것 — 지금 쓰는 실험은 위 <b>압박 실행 · 압박 결과 · 압박 집계</b> 탭</div>
   <div class="panel">
     <h2>설정</h2>
     <p class="why">설정 사전(EXPERIMENT_SETTINGS_v0.md) 8축을 그대로 폼으로 옮긴 것.
@@ -172,6 +292,7 @@
 
 <!-- ─── 수첩 매트릭스 ───────────────────────────────────────────────── -->
 <section id="notes">
+  <div class="archive-band">이 화면은 7~8월 실험용이며 지금은 기록으로 남긴 것 — 지금 쓰는 실험은 위 <b>압박 실행 · 압박 결과 · 압박 집계</b> 탭</div>
   <div class="panel">
     <h2>run 고르기</h2>
     <p class="why">수첩 건수(수첩)가 0 이면 수첩 없는 조건이다.</p>
@@ -199,6 +320,7 @@
 
 <!-- ─── 개입 모드 ───────────────────────────────────────────────────── -->
 <section id="iv">
+  <div class="archive-band">이 화면은 7~8월 실험용이며 지금은 기록으로 남긴 것 — 지금 쓰는 실험은 위 <b>압박 실행 · 압박 결과 · 압박 집계</b> 탭</div>
   <div class="panel">
     <h2>개입 창</h2>
     <p class="why">수첩에서 특정 팩트를 지우고 최종 폴링만 다시 돌린다 — 결론이 바뀌면
@@ -224,6 +346,7 @@
 <!-- ═══ 단독 실험 (memory_structure) — WORKORDER_SOLO_TAB 2026-08-18 추가 ═══ -->
 <!-- ─── 단독 실행 ──────────────────────────────────────────────────── -->
 <section id="srun">
+  <div class="archive-band">이 화면은 7~8월 실험용이며 지금은 기록으로 남긴 것 — 지금 쓰는 실험은 위 <b>압박 실행 · 압박 결과 · 압박 집계</b> 탭</div>
   <div class="panel">
     <h2>단독 실험 — 조건 폼</h2>
     <p class="why">experiments/memory_structure 의 단독 러너(run_solo.py)를 서브프로세스로
@@ -275,6 +398,7 @@
 
 <!-- ─── 단독 결과 (런 뷰어) ───────────────────────────────────────────── -->
 <section id="sres">
+  <div class="archive-band">이 화면은 7~8월 실험용이며 지금은 기록으로 남긴 것 — 지금 쓰는 실험은 위 <b>압박 실행 · 압박 결과 · 압박 집계</b> 탭</div>
   <div class="panel">
     <h2>단독 런 목록 <button class="alt" id="s_refresh" style="padding:3px 10px;font-size:11px;margin-left:8px">새로고침</button></h2>
     <p class="why">runs/&lt;model&gt;/ 스캔 — 최신순. dry 는 별도 표시. v1 산출물엔 v2 손잡이
@@ -292,6 +416,7 @@
 
 <!-- ─── 생존 격자 ─────────────────────────────────────────────────────── -->
 <section id="sgrid">
+  <div class="archive-band">이 화면은 7~8월 실험용이며 지금은 기록으로 남긴 것 — 지금 쓰는 실험은 위 <b>압박 실행 · 압박 결과 · 압박 집계</b> 탭</div>
   <div class="panel">
     <h2>생존 격자 — 채점된 런 <button class="alt" id="s_grefresh" style="padding:3px 10px;font-size:11px;margin-left:8px">새로고침</button></h2>
     <p class="why">judgments 가 있는 런만. 사실(12행) × 시점(r0~r3·carrier) 격자 —
