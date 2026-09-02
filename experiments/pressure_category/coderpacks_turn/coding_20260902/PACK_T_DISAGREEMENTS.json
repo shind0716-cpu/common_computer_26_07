@@ -1,0 +1,11 @@
+{
+  "coder_artifact_sha256": [
+    "2fa6556fc678382f0decd693d65d474fe7f0218110636ebc88b96d831dcbbf02",
+    "a98990ce9d3f36d6f1f5ae4019b8d15d8143b4900eaa324409fa5857d694ffb0"
+  ],
+  "items": [],
+  "n_disagreements": 0,
+  "schema": "pack_t_disagreements_v1",
+  "source_path": "PACK_T_turn_2026-09-02.md",
+  "source_sha256": "ebfdc93e627016b732375ad9942b701231ac7c764aa7b10bd8da26623d2b7394"
+}

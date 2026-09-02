@@ -1,0 +1,24 @@
+{
+  "analysis_status": "post_hoc_exploratory",
+  "files": {
+    "A_CLAUDE_TURN_01_LAUNCH_RECEIPT.json": "081fc92cd1d985442106cd23b4037062164c719412d8454b8e4555615a7b22e0",
+    "A_CLAUDE_TURN_01_RAW.json": "a98990ce9d3f36d6f1f5ae4019b8d15d8143b4900eaa324409fa5857d694ffb0",
+    "B_SOL_TURN_01_CORRECTED.json": "2fa6556fc678382f0decd693d65d474fe7f0218110636ebc88b96d831dcbbf02",
+    "B_SOL_TURN_01_CORRECTION_RECEIPT.json": "be79bf01ab0ff7411941011cbd8b23402c3963133cbac1b584c998d97cf01033",
+    "B_SOL_TURN_01_LAUNCH_RECEIPT.json": "012b60e9f6bf39a5f28a7ac69c167af47ef2750fd352648f0d4aeba71ad21194",
+    "B_SOL_TURN_01_RAW.json": "c8b503156fdb51289a2b0986e3ae91b7e9ef8b0fbbb1b1b5357209eba7ad109a",
+    "CODING_PROTOCOL.md": "59c08deb6f983d149e62f033ff788a6270c1179413b645402228b129a6e3299b",
+    "HARD_STOP_STATUS.json": "23f8fed35d617c1ef6716bdae7b163325d32bfadc0ecf0237d834f1ac78eb488",
+    "PACK_T_ADJUDICATION.json": "c9c620405a38ca662f76d6866c04157abcac6e8a7ff327ceca4adfe3b66c7eda",
+    "PACK_T_CONSENSUS.json": "2f4332e4ee2ba9133f3da06f7f3879d360defd3cfea1aae4177e0de7550f1367",
+    "PACK_T_DISAGREEMENTS.json": "17f1519fe35432ae7449681bc1dfc193ee303f1376b2b5b9a9ec6aa843dabbe9",
+    "PROMPT_CLAUDE.txt": "f1eac8ca9405186343cbb60ce38e7a7accae71caac99d21085de14fae96506f5",
+    "PROMPT_SOL.txt": "20901cee597f4aaff42bc49c5de74b78e5d521289e64986f6a9eac0e3c1a924f",
+    "coding_output.schema.json": "c29e0811efbfd9e604826c797b28e84081de5fb3cfef8ea5569743714adcbe02"
+  },
+  "key_opened": false,
+  "schema": "pack_t_freeze_v1",
+  "source_path": "PACK_T_turn_2026-09-02.md",
+  "source_sha256": "ebfdc93e627016b732375ad9942b701231ac7c764aa7b10bd8da26623d2b7394",
+  "status": "FROZEN_PRE_KEY"
+}

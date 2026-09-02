@@ -1,0 +1,38 @@
+{
+  "accuracy": {
+    "correct": 22,
+    "n": 24
+  },
+  "analysis_status": "post_hoc_exploratory",
+  "answer_relation": {
+    "같은 답": 10,
+    "다른 답": 14
+  },
+  "coder_structured_agreement_n": 24,
+  "easy_after_states_conclusion": {
+    "correct": 8,
+    "n": 9
+  },
+  "hard_no_stated_conclusion": {
+    "correct": 14,
+    "n": 15
+  },
+  "n": 24,
+  "schema": "pack_t_keyed_summary_v1",
+  "true_flips": {
+    "change_basis": {
+      "다시 해석했다": 11,
+      "버렸다": 1
+    },
+    "n": 12,
+    "same_principle": {
+      "같다": 11,
+      "다르다": 1
+    }
+  },
+  "truth": {
+    "같은 답": 12,
+    "다른 답": 12
+  },
+  "warning": "AI coder agreement is model-to-model agreement, not human reliability."
+}

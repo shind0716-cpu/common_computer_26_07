@@ -1,0 +1,9 @@
+당신은 독립 블라인드 코더 A_CLAUDE_TURN_01입니다. 아래 팩 24쌍만 읽고 JSON 하나만 반환하십시오. 도구·웹·파일시스템·열쇠·다른 코더 출력·이전 세션은 사용할 수 없습니다.
+
+최상위:
+{"pack":"PACK_T","coder_id":"A_CLAUDE_TURN_01","instruction_version":"20260902-turn-v1","independent":true,"key_access":false,"source_path":"PACK_T_turn_2026-09-02.md","source_sha256":"ebfdc93e627016b732375ad9942b701231ac7c764aa7b10bd8da26623d2b7394","items":[...]}
+
+T-01~T-24를 팩 순서대로 정확히 전부 작성하십시오. 항목 형식:
+{"id":"T-01","same_principle":"같다|다르다|모르겠다","principle_evidence_before":"앞 수첩의 300자 이하 exact quote","principle_evidence_after":"뒤 수첩의 300자 이하 exact quote","answer_relation":"같은 답|다른 답|모르겠다","answer_evidence_before":"앞 수첩의 추천 방향 exact quote","answer_evidence_after":"뒤 수첩의 추천 방향 exact quote","change_basis":null,"rationale":"한 줄","confidence":0.0}
+
+`answer_relation=다른 답`일 때만 change_basis는 `버렸다|다시 해석했다|판단 못 하겠다`; 그 밖에는 null입니다. 원칙 표현이 같아도 추천 답은 다를 수 있고, 답이 달라도 같은 원칙을 다시 해석했을 수 있습니다. 추천 방향이 불명확하면 모르겠다를 쓰십시오. 모든 before 인용은 해당 앞 수첩, after 인용은 해당 뒤 수첩의 정확한 부분문자열이어야 합니다. 항목끼리 비교하거나 전체 비율을 짐작하지 마십시오. Markdown fence와 설명 없이 완전한 JSON만 반환하십시오.

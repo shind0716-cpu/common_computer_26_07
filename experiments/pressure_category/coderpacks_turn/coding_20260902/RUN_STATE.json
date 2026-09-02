@@ -1,0 +1,15 @@
+{
+  "status": "RAW_COMPLETE",
+  "planned_launches": 2,
+  "attempted_launches": 2,
+  "bundle_root": "C:\\Users\\u\\AppData\\Local\\Temp\\coder-turn-20260902-_7e3ec3c",
+  "pack_sha256": "ebfdc93e627016b732375ad9942b701231ac7c764aa7b10bd8da26623d2b7394",
+  "families": [
+    "Claude",
+    "Hermes-Sol"
+  ],
+  "outputs": {
+    "A_CLAUDE_TURN_01": "a98990ce9d3f36d6f1f5ae4019b8d15d8143b4900eaa324409fa5857d694ffb0",
+    "B_SOL_TURN_01": "c8b503156fdb51289a2b0986e3ae91b7e9ef8b0fbbb1b1b5357209eba7ad109a"
+  }
+}

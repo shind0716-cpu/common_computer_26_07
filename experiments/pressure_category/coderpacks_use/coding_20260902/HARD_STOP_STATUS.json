@@ -1,0 +1,40 @@
+{
+  "schema": "pack_u_run_status_v1",
+  "status": "CORRECTED_ACCEPTED",
+  "analysis_status": "post_hoc_exploratory",
+  "planned_semantic_launches": 2,
+  "attempted_semantic_launches": 3,
+  "accepted_first_pass_outputs": 2,
+  "rejected_first_pass_outputs": 1,
+  "private_key_released": false,
+  "accepted": [
+    {
+      "coder_id": "A_CLAUDE_USE_01",
+      "family": "Claude",
+      "items": 34,
+      "raw_output_sha256": "186b05b5b332c909a2376093728301bb9b9ed4983d50c8a855715d207b1060c3"
+    }
+  ],
+  "rejected": [
+    {
+      "coder_id": "B_SOL_USE_01",
+      "family": "Hermes-Sol",
+      "items": 34,
+      "hard_failure": "two evidence strings are not exact substrings of the item-local notebook",
+      "failed_coordinates": [
+        "U-20/purpose_evidence",
+        "U-20/rebuildability_evidence"
+      ]
+    }
+  ],
+  "next_gate": "Compare validated outputs; keep key sealed.",
+  "correction": {
+    "coder_id": "B_SOL_USE_01",
+    "scope": [
+      "U-20/purpose_evidence",
+      "U-20/rebuildability_evidence"
+    ],
+    "corrected_output_sha256": "20f31a4540845e14aeddd2b3811dfb4a4eac055dcead3991e349225161e4485c",
+    "receipt_sha256": "ebbd374f9584b9a539966dfafbcf77ee52c2dce5f5cb27b27d576d25cd952a44"
+  }
+}

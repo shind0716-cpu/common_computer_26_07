@@ -1,0 +1,56 @@
+{
+  "agreement_n": 25,
+  "analysis_status": "post_hoc_exploratory",
+  "by_fact_band": {
+    "0개": {
+      "grades": {
+        "부분만": 5,
+        "세울 수 있다": 7
+      },
+      "n": 12
+    },
+    "1~3개": {
+      "grades": {
+        "부분만": 5,
+        "세울 수 있다": 7
+      },
+      "n": 12
+    },
+    "4개+": {
+      "grades": {
+        "세울 수 있다": 10
+      },
+      "n": 10
+    }
+  },
+  "by_model": {
+    "claude-haiku": {
+      "grades": {
+        "부분만": 3,
+        "세울 수 있다": 7
+      },
+      "n": 10
+    },
+    "gemini-flash": {
+      "grades": {
+        "부분만": 4,
+        "세울 수 있다": 8
+      },
+      "n": 12
+    },
+    "gpt": {
+      "grades": {
+        "부분만": 3,
+        "세울 수 있다": 9
+      },
+      "n": 12
+    }
+  },
+  "grades": {
+    "부분만": 10,
+    "세울 수 있다": 24
+  },
+  "n": 34,
+  "schema": "pack_u_keyed_summary_v1",
+  "warning": "AI coder agreement is model-to-model agreement, not human reliability."
+}

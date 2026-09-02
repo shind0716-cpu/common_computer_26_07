@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["pack", "coder_id", "instruction_version", "independent", "key_access", "source_path", "source_sha256", "items"],
+  "properties": {
+    "pack": {"const": "PACK_U"},
+    "coder_id": {"type": "string", "minLength": 1},
+    "instruction_version": {"const": "20260902-use-v1"},
+    "independent": {"const": true},
+    "key_access": {"const": false},
+    "source_path": {"const": "PACK_U_use_2026-09-02.md"},
+    "source_sha256": {"const": "4f604136d6d783cf65d00fa43db26a7baf69af907c3fe5e4c2fcfd58eb0605c8"},
+    "items": {
+      "type": "array", "minItems": 34, "maxItems": 34,
+      "items": {"$ref": "#/$defs/item"}
+    }
+  },
+  "$defs": {
+    "quote": {"type": "string", "minLength": 1, "maxLength": 300},
+    "item": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "purpose", "purpose_evidence", "missing_capability", "missing_evidence", "rebuildability", "rebuildability_evidence", "rationale", "confidence"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^U-[0-9]{2}$"},
+        "purpose": {"type": "string", "minLength": 1},
+        "purpose_evidence": {"$ref": "#/$defs/quote"},
+        "missing_capability": {"type": "string", "minLength": 1},
+        "missing_evidence": {"anyOf": [{"$ref": "#/$defs/quote"}, {"type": "null"}]},
+        "rebuildability": {"enum": ["세울 수 있다", "부분만", "못 세운다"]},
+        "rebuildability_evidence": {"$ref": "#/$defs/quote"},
+        "rationale": {"type": "string", "minLength": 1},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schema": "pack_t_run_status_v1",
+  "status": "CORRECTED_ACCEPTED",
+  "analysis_status": "post_hoc_exploratory",
+  "planned_semantic_launches": 2,
+  "attempted_semantic_launches": 3,
+  "accepted_first_pass_outputs": 2,
+  "rejected_first_pass_outputs": 1,
+  "private_key_released": false,
+  "accepted": [
+    {
+      "coder_id": "A_CLAUDE_TURN_01",
+      "family": "Claude",
+      "items": 24,
+      "raw_output_sha256": "a98990ce9d3f36d6f1f5ae4019b8d15d8143b4900eaa324409fa5857d694ffb0"
+    }
+  ],
+  "rejected": [
+    {
+      "coder_id": "B_SOL_TURN_01",
+      "family": "Hermes-Sol",
+      "items": 24,
+      "raw_output_sha256": "c8b503156fdb51289a2b0986e3ae91b7e9ef8b0fbbb1b1b5357209eba7ad109a",
+      "hard_failure": "nine evidence strings are not exact substrings of their declared before/after notebook region",
+      "failed_coordinates": [
+        "T-15/answer_evidence_after",
+        "T-16/answer_evidence_before",
+        "T-16/principle_evidence_after",
+        "T-17/answer_evidence_before",
+        "T-17/principle_evidence_after",
+        "T-17/answer_evidence_after",
+        "T-18/principle_evidence_before",
+        "T-18/answer_evidence_before",
+        "T-18/principle_evidence_after"
+      ]
+    }
+  ],
+  "next_gate": "Compare validated outputs; keep key sealed.",
+  "correction": {
+    "scope": [
+      "T-15/answer_evidence_after",
+      "T-16/answer_evidence_before",
+      "T-16/principle_evidence_after",
+      "T-17/answer_evidence_before",
+      "T-17/principle_evidence_after",
+      "T-17/answer_evidence_after",
+      "T-18/principle_evidence_before",
+      "T-18/answer_evidence_before",
+      "T-18/principle_evidence_after"
+    ],
+    "corrected_output_sha256": "2fa6556fc678382f0decd693d65d474fe7f0218110636ebc88b96d831dcbbf02",
+    "receipt_sha256": "be79bf01ab0ff7411941011cbd8b23402c3963133cbac1b584c998d97cf01033"
+  }
+}

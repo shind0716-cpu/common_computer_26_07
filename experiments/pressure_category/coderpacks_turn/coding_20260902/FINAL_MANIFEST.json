@@ -1,0 +1,9 @@
+{
+  "all_blind_artifacts_frozen_before_key_open": true,
+  "freeze_sha256": "fe4bfa13b58f8dc96c2b5ee24466114ffdcbb899da2fb3ec77e49344da913f21",
+  "key_sha256": "4dce5f29638f58be4641be9461cf7363ddbae4c0bd84dcb52273bb8f992bad46",
+  "keyed_sha256": "842f380f963f1695176e87de55bc38e8c04a1df5bd2681c2d415b195d2491b6f",
+  "schema": "pack_t_final_manifest_v1",
+  "status": "complete",
+  "summary_sha256": "712b1fc58c0ca1ce6e8e5eccec0faee32e46b11a8c36f7846918cedf387413b7"
+}
