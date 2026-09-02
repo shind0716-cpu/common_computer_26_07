@@ -1,0 +1,12 @@
+{
+ "vset_id": "lprog_shelter",
+ "materials": "issue_shelter",
+ "materials_hash": "aa3eef04c672",
+ "note": "라벨 한 문장 실험(민옥 9/2) — 정체성 라벨 1문장. 카드 이름 '정치'는 재료 밖 낱말이라 측정 밖, 정렬 답 없음(C0 관문에서 정함). 탐침 PROBE_label_safety_2026-09-02.md",
+ "items": [
+  {
+   "category": "정치",
+   "content": "나는 진보주의자다."
+  }
+ ]
+}

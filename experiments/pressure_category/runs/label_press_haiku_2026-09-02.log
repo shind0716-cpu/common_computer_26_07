@@ -1,0 +1,892 @@
+=== label press 시작 2026-09-02T04:35:19+00:00 ===
+--- issue_childcare ---
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[done] claude-haiku/pxc_childcare_lcons_childcare_rep1 · 호출 9
+[done] claude-haiku/pxc_childcare_lcons_childcare_rep2 · 호출 8
+[done] claude-haiku/pxc_childcare_lcons_childcare_rep3 · 호출 9
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+=== label press 시작 2026-09-02T04:38:17+00:00 ===
+--- issue_childcare ---
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep1 — 결과 존재
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep2 — 결과 존재
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep3 — 결과 존재
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep1 — 결과 존재
+[done] claude-haiku/pxp_childcare_lprog_childcare_rep2 · 호출 2
+[done] claude-haiku/pxp_childcare_lprog_childcare_rep3 · 호출 9
+--- issue_euthanasia ---
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[done] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep1 · 호출 8
+[done] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep2 · 호출 8
+[done] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep3 · 호출 9
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+=== label press 시작 2026-09-02T04:41:14+00:00 ===
+--- issue_childcare ---
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep1 — 결과 존재
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep2 — 결과 존재
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep3 — 결과 존재
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep1 — 결과 존재
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep2 — 결과 존재
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep3 — 결과 존재
+--- issue_euthanasia ---
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep1 — 결과 존재
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep2 — 결과 존재
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep3 — 결과 존재
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[done] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep1 · 호출 5
+[done] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep2 · 호출 8
+[done] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep3 · 호출 8
+--- issue_examaccom ---
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+=== label press 시작 2026-09-02T04:44:12+00:00 ===
+--- issue_childcare ---
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep1 — 결과 존재
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep2 — 결과 존재
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep3 — 결과 존재
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep1 — 결과 존재
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep2 — 결과 존재
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep3 — 결과 존재
+--- issue_euthanasia ---
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep1 — 결과 존재
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep2 — 결과 존재
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep3 — 결과 존재
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep1 — 결과 존재
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep2 — 결과 존재
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep3 — 결과 존재
+--- issue_examaccom ---
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep1 — 결과 존재
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep2 — 결과 존재
+[done] claude-haiku/pxc_examaccom_lcons_examaccom_rep3 · 호출 9
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[done] claude-haiku/pxp_examaccom_lprog_examaccom_rep1 · 호출 8
+[done] claude-haiku/pxp_examaccom_lprog_examaccom_rep2 · 호출 8
+[done] claude-haiku/pxp_examaccom_lprog_examaccom_rep3 · 호출 8
+--- issue_remotewatch ---
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+=== label press 시작 2026-09-02T04:47:09+00:00 ===
+--- issue_childcare ---
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep1 — 결과 존재
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep2 — 결과 존재
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep3 — 결과 존재
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep1 — 결과 존재
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep2 — 결과 존재
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep3 — 결과 존재
+--- issue_euthanasia ---
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep1 — 결과 존재
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep2 — 결과 존재
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep3 — 결과 존재
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep1 — 결과 존재
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep2 — 결과 존재
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep3 — 결과 존재
+--- issue_examaccom ---
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep1 — 결과 존재
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep2 — 결과 존재
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep3 — 결과 존재
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep1 — 결과 존재
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep2 — 결과 존재
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep3 — 결과 존재
+--- issue_remotewatch ---
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_remotewatch · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[done] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep1 · 호출 3
+[done] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep2 · 호출 8
+[done] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep3 · 호출 8
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+=== label press 시작 2026-09-02T04:50:07+00:00 ===
+--- issue_childcare ---
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep1 — 결과 존재
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep2 — 결과 존재
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep3 — 결과 존재
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep1 — 결과 존재
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep2 — 결과 존재
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep3 — 결과 존재
+--- issue_euthanasia ---
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep1 — 결과 존재
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep2 — 결과 존재
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep3 — 결과 존재
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep1 — 결과 존재
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep2 — 결과 존재
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep3 — 결과 존재
+--- issue_examaccom ---
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep1 — 결과 존재
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep2 — 결과 존재
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep3 — 결과 존재
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep1 — 결과 존재
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep2 — 결과 존재
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep3 — 결과 존재
+--- issue_remotewatch ---
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_remotewatch · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[skip] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep1 — 결과 존재
+[skip] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep2 — 결과 존재
+[skip] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep3 — 결과 존재
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_remotewatch · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[skip] claude-haiku/pxp_remotewatch_lprog_remotewatch_rep1 — 결과 존재
+[skip] claude-haiku/pxp_remotewatch_lprog_remotewatch_rep2 — 결과 존재
+[done] claude-haiku/pxp_remotewatch_lprog_remotewatch_rep3 · 호출 6
+--- issue_workmind ---
+[check_materials] 대상: issue_workmind.json (issue_id=issue_workmind)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_workmind · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 661cb97a56ee
+[done] claude-haiku/pxc_workmind_lcons_workmind_rep1 · 호출 9
+[done] claude-haiku/pxc_workmind_lcons_workmind_rep2 · 호출 8
+[done] claude-haiku/pxc_workmind_lcons_workmind_rep3 · 호출 8
+[check_materials] 대상: issue_workmind.json (issue_id=issue_workmind)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+=== label press 시작 2026-09-02T04:53:05+00:00 ===
+--- issue_childcare ---
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep1 — 결과 존재
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep2 — 결과 존재
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep3 — 결과 존재
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep1 — 결과 존재
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep2 — 결과 존재
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep3 — 결과 존재
+--- issue_euthanasia ---
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep1 — 결과 존재
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep2 — 결과 존재
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep3 — 결과 존재
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep1 — 결과 존재
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep2 — 결과 존재
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep3 — 결과 존재
+--- issue_examaccom ---
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep1 — 결과 존재
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep2 — 결과 존재
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep3 — 결과 존재
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep1 — 결과 존재
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep2 — 결과 존재
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep3 — 결과 존재
+--- issue_remotewatch ---
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_remotewatch · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[skip] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep1 — 결과 존재
+[skip] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep2 — 결과 존재
+[skip] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep3 — 결과 존재
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_remotewatch · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[skip] claude-haiku/pxp_remotewatch_lprog_remotewatch_rep1 — 결과 존재
+[skip] claude-haiku/pxp_remotewatch_lprog_remotewatch_rep2 — 결과 존재
+[skip] claude-haiku/pxp_remotewatch_lprog_remotewatch_rep3 — 결과 존재
+--- issue_workmind ---
+[check_materials] 대상: issue_workmind.json (issue_id=issue_workmind)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_workmind · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 661cb97a56ee
+[skip] claude-haiku/pxc_workmind_lcons_workmind_rep1 — 결과 존재
+[skip] claude-haiku/pxc_workmind_lcons_workmind_rep2 — 결과 존재
+[skip] claude-haiku/pxc_workmind_lcons_workmind_rep3 — 결과 존재
+[check_materials] 대상: issue_workmind.json (issue_id=issue_workmind)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_workmind · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 661cb97a56ee
+[done] claude-haiku/pxp_workmind_lprog_workmind_rep1 · 호출 2
+[done] claude-haiku/pxp_workmind_lprog_workmind_rep2 · 호출 8
+[done] claude-haiku/pxp_workmind_lprog_workmind_rep3 · 호출 8
+--- issue_cat_feeding_days_list ---
+[check_materials] 대상: cat_feeding_days_list.json (issue_id=issue_cat_feeding_days_list)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+=== label press 시작 2026-09-02T04:56:02+00:00 ===
+--- issue_childcare ---
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep1 — 결과 존재
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep2 — 결과 존재
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep3 — 결과 존재
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep1 — 결과 존재
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep2 — 결과 존재
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep3 — 결과 존재
+--- issue_euthanasia ---
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep1 — 결과 존재
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep2 — 결과 존재
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep3 — 결과 존재
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep1 — 결과 존재
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep2 — 결과 존재
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep3 — 결과 존재
+--- issue_examaccom ---
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep1 — 결과 존재
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep2 — 결과 존재
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep3 — 결과 존재
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep1 — 결과 존재
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep2 — 결과 존재
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep3 — 결과 존재
+--- issue_remotewatch ---
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_remotewatch · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[skip] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep1 — 결과 존재
+[skip] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep2 — 결과 존재
+[skip] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep3 — 결과 존재
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_remotewatch · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[skip] claude-haiku/pxp_remotewatch_lprog_remotewatch_rep1 — 결과 존재
+[skip] claude-haiku/pxp_remotewatch_lprog_remotewatch_rep2 — 결과 존재
+[skip] claude-haiku/pxp_remotewatch_lprog_remotewatch_rep3 — 결과 존재
+--- issue_workmind ---
+[check_materials] 대상: issue_workmind.json (issue_id=issue_workmind)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_workmind · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 661cb97a56ee
+[skip] claude-haiku/pxc_workmind_lcons_workmind_rep1 — 결과 존재
+[skip] claude-haiku/pxc_workmind_lcons_workmind_rep2 — 결과 존재
+[skip] claude-haiku/pxc_workmind_lcons_workmind_rep3 — 결과 존재
+[check_materials] 대상: issue_workmind.json (issue_id=issue_workmind)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_workmind · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 661cb97a56ee
+[skip] claude-haiku/pxp_workmind_lprog_workmind_rep1 — 결과 존재
+[skip] claude-haiku/pxp_workmind_lprog_workmind_rep2 — 결과 존재
+[skip] claude-haiku/pxp_workmind_lprog_workmind_rep3 — 결과 존재
+--- issue_cat_feeding_days_list ---
+[check_materials] 대상: cat_feeding_days_list.json (issue_id=issue_cat_feeding_days_list)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_cat_feeding_days_list · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 945f4957b5ae
+[skip] claude-haiku/pxc_cf_days_list_lcons_cf_days_list_rep1 — 결과 존재
+[skip] claude-haiku/pxc_cf_days_list_lcons_cf_days_list_rep2 — 결과 존재
+[done] claude-haiku/pxc_cf_days_list_lcons_cf_days_list_rep3 · 호출 6
+[check_materials] 대상: cat_feeding_days_list.json (issue_id=issue_cat_feeding_days_list)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_cat_feeding_days_list · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 945f4957b5ae
+[done] claude-haiku/pxp_cf_days_list_lprog_cf_days_list_rep1 · 호출 10
+[done] claude-haiku/pxp_cf_days_list_lprog_cf_days_list_rep2 · 호출 9
+[done] claude-haiku/pxp_cf_days_list_lprog_cf_days_list_rep3 · 호출 9
+--- issue_eol ---
+[check_materials] 대상: issue_eol.json (issue_id=issue_eol)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+=== label press 시작 2026-09-02T04:59:01+00:00 ===
+--- issue_childcare ---
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep1 — 결과 존재
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep2 — 결과 존재
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep3 — 결과 존재
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep1 — 결과 존재
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep2 — 결과 존재
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep3 — 결과 존재
+--- issue_euthanasia ---
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep1 — 결과 존재
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep2 — 결과 존재
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep3 — 결과 존재
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep1 — 결과 존재
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep2 — 결과 존재
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep3 — 결과 존재
+--- issue_examaccom ---
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep1 — 결과 존재
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep2 — 결과 존재
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep3 — 결과 존재
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep1 — 결과 존재
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep2 — 결과 존재
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep3 — 결과 존재
+--- issue_remotewatch ---
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_remotewatch · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[skip] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep1 — 결과 존재
+[skip] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep2 — 결과 존재
+[skip] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep3 — 결과 존재
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_remotewatch · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[skip] claude-haiku/pxp_remotewatch_lprog_remotewatch_rep1 — 결과 존재
+[skip] claude-haiku/pxp_remotewatch_lprog_remotewatch_rep2 — 결과 존재
+[skip] claude-haiku/pxp_remotewatch_lprog_remotewatch_rep3 — 결과 존재
+--- issue_workmind ---
+[check_materials] 대상: issue_workmind.json (issue_id=issue_workmind)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_workmind · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 661cb97a56ee
+[skip] claude-haiku/pxc_workmind_lcons_workmind_rep1 — 결과 존재
+[skip] claude-haiku/pxc_workmind_lcons_workmind_rep2 — 결과 존재
+[skip] claude-haiku/pxc_workmind_lcons_workmind_rep3 — 결과 존재
+[check_materials] 대상: issue_workmind.json (issue_id=issue_workmind)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_workmind · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 661cb97a56ee
+[skip] claude-haiku/pxp_workmind_lprog_workmind_rep1 — 결과 존재
+[skip] claude-haiku/pxp_workmind_lprog_workmind_rep2 — 결과 존재
+[skip] claude-haiku/pxp_workmind_lprog_workmind_rep3 — 결과 존재
+--- issue_cat_feeding_days_list ---
+[check_materials] 대상: cat_feeding_days_list.json (issue_id=issue_cat_feeding_days_list)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_cat_feeding_days_list · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 945f4957b5ae
+[skip] claude-haiku/pxc_cf_days_list_lcons_cf_days_list_rep1 — 결과 존재
+[skip] claude-haiku/pxc_cf_days_list_lcons_cf_days_list_rep2 — 결과 존재
+[skip] claude-haiku/pxc_cf_days_list_lcons_cf_days_list_rep3 — 결과 존재
+[check_materials] 대상: cat_feeding_days_list.json (issue_id=issue_cat_feeding_days_list)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_cat_feeding_days_list · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 945f4957b5ae
+[skip] claude-haiku/pxp_cf_days_list_lprog_cf_days_list_rep1 — 결과 존재
+[skip] claude-haiku/pxp_cf_days_list_lprog_cf_days_list_rep2 — 결과 존재
+[skip] claude-haiku/pxp_cf_days_list_lprog_cf_days_list_rep3 — 결과 존재
+--- issue_eol ---
+[check_materials] 대상: issue_eol.json (issue_id=issue_eol)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_eol · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 85e7bf87b57e
+[done] claude-haiku/pxc_eol_lcons_eol_rep1 · 호출 4
+[done] claude-haiku/pxc_eol_lcons_eol_rep2 · 호출 8
+[done] claude-haiku/pxc_eol_lcons_eol_rep3 · 호출 8
+[check_materials] 대상: issue_eol.json (issue_id=issue_eol)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+=== label press 시작 2026-09-02T05:01:58+00:00 ===
+--- issue_childcare ---
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep1 — 결과 존재
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep2 — 결과 존재
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep3 — 결과 존재
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep1 — 결과 존재
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep2 — 결과 존재
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep3 — 결과 존재
+--- issue_euthanasia ---
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep1 — 결과 존재
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep2 — 결과 존재
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep3 — 결과 존재
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep1 — 결과 존재
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep2 — 결과 존재
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep3 — 결과 존재
+--- issue_examaccom ---
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep1 — 결과 존재
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep2 — 결과 존재
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep3 — 결과 존재
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep1 — 결과 존재
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep2 — 결과 존재
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep3 — 결과 존재
+--- issue_remotewatch ---
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_remotewatch · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[skip] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep1 — 결과 존재
+[skip] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep2 — 결과 존재
+[skip] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep3 — 결과 존재
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_remotewatch · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[skip] claude-haiku/pxp_remotewatch_lprog_remotewatch_rep1 — 결과 존재
+[skip] claude-haiku/pxp_remotewatch_lprog_remotewatch_rep2 — 결과 존재
+[skip] claude-haiku/pxp_remotewatch_lprog_remotewatch_rep3 — 결과 존재
+--- issue_workmind ---
+[check_materials] 대상: issue_workmind.json (issue_id=issue_workmind)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_workmind · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 661cb97a56ee
+[skip] claude-haiku/pxc_workmind_lcons_workmind_rep1 — 결과 존재
+[skip] claude-haiku/pxc_workmind_lcons_workmind_rep2 — 결과 존재
+[skip] claude-haiku/pxc_workmind_lcons_workmind_rep3 — 결과 존재
+[check_materials] 대상: issue_workmind.json (issue_id=issue_workmind)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_workmind · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 661cb97a56ee
+[skip] claude-haiku/pxp_workmind_lprog_workmind_rep1 — 결과 존재
+[skip] claude-haiku/pxp_workmind_lprog_workmind_rep2 — 결과 존재
+[skip] claude-haiku/pxp_workmind_lprog_workmind_rep3 — 결과 존재
+--- issue_cat_feeding_days_list ---
+[check_materials] 대상: cat_feeding_days_list.json (issue_id=issue_cat_feeding_days_list)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_cat_feeding_days_list · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 945f4957b5ae
+[skip] claude-haiku/pxc_cf_days_list_lcons_cf_days_list_rep1 — 결과 존재
+[skip] claude-haiku/pxc_cf_days_list_lcons_cf_days_list_rep2 — 결과 존재
+[skip] claude-haiku/pxc_cf_days_list_lcons_cf_days_list_rep3 — 결과 존재
+[check_materials] 대상: cat_feeding_days_list.json (issue_id=issue_cat_feeding_days_list)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_cat_feeding_days_list · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 945f4957b5ae
+[skip] claude-haiku/pxp_cf_days_list_lprog_cf_days_list_rep1 — 결과 존재
+[skip] claude-haiku/pxp_cf_days_list_lprog_cf_days_list_rep2 — 결과 존재
+[skip] claude-haiku/pxp_cf_days_list_lprog_cf_days_list_rep3 — 결과 존재
+--- issue_eol ---
+[check_materials] 대상: issue_eol.json (issue_id=issue_eol)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_eol · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 85e7bf87b57e
+[skip] claude-haiku/pxc_eol_lcons_eol_rep1 — 결과 존재
+[skip] claude-haiku/pxc_eol_lcons_eol_rep2 — 결과 존재
+[skip] claude-haiku/pxc_eol_lcons_eol_rep3 — 결과 존재
+[check_materials] 대상: issue_eol.json (issue_id=issue_eol)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_eol · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 85e7bf87b57e
+[skip] claude-haiku/pxp_eol_lprog_eol_rep1 — 결과 존재
+[done] claude-haiku/pxp_eol_lprog_eol_rep2 · 호출 6
+[done] claude-haiku/pxp_eol_lprog_eol_rep3 · 호출 9
+--- issue_shelter ---
+[check_materials] 대상: issue_shelter.json (issue_id=issue_shelter)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+=== label press 시작 2026-09-02T05:04:56+00:00 ===
+--- issue_childcare ---
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep1 — 결과 존재
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep2 — 결과 존재
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep3 — 결과 존재
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep1 — 결과 존재
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep2 — 결과 존재
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep3 — 결과 존재
+--- issue_euthanasia ---
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep1 — 결과 존재
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep2 — 결과 존재
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep3 — 결과 존재
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep1 — 결과 존재
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep2 — 결과 존재
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep3 — 결과 존재
+--- issue_examaccom ---
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep1 — 결과 존재
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep2 — 결과 존재
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep3 — 결과 존재
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep1 — 결과 존재
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep2 — 결과 존재
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep3 — 결과 존재
+--- issue_remotewatch ---
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_remotewatch · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[skip] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep1 — 결과 존재
+[skip] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep2 — 결과 존재
+[skip] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep3 — 결과 존재
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_remotewatch · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[skip] claude-haiku/pxp_remotewatch_lprog_remotewatch_rep1 — 결과 존재
+[skip] claude-haiku/pxp_remotewatch_lprog_remotewatch_rep2 — 결과 존재
+[skip] claude-haiku/pxp_remotewatch_lprog_remotewatch_rep3 — 결과 존재
+--- issue_workmind ---
+[check_materials] 대상: issue_workmind.json (issue_id=issue_workmind)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_workmind · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 661cb97a56ee
+[skip] claude-haiku/pxc_workmind_lcons_workmind_rep1 — 결과 존재
+[skip] claude-haiku/pxc_workmind_lcons_workmind_rep2 — 결과 존재
+[skip] claude-haiku/pxc_workmind_lcons_workmind_rep3 — 결과 존재
+[check_materials] 대상: issue_workmind.json (issue_id=issue_workmind)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_workmind · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 661cb97a56ee
+[skip] claude-haiku/pxp_workmind_lprog_workmind_rep1 — 결과 존재
+[skip] claude-haiku/pxp_workmind_lprog_workmind_rep2 — 결과 존재
+[skip] claude-haiku/pxp_workmind_lprog_workmind_rep3 — 결과 존재
+--- issue_cat_feeding_days_list ---
+[check_materials] 대상: cat_feeding_days_list.json (issue_id=issue_cat_feeding_days_list)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_cat_feeding_days_list · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 945f4957b5ae
+[skip] claude-haiku/pxc_cf_days_list_lcons_cf_days_list_rep1 — 결과 존재
+[skip] claude-haiku/pxc_cf_days_list_lcons_cf_days_list_rep2 — 결과 존재
+[skip] claude-haiku/pxc_cf_days_list_lcons_cf_days_list_rep3 — 결과 존재
+[check_materials] 대상: cat_feeding_days_list.json (issue_id=issue_cat_feeding_days_list)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_cat_feeding_days_list · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 945f4957b5ae
+[skip] claude-haiku/pxp_cf_days_list_lprog_cf_days_list_rep1 — 결과 존재
+[skip] claude-haiku/pxp_cf_days_list_lprog_cf_days_list_rep2 — 결과 존재
+[skip] claude-haiku/pxp_cf_days_list_lprog_cf_days_list_rep3 — 결과 존재
+--- issue_eol ---
+[check_materials] 대상: issue_eol.json (issue_id=issue_eol)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_eol · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 85e7bf87b57e
+[skip] claude-haiku/pxc_eol_lcons_eol_rep1 — 결과 존재
+[skip] claude-haiku/pxc_eol_lcons_eol_rep2 — 결과 존재
+[skip] claude-haiku/pxc_eol_lcons_eol_rep3 — 결과 존재
+[check_materials] 대상: issue_eol.json (issue_id=issue_eol)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_eol · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 85e7bf87b57e
+[skip] claude-haiku/pxp_eol_lprog_eol_rep1 — 결과 존재
+[skip] claude-haiku/pxp_eol_lprog_eol_rep2 — 결과 존재
+[skip] claude-haiku/pxp_eol_lprog_eol_rep3 — 결과 존재
+--- issue_shelter ---
+[check_materials] 대상: issue_shelter.json (issue_id=issue_shelter)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_shelter · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 aa3eef04c672
+[skip] claude-haiku/pxc_shelter_lcons_shelter_rep1 — 결과 존재
+[skip] claude-haiku/pxc_shelter_lcons_shelter_rep2 — 결과 존재
+[done] claude-haiku/pxc_shelter_lcons_shelter_rep3 · 호출 1
+[check_materials] 대상: issue_shelter.json (issue_id=issue_shelter)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_shelter · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 aa3eef04c672
+[done] claude-haiku/pxp_shelter_lprog_shelter_rep1 · 호출 9
+[done] claude-haiku/pxp_shelter_lprog_shelter_rep2 · 호출 10
+[done] claude-haiku/pxp_shelter_lprog_shelter_rep3 · 호출 9
+--- issue_parentalreturn ---
+[check_materials] 대상: issue_parentalreturn.json (issue_id=issue_parentalreturn)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+=== label press 시작 2026-09-02T05:07:54+00:00 ===
+--- issue_childcare ---
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep1 — 결과 존재
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep2 — 결과 존재
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep3 — 결과 존재
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep1 — 결과 존재
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep2 — 결과 존재
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep3 — 결과 존재
+--- issue_euthanasia ---
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep1 — 결과 존재
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep2 — 결과 존재
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep3 — 결과 존재
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep1 — 결과 존재
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep2 — 결과 존재
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep3 — 결과 존재
+--- issue_examaccom ---
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep1 — 결과 존재
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep2 — 결과 존재
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep3 — 결과 존재
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep1 — 결과 존재
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep2 — 결과 존재
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep3 — 결과 존재
+--- issue_remotewatch ---
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_remotewatch · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[skip] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep1 — 결과 존재
+[skip] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep2 — 결과 존재
+[skip] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep3 — 결과 존재
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_remotewatch · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[skip] claude-haiku/pxp_remotewatch_lprog_remotewatch_rep1 — 결과 존재
+[skip] claude-haiku/pxp_remotewatch_lprog_remotewatch_rep2 — 결과 존재
+[skip] claude-haiku/pxp_remotewatch_lprog_remotewatch_rep3 — 결과 존재
+--- issue_workmind ---
+[check_materials] 대상: issue_workmind.json (issue_id=issue_workmind)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_workmind · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 661cb97a56ee
+[skip] claude-haiku/pxc_workmind_lcons_workmind_rep1 — 결과 존재
+[skip] claude-haiku/pxc_workmind_lcons_workmind_rep2 — 결과 존재
+[skip] claude-haiku/pxc_workmind_lcons_workmind_rep3 — 결과 존재
+[check_materials] 대상: issue_workmind.json (issue_id=issue_workmind)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_workmind · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 661cb97a56ee
+[skip] claude-haiku/pxp_workmind_lprog_workmind_rep1 — 결과 존재
+[skip] claude-haiku/pxp_workmind_lprog_workmind_rep2 — 결과 존재
+[skip] claude-haiku/pxp_workmind_lprog_workmind_rep3 — 결과 존재
+--- issue_cat_feeding_days_list ---
+[check_materials] 대상: cat_feeding_days_list.json (issue_id=issue_cat_feeding_days_list)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_cat_feeding_days_list · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 945f4957b5ae
+[skip] claude-haiku/pxc_cf_days_list_lcons_cf_days_list_rep1 — 결과 존재
+[skip] claude-haiku/pxc_cf_days_list_lcons_cf_days_list_rep2 — 결과 존재
+[skip] claude-haiku/pxc_cf_days_list_lcons_cf_days_list_rep3 — 결과 존재
+[check_materials] 대상: cat_feeding_days_list.json (issue_id=issue_cat_feeding_days_list)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_cat_feeding_days_list · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 945f4957b5ae
+[skip] claude-haiku/pxp_cf_days_list_lprog_cf_days_list_rep1 — 결과 존재
+[skip] claude-haiku/pxp_cf_days_list_lprog_cf_days_list_rep2 — 결과 존재
+[skip] claude-haiku/pxp_cf_days_list_lprog_cf_days_list_rep3 — 결과 존재
+--- issue_eol ---
+[check_materials] 대상: issue_eol.json (issue_id=issue_eol)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_eol · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 85e7bf87b57e
+[skip] claude-haiku/pxc_eol_lcons_eol_rep1 — 결과 존재
+[skip] claude-haiku/pxc_eol_lcons_eol_rep2 — 결과 존재
+[skip] claude-haiku/pxc_eol_lcons_eol_rep3 — 결과 존재
+[check_materials] 대상: issue_eol.json (issue_id=issue_eol)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_eol · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 85e7bf87b57e
+[skip] claude-haiku/pxp_eol_lprog_eol_rep1 — 결과 존재
+[skip] claude-haiku/pxp_eol_lprog_eol_rep2 — 결과 존재
+[skip] claude-haiku/pxp_eol_lprog_eol_rep3 — 결과 존재
+--- issue_shelter ---
+[check_materials] 대상: issue_shelter.json (issue_id=issue_shelter)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_shelter · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 aa3eef04c672
+[skip] claude-haiku/pxc_shelter_lcons_shelter_rep1 — 결과 존재
+[skip] claude-haiku/pxc_shelter_lcons_shelter_rep2 — 결과 존재
+[skip] claude-haiku/pxc_shelter_lcons_shelter_rep3 — 결과 존재
+[check_materials] 대상: issue_shelter.json (issue_id=issue_shelter)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_shelter · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 aa3eef04c672
+[skip] claude-haiku/pxp_shelter_lprog_shelter_rep1 — 결과 존재
+[skip] claude-haiku/pxp_shelter_lprog_shelter_rep2 — 결과 존재
+[skip] claude-haiku/pxp_shelter_lprog_shelter_rep3 — 결과 존재
+--- issue_parentalreturn ---
+[check_materials] 대상: issue_parentalreturn.json (issue_id=issue_parentalreturn)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_parentalreturn · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 2cb32fba6dc5
+[done] claude-haiku/pxc_parentalreturn_lcons_parentalreturn_rep1 · 호출 5
+[done] claude-haiku/pxc_parentalreturn_lcons_parentalreturn_rep2 · 호출 8
+[done] claude-haiku/pxc_parentalreturn_lcons_parentalreturn_rep3 · 호출 9
+[check_materials] 대상: issue_parentalreturn.json (issue_id=issue_parentalreturn)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+=== label press 시작 2026-09-02T05:10:51+00:00 ===
+--- issue_childcare ---
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep1 — 결과 존재
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep2 — 결과 존재
+[skip] claude-haiku/pxc_childcare_lcons_childcare_rep3 — 결과 존재
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep1 — 결과 존재
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep2 — 결과 존재
+[skip] claude-haiku/pxp_childcare_lprog_childcare_rep3 — 결과 존재
+--- issue_euthanasia ---
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep1 — 결과 존재
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep2 — 결과 존재
+[skip] claude-haiku/pxc_euthanasia_lcons_euthanasia_rep3 — 결과 존재
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep1 — 결과 존재
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep2 — 결과 존재
+[skip] claude-haiku/pxp_euthanasia_lprog_euthanasia_rep3 — 결과 존재
+--- issue_examaccom ---
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep1 — 결과 존재
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep2 — 결과 존재
+[skip] claude-haiku/pxc_examaccom_lcons_examaccom_rep3 — 결과 존재
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep1 — 결과 존재
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep2 — 결과 존재
+[skip] claude-haiku/pxp_examaccom_lprog_examaccom_rep3 — 결과 존재
+--- issue_remotewatch ---
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_remotewatch · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[skip] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep1 — 결과 존재
+[skip] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep2 — 결과 존재
+[skip] claude-haiku/pxc_remotewatch_lcons_remotewatch_rep3 — 결과 존재
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_remotewatch · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[skip] claude-haiku/pxp_remotewatch_lprog_remotewatch_rep1 — 결과 존재
+[skip] claude-haiku/pxp_remotewatch_lprog_remotewatch_rep2 — 결과 존재
+[skip] claude-haiku/pxp_remotewatch_lprog_remotewatch_rep3 — 결과 존재
+--- issue_workmind ---
+[check_materials] 대상: issue_workmind.json (issue_id=issue_workmind)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_workmind · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 661cb97a56ee
+[skip] claude-haiku/pxc_workmind_lcons_workmind_rep1 — 결과 존재
+[skip] claude-haiku/pxc_workmind_lcons_workmind_rep2 — 결과 존재
+[skip] claude-haiku/pxc_workmind_lcons_workmind_rep3 — 결과 존재
+[check_materials] 대상: issue_workmind.json (issue_id=issue_workmind)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_workmind · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 661cb97a56ee
+[skip] claude-haiku/pxp_workmind_lprog_workmind_rep1 — 결과 존재
+[skip] claude-haiku/pxp_workmind_lprog_workmind_rep2 — 결과 존재
+[skip] claude-haiku/pxp_workmind_lprog_workmind_rep3 — 결과 존재
+--- issue_cat_feeding_days_list ---
+[check_materials] 대상: cat_feeding_days_list.json (issue_id=issue_cat_feeding_days_list)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_cat_feeding_days_list · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 945f4957b5ae
+[skip] claude-haiku/pxc_cf_days_list_lcons_cf_days_list_rep1 — 결과 존재
+[skip] claude-haiku/pxc_cf_days_list_lcons_cf_days_list_rep2 — 결과 존재
+[skip] claude-haiku/pxc_cf_days_list_lcons_cf_days_list_rep3 — 결과 존재
+[check_materials] 대상: cat_feeding_days_list.json (issue_id=issue_cat_feeding_days_list)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_cat_feeding_days_list · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 945f4957b5ae
+[skip] claude-haiku/pxp_cf_days_list_lprog_cf_days_list_rep1 — 결과 존재
+[skip] claude-haiku/pxp_cf_days_list_lprog_cf_days_list_rep2 — 결과 존재
+[skip] claude-haiku/pxp_cf_days_list_lprog_cf_days_list_rep3 — 결과 존재
+--- issue_eol ---
+[check_materials] 대상: issue_eol.json (issue_id=issue_eol)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_eol · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 85e7bf87b57e
+[skip] claude-haiku/pxc_eol_lcons_eol_rep1 — 결과 존재
+[skip] claude-haiku/pxc_eol_lcons_eol_rep2 — 결과 존재
+[skip] claude-haiku/pxc_eol_lcons_eol_rep3 — 결과 존재
+[check_materials] 대상: issue_eol.json (issue_id=issue_eol)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_eol · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 85e7bf87b57e
+[skip] claude-haiku/pxp_eol_lprog_eol_rep1 — 결과 존재
+[skip] claude-haiku/pxp_eol_lprog_eol_rep2 — 결과 존재
+[skip] claude-haiku/pxp_eol_lprog_eol_rep3 — 결과 존재
+--- issue_shelter ---
+[check_materials] 대상: issue_shelter.json (issue_id=issue_shelter)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_shelter · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 aa3eef04c672
+[skip] claude-haiku/pxc_shelter_lcons_shelter_rep1 — 결과 존재
+[skip] claude-haiku/pxc_shelter_lcons_shelter_rep2 — 결과 존재
+[skip] claude-haiku/pxc_shelter_lcons_shelter_rep3 — 결과 존재
+[check_materials] 대상: issue_shelter.json (issue_id=issue_shelter)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_shelter · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 aa3eef04c672
+[skip] claude-haiku/pxp_shelter_lprog_shelter_rep1 — 결과 존재
+[skip] claude-haiku/pxp_shelter_lprog_shelter_rep2 — 결과 존재
+[skip] claude-haiku/pxp_shelter_lprog_shelter_rep3 — 결과 존재
+--- issue_parentalreturn ---
+[check_materials] 대상: issue_parentalreturn.json (issue_id=issue_parentalreturn)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_parentalreturn · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 2cb32fba6dc5
+[skip] claude-haiku/pxc_parentalreturn_lcons_parentalreturn_rep1 — 결과 존재
+[skip] claude-haiku/pxc_parentalreturn_lcons_parentalreturn_rep2 — 결과 존재
+[skip] claude-haiku/pxc_parentalreturn_lcons_parentalreturn_rep3 — 결과 존재
+[check_materials] 대상: issue_parentalreturn.json (issue_id=issue_parentalreturn)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_parentalreturn · claude-haiku — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 2cb32fba6dc5
+[skip] claude-haiku/pxp_parentalreturn_lprog_parentalreturn_rep1 — 결과 존재
+[done] claude-haiku/pxp_parentalreturn_lprog_parentalreturn_rep2 · 호출 5
+[done] claude-haiku/pxp_parentalreturn_lprog_parentalreturn_rep3 · 호출 8
+=== 끝 2026-09-02T05:12:23+00:00 ===

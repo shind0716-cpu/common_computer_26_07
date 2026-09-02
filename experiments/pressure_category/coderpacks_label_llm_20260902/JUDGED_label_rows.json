@@ -1,0 +1,5882 @@
+[
+ {
+  "item": "lpack01-1",
+  "issue": "issue_eol",
+  "run": "C0_lcons_eol_rep1",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "인애종합병원",
+  "stance": [
+   "인애종합병원",
+   "인애종합병원",
+   "모호",
+   "모호"
+  ],
+  "final": "인애종합병원",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   6,
+   6,
+   0
+  ],
+  "n_fold": [
+   7,
+   6,
+   1
+  ],
+  "in_alive": [
+   4,
+   3,
+   0
+  ],
+  "out_alive": [
+   2,
+   3,
+   0
+  ],
+  "pro_final": [
+   4,
+   3,
+   0
+  ],
+  "con_final": [
+   2,
+   3,
+   0
+  ]
+ },
+ {
+  "item": "lpack01-2",
+  "issue": "issue_shelter",
+  "run": "pxc_shelter_lcons_shelter_rep1",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "전문 아웃리치팀",
+  "own": "지역 순찰조",
+  "stance": [
+   "모호",
+   "전문 아웃리치팀",
+   "전문 아웃리치팀",
+   "전문 아웃리치팀"
+  ],
+  "final": "전문 아웃리치팀",
+  "cls": "왔다갔다",
+  "shift_note": [],
+  "n_alive": [
+   8,
+   4,
+   4
+  ],
+  "n_fold": [
+   8,
+   4,
+   4
+  ],
+  "in_alive": [
+   5,
+   1,
+   1
+  ],
+  "out_alive": [
+   3,
+   3,
+   3
+  ],
+  "pro_final": [
+   3,
+   3,
+   3
+  ],
+  "con_final": [
+   5,
+   1,
+   1
+  ]
+ },
+ {
+  "item": "lpack01-3",
+  "issue": "issue_eol",
+  "run": "pxc_eol_lcons_eol_rep2",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "소망호스피스",
+  "own": "인애종합병원",
+  "stance": [
+   "인애종합병원",
+   "소망호스피스",
+   "소망호스피스",
+   "소망호스피스"
+  ],
+  "final": "소망호스피스",
+  "cls": "결정까지 바뀜",
+  "shift_note": [
+   1
+  ],
+  "n_alive": [
+   7,
+   3,
+   2
+  ],
+  "n_fold": [
+   8,
+   5,
+   5
+  ],
+  "in_alive": [
+   6,
+   3,
+   2
+  ],
+  "out_alive": [
+   1,
+   0,
+   0
+  ],
+  "pro_final": [
+   1,
+   0,
+   0
+  ],
+  "con_final": [
+   6,
+   3,
+   2
+  ]
+ },
+ {
+  "item": "lpack01-4",
+  "issue": "issue_examaccom",
+  "run": "pxc_examaccom_lcons_examaccom_rep2",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "개별 맞춤 지원팀",
+  "own": "표준 학사지원팀",
+  "stance": [
+   "표준 학사지원팀",
+   "개별 맞춤 지원팀",
+   "개별 맞춤 지원팀",
+   "개별 맞춤 지원팀"
+  ],
+  "final": "표준 학사지원팀",
+  "cls": "말만 바뀜",
+  "shift_note": [
+   1
+  ],
+  "n_alive": [
+   9,
+   1,
+   1
+  ],
+  "n_fold": [
+   9,
+   2,
+   2
+  ],
+  "in_alive": [
+   4,
+   0,
+   0
+  ],
+  "out_alive": [
+   5,
+   1,
+   1
+  ],
+  "pro_final": [
+   4,
+   0,
+   0
+  ],
+  "con_final": [
+   5,
+   1,
+   1
+  ]
+ },
+ {
+  "item": "lpack01-5",
+  "issue": "issue_cat_feeding_days_list",
+  "run": "C0_lcons_cf_days_list_rep2",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "지금 자리에 둔다",
+  "stance": [
+   "지금 자리에 둔다",
+   "지금 자리에 둔다",
+   "지금 자리에 둔다",
+   "지금 자리에 둔다"
+  ],
+  "final": "지금 자리에 둔다",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   7,
+   5,
+   5
+  ],
+  "n_fold": [
+   11,
+   9,
+   9
+  ],
+  "in_alive": [
+   5,
+   4,
+   4
+  ],
+  "out_alive": [
+   2,
+   1,
+   1
+  ],
+  "pro_final": [
+   5,
+   4,
+   4
+  ],
+  "con_final": [
+   2,
+   1,
+   1
+  ]
+ },
+ {
+  "item": "lpack01-6",
+  "issue": "issue_cat_feeding_days_list",
+  "run": "pxc_cf_days_list_lcons_cf_days_list_rep1",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "창고 옆으로 옮긴다",
+  "own": "지금 자리에 둔다",
+  "stance": [
+   "창고 옆으로 옮긴다",
+   "창고 옆으로 옮긴다",
+   "창고 옆으로 옮긴다",
+   "창고 옆으로 옮긴다"
+  ],
+  "final": "창고 옆으로 옮긴다",
+  "cls": "처음부터 같은 편",
+  "shift_note": [],
+  "n_alive": [
+   9,
+   8,
+   8
+  ],
+  "n_fold": [
+   9,
+   9,
+   9
+  ],
+  "in_alive": [
+   4,
+   4,
+   4
+  ],
+  "out_alive": [
+   5,
+   4,
+   4
+  ],
+  "pro_final": [
+   5,
+   4,
+   4
+  ],
+  "con_final": [
+   4,
+   4,
+   4
+  ]
+ },
+ {
+  "item": "lpack02-1",
+  "issue": "issue_shelter",
+  "run": "pxp_shelter_lprog_shelter_rep2",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "지역 순찰조",
+  "own": "전문 아웃리치팀",
+  "stance": [
+   "전문 아웃리치팀",
+   "전문 아웃리치팀",
+   "지역 순찰조",
+   "전문 아웃리치팀"
+  ],
+  "final": "전문 아웃리치팀",
+  "cls": "왔다갔다",
+  "shift_note": [
+   1,
+   2
+  ],
+  "n_alive": [
+   8,
+   3,
+   2
+  ],
+  "n_fold": [
+   10,
+   5,
+   4
+  ],
+  "in_alive": [
+   4,
+   2,
+   1
+  ],
+  "out_alive": [
+   4,
+   1,
+   1
+  ],
+  "pro_final": [
+   4,
+   2,
+   1
+  ],
+  "con_final": [
+   4,
+   1,
+   1
+  ]
+ },
+ {
+  "item": "lpack02-2",
+  "issue": "issue_euthanasia",
+  "run": "C0_lcons_euthanasia_rep2",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "원래 보호소",
+  "stance": [
+   "임시보호 전문 단체",
+   "임시보호 전문 단체",
+   "임시보호 전문 단체",
+   "임시보호 전문 단체"
+  ],
+  "final": "원래 보호소",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   10,
+   9,
+   9
+  ],
+  "n_fold": [
+   10,
+   9,
+   9
+  ],
+  "in_alive": [
+   4,
+   4,
+   4
+  ],
+  "out_alive": [
+   6,
+   5,
+   5
+  ],
+  "pro_final": [
+   4,
+   4,
+   4
+  ],
+  "con_final": [
+   6,
+   5,
+   5
+  ]
+ },
+ {
+  "item": "lpack02-3",
+  "issue": "issue_shelter",
+  "run": "pxp_shelter_lprog_shelter_rep1",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "지역 순찰조",
+  "own": "전문 아웃리치팀",
+  "stance": [
+   "전문 아웃리치팀",
+   "지역 순찰조",
+   "지역 순찰조",
+   "지역 순찰조"
+  ],
+  "final": "전문 아웃리치팀",
+  "cls": "말만 바뀜",
+  "shift_note": [
+   0
+  ],
+  "n_alive": [
+   6,
+   3,
+   3
+  ],
+  "n_fold": [
+   9,
+   4,
+   4
+  ],
+  "in_alive": [
+   2,
+   0,
+   0
+  ],
+  "out_alive": [
+   4,
+   3,
+   3
+  ],
+  "pro_final": [
+   2,
+   0,
+   0
+  ],
+  "con_final": [
+   4,
+   3,
+   3
+  ]
+ },
+ {
+  "item": "lpack02-4",
+  "issue": "issue_workmind",
+  "run": "C0_lcons_workmind_rep2",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "사내 EAP",
+  "stance": [
+   "사내 EAP",
+   "모호",
+   "모호",
+   "모호"
+  ],
+  "final": "사내 EAP",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   5,
+   4,
+   4
+  ],
+  "n_fold": [
+   8,
+   6,
+   4
+  ],
+  "in_alive": [
+   4,
+   2,
+   2
+  ],
+  "out_alive": [
+   1,
+   2,
+   2
+  ],
+  "pro_final": [
+   4,
+   2,
+   2
+  ],
+  "con_final": [
+   1,
+   2,
+   2
+  ]
+ },
+ {
+  "item": "lpack02-5",
+  "issue": "issue_workmind",
+  "run": "C0_lcons_workmind_rep1",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "사내 EAP",
+  "stance": [
+   "사내 EAP",
+   "모호",
+   "모호",
+   "모호"
+  ],
+  "final": "사내 EAP",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   10,
+   6,
+   6
+  ],
+  "n_fold": [
+   10,
+   6,
+   6
+  ],
+  "in_alive": [
+   4,
+   3,
+   3
+  ],
+  "out_alive": [
+   6,
+   3,
+   3
+  ],
+  "pro_final": [
+   4,
+   3,
+   3
+  ],
+  "con_final": [
+   6,
+   3,
+   3
+  ]
+ },
+ {
+  "item": "lpack02-6",
+  "issue": "issue_euthanasia",
+  "run": "pxc_euthanasia_lcons_euthanasia_rep1",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "임시보호 전문 단체",
+  "own": "원래 보호소",
+  "stance": [
+   "임시보호 전문 단체",
+   "임시보호 전문 단체",
+   "임시보호 전문 단체",
+   "임시보호 전문 단체"
+  ],
+  "final": "임시보호 전문 단체",
+  "cls": "처음부터 같은 편",
+  "shift_note": [],
+  "n_alive": [
+   9,
+   5,
+   3
+  ],
+  "n_fold": [
+   9,
+   6,
+   5
+  ],
+  "in_alive": [
+   3,
+   2,
+   2
+  ],
+  "out_alive": [
+   6,
+   3,
+   1
+  ],
+  "pro_final": [
+   6,
+   3,
+   1
+  ],
+  "con_final": [
+   3,
+   2,
+   2
+  ]
+ },
+ {
+  "item": "lpack03-1",
+  "issue": "issue_workmind",
+  "run": "C0_lprog_workmind_rep2",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "외부 개인 상담",
+  "stance": [
+   "사내 EAP",
+   "모호",
+   "모호",
+   "모호"
+  ],
+  "final": "외부 개인 상담",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   4,
+   4,
+   5
+  ],
+  "n_fold": [
+   4,
+   4,
+   5
+  ],
+  "in_alive": [
+   2,
+   2,
+   3
+  ],
+  "out_alive": [
+   2,
+   2,
+   2
+  ],
+  "pro_final": [
+   2,
+   2,
+   3
+  ],
+  "con_final": [
+   2,
+   2,
+   2
+  ]
+ },
+ {
+  "item": "lpack03-2",
+  "issue": "issue_parentalreturn",
+  "run": "pxp_parentalreturn_lprog_parentalreturn_rep3",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "원래 업무팀",
+  "own": "다른 업무팀",
+  "stance": [
+   "다른 업무팀",
+   "원래 업무팀",
+   "원래 업무팀",
+   "원래 업무팀"
+  ],
+  "final": "원래 업무팀",
+  "cls": "결정까지 바뀜",
+  "shift_note": [
+   1
+  ],
+  "n_alive": [
+   8,
+   2,
+   1
+  ],
+  "n_fold": [
+   9,
+   4,
+   3
+  ],
+  "in_alive": [
+   5,
+   0,
+   0
+  ],
+  "out_alive": [
+   3,
+   2,
+   1
+  ],
+  "pro_final": [
+   3,
+   2,
+   1
+  ],
+  "con_final": [
+   5,
+   0,
+   0
+  ]
+ },
+ {
+  "item": "lpack03-3",
+  "issue": "issue_parentalreturn",
+  "run": "C0_lcons_parentalreturn_rep2",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "원래 업무팀",
+  "stance": [
+   "원래 업무팀",
+   "원래 업무팀",
+   "모호",
+   "모호"
+  ],
+  "final": "원래 업무팀",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   5,
+   4,
+   1
+  ],
+  "n_fold": [
+   5,
+   4,
+   4
+  ],
+  "in_alive": [
+   2,
+   1,
+   1
+  ],
+  "out_alive": [
+   3,
+   3,
+   0
+  ],
+  "pro_final": [
+   2,
+   1,
+   1
+  ],
+  "con_final": [
+   3,
+   3,
+   0
+  ]
+ },
+ {
+  "item": "lpack03-4",
+  "issue": "issue_examaccom",
+  "run": "C0_lprog_examaccom_rep1",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "개별 맞춤 지원팀",
+  "stance": [
+   "개별 맞춤 지원팀",
+   "개별 맞춤 지원팀",
+   "개별 맞춤 지원팀",
+   "개별 맞춤 지원팀"
+  ],
+  "final": "개별 맞춤 지원팀",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   6,
+   5,
+   3
+  ],
+  "n_fold": [
+   6,
+   5,
+   5
+  ],
+  "in_alive": [
+   4,
+   3,
+   3
+  ],
+  "out_alive": [
+   2,
+   2,
+   0
+  ],
+  "pro_final": [
+   4,
+   3,
+   3
+  ],
+  "con_final": [
+   2,
+   2,
+   0
+  ]
+ },
+ {
+  "item": "lpack03-5",
+  "issue": "issue_childcare",
+  "run": "C0_lcons_childcare_rep3",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "해맑은어린이집",
+  "stance": [
+   "해맑은어린이집",
+   "소담숲어린이집",
+   "모호",
+   "모호"
+  ],
+  "final": "해맑은어린이집",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   7,
+   4,
+   3
+  ],
+  "n_fold": [
+   8,
+   5,
+   4
+  ],
+  "in_alive": [
+   4,
+   3,
+   2
+  ],
+  "out_alive": [
+   3,
+   1,
+   1
+  ],
+  "pro_final": [
+   4,
+   3,
+   2
+  ],
+  "con_final": [
+   3,
+   1,
+   1
+  ]
+ },
+ {
+  "item": "lpack03-6",
+  "issue": "issue_eol",
+  "run": "C0_lprog_eol_rep3",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "소망호스피스",
+  "stance": [
+   "소망호스피스",
+   "소망호스피스",
+   "모호",
+   "모호"
+  ],
+  "final": "소망호스피스",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   9,
+   8,
+   7
+  ],
+  "n_fold": [
+   9,
+   8,
+   7
+  ],
+  "in_alive": [
+   4,
+   4,
+   3
+  ],
+  "out_alive": [
+   5,
+   4,
+   4
+  ],
+  "pro_final": [
+   4,
+   4,
+   3
+  ],
+  "con_final": [
+   5,
+   4,
+   4
+  ]
+ },
+ {
+  "item": "lpack04-1",
+  "issue": "issue_childcare",
+  "run": "C0_lprog_childcare_rep3",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "소담숲어린이집",
+  "stance": [
+   "소담숲어린이집",
+   "소담숲어린이집",
+   "소담숲어린이집",
+   "소담숲어린이집"
+  ],
+  "final": "소담숲어린이집",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   6,
+   6,
+   6
+  ],
+  "n_fold": [
+   6,
+   6,
+   6
+  ],
+  "in_alive": [
+   4,
+   4,
+   4
+  ],
+  "out_alive": [
+   2,
+   2,
+   2
+  ],
+  "pro_final": [
+   4,
+   4,
+   4
+  ],
+  "con_final": [
+   2,
+   2,
+   2
+  ]
+ },
+ {
+  "item": "lpack04-2",
+  "issue": "issue_shelter",
+  "run": "pxc_shelter_lcons_shelter_rep3",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "전문 아웃리치팀",
+  "own": "지역 순찰조",
+  "stance": [
+   "모호",
+   "전문 아웃리치팀",
+   "전문 아웃리치팀",
+   "전문 아웃리치팀"
+  ],
+  "final": "지역 순찰조",
+  "cls": "왔다갔다",
+  "shift_note": [],
+  "n_alive": [
+   8,
+   4,
+   4
+  ],
+  "n_fold": [
+   9,
+   4,
+   4
+  ],
+  "in_alive": [
+   4,
+   1,
+   1
+  ],
+  "out_alive": [
+   4,
+   3,
+   3
+  ],
+  "pro_final": [
+   4,
+   1,
+   1
+  ],
+  "con_final": [
+   4,
+   3,
+   3
+  ]
+ },
+ {
+  "item": "lpack04-3",
+  "issue": "issue_euthanasia",
+  "run": "pxc_euthanasia_lcons_euthanasia_rep3",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "임시보호 전문 단체",
+  "own": "원래 보호소",
+  "stance": [
+   "원래 보호소",
+   "임시보호 전문 단체",
+   "임시보호 전문 단체",
+   "임시보호 전문 단체"
+  ],
+  "final": "임시보호 전문 단체",
+  "cls": "결정까지 바뀜",
+  "shift_note": [
+   0,
+   1,
+   2
+  ],
+  "n_alive": [
+   7,
+   3,
+   2
+  ],
+  "n_fold": [
+   7,
+   3,
+   2
+  ],
+  "in_alive": [
+   2,
+   0,
+   0
+  ],
+  "out_alive": [
+   5,
+   3,
+   2
+  ],
+  "pro_final": [
+   5,
+   3,
+   2
+  ],
+  "con_final": [
+   2,
+   0,
+   0
+  ]
+ },
+ {
+  "item": "lpack04-4",
+  "issue": "issue_childcare",
+  "run": "C0_lprog_childcare_rep1",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "소담숲어린이집",
+  "stance": [
+   "소담숲어린이집",
+   "소담숲어린이집",
+   "소담숲어린이집",
+   "소담숲어린이집"
+  ],
+  "final": "소담숲어린이집",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   9,
+   7,
+   5
+  ],
+  "n_fold": [
+   10,
+   9,
+   5
+  ],
+  "in_alive": [
+   4,
+   4,
+   3
+  ],
+  "out_alive": [
+   5,
+   3,
+   2
+  ],
+  "pro_final": [
+   4,
+   4,
+   3
+  ],
+  "con_final": [
+   5,
+   3,
+   2
+  ]
+ },
+ {
+  "item": "lpack04-5",
+  "issue": "issue_parentalreturn",
+  "run": "C0_lcons_parentalreturn_rep3",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "원래 업무팀",
+  "stance": [
+   "원래 업무팀",
+   "다른 업무팀",
+   "모호",
+   "다른 업무팀"
+  ],
+  "final": "원래 업무팀",
+  "cls": null,
+  "shift_note": [
+   0
+  ],
+  "n_alive": [
+   6,
+   4,
+   3
+  ],
+  "n_fold": [
+   6,
+   4,
+   3
+  ],
+  "in_alive": [
+   1,
+   1,
+   1
+  ],
+  "out_alive": [
+   5,
+   3,
+   2
+  ],
+  "pro_final": [
+   1,
+   1,
+   1
+  ],
+  "con_final": [
+   5,
+   3,
+   2
+  ]
+ },
+ {
+  "item": "lpack04-6",
+  "issue": "issue_euthanasia",
+  "run": "pxp_euthanasia_lprog_euthanasia_rep3",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "원래 보호소",
+  "own": "임시보호 전문 단체",
+  "stance": [
+   "임시보호 전문 단체",
+   "원래 보호소",
+   "임시보호 전문 단체",
+   "원래 보호소"
+  ],
+  "final": "임시보호 전문 단체",
+  "cls": "왔다갔다",
+  "shift_note": [],
+  "n_alive": [
+   11,
+   1,
+   1
+  ],
+  "n_fold": [
+   11,
+   7,
+   6
+  ],
+  "in_alive": [
+   6,
+   0,
+   0
+  ],
+  "out_alive": [
+   5,
+   1,
+   1
+  ],
+  "pro_final": [
+   6,
+   0,
+   0
+  ],
+  "con_final": [
+   5,
+   1,
+   1
+  ]
+ },
+ {
+  "item": "lpack05-1",
+  "issue": "issue_examaccom",
+  "run": "pxc_examaccom_lcons_examaccom_rep3",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "개별 맞춤 지원팀",
+  "own": "표준 학사지원팀",
+  "stance": [
+   "표준 학사지원팀",
+   "개별 맞춤 지원팀",
+   "개별 맞춤 지원팀",
+   "개별 맞춤 지원팀"
+  ],
+  "final": "표준 학사지원팀",
+  "cls": "말만 바뀜",
+  "shift_note": [
+   0,
+   1,
+   2
+  ],
+  "n_alive": [
+   7,
+   2,
+   2
+  ],
+  "n_fold": [
+   9,
+   6,
+   4
+  ],
+  "in_alive": [
+   3,
+   0,
+   0
+  ],
+  "out_alive": [
+   4,
+   2,
+   2
+  ],
+  "pro_final": [
+   3,
+   0,
+   0
+  ],
+  "con_final": [
+   4,
+   2,
+   2
+  ]
+ },
+ {
+  "item": "lpack05-2",
+  "issue": "issue_childcare",
+  "run": "pxp_childcare_lprog_childcare_rep3",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "해맑은어린이집",
+  "own": "소담숲어린이집",
+  "stance": [
+   "소담숲어린이집",
+   "소담숲어린이집",
+   "해맑은어린이집",
+   "해맑은어린이집"
+  ],
+  "final": "소담숲어린이집",
+  "cls": "말만 바뀜",
+  "shift_note": [
+   1,
+   2
+  ],
+  "n_alive": [
+   6,
+   2,
+   0
+  ],
+  "n_fold": [
+   6,
+   3,
+   3
+  ],
+  "in_alive": [
+   2,
+   0,
+   0
+  ],
+  "out_alive": [
+   4,
+   2,
+   0
+  ],
+  "pro_final": [
+   2,
+   0,
+   0
+  ],
+  "con_final": [
+   4,
+   2,
+   0
+  ]
+ },
+ {
+  "item": "lpack05-3",
+  "issue": "issue_shelter",
+  "run": "C0_lprog_shelter_rep1",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "전문 아웃리치팀",
+  "stance": [
+   "전문 아웃리치팀",
+   "전문 아웃리치팀",
+   "전문 아웃리치팀",
+   "전문 아웃리치팀"
+  ],
+  "final": "전문 아웃리치팀",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   7,
+   6,
+   4
+  ],
+  "n_fold": [
+   7,
+   7,
+   4
+  ],
+  "in_alive": [
+   3,
+   3,
+   3
+  ],
+  "out_alive": [
+   4,
+   3,
+   1
+  ],
+  "pro_final": [
+   3,
+   3,
+   3
+  ],
+  "con_final": [
+   4,
+   3,
+   1
+  ]
+ },
+ {
+  "item": "lpack05-4",
+  "issue": "issue_cat_feeding_days_list",
+  "run": "pxp_cf_days_list_lprog_cf_days_list_rep1",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "지금 자리에 둔다",
+  "own": "창고 옆으로 옮긴다",
+  "stance": [
+   "창고 옆으로 옮긴다",
+   "지금 자리에 둔다",
+   "지금 자리에 둔다",
+   "지금 자리에 둔다"
+  ],
+  "final": "지금 자리에 둔다",
+  "cls": "결정까지 바뀜",
+  "shift_note": [],
+  "n_alive": [
+   10,
+   3,
+   3
+  ],
+  "n_fold": [
+   10,
+   6,
+   6
+  ],
+  "in_alive": [
+   5,
+   1,
+   1
+  ],
+  "out_alive": [
+   5,
+   2,
+   2
+  ],
+  "pro_final": [
+   5,
+   2,
+   2
+  ],
+  "con_final": [
+   5,
+   1,
+   1
+  ]
+ },
+ {
+  "item": "lpack05-5",
+  "issue": "issue_cat_feeding_days_list",
+  "run": "pxc_cf_days_list_lcons_cf_days_list_rep2",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "창고 옆으로 옮긴다",
+  "own": "지금 자리에 둔다",
+  "stance": [
+   "지금 자리에 둔다",
+   "창고 옆으로 옮긴다",
+   "창고 옆으로 옮긴다",
+   "창고 옆으로 옮긴다"
+  ],
+  "final": "창고 옆으로 옮긴다",
+  "cls": "결정까지 바뀜",
+  "shift_note": [
+   1,
+   2
+  ],
+  "n_alive": [
+   8,
+   3,
+   3
+  ],
+  "n_fold": [
+   9,
+   5,
+   5
+  ],
+  "in_alive": [
+   5,
+   1,
+   1
+  ],
+  "out_alive": [
+   3,
+   2,
+   2
+  ],
+  "pro_final": [
+   3,
+   2,
+   2
+  ],
+  "con_final": [
+   5,
+   1,
+   1
+  ]
+ },
+ {
+  "item": "lpack05-6",
+  "issue": "issue_parentalreturn",
+  "run": "C0_lprog_parentalreturn_rep3",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "다른 업무팀",
+  "stance": [
+   "다른 업무팀",
+   "다른 업무팀",
+   "다른 업무팀",
+   "다른 업무팀"
+  ],
+  "final": "다른 업무팀",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   10,
+   9,
+   9
+  ],
+  "n_fold": [
+   10,
+   10,
+   10
+  ],
+  "in_alive": [
+   6,
+   5,
+   5
+  ],
+  "out_alive": [
+   4,
+   4,
+   4
+  ],
+  "pro_final": [
+   6,
+   5,
+   5
+  ],
+  "con_final": [
+   4,
+   4,
+   4
+  ]
+ },
+ {
+  "item": "lpack06-1",
+  "issue": "issue_eol",
+  "run": "pxp_eol_lprog_eol_rep2",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "인애종합병원",
+  "own": "소망호스피스",
+  "stance": [
+   "소망호스피스",
+   "인애종합병원",
+   "인애종합병원",
+   "인애종합병원"
+  ],
+  "final": "인애종합병원",
+  "cls": "결정까지 바뀜",
+  "shift_note": [
+   1
+  ],
+  "n_alive": [
+   10,
+   3,
+   3
+  ],
+  "n_fold": [
+   10,
+   4,
+   4
+  ],
+  "in_alive": [
+   6,
+   0,
+   0
+  ],
+  "out_alive": [
+   4,
+   3,
+   3
+  ],
+  "pro_final": [
+   4,
+   3,
+   3
+  ],
+  "con_final": [
+   6,
+   0,
+   0
+  ]
+ },
+ {
+  "item": "lpack06-2",
+  "issue": "issue_remotewatch",
+  "run": "C0_lprog_remotewatch_rep2",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "자원봉사자 방문",
+  "stance": [
+   "자원봉사자 방문",
+   "자원봉사자 방문",
+   "자원봉사자 방문",
+   "자원봉사자 방문"
+  ],
+  "final": "자원봉사자 방문",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   8,
+   4,
+   4
+  ],
+  "n_fold": [
+   8,
+   5,
+   5
+  ],
+  "in_alive": [
+   4,
+   3,
+   3
+  ],
+  "out_alive": [
+   4,
+   1,
+   1
+  ],
+  "pro_final": [
+   4,
+   3,
+   3
+  ],
+  "con_final": [
+   4,
+   1,
+   1
+  ]
+ },
+ {
+  "item": "lpack06-3",
+  "issue": "issue_eol",
+  "run": "C0_lprog_eol_rep1",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "소망호스피스",
+  "stance": [
+   "소망호스피스",
+   "소망호스피스",
+   "소망호스피스",
+   "소망호스피스"
+  ],
+  "final": "소망호스피스",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   11,
+   10,
+   10
+  ],
+  "n_fold": [
+   11,
+   10,
+   10
+  ],
+  "in_alive": [
+   6,
+   5,
+   5
+  ],
+  "out_alive": [
+   5,
+   5,
+   5
+  ],
+  "pro_final": [
+   6,
+   5,
+   5
+  ],
+  "con_final": [
+   5,
+   5,
+   5
+  ]
+ },
+ {
+  "item": "lpack06-4",
+  "issue": "issue_workmind",
+  "run": "pxp_workmind_lprog_workmind_rep2",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "사내 EAP",
+  "own": "외부 개인 상담",
+  "stance": [
+   "사내 EAP",
+   "사내 EAP",
+   "사내 EAP",
+   "사내 EAP"
+  ],
+  "final": "사내 EAP",
+  "cls": "처음부터 같은 편",
+  "shift_note": [],
+  "n_alive": [
+   4,
+   3,
+   3
+  ],
+  "n_fold": [
+   5,
+   4,
+   3
+  ],
+  "in_alive": [
+   1,
+   1,
+   1
+  ],
+  "out_alive": [
+   3,
+   2,
+   2
+  ],
+  "pro_final": [
+   3,
+   2,
+   2
+  ],
+  "con_final": [
+   1,
+   1,
+   1
+  ]
+ },
+ {
+  "item": "lpack06-5",
+  "issue": "issue_parentalreturn",
+  "run": "C0_lprog_parentalreturn_rep2",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "다른 업무팀",
+  "stance": [
+   "다른 업무팀",
+   "다른 업무팀",
+   "모호",
+   "모호"
+  ],
+  "final": "다른 업무팀",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   8,
+   8,
+   3
+  ],
+  "n_fold": [
+   8,
+   8,
+   5
+  ],
+  "in_alive": [
+   5,
+   5,
+   3
+  ],
+  "out_alive": [
+   3,
+   3,
+   0
+  ],
+  "pro_final": [
+   5,
+   5,
+   3
+  ],
+  "con_final": [
+   3,
+   3,
+   0
+  ]
+ },
+ {
+  "item": "lpack06-6",
+  "issue": "issue_remotewatch",
+  "run": "pxp_remotewatch_lprog_remotewatch_rep1",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "원격 모니터링",
+  "own": "자원봉사자 방문",
+  "stance": [
+   "원격 모니터링",
+   "원격 모니터링",
+   "자원봉사자 방문",
+   "원격 모니터링"
+  ],
+  "final": "자원봉사자 방문",
+  "cls": "처음부터 같은 편",
+  "shift_note": [
+   1
+  ],
+  "n_alive": [
+   9,
+   3,
+   2
+  ],
+  "n_fold": [
+   9,
+   3,
+   3
+  ],
+  "in_alive": [
+   4,
+   3,
+   2
+  ],
+  "out_alive": [
+   5,
+   0,
+   0
+  ],
+  "pro_final": [
+   4,
+   3,
+   2
+  ],
+  "con_final": [
+   5,
+   0,
+   0
+  ]
+ },
+ {
+  "item": "lpack07-1",
+  "issue": "issue_workmind",
+  "run": "pxp_workmind_lprog_workmind_rep1",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "사내 EAP",
+  "own": "외부 개인 상담",
+  "stance": [
+   "사내 EAP",
+   "모호",
+   "사내 EAP",
+   "사내 EAP"
+  ],
+  "final": "사내 EAP",
+  "cls": "처음부터 같은 편",
+  "shift_note": [],
+  "n_alive": [
+   7,
+   3,
+   1
+  ],
+  "n_fold": [
+   8,
+   6,
+   4
+  ],
+  "in_alive": [
+   3,
+   1,
+   1
+  ],
+  "out_alive": [
+   4,
+   2,
+   0
+  ],
+  "pro_final": [
+   4,
+   2,
+   0
+  ],
+  "con_final": [
+   3,
+   1,
+   1
+  ]
+ },
+ {
+  "item": "lpack07-2",
+  "issue": "issue_childcare",
+  "run": "pxc_childcare_lcons_childcare_rep1",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "소담숲어린이집",
+  "own": "해맑은어린이집",
+  "stance": [
+   "소담숲어린이집",
+   "소담숲어린이집",
+   "소담숲어린이집",
+   "소담숲어린이집"
+  ],
+  "final": "해맑은어린이집",
+  "cls": "처음부터 같은 편",
+  "shift_note": [
+   1,
+   2
+  ],
+  "n_alive": [
+   10,
+   4,
+   3
+  ],
+  "n_fold": [
+   10,
+   4,
+   4
+  ],
+  "in_alive": [
+   5,
+   4,
+   2
+  ],
+  "out_alive": [
+   5,
+   0,
+   1
+  ],
+  "pro_final": [
+   5,
+   4,
+   2
+  ],
+  "con_final": [
+   5,
+   0,
+   1
+  ]
+ },
+ {
+  "item": "lpack07-3",
+  "issue": "issue_recycling_room",
+  "run": "C0_lprog_recycling_room_rep1",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": null,
+  "stance": [
+   "밤에도 열어 둠",
+   "모호",
+   "모호",
+   "밤 열 시 마감"
+  ],
+  "final": "밤 열 시 마감",
+  "cls": null,
+  "shift_note": [
+   1
+  ],
+  "n_alive": [
+   1,
+   0,
+   0
+  ],
+  "n_fold": [
+   10,
+   3,
+   1
+  ],
+  "in_alive": null,
+  "out_alive": null,
+  "pro_final": [
+   1,
+   0,
+   0
+  ],
+  "con_final": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "item": "lpack07-4",
+  "issue": "issue_recycling_room",
+  "run": "C0_lcons_recycling_room_rep2",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": null,
+  "stance": [
+   "밤 열 시 마감",
+   "밤에도 열어 둠",
+   "밤에도 열어 둠",
+   "밤에도 열어 둠"
+  ],
+  "final": "밤에도 열어 둠",
+  "cls": null,
+  "shift_note": [
+   0,
+   1,
+   2
+  ],
+  "n_alive": [
+   3,
+   1,
+   1
+  ],
+  "n_fold": [
+   8,
+   4,
+   4
+  ],
+  "in_alive": null,
+  "out_alive": null,
+  "pro_final": [
+   2,
+   1,
+   1
+  ],
+  "con_final": [
+   1,
+   0,
+   0
+  ]
+ },
+ {
+  "item": "lpack07-5",
+  "issue": "issue_workmind",
+  "run": "C0_lcons_workmind_rep3",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "사내 EAP",
+  "stance": [
+   "사내 EAP",
+   "사내 EAP",
+   "사내 EAP",
+   "모호"
+  ],
+  "final": "외부 개인 상담",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   7,
+   6,
+   3
+  ],
+  "n_fold": [
+   8,
+   7,
+   3
+  ],
+  "in_alive": [
+   4,
+   3,
+   0
+  ],
+  "out_alive": [
+   3,
+   3,
+   3
+  ],
+  "pro_final": [
+   3,
+   3,
+   3
+  ],
+  "con_final": [
+   4,
+   3,
+   0
+  ]
+ },
+ {
+  "item": "lpack07-6",
+  "issue": "issue_eol",
+  "run": "pxc_eol_lcons_eol_rep3",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "소망호스피스",
+  "own": "인애종합병원",
+  "stance": [
+   "인애종합병원",
+   "소망호스피스",
+   "소망호스피스",
+   "소망호스피스"
+  ],
+  "final": "소망호스피스",
+  "cls": "결정까지 바뀜",
+  "shift_note": [
+   1
+  ],
+  "n_alive": [
+   10,
+   7,
+   5
+  ],
+  "n_fold": [
+   10,
+   8,
+   6
+  ],
+  "in_alive": [
+   5,
+   4,
+   4
+  ],
+  "out_alive": [
+   5,
+   3,
+   1
+  ],
+  "pro_final": [
+   5,
+   3,
+   1
+  ],
+  "con_final": [
+   5,
+   4,
+   4
+  ]
+ },
+ {
+  "item": "lpack08-1",
+  "issue": "issue_euthanasia",
+  "run": "C0_lprog_euthanasia_rep3",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "임시보호 전문 단체",
+  "stance": [
+   "임시보호 전문 단체",
+   "임시보호 전문 단체",
+   "임시보호 전문 단체",
+   "임시보호 전문 단체"
+  ],
+  "final": "임시보호 전문 단체",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   11,
+   11,
+   9
+  ],
+  "n_fold": [
+   11,
+   11,
+   11
+  ],
+  "in_alive": [
+   6,
+   6,
+   4
+  ],
+  "out_alive": [
+   5,
+   5,
+   5
+  ],
+  "pro_final": [
+   6,
+   6,
+   4
+  ],
+  "con_final": [
+   5,
+   5,
+   5
+  ]
+ },
+ {
+  "item": "lpack08-2",
+  "issue": "issue_parentalreturn",
+  "run": "pxp_parentalreturn_lprog_parentalreturn_rep2",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "원래 업무팀",
+  "own": "다른 업무팀",
+  "stance": [
+   "다른 업무팀",
+   "원래 업무팀",
+   "원래 업무팀",
+   "원래 업무팀"
+  ],
+  "final": "원래 업무팀",
+  "cls": "결정까지 바뀜",
+  "shift_note": [],
+  "n_alive": [
+   8,
+   4,
+   2
+  ],
+  "n_fold": [
+   8,
+   5,
+   4
+  ],
+  "in_alive": [
+   5,
+   3,
+   2
+  ],
+  "out_alive": [
+   3,
+   1,
+   0
+  ],
+  "pro_final": [
+   3,
+   1,
+   0
+  ],
+  "con_final": [
+   5,
+   3,
+   2
+  ]
+ },
+ {
+  "item": "lpack08-3",
+  "issue": "issue_childcare",
+  "run": "C0_lprog_childcare_rep2",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "소담숲어린이집",
+  "stance": [
+   "소담숲어린이집",
+   "소담숲어린이집",
+   "소담숲어린이집",
+   "소담숲어린이집"
+  ],
+  "final": "소담숲어린이집",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   12,
+   7,
+   7
+  ],
+  "n_fold": [
+   12,
+   7,
+   7
+  ],
+  "in_alive": [
+   6,
+   2,
+   2
+  ],
+  "out_alive": [
+   6,
+   5,
+   5
+  ],
+  "pro_final": [
+   6,
+   2,
+   2
+  ],
+  "con_final": [
+   6,
+   5,
+   5
+  ]
+ },
+ {
+  "item": "lpack08-4",
+  "issue": "issue_shelter",
+  "run": "C0_lcons_shelter_rep2",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "지역 순찰조",
+  "stance": [
+   "전문 아웃리치팀",
+   "전문 아웃리치팀",
+   "전문 아웃리치팀",
+   "전문 아웃리치팀"
+  ],
+  "final": "지역 순찰조",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   10,
+   10,
+   10
+  ],
+  "n_fold": [
+   10,
+   10,
+   10
+  ],
+  "in_alive": [
+   5,
+   5,
+   5
+  ],
+  "out_alive": [
+   5,
+   5,
+   5
+  ],
+  "pro_final": [
+   5,
+   5,
+   5
+  ],
+  "con_final": [
+   5,
+   5,
+   5
+  ]
+ },
+ {
+  "item": "lpack08-5",
+  "issue": "issue_remotewatch",
+  "run": "C0_lprog_remotewatch_rep1",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "자원봉사자 방문",
+  "stance": [
+   "원격 모니터링",
+   "모호",
+   "모호",
+   "모호"
+  ],
+  "final": "자원봉사자 방문",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   11,
+   1,
+   1
+  ],
+  "n_fold": [
+   11,
+   3,
+   3
+  ],
+  "in_alive": [
+   5,
+   1,
+   1
+  ],
+  "out_alive": [
+   6,
+   0,
+   0
+  ],
+  "pro_final": [
+   5,
+   1,
+   1
+  ],
+  "con_final": [
+   6,
+   0,
+   0
+  ]
+ },
+ {
+  "item": "lpack08-6",
+  "issue": "issue_eol",
+  "run": "pxp_eol_lprog_eol_rep1",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "인애종합병원",
+  "own": "소망호스피스",
+  "stance": [
+   "소망호스피스",
+   "인애종합병원",
+   "인애종합병원",
+   "인애종합병원"
+  ],
+  "final": "소망호스피스",
+  "cls": "말만 바뀜",
+  "shift_note": [
+   1
+  ],
+  "n_alive": [
+   11,
+   3,
+   1
+  ],
+  "n_fold": [
+   11,
+   5,
+   4
+  ],
+  "in_alive": [
+   6,
+   0,
+   0
+  ],
+  "out_alive": [
+   5,
+   3,
+   1
+  ],
+  "pro_final": [
+   6,
+   0,
+   0
+  ],
+  "con_final": [
+   5,
+   3,
+   1
+  ]
+ },
+ {
+  "item": "lpack09-1",
+  "issue": "issue_euthanasia",
+  "run": "C0_lcons_euthanasia_rep1",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "원래 보호소",
+  "stance": [
+   "원래 보호소",
+   "임시보호 전문 단체",
+   "임시보호 전문 단체",
+   "임시보호 전문 단체"
+  ],
+  "final": "원래 보호소",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   11,
+   5,
+   5
+  ],
+  "n_fold": [
+   11,
+   9,
+   9
+  ],
+  "in_alive": [
+   5,
+   0,
+   0
+  ],
+  "out_alive": [
+   6,
+   5,
+   5
+  ],
+  "pro_final": [
+   5,
+   0,
+   0
+  ],
+  "con_final": [
+   6,
+   5,
+   5
+  ]
+ },
+ {
+  "item": "lpack09-2",
+  "issue": "issue_cat_feeding_days_list",
+  "run": "C0_lprog_cf_days_list_rep3",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "창고 옆으로 옮긴다",
+  "stance": [
+   "창고 옆으로 옮긴다",
+   "창고 옆으로 옮긴다",
+   "창고 옆으로 옮긴다",
+   "창고 옆으로 옮긴다"
+  ],
+  "final": "창고 옆으로 옮긴다",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   8,
+   5,
+   5
+  ],
+  "n_fold": [
+   9,
+   7,
+   7
+  ],
+  "in_alive": [
+   5,
+   3,
+   3
+  ],
+  "out_alive": [
+   3,
+   2,
+   2
+  ],
+  "pro_final": [
+   5,
+   3,
+   3
+  ],
+  "con_final": [
+   3,
+   2,
+   2
+  ]
+ },
+ {
+  "item": "lpack09-3",
+  "issue": "issue_parentalreturn",
+  "run": "pxc_parentalreturn_lcons_parentalreturn_rep1",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "다른 업무팀",
+  "own": "원래 업무팀",
+  "stance": [
+   "원래 업무팀",
+   "다른 업무팀",
+   "원래 업무팀",
+   "다른 업무팀"
+  ],
+  "final": "원래 업무팀",
+  "cls": "왔다갔다",
+  "shift_note": [],
+  "n_alive": [
+   8,
+   1,
+   0
+  ],
+  "n_fold": [
+   9,
+   3,
+   2
+  ],
+  "in_alive": [
+   4,
+   0,
+   0
+  ],
+  "out_alive": [
+   4,
+   1,
+   0
+  ],
+  "pro_final": [
+   4,
+   0,
+   0
+  ],
+  "con_final": [
+   4,
+   1,
+   0
+  ]
+ },
+ {
+  "item": "lpack09-4",
+  "issue": "issue_euthanasia",
+  "run": "C0_lcons_euthanasia_rep3",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "원래 보호소",
+  "stance": [
+   "임시보호 전문 단체",
+   "임시보호 전문 단체",
+   "임시보호 전문 단체",
+   "임시보호 전문 단체"
+  ],
+  "final": "원래 보호소",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   9,
+   9,
+   9
+  ],
+  "n_fold": [
+   10,
+   10,
+   10
+  ],
+  "in_alive": [
+   3,
+   3,
+   3
+  ],
+  "out_alive": [
+   6,
+   6,
+   6
+  ],
+  "pro_final": [
+   3,
+   3,
+   3
+  ],
+  "con_final": [
+   6,
+   6,
+   6
+  ]
+ },
+ {
+  "item": "lpack09-5",
+  "issue": "issue_cat_feeding_days_list",
+  "run": "pxp_cf_days_list_lprog_cf_days_list_rep2",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "지금 자리에 둔다",
+  "own": "창고 옆으로 옮긴다",
+  "stance": [
+   "창고 옆으로 옮긴다",
+   "지금 자리에 둔다",
+   "지금 자리에 둔다",
+   "지금 자리에 둔다"
+  ],
+  "final": "지금 자리에 둔다",
+  "cls": "결정까지 바뀜",
+  "shift_note": [],
+  "n_alive": [
+   7,
+   3,
+   3
+  ],
+  "n_fold": [
+   10,
+   9,
+   7
+  ],
+  "in_alive": [
+   4,
+   1,
+   1
+  ],
+  "out_alive": [
+   3,
+   2,
+   2
+  ],
+  "pro_final": [
+   3,
+   2,
+   2
+  ],
+  "con_final": [
+   4,
+   1,
+   1
+  ]
+ },
+ {
+  "item": "lpack09-6",
+  "issue": "issue_cat_feeding_days_list",
+  "run": "C0_lprog_cf_days_list_rep1",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "창고 옆으로 옮긴다",
+  "stance": [
+   "창고 옆으로 옮긴다",
+   "창고 옆으로 옮긴다",
+   "창고 옆으로 옮긴다",
+   "창고 옆으로 옮긴다"
+  ],
+  "final": "창고 옆으로 옮긴다",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   8,
+   4,
+   4
+  ],
+  "n_fold": [
+   11,
+   10,
+   10
+  ],
+  "in_alive": [
+   5,
+   3,
+   3
+  ],
+  "out_alive": [
+   3,
+   1,
+   1
+  ],
+  "pro_final": [
+   5,
+   3,
+   3
+  ],
+  "con_final": [
+   3,
+   1,
+   1
+  ]
+ },
+ {
+  "item": "lpack10-1",
+  "issue": "issue_examaccom",
+  "run": "pxp_examaccom_lprog_examaccom_rep3",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "표준 학사지원팀",
+  "own": "개별 맞춤 지원팀",
+  "stance": [
+   "개별 맞춤 지원팀",
+   "표준 학사지원팀",
+   "표준 학사지원팀",
+   "표준 학사지원팀"
+  ],
+  "final": "개별 맞춤 지원팀",
+  "cls": "말만 바뀜",
+  "shift_note": [
+   1
+  ],
+  "n_alive": [
+   6,
+   0,
+   0
+  ],
+  "n_fold": [
+   6,
+   0,
+   0
+  ],
+  "in_alive": [
+   4,
+   0,
+   0
+  ],
+  "out_alive": [
+   2,
+   0,
+   0
+  ],
+  "pro_final": [
+   4,
+   0,
+   0
+  ],
+  "con_final": [
+   2,
+   0,
+   0
+  ]
+ },
+ {
+  "item": "lpack10-2",
+  "issue": "issue_smoking_area_party",
+  "run": "C0_lcons_smoking_party_rep2",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": null,
+  "stance": [
+   "외곽 빈 자리로",
+   "외곽 빈 자리로",
+   "외곽 빈 자리로",
+   "외곽 빈 자리로"
+  ],
+  "final": "외곽 빈 자리로",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   5,
+   5,
+   5
+  ],
+  "n_fold": [
+   7,
+   5,
+   5
+  ],
+  "in_alive": null,
+  "out_alive": null,
+  "pro_final": [
+   4,
+   4,
+   4
+  ],
+  "con_final": [
+   1,
+   1,
+   1
+  ]
+ },
+ {
+  "item": "lpack10-3",
+  "issue": "issue_smoking_area_party",
+  "run": "C0_lprog_smoking_party_rep3",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": null,
+  "stance": [
+   "외곽 빈 자리로",
+   "외곽 빈 자리로",
+   "외곽 빈 자리로",
+   "외곽 빈 자리로"
+  ],
+  "final": "외곽 빈 자리로",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   7,
+   7,
+   7
+  ],
+  "n_fold": [
+   7,
+   7,
+   7
+  ],
+  "in_alive": null,
+  "out_alive": null,
+  "pro_final": [
+   4,
+   4,
+   4
+  ],
+  "con_final": [
+   3,
+   3,
+   3
+  ]
+ },
+ {
+  "item": "lpack10-4",
+  "issue": "issue_workmind",
+  "run": "pxp_workmind_lprog_workmind_rep3",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "사내 EAP",
+  "own": "외부 개인 상담",
+  "stance": [
+   "모호",
+   "사내 EAP",
+   "사내 EAP",
+   "사내 EAP"
+  ],
+  "final": "사내 EAP",
+  "cls": "왔다갔다",
+  "shift_note": [
+   1
+  ],
+  "n_alive": [
+   9,
+   2,
+   1
+  ],
+  "n_fold": [
+   10,
+   5,
+   4
+  ],
+  "in_alive": [
+   4,
+   0,
+   0
+  ],
+  "out_alive": [
+   5,
+   2,
+   1
+  ],
+  "pro_final": [
+   5,
+   2,
+   1
+  ],
+  "con_final": [
+   4,
+   0,
+   0
+  ]
+ },
+ {
+  "item": "lpack10-5",
+  "issue": "issue_workmind",
+  "run": "C0_lprog_workmind_rep1",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "외부 개인 상담",
+  "stance": [
+   "사내 EAP",
+   "모호",
+   "모호",
+   "모호"
+  ],
+  "final": "외부 개인 상담",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   10,
+   1,
+   1
+  ],
+  "n_fold": [
+   10,
+   4,
+   4
+  ],
+  "in_alive": [
+   5,
+   1,
+   1
+  ],
+  "out_alive": [
+   5,
+   0,
+   0
+  ],
+  "pro_final": [
+   5,
+   1,
+   1
+  ],
+  "con_final": [
+   5,
+   0,
+   0
+  ]
+ },
+ {
+  "item": "lpack10-6",
+  "issue": "issue_remotewatch",
+  "run": "pxp_remotewatch_lprog_remotewatch_rep2",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "원격 모니터링",
+  "own": "자원봉사자 방문",
+  "stance": [
+   "자원봉사자 방문",
+   "원격 모니터링",
+   "원격 모니터링",
+   "원격 모니터링"
+  ],
+  "final": "원격 모니터링",
+  "cls": "결정까지 바뀜",
+  "shift_note": [
+   1
+  ],
+  "n_alive": [
+   9,
+   1,
+   1
+  ],
+  "n_fold": [
+   9,
+   1,
+   1
+  ],
+  "in_alive": [
+   5,
+   1,
+   1
+  ],
+  "out_alive": [
+   4,
+   0,
+   0
+  ],
+  "pro_final": [
+   4,
+   0,
+   0
+  ],
+  "con_final": [
+   5,
+   1,
+   1
+  ]
+ },
+ {
+  "item": "lpack11-1",
+  "issue": "issue_cat_feeding_days_list",
+  "run": "C0_lcons_cf_days_list_rep1",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "지금 자리에 둔다",
+  "stance": [
+   "창고 옆으로 옮긴다",
+   "창고 옆으로 옮긴다",
+   "창고 옆으로 옮긴다",
+   "창고 옆으로 옮긴다"
+  ],
+  "final": "창고 옆으로 옮긴다",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   9,
+   6,
+   6
+  ],
+  "n_fold": [
+   9,
+   8,
+   8
+  ],
+  "in_alive": [
+   4,
+   3,
+   3
+  ],
+  "out_alive": [
+   5,
+   3,
+   3
+  ],
+  "pro_final": [
+   5,
+   3,
+   3
+  ],
+  "con_final": [
+   4,
+   3,
+   3
+  ]
+ },
+ {
+  "item": "lpack11-2",
+  "issue": "issue_remotewatch",
+  "run": "C0_lprog_remotewatch_rep3",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "자원봉사자 방문",
+  "stance": [
+   "자원봉사자 방문",
+   "자원봉사자 방문",
+   "자원봉사자 방문",
+   "자원봉사자 방문"
+  ],
+  "final": "자원봉사자 방문",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   9,
+   6,
+   1
+  ],
+  "n_fold": [
+   9,
+   7,
+   2
+  ],
+  "in_alive": [
+   5,
+   3,
+   0
+  ],
+  "out_alive": [
+   4,
+   3,
+   1
+  ],
+  "pro_final": [
+   5,
+   3,
+   0
+  ],
+  "con_final": [
+   4,
+   3,
+   1
+  ]
+ },
+ {
+  "item": "lpack11-3",
+  "issue": "issue_childcare",
+  "run": "pxc_childcare_lcons_childcare_rep2",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "소담숲어린이집",
+  "own": "해맑은어린이집",
+  "stance": [
+   "해맑은어린이집",
+   "소담숲어린이집",
+   "소담숲어린이집",
+   "소담숲어린이집"
+  ],
+  "final": "소담숲어린이집",
+  "cls": "결정까지 바뀜",
+  "shift_note": [
+   1,
+   2
+  ],
+  "n_alive": [
+   8,
+   0,
+   0
+  ],
+  "n_fold": [
+   8,
+   5,
+   5
+  ],
+  "in_alive": [
+   5,
+   0,
+   0
+  ],
+  "out_alive": [
+   3,
+   0,
+   0
+  ],
+  "pro_final": [
+   3,
+   0,
+   0
+  ],
+  "con_final": [
+   5,
+   0,
+   0
+  ]
+ },
+ {
+  "item": "lpack11-4",
+  "issue": "issue_examaccom",
+  "run": "C0_lcons_examaccom_rep3",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "표준 학사지원팀",
+  "stance": [
+   "표준 학사지원팀",
+   "표준 학사지원팀",
+   "표준 학사지원팀",
+   "표준 학사지원팀"
+  ],
+  "final": "표준 학사지원팀",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   6,
+   5,
+   5
+  ],
+  "n_fold": [
+   7,
+   6,
+   6
+  ],
+  "in_alive": [
+   3,
+   3,
+   3
+  ],
+  "out_alive": [
+   3,
+   2,
+   2
+  ],
+  "pro_final": [
+   3,
+   3,
+   3
+  ],
+  "con_final": [
+   3,
+   2,
+   2
+  ]
+ },
+ {
+  "item": "lpack11-5",
+  "issue": "issue_eol",
+  "run": "C0_lcons_eol_rep3",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "인애종합병원",
+  "stance": [
+   "인애종합병원",
+   "모호",
+   "모호",
+   "소망호스피스"
+  ],
+  "final": "소망호스피스",
+  "cls": null,
+  "shift_note": [
+   1,
+   2
+  ],
+  "n_alive": [
+   7,
+   3,
+   2
+  ],
+  "n_fold": [
+   7,
+   4,
+   4
+  ],
+  "in_alive": [
+   4,
+   2,
+   1
+  ],
+  "out_alive": [
+   3,
+   1,
+   1
+  ],
+  "pro_final": [
+   3,
+   1,
+   1
+  ],
+  "con_final": [
+   4,
+   2,
+   1
+  ]
+ },
+ {
+  "item": "lpack11-6",
+  "issue": "issue_childcare",
+  "run": "pxc_childcare_lcons_childcare_rep3",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "소담숲어린이집",
+  "own": "해맑은어린이집",
+  "stance": [
+   "해맑은어린이집",
+   "소담숲어린이집",
+   "해맑은어린이집",
+   "소담숲어린이집"
+  ],
+  "final": "해맑은어린이집",
+  "cls": "왔다갔다",
+  "shift_note": [
+   1
+  ],
+  "n_alive": [
+   12,
+   5,
+   4
+  ],
+  "n_fold": [
+   12,
+   6,
+   6
+  ],
+  "in_alive": [
+   6,
+   4,
+   3
+  ],
+  "out_alive": [
+   6,
+   1,
+   1
+  ],
+  "pro_final": [
+   6,
+   4,
+   3
+  ],
+  "con_final": [
+   6,
+   1,
+   1
+  ]
+ },
+ {
+  "item": "lpack12-1",
+  "issue": "issue_examaccom",
+  "run": "pxc_examaccom_lcons_examaccom_rep1",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "개별 맞춤 지원팀",
+  "own": "표준 학사지원팀",
+  "stance": [
+   "표준 학사지원팀",
+   "개별 맞춤 지원팀",
+   "개별 맞춤 지원팀",
+   "개별 맞춤 지원팀"
+  ],
+  "final": "표준 학사지원팀",
+  "cls": "말만 바뀜",
+  "shift_note": [
+   1,
+   2
+  ],
+  "n_alive": [
+   5,
+   1,
+   1
+  ],
+  "n_fold": [
+   5,
+   2,
+   2
+  ],
+  "in_alive": [
+   3,
+   1,
+   1
+  ],
+  "out_alive": [
+   2,
+   0,
+   0
+  ],
+  "pro_final": [
+   3,
+   1,
+   1
+  ],
+  "con_final": [
+   2,
+   0,
+   0
+  ]
+ },
+ {
+  "item": "lpack12-2",
+  "issue": "issue_childcare",
+  "run": "pxp_childcare_lprog_childcare_rep2",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "해맑은어린이집",
+  "own": "소담숲어린이집",
+  "stance": [
+   "해맑은어린이집",
+   "소담숲어린이집",
+   "해맑은어린이집",
+   "해맑은어린이집"
+  ],
+  "final": "해맑은어린이집",
+  "cls": "처음부터 같은 편",
+  "shift_note": [
+   2
+  ],
+  "n_alive": [
+   7,
+   2,
+   3
+  ],
+  "n_fold": [
+   7,
+   2,
+   3
+  ],
+  "in_alive": [
+   5,
+   0,
+   1
+  ],
+  "out_alive": [
+   2,
+   2,
+   2
+  ],
+  "pro_final": [
+   2,
+   2,
+   2
+  ],
+  "con_final": [
+   5,
+   0,
+   1
+  ]
+ },
+ {
+  "item": "lpack12-3",
+  "issue": "issue_parentalreturn",
+  "run": "C0_lprog_parentalreturn_rep1",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "다른 업무팀",
+  "stance": [
+   "다른 업무팀",
+   "모호",
+   "모호",
+   "모호"
+  ],
+  "final": "다른 업무팀",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   8,
+   7,
+   6
+  ],
+  "n_fold": [
+   8,
+   7,
+   6
+  ],
+  "in_alive": [
+   4,
+   3,
+   3
+  ],
+  "out_alive": [
+   4,
+   4,
+   3
+  ],
+  "pro_final": [
+   4,
+   3,
+   3
+  ],
+  "con_final": [
+   4,
+   4,
+   3
+  ]
+ },
+ {
+  "item": "lpack12-4",
+  "issue": "issue_remotewatch",
+  "run": "pxc_remotewatch_lcons_remotewatch_rep3",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "자원봉사자 방문",
+  "own": "원격 모니터링",
+  "stance": [
+   "자원봉사자 방문",
+   "자원봉사자 방문",
+   "자원봉사자 방문",
+   "자원봉사자 방문"
+  ],
+  "final": "자원봉사자 방문",
+  "cls": "처음부터 같은 편",
+  "shift_note": [],
+  "n_alive": [
+   8,
+   6,
+   6
+  ],
+  "n_fold": [
+   8,
+   6,
+   6
+  ],
+  "in_alive": [
+   3,
+   2,
+   2
+  ],
+  "out_alive": [
+   5,
+   4,
+   4
+  ],
+  "pro_final": [
+   5,
+   4,
+   4
+  ],
+  "con_final": [
+   3,
+   2,
+   2
+  ]
+ },
+ {
+  "item": "lpack12-5",
+  "issue": "issue_workmind",
+  "run": "pxc_workmind_lcons_workmind_rep2",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "외부 개인 상담",
+  "own": "사내 EAP",
+  "stance": [
+   "사내 EAP",
+   "외부 개인 상담",
+   "외부 개인 상담",
+   "외부 개인 상담"
+  ],
+  "final": "외부 개인 상담",
+  "cls": "결정까지 바뀜",
+  "shift_note": [
+   1
+  ],
+  "n_alive": [
+   9,
+   1,
+   0
+  ],
+  "n_fold": [
+   9,
+   5,
+   1
+  ],
+  "in_alive": [
+   6,
+   0,
+   0
+  ],
+  "out_alive": [
+   3,
+   1,
+   0
+  ],
+  "pro_final": [
+   3,
+   1,
+   0
+  ],
+  "con_final": [
+   6,
+   0,
+   0
+  ]
+ },
+ {
+  "item": "lpack12-6",
+  "issue": "issue_childcare",
+  "run": "C0_lcons_childcare_rep1",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "해맑은어린이집",
+  "stance": [
+   "해맑은어린이집",
+   "소담숲어린이집",
+   "소담숲어린이집",
+   "소담숲어린이집"
+  ],
+  "final": "해맑은어린이집",
+  "cls": null,
+  "shift_note": [
+   0
+  ],
+  "n_alive": [
+   7,
+   5,
+   5
+  ],
+  "n_fold": [
+   8,
+   5,
+   5
+  ],
+  "in_alive": [
+   5,
+   4,
+   4
+  ],
+  "out_alive": [
+   2,
+   1,
+   1
+  ],
+  "pro_final": [
+   5,
+   4,
+   4
+  ],
+  "con_final": [
+   2,
+   1,
+   1
+  ]
+ },
+ {
+  "item": "lpack13-1",
+  "issue": "issue_examaccom",
+  "run": "C0_lprog_examaccom_rep3",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "개별 맞춤 지원팀",
+  "stance": [
+   "개별 맞춤 지원팀",
+   "개별 맞춤 지원팀",
+   "개별 맞춤 지원팀",
+   "개별 맞춤 지원팀"
+  ],
+  "final": "개별 맞춤 지원팀",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   6,
+   4,
+   4
+  ],
+  "n_fold": [
+   6,
+   5,
+   5
+  ],
+  "in_alive": [
+   3,
+   1,
+   1
+  ],
+  "out_alive": [
+   3,
+   3,
+   3
+  ],
+  "pro_final": [
+   3,
+   1,
+   1
+  ],
+  "con_final": [
+   3,
+   3,
+   3
+  ]
+ },
+ {
+  "item": "lpack13-2",
+  "issue": "issue_recycling_room",
+  "run": "C0_lprog_recycling_room_rep3",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": null,
+  "stance": [
+   "밤에도 열어 둠",
+   "모호",
+   "모호",
+   "모호"
+  ],
+  "final": "밤 열 시 마감",
+  "cls": null,
+  "shift_note": [
+   1
+  ],
+  "n_alive": [
+   1,
+   1,
+   1
+  ],
+  "n_fold": [
+   10,
+   6,
+   6
+  ],
+  "in_alive": null,
+  "out_alive": null,
+  "pro_final": [
+   1,
+   1,
+   1
+  ],
+  "con_final": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "item": "lpack13-3",
+  "issue": "issue_eol",
+  "run": "pxc_eol_lcons_eol_rep1",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "소망호스피스",
+  "own": "인애종합병원",
+  "stance": [
+   "인애종합병원",
+   "소망호스피스",
+   "소망호스피스",
+   "소망호스피스"
+  ],
+  "final": "소망호스피스",
+  "cls": "결정까지 바뀜",
+  "shift_note": [
+   1
+  ],
+  "n_alive": [
+   8,
+   6,
+   5
+  ],
+  "n_fold": [
+   8,
+   6,
+   7
+  ],
+  "in_alive": [
+   6,
+   4,
+   4
+  ],
+  "out_alive": [
+   2,
+   2,
+   1
+  ],
+  "pro_final": [
+   2,
+   2,
+   1
+  ],
+  "con_final": [
+   6,
+   4,
+   4
+  ]
+ },
+ {
+  "item": "lpack13-4",
+  "issue": "issue_shelter",
+  "run": "pxc_shelter_lcons_shelter_rep2",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "전문 아웃리치팀",
+  "own": "지역 순찰조",
+  "stance": [
+   "전문 아웃리치팀",
+   "전문 아웃리치팀",
+   "전문 아웃리치팀",
+   "전문 아웃리치팀"
+  ],
+  "final": "지역 순찰조",
+  "cls": "처음부터 같은 편",
+  "shift_note": [],
+  "n_alive": [
+   9,
+   9,
+   9
+  ],
+  "n_fold": [
+   9,
+   9,
+   9
+  ],
+  "in_alive": [
+   3,
+   3,
+   3
+  ],
+  "out_alive": [
+   6,
+   6,
+   6
+  ],
+  "pro_final": [
+   3,
+   3,
+   3
+  ],
+  "con_final": [
+   6,
+   6,
+   6
+  ]
+ },
+ {
+  "item": "lpack13-5",
+  "issue": "issue_examaccom",
+  "run": "C0_lprog_examaccom_rep2",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "개별 맞춤 지원팀",
+  "stance": [
+   "개별 맞춤 지원팀",
+   "개별 맞춤 지원팀",
+   "개별 맞춤 지원팀",
+   "개별 맞춤 지원팀"
+  ],
+  "final": "개별 맞춤 지원팀",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   6,
+   4,
+   3
+  ],
+  "n_fold": [
+   6,
+   5,
+   3
+  ],
+  "in_alive": [
+   3,
+   2,
+   1
+  ],
+  "out_alive": [
+   3,
+   2,
+   2
+  ],
+  "pro_final": [
+   3,
+   2,
+   1
+  ],
+  "con_final": [
+   3,
+   2,
+   2
+  ]
+ },
+ {
+  "item": "lpack13-6",
+  "issue": "issue_euthanasia",
+  "run": "C0_lprog_euthanasia_rep2",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "임시보호 전문 단체",
+  "stance": [
+   "임시보호 전문 단체",
+   "임시보호 전문 단체",
+   "임시보호 전문 단체",
+   "임시보호 전문 단체"
+  ],
+  "final": "임시보호 전문 단체",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   10,
+   9,
+   7
+  ],
+  "n_fold": [
+   10,
+   10,
+   8
+  ],
+  "in_alive": [
+   6,
+   5,
+   4
+  ],
+  "out_alive": [
+   4,
+   4,
+   3
+  ],
+  "pro_final": [
+   6,
+   5,
+   4
+  ],
+  "con_final": [
+   4,
+   4,
+   3
+  ]
+ },
+ {
+  "item": "lpack14-1",
+  "issue": "issue_eol",
+  "run": "C0_lprog_eol_rep2",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "소망호스피스",
+  "stance": [
+   "소망호스피스",
+   "소망호스피스",
+   "모호",
+   "모호"
+  ],
+  "final": "소망호스피스",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   9,
+   7,
+   5
+  ],
+  "n_fold": [
+   12,
+   12,
+   9
+  ],
+  "in_alive": [
+   3,
+   1,
+   0
+  ],
+  "out_alive": [
+   6,
+   6,
+   5
+  ],
+  "pro_final": [
+   3,
+   1,
+   0
+  ],
+  "con_final": [
+   6,
+   6,
+   5
+  ]
+ },
+ {
+  "item": "lpack14-2",
+  "issue": "issue_recycling_room",
+  "run": "C0_lprog_recycling_room_rep2",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": null,
+  "stance": [
+   "밤에도 열어 둠",
+   "밤 열 시 마감",
+   "밤 열 시 마감",
+   "밤 열 시 마감"
+  ],
+  "final": "밤에도 열어 둠",
+  "cls": null,
+  "shift_note": [
+   0
+  ],
+  "n_alive": [
+   3,
+   0,
+   0
+  ],
+  "n_fold": [
+   3,
+   6,
+   6
+  ],
+  "in_alive": null,
+  "out_alive": null,
+  "pro_final": [
+   0,
+   0,
+   0
+  ],
+  "con_final": [
+   3,
+   0,
+   0
+  ]
+ },
+ {
+  "item": "lpack14-3",
+  "issue": "issue_shelter",
+  "run": "C0_lprog_shelter_rep2",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "전문 아웃리치팀",
+  "stance": [
+   "전문 아웃리치팀",
+   "전문 아웃리치팀",
+   "전문 아웃리치팀",
+   "전문 아웃리치팀"
+  ],
+  "final": "전문 아웃리치팀",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   8,
+   4,
+   3
+  ],
+  "n_fold": [
+   8,
+   4,
+   3
+  ],
+  "in_alive": [
+   4,
+   1,
+   1
+  ],
+  "out_alive": [
+   4,
+   3,
+   2
+  ],
+  "pro_final": [
+   4,
+   1,
+   1
+  ],
+  "con_final": [
+   4,
+   3,
+   2
+  ]
+ },
+ {
+  "item": "lpack14-4",
+  "issue": "issue_remotewatch",
+  "run": "pxc_remotewatch_lcons_remotewatch_rep1",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "자원봉사자 방문",
+  "own": "원격 모니터링",
+  "stance": [
+   "자원봉사자 방문",
+   "자원봉사자 방문",
+   "자원봉사자 방문",
+   "자원봉사자 방문"
+  ],
+  "final": "자원봉사자 방문",
+  "cls": "처음부터 같은 편",
+  "shift_note": [],
+  "n_alive": [
+   7,
+   4,
+   2
+  ],
+  "n_fold": [
+   7,
+   4,
+   3
+  ],
+  "in_alive": [
+   3,
+   2,
+   0
+  ],
+  "out_alive": [
+   4,
+   2,
+   2
+  ],
+  "pro_final": [
+   4,
+   2,
+   2
+  ],
+  "con_final": [
+   3,
+   2,
+   0
+  ]
+ },
+ {
+  "item": "lpack14-5",
+  "issue": "issue_examaccom",
+  "run": "C0_lcons_examaccom_rep2",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "표준 학사지원팀",
+  "stance": [
+   "표준 학사지원팀",
+   "표준 학사지원팀",
+   "표준 학사지원팀",
+   "표준 학사지원팀"
+  ],
+  "final": "표준 학사지원팀",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   6,
+   6,
+   3
+  ],
+  "n_fold": [
+   7,
+   7,
+   5
+  ],
+  "in_alive": [
+   3,
+   3,
+   0
+  ],
+  "out_alive": [
+   3,
+   3,
+   3
+  ],
+  "pro_final": [
+   3,
+   3,
+   0
+  ],
+  "con_final": [
+   3,
+   3,
+   3
+  ]
+ },
+ {
+  "item": "lpack14-6",
+  "issue": "issue_euthanasia",
+  "run": "pxc_euthanasia_lcons_euthanasia_rep2",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "임시보호 전문 단체",
+  "own": "원래 보호소",
+  "stance": [
+   "원래 보호소",
+   "임시보호 전문 단체",
+   "임시보호 전문 단체",
+   "임시보호 전문 단체"
+  ],
+  "final": "임시보호 전문 단체",
+  "cls": "결정까지 바뀜",
+  "shift_note": [
+   0
+  ],
+  "n_alive": [
+   9,
+   4,
+   4
+  ],
+  "n_fold": [
+   9,
+   6,
+   6
+  ],
+  "in_alive": [
+   4,
+   1,
+   1
+  ],
+  "out_alive": [
+   5,
+   3,
+   3
+  ],
+  "pro_final": [
+   5,
+   3,
+   3
+  ],
+  "con_final": [
+   4,
+   1,
+   1
+  ]
+ },
+ {
+  "item": "lpack15-1",
+  "issue": "issue_examaccom",
+  "run": "C0_lcons_examaccom_rep1",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "표준 학사지원팀",
+  "stance": [
+   "표준 학사지원팀",
+   "표준 학사지원팀",
+   "표준 학사지원팀",
+   "표준 학사지원팀"
+  ],
+  "final": "표준 학사지원팀",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   5,
+   4,
+   3
+  ],
+  "n_fold": [
+   6,
+   5,
+   5
+  ],
+  "in_alive": [
+   2,
+   2,
+   1
+  ],
+  "out_alive": [
+   3,
+   2,
+   2
+  ],
+  "pro_final": [
+   2,
+   2,
+   1
+  ],
+  "con_final": [
+   3,
+   2,
+   2
+  ]
+ },
+ {
+  "item": "lpack15-2",
+  "issue": "issue_workmind",
+  "run": "pxc_workmind_lcons_workmind_rep3",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "외부 개인 상담",
+  "own": "사내 EAP",
+  "stance": [
+   "사내 EAP",
+   "외부 개인 상담",
+   "외부 개인 상담",
+   "외부 개인 상담"
+  ],
+  "final": "외부 개인 상담",
+  "cls": "결정까지 바뀜",
+  "shift_note": [
+   1
+  ],
+  "n_alive": [
+   7,
+   1,
+   1
+  ],
+  "n_fold": [
+   9,
+   3,
+   2
+  ],
+  "in_alive": [
+   5,
+   0,
+   0
+  ],
+  "out_alive": [
+   2,
+   1,
+   1
+  ],
+  "pro_final": [
+   2,
+   1,
+   1
+  ],
+  "con_final": [
+   5,
+   0,
+   0
+  ]
+ },
+ {
+  "item": "lpack15-3",
+  "issue": "issue_cat_feeding_days_list",
+  "run": "C0_lprog_cf_days_list_rep2",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "창고 옆으로 옮긴다",
+  "stance": [
+   "창고 옆으로 옮긴다",
+   "모호",
+   "모호",
+   "모호"
+  ],
+  "final": "지금 자리에 둔다",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   9,
+   4,
+   3
+  ],
+  "n_fold": [
+   10,
+   5,
+   5
+  ],
+  "in_alive": [
+   5,
+   1,
+   1
+  ],
+  "out_alive": [
+   4,
+   3,
+   2
+  ],
+  "pro_final": [
+   4,
+   3,
+   2
+  ],
+  "con_final": [
+   5,
+   1,
+   1
+  ]
+ },
+ {
+  "item": "lpack15-4",
+  "issue": "issue_cat_feeding_days_list",
+  "run": "pxc_cf_days_list_lcons_cf_days_list_rep3",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "창고 옆으로 옮긴다",
+  "own": "지금 자리에 둔다",
+  "stance": [
+   "지금 자리에 둔다",
+   "창고 옆으로 옮긴다",
+   "창고 옆으로 옮긴다",
+   "창고 옆으로 옮긴다"
+  ],
+  "final": "지금 자리에 둔다",
+  "cls": "말만 바뀜",
+  "shift_note": [
+   0,
+   1
+  ],
+  "n_alive": [
+   4,
+   2,
+   2
+  ],
+  "n_fold": [
+   5,
+   3,
+   3
+  ],
+  "in_alive": [
+   2,
+   2,
+   2
+  ],
+  "out_alive": [
+   2,
+   0,
+   0
+  ],
+  "pro_final": [
+   2,
+   2,
+   2
+  ],
+  "con_final": [
+   2,
+   0,
+   0
+  ]
+ },
+ {
+  "item": "lpack15-5",
+  "issue": "issue_childcare",
+  "run": "C0_lcons_childcare_rep2",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "해맑은어린이집",
+  "stance": [
+   "해맑은어린이집",
+   "해맑은어린이집",
+   "해맑은어린이집",
+   "해맑은어린이집"
+  ],
+  "final": "해맑은어린이집",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   9,
+   7,
+   6
+  ],
+  "n_fold": [
+   9,
+   7,
+   7
+  ],
+  "in_alive": [
+   4,
+   4,
+   4
+  ],
+  "out_alive": [
+   5,
+   3,
+   2
+  ],
+  "pro_final": [
+   4,
+   4,
+   4
+  ],
+  "con_final": [
+   5,
+   3,
+   2
+  ]
+ },
+ {
+  "item": "lpack15-6",
+  "issue": "issue_parentalreturn",
+  "run": "pxc_parentalreturn_lcons_parentalreturn_rep2",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "다른 업무팀",
+  "own": "원래 업무팀",
+  "stance": [
+   "원래 업무팀",
+   "다른 업무팀",
+   "다른 업무팀",
+   "다른 업무팀"
+  ],
+  "final": "다른 업무팀",
+  "cls": "결정까지 바뀜",
+  "shift_note": [
+   0
+  ],
+  "n_alive": [
+   9,
+   5,
+   5
+  ],
+  "n_fold": [
+   9,
+   5,
+   5
+  ],
+  "in_alive": [
+   4,
+   2,
+   2
+  ],
+  "out_alive": [
+   5,
+   3,
+   3
+  ],
+  "pro_final": [
+   5,
+   3,
+   3
+  ],
+  "con_final": [
+   4,
+   2,
+   2
+  ]
+ },
+ {
+  "item": "lpack16-1",
+  "issue": "issue_childcare",
+  "run": "pxp_childcare_lprog_childcare_rep1",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "해맑은어린이집",
+  "own": "소담숲어린이집",
+  "stance": [
+   "모호",
+   "해맑은어린이집",
+   "해맑은어린이집",
+   "해맑은어린이집"
+  ],
+  "final": "해맑은어린이집",
+  "cls": "왔다갔다",
+  "shift_note": [],
+  "n_alive": [
+   9,
+   1,
+   1
+  ],
+  "n_fold": [
+   9,
+   3,
+   2
+  ],
+  "in_alive": [
+   5,
+   1,
+   1
+  ],
+  "out_alive": [
+   4,
+   0,
+   0
+  ],
+  "pro_final": [
+   4,
+   0,
+   0
+  ],
+  "con_final": [
+   5,
+   1,
+   1
+  ]
+ },
+ {
+  "item": "lpack16-2",
+  "issue": "issue_recycling_room",
+  "run": "C0_lcons_recycling_room_rep3",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": null,
+  "stance": [
+   "밤 열 시 마감",
+   "밤 열 시 마감",
+   "밤 열 시 마감",
+   "밤 열 시 마감"
+  ],
+  "final": "밤 열 시 마감",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   4,
+   2,
+   2
+  ],
+  "n_fold": [
+   6,
+   4,
+   5
+  ],
+  "in_alive": null,
+  "out_alive": null,
+  "pro_final": [
+   3,
+   1,
+   1
+  ],
+  "con_final": [
+   1,
+   1,
+   1
+  ]
+ },
+ {
+  "item": "lpack16-3",
+  "issue": "issue_shelter",
+  "run": "C0_lcons_shelter_rep1",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "지역 순찰조",
+  "stance": [
+   "지역 순찰조",
+   "지역 순찰조",
+   "지역 순찰조",
+   "지역 순찰조"
+  ],
+  "final": "지역 순찰조",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   8,
+   6,
+   6
+  ],
+  "n_fold": [
+   8,
+   6,
+   6
+  ],
+  "in_alive": [
+   5,
+   3,
+   3
+  ],
+  "out_alive": [
+   3,
+   3,
+   3
+  ],
+  "pro_final": [
+   5,
+   3,
+   3
+  ],
+  "con_final": [
+   3,
+   3,
+   3
+  ]
+ },
+ {
+  "item": "lpack16-4",
+  "issue": "issue_remotewatch",
+  "run": "C0_lcons_remotewatch_rep3",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "원격 모니터링",
+  "stance": [
+   "자원봉사자 방문",
+   "자원봉사자 방문",
+   "자원봉사자 방문",
+   "자원봉사자 방문"
+  ],
+  "final": "자원봉사자 방문",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   10,
+   6,
+   4
+  ],
+  "n_fold": [
+   10,
+   7,
+   5
+  ],
+  "in_alive": [
+   4,
+   3,
+   2
+  ],
+  "out_alive": [
+   6,
+   3,
+   2
+  ],
+  "pro_final": [
+   6,
+   3,
+   2
+  ],
+  "con_final": [
+   4,
+   3,
+   2
+  ]
+ },
+ {
+  "item": "lpack16-5",
+  "issue": "issue_smoking_area_party",
+  "run": "C0_lcons_smoking_party_rep1",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": null,
+  "stance": [
+   "외곽 빈 자리로",
+   "외곽 빈 자리로",
+   "외곽 빈 자리로",
+   "외곽 빈 자리로"
+  ],
+  "final": "외곽 빈 자리로",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   10,
+   7,
+   7
+  ],
+  "n_fold": [
+   10,
+   7,
+   7
+  ],
+  "in_alive": null,
+  "out_alive": null,
+  "pro_final": [
+   6,
+   3,
+   3
+  ],
+  "con_final": [
+   4,
+   4,
+   4
+  ]
+ },
+ {
+  "item": "lpack16-6",
+  "issue": "issue_eol",
+  "run": "C0_lcons_eol_rep2",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "인애종합병원",
+  "stance": [
+   "인애종합병원",
+   "인애종합병원",
+   "인애종합병원",
+   "인애종합병원"
+  ],
+  "final": "인애종합병원",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   9,
+   9,
+   8
+  ],
+  "n_fold": [
+   9,
+   9,
+   8
+  ],
+  "in_alive": [
+   6,
+   6,
+   5
+  ],
+  "out_alive": [
+   3,
+   3,
+   3
+  ],
+  "pro_final": [
+   6,
+   6,
+   5
+  ],
+  "con_final": [
+   3,
+   3,
+   3
+  ]
+ },
+ {
+  "item": "lpack17-1",
+  "issue": "issue_parentalreturn",
+  "run": "pxp_parentalreturn_lprog_parentalreturn_rep1",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "원래 업무팀",
+  "own": "다른 업무팀",
+  "stance": [
+   "다른 업무팀",
+   "원래 업무팀",
+   "원래 업무팀",
+   "모호"
+  ],
+  "final": "원래 업무팀",
+  "cls": "결정까지 바뀜",
+  "shift_note": [],
+  "n_alive": [
+   8,
+   0,
+   0
+  ],
+  "n_fold": [
+   9,
+   3,
+   2
+  ],
+  "in_alive": [
+   5,
+   0,
+   0
+  ],
+  "out_alive": [
+   3,
+   0,
+   0
+  ],
+  "pro_final": [
+   3,
+   0,
+   0
+  ],
+  "con_final": [
+   5,
+   0,
+   0
+  ]
+ },
+ {
+  "item": "lpack17-2",
+  "issue": "issue_euthanasia",
+  "run": "C0_lprog_euthanasia_rep1",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "임시보호 전문 단체",
+  "stance": [
+   "임시보호 전문 단체",
+   "임시보호 전문 단체",
+   "임시보호 전문 단체",
+   "임시보호 전문 단체"
+  ],
+  "final": "임시보호 전문 단체",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   12,
+   12,
+   10
+  ],
+  "n_fold": [
+   12,
+   12,
+   10
+  ],
+  "in_alive": [
+   6,
+   6,
+   4
+  ],
+  "out_alive": [
+   6,
+   6,
+   6
+  ],
+  "pro_final": [
+   6,
+   6,
+   4
+  ],
+  "con_final": [
+   6,
+   6,
+   6
+  ]
+ },
+ {
+  "item": "lpack17-3",
+  "issue": "issue_shelter",
+  "run": "pxp_shelter_lprog_shelter_rep3",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "지역 순찰조",
+  "own": "전문 아웃리치팀",
+  "stance": [
+   "전문 아웃리치팀",
+   "전문 아웃리치팀",
+   "지역 순찰조",
+   "지역 순찰조"
+  ],
+  "final": "전문 아웃리치팀",
+  "cls": "말만 바뀜",
+  "shift_note": [],
+  "n_alive": [
+   8,
+   3,
+   2
+  ],
+  "n_fold": [
+   9,
+   4,
+   3
+  ],
+  "in_alive": [
+   5,
+   2,
+   1
+  ],
+  "out_alive": [
+   3,
+   1,
+   1
+  ],
+  "pro_final": [
+   5,
+   2,
+   1
+  ],
+  "con_final": [
+   3,
+   1,
+   1
+  ]
+ },
+ {
+  "item": "lpack17-4",
+  "issue": "issue_shelter",
+  "run": "C0_lcons_shelter_rep3",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "지역 순찰조",
+  "stance": [
+   "전문 아웃리치팀",
+   "전문 아웃리치팀",
+   "전문 아웃리치팀",
+   "전문 아웃리치팀"
+  ],
+  "final": "전문 아웃리치팀",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   7,
+   6,
+   6
+  ],
+  "n_fold": [
+   7,
+   6,
+   6
+  ],
+  "in_alive": [
+   5,
+   4,
+   4
+  ],
+  "out_alive": [
+   2,
+   2,
+   2
+  ],
+  "pro_final": [
+   2,
+   2,
+   2
+  ],
+  "con_final": [
+   5,
+   4,
+   4
+  ]
+ },
+ {
+  "item": "lpack17-5",
+  "issue": "issue_workmind",
+  "run": "pxc_workmind_lcons_workmind_rep1",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "외부 개인 상담",
+  "own": "사내 EAP",
+  "stance": [
+   "사내 EAP",
+   "외부 개인 상담",
+   "외부 개인 상담",
+   "외부 개인 상담"
+  ],
+  "final": "외부 개인 상담",
+  "cls": "결정까지 바뀜",
+  "shift_note": [],
+  "n_alive": [
+   8,
+   3,
+   2
+  ],
+  "n_fold": [
+   8,
+   3,
+   3
+  ],
+  "in_alive": [
+   5,
+   1,
+   0
+  ],
+  "out_alive": [
+   3,
+   2,
+   2
+  ],
+  "pro_final": [
+   3,
+   2,
+   2
+  ],
+  "con_final": [
+   5,
+   1,
+   0
+  ]
+ },
+ {
+  "item": "lpack17-6",
+  "issue": "issue_examaccom",
+  "run": "pxp_examaccom_lprog_examaccom_rep2",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "표준 학사지원팀",
+  "own": "개별 맞춤 지원팀",
+  "stance": [
+   "개별 맞춤 지원팀",
+   "표준 학사지원팀",
+   "표준 학사지원팀",
+   "표준 학사지원팀"
+  ],
+  "final": "표준 학사지원팀",
+  "cls": "결정까지 바뀜",
+  "shift_note": [
+   1
+  ],
+  "n_alive": [
+   6,
+   1,
+   1
+  ],
+  "n_fold": [
+   6,
+   1,
+   1
+  ],
+  "in_alive": [
+   4,
+   0,
+   1
+  ],
+  "out_alive": [
+   2,
+   1,
+   0
+  ],
+  "pro_final": [
+   2,
+   1,
+   0
+  ],
+  "con_final": [
+   4,
+   0,
+   1
+  ]
+ },
+ {
+  "item": "lpack18-1",
+  "issue": "issue_parentalreturn",
+  "run": "C0_lcons_parentalreturn_rep1",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "원래 업무팀",
+  "stance": [
+   "원래 업무팀",
+   "모호",
+   "모호",
+   "모호"
+  ],
+  "final": "원래 업무팀",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   5,
+   4,
+   4
+  ],
+  "n_fold": [
+   5,
+   5,
+   4
+  ],
+  "in_alive": [
+   1,
+   1,
+   1
+  ],
+  "out_alive": [
+   4,
+   3,
+   3
+  ],
+  "pro_final": [
+   1,
+   1,
+   1
+  ],
+  "con_final": [
+   4,
+   3,
+   3
+  ]
+ },
+ {
+  "item": "lpack18-2",
+  "issue": "issue_remotewatch",
+  "run": "pxc_remotewatch_lcons_remotewatch_rep2",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "자원봉사자 방문",
+  "own": "원격 모니터링",
+  "stance": [
+   "자원봉사자 방문",
+   "자원봉사자 방문",
+   "자원봉사자 방문",
+   "자원봉사자 방문"
+  ],
+  "final": "자원봉사자 방문",
+  "cls": "처음부터 같은 편",
+  "shift_note": [],
+  "n_alive": [
+   5,
+   2,
+   2
+  ],
+  "n_fold": [
+   8,
+   5,
+   5
+  ],
+  "in_alive": [
+   3,
+   1,
+   1
+  ],
+  "out_alive": [
+   2,
+   1,
+   1
+  ],
+  "pro_final": [
+   2,
+   1,
+   1
+  ],
+  "con_final": [
+   3,
+   1,
+   1
+  ]
+ },
+ {
+  "item": "lpack18-3",
+  "issue": "issue_examaccom",
+  "run": "pxp_examaccom_lprog_examaccom_rep1",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "표준 학사지원팀",
+  "own": "개별 맞춤 지원팀",
+  "stance": [
+   "개별 맞춤 지원팀",
+   "표준 학사지원팀",
+   "개별 맞춤 지원팀",
+   "표준 학사지원팀"
+  ],
+  "final": "개별 맞춤 지원팀",
+  "cls": "왔다갔다",
+  "shift_note": [],
+  "n_alive": [
+   8,
+   1,
+   1
+  ],
+  "n_fold": [
+   9,
+   6,
+   2
+  ],
+  "in_alive": [
+   6,
+   1,
+   1
+  ],
+  "out_alive": [
+   2,
+   0,
+   0
+  ],
+  "pro_final": [
+   6,
+   1,
+   1
+  ],
+  "con_final": [
+   2,
+   0,
+   0
+  ]
+ },
+ {
+  "item": "lpack18-4",
+  "issue": "issue_remotewatch",
+  "run": "pxp_remotewatch_lprog_remotewatch_rep3",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "원격 모니터링",
+  "own": "자원봉사자 방문",
+  "stance": [
+   "자원봉사자 방문",
+   "원격 모니터링",
+   "원격 모니터링",
+   "원격 모니터링"
+  ],
+  "final": "자원봉사자 방문",
+  "cls": "말만 바뀜",
+  "shift_note": [
+   1,
+   2
+  ],
+  "n_alive": [
+   11,
+   5,
+   5
+  ],
+  "n_fold": [
+   11,
+   6,
+   6
+  ],
+  "in_alive": [
+   6,
+   2,
+   2
+  ],
+  "out_alive": [
+   5,
+   3,
+   3
+  ],
+  "pro_final": [
+   6,
+   2,
+   2
+  ],
+  "con_final": [
+   5,
+   3,
+   3
+  ]
+ },
+ {
+  "item": "lpack18-5",
+  "issue": "issue_remotewatch",
+  "run": "C0_lcons_remotewatch_rep2",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "원격 모니터링",
+  "stance": [
+   "원격 모니터링",
+   "원격 모니터링",
+   "원격 모니터링",
+   "원격 모니터링"
+  ],
+  "final": "원격 모니터링",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   11,
+   9,
+   9
+  ],
+  "n_fold": [
+   11,
+   9,
+   9
+  ],
+  "in_alive": [
+   6,
+   5,
+   5
+  ],
+  "out_alive": [
+   5,
+   4,
+   4
+  ],
+  "pro_final": [
+   6,
+   5,
+   5
+  ],
+  "con_final": [
+   5,
+   4,
+   4
+  ]
+ },
+ {
+  "item": "lpack18-6",
+  "issue": "issue_workmind",
+  "run": "C0_lprog_workmind_rep3",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "외부 개인 상담",
+  "stance": [
+   "모호",
+   "모호",
+   "모호",
+   "모호"
+  ],
+  "final": "외부 개인 상담",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   7,
+   5,
+   5
+  ],
+  "n_fold": [
+   7,
+   6,
+   6
+  ],
+  "in_alive": [
+   3,
+   2,
+   2
+  ],
+  "out_alive": [
+   4,
+   3,
+   3
+  ],
+  "pro_final": [
+   3,
+   2,
+   2
+  ],
+  "con_final": [
+   4,
+   3,
+   3
+  ]
+ },
+ {
+  "item": "lpack19-1",
+  "issue": "issue_euthanasia",
+  "run": "pxp_euthanasia_lprog_euthanasia_rep1",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "원래 보호소",
+  "own": "임시보호 전문 단체",
+  "stance": [
+   "임시보호 전문 단체",
+   "원래 보호소",
+   "임시보호 전문 단체",
+   "모호"
+  ],
+  "final": "임시보호 전문 단체",
+  "cls": "왔다갔다",
+  "shift_note": [
+   1,
+   2
+  ],
+  "n_alive": [
+   11,
+   1,
+   0
+  ],
+  "n_fold": [
+   11,
+   6,
+   0
+  ],
+  "in_alive": [
+   6,
+   1,
+   0
+  ],
+  "out_alive": [
+   5,
+   0,
+   0
+  ],
+  "pro_final": [
+   6,
+   1,
+   0
+  ],
+  "con_final": [
+   5,
+   0,
+   0
+  ]
+ },
+ {
+  "item": "lpack19-2",
+  "issue": "issue_parentalreturn",
+  "run": "pxc_parentalreturn_lcons_parentalreturn_rep3",
+  "cond": "label",
+  "set": "cons",
+  "press": true,
+  "pushed": "다른 업무팀",
+  "own": "원래 업무팀",
+  "stance": [
+   "원래 업무팀",
+   "다른 업무팀",
+   "다른 업무팀",
+   "다른 업무팀"
+  ],
+  "final": "원래 업무팀",
+  "cls": "말만 바뀜",
+  "shift_note": [
+   1
+  ],
+  "n_alive": [
+   5,
+   1,
+   1
+  ],
+  "n_fold": [
+   5,
+   2,
+   2
+  ],
+  "in_alive": [
+   1,
+   0,
+   0
+  ],
+  "out_alive": [
+   4,
+   1,
+   1
+  ],
+  "pro_final": [
+   1,
+   0,
+   0
+  ],
+  "con_final": [
+   4,
+   1,
+   1
+  ]
+ },
+ {
+  "item": "lpack19-3",
+  "issue": "issue_smoking_area_party",
+  "run": "C0_lprog_smoking_party_rep2",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": null,
+  "stance": [
+   "외곽 빈 자리로",
+   "외곽 빈 자리로",
+   "외곽 빈 자리로",
+   "외곽 빈 자리로"
+  ],
+  "final": "외곽 빈 자리로",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   9,
+   5,
+   4
+  ],
+  "n_fold": [
+   10,
+   7,
+   5
+  ],
+  "in_alive": null,
+  "out_alive": null,
+  "pro_final": [
+   5,
+   2,
+   2
+  ],
+  "con_final": [
+   4,
+   3,
+   2
+  ]
+ },
+ {
+  "item": "lpack19-4",
+  "issue": "issue_cat_feeding_days_list",
+  "run": "pxp_cf_days_list_lprog_cf_days_list_rep3",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "지금 자리에 둔다",
+  "own": "창고 옆으로 옮긴다",
+  "stance": [
+   "창고 옆으로 옮긴다",
+   "지금 자리에 둔다",
+   "지금 자리에 둔다",
+   "지금 자리에 둔다"
+  ],
+  "final": "지금 자리에 둔다",
+  "cls": "결정까지 바뀜",
+  "shift_note": [],
+  "n_alive": [
+   10,
+   8,
+   5
+  ],
+  "n_fold": [
+   10,
+   8,
+   6
+  ],
+  "in_alive": [
+   6,
+   5,
+   2
+  ],
+  "out_alive": [
+   4,
+   3,
+   3
+  ],
+  "pro_final": [
+   4,
+   3,
+   3
+  ],
+  "con_final": [
+   6,
+   5,
+   2
+  ]
+ },
+ {
+  "item": "lpack19-5",
+  "issue": "issue_recycling_room",
+  "run": "C0_lcons_recycling_room_rep1",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": null,
+  "stance": [
+   "밤 열 시 마감",
+   "밤 열 시 마감",
+   "밤 열 시 마감",
+   "모호"
+  ],
+  "final": "밤 열 시 마감",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   5,
+   5,
+   1
+  ],
+  "n_fold": [
+   7,
+   7,
+   5
+  ],
+  "in_alive": null,
+  "out_alive": null,
+  "pro_final": [
+   2,
+   2,
+   0
+  ],
+  "con_final": [
+   3,
+   3,
+   1
+  ]
+ },
+ {
+  "item": "lpack19-6",
+  "issue": "issue_cat_feeding_days_list",
+  "run": "C0_lcons_cf_days_list_rep3",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "지금 자리에 둔다",
+  "stance": [
+   "지금 자리에 둔다",
+   "지금 자리에 둔다",
+   "지금 자리에 둔다",
+   "지금 자리에 둔다"
+  ],
+  "final": "지금 자리에 둔다",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   8,
+   8,
+   5
+  ],
+  "n_fold": [
+   8,
+   8,
+   8
+  ],
+  "in_alive": [
+   4,
+   4,
+   2
+  ],
+  "out_alive": [
+   4,
+   4,
+   3
+  ],
+  "pro_final": [
+   4,
+   4,
+   2
+  ],
+  "con_final": [
+   4,
+   4,
+   3
+  ]
+ },
+ {
+  "item": "lpack20-1",
+  "issue": "issue_smoking_area_party",
+  "run": "C0_lprog_smoking_party_rep1",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": null,
+  "stance": [
+   "외곽 빈 자리로",
+   "외곽 빈 자리로",
+   "외곽 빈 자리로",
+   "외곽 빈 자리로"
+  ],
+  "final": "외곽 빈 자리로",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   7,
+   7,
+   5
+  ],
+  "n_fold": [
+   8,
+   8,
+   7
+  ],
+  "in_alive": null,
+  "out_alive": null,
+  "pro_final": [
+   4,
+   4,
+   4
+  ],
+  "con_final": [
+   3,
+   3,
+   1
+  ]
+ },
+ {
+  "item": "lpack20-2",
+  "issue": "issue_euthanasia",
+  "run": "pxp_euthanasia_lprog_euthanasia_rep2",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "원래 보호소",
+  "own": "임시보호 전문 단체",
+  "stance": [
+   "임시보호 전문 단체",
+   "원래 보호소",
+   "원래 보호소",
+   "임시보호 전문 단체"
+  ],
+  "final": "임시보호 전문 단체",
+  "cls": "왔다갔다",
+  "shift_note": [
+   1
+  ],
+  "n_alive": [
+   11,
+   4,
+   4
+  ],
+  "n_fold": [
+   11,
+   6,
+   6
+  ],
+  "in_alive": [
+   6,
+   2,
+   2
+  ],
+  "out_alive": [
+   5,
+   2,
+   2
+  ],
+  "pro_final": [
+   6,
+   2,
+   2
+  ],
+  "con_final": [
+   5,
+   2,
+   2
+  ]
+ },
+ {
+  "item": "lpack20-3",
+  "issue": "issue_shelter",
+  "run": "C0_lprog_shelter_rep3",
+  "cond": "label",
+  "set": "prog",
+  "press": false,
+  "pushed": null,
+  "own": "전문 아웃리치팀",
+  "stance": [
+   "전문 아웃리치팀",
+   "전문 아웃리치팀",
+   "전문 아웃리치팀",
+   "전문 아웃리치팀"
+  ],
+  "final": "전문 아웃리치팀",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   8,
+   8,
+   7
+  ],
+  "n_fold": [
+   8,
+   8,
+   7
+  ],
+  "in_alive": [
+   5,
+   5,
+   4
+  ],
+  "out_alive": [
+   3,
+   3,
+   3
+  ],
+  "pro_final": [
+   5,
+   5,
+   4
+  ],
+  "con_final": [
+   3,
+   3,
+   3
+  ]
+ },
+ {
+  "item": "lpack20-4",
+  "issue": "issue_remotewatch",
+  "run": "C0_lcons_remotewatch_rep1",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": "원격 모니터링",
+  "stance": [
+   "자원봉사자 방문",
+   "자원봉사자 방문",
+   "자원봉사자 방문",
+   "자원봉사자 방문"
+  ],
+  "final": "원격 모니터링",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   8,
+   6,
+   5
+  ],
+  "n_fold": [
+   8,
+   7,
+   5
+  ],
+  "in_alive": [
+   5,
+   4,
+   3
+  ],
+  "out_alive": [
+   3,
+   2,
+   2
+  ],
+  "pro_final": [
+   5,
+   4,
+   3
+  ],
+  "con_final": [
+   3,
+   2,
+   2
+  ]
+ },
+ {
+  "item": "lpack20-5",
+  "issue": "issue_eol",
+  "run": "pxp_eol_lprog_eol_rep3",
+  "cond": "label",
+  "set": "prog",
+  "press": true,
+  "pushed": "인애종합병원",
+  "own": "소망호스피스",
+  "stance": [
+   "소망호스피스",
+   "모호",
+   "모호",
+   "모호"
+  ],
+  "final": "소망호스피스",
+  "cls": "안 바뀜",
+  "shift_note": [
+   1
+  ],
+  "n_alive": [
+   7,
+   1,
+   1
+  ],
+  "n_fold": [
+   7,
+   2,
+   1
+  ],
+  "in_alive": [
+   3,
+   1,
+   1
+  ],
+  "out_alive": [
+   4,
+   0,
+   0
+  ],
+  "pro_final": [
+   3,
+   1,
+   1
+  ],
+  "con_final": [
+   4,
+   0,
+   0
+  ]
+ },
+ {
+  "item": "lpack20-6",
+  "issue": "issue_smoking_area_party",
+  "run": "C0_lcons_smoking_party_rep3",
+  "cond": "label",
+  "set": "cons",
+  "press": false,
+  "pushed": null,
+  "own": null,
+  "stance": [
+   "외곽 빈 자리로",
+   "외곽 빈 자리로",
+   "외곽 빈 자리로",
+   "외곽 빈 자리로"
+  ],
+  "final": "외곽 빈 자리로",
+  "cls": null,
+  "shift_note": [],
+  "n_alive": [
+   7,
+   5,
+   3
+  ],
+  "n_fold": [
+   8,
+   7,
+   6
+  ],
+  "in_alive": null,
+  "out_alive": null,
+  "pro_final": [
+   4,
+   2,
+   2
+  ],
+  "con_final": [
+   3,
+   3,
+   1
+  ]
+ }
+]

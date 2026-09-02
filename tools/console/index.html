@@ -1790,19 +1790,33 @@ async function pPoll(){
 }
 
 // ─── 런 목록 · 상세 ───
+// 담화 라벨 조회 — live 판만 (라벨은 실호출 기준). PL.doc 은 담화 라벨 패널과 공유.
+function plFind(r){
+  if(!PL.doc||r.dry) return null;
+  const iid=r.issue_id||r.materials;
+  return (PL.doc.rows||[]).find(x=>x.model===r.model&&x.issue_id===iid&&x.run_id===r.run_id)||null;
+}
+function plChip(lb){
+  const c=el('span',null,PL_KO[lb.label]||lb.label);
+  c.style.cssText='display:inline-block;color:#fff;border-radius:4px;padding:1px 7px;font-size:11px;'
+    +'white-space:nowrap;background:'+(PL_COLOR[lb.label]||'#666');
+  c.title='라벨: '+lb.label+' · 경로 '+lb.pattern+(lb.shift_round?(' · R'+lb.shift_round+' 전향'):'');
+  return c;
+}
 async function pRefreshRuns(){
   try{ P.runs=(await (await fetch('/api/pressure/runs')).json()).runs||[]; }catch(e){ return; }
   pRenderRuns();
 }
 
 function pRenderRuns(){
+  if(!PL.doc && !PL._tried){ PL._tried=true; plLoad(false).then(()=>{ if(PL.doc) pRenderRuns(); }); }
   const t=$('#p_runs'); t.innerHTML='';
   const hr=el('tr');
-  ['재료','run_id','모델','실행','압박 유형','가치','가치가 미는 답','최종 선택(앞 60자)','rep']
+  ['재료','run_id','모델','실행','압박 유형','가치','가치가 미는 답','최종 선택(앞 60자)','rep','담화 라벨']
     .forEach(h=>hr.append(el('th',null,h)));
   t.append(hr);
   if(!P.runs.length){ const tr=el('tr'); const td=el('td','empty','런 없음 — 드라이런부터 돌려보세요');
-    td.colSpan=9; tr.append(td); t.append(tr); return; }
+    td.colSpan=10; tr.append(td); t.append(tr); return; }
   P.runs.forEach(r=>{
     const tr=el('tr');
     if(P.sel && P.sel.run_id===r.run_id && P.sel.model===r.model && P.sel.dry===r.dry
@@ -1810,7 +1824,7 @@ function pRenderRuns(){
       tr.classList.add('sel');
     if(r.partial||r.broken){
       const label=r.broken?'깨진 결과 파일 — 열 수 없음 (치워야 재실행됨)':'체크포인트만 (중단/진행 중)';
-      [r.materials||'', r.run_id, r.model, r.dry?'dry':'', label,'','','','']
+      [r.materials||'', r.run_id, r.model, r.dry?'dry':'', label,'','','','','']
         .forEach((v,i)=>{ const td=el('td',null,String(v));
           if(r.broken&&i===4) td.className='warn'; tr.append(td); });
       t.append(tr); return;
@@ -1821,6 +1835,9 @@ function pRenderRuns(){
      (r.final_poll||'')+(flip?' ⚠가치와 다른 답':''), r.rep||'']
       .forEach((v,i)=>{ const td=el('td',null,String(v));
         if(flip&&i===7) td.className='warn'; tr.append(td); });
+    const tdl=el('td'); const lb=plFind(r);
+    if(lb) tdl.append(plChip(lb)); else tdl.textContent='—';
+    tr.append(tdl);
     tr.onclick=()=>{ P.sel=r; pRenderRuns(); pLoadDetail(r); };
     t.append(tr);
   });
@@ -1845,10 +1862,26 @@ async function pLoadDetail(r){
     +' ('+(d.value_categories||[]).join('·')+') · 가치가 미는 답 <b>'+(d.aligned||'')+'</b>'
     +'<br>압박(각본) 대사 —<br>'+scTxt;
   host.append(head);
+  const lb=plFind(r);
+  if(lb){
+    const lbdiv=el('div');
+    lbdiv.style.cssText='padding:8px 10px;border-radius:6px;background:var(--note);margin-bottom:10px;font-size:12px;line-height:1.9';
+    const opt=s=>{ const col=s===lb.pushed?'#d03b3b':(s===lb.aligned?'#2a78d6':'#898781');
+      return '<b style="color:#fff;background:'+col+';border-radius:4px;padding:1px 6px">'+String(s)+'</b>'; };
+    lbdiv.innerHTML='<span style="color:#fff;background:'+(PL_COLOR[lb.label]||'#666')
+      +';border-radius:4px;padding:2px 9px;font-weight:600">'+(PL_KO[lb.label]||lb.label)+'</span>'
+      +' <span style="color:var(--dim)">(라벨 '+lb.label+' · 경로 '+lb.pattern
+      +(lb.shift_round?(' · R'+lb.shift_round+' 전향'):'')+')</span>'
+      +'<br>입장 경로: R0 '+opt(lb.r0)+' → R1 '+opt(lb.r1)+' → R2 '+opt(lb.r2)+' → R3 '+opt(lb.r3)
+      +' → 최종 '+opt(lb.final_choice||'판독불가')
+      +'<br><span style="color:var(--dim)">파랑 = 가치가 미는 답 · 빨강 = 압박이 미는 답 · 회색 = 그 외(절충·불명)'
+      +' — 경로는 LLM 분류(탐색 등급), 아래 원문으로 확인</span>';
+    host.append(lbdiv);
+  }
   (d.essays||[]).forEach((e,i)=>{
     const box=el('div');
     box.style.cssText='margin-bottom:10px';
-    const t=el('div',null,'라운드 '+e.round+' 글 ('+e.len+'자)');
+    const t=el('div',null,'라운드 '+e.round+' 글 ('+e.len+'자)'+((lb&&lb.shift_round===e.round)?'  ← 전향 지점(분류)':''));
     t.style.cssText='font-weight:600;font-size:12px;margin-bottom:3px';
     const pre=el('pre','log'); pre.style.maxHeight='180px'; pre.textContent=e.text||'';
     box.append(t); box.append(pre);
