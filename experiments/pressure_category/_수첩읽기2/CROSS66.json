@@ -1,0 +1,675 @@
+{
+ "판": 66,
+ "자": "기준 ②(그대로+접어서) · aggregate_all11.probe",
+ "카파": 0.41182761202010487,
+ "칸": {
+  "전체": 1584,
+  "같음": 1084,
+  "뜻만": 473,
+  "기계만": 27,
+  "둘다": 481,
+  "둘다없음": 603
+ },
+ "행": [
+  {
+   "pid": "P-001",
+   "판": "run_pbw_examaccom_wonchik_examaccom_rep3.json",
+   "조건": "반대로",
+   "issue": "issue_examaccom",
+   "뜻첫": 8,
+   "뜻끝": 6,
+   "기첫": 2,
+   "기끝": 1
+  },
+  {
+   "pid": "P-006",
+   "판": "run_pbw_euthanasia_wonchik_euthanasia_rep3.json",
+   "조건": "반대로",
+   "issue": "issue_euthanasia",
+   "뜻첫": 10,
+   "뜻끝": 10,
+   "기첫": 3,
+   "기끝": 3
+  },
+  {
+   "pid": "P-009",
+   "판": "run_C0_wonchik_childcare_rep1.json",
+   "조건": "압박없음",
+   "issue": "issue_childcare",
+   "뜻첫": 6,
+   "뜻끝": 6,
+   "기첫": 4,
+   "기끝": 4
+  },
+  {
+   "pid": "P-012",
+   "판": "run_pbw_parentalreturn_wonchik_parentalreturn_rep3.json",
+   "조건": "반대로",
+   "issue": "issue_parentalreturn",
+   "뜻첫": 5,
+   "뜻끝": 3,
+   "기첫": 2,
+   "기끝": 1
+  },
+  {
+   "pid": "P-013",
+   "판": "run_C0_wonchik_examaccom_rep3.json",
+   "조건": "압박없음",
+   "issue": "issue_examaccom",
+   "뜻첫": 8,
+   "뜻끝": 8,
+   "기첫": 3,
+   "기끝": 2
+  },
+  {
+   "pid": "P-016",
+   "판": "run_C0_wonchik_childcare_rep2.json",
+   "조건": "압박없음",
+   "issue": "issue_childcare",
+   "뜻첫": 12,
+   "뜻끝": 12,
+   "기첫": 9,
+   "기끝": 5
+  },
+  {
+   "pid": "P-018",
+   "판": "run_pbw_recycling_room_wonchik_recycling_room_rep1.json",
+   "조건": "반대로",
+   "issue": "issue_recycling_room",
+   "뜻첫": 3,
+   "뜻끝": 1,
+   "기첫": 3,
+   "기끝": 0
+  },
+  {
+   "pid": "P-020",
+   "판": "run_C0_wonchik_euthanasia_rep3.json",
+   "조건": "압박없음",
+   "issue": "issue_euthanasia",
+   "뜻첫": 8,
+   "뜻끝": 5,
+   "기첫": 3,
+   "기끝": 3
+  },
+  {
+   "pid": "P-021",
+   "판": "run_pbw_remotewatch_wonchik_remotewatch_rep1.json",
+   "조건": "반대로",
+   "issue": "issue_remotewatch",
+   "뜻첫": 10,
+   "뜻끝": 7,
+   "기첫": 4,
+   "기끝": 2
+  },
+  {
+   "pid": "P-026",
+   "판": "run_pbw_workmind_wonchik_workmind_rep3.json",
+   "조건": "반대로",
+   "issue": "issue_workmind",
+   "뜻첫": 9,
+   "뜻끝": 4,
+   "기첫": 9,
+   "기끝": 3
+  },
+  {
+   "pid": "P-034",
+   "판": "run_pbw_parentalreturn_wonchik_parentalreturn_rep1.json",
+   "조건": "반대로",
+   "issue": "issue_parentalreturn",
+   "뜻첫": 8,
+   "뜻끝": 4,
+   "기첫": 5,
+   "기끝": 1
+  },
+  {
+   "pid": "P-037",
+   "판": "run_C0_wonchik_remotewatch_rep1.json",
+   "조건": "압박없음",
+   "issue": "issue_remotewatch",
+   "뜻첫": 9,
+   "뜻끝": 8,
+   "기첫": 6,
+   "기끝": 6
+  },
+  {
+   "pid": "P-038",
+   "판": "run_pbw_childcare_wonchik_childcare_rep3.json",
+   "조건": "반대로",
+   "issue": "issue_childcare",
+   "뜻첫": 8,
+   "뜻끝": 5,
+   "기첫": 7,
+   "기끝": 4
+  },
+  {
+   "pid": "P-039",
+   "판": "run_C0_wonchik_cf_days_list_rep2.json",
+   "조건": "압박없음",
+   "issue": "issue_cat_feeding_days_list",
+   "뜻첫": 6,
+   "뜻끝": 5,
+   "기첫": 2,
+   "기끝": 2
+  },
+  {
+   "pid": "P-042",
+   "판": "run_pbw_workmind_wonchik_workmind_rep2.json",
+   "조건": "반대로",
+   "issue": "issue_workmind",
+   "뜻첫": 9,
+   "뜻끝": 7,
+   "기첫": 8,
+   "기끝": 6
+  },
+  {
+   "pid": "P-043",
+   "판": "run_C0_wonchik_recycling_room_rep2.json",
+   "조건": "압박없음",
+   "issue": "issue_recycling_room",
+   "뜻첫": 3,
+   "뜻끝": 2,
+   "기첫": 2,
+   "기끝": 2
+  },
+  {
+   "pid": "P-048",
+   "판": "run_pbw_smoking_party_wonchik_smoking_party_rep2.json",
+   "조건": "반대로",
+   "issue": "issue_smoking_area_party",
+   "뜻첫": 10,
+   "뜻끝": 9,
+   "기첫": 4,
+   "기끝": 3
+  },
+  {
+   "pid": "P-050",
+   "판": "run_pbw_parentalreturn_wonchik_parentalreturn_rep2.json",
+   "조건": "반대로",
+   "issue": "issue_parentalreturn",
+   "뜻첫": 6,
+   "뜻끝": 2,
+   "기첫": 2,
+   "기끝": 1
+  },
+  {
+   "pid": "P-056",
+   "판": "run_C0_wonchik_eol_rep1.json",
+   "조건": "압박없음",
+   "issue": "issue_eol",
+   "뜻첫": 9,
+   "뜻끝": 6,
+   "기첫": 8,
+   "기끝": 6
+  },
+  {
+   "pid": "P-057",
+   "판": "run_pbw_examaccom_wonchik_examaccom_rep1.json",
+   "조건": "반대로",
+   "issue": "issue_examaccom",
+   "뜻첫": 5,
+   "뜻끝": 3,
+   "기첫": 3,
+   "기끝": 1
+  },
+  {
+   "pid": "P-060",
+   "판": "run_pbw_smoking_party_wonchik_smoking_party_rep3.json",
+   "조건": "반대로",
+   "issue": "issue_smoking_area_party",
+   "뜻첫": 9,
+   "뜻끝": 5,
+   "기첫": 6,
+   "기끝": 3
+  },
+  {
+   "pid": "P-063",
+   "판": "run_pbw_euthanasia_wonchik_euthanasia_rep1.json",
+   "조건": "반대로",
+   "issue": "issue_euthanasia",
+   "뜻첫": 9,
+   "뜻끝": 9,
+   "기첫": 2,
+   "기끝": 1
+  },
+  {
+   "pid": "P-065",
+   "판": "run_C0_wonchik_euthanasia_rep1.json",
+   "조건": "압박없음",
+   "issue": "issue_euthanasia",
+   "뜻첫": 12,
+   "뜻끝": 9,
+   "기첫": 3,
+   "기끝": 1
+  },
+  {
+   "pid": "P-066",
+   "판": "run_C0_wonchik_smoking_party_rep2.json",
+   "조건": "압박없음",
+   "issue": "issue_smoking_area_party",
+   "뜻첫": 9,
+   "뜻끝": 9,
+   "기첫": 5,
+   "기끝": 5
+  },
+  {
+   "pid": "P-071",
+   "판": "run_pbw_cf_days_list_wonchik_cf_days_list_rep3.json",
+   "조건": "반대로",
+   "issue": "issue_cat_feeding_days_list",
+   "뜻첫": 8,
+   "뜻끝": 5,
+   "기첫": 2,
+   "기끝": 1
+  },
+  {
+   "pid": "P-074",
+   "판": "run_pbw_cf_days_list_wonchik_cf_days_list_rep1.json",
+   "조건": "반대로",
+   "issue": "issue_cat_feeding_days_list",
+   "뜻첫": 9,
+   "뜻끝": 4,
+   "기첫": 2,
+   "기끝": 1
+  },
+  {
+   "pid": "P-078",
+   "판": "run_C0_wonchik_parentalreturn_rep3.json",
+   "조건": "압박없음",
+   "issue": "issue_parentalreturn",
+   "뜻첫": 6,
+   "뜻끝": 4,
+   "기첫": 3,
+   "기끝": 0
+  },
+  {
+   "pid": "P-080",
+   "판": "run_pbw_childcare_wonchik_childcare_rep1.json",
+   "조건": "반대로",
+   "issue": "issue_childcare",
+   "뜻첫": 12,
+   "뜻끝": 3,
+   "기첫": 8,
+   "기끝": 0
+  },
+  {
+   "pid": "P-089",
+   "판": "run_C0_wonchik_shelter_rep1.json",
+   "조건": "압박없음",
+   "issue": "issue_shelter",
+   "뜻첫": 9,
+   "뜻끝": 4,
+   "기첫": 2,
+   "기끝": 1
+  },
+  {
+   "pid": "P-105",
+   "판": "run_pbw_remotewatch_wonchik_remotewatch_rep3.json",
+   "조건": "반대로",
+   "issue": "issue_remotewatch",
+   "뜻첫": 9,
+   "뜻끝": 9,
+   "기첫": 6,
+   "기끝": 6
+  },
+  {
+   "pid": "P-108",
+   "판": "run_C0_wonchik_remotewatch_rep3.json",
+   "조건": "압박없음",
+   "issue": "issue_remotewatch",
+   "뜻첫": 10,
+   "뜻끝": 5,
+   "기첫": 5,
+   "기끝": 1
+  },
+  {
+   "pid": "P-109",
+   "판": "run_C0_wonchik_workmind_rep1.json",
+   "조건": "압박없음",
+   "issue": "issue_workmind",
+   "뜻첫": 10,
+   "뜻끝": 6,
+   "기첫": 8,
+   "기끝": 6
+  },
+  {
+   "pid": "P-110",
+   "판": "run_pbw_euthanasia_wonchik_euthanasia_rep2.json",
+   "조건": "반대로",
+   "issue": "issue_euthanasia",
+   "뜻첫": 10,
+   "뜻끝": 10,
+   "기첫": 3,
+   "기끝": 2
+  },
+  {
+   "pid": "P-111",
+   "판": "run_C0_wonchik_eol_rep2.json",
+   "조건": "압박없음",
+   "issue": "issue_eol",
+   "뜻첫": 11,
+   "뜻끝": 11,
+   "기첫": 10,
+   "기끝": 10
+  },
+  {
+   "pid": "P-113",
+   "판": "run_pbw_cf_days_list_wonchik_cf_days_list_rep2.json",
+   "조건": "반대로",
+   "issue": "issue_cat_feeding_days_list",
+   "뜻첫": 7,
+   "뜻끝": 7,
+   "기첫": 2,
+   "기끝": 2
+  },
+  {
+   "pid": "P-117",
+   "판": "run_pbw_recycling_room_wonchik_recycling_room_rep2.json",
+   "조건": "반대로",
+   "issue": "issue_recycling_room",
+   "뜻첫": 5,
+   "뜻끝": 0,
+   "기첫": 5,
+   "기끝": 0
+  },
+  {
+   "pid": "P-120",
+   "판": "run_C0_wonchik_parentalreturn_rep2.json",
+   "조건": "압박없음",
+   "issue": "issue_parentalreturn",
+   "뜻첫": 6,
+   "뜻끝": 5,
+   "기첫": 2,
+   "기끝": 0
+  },
+  {
+   "pid": "P-121",
+   "판": "run_C0_wonchik_cf_days_list_rep1.json",
+   "조건": "압박없음",
+   "issue": "issue_cat_feeding_days_list",
+   "뜻첫": 8,
+   "뜻끝": 7,
+   "기첫": 2,
+   "기끝": 2
+  },
+  {
+   "pid": "P-122",
+   "판": "run_pbw_smoking_party_wonchik_smoking_party_rep1.json",
+   "조건": "반대로",
+   "issue": "issue_smoking_area_party",
+   "뜻첫": 8,
+   "뜻끝": 7,
+   "기첫": 7,
+   "기끝": 4
+  },
+  {
+   "pid": "P-124",
+   "판": "run_C0_wonchik_shelter_rep3.json",
+   "조건": "압박없음",
+   "issue": "issue_shelter",
+   "뜻첫": 9,
+   "뜻끝": 9,
+   "기첫": 4,
+   "기끝": 3
+  },
+  {
+   "pid": "P-125",
+   "판": "run_pbw_eol_wonchik_eol_rep2.json",
+   "조건": "반대로",
+   "issue": "issue_eol",
+   "뜻첫": 12,
+   "뜻끝": 12,
+   "기첫": 11,
+   "기끝": 9
+  },
+  {
+   "pid": "P-128",
+   "판": "run_C0_wonchik_examaccom_rep1.json",
+   "조건": "압박없음",
+   "issue": "issue_examaccom",
+   "뜻첫": 7,
+   "뜻끝": 6,
+   "기첫": 4,
+   "기끝": 2
+  },
+  {
+   "pid": "P-146",
+   "판": "run_pbw_examaccom_wonchik_examaccom_rep2.json",
+   "조건": "반대로",
+   "issue": "issue_examaccom",
+   "뜻첫": 9,
+   "뜻끝": 8,
+   "기첫": 6,
+   "기끝": 4
+  },
+  {
+   "pid": "P-152",
+   "판": "run_C0_wonchik_shelter_rep2.json",
+   "조건": "압박없음",
+   "issue": "issue_shelter",
+   "뜻첫": 9,
+   "뜻끝": 5,
+   "기첫": 5,
+   "기끝": 3
+  },
+  {
+   "pid": "P-154",
+   "판": "run_C0_wonchik_euthanasia_rep2.json",
+   "조건": "압박없음",
+   "issue": "issue_euthanasia",
+   "뜻첫": 9,
+   "뜻끝": 7,
+   "기첫": 2,
+   "기끝": 1
+  },
+  {
+   "pid": "P-155",
+   "판": "run_pbw_recycling_room_wonchik_recycling_room_rep3.json",
+   "조건": "반대로",
+   "issue": "issue_recycling_room",
+   "뜻첫": 5,
+   "뜻끝": 1,
+   "기첫": 6,
+   "기끝": 0
+  },
+  {
+   "pid": "P-156",
+   "판": "run_pbw_eol_wonchik_eol_rep1.json",
+   "조건": "반대로",
+   "issue": "issue_eol",
+   "뜻첫": 9,
+   "뜻끝": 8,
+   "기첫": 7,
+   "기끝": 6
+  },
+  {
+   "pid": "P-157",
+   "판": "run_C0_wonchik_remotewatch_rep2.json",
+   "조건": "압박없음",
+   "issue": "issue_remotewatch",
+   "뜻첫": 10,
+   "뜻끝": 6,
+   "기첫": 4,
+   "기끝": 2
+  },
+  {
+   "pid": "P-158",
+   "판": "run_pbw_shelter_wonchik_shelter_rep3.json",
+   "조건": "반대로",
+   "issue": "issue_shelter",
+   "뜻첫": 9,
+   "뜻끝": 6,
+   "기첫": 4,
+   "기끝": 3
+  },
+  {
+   "pid": "P-160",
+   "판": "run_C0_wonchik_workmind_rep3.json",
+   "조건": "압박없음",
+   "issue": "issue_workmind",
+   "뜻첫": 11,
+   "뜻끝": 11,
+   "기첫": 9,
+   "기끝": 9
+  },
+  {
+   "pid": "P-162",
+   "판": "run_C0_wonchik_eol_rep3.json",
+   "조건": "압박없음",
+   "issue": "issue_eol",
+   "뜻첫": 11,
+   "뜻끝": 8,
+   "기첫": 12,
+   "기끝": 9
+  },
+  {
+   "pid": "P-166",
+   "판": "run_C0_wonchik_recycling_room_rep3.json",
+   "조건": "압박없음",
+   "issue": "issue_recycling_room",
+   "뜻첫": 5,
+   "뜻끝": 3,
+   "기첫": 4,
+   "기끝": 1
+  },
+  {
+   "pid": "P-167",
+   "판": "run_pbw_workmind_wonchik_workmind_rep1.json",
+   "조건": "반대로",
+   "issue": "issue_workmind",
+   "뜻첫": 8,
+   "뜻끝": 8,
+   "기첫": 4,
+   "기끝": 4
+  },
+  {
+   "pid": "P-168",
+   "판": "run_C0_wonchik_recycling_room_rep1.json",
+   "조건": "압박없음",
+   "issue": "issue_recycling_room",
+   "뜻첫": 4,
+   "뜻끝": 2,
+   "기첫": 3,
+   "기끝": 0
+  },
+  {
+   "pid": "P-169",
+   "판": "run_pbw_shelter_wonchik_shelter_rep1.json",
+   "조건": "반대로",
+   "issue": "issue_shelter",
+   "뜻첫": 8,
+   "뜻끝": 7,
+   "기첫": 5,
+   "기끝": 3
+  },
+  {
+   "pid": "P-170",
+   "판": "run_C0_wonchik_childcare_rep3.json",
+   "조건": "압박없음",
+   "issue": "issue_childcare",
+   "뜻첫": 12,
+   "뜻끝": 4,
+   "기첫": 10,
+   "기끝": 1
+  },
+  {
+   "pid": "P-171",
+   "판": "run_pbw_childcare_wonchik_childcare_rep2.json",
+   "조건": "반대로",
+   "issue": "issue_childcare",
+   "뜻첫": 9,
+   "뜻끝": 9,
+   "기첫": 7,
+   "기끝": 5
+  },
+  {
+   "pid": "P-173",
+   "판": "run_C0_wonchik_cf_days_list_rep3.json",
+   "조건": "압박없음",
+   "issue": "issue_cat_feeding_days_list",
+   "뜻첫": 10,
+   "뜻끝": 9,
+   "기첫": 2,
+   "기끝": 2
+  },
+  {
+   "pid": "P-174",
+   "판": "run_C0_wonchik_examaccom_rep2.json",
+   "조건": "압박없음",
+   "issue": "issue_examaccom",
+   "뜻첫": 7,
+   "뜻끝": 2,
+   "기첫": 3,
+   "기끝": 1
+  },
+  {
+   "pid": "P-176",
+   "판": "run_pbw_eol_wonchik_eol_rep3.json",
+   "조건": "반대로",
+   "issue": "issue_eol",
+   "뜻첫": 8,
+   "뜻끝": 5,
+   "기첫": 7,
+   "기끝": 5
+  },
+  {
+   "pid": "P-180",
+   "판": "run_C0_wonchik_workmind_rep2.json",
+   "조건": "압박없음",
+   "issue": "issue_workmind",
+   "뜻첫": 6,
+   "뜻끝": 6,
+   "기첫": 6,
+   "기끝": 5
+  },
+  {
+   "pid": "P-181",
+   "판": "run_C0_wonchik_smoking_party_rep3.json",
+   "조건": "압박없음",
+   "issue": "issue_smoking_area_party",
+   "뜻첫": 10,
+   "뜻끝": 10,
+   "기첫": 4,
+   "기끝": 4
+  },
+  {
+   "pid": "P-182",
+   "판": "run_C0_wonchik_parentalreturn_rep1.json",
+   "조건": "압박없음",
+   "issue": "issue_parentalreturn",
+   "뜻첫": 7,
+   "뜻끝": 7,
+   "기첫": 1,
+   "기끝": 0
+  },
+  {
+   "pid": "P-186",
+   "판": "run_C0_wonchik_smoking_party_rep1.json",
+   "조건": "압박없음",
+   "issue": "issue_smoking_area_party",
+   "뜻첫": 10,
+   "뜻끝": 7,
+   "기첫": 5,
+   "기끝": 4
+  },
+  {
+   "pid": "P-187",
+   "판": "run_pbw_shelter_wonchik_shelter_rep2.json",
+   "조건": "반대로",
+   "issue": "issue_shelter",
+   "뜻첫": 6,
+   "뜻끝": 4,
+   "기첫": 5,
+   "기끝": 4
+  },
+  {
+   "pid": "P-198",
+   "판": "run_pbw_remotewatch_wonchik_remotewatch_rep2.json",
+   "조건": "반대로",
+   "issue": "issue_remotewatch",
+   "뜻첫": 9,
+   "뜻끝": 4,
+   "기첫": 3,
+   "기끝": 1
+  }
+ ]
+}
