@@ -1,0 +1,57 @@
+{
+ "schema": "pressure_set_v0",
+ "name": "FINAL_SET_11",
+ "status": "제안 (2026-09-03, 민옥 트랙) — 마지막 실험(라벨 또는 신념)의 재료 목록. 확정은 민옥",
+ "why": "8/31 요한 기획1(원칙 문장) 견인 표 관문으로 확정된 11벌. 하이쿠 압박 없음에서 가치 A/B가 답을 가르고, 원칙 문장이 편을 미는 재료. 9/2 정독 채점(가치 A/B·원칙·라벨·gpt·gemini) 전부 이 11벌 기준이라, 같은 11벌이어야 지금 데이터와 나란히 놓인다.",
+ "issue_ids": [
+  "issue_childcare",
+  "issue_euthanasia",
+  "issue_examaccom",
+  "issue_remotewatch",
+  "issue_workmind",
+  "issue_recycling_room",
+  "issue_smoking_area_party",
+  "issue_cat_feeding_days_list",
+  "issue_eol",
+  "issue_shelter",
+  "issue_parentalreturn"
+ ],
+ "materials_files": {
+  "issue_childcare": "issue_childcare.json",
+  "issue_euthanasia": "issue_euthanasia.json",
+  "issue_examaccom": "issue_examaccom.json",
+  "issue_remotewatch": "issue_remotewatch.json",
+  "issue_workmind": "issue_workmind.json",
+  "issue_recycling_room": "recycling_room.json",
+  "issue_smoking_area_party": "smoking_area_party.json",
+  "issue_cat_feeding_days_list": "cat_feeding_days_list.json",
+  "issue_eol": "issue_eol.json",
+  "issue_shelter": "issue_shelter.json",
+  "issue_parentalreturn": "issue_parentalreturn.json"
+ },
+ "existing_data_on_this_set": {
+  "claude-haiku": "가치 A/B × C0·C1·C2 × rep3 (18) + 원칙 wonchik C0·pbw (6) + 라벨 lcons/lprog C0 (6) + 라벨 압박 pxc/pxp (갈린 9벌만, 6)",
+  "gpt": "가치 A/B × C0·C1·C2 × rep3 (18) + 원칙 wonchik C0·pbw (6)",
+  "gemini-flash": "가치 A/B × C0·C1·C2 × rep3 (18) + 원칙 wonchik C0·pbw (6)",
+  "정독 채점": "coderpacks_haiku_llm_20260902 (가치 A/B·원칙 198판), coderpacks_label_llm_20260902 (라벨 120판), coderpacks_gptgem_llm_20260902 (gpt·gemini 264판)",
+  "정성 판독": "qualpacks_20260903 (714판)"
+ },
+ "candidate_final_experiments": [
+  {
+   "name": "라벨 + 항목 결합 문장",
+   "spec": "\"나는 보수주의자다. 나에게는 비용·거리·대응이 중요하다.\" — 라벨이 있어도 사실이 근거가 되면 편식이 돌아오는지. 근거 효과 직접 검증. 11벌 × 라벨 2 × (C0 + 반대편 압박) × rep3 = 132판(haiku)",
+   "needs": "결합 문장 세트 파일(values/), PREREG"
+  },
+  {
+   "name": "신념 2×2 (8/31 설계)",
+   "spec": "개인/공동체 × 의무론/공리주의 4벌 × 11벌 × (C0 + 반대 압박) × rep3 = 264판(haiku)",
+   "needs": "세트 4벌(콘솔 일괄 등록 기능 있음), PREREG_belief 2×2"
+  },
+  {
+   "name": "value-once (가치 1회 주입)",
+   "spec": "11벌 × 가치 A/B × (C0 + C2) × rep3 = 132판(haiku). 러너 손잡이 --value-once 있음",
+   "needs": "PREREG"
+  }
+ ],
+ "created": "2026-09-03"
+}
