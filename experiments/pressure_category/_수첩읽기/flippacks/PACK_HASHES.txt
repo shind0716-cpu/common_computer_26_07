@@ -1,0 +1,11 @@
+367c66342133  flippacks/PACK_R_01.md
+b1b683fa1252  flippacks/PACK_R_02.md
+b61576fadc92  flippacks/PACK_R_03.md
+5433b75fd555  flippacks/PACK_R_04.md
+43321acaf3c5  flippacks/PACK_R_05.md
+8bc7cefda8e2  flippacks/PACK_R_06.md
+c48e3e5c8c48  flippacks/PACK_R_07.md
+5f193885d6ff  flippacks/PACK_R_08.md
+8f40e5dc5898  flippacks/PACK_R_09.md
+ae2c6f7aa62e  flippacks/PACK_R_10.md
+ec622a4a549f  flippacks/PACK_R_11.md
