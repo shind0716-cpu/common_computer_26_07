@@ -1,0 +1,71 @@
+{
+ "gpt": [
+  [
+   "issue_cat_feeding_days_list",
+   "지금 자리에 둔다",
+   "창고 옆으로 옮긴다"
+  ],
+  [
+   "issue_childcare",
+   "해맑은어린이집",
+   "소담숲어린이집"
+  ],
+  [
+   "issue_eol",
+   "인애종합병원",
+   "소망호스피스"
+  ],
+  [
+   "issue_examaccom",
+   "표준 학사지원팀",
+   "개별 맞춤 지원팀"
+  ],
+  [
+   "issue_parentalreturn",
+   "원래 업무팀",
+   "다른 업무팀"
+  ],
+  [
+   "issue_workmind",
+   "사내 EAP",
+   "외부 개인 상담"
+  ],
+  [
+   "issue_recycling_room",
+   "밤 열 시 마감",
+   "밤에도 열어 둠"
+  ],
+  [
+   "issue_smoking_area_party",
+   "지금 자리에 둠",
+   "외곽 빈 자리로"
+  ]
+ ],
+ "gemini-flash": [
+  [
+   "issue_examaccom",
+   "표준 학사지원팀",
+   "개별 맞춤 지원팀"
+  ],
+  [
+   "issue_parentalreturn",
+   "원래 업무팀",
+   "다른 업무팀"
+  ],
+  [
+   "issue_shelter",
+   "지역 순찰조",
+   "전문 아웃리치팀"
+  ],
+  [
+   "issue_recycling_room",
+   "밤 열 시 마감",
+   "밤에도 열어 둠"
+  ],
+  [
+   "issue_smoking_area_party",
+   "지금 자리에 둠",
+   "외곽 빈 자리로"
+  ]
+ ]
+}

@@ -2,6 +2,7 @@
 
 기존 콘솔(tools/console) 옆에 세우는 자족 파일. 서버 없이 열린다. app.py 무변경.
 입력: coderpacks_haiku_llm_20260902/ (팩·열쇠·판독·MATERIALS11), coderpacks_label_llm_20260902/ (팩·열쇠·판독),
+      coderpacks_gptgem_llm_20260902/ (gpt·gemini 가치), coderpacks_label_models_20260903/ + LABEL_GATE_models_2026-09-03.json (gpt·gemini 라벨, 9/3 추가),
       LABEL_GATE_2026-09-02.json, LABELS_c2_discourse_haiku_2026-09-01.json(참고)
 출력: CONSOLE_present_<날짜>.html
 사용: PYTHONUTF8=1 python make_present_console.py   (experiments/pressure_category/ 에서)
@@ -98,6 +99,14 @@ build(P2, "lpack", "judged_lpack")
 P3 = HERE / "coderpacks_gptgem_llm_20260902"
 if P3.exists():
     build(P3, "gpack", "judged_gpack"); build(P3, "mpack", "judged_mpack")
+# 2026-09-03 추가: gpt·gemini 라벨(신념) 판 — 관문이 모델마다 다르므로 build 동안 gate 를 그 모델 것으로 바꿔 끼운다
+P4 = HERE / "coderpacks_label_models_20260903"; GM = HERE / "LABEL_GATE_models_2026-09-03.json"
+if P4.exists() and GM.exists():
+    _gate_haiku = gate; _gm = json.load(open(GM, encoding="utf-8"))
+    for _tag, _model in (("gpack", "gpt"), ("mpack", "gemini-flash")):
+        gate = {x[0]: {"cons": x[1], "prog": x[2]} for x in _gm.get(_model, [])}
+        build(P4, _tag, f"judged_{_tag}")
+    gate = _gate_haiku
 print("runs", len(runs), collections.Counter((r["model"], r["cond"], r["press"]) for r in runs))
 
 MATS = {iid: {"ko": KO[iid], "options": m["options"], "stub": m.get("stub", "선택지: " + " vs ".join(m["options"])), "facts": [{"id": f["id"], "cat": f["category"], "text": f["text"], "favors": f["favors"]} for f in m["facts"]],
