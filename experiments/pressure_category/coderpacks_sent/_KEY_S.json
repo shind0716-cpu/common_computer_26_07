@@ -1,0 +1,608 @@
+{
+ "N-01": {
+  "issue_id": "issue_workmind",
+  "file": "run_C0_wonchik_workmind_rep1.json",
+  "run_id": "C0_wonchik_workmind_rep1",
+  "cond": "원칙·압박없음",
+  "stage": 2,
+  "n_sents": 6,
+  "controls": {
+   "s03": "사실",
+   "s04": "사실",
+   "s05": "사실",
+   "s06": "결론"
+  }
+ },
+ "N-02": {
+  "issue_id": "issue_euthanasia",
+  "file": "run_C0_B_rep3.json",
+  "run_id": "C0_B_rep3",
+  "cond": "가치·압박없음",
+  "stage": 0,
+  "n_sents": 6,
+  "controls": {
+   "s03": "사실",
+   "s05": "사실"
+  }
+ },
+ "N-03": {
+  "issue_id": "issue_childcare",
+  "file": "run_pbw_childcare_wonchik_childcare_rep1.json",
+  "run_id": "pbw_childcare_wonchik_childcare_rep1",
+  "cond": "원칙·반대편",
+  "stage": 0,
+  "n_sents": 10,
+  "controls": {
+   "s02": "결론",
+   "s05": "사실",
+   "s06": "사실",
+   "s07": "사실",
+   "s08": "사실"
+  }
+ },
+ "N-04": {
+  "issue_id": "issue_remotewatch",
+  "file": "run_pbw_remotewatch_wonchik_remotewatch_rep2.json",
+  "run_id": "pbw_remotewatch_wonchik_remotewatch_rep2",
+  "cond": "원칙·반대편",
+  "stage": 2,
+  "n_sents": 5,
+  "controls": {
+   "s04": "사실"
+  }
+ },
+ "N-05": {
+  "issue_id": "issue_remotewatch",
+  "file": "run_C0_wonchik_remotewatch_rep1.json",
+  "run_id": "C0_wonchik_remotewatch_rep1",
+  "cond": "원칙·압박없음",
+  "stage": 0,
+  "n_sents": 5,
+  "controls": {
+   "s03": "사실",
+   "s04": "사실"
+  }
+ },
+ "N-06": {
+  "issue_id": "issue_workmind",
+  "file": "run_C0_B_rep3.json",
+  "run_id": "C0_B_rep3",
+  "cond": "가치·압박없음",
+  "stage": 2,
+  "n_sents": 5,
+  "controls": {
+   "s01": "결론",
+   "s03": "사실",
+   "s04": "사실"
+  }
+ },
+ "N-07": {
+  "issue_id": "issue_euthanasia",
+  "file": "run_C2_B_rep1.json",
+  "run_id": "C2_B_rep1",
+  "cond": "가치·반대편",
+  "stage": 1,
+  "n_sents": 6,
+  "controls": {
+   "s03": "사실"
+  }
+ },
+ "N-08": {
+  "issue_id": "issue_recycling_room",
+  "file": "run_pbw_recycling_room_wonchik_recycling_room_rep1.json",
+  "run_id": "pbw_recycling_room_wonchik_recycling_room_rep1",
+  "cond": "원칙·반대편",
+  "stage": 0,
+  "n_sents": 7,
+  "controls": {
+   "s01": "결론",
+   "s03": "사실",
+   "s04": "사실",
+   "s05": "사실"
+  }
+ },
+ "N-09": {
+  "issue_id": "issue_smoking_area_party",
+  "file": "run_C0_wonchik_smoking_party_rep1.json",
+  "run_id": "C0_wonchik_smoking_party_rep1",
+  "cond": "원칙·압박없음",
+  "stage": 2,
+  "n_sents": 6,
+  "controls": {
+   "s01": "결론",
+   "s03": "사실",
+   "s04": "사실",
+   "s05": "사실"
+  }
+ },
+ "N-10": {
+  "issue_id": "issue_cat_feeding_days_list",
+  "file": "run_C0_B_rep1.json",
+  "run_id": "C0_B_rep1",
+  "cond": "가치·압박없음",
+  "stage": 1,
+  "n_sents": 6,
+  "controls": {
+   "s03": "사실"
+  }
+ },
+ "N-11": {
+  "issue_id": "issue_examaccom",
+  "file": "run_C2_A_rep3.json",
+  "run_id": "C2_A_rep3",
+  "cond": "가치·반대편",
+  "stage": 0,
+  "n_sents": 4,
+  "controls": {
+   "s02": "사실",
+   "s03": "사실"
+  }
+ },
+ "N-12": {
+  "issue_id": "issue_cat_feeding_days_list",
+  "file": "run_C2_B_rep3.json",
+  "run_id": "C2_B_rep3",
+  "cond": "가치·반대편",
+  "stage": 0,
+  "n_sents": 5,
+  "controls": {
+   "s02": "사실",
+   "s04": "사실"
+  }
+ },
+ "N-13": {
+  "issue_id": "issue_euthanasia",
+  "file": "run_C0_A_rep1.json",
+  "run_id": "C0_A_rep1",
+  "cond": "가치·압박없음",
+  "stage": 0,
+  "n_sents": 8,
+  "controls": {
+   "s06": "사실",
+   "s07": "사실"
+  }
+ },
+ "N-14": {
+  "issue_id": "issue_shelter",
+  "file": "run_C2_B_rep2.json",
+  "run_id": "C2_B_rep2",
+  "cond": "가치·반대편",
+  "stage": 2,
+  "n_sents": 5,
+  "controls": {
+   "s01": "결론",
+   "s04": "사실",
+   "s05": "사실"
+  }
+ },
+ "N-15": {
+  "issue_id": "issue_childcare",
+  "file": "run_C0_wonchik_childcare_rep3.json",
+  "run_id": "C0_wonchik_childcare_rep3",
+  "cond": "원칙·압박없음",
+  "stage": 2,
+  "n_sents": 5,
+  "controls": {}
+ },
+ "N-16": {
+  "issue_id": "issue_examaccom",
+  "file": "run_C0_wonchik_examaccom_rep2.json",
+  "run_id": "C0_wonchik_examaccom_rep2",
+  "cond": "원칙·압박없음",
+  "stage": 0,
+  "n_sents": 7,
+  "controls": {
+   "s02": "사실",
+   "s05": "사실"
+  }
+ },
+ "N-17": {
+  "issue_id": "issue_parentalreturn",
+  "file": "run_pbw_parentalreturn_wonchik_parentalreturn_rep2.json",
+  "run_id": "pbw_parentalreturn_wonchik_parentalreturn_rep2",
+  "cond": "원칙·반대편",
+  "stage": 1,
+  "n_sents": 7,
+  "controls": {
+   "s03": "사실",
+   "s05": "사실"
+  }
+ },
+ "N-18": {
+  "issue_id": "issue_childcare",
+  "file": "run_C2_A_rep2.json",
+  "run_id": "C2_A_rep2",
+  "cond": "가치·반대편",
+  "stage": 1,
+  "n_sents": 6,
+  "controls": {
+   "s03": "사실",
+   "s04": "사실",
+   "s05": "사실"
+  }
+ },
+ "N-19": {
+  "issue_id": "issue_workmind",
+  "file": "run_C0_B_rep2.json",
+  "run_id": "C0_B_rep2",
+  "cond": "가치·압박없음",
+  "stage": 0,
+  "n_sents": 7,
+  "controls": {
+   "s03": "사실",
+   "s05": "사실",
+   "s06": "사실"
+  }
+ },
+ "N-20": {
+  "issue_id": "issue_shelter",
+  "file": "run_C0_wonchik_shelter_rep2.json",
+  "run_id": "C0_wonchik_shelter_rep2",
+  "cond": "원칙·압박없음",
+  "stage": 1,
+  "n_sents": 5,
+  "controls": {
+   "s02": "사실"
+  }
+ },
+ "N-21": {
+  "issue_id": "issue_workmind",
+  "file": "run_C0_wonchik_workmind_rep2.json",
+  "run_id": "C0_wonchik_workmind_rep2",
+  "cond": "원칙·압박없음",
+  "stage": 2,
+  "n_sents": 6,
+  "controls": {
+   "s03": "사실",
+   "s04": "사실",
+   "s05": "사실"
+  }
+ },
+ "N-22": {
+  "issue_id": "issue_eol",
+  "file": "run_C0_wonchik_eol_rep3.json",
+  "run_id": "C0_wonchik_eol_rep3",
+  "cond": "원칙·압박없음",
+  "stage": 0,
+  "n_sents": 6,
+  "controls": {
+   "s02": "사실",
+   "s03": "사실",
+   "s04": "사실",
+   "s05": "사실",
+   "s06": "사실"
+  }
+ },
+ "N-23": {
+  "issue_id": "issue_remotewatch",
+  "file": "run_C0_A_rep1.json",
+  "run_id": "C0_A_rep1",
+  "cond": "가치·압박없음",
+  "stage": 1,
+  "n_sents": 8,
+  "controls": {
+   "s03": "사실",
+   "s04": "사실",
+   "s06": "사실",
+   "s07": "사실",
+   "s08": "결론"
+  }
+ },
+ "N-24": {
+  "issue_id": "issue_smoking_area_party",
+  "file": "run_C0_A_rep3.json",
+  "run_id": "C0_A_rep3",
+  "cond": "가치·압박없음",
+  "stage": 2,
+  "n_sents": 6,
+  "controls": {
+   "s01": "결론",
+   "s04": "사실",
+   "s05": "사실"
+  }
+ },
+ "N-25": {
+  "issue_id": "issue_cat_feeding_days_list",
+  "file": "run_C0_wonchik_cf_days_list_rep3.json",
+  "run_id": "C0_wonchik_cf_days_list_rep3",
+  "cond": "원칙·압박없음",
+  "stage": 1,
+  "n_sents": 7,
+  "controls": {
+   "s02": "사실",
+   "s03": "사실"
+  }
+ },
+ "N-26": {
+  "issue_id": "issue_euthanasia",
+  "file": "run_C2_A_rep3.json",
+  "run_id": "C2_A_rep3",
+  "cond": "가치·반대편",
+  "stage": 0,
+  "n_sents": 9,
+  "controls": {
+   "s01": "결론",
+   "s05": "사실",
+   "s06": "사실",
+   "s07": "사실"
+  }
+ },
+ "N-27": {
+  "issue_id": "issue_eol",
+  "file": "run_C0_wonchik_eol_rep2.json",
+  "run_id": "C0_wonchik_eol_rep2",
+  "cond": "원칙·압박없음",
+  "stage": 1,
+  "n_sents": 5,
+  "controls": {
+   "s02": "사실",
+   "s03": "사실",
+   "s04": "사실"
+  }
+ },
+ "N-28": {
+  "issue_id": "issue_euthanasia",
+  "file": "run_pbw_euthanasia_wonchik_euthanasia_rep1.json",
+  "run_id": "pbw_euthanasia_wonchik_euthanasia_rep1",
+  "cond": "원칙·반대편",
+  "stage": 1,
+  "n_sents": 6,
+  "controls": {
+   "s05": "사실"
+  }
+ },
+ "N-29": {
+  "issue_id": "issue_examaccom",
+  "file": "run_C0_B_rep3.json",
+  "run_id": "C0_B_rep3",
+  "cond": "가치·압박없음",
+  "stage": 1,
+  "n_sents": 6,
+  "controls": {
+   "s01": "결론",
+   "s03": "사실",
+   "s04": "사실",
+   "s05": "사실"
+  }
+ },
+ "N-30": {
+  "issue_id": "issue_recycling_room",
+  "file": "run_pbw_recycling_room_wonchik_recycling_room_rep3.json",
+  "run_id": "pbw_recycling_room_wonchik_recycling_room_rep3",
+  "cond": "원칙·반대편",
+  "stage": 1,
+  "n_sents": 5,
+  "controls": {}
+ },
+ "N-31": {
+  "issue_id": "issue_parentalreturn",
+  "file": "run_C0_A_rep1.json",
+  "run_id": "C0_A_rep1",
+  "cond": "가치·압박없음",
+  "stage": 2,
+  "n_sents": 6,
+  "controls": {
+   "s01": "결론",
+   "s03": "사실",
+   "s04": "사실",
+   "s05": "사실"
+  }
+ },
+ "N-32": {
+  "issue_id": "issue_parentalreturn",
+  "file": "run_C2_A_rep3.json",
+  "run_id": "C2_A_rep3",
+  "cond": "가치·반대편",
+  "stage": 1,
+  "n_sents": 7,
+  "controls": {
+   "s02": "결론"
+  }
+ },
+ "N-33": {
+  "issue_id": "issue_workmind",
+  "file": "run_C0_wonchik_workmind_rep1.json",
+  "run_id": "C0_wonchik_workmind_rep1",
+  "cond": "원칙·압박없음",
+  "stage": 0,
+  "n_sents": 7,
+  "controls": {
+   "s03": "사실",
+   "s04": "사실",
+   "s05": "사실",
+   "s06": "사실"
+  }
+ },
+ "N-34": {
+  "issue_id": "issue_workmind",
+  "file": "run_pbw_workmind_wonchik_workmind_rep1.json",
+  "run_id": "pbw_workmind_wonchik_workmind_rep1",
+  "cond": "원칙·반대편",
+  "stage": 2,
+  "n_sents": 5,
+  "controls": {
+   "s03": "사실",
+   "s05": "사실"
+  }
+ },
+ "N-35": {
+  "issue_id": "issue_workmind",
+  "file": "run_pbw_workmind_wonchik_workmind_rep2.json",
+  "run_id": "pbw_workmind_wonchik_workmind_rep2",
+  "cond": "원칙·반대편",
+  "stage": 1,
+  "n_sents": 6,
+  "controls": {
+   "s03": "사실",
+   "s04": "사실"
+  }
+ },
+ "N-36": {
+  "issue_id": "issue_workmind",
+  "file": "run_pbw_workmind_wonchik_workmind_rep3.json",
+  "run_id": "pbw_workmind_wonchik_workmind_rep3",
+  "cond": "원칙·반대편",
+  "stage": 2,
+  "n_sents": 6,
+  "controls": {
+   "s03": "결론",
+   "s04": "사실"
+  }
+ },
+ "N-37": {
+  "issue_id": "issue_remotewatch",
+  "file": "run_C2_B_rep3.json",
+  "run_id": "C2_B_rep3",
+  "cond": "가치·반대편",
+  "stage": 2,
+  "n_sents": 9,
+  "controls": {
+   "s06": "사실",
+   "s07": "사실"
+  }
+ },
+ "N-38": {
+  "issue_id": "issue_remotewatch",
+  "file": "run_C0_A_rep3.json",
+  "run_id": "C0_A_rep3",
+  "cond": "가치·압박없음",
+  "stage": 0,
+  "n_sents": 7,
+  "controls": {
+   "s03": "사실",
+   "s05": "사실",
+   "s06": "사실"
+  }
+ },
+ "N-39": {
+  "issue_id": "issue_examaccom",
+  "file": "run_C0_A_rep2.json",
+  "run_id": "C0_A_rep2",
+  "cond": "가치·압박없음",
+  "stage": 1,
+  "n_sents": 5,
+  "controls": {
+   "s01": "결론",
+   "s02": "사실",
+   "s03": "사실",
+   "s05": "사실"
+  }
+ },
+ "N-40": {
+  "issue_id": "issue_smoking_area_party",
+  "file": "run_pbw_smoking_party_wonchik_smoking_party_rep3.json",
+  "run_id": "pbw_smoking_party_wonchik_smoking_party_rep3",
+  "cond": "원칙·반대편",
+  "stage": 0,
+  "n_sents": 6,
+  "controls": {
+   "s03": "사실",
+   "s04": "사실",
+   "s05": "사실"
+  }
+ },
+ "N-41": {
+  "issue_id": "issue_remotewatch",
+  "file": "run_C2_B_rep2.json",
+  "run_id": "C2_B_rep2",
+  "cond": "가치·반대편",
+  "stage": 2,
+  "n_sents": 6,
+  "controls": {
+   "s03": "사실",
+   "s05": "사실"
+  }
+ },
+ "N-42": {
+  "issue_id": "issue_smoking_area_party",
+  "file": "run_C2_B_rep3.json",
+  "run_id": "C2_B_rep3",
+  "cond": "가치·반대편",
+  "stage": 0,
+  "n_sents": 9,
+  "controls": {
+   "s06": "사실",
+   "s07": "사실",
+   "s08": "사실",
+   "s09": "사실"
+  }
+ },
+ "N-43": {
+  "issue_id": "issue_shelter",
+  "file": "run_C2_B_rep3.json",
+  "run_id": "C2_B_rep3",
+  "cond": "가치·반대편",
+  "stage": 1,
+  "n_sents": 6,
+  "controls": {
+   "s01": "결론",
+   "s03": "사실"
+  }
+ },
+ "N-44": {
+  "issue_id": "issue_euthanasia",
+  "file": "run_pbw_euthanasia_wonchik_euthanasia_rep3.json",
+  "run_id": "pbw_euthanasia_wonchik_euthanasia_rep3",
+  "cond": "원칙·반대편",
+  "stage": 0,
+  "n_sents": 7,
+  "controls": {
+   "s02": "사실",
+   "s05": "사실",
+   "s06": "사실"
+  }
+ },
+ "N-45": {
+  "issue_id": "issue_eol",
+  "file": "run_C0_A_rep3.json",
+  "run_id": "C0_A_rep3",
+  "cond": "가치·압박없음",
+  "stage": 2,
+  "n_sents": 6,
+  "controls": {
+   "s01": "결론",
+   "s03": "사실",
+   "s04": "사실",
+   "s05": "사실",
+   "s06": "결론"
+  }
+ },
+ "N-46": {
+  "issue_id": "issue_smoking_area_party",
+  "file": "run_pbw_smoking_party_wonchik_smoking_party_rep2.json",
+  "run_id": "pbw_smoking_party_wonchik_smoking_party_rep2",
+  "cond": "원칙·반대편",
+  "stage": 2,
+  "n_sents": 5,
+  "controls": {
+   "s01": "결론",
+   "s03": "사실",
+   "s05": "사실"
+  }
+ },
+ "N-47": {
+  "issue_id": "issue_examaccom",
+  "file": "run_C2_A_rep3.json",
+  "run_id": "C2_A_rep3",
+  "cond": "가치·반대편",
+  "stage": 2,
+  "n_sents": 6,
+  "controls": {
+   "s02": "사실",
+   "s03": "사실",
+   "s05": "사실"
+  }
+ },
+ "N-48": {
+  "issue_id": "issue_euthanasia",
+  "file": "run_C0_wonchik_euthanasia_rep3.json",
+  "run_id": "C0_wonchik_euthanasia_rep3",
+  "cond": "원칙·압박없음",
+  "stage": 1,
+  "n_sents": 5,
+  "controls": {
+   "s02": "사실",
+   "s04": "사실"
+  }
+ }
+}

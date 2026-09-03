@@ -1,0 +1,6 @@
+e602e79c3dfb  packs/PACK_S_01.md
+93d3aef6d651  packs/PACK_S_02.md
+2289d121a346  packs/PACK_S_03.md
+50840a4aad8e  packs/PACK_S_04.md
+3e20b375d639  packs/PACK_S_05.md
+3796645d453f  packs/PACK_S_06.md
