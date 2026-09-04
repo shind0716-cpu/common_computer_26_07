@@ -1,0 +1,163 @@
+=== ALL34 gpt 시작 2026-09-01T18:05:50+09:00 ===
+--- [배치 1] issue_ambulance / allb1_ambulance / rep 1 2 3 ---
+[check_materials] 대상: issue_ambulance.json (issue_id=issue_ambulance)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_ambulance · gpt — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 cf1983562ad4
+[done] gpt/C0_allb1_ambulance_rep1 · 호출 8
+[done] gpt/C0_allb1_ambulance_rep2 · 호출 8
+[done] gpt/C0_allb1_ambulance_rep3 · 호출 8
+--- [배치 1] issue_caregiverprotect / allb1_caregiverprotect / rep 1 2 3 ---
+[check_materials] 대상: issue_caregiverprotect.json (issue_id=issue_caregiverprotect)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_caregiverprotect · gpt — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 af21d42a102f
+[done] gpt/C0_allb1_caregiverprotect_rep1 · 호출 8
+[done] gpt/C0_allb1_caregiverprotect_rep2 · 호출 8
+[done] gpt/C0_allb1_caregiverprotect_rep3 · 호출 8
+--- [배치 1] issue_cat_feeding_party / all_cat_feeding_party / rep 1 2 3 ---
+[check_materials] 대상: cat_feeding_party.json (issue_id=issue_cat_feeding_party)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_cat_feeding_party · gpt — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 e64beb9f44e7
+[done] gpt/C0_all_cat_feeding_party_rep1 · 호출 8
+[done] gpt/C0_all_cat_feeding_party_rep2 · 호출 8
+[done] gpt/C0_all_cat_feeding_party_rep3 · 호출 8
+--- [배치 2] issue_cat_feeding_plainvalue / all_cat_feeding_plainval / rep 1 2 3 ---
+[check_materials] 대상: cat_feeding_plainvalue.json (issue_id=issue_cat_feeding_plainvalue)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_cat_feeding_plainvalue · gpt — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 dd584f366467
+[done] gpt/C0_all_cat_feeding_plainval_rep1 · 호출 8
+[done] gpt/C0_all_cat_feeding_plainval_rep2 · 호출 8
+[done] gpt/C0_all_cat_feeding_plainval_rep3 · 호출 8
+--- [배치 2] issue_childcare_party / all_childcare_party / rep 1 2 3 ---
+[check_materials] 대상: childcare_party.json (issue_id=issue_childcare_party)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare_party · gpt — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 1ee3dd197a77
+[done] gpt/C0_all_childcare_party_rep1 · 호출 8
+[done] gpt/C0_all_childcare_party_rep2 · 호출 8
+[done] gpt/C0_all_childcare_party_rep3 · 호출 8
+--- [배치 2] issue_childcare_room / all_childcare_room / rep 1 2 3 ---
+[check_materials] 대상: childcare_room.json (issue_id=issue_childcare_room)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare_room · gpt — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 8cdfc68efc6c
+[done] gpt/C0_all_childcare_room_rep1 · 호출 8
+[done] gpt/C0_all_childcare_room_rep2 · 호출 8
+[done] gpt/C0_all_childcare_room_rep3 · 호출 8
+--- [배치 3] issue_community_cat_feeding / all_community_cat_feedin / rep 1 2 3 ---
+[check_materials] 대상: community_cat_feeding.json (issue_id=issue_community_cat_feeding)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_community_cat_feeding · gpt — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 7d3f036fd62b
+[done] gpt/C0_all_community_cat_feedin_rep1 · 호출 8
+[done] gpt/C0_all_community_cat_feedin_rep2 · 호출 8
+[done] gpt/C0_all_community_cat_feedin_rep3 · 호출 8
+--- [배치 3] issue_community_room / all_community_room / rep 1 2 3 ---
+[check_materials] 대상: community_room_party.json (issue_id=issue_community_room)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_community_room · gpt — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 b9a22d30ebc5
+[done] gpt/C0_all_community_room_rep1 · 호출 8
+[done] gpt/C0_all_community_room_rep2 · 호출 8
+[done] gpt/C0_all_community_room_rep3 · 호출 8
+--- [배치 3] issue_elderdrive / allb1_elderdrive / rep 1 2 3 ---
+[check_materials] 대상: issue_elderdrive.json (issue_id=issue_elderdrive)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_elderdrive · gpt — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 be132e6715f6
+[done] gpt/C0_allb1_elderdrive_rep1 · 호출 8
+[done] gpt/C0_allb1_elderdrive_rep2 · 호출 8
+[done] gpt/C0_allb1_elderdrive_rep3 · 호출 8
+--- [배치 4] issue_floor_noise / all_floor_noise / rep 1 2 3 ---
+[check_materials] 대상: floor_noise_party.json (issue_id=issue_floor_noise)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_floor_noise · gpt — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 953e800c0ca1
+[done] gpt/C0_all_floor_noise_rep1 · 호출 8
+[done] gpt/C0_all_floor_noise_rep2 · 호출 8
+[done] gpt/C0_all_floor_noise_rep3 · 호출 8
+--- [배치 4] issue_garden_plot / all_garden_plot / rep 1 2 3 ---
+[check_materials] 대상: garden_plot_party.json (issue_id=issue_garden_plot)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_garden_plot · gpt — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 c018b6d7605e
+[done] gpt/C0_all_garden_plot_rep1 · 호출 8
+[done] gpt/C0_all_garden_plot_rep2 · 호출 8
+[done] gpt/C0_all_garden_plot_rep3 · 호출 8
+--- [배치 4] issue_recycling_room_party / all_recycling_room_party / rep 1 2 3 ---
+[check_materials] 대상: recycling_room_party.json (issue_id=issue_recycling_room_party)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_recycling_room_party · gpt — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 cb24e2cb38f5
+[done] gpt/C0_all_recycling_room_party_rep1 · 호출 8
+[done] gpt/C0_all_recycling_room_party_rep2 · 호출 8
+[done] gpt/C0_all_recycling_room_party_rep3 · 호출 8
+--- [배치 5] issue_restaurant_anniversary / all_r_anniversary / rep 1 2 3 ---
+[check_materials] 대상: restaurant_anniversary.json (issue_id=issue_restaurant_anniversary)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_restaurant_anniversary · gpt — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6486b950be80
+[done] gpt/C0_all_r_anniversary_rep1 · 호출 8
+[done] gpt/C0_all_r_anniversary_rep2 · 호출 8
+[done] gpt/C0_all_r_anniversary_rep3 · 호출 8
+--- [배치 5] issue_restaurant_biz_meeting / all_r_biz_meeting / rep 1 2 3 ---
+[check_materials] 대상: restaurant_biz_meeting.json (issue_id=issue_restaurant_biz_meeting)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_restaurant_biz_meeting · gpt — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 37de05a5fd9d
+[done] gpt/C0_all_r_biz_meeting_rep1 · 호출 8
+[done] gpt/C0_all_r_biz_meeting_rep2 · 호출 8
+[done] gpt/C0_all_r_biz_meeting_rep3 · 호출 8
+--- [배치 5] issue_restaurant_brunch / all_r_brunch / rep 1 2 3 ---
+[check_materials] 대상: restaurant_brunch.json (issue_id=issue_restaurant_brunch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_restaurant_brunch · gpt — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 575e28f3d265
+[done] gpt/C0_all_r_brunch_rep1 · 호출 8
+[done] gpt/C0_all_r_brunch_rep2 · 호출 8
+[done] gpt/C0_all_r_brunch_rep3 · 호출 8
+--- [배치 6] issue_restaurant_date / all_r_date / rep 1 2 3 ---
+[check_materials] 대상: restaurant_date.json (issue_id=issue_restaurant_date)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_restaurant_date · gpt — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 f41e4b404e5b
+[done] gpt/C0_all_r_date_rep1 · 호출 8
+[done] gpt/C0_all_r_date_rep2 · 호출 8
+[done] gpt/C0_all_r_date_rep3 · 호출 8
+--- [배치 6] issue_restaurant_elders / all_r_elders / rep 1 2 3 ---
+[check_materials] 대상: restaurant_elders.json (issue_id=issue_restaurant_elders)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_restaurant_elders · gpt — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 96c2c0101d47
+[done] gpt/C0_all_r_elders_rep1 · 호출 8
+[done] gpt/C0_all_r_elders_rep2 · 호출 8
+[done] gpt/C0_all_r_elders_rep3 · 호출 8
+--- [배치 6] issue_restaurant_kids / all_r_kids / rep 1 2 3 ---
+[check_materials] 대상: restaurant_kids.json (issue_id=issue_restaurant_kids)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_restaurant_kids · gpt — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 12ee8781ee3f
+[done] gpt/C0_all_r_kids_rep1 · 호출 8
+[done] gpt/C0_all_r_kids_rep2 · 호출 8
+[done] gpt/C0_all_r_kids_rep3 · 호출 8
+--- [배치 7] issue_restaurant_office_lunch / all_r_office_lunch / rep 1 2 3 ---
+[check_materials] 대상: restaurant_office_lunch.json (issue_id=issue_restaurant_office_lunch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_restaurant_office_lunch · gpt — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 2cb192df0814
+[done] gpt/C0_all_r_office_lunch_rep1 · 호출 8
+[done] gpt/C0_all_r_office_lunch_rep2 · 호출 8
+[done] gpt/C0_all_r_office_lunch_rep3 · 호출 8
+--- [배치 7] issue_restaurant_sanggyeollye / all_r_sanggyeollye / rep 1 2 3 ---
+[check_materials] 대상: restaurant_sanggyeollye.json (issue_id=issue_restaurant_sanggyeollye)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_restaurant_sanggyeollye · gpt — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6df0202a3375
+[done] gpt/C0_all_r_sanggyeollye_rep1 · 호출 8
+[done] gpt/C0_all_r_sanggyeollye_rep2 · 호출 8
+[done] gpt/C0_all_r_sanggyeollye_rep3 · 호출 8
+--- [배치 7] issue_restaurant_sogaeting / all_r_sogaeting / rep 1 2 3 ---
+[check_materials] 대상: restaurant_sogaeting.json (issue_id=issue_restaurant_sogaeting)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_restaurant_sogaeting · gpt — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 9621ed5954bb
+[done] gpt/C0_all_r_sogaeting_rep1 · 호출 8
+[done] gpt/C0_all_r_sogaeting_rep2 · 호출 8
+[done] gpt/C0_all_r_sogaeting_rep3 · 호출 8
+--- [배치 8] issue_restaurant_solo / all_r_solo / rep 1 2 3 ---
+[check_materials] 대상: restaurant_solo.json (issue_id=issue_restaurant_solo)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_restaurant_solo · gpt — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6ab9d97a23fe
+[done] gpt/C0_all_r_solo_rep1 · 호출 8
+[done] gpt/C0_all_r_solo_rep2 · 호출 8
+[done] gpt/C0_all_r_solo_rep3 · 호출 8
+--- [배치 8] issue_smoking_area / all_smoking_area / rep 1 2 3 ---
+[check_materials] 대상: smoking_area.json (issue_id=issue_smoking_area)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_smoking_area · gpt — 3판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 4db90d8868b8
+[done] gpt/C0_all_smoking_area_rep1 · 호출 8
+[done] gpt/C0_all_smoking_area_rep2 · 호출 8
+[done] gpt/C0_all_smoking_area_rep3 · 호출 8
+=== 끝 2026-09-01T18:22:18+09:00 ===

@@ -1,0 +1,99 @@
+=== issue_cat_feeding_days_list / wonval_cf_days_list
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_cat_feeding_days_list · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 945f4957b5ae
+[done] gpt/C0_wonval_cf_days_list_rep1 · 호출 9
+[done] gpt/C0_wonval_cf_days_list_rep2 · 호출 9
+[done] gpt/C0_wonval_cf_days_list_rep3 · 호출 9
+[done] gpt/C2_wonval_cf_days_list_rep1 · 호출 9
+[done] gpt/C2_wonval_cf_days_list_rep2 · 호출 9
+[done] gpt/C2_wonval_cf_days_list_rep3 · 호출 9
+=== issue_childcare / wonval_childcare
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[done] gpt/C0_wonval_childcare_rep1 · 호출 8
+[done] gpt/C0_wonval_childcare_rep2 · 호출 8
+[done] gpt/C0_wonval_childcare_rep3 · 호출 8
+[done] gpt/C2_wonval_childcare_rep1 · 호출 8
+[done] gpt/C2_wonval_childcare_rep2 · 호출 8
+[done] gpt/C2_wonval_childcare_rep3 · 호출 8
+=== issue_eol / wonval_eol
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_eol · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 85e7bf87b57e
+[done] gpt/C0_wonval_eol_rep1 · 호출 8
+[done] gpt/C0_wonval_eol_rep2 · 호출 8
+[done] gpt/C0_wonval_eol_rep3 · 호출 8
+[done] gpt/C2_wonval_eol_rep1 · 호출 8
+[done] gpt/C2_wonval_eol_rep2 · 호출 8
+[done] gpt/C2_wonval_eol_rep3 · 호출 8
+=== issue_euthanasia / wonval_euthanasia
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[done] gpt/C0_wonval_euthanasia_rep1 · 호출 8
+[done] gpt/C0_wonval_euthanasia_rep2 · 호출 8
+[done] gpt/C0_wonval_euthanasia_rep3 · 호출 8
+[done] gpt/C2_wonval_euthanasia_rep1 · 호출 8
+[done] gpt/C2_wonval_euthanasia_rep2 · 호출 8
+[done] gpt/C2_wonval_euthanasia_rep3 · 호출 8
+=== issue_examaccom / wonval_examaccom
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[done] gpt/C0_wonval_examaccom_rep1 · 호출 8
+[done] gpt/C0_wonval_examaccom_rep2 · 호출 8
+[done] gpt/C0_wonval_examaccom_rep3 · 호출 8
+[done] gpt/C2_wonval_examaccom_rep1 · 호출 8
+[done] gpt/C2_wonval_examaccom_rep2 · 호출 8
+[done] gpt/C2_wonval_examaccom_rep3 · 호출 8
+=== issue_parentalreturn / wonval_parentalreturn
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_parentalreturn · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 2cb32fba6dc5
+[done] gpt/C0_wonval_parentalreturn_rep1 · 호출 8
+[done] gpt/C0_wonval_parentalreturn_rep2 · 호출 8
+[done] gpt/C0_wonval_parentalreturn_rep3 · 호출 8
+[done] gpt/C2_wonval_parentalreturn_rep1 · 호출 8
+[done] gpt/C2_wonval_parentalreturn_rep2 · 호출 8
+[done] gpt/C2_wonval_parentalreturn_rep3 · 호출 8
+=== issue_recycling_room / wonval_recycling_room
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_recycling_room · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 f3c6140ae683
+[done] gpt/C0_wonval_recycling_room_rep1 · 호출 8
+[done] gpt/C0_wonval_recycling_room_rep2 · 호출 8
+[done] gpt/C0_wonval_recycling_room_rep3 · 호출 8
+[done] gpt/C2_wonval_recycling_room_rep1 · 호출 8
+[done] gpt/C2_wonval_recycling_room_rep2 · 호출 8
+[done] gpt/C2_wonval_recycling_room_rep3 · 호출 8
+=== issue_remotewatch / wonval_remotewatch
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_remotewatch · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[done] gpt/C0_wonval_remotewatch_rep1 · 호출 8
+[done] gpt/C0_wonval_remotewatch_rep2 · 호출 8
+[done] gpt/C0_wonval_remotewatch_rep3 · 호출 8
+[done] gpt/C2_wonval_remotewatch_rep1 · 호출 8
+[done] gpt/C2_wonval_remotewatch_rep2 · 호출 8
+[done] gpt/C2_wonval_remotewatch_rep3 · 호출 8
+=== issue_shelter / wonval_shelter
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_shelter · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 aa3eef04c672
+[done] gpt/C0_wonval_shelter_rep1 · 호출 8
+[done] gpt/C0_wonval_shelter_rep2 · 호출 8
+[done] gpt/C0_wonval_shelter_rep3 · 호출 8
+[done] gpt/C2_wonval_shelter_rep1 · 호출 8
+[done] gpt/C2_wonval_shelter_rep2 · 호출 8
+[done] gpt/C2_wonval_shelter_rep3 · 호출 8
+=== issue_smoking_area_party / wonval_smoking_party
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_smoking_area_party · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 72c4b7e16e70
+[done] gpt/C0_wonval_smoking_party_rep1 · 호출 8
+[done] gpt/C0_wonval_smoking_party_rep2 · 호출 8
+[done] gpt/C0_wonval_smoking_party_rep3 · 호출 8
+[done] gpt/C2_wonval_smoking_party_rep1 · 호출 8
+[done] gpt/C2_wonval_smoking_party_rep2 · 호출 8
+[done] gpt/C2_wonval_smoking_party_rep3 · 호출 8
+=== issue_workmind / wonval_workmind
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_workmind · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 661cb97a56ee
+[done] gpt/C0_wonval_workmind_rep1 · 호출 8
+[done] gpt/C0_wonval_workmind_rep2 · 호출 8
+[done] gpt/C0_wonval_workmind_rep3 · 호출 8
+[done] gpt/C2_wonval_workmind_rep1 · 호출 8
+[done] gpt/C2_wonval_workmind_rep2 · 호출 8
+[done] gpt/C2_wonval_workmind_rep3 · 호출 8
