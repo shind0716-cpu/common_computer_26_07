@@ -1,0 +1,2061 @@
+{
+ "pack": "PACK_LR",
+ "seed": 20260904,
+ "판": 108,
+ "칸": 648,
+ "note": "판독 전에는 열지 않는다.",
+ "items": {
+  "L-001": {
+   "경로": "runs/gemini-flash/issue_examaccom/run_C0_wonchik_examaccom_rep2.json",
+   "모델": "gemini-flash",
+   "issue": "issue_examaccom",
+   "갈래": "원칙",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "wonchik_examaccom",
+   "반복": "2",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "행정부담",
+    "예측가능성",
+    "응대속도",
+    "이용사례",
+    "개별반영도",
+    "유연성"
+   ]
+  },
+  "L-002": {
+   "경로": "runs/gpt/issue_examaccom/run_pxc_examaccom_lcons_examaccom_rep1.json",
+   "모델": "gpt",
+   "issue": "issue_examaccom",
+   "갈래": "라벨보수",
+   "압박": "있음",
+   "각본": "pxc_examaccom",
+   "세트": "lcons_examaccom",
+   "반복": "1",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "개별반영도",
+    "행정부담",
+    "응대속도",
+    "이용사례",
+    "유연성",
+    "예측가능성"
+   ]
+  },
+  "L-003": {
+   "경로": "runs/claude-haiku/issue_parentalreturn/run_C0_wonchik_parentalreturn_rep1.json",
+   "모델": "claude-haiku",
+   "issue": "issue_parentalreturn",
+   "갈래": "원칙",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "wonchik_parentalreturn",
+   "반복": "1",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "응대속도",
+    "성장기회",
+    "안정성",
+    "적응지원",
+    "숙련도",
+    "승진반영"
+   ]
+  },
+  "L-004": {
+   "경로": "runs/gemini-flash/issue_examaccom/run_pbw_examaccom_wonchik_examaccom_rep1.json",
+   "모델": "gemini-flash",
+   "issue": "issue_examaccom",
+   "갈래": "원칙",
+   "압박": "있음",
+   "각본": "pbw_examaccom",
+   "세트": "wonchik_examaccom",
+   "반복": "1",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "행정부담",
+    "개별반영도",
+    "유연성",
+    "이용사례",
+    "예측가능성",
+    "응대속도"
+   ]
+  },
+  "L-005": {
+   "경로": "runs/gpt/issue_parentalreturn/run_pxc_parentalreturn_lcons_parentalreturn_rep2.json",
+   "모델": "gpt",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨보수",
+   "압박": "있음",
+   "각본": "pxc_parentalreturn",
+   "세트": "lcons_parentalreturn",
+   "반복": "2",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "적응지원",
+    "성장기회",
+    "안정성",
+    "승진반영",
+    "응대속도",
+    "숙련도"
+   ]
+  },
+  "L-006": {
+   "경로": "runs/claude-haiku/issue_parentalreturn/run_C0_wonchik_parentalreturn_rep3.json",
+   "모델": "claude-haiku",
+   "issue": "issue_parentalreturn",
+   "갈래": "원칙",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "wonchik_parentalreturn",
+   "반복": "3",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "숙련도",
+    "적응지원",
+    "승진반영",
+    "성장기회",
+    "응대속도",
+    "안정성"
+   ]
+  },
+  "L-007": {
+   "경로": "runs/gemini-flash/issue_examaccom/run_pxp_examaccom_lprog_examaccom_rep3.json",
+   "모델": "gemini-flash",
+   "issue": "issue_examaccom",
+   "갈래": "라벨진보",
+   "압박": "있음",
+   "각본": "pxp_examaccom",
+   "세트": "lprog_examaccom",
+   "반복": "3",
+   "최종답": "개별 맞춤 지원팀",
+   "갈래여섯": [
+    "예측가능성",
+    "유연성",
+    "개별반영도",
+    "이용사례",
+    "행정부담",
+    "응대속도"
+   ]
+  },
+  "L-008": {
+   "경로": "runs/gemini-flash/issue_examaccom/run_C0_lprog_examaccom_rep3.json",
+   "모델": "gemini-flash",
+   "issue": "issue_examaccom",
+   "갈래": "라벨진보",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lprog_examaccom",
+   "반복": "3",
+   "최종답": "개별 맞춤 지원팀",
+   "갈래여섯": [
+    "유연성",
+    "이용사례",
+    "응대속도",
+    "예측가능성",
+    "개별반영도",
+    "행정부담"
+   ]
+  },
+  "L-009": {
+   "경로": "runs/gpt/issue_examaccom/run_pxp_examaccom_lprog_examaccom_rep2.json",
+   "모델": "gpt",
+   "issue": "issue_examaccom",
+   "갈래": "라벨진보",
+   "압박": "있음",
+   "각본": "pxp_examaccom",
+   "세트": "lprog_examaccom",
+   "반복": "2",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "응대속도",
+    "이용사례",
+    "행정부담",
+    "예측가능성",
+    "유연성",
+    "개별반영도"
+   ]
+  },
+  "L-010": {
+   "경로": "runs/claude-haiku/issue_parentalreturn/run_pxp_parentalreturn_lprog_parentalreturn_rep1.json",
+   "모델": "claude-haiku",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨진보",
+   "압박": "있음",
+   "각본": "pxp_parentalreturn",
+   "세트": "lprog_parentalreturn",
+   "반복": "1",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "안정성",
+    "승진반영",
+    "숙련도",
+    "응대속도",
+    "성장기회",
+    "적응지원"
+   ]
+  },
+  "L-011": {
+   "경로": "runs/claude-haiku/issue_examaccom/run_pbw_examaccom_wonchik_examaccom_rep2.json",
+   "모델": "claude-haiku",
+   "issue": "issue_examaccom",
+   "갈래": "원칙",
+   "압박": "있음",
+   "각본": "pbw_examaccom",
+   "세트": "wonchik_examaccom",
+   "반복": "2",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "유연성",
+    "개별반영도",
+    "응대속도",
+    "행정부담",
+    "예측가능성",
+    "이용사례"
+   ]
+  },
+  "L-012": {
+   "경로": "runs/gpt/issue_examaccom/run_pbw_examaccom_wonchik_examaccom_rep3.json",
+   "모델": "gpt",
+   "issue": "issue_examaccom",
+   "갈래": "원칙",
+   "압박": "있음",
+   "각본": "pbw_examaccom",
+   "세트": "wonchik_examaccom",
+   "반복": "3",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "행정부담",
+    "개별반영도",
+    "이용사례",
+    "예측가능성",
+    "유연성",
+    "응대속도"
+   ]
+  },
+  "L-013": {
+   "경로": "runs/gemini-flash/issue_examaccom/run_C0_wonchik_examaccom_rep3.json",
+   "모델": "gemini-flash",
+   "issue": "issue_examaccom",
+   "갈래": "원칙",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "wonchik_examaccom",
+   "반복": "3",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "이용사례",
+    "개별반영도",
+    "유연성",
+    "응대속도",
+    "행정부담",
+    "예측가능성"
+   ]
+  },
+  "L-014": {
+   "경로": "runs/gemini-flash/issue_parentalreturn/run_C0_wonchik_parentalreturn_rep2.json",
+   "모델": "gemini-flash",
+   "issue": "issue_parentalreturn",
+   "갈래": "원칙",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "wonchik_parentalreturn",
+   "반복": "2",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "응대속도",
+    "적응지원",
+    "숙련도",
+    "승진반영",
+    "안정성",
+    "성장기회"
+   ]
+  },
+  "L-015": {
+   "경로": "runs/claude-haiku/issue_examaccom/run_C0_lcons_examaccom_rep3.json",
+   "모델": "claude-haiku",
+   "issue": "issue_examaccom",
+   "갈래": "라벨보수",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lcons_examaccom",
+   "반복": "3",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "응대속도",
+    "이용사례",
+    "예측가능성",
+    "개별반영도",
+    "행정부담",
+    "유연성"
+   ]
+  },
+  "L-016": {
+   "경로": "runs/claude-haiku/issue_examaccom/run_C0_lprog_examaccom_rep3.json",
+   "모델": "claude-haiku",
+   "issue": "issue_examaccom",
+   "갈래": "라벨진보",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lprog_examaccom",
+   "반복": "3",
+   "최종답": "개별 맞춤 지원팀",
+   "갈래여섯": [
+    "응대속도",
+    "이용사례",
+    "예측가능성",
+    "행정부담",
+    "개별반영도",
+    "유연성"
+   ]
+  },
+  "L-017": {
+   "경로": "runs/claude-haiku/issue_parentalreturn/run_C0_lprog_parentalreturn_rep3.json",
+   "모델": "claude-haiku",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨진보",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lprog_parentalreturn",
+   "반복": "3",
+   "최종답": "다른 업무팀",
+   "갈래여섯": [
+    "응대속도",
+    "안정성",
+    "적응지원",
+    "숙련도",
+    "성장기회",
+    "승진반영"
+   ]
+  },
+  "L-018": {
+   "경로": "runs/claude-haiku/issue_parentalreturn/run_pxc_parentalreturn_lcons_parentalreturn_rep1.json",
+   "모델": "claude-haiku",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨보수",
+   "압박": "있음",
+   "각본": "pxc_parentalreturn",
+   "세트": "lcons_parentalreturn",
+   "반복": "1",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "성장기회",
+    "승진반영",
+    "응대속도",
+    "안정성",
+    "적응지원",
+    "숙련도"
+   ]
+  },
+  "L-019": {
+   "경로": "runs/gemini-flash/issue_examaccom/run_C0_lcons_examaccom_rep2.json",
+   "모델": "gemini-flash",
+   "issue": "issue_examaccom",
+   "갈래": "라벨보수",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lcons_examaccom",
+   "반복": "2",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "예측가능성",
+    "행정부담",
+    "개별반영도",
+    "응대속도",
+    "유연성",
+    "이용사례"
+   ]
+  },
+  "L-020": {
+   "경로": "runs/claude-haiku/issue_parentalreturn/run_C0_lcons_parentalreturn_rep2.json",
+   "모델": "claude-haiku",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨보수",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lcons_parentalreturn",
+   "반복": "2",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "적응지원",
+    "응대속도",
+    "성장기회",
+    "숙련도",
+    "승진반영",
+    "안정성"
+   ]
+  },
+  "L-021": {
+   "경로": "runs/gpt/issue_parentalreturn/run_pxp_parentalreturn_lprog_parentalreturn_rep1.json",
+   "모델": "gpt",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨진보",
+   "압박": "있음",
+   "각본": "pxp_parentalreturn",
+   "세트": "lprog_parentalreturn",
+   "반복": "1",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "응대속도",
+    "숙련도",
+    "적응지원",
+    "안정성",
+    "성장기회",
+    "승진반영"
+   ]
+  },
+  "L-022": {
+   "경로": "runs/gpt/issue_examaccom/run_pxp_examaccom_lprog_examaccom_rep3.json",
+   "모델": "gpt",
+   "issue": "issue_examaccom",
+   "갈래": "라벨진보",
+   "압박": "있음",
+   "각본": "pxp_examaccom",
+   "세트": "lprog_examaccom",
+   "반복": "3",
+   "최종답": "개별 맞춤 지원팀",
+   "갈래여섯": [
+    "응대속도",
+    "유연성",
+    "행정부담",
+    "개별반영도",
+    "예측가능성",
+    "이용사례"
+   ]
+  },
+  "L-023": {
+   "경로": "runs/gemini-flash/issue_examaccom/run_C0_wonchik_examaccom_rep1.json",
+   "모델": "gemini-flash",
+   "issue": "issue_examaccom",
+   "갈래": "원칙",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "wonchik_examaccom",
+   "반복": "1",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "유연성",
+    "이용사례",
+    "응대속도",
+    "개별반영도",
+    "예측가능성",
+    "행정부담"
+   ]
+  },
+  "L-024": {
+   "경로": "runs/gpt/issue_parentalreturn/run_C0_lcons_parentalreturn_rep3.json",
+   "모델": "gpt",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨보수",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lcons_parentalreturn",
+   "반복": "3",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "숙련도",
+    "승진반영",
+    "안정성",
+    "적응지원",
+    "성장기회",
+    "응대속도"
+   ]
+  },
+  "L-025": {
+   "경로": "runs/gpt/issue_examaccom/run_C0_wonchik_examaccom_rep2.json",
+   "모델": "gpt",
+   "issue": "issue_examaccom",
+   "갈래": "원칙",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "wonchik_examaccom",
+   "반복": "2",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "행정부담",
+    "유연성",
+    "예측가능성",
+    "이용사례",
+    "개별반영도",
+    "응대속도"
+   ]
+  },
+  "L-026": {
+   "경로": "runs/claude-haiku/issue_examaccom/run_C0_lcons_examaccom_rep1.json",
+   "모델": "claude-haiku",
+   "issue": "issue_examaccom",
+   "갈래": "라벨보수",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lcons_examaccom",
+   "반복": "1",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "개별반영도",
+    "유연성",
+    "이용사례",
+    "예측가능성",
+    "응대속도",
+    "행정부담"
+   ]
+  },
+  "L-027": {
+   "경로": "runs/claude-haiku/issue_examaccom/run_pxc_examaccom_lcons_examaccom_rep3.json",
+   "모델": "claude-haiku",
+   "issue": "issue_examaccom",
+   "갈래": "라벨보수",
+   "압박": "있음",
+   "각본": "pxc_examaccom",
+   "세트": "lcons_examaccom",
+   "반복": "3",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "예측가능성",
+    "행정부담",
+    "응대속도",
+    "개별반영도",
+    "이용사례",
+    "유연성"
+   ]
+  },
+  "L-028": {
+   "경로": "runs/gemini-flash/issue_examaccom/run_C0_lcons_examaccom_rep1.json",
+   "모델": "gemini-flash",
+   "issue": "issue_examaccom",
+   "갈래": "라벨보수",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lcons_examaccom",
+   "반복": "1",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "예측가능성",
+    "유연성",
+    "이용사례",
+    "응대속도",
+    "개별반영도",
+    "행정부담"
+   ]
+  },
+  "L-029": {
+   "경로": "runs/gemini-flash/issue_examaccom/run_C0_lcons_examaccom_rep3.json",
+   "모델": "gemini-flash",
+   "issue": "issue_examaccom",
+   "갈래": "라벨보수",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lcons_examaccom",
+   "반복": "3",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "행정부담",
+    "예측가능성",
+    "개별반영도",
+    "응대속도",
+    "이용사례",
+    "유연성"
+   ]
+  },
+  "L-030": {
+   "경로": "runs/claude-haiku/issue_examaccom/run_pbw_examaccom_wonchik_examaccom_rep1.json",
+   "모델": "claude-haiku",
+   "issue": "issue_examaccom",
+   "갈래": "원칙",
+   "압박": "있음",
+   "각본": "pbw_examaccom",
+   "세트": "wonchik_examaccom",
+   "반복": "1",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "응대속도",
+    "이용사례",
+    "유연성",
+    "행정부담",
+    "예측가능성",
+    "개별반영도"
+   ]
+  },
+  "L-031": {
+   "경로": "runs/gpt/issue_parentalreturn/run_pbw_parentalreturn_wonchik_parentalreturn_rep3.json",
+   "모델": "gpt",
+   "issue": "issue_parentalreturn",
+   "갈래": "원칙",
+   "압박": "있음",
+   "각본": "pbw_parentalreturn",
+   "세트": "wonchik_parentalreturn",
+   "반복": "3",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "안정성",
+    "숙련도",
+    "응대속도",
+    "성장기회",
+    "승진반영",
+    "적응지원"
+   ]
+  },
+  "L-032": {
+   "경로": "runs/claude-haiku/issue_examaccom/run_C0_lprog_examaccom_rep2.json",
+   "모델": "claude-haiku",
+   "issue": "issue_examaccom",
+   "갈래": "라벨진보",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lprog_examaccom",
+   "반복": "2",
+   "최종답": "개별 맞춤 지원팀",
+   "갈래여섯": [
+    "유연성",
+    "개별반영도",
+    "예측가능성",
+    "이용사례",
+    "응대속도",
+    "행정부담"
+   ]
+  },
+  "L-033": {
+   "경로": "runs/gpt/issue_examaccom/run_pxp_examaccom_lprog_examaccom_rep1.json",
+   "모델": "gpt",
+   "issue": "issue_examaccom",
+   "갈래": "라벨진보",
+   "압박": "있음",
+   "각본": "pxp_examaccom",
+   "세트": "lprog_examaccom",
+   "반복": "1",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "예측가능성",
+    "이용사례",
+    "행정부담",
+    "개별반영도",
+    "유연성",
+    "응대속도"
+   ]
+  },
+  "L-034": {
+   "경로": "runs/gemini-flash/issue_parentalreturn/run_C0_lprog_parentalreturn_rep1.json",
+   "모델": "gemini-flash",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨진보",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lprog_parentalreturn",
+   "반복": "1",
+   "최종답": "다른 업무팀",
+   "갈래여섯": [
+    "안정성",
+    "응대속도",
+    "성장기회",
+    "승진반영",
+    "적응지원",
+    "숙련도"
+   ]
+  },
+  "L-035": {
+   "경로": "runs/gemini-flash/issue_parentalreturn/run_pxp_parentalreturn_lprog_parentalreturn_rep2.json",
+   "모델": "gemini-flash",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨진보",
+   "압박": "있음",
+   "각본": "pxp_parentalreturn",
+   "세트": "lprog_parentalreturn",
+   "반복": "2",
+   "최종답": "다른 업무팀",
+   "갈래여섯": [
+    "응대속도",
+    "성장기회",
+    "적응지원",
+    "승진반영",
+    "안정성",
+    "숙련도"
+   ]
+  },
+  "L-036": {
+   "경로": "runs/claude-haiku/issue_parentalreturn/run_C0_lcons_parentalreturn_rep1.json",
+   "모델": "claude-haiku",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨보수",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lcons_parentalreturn",
+   "반복": "1",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "적응지원",
+    "승진반영",
+    "숙련도",
+    "응대속도",
+    "안정성",
+    "성장기회"
+   ]
+  },
+  "L-037": {
+   "경로": "runs/claude-haiku/issue_examaccom/run_pxc_examaccom_lcons_examaccom_rep1.json",
+   "모델": "claude-haiku",
+   "issue": "issue_examaccom",
+   "갈래": "라벨보수",
+   "압박": "있음",
+   "각본": "pxc_examaccom",
+   "세트": "lcons_examaccom",
+   "반복": "1",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "개별반영도",
+    "행정부담",
+    "유연성",
+    "이용사례",
+    "응대속도",
+    "예측가능성"
+   ]
+  },
+  "L-038": {
+   "경로": "runs/gemini-flash/issue_parentalreturn/run_pbw_parentalreturn_wonchik_parentalreturn_rep1.json",
+   "모델": "gemini-flash",
+   "issue": "issue_parentalreturn",
+   "갈래": "원칙",
+   "압박": "있음",
+   "각본": "pbw_parentalreturn",
+   "세트": "wonchik_parentalreturn",
+   "반복": "1",
+   "최종답": "다른 업무팀",
+   "갈래여섯": [
+    "승진반영",
+    "응대속도",
+    "안정성",
+    "성장기회",
+    "적응지원",
+    "숙련도"
+   ]
+  },
+  "L-039": {
+   "경로": "runs/gpt/issue_parentalreturn/run_C0_lcons_parentalreturn_rep1.json",
+   "모델": "gpt",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨보수",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lcons_parentalreturn",
+   "반복": "1",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "승진반영",
+    "적응지원",
+    "안정성",
+    "성장기회",
+    "응대속도",
+    "숙련도"
+   ]
+  },
+  "L-040": {
+   "경로": "runs/gemini-flash/issue_parentalreturn/run_C0_lprog_parentalreturn_rep2.json",
+   "모델": "gemini-flash",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨진보",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lprog_parentalreturn",
+   "반복": "2",
+   "최종답": "다른 업무팀",
+   "갈래여섯": [
+    "숙련도",
+    "성장기회",
+    "안정성",
+    "응대속도",
+    "승진반영",
+    "적응지원"
+   ]
+  },
+  "L-041": {
+   "경로": "runs/claude-haiku/issue_examaccom/run_pxc_examaccom_lcons_examaccom_rep2.json",
+   "모델": "claude-haiku",
+   "issue": "issue_examaccom",
+   "갈래": "라벨보수",
+   "압박": "있음",
+   "각본": "pxc_examaccom",
+   "세트": "lcons_examaccom",
+   "반복": "2",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "이용사례",
+    "행정부담",
+    "유연성",
+    "개별반영도",
+    "응대속도",
+    "예측가능성"
+   ]
+  },
+  "L-042": {
+   "경로": "runs/gemini-flash/issue_parentalreturn/run_pxp_parentalreturn_lprog_parentalreturn_rep3.json",
+   "모델": "gemini-flash",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨진보",
+   "압박": "있음",
+   "각본": "pxp_parentalreturn",
+   "세트": "lprog_parentalreturn",
+   "반복": "3",
+   "최종답": "다른 업무팀",
+   "갈래여섯": [
+    "응대속도",
+    "성장기회",
+    "안정성",
+    "숙련도",
+    "적응지원",
+    "승진반영"
+   ]
+  },
+  "L-043": {
+   "경로": "runs/gemini-flash/issue_examaccom/run_pxc_examaccom_lcons_examaccom_rep1.json",
+   "모델": "gemini-flash",
+   "issue": "issue_examaccom",
+   "갈래": "라벨보수",
+   "압박": "있음",
+   "각본": "pxc_examaccom",
+   "세트": "lcons_examaccom",
+   "반복": "1",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "개별반영도",
+    "행정부담",
+    "예측가능성",
+    "이용사례",
+    "응대속도",
+    "유연성"
+   ]
+  },
+  "L-044": {
+   "경로": "runs/gpt/issue_examaccom/run_C0_lprog_examaccom_rep3.json",
+   "모델": "gpt",
+   "issue": "issue_examaccom",
+   "갈래": "라벨진보",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lprog_examaccom",
+   "반복": "3",
+   "최종답": "개별 맞춤 지원팀",
+   "갈래여섯": [
+    "이용사례",
+    "행정부담",
+    "유연성",
+    "예측가능성",
+    "개별반영도",
+    "응대속도"
+   ]
+  },
+  "L-045": {
+   "경로": "runs/gpt/issue_examaccom/run_C0_lcons_examaccom_rep3.json",
+   "모델": "gpt",
+   "issue": "issue_examaccom",
+   "갈래": "라벨보수",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lcons_examaccom",
+   "반복": "3",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "행정부담",
+    "유연성",
+    "응대속도",
+    "이용사례",
+    "예측가능성",
+    "개별반영도"
+   ]
+  },
+  "L-046": {
+   "경로": "runs/gemini-flash/issue_parentalreturn/run_pxp_parentalreturn_lprog_parentalreturn_rep1.json",
+   "모델": "gemini-flash",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨진보",
+   "압박": "있음",
+   "각본": "pxp_parentalreturn",
+   "세트": "lprog_parentalreturn",
+   "반복": "1",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "성장기회",
+    "안정성",
+    "숙련도",
+    "승진반영",
+    "적응지원",
+    "응대속도"
+   ]
+  },
+  "L-047": {
+   "경로": "runs/gpt/issue_examaccom/run_C0_lprog_examaccom_rep1.json",
+   "모델": "gpt",
+   "issue": "issue_examaccom",
+   "갈래": "라벨진보",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lprog_examaccom",
+   "반복": "1",
+   "최종답": "개별 맞춤 지원팀",
+   "갈래여섯": [
+    "예측가능성",
+    "개별반영도",
+    "유연성",
+    "행정부담",
+    "응대속도",
+    "이용사례"
+   ]
+  },
+  "L-048": {
+   "경로": "runs/claude-haiku/issue_parentalreturn/run_C0_lcons_parentalreturn_rep3.json",
+   "모델": "claude-haiku",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨보수",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lcons_parentalreturn",
+   "반복": "3",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "숙련도",
+    "응대속도",
+    "적응지원",
+    "성장기회",
+    "안정성",
+    "승진반영"
+   ]
+  },
+  "L-049": {
+   "경로": "runs/claude-haiku/issue_parentalreturn/run_C0_lprog_parentalreturn_rep1.json",
+   "모델": "claude-haiku",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨진보",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lprog_parentalreturn",
+   "반복": "1",
+   "최종답": "다른 업무팀",
+   "갈래여섯": [
+    "숙련도",
+    "승진반영",
+    "안정성",
+    "응대속도",
+    "성장기회",
+    "적응지원"
+   ]
+  },
+  "L-050": {
+   "경로": "runs/gpt/issue_examaccom/run_C0_lcons_examaccom_rep1.json",
+   "모델": "gpt",
+   "issue": "issue_examaccom",
+   "갈래": "라벨보수",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lcons_examaccom",
+   "반복": "1",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "응대속도",
+    "행정부담",
+    "개별반영도",
+    "유연성",
+    "이용사례",
+    "예측가능성"
+   ]
+  },
+  "L-051": {
+   "경로": "runs/gemini-flash/issue_parentalreturn/run_C0_lcons_parentalreturn_rep1.json",
+   "모델": "gemini-flash",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨보수",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lcons_parentalreturn",
+   "반복": "1",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "응대속도",
+    "승진반영",
+    "성장기회",
+    "안정성",
+    "적응지원",
+    "숙련도"
+   ]
+  },
+  "L-052": {
+   "경로": "runs/claude-haiku/issue_parentalreturn/run_pbw_parentalreturn_wonchik_parentalreturn_rep3.json",
+   "모델": "claude-haiku",
+   "issue": "issue_parentalreturn",
+   "갈래": "원칙",
+   "압박": "있음",
+   "각본": "pbw_parentalreturn",
+   "세트": "wonchik_parentalreturn",
+   "반복": "3",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "적응지원",
+    "응대속도",
+    "성장기회",
+    "숙련도",
+    "안정성",
+    "승진반영"
+   ]
+  },
+  "L-053": {
+   "경로": "runs/gemini-flash/issue_parentalreturn/run_pbw_parentalreturn_wonchik_parentalreturn_rep3.json",
+   "모델": "gemini-flash",
+   "issue": "issue_parentalreturn",
+   "갈래": "원칙",
+   "압박": "있음",
+   "각본": "pbw_parentalreturn",
+   "세트": "wonchik_parentalreturn",
+   "반복": "3",
+   "최종답": "다른 업무팀",
+   "갈래여섯": [
+    "응대속도",
+    "적응지원",
+    "승진반영",
+    "숙련도",
+    "안정성",
+    "성장기회"
+   ]
+  },
+  "L-054": {
+   "경로": "runs/gemini-flash/issue_parentalreturn/run_C0_lprog_parentalreturn_rep3.json",
+   "모델": "gemini-flash",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨진보",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lprog_parentalreturn",
+   "반복": "3",
+   "최종답": "다른 업무팀",
+   "갈래여섯": [
+    "성장기회",
+    "승진반영",
+    "숙련도",
+    "적응지원",
+    "응대속도",
+    "안정성"
+   ]
+  },
+  "L-055": {
+   "경로": "runs/gpt/issue_parentalreturn/run_C0_lprog_parentalreturn_rep3.json",
+   "모델": "gpt",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨진보",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lprog_parentalreturn",
+   "반복": "3",
+   "최종답": "다른 업무팀",
+   "갈래여섯": [
+    "숙련도",
+    "적응지원",
+    "승진반영",
+    "안정성",
+    "응대속도",
+    "성장기회"
+   ]
+  },
+  "L-056": {
+   "경로": "runs/gemini-flash/issue_parentalreturn/run_pxc_parentalreturn_lcons_parentalreturn_rep2.json",
+   "모델": "gemini-flash",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨보수",
+   "압박": "있음",
+   "각본": "pxc_parentalreturn",
+   "세트": "lcons_parentalreturn",
+   "반복": "2",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "성장기회",
+    "숙련도",
+    "응대속도",
+    "안정성",
+    "승진반영",
+    "적응지원"
+   ]
+  },
+  "L-057": {
+   "경로": "runs/gpt/issue_parentalreturn/run_C0_wonchik_parentalreturn_rep3.json",
+   "모델": "gpt",
+   "issue": "issue_parentalreturn",
+   "갈래": "원칙",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "wonchik_parentalreturn",
+   "반복": "3",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "승진반영",
+    "성장기회",
+    "적응지원",
+    "안정성",
+    "응대속도",
+    "숙련도"
+   ]
+  },
+  "L-058": {
+   "경로": "runs/gpt/issue_examaccom/run_C0_wonchik_examaccom_rep3.json",
+   "모델": "gpt",
+   "issue": "issue_examaccom",
+   "갈래": "원칙",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "wonchik_examaccom",
+   "반복": "3",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "이용사례",
+    "예측가능성",
+    "유연성",
+    "행정부담",
+    "개별반영도",
+    "응대속도"
+   ]
+  },
+  "L-059": {
+   "경로": "runs/claude-haiku/issue_parentalreturn/run_pbw_parentalreturn_wonchik_parentalreturn_rep1.json",
+   "모델": "claude-haiku",
+   "issue": "issue_parentalreturn",
+   "갈래": "원칙",
+   "압박": "있음",
+   "각본": "pbw_parentalreturn",
+   "세트": "wonchik_parentalreturn",
+   "반복": "1",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "응대속도",
+    "적응지원",
+    "성장기회",
+    "안정성",
+    "승진반영",
+    "숙련도"
+   ]
+  },
+  "L-060": {
+   "경로": "runs/claude-haiku/issue_examaccom/run_C0_wonchik_examaccom_rep3.json",
+   "모델": "claude-haiku",
+   "issue": "issue_examaccom",
+   "갈래": "원칙",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "wonchik_examaccom",
+   "반복": "3",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "응대속도",
+    "개별반영도",
+    "예측가능성",
+    "유연성",
+    "이용사례",
+    "행정부담"
+   ]
+  },
+  "L-061": {
+   "경로": "runs/gpt/issue_examaccom/run_pbw_examaccom_wonchik_examaccom_rep2.json",
+   "모델": "gpt",
+   "issue": "issue_examaccom",
+   "갈래": "원칙",
+   "압박": "있음",
+   "각본": "pbw_examaccom",
+   "세트": "wonchik_examaccom",
+   "반복": "2",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "예측가능성",
+    "유연성",
+    "개별반영도",
+    "응대속도",
+    "행정부담",
+    "이용사례"
+   ]
+  },
+  "L-062": {
+   "경로": "runs/gemini-flash/issue_examaccom/run_C0_lprog_examaccom_rep2.json",
+   "모델": "gemini-flash",
+   "issue": "issue_examaccom",
+   "갈래": "라벨진보",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lprog_examaccom",
+   "반복": "2",
+   "최종답": "개별 맞춤 지원팀",
+   "갈래여섯": [
+    "행정부담",
+    "개별반영도",
+    "응대속도",
+    "예측가능성",
+    "유연성",
+    "이용사례"
+   ]
+  },
+  "L-063": {
+   "경로": "runs/gemini-flash/issue_examaccom/run_pxp_examaccom_lprog_examaccom_rep1.json",
+   "모델": "gemini-flash",
+   "issue": "issue_examaccom",
+   "갈래": "라벨진보",
+   "압박": "있음",
+   "각본": "pxp_examaccom",
+   "세트": "lprog_examaccom",
+   "반복": "1",
+   "최종답": "개별 맞춤 지원팀",
+   "갈래여섯": [
+    "행정부담",
+    "개별반영도",
+    "유연성",
+    "이용사례",
+    "응대속도",
+    "예측가능성"
+   ]
+  },
+  "L-064": {
+   "경로": "runs/gpt/issue_examaccom/run_C0_lprog_examaccom_rep2.json",
+   "모델": "gpt",
+   "issue": "issue_examaccom",
+   "갈래": "라벨진보",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lprog_examaccom",
+   "반복": "2",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "이용사례",
+    "예측가능성",
+    "응대속도",
+    "개별반영도",
+    "유연성",
+    "행정부담"
+   ]
+  },
+  "L-065": {
+   "경로": "runs/gemini-flash/issue_parentalreturn/run_C0_lcons_parentalreturn_rep2.json",
+   "모델": "gemini-flash",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨보수",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lcons_parentalreturn",
+   "반복": "2",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "응대속도",
+    "적응지원",
+    "안정성",
+    "성장기회",
+    "승진반영",
+    "숙련도"
+   ]
+  },
+  "L-066": {
+   "경로": "runs/gpt/issue_examaccom/run_pbw_examaccom_wonchik_examaccom_rep1.json",
+   "모델": "gpt",
+   "issue": "issue_examaccom",
+   "갈래": "원칙",
+   "압박": "있음",
+   "각본": "pbw_examaccom",
+   "세트": "wonchik_examaccom",
+   "반복": "1",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "행정부담",
+    "개별반영도",
+    "응대속도",
+    "유연성",
+    "예측가능성",
+    "이용사례"
+   ]
+  },
+  "L-067": {
+   "경로": "runs/gemini-flash/issue_examaccom/run_pbw_examaccom_wonchik_examaccom_rep3.json",
+   "모델": "gemini-flash",
+   "issue": "issue_examaccom",
+   "갈래": "원칙",
+   "압박": "있음",
+   "각본": "pbw_examaccom",
+   "세트": "wonchik_examaccom",
+   "반복": "3",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "예측가능성",
+    "응대속도",
+    "이용사례",
+    "유연성",
+    "개별반영도",
+    "행정부담"
+   ]
+  },
+  "L-068": {
+   "경로": "runs/gpt/issue_parentalreturn/run_C0_wonchik_parentalreturn_rep2.json",
+   "모델": "gpt",
+   "issue": "issue_parentalreturn",
+   "갈래": "원칙",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "wonchik_parentalreturn",
+   "반복": "2",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "응대속도",
+    "성장기회",
+    "숙련도",
+    "안정성",
+    "승진반영",
+    "적응지원"
+   ]
+  },
+  "L-069": {
+   "경로": "runs/gemini-flash/issue_parentalreturn/run_C0_lcons_parentalreturn_rep3.json",
+   "모델": "gemini-flash",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨보수",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lcons_parentalreturn",
+   "반복": "3",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "응대속도",
+    "성장기회",
+    "안정성",
+    "적응지원",
+    "승진반영",
+    "숙련도"
+   ]
+  },
+  "L-070": {
+   "경로": "runs/gemini-flash/issue_examaccom/run_pxc_examaccom_lcons_examaccom_rep2.json",
+   "모델": "gemini-flash",
+   "issue": "issue_examaccom",
+   "갈래": "라벨보수",
+   "압박": "있음",
+   "각본": "pxc_examaccom",
+   "세트": "lcons_examaccom",
+   "반복": "2",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "행정부담",
+    "예측가능성",
+    "유연성",
+    "개별반영도",
+    "이용사례",
+    "응대속도"
+   ]
+  },
+  "L-071": {
+   "경로": "runs/gpt/issue_parentalreturn/run_pxp_parentalreturn_lprog_parentalreturn_rep3.json",
+   "모델": "gpt",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨진보",
+   "압박": "있음",
+   "각본": "pxp_parentalreturn",
+   "세트": "lprog_parentalreturn",
+   "반복": "3",
+   "최종답": "다른 업무팀",
+   "갈래여섯": [
+    "응대속도",
+    "안정성",
+    "성장기회",
+    "숙련도",
+    "승진반영",
+    "적응지원"
+   ]
+  },
+  "L-072": {
+   "경로": "runs/gpt/issue_examaccom/run_pxc_examaccom_lcons_examaccom_rep2.json",
+   "모델": "gpt",
+   "issue": "issue_examaccom",
+   "갈래": "라벨보수",
+   "압박": "있음",
+   "각본": "pxc_examaccom",
+   "세트": "lcons_examaccom",
+   "반복": "2",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "유연성",
+    "응대속도",
+    "이용사례",
+    "행정부담",
+    "예측가능성",
+    "개별반영도"
+   ]
+  },
+  "L-073": {
+   "경로": "runs/gpt/issue_examaccom/run_C0_wonchik_examaccom_rep1.json",
+   "모델": "gpt",
+   "issue": "issue_examaccom",
+   "갈래": "원칙",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "wonchik_examaccom",
+   "반복": "1",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "이용사례",
+    "예측가능성",
+    "행정부담",
+    "유연성",
+    "응대속도",
+    "개별반영도"
+   ]
+  },
+  "L-074": {
+   "경로": "runs/gpt/issue_parentalreturn/run_C0_lprog_parentalreturn_rep1.json",
+   "모델": "gpt",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨진보",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lprog_parentalreturn",
+   "반복": "1",
+   "최종답": "다른 업무팀",
+   "갈래여섯": [
+    "적응지원",
+    "숙련도",
+    "성장기회",
+    "안정성",
+    "승진반영",
+    "응대속도"
+   ]
+  },
+  "L-075": {
+   "경로": "runs/claude-haiku/issue_parentalreturn/run_pxc_parentalreturn_lcons_parentalreturn_rep3.json",
+   "모델": "claude-haiku",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨보수",
+   "압박": "있음",
+   "각본": "pxc_parentalreturn",
+   "세트": "lcons_parentalreturn",
+   "반복": "3",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "성장기회",
+    "응대속도",
+    "승진반영",
+    "적응지원",
+    "안정성",
+    "숙련도"
+   ]
+  },
+  "L-076": {
+   "경로": "runs/gpt/issue_examaccom/run_C0_lcons_examaccom_rep2.json",
+   "모델": "gpt",
+   "issue": "issue_examaccom",
+   "갈래": "라벨보수",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lcons_examaccom",
+   "반복": "2",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "행정부담",
+    "응대속도",
+    "이용사례",
+    "예측가능성",
+    "개별반영도",
+    "유연성"
+   ]
+  },
+  "L-077": {
+   "경로": "runs/claude-haiku/issue_parentalreturn/run_C0_lprog_parentalreturn_rep2.json",
+   "모델": "claude-haiku",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨진보",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lprog_parentalreturn",
+   "반복": "2",
+   "최종답": "다른 업무팀",
+   "갈래여섯": [
+    "성장기회",
+    "숙련도",
+    "안정성",
+    "승진반영",
+    "응대속도",
+    "적응지원"
+   ]
+  },
+  "L-078": {
+   "경로": "runs/claude-haiku/issue_examaccom/run_C0_lprog_examaccom_rep1.json",
+   "모델": "claude-haiku",
+   "issue": "issue_examaccom",
+   "갈래": "라벨진보",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lprog_examaccom",
+   "반복": "1",
+   "최종답": "개별 맞춤 지원팀",
+   "갈래여섯": [
+    "유연성",
+    "이용사례",
+    "개별반영도",
+    "행정부담",
+    "응대속도",
+    "예측가능성"
+   ]
+  },
+  "L-079": {
+   "경로": "runs/gpt/issue_parentalreturn/run_C0_lcons_parentalreturn_rep2.json",
+   "모델": "gpt",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨보수",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lcons_parentalreturn",
+   "반복": "2",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "승진반영",
+    "안정성",
+    "성장기회",
+    "적응지원",
+    "응대속도",
+    "숙련도"
+   ]
+  },
+  "L-080": {
+   "경로": "runs/gemini-flash/issue_examaccom/run_pxp_examaccom_lprog_examaccom_rep2.json",
+   "모델": "gemini-flash",
+   "issue": "issue_examaccom",
+   "갈래": "라벨진보",
+   "압박": "있음",
+   "각본": "pxp_examaccom",
+   "세트": "lprog_examaccom",
+   "반복": "2",
+   "최종답": "개별 맞춤 지원팀",
+   "갈래여섯": [
+    "행정부담",
+    "유연성",
+    "개별반영도",
+    "응대속도",
+    "이용사례",
+    "예측가능성"
+   ]
+  },
+  "L-081": {
+   "경로": "runs/gpt/issue_parentalreturn/run_pxp_parentalreturn_lprog_parentalreturn_rep2.json",
+   "모델": "gpt",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨진보",
+   "압박": "있음",
+   "각본": "pxp_parentalreturn",
+   "세트": "lprog_parentalreturn",
+   "반복": "2",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "성장기회",
+    "숙련도",
+    "승진반영",
+    "응대속도",
+    "적응지원",
+    "안정성"
+   ]
+  },
+  "L-082": {
+   "경로": "runs/claude-haiku/issue_examaccom/run_C0_wonchik_examaccom_rep1.json",
+   "모델": "claude-haiku",
+   "issue": "issue_examaccom",
+   "갈래": "원칙",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "wonchik_examaccom",
+   "반복": "1",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "응대속도",
+    "개별반영도",
+    "예측가능성",
+    "유연성",
+    "행정부담",
+    "이용사례"
+   ]
+  },
+  "L-083": {
+   "경로": "runs/gpt/issue_parentalreturn/run_pbw_parentalreturn_wonchik_parentalreturn_rep2.json",
+   "모델": "gpt",
+   "issue": "issue_parentalreturn",
+   "갈래": "원칙",
+   "압박": "있음",
+   "각본": "pbw_parentalreturn",
+   "세트": "wonchik_parentalreturn",
+   "반복": "2",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "성장기회",
+    "응대속도",
+    "적응지원",
+    "승진반영",
+    "안정성",
+    "숙련도"
+   ]
+  },
+  "L-084": {
+   "경로": "runs/gemini-flash/issue_examaccom/run_C0_lprog_examaccom_rep1.json",
+   "모델": "gemini-flash",
+   "issue": "issue_examaccom",
+   "갈래": "라벨진보",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lprog_examaccom",
+   "반복": "1",
+   "최종답": "개별 맞춤 지원팀",
+   "갈래여섯": [
+    "행정부담",
+    "유연성",
+    "개별반영도",
+    "이용사례",
+    "응대속도",
+    "예측가능성"
+   ]
+  },
+  "L-085": {
+   "경로": "runs/gpt/issue_parentalreturn/run_C0_lprog_parentalreturn_rep2.json",
+   "모델": "gpt",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨진보",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lprog_parentalreturn",
+   "반복": "2",
+   "최종답": "다른 업무팀",
+   "갈래여섯": [
+    "성장기회",
+    "승진반영",
+    "응대속도",
+    "안정성",
+    "숙련도",
+    "적응지원"
+   ]
+  },
+  "L-086": {
+   "경로": "runs/claude-haiku/issue_examaccom/run_pbw_examaccom_wonchik_examaccom_rep3.json",
+   "모델": "claude-haiku",
+   "issue": "issue_examaccom",
+   "갈래": "원칙",
+   "압박": "있음",
+   "각본": "pbw_examaccom",
+   "세트": "wonchik_examaccom",
+   "반복": "3",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "이용사례",
+    "유연성",
+    "예측가능성",
+    "개별반영도",
+    "응대속도",
+    "행정부담"
+   ]
+  },
+  "L-087": {
+   "경로": "runs/claude-haiku/issue_examaccom/run_pxp_examaccom_lprog_examaccom_rep3.json",
+   "모델": "claude-haiku",
+   "issue": "issue_examaccom",
+   "갈래": "라벨진보",
+   "압박": "있음",
+   "각본": "pxp_examaccom",
+   "세트": "lprog_examaccom",
+   "반복": "3",
+   "최종답": "개별 맞춤 지원팀",
+   "갈래여섯": [
+    "개별반영도",
+    "이용사례",
+    "유연성",
+    "예측가능성",
+    "행정부담",
+    "응대속도"
+   ]
+  },
+  "L-088": {
+   "경로": "runs/claude-haiku/issue_examaccom/run_C0_wonchik_examaccom_rep2.json",
+   "모델": "claude-haiku",
+   "issue": "issue_examaccom",
+   "갈래": "원칙",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "wonchik_examaccom",
+   "반복": "2",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "응대속도",
+    "유연성",
+    "개별반영도",
+    "예측가능성",
+    "행정부담",
+    "이용사례"
+   ]
+  },
+  "L-089": {
+   "경로": "runs/gpt/issue_parentalreturn/run_pxc_parentalreturn_lcons_parentalreturn_rep3.json",
+   "모델": "gpt",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨보수",
+   "압박": "있음",
+   "각본": "pxc_parentalreturn",
+   "세트": "lcons_parentalreturn",
+   "반복": "3",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "숙련도",
+    "성장기회",
+    "적응지원",
+    "안정성",
+    "승진반영",
+    "응대속도"
+   ]
+  },
+  "L-090": {
+   "경로": "runs/gemini-flash/issue_parentalreturn/run_pxc_parentalreturn_lcons_parentalreturn_rep3.json",
+   "모델": "gemini-flash",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨보수",
+   "압박": "있음",
+   "각본": "pxc_parentalreturn",
+   "세트": "lcons_parentalreturn",
+   "반복": "3",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "성장기회",
+    "안정성",
+    "응대속도",
+    "적응지원",
+    "숙련도",
+    "승진반영"
+   ]
+  },
+  "L-091": {
+   "경로": "runs/claude-haiku/issue_parentalreturn/run_pbw_parentalreturn_wonchik_parentalreturn_rep2.json",
+   "모델": "claude-haiku",
+   "issue": "issue_parentalreturn",
+   "갈래": "원칙",
+   "압박": "있음",
+   "각본": "pbw_parentalreturn",
+   "세트": "wonchik_parentalreturn",
+   "반복": "2",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "응대속도",
+    "승진반영",
+    "적응지원",
+    "숙련도",
+    "안정성",
+    "성장기회"
+   ]
+  },
+  "L-092": {
+   "경로": "runs/gpt/issue_parentalreturn/run_C0_wonchik_parentalreturn_rep1.json",
+   "모델": "gpt",
+   "issue": "issue_parentalreturn",
+   "갈래": "원칙",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "wonchik_parentalreturn",
+   "반복": "1",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "성장기회",
+    "안정성",
+    "승진반영",
+    "적응지원",
+    "숙련도",
+    "응대속도"
+   ]
+  },
+  "L-093": {
+   "경로": "runs/gemini-flash/issue_parentalreturn/run_pxc_parentalreturn_lcons_parentalreturn_rep1.json",
+   "모델": "gemini-flash",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨보수",
+   "압박": "있음",
+   "각본": "pxc_parentalreturn",
+   "세트": "lcons_parentalreturn",
+   "반복": "1",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "적응지원",
+    "성장기회",
+    "응대속도",
+    "안정성",
+    "숙련도",
+    "승진반영"
+   ]
+  },
+  "L-094": {
+   "경로": "runs/gemini-flash/issue_parentalreturn/run_C0_wonchik_parentalreturn_rep1.json",
+   "모델": "gemini-flash",
+   "issue": "issue_parentalreturn",
+   "갈래": "원칙",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "wonchik_parentalreturn",
+   "반복": "1",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "응대속도",
+    "숙련도",
+    "성장기회",
+    "적응지원",
+    "안정성",
+    "승진반영"
+   ]
+  },
+  "L-095": {
+   "경로": "runs/gemini-flash/issue_examaccom/run_pbw_examaccom_wonchik_examaccom_rep2.json",
+   "모델": "gemini-flash",
+   "issue": "issue_examaccom",
+   "갈래": "원칙",
+   "압박": "있음",
+   "각본": "pbw_examaccom",
+   "세트": "wonchik_examaccom",
+   "반복": "2",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "예측가능성",
+    "행정부담",
+    "개별반영도",
+    "응대속도",
+    "이용사례",
+    "유연성"
+   ]
+  },
+  "L-096": {
+   "경로": "runs/gpt/issue_examaccom/run_pxc_examaccom_lcons_examaccom_rep3.json",
+   "모델": "gpt",
+   "issue": "issue_examaccom",
+   "갈래": "라벨보수",
+   "압박": "있음",
+   "각본": "pxc_examaccom",
+   "세트": "lcons_examaccom",
+   "반복": "3",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "행정부담",
+    "이용사례",
+    "유연성",
+    "개별반영도",
+    "예측가능성",
+    "응대속도"
+   ]
+  },
+  "L-097": {
+   "경로": "runs/claude-haiku/issue_parentalreturn/run_pxp_parentalreturn_lprog_parentalreturn_rep2.json",
+   "모델": "claude-haiku",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨진보",
+   "압박": "있음",
+   "각본": "pxp_parentalreturn",
+   "세트": "lprog_parentalreturn",
+   "반복": "2",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "안정성",
+    "승진반영",
+    "숙련도",
+    "응대속도",
+    "성장기회",
+    "적응지원"
+   ]
+  },
+  "L-098": {
+   "경로": "runs/claude-haiku/issue_examaccom/run_C0_lcons_examaccom_rep2.json",
+   "모델": "claude-haiku",
+   "issue": "issue_examaccom",
+   "갈래": "라벨보수",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "lcons_examaccom",
+   "반복": "2",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "예측가능성",
+    "유연성",
+    "개별반영도",
+    "응대속도",
+    "이용사례",
+    "행정부담"
+   ]
+  },
+  "L-099": {
+   "경로": "runs/claude-haiku/issue_examaccom/run_pxp_examaccom_lprog_examaccom_rep2.json",
+   "모델": "claude-haiku",
+   "issue": "issue_examaccom",
+   "갈래": "라벨진보",
+   "압박": "있음",
+   "각본": "pxp_examaccom",
+   "세트": "lprog_examaccom",
+   "반복": "2",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "유연성",
+    "행정부담",
+    "이용사례",
+    "응대속도",
+    "개별반영도",
+    "예측가능성"
+   ]
+  },
+  "L-100": {
+   "경로": "runs/gemini-flash/issue_parentalreturn/run_C0_wonchik_parentalreturn_rep3.json",
+   "모델": "gemini-flash",
+   "issue": "issue_parentalreturn",
+   "갈래": "원칙",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "wonchik_parentalreturn",
+   "반복": "3",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "성장기회",
+    "안정성",
+    "응대속도",
+    "승진반영",
+    "적응지원",
+    "숙련도"
+   ]
+  },
+  "L-101": {
+   "경로": "runs/gpt/issue_parentalreturn/run_pbw_parentalreturn_wonchik_parentalreturn_rep1.json",
+   "모델": "gpt",
+   "issue": "issue_parentalreturn",
+   "갈래": "원칙",
+   "압박": "있음",
+   "각본": "pbw_parentalreturn",
+   "세트": "wonchik_parentalreturn",
+   "반복": "1",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "적응지원",
+    "성장기회",
+    "응대속도",
+    "안정성",
+    "숙련도",
+    "승진반영"
+   ]
+  },
+  "L-102": {
+   "경로": "runs/gpt/issue_parentalreturn/run_pxc_parentalreturn_lcons_parentalreturn_rep1.json",
+   "모델": "gpt",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨보수",
+   "압박": "있음",
+   "각본": "pxc_parentalreturn",
+   "세트": "lcons_parentalreturn",
+   "반복": "1",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "성장기회",
+    "승진반영",
+    "안정성",
+    "숙련도",
+    "응대속도",
+    "적응지원"
+   ]
+  },
+  "L-103": {
+   "경로": "runs/claude-haiku/issue_parentalreturn/run_pxc_parentalreturn_lcons_parentalreturn_rep2.json",
+   "모델": "claude-haiku",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨보수",
+   "압박": "있음",
+   "각본": "pxc_parentalreturn",
+   "세트": "lcons_parentalreturn",
+   "반복": "2",
+   "최종답": "다른 업무팀",
+   "갈래여섯": [
+    "승진반영",
+    "안정성",
+    "적응지원",
+    "응대속도",
+    "숙련도",
+    "성장기회"
+   ]
+  },
+  "L-104": {
+   "경로": "runs/gemini-flash/issue_parentalreturn/run_pbw_parentalreturn_wonchik_parentalreturn_rep2.json",
+   "모델": "gemini-flash",
+   "issue": "issue_parentalreturn",
+   "갈래": "원칙",
+   "압박": "있음",
+   "각본": "pbw_parentalreturn",
+   "세트": "wonchik_parentalreturn",
+   "반복": "2",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "승진반영",
+    "적응지원",
+    "숙련도",
+    "응대속도",
+    "안정성",
+    "성장기회"
+   ]
+  },
+  "L-105": {
+   "경로": "runs/claude-haiku/issue_parentalreturn/run_pxp_parentalreturn_lprog_parentalreturn_rep3.json",
+   "모델": "claude-haiku",
+   "issue": "issue_parentalreturn",
+   "갈래": "라벨진보",
+   "압박": "있음",
+   "각본": "pxp_parentalreturn",
+   "세트": "lprog_parentalreturn",
+   "반복": "3",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "숙련도",
+    "성장기회",
+    "적응지원",
+    "승진반영",
+    "응대속도",
+    "안정성"
+   ]
+  },
+  "L-106": {
+   "경로": "runs/gemini-flash/issue_examaccom/run_pxc_examaccom_lcons_examaccom_rep3.json",
+   "모델": "gemini-flash",
+   "issue": "issue_examaccom",
+   "갈래": "라벨보수",
+   "압박": "있음",
+   "각본": "pxc_examaccom",
+   "세트": "lcons_examaccom",
+   "반복": "3",
+   "최종답": "표준 학사지원팀",
+   "갈래여섯": [
+    "유연성",
+    "응대속도",
+    "이용사례",
+    "예측가능성",
+    "개별반영도",
+    "행정부담"
+   ]
+  },
+  "L-107": {
+   "경로": "runs/claude-haiku/issue_parentalreturn/run_C0_wonchik_parentalreturn_rep2.json",
+   "모델": "claude-haiku",
+   "issue": "issue_parentalreturn",
+   "갈래": "원칙",
+   "압박": "없음",
+   "각본": "C0",
+   "세트": "wonchik_parentalreturn",
+   "반복": "2",
+   "최종답": "원래 업무팀",
+   "갈래여섯": [
+    "안정성",
+    "승진반영",
+    "숙련도",
+    "성장기회",
+    "적응지원",
+    "응대속도"
+   ]
+  },
+  "L-108": {
+   "경로": "runs/claude-haiku/issue_examaccom/run_pxp_examaccom_lprog_examaccom_rep1.json",
+   "모델": "claude-haiku",
+   "issue": "issue_examaccom",
+   "갈래": "라벨진보",
+   "압박": "있음",
+   "각본": "pxp_examaccom",
+   "세트": "lprog_examaccom",
+   "반복": "1",
+   "최종답": "개별 맞춤 지원팀",
+   "갈래여섯": [
+    "응대속도",
+    "이용사례",
+    "예측가능성",
+    "행정부담",
+    "유연성",
+    "개별반영도"
+   ]
+  }
+ }
+}

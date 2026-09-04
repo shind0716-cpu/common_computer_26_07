@@ -1,0 +1,12 @@
+703b54da606b  packs/PACK_LR_01.md
+4833a36f4621  packs/PACK_LR_02.md
+3ed98142c77f  packs/PACK_LR_03.md
+a17c0c3e87c8  packs/PACK_LR_04.md
+af72b7646fdb  packs/PACK_LR_05.md
+3dbd1296f956  packs/PACK_LR_06.md
+ff20edc88f41  packs/PACK_LR_07.md
+40dd20392f9e  packs/PACK_LR_08.md
+467a8d50aaab  packs/PACK_LR_09.md
+869f1f71e4b5  packs/PACK_LR_10.md
+6ef907e8c9b0  packs/PACK_LR_11.md
+bb63fc98fcb7  packs/PACK_LR_12.md
