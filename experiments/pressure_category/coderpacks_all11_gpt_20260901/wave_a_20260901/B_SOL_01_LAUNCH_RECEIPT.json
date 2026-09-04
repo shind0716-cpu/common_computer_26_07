@@ -1,0 +1,53 @@
+{
+  "arguments": [
+    "D:\\ms\\common_computer_26_07\\experiments\\pressure_category\\coderpacks_all11_gpt_20260901\\sol_toolless_runner.py",
+    "--model",
+    "gpt-5.6-sol",
+    "--nonce",
+    "1f9ef98e8b377f74ca7896c32754815c"
+  ],
+  "bundle_path": "D:\\ms\\common_computer_26_07\\experiments\\pressure_category\\coderpacks_all11_gpt_20260901\\wave_a_20260901\\bundles\\B_SOL_01",
+  "bundle_sha256": "6b8257eb29e875bf9952e9af98fcbed8f52657c87ee4afa356228a984e2cf7c4",
+  "ended_at": "2026-09-01T14:44:40.511394+00:00",
+  "executable": "C:\\Users\\u\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+  "exit_code": 0,
+  "fresh_process": true,
+  "input_sha256": "cf8dcb79f3c809b7710cc62614b6c9b151e52c23f5585b4c245b5b90409d3948",
+  "launch_nonce": "1f9ef98e8b377f74ca7896c32754815c",
+  "output_sha256": "952db36eae3219856d8c4a47e9fff89a6f6a8520fe9869a8d5da297f9a5255ec",
+  "pid": 17852,
+  "ppid": 28180,
+  "preexisting_family_pids": [
+    20460,
+    22612,
+    28180,
+    32836
+  ],
+  "process_create_time": 1788273560.128152,
+  "provider_auxiliary_models": [],
+  "provider_request_id": "resp_018d190709aabb07016a96e39b54e087d0bc2e4d33da2123f9",
+  "provider_resolved_identity": {
+    "family": "Hermes-Sol",
+    "model": "gpt-5.6-sol",
+    "provider": "openai-codex",
+    "source": "provider-response"
+  },
+  "requested_identity": {
+    "family": "Hermes-Sol",
+    "model": "gpt-5.6-sol",
+    "provider": "openai-codex"
+  },
+  "resumed": false,
+  "runtime_controls": {
+    "agent_loop": false,
+    "mcp_servers": 0,
+    "session_persistence": false,
+    "tool_choice": "none",
+    "tools_sent": 0
+  },
+  "schema": "all11_gpt_launch_receipt_v2",
+  "session_id": "resp_018d190709aabb07016a96e39b54e087d0bc2e4d33da2123f9",
+  "started_at": "2026-09-01T14:39:20.127030+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "8d5d8c1fbfc56ed95392ab1b1789365c2d77d28bf940f77be0b365eb30eadb45"
+}

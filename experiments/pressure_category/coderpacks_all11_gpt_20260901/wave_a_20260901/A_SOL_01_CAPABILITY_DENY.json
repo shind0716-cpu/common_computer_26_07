@@ -1,0 +1,42 @@
+[
+  {
+    "basis": "observed provider request/launch controls",
+    "probe": "repository",
+    "status": "DENIED"
+  },
+  {
+    "basis": "observed provider request/launch controls",
+    "probe": "parent traversal",
+    "status": "DENIED"
+  },
+  {
+    "basis": "observed provider request/launch controls",
+    "probe": "private key",
+    "status": "DENIED"
+  },
+  {
+    "basis": "observed provider request/launch controls",
+    "probe": "other pack/output",
+    "status": "DENIED"
+  },
+  {
+    "basis": "observed provider request/launch controls",
+    "probe": "git history",
+    "status": "DENIED"
+  },
+  {
+    "basis": "observed provider request/launch controls",
+    "probe": "session history",
+    "status": "DENIED"
+  },
+  {
+    "basis": "observed provider request/launch controls",
+    "probe": "external URL",
+    "status": "DENIED"
+  },
+  {
+    "basis": "observed provider request/launch controls",
+    "probe": "shell/filesystem tools",
+    "status": "DENIED"
+  }
+]

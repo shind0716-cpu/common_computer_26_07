@@ -1,0 +1,80 @@
+{
+  "schema": "all11_gpt_wave_a_run_status_v1",
+  "instruction_version": "20260901-all11-v2",
+  "updated_at": "2026-09-01T23:51:18+09:00",
+  "analysis_status": "post_hoc_exploratory",
+  "identity_preflight": {
+    "status": "passed",
+    "families": [
+      "Claude",
+      "Hermes-Sol"
+    ],
+    "zero_semantic_probes_count_as_semantic_outputs": false
+  },
+  "launch_budget": {
+    "planned_semantic_launches": 6,
+    "attempted_semantic_launches": 4,
+    "accepted_first_pass_outputs": 2,
+    "rejected_first_pass_outputs": 2,
+    "unattempted_semantic_launches": 2,
+    "additional_retry_approval_required": true
+  },
+  "private_key_released": false,
+  "status": "HARD_STOP",
+  "accepted": [
+    {
+      "coder_id": "A_CLAUDE_01",
+      "pack": "PACK_A",
+      "family": "Claude",
+      "model": "claude-opus-5",
+      "raw_output_sha256": "cc2a5b96346e8e24cadbc63596d5893185363568dc6d4fd0b94ee82e9533c12c",
+      "sealed_output_sha256": "b236b65052c79ae768331dfdea7ad2b984123adbd3f6ef51fee161690028ec49",
+      "launch_receipt_sha256": "d8a591b8515775c56ea67320445f00b2ae0e5a9eea79286ce11b5ebeb8852c65"
+    },
+    {
+      "coder_id": "A_SOL_01",
+      "pack": "PACK_A",
+      "family": "Hermes-Sol",
+      "model": "gpt-5.6-sol",
+      "raw_output_sha256": "539109ec49fe59b75042778b5844f0094f289fc82216fec46b03070433a7aa78",
+      "sealed_output_sha256": "00031af2dab4085dd1ad341e673d53d69985787586bc52825b2f3fc1402c5b26",
+      "launch_receipt_sha256": "ff5e26801ad99ab9e798cb7fe9ae99744d14df6c15b86d5b47a688fa447915a0"
+    }
+  ],
+  "rejected": [
+    {
+      "coder_id": "B_CLAUDE_01",
+      "pack": "PACK_B",
+      "family": "Claude",
+      "model": "claude-opus-5",
+      "raw_output_sha256": "8993352c9d87932a8057423afdeb978013019619221be457ff520c64087c8958",
+      "launch_receipt_sha256": "62573d114f5f03d5be9d300a631fe0097c9b5d8e9a42ce3ac56d0d380171ff35",
+      "hard_failure": "raw provider response is not a complete JSON document; preserved bytes begin mid-record"
+    },
+    {
+      "coder_id": "B_SOL_01",
+      "pack": "PACK_B",
+      "family": "Hermes-Sol",
+      "model": "gpt-5.6-sol",
+      "raw_output_sha256": "952db36eae3219856d8c4a47e9fff89a6f6a8520fe9869a8d5da297f9a5255ec",
+      "launch_receipt_sha256": "e818f45989cafa3c964a61a7a6d16570f95f1ec65ac3f5124ecce0a85c9b6332",
+      "hard_failure": "six retained=true evidence strings are not exact substrings of their item-local last_notes",
+      "failed_coordinates": [
+        "B-11/2",
+        "B-21/1",
+        "B-21/5",
+        "B-21/10",
+        "B-23/12",
+        "B-32/9"
+      ]
+    }
+  ],
+  "unattempted": [
+    "C_CLAUDE_01",
+    "C_SOL_01"
+  ],
+  "soft_anomalies": [
+    "PACK_A Hermes-Sol assigned q2_politics=모르겠다 to all 33 items and q3_beliefs=[] to all 33 items; this is structurally valid but requires disagreement review before interpretation"
+  ],
+  "next_gate": "Obtain explicit approval for two replacement PACK_B launches beyond the original six-launch transport budget, then validate replacements before PACK_C. Do not release the private key."
+}

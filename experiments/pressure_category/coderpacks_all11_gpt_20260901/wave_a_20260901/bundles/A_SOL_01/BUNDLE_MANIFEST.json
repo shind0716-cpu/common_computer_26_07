@@ -1,0 +1,9 @@
+{
+  "bundle_sha256": "f51996ff8f2eb41f93677edbc5eed972ef6db9f37b97b3aa4535de85f8d9afe0",
+  "files": {
+    "PACK_A_final.md": "1b2608a194dfe7ae20a70f6e420cffa89545cf7655134e2ae6473e11ae5b1454",
+    "coding_output.schema.json": "78a7c22a8fdc0181507f0efbcafeb4d13113037060c6e995ad8ee11ec666219c",
+    "prompt.txt": "02f09bb3b39502db70f52249804cde6ae498269b3c51103376b660a42ea2077c"
+  },
+  "schema": "all11_toolless_bundle_v2"
+}

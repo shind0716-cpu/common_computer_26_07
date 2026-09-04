@@ -127,12 +127,20 @@ class BuildPacksTests(unittest.TestCase):
         for prompt in prompts:
             text = prompt.read_text(encoding="utf-8")
             self.assertIn("tool-less", text)
-            if "_SOL" in prompt.name:
-                self.assertIn("BLOCKED CONFIGURATION", text)
+            self.assertNotIn("BLOCKED CONFIGURATION", text)
+            self.assertIn("_KEY_all11_gpt.json", text)
+            self.assertIn("external web/search", text)
+            self.assertIn("atomic rename", text)
+            self.assertIn('Return exactly one JSON object with only an "items" key', text)
+            if "PACK_A" in prompt.name:
+                self.assertIn("final_poll is context only", text)
+                self.assertIn("q3_beliefs", text)
+            elif "PACK_B" in prompt.name:
+                self.assertIn("33×12", text)
+                self.assertIn("retained=false", text)
             else:
-                self.assertIn("_KEY_all11_gpt.json", text)
-                self.assertIn("external web/search", text)
-                self.assertIn("atomic rename", text)
+                self.assertIn("Unknown r0 or r3", text)
+                self.assertIn("A→B→A→B", text)
 
 
 if __name__ == "__main__":

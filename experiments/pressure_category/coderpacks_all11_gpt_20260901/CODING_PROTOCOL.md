@@ -1,6 +1,6 @@
 # ALL11 GPT blind coding protocol
 
-Instruction version: `20260901-all11-v2`. All analyses are **post-hoc exploratory**. Wave A is blocked until two distinct provider-resolved, tool-less identities are proven; the Sol route currently has no approved adapter.
+Instruction version: `20260901-all11-v2`. All analyses are **post-hoc exploratory**. Wave A identity preflight passed on 2026-09-01 with two distinct provider-resolved, tool-less families (`Claude` and `Hermes-Sol`); zero-semantic probe artifacts are identity evidence only and never count as semantic first-pass outputs.
 
 ## Execution and blinding contract
 

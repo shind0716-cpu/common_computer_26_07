@@ -3,6 +3,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -10,6 +11,31 @@ CONTROLS = {"tools_sent": 0, "tool_choice": "none", "mcp_servers": 0, "session_p
 
 
 class LauncherTests(unittest.TestCase):
+    def test_sol_runner_preserves_provider_response_id_without_tools(self):
+        from sol_toolless_runner import _run_stateless_codex_response
+
+        output = SimpleNamespace(type="message", content=[SimpleNamespace(type="output_text", text='{"probe":"ok"}')])
+        final = SimpleNamespace(id="resp-provider-owned", model="gpt-5.6-sol", output=[output])
+
+        class Responses:
+            def __init__(self):
+                self.kwargs = None
+
+            def create(self, **kwargs):
+                self.kwargs = kwargs
+                return final
+
+        responses = Responses()
+        client = SimpleNamespace(_real_client=SimpleNamespace(responses=responses))
+        content, model, request_id = _run_stateless_codex_response(client, "gpt-5.6-sol", "probe")
+        self.assertEqual('{"probe":"ok"}', content)
+        self.assertEqual("gpt-5.6-sol", model)
+        self.assertEqual("resp-provider-owned", request_id)
+        self.assertFalse(responses.kwargs["store"])
+        self.assertTrue(responses.kwargs["stream"])
+        self.assertNotIn("tools", responses.kwargs)
+        self.assertNotIn("tool_choice", responses.kwargs)
+
     def test_fake_runtime_receipt_is_orchestrator_owned_and_complete(self):
         from isolated_launcher import launch, fake_adapter
         with tempfile.TemporaryDirectory() as directory:

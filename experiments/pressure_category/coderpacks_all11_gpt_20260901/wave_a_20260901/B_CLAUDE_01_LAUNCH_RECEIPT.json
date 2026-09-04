@@ -20,19 +20,19 @@
     "--settings",
     "{}",
     "--session-id",
-    "08998274-7853-ff3c-f910-29f677efe69e"
+    "a176f8be-0776-6e25-6894-730e9b40d442"
   ],
-  "bundle_path": "C:\\Users\\u\\AppData\\Local\\Temp\\hermes-wave-a-zero-9v4zol2i",
-  "bundle_sha256": "7d13bc44bf5dca739e6f6e8b39e8b0f3e1cab385c5936e216a6ef1b33bc4ab0b",
-  "ended_at": "2026-09-01T14:22:26.691681+00:00",
+  "bundle_path": "D:\\ms\\common_computer_26_07\\experiments\\pressure_category\\coderpacks_all11_gpt_20260901\\wave_a_20260901\\bundles\\B_CLAUDE_01",
+  "bundle_sha256": "86b6548ea7025a0f09ab5f531aadaac8b1f13366411f9af198a5c35da90e7244",
+  "ended_at": "2026-09-01T14:49:25.874482+00:00",
   "executable": "claude",
   "exit_code": 0,
   "fresh_process": true,
-  "input_sha256": "963b5e527da36203ba6d28b375ddbd2e287103f0b060eeb506865c249e411eb6",
-  "launch_nonce": "089982747853ff3cf91029f677efe69e",
-  "output_sha256": "032edb511d01fa17f3a421d032cb5f9e7156be09f672e0969e06de484a361009",
-  "pid": 15788,
-  "ppid": 2352,
+  "input_sha256": "f9e826180875022c1322002943f426f0909f31cfe6325104638a8f9fe928a7a2",
+  "launch_nonce": "a176f8be07766e256894730e9b40d442",
+  "output_sha256": "8993352c9d87932a8057423afdeb978013019619221be457ff520c64087c8958",
+  "pid": 8848,
+  "ppid": 28180,
   "preexisting_family_pids": [
     5464,
     7052,
@@ -48,11 +48,11 @@
     32084,
     32444
   ],
-  "process_create_time": 1788272543.2213776,
+  "process_create_time": 1788273560.14263,
   "provider_auxiliary_models": [
     "claude-haiku-4-5-20251001"
   ],
-  "provider_request_id": "08998274-7853-ff3c-f910-29f677efe69e",
+  "provider_request_id": "a176f8be-0776-6e25-6894-730e9b40d442",
   "provider_resolved_identity": {
     "family": "Claude",
     "model": "claude-opus-5",
@@ -73,8 +73,8 @@
     "tools_sent": 0
   },
   "schema": "all11_gpt_launch_receipt_v2",
-  "session_id": "08998274-7853-ff3c-f910-29f677efe69e",
-  "started_at": "2026-09-01T14:22:23.218102+00:00",
+  "session_id": "a176f8be-0776-6e25-6894-730e9b40d442",
+  "started_at": "2026-09-01T14:39:20.133334+00:00",
   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-  "stdout_sha256": "e5796f47416b45fba69a75f6f38471ed2ce3c6b6b9df8a5faff02fcbe418aa25"
+  "stdout_sha256": "be7127a3a03b35db3744e949cc94891552757088884866bdb74895e1065811c9"
 }
