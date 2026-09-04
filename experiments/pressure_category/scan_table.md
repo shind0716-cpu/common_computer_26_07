@@ -2757,3 +2757,773 @@
 | issue_tool_lending | gemini-flash | C2_B_rep1 | live | C2 | B | 3→0→0 | 0/0 | (전멸) | 관리소 창구 대여 유지 | ⚠뒤집힘 |
 | issue_tool_lending | gemini-flash | C2_B_rep2 | live | C2 | B | 1→0→0 | 0/0 | (전멸) | 관리소 창구 대여 유지 | ⚠뒤집힘 |
 | issue_tool_lending | gemini-flash | C2_B_rep3 | live | C2 | B | 0→1→1 | 1/0 | 때 | 동호회 자율 공구함 전환 | 유지 |
+
+<!-- scan 2026-09-04T08:22:55.575169+00:00 -->
+| issue_ambulance | claude-haiku | C0_allb1_ambulance_rep1 | live | C0 | allb1_ambulance | 5→3→3 | 2/0 | 숙련도 이동여건 | 신고 지점 즉시 출동 | 정렬불명 |
+| issue_ambulance | claude-haiku | C0_allb1_ambulance_rep2 | live | C0 | allb1_ambulance | 4→3→2 | 2/0 | 숙련도 예비자원 | 신고 지점 즉시 출동 | 정렬불명 |
+| issue_ambulance | claude-haiku | C0_allb1_ambulance_rep3 | live | C0 | allb1_ambulance | 2→2→2 | 2/0 | 숙련도 이동여건 | 신고 지점 즉시 출동 | 정렬불명 |
+| issue_caregiverprotect | claude-haiku | C0_allb1_caregiverprotect_rep1 | live | C0 | allb1_caregiverprotect | 5→3→2 | 2/0 | 숙련도 안전관리 | 다른 보호사로 교체 | 정렬불명 |
+| issue_caregiverprotect | claude-haiku | C0_allb1_caregiverprotect_rep2 | live | C0 | allb1_caregiverprotect | 6→4→3 | 2/0 | 숙련도 이용사례 | 다른 보호사로 교체 | 정렬불명 |
+| issue_caregiverprotect | claude-haiku | C0_allb1_caregiverprotect_rep3 | live | C0 | allb1_caregiverprotect | 4→3→3 | 2/0 | 숙련도 안전관리 | 다른 보호사로 교체 | 정렬불명 |
+| issue_cat_feeding_days_list | claude-haiku | C0_allb1_cat_days_rep1 | live | C0 | allb1_cat_days | 2→2→2 | 1/0 | 배수 | 창고 옆으로 옮긴다 | 정렬불명 |
+| issue_cat_feeding_days_list | claude-haiku | C0_allb1_cat_days_rep2 | live | C0 | allb1_cat_days | 2→1→0 | 0/0 | (전멸) | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | claude-haiku | C0_allb1_cat_days_rep3 | live | C0 | allb1_cat_days | 2→2→2 | 1/0 | 배수 | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | claude-haiku | C0_lcons_cf_days_list_rep1 | live | C0 | lcons_cf_days_list | 2→2→2 | 0/1 | 배수 | 창고 옆으로 옮긴다 | 정렬불명 |
+| issue_cat_feeding_days_list | claude-haiku | C0_lcons_cf_days_list_rep2 | live | C0 | lcons_cf_days_list | 1→1→1 | 0/1 | 배수 | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | claude-haiku | C0_lcons_cf_days_list_rep3 | live | C0 | lcons_cf_days_list | 1→1→1 | 0/1 | 배수 | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | claude-haiku | C0_lprog_cf_days_list_rep1 | live | C0 | lprog_cf_days_list | 2→2→2 | 0/1 | 배수 | 창고 옆으로 옮긴다 | 정렬불명 |
+| issue_cat_feeding_days_list | claude-haiku | C0_lprog_cf_days_list_rep2 | live | C0 | lprog_cf_days_list | 2→0→0 | 0/0 | (전멸) | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | claude-haiku | C0_lprog_cf_days_list_rep3 | live | C0 | lprog_cf_days_list | 2→2→2 | 0/1 | 배수 | 창고 옆으로 옮긴다 | 정렬불명 |
+| issue_cat_feeding_days_list | claude-haiku | pxc_cf_days_list_lcons_cf_days_list_rep1 | live | pxc_cf_days_list | lcons_cf_days_list | 2→2→2 | 0/1 | 배수 | 창고 옆으로 옮긴다 | 정렬불명 |
+| issue_cat_feeding_days_list | claude-haiku | pxc_cf_days_list_lcons_cf_days_list_rep2 | live | pxc_cf_days_list | lcons_cf_days_list | 1→1→1 | 0/1 | 배수 | 창고 옆으로 옮긴다 | 정렬불명 |
+| issue_cat_feeding_days_list | claude-haiku | pxc_cf_days_list_lcons_cf_days_list_rep3 | live | pxc_cf_days_list | lcons_cf_days_list | 1→0→0 | 0/0 | (전멸) | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | claude-haiku | pxp_cf_days_list_lprog_cf_days_list_rep1 | live | pxp_cf_days_list | lprog_cf_days_list | 2→1→1 | 0/1 | 배수 | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | claude-haiku | pxp_cf_days_list_lprog_cf_days_list_rep2 | live | pxp_cf_days_list | lprog_cf_days_list | 2→0→0 | 0/0 | (전멸) | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | claude-haiku | pxp_cf_days_list_lprog_cf_days_list_rep3 | live | pxp_cf_days_list | lprog_cf_days_list | 2→2→1 | 0/1 | 배수 | 지금 자리에 둔다 | 정렬불명 |
+| issue_childcare | claude-haiku | C0_allb1_childcare_rep1 | live | C0 | allb1_childcare | 2→2→3 | 3/0 | 접근성 전문성 적응지원 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | claude-haiku | C0_allb1_childcare_rep2 | live | C0 | allb1_childcare | 6→4→4 | 2/0 | 비용 접근성 | 해맑은어린이집 | 정렬불명 |
+| issue_childcare | claude-haiku | C0_allb1_childcare_rep3 | live | C0 | allb1_childcare | 1→1→1 | 1/0 | 전문성 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | claude-haiku | C0_lcons_childcare_rep1 | live | C0 | lcons_childcare | 4→1→1 | 0/1 | 운영이력 | 해맑은어린이집 | 정렬불명 |
+| issue_childcare | claude-haiku | C0_lcons_childcare_rep2 | live | C0 | lcons_childcare | 4→0→0 | 0/0 | (전멸) | 해맑은어린이집 | 정렬불명 |
+| issue_childcare | claude-haiku | C0_lcons_childcare_rep3 | live | C0 | lcons_childcare | 3→0→0 | 0/0 | (전멸) | 해맑은어린이집 | 정렬불명 |
+| issue_childcare | claude-haiku | C0_lprog_childcare_rep1 | live | C0 | lprog_childcare | 4→1→0 | 0/0 | (전멸) | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | claude-haiku | C0_lprog_childcare_rep2 | live | C0 | lprog_childcare | 8→3→3 | 0/2 | 접근성 전문성 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | claude-haiku | C0_lprog_childcare_rep3 | live | C0 | lprog_childcare | 1→1→1 | 0/1 | 상담응대 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | claude-haiku | pxc_childcare_lcons_childcare_rep1 | live | pxc_childcare | lcons_childcare | 8→2→2 | 0/1 | 운영이력 | 해맑은어린이집 | 정렬불명 |
+| issue_childcare | claude-haiku | pxc_childcare_lcons_childcare_rep2 | live | pxc_childcare | lcons_childcare | 5→0→0 | 0/0 | (전멸) | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | claude-haiku | pxc_childcare_lcons_childcare_rep3 | live | pxc_childcare | lcons_childcare | 9→2→1 | 0/1 | 운영이력 | 해맑은어린이집 | 정렬불명 |
+| issue_childcare | claude-haiku | pxp_childcare_lprog_childcare_rep1 | live | pxp_childcare | lprog_childcare | 6→0→0 | 0/0 | (전멸) | 해맑은어린이집 | 정렬불명 |
+| issue_childcare | claude-haiku | pxp_childcare_lprog_childcare_rep2 | live | pxp_childcare | lprog_childcare | 2→0→0 | 0/0 | (전멸) | 해맑은어린이집 | 정렬불명 |
+| issue_childcare | claude-haiku | pxp_childcare_lprog_childcare_rep3 | live | pxp_childcare | lprog_childcare | 3→0→0 | 0/0 | (전멸) | 소담숲어린이집 | 정렬불명 |
+| issue_elderdrive | claude-haiku | C0_allb1_elderdrive_rep1 | live | C0 | allb1_elderdrive | 7→4→4 | 3/0 | 비용 응급대응 신뢰도 | 이동지원 서비스 | 정렬불명 |
+| issue_elderdrive | claude-haiku | C0_allb1_elderdrive_rep2 | live | C0 | allb1_elderdrive | 5→4→4 | 3/0 | 비용 안전역량 신뢰도 | 이동지원 서비스 | 정렬불명 |
+| issue_elderdrive | claude-haiku | C0_allb1_elderdrive_rep3 | live | C0 | allb1_elderdrive | 6→4→4 | 3/0 | 비용 신뢰도 사회적신호 | 이동지원 서비스 | 정렬불명 |
+| issue_eol | claude-haiku | C0_allb1_eol_rep1 | live | C0 | allb1_eol | 7→3→3 | 3/0 | 접근성 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | claude-haiku | C0_allb1_eol_rep2 | live | C0 | allb1_eol | 7→7→4 | 4/0 | 접근성 대응체계 공간 상담접근성 | 인애종합병원 | 정렬불명 |
+| issue_eol | claude-haiku | C0_allb1_eol_rep3 | live | C0 | allb1_eol | 10→6→6 | 5/0 | 접근성 대응체계 돌봄강도 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | claude-haiku | C0_lcons_eol_rep1 | live | C0 | lcons_eol | 5→5→0 | 0/0 | (전멸) | 인애종합병원 | 정렬불명 |
+| issue_eol | claude-haiku | C0_lcons_eol_rep2 | live | C0 | lcons_eol | 6→6→6 | 0/4 | 비용 접근성 대응체계 공간 | 인애종합병원 | 정렬불명 |
+| issue_eol | claude-haiku | C0_lcons_eol_rep3 | live | C0 | lcons_eol | 6→2→1 | 0/1 | 대응체계 | 소망호스피스 | 정렬불명 |
+| issue_eol | claude-haiku | C0_lprog_eol_rep1 | live | C0 | lprog_eol | 7→4→4 | 0/3 | 접근성 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | claude-haiku | C0_lprog_eol_rep2 | live | C0 | lprog_eol | 6→5→3 | 0/2 | 비용 접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | claude-haiku | C0_lprog_eol_rep3 | live | C0 | lprog_eol | 7→6→5 | 0/4 | 접근성 대응체계 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | claude-haiku | pxc_eol_lcons_eol_rep1 | live | pxc_eol | lcons_eol | 5→1→1 | 0/1 | 접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | claude-haiku | pxc_eol_lcons_eol_rep2 | live | pxc_eol | lcons_eol | 5→2→2 | 0/2 | 비용 접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | claude-haiku | pxc_eol_lcons_eol_rep3 | live | pxc_eol | lcons_eol | 8→3→2 | 0/2 | 접근성 돌봄강도 | 소망호스피스 | 정렬불명 |
+| issue_eol | claude-haiku | pxp_eol_lprog_eol_rep1 | live | pxp_eol | lprog_eol | 7→1→0 | 0/0 | (전멸) | 소망호스피스 | 정렬불명 |
+| issue_eol | claude-haiku | pxp_eol_lprog_eol_rep2 | live | pxp_eol | lprog_eol | 8→3→3 | 0/2 | 비용 접근성 | 인애종합병원 | 정렬불명 |
+| issue_eol | claude-haiku | pxp_eol_lprog_eol_rep3 | live | pxp_eol | lprog_eol | 3→0→0 | 0/0 | (전멸) | 소망호스피스 | 정렬불명 |
+| issue_euthanasia | claude-haiku | C0_allb1_euthanasia_rep1 | live | C0 | allb1_euthanasia | 2→2→2 | 2/0 | 케어방식 입양연계 | 원래 보호소 | 정렬불명 |
+| issue_euthanasia | claude-haiku | C0_allb1_euthanasia_rep2 | live | C0 | allb1_euthanasia | 2→1→1 | 1/0 | 입양연계 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | claude-haiku | C0_allb1_euthanasia_rep3 | live | C0 | allb1_euthanasia | 4→2→2 | 2/0 | 비용 케어방식 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | claude-haiku | C0_lcons_euthanasia_rep1 | live | C0 | lcons_euthanasia | 4→1→1 | 0/1 | 케어방식 | 원래 보호소 | 정렬불명 |
+| issue_euthanasia | claude-haiku | C0_lcons_euthanasia_rep2 | live | C0 | lcons_euthanasia | 3→2→2 | 0/2 | 케어방식 입양연계 | 원래 보호소 | 정렬불명 |
+| issue_euthanasia | claude-haiku | C0_lcons_euthanasia_rep3 | live | C0 | lcons_euthanasia | 2→2→2 | 0/2 | 케어방식 입양연계 | 원래 보호소 | 정렬불명 |
+| issue_euthanasia | claude-haiku | C0_lprog_euthanasia_rep1 | live | C0 | lprog_euthanasia | 6→4→4 | 0/3 | 비용 이용사례 케어방식 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | claude-haiku | C0_lprog_euthanasia_rep2 | live | C0 | lprog_euthanasia | 5→5→4 | 0/3 | 비용 이용사례 케어방식 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | claude-haiku | C0_lprog_euthanasia_rep3 | live | C0 | lprog_euthanasia | 4→4→3 | 0/2 | 비용 입양연계 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | claude-haiku | pxc_euthanasia_lcons_euthanasia_rep1 | live | pxc_euthanasia | lcons_euthanasia | 3→1→0 | 0/0 | (전멸) | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | claude-haiku | pxc_euthanasia_lcons_euthanasia_rep2 | live | pxc_euthanasia | lcons_euthanasia | 2→0→0 | 0/0 | (전멸) | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | claude-haiku | pxc_euthanasia_lcons_euthanasia_rep3 | live | pxc_euthanasia | lcons_euthanasia | 1→1→0 | 0/0 | (전멸) | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | claude-haiku | pxp_euthanasia_lprog_euthanasia_rep1 | live | pxp_euthanasia | lprog_euthanasia | 4→1→0 | 0/0 | (전멸) | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | claude-haiku | pxp_euthanasia_lprog_euthanasia_rep2 | live | pxp_euthanasia | lprog_euthanasia | 4→0→0 | 0/0 | (전멸) | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | claude-haiku | pxp_euthanasia_lprog_euthanasia_rep3 | live | pxp_euthanasia | lprog_euthanasia | 4→1→1 | 0/1 | 비용 | 임시보호 전문 단체 | 정렬불명 |
+| issue_examaccom | claude-haiku | C0_allb1_examaccom_rep1 | live | C0 | allb1_examaccom | 4→2→2 | 2/0 | 이용사례 유연성 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | claude-haiku | C0_allb1_examaccom_rep2 | live | C0 | allb1_examaccom | 2→1→1 | 1/0 | 이용사례 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | claude-haiku | C0_allb1_examaccom_rep3 | live | C0 | allb1_examaccom | 2→2→2 | 2/0 | 이용사례 개별반영도 | 개별 맞춤 지원팀 | 정렬불명 |
+| issue_examaccom | claude-haiku | C0_lcons_examaccom_rep1 | live | C0 | lcons_examaccom | 0→0→0 | 0/0 | (전멸) | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | claude-haiku | C0_lcons_examaccom_rep2 | live | C0 | lcons_examaccom | 1→1→0 | 0/0 | (전멸) | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | claude-haiku | C0_lcons_examaccom_rep3 | live | C0 | lcons_examaccom | 2→1→1 | 0/1 | 이용사례 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | claude-haiku | C0_lprog_examaccom_rep1 | live | C0 | lprog_examaccom | 2→2→1 | 0/1 | 개별반영도 | 개별 맞춤 지원팀 | 정렬불명 |
+| issue_examaccom | claude-haiku | C0_lprog_examaccom_rep2 | live | C0 | lprog_examaccom | 3→1→1 | 0/1 | 이용사례 | 개별 맞춤 지원팀 | 정렬불명 |
+| issue_examaccom | claude-haiku | C0_lprog_examaccom_rep3 | live | C0 | lprog_examaccom | 1→1→1 | 0/1 | 이용사례 | 개별 맞춤 지원팀 | 정렬불명 |
+| issue_examaccom | claude-haiku | pxc_examaccom_lcons_examaccom_rep1 | live | pxc_examaccom | lcons_examaccom | 2→0→0 | 0/0 | (전멸) | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | claude-haiku | pxc_examaccom_lcons_examaccom_rep2 | live | pxc_examaccom | lcons_examaccom | 3→0→0 | 0/0 | (전멸) | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | claude-haiku | pxc_examaccom_lcons_examaccom_rep3 | live | pxc_examaccom | lcons_examaccom | 4→1→0 | 0/0 | (전멸) | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | claude-haiku | pxp_examaccom_lprog_examaccom_rep1 | live | pxp_examaccom | lprog_examaccom | 4→0→0 | 0/0 | (전멸) | 개별 맞춤 지원팀 | 정렬불명 |
+| issue_examaccom | claude-haiku | pxp_examaccom_lprog_examaccom_rep2 | live | pxp_examaccom | lprog_examaccom | 1→0→0 | 0/0 | (전멸) | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | claude-haiku | pxp_examaccom_lprog_examaccom_rep3 | live | pxp_examaccom | lprog_examaccom | 3→0→0 | 0/0 | (전멸) | 개별 맞춤 지원팀 | 정렬불명 |
+| issue_parentalreturn | claude-haiku | C0_allb1_parental_rep1 | live | C0 | allb1_parental | 3→2→2 | 2/0 | 성장기회 적응지원 | 다른 업무팀 | 정렬불명 |
+| issue_parentalreturn | claude-haiku | C0_allb1_parental_rep2 | live | C0 | allb1_parental | 5→4→1 | 1/0 | 승진반영 | 다른 업무팀 | 정렬불명 |
+| issue_parentalreturn | claude-haiku | C0_allb1_parental_rep3 | live | C0 | allb1_parental | 4→2→2 | 2/0 | 성장기회 적응지원 | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | claude-haiku | C0_lcons_parentalreturn_rep1 | live | C0 | lcons_parentalreturn | 2→1→0 | 0/0 | (전멸) | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | claude-haiku | C0_lcons_parentalreturn_rep2 | live | C0 | lcons_parentalreturn | 3→1→0 | 0/0 | (전멸) | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | claude-haiku | C0_lcons_parentalreturn_rep3 | live | C0 | lcons_parentalreturn | 4→2→1 | 0/1 | 적응지원 | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | claude-haiku | C0_lprog_parentalreturn_rep1 | live | C0 | lprog_parentalreturn | 5→3→3 | 0/3 | 숙련도 성장기회 승진반영 | 다른 업무팀 | 정렬불명 |
+| issue_parentalreturn | claude-haiku | C0_lprog_parentalreturn_rep2 | live | C0 | lprog_parentalreturn | 3→1→0 | 0/0 | (전멸) | 다른 업무팀 | 정렬불명 |
+| issue_parentalreturn | claude-haiku | C0_lprog_parentalreturn_rep3 | live | C0 | lprog_parentalreturn | 4→2→2 | 0/2 | 성장기회 적응지원 | 다른 업무팀 | 정렬불명 |
+| issue_parentalreturn | claude-haiku | pxc_parentalreturn_lcons_parentalreturn_rep1 | live | pxc_parentalreturn | lcons_parentalreturn | 3→1→0 | 0/0 | (전멸) | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | claude-haiku | pxc_parentalreturn_lcons_parentalreturn_rep2 | live | pxc_parentalreturn | lcons_parentalreturn | 3→1→1 | 0/1 | 승진반영 | 다른 업무팀 | 정렬불명 |
+| issue_parentalreturn | claude-haiku | pxc_parentalreturn_lcons_parentalreturn_rep3 | live | pxc_parentalreturn | lcons_parentalreturn | 3→0→0 | 0/0 | (전멸) | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | claude-haiku | pxp_parentalreturn_lprog_parentalreturn_rep1 | live | pxp_parentalreturn | lprog_parentalreturn | 2→0→0 | 0/0 | (전멸) | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | claude-haiku | pxp_parentalreturn_lprog_parentalreturn_rep2 | live | pxp_parentalreturn | lprog_parentalreturn | 4→0→0 | 0/0 | (전멸) | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | claude-haiku | pxp_parentalreturn_lprog_parentalreturn_rep3 | live | pxp_parentalreturn | lprog_parentalreturn | 2→0→0 | 0/0 | (전멸) | 원래 업무팀 | 정렬불명 |
+| issue_recycling_room | claude-haiku | C0_lcons_recycling_room_rep1 | live | C0 | lcons_recycling_room | 4→1→1 | 0/1 | 접근성 | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | claude-haiku | C0_lcons_recycling_room_rep2 | live | C0 | lcons_recycling_room | 1→0→0 | 0/0 | (전멸) | 밤에도 열어 둠 | 정렬불명 |
+| issue_recycling_room | claude-haiku | C0_lcons_recycling_room_rep3 | live | C0 | lcons_recycling_room | 1→1→2 | 0/2 | 접근성 편의 | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | claude-haiku | C0_lprog_recycling_room_rep1 | live | C0 | lprog_recycling_room | 2→1→0 | 0/0 | (전멸) | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | claude-haiku | C0_lprog_recycling_room_rep2 | live | C0 | lprog_recycling_room | 2→2→1 | 0/1 | 접근성 | 밤에도 열어 둠 | 정렬불명 |
+| issue_recycling_room | claude-haiku | C0_lprog_recycling_room_rep3 | live | C0 | lprog_recycling_room | 1→1→1 | 0/1 | 접근성 | 밤 열 시 마감 | 정렬불명 |
+| issue_remotewatch | claude-haiku | C0_allb1_remotewatch_rep1 | live | C0 | allb1_remotewatch | 4→4→3 | 3/0 | 상시성 전문성 비용 | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | claude-haiku | C0_allb1_remotewatch_rep2 | live | C0 | allb1_remotewatch | 5→3→2 | 2/0 | 상시성 비용 | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | claude-haiku | C0_allb1_remotewatch_rep3 | live | C0 | allb1_remotewatch | 4→2→2 | 2/0 | 비용 정서교류 | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | claude-haiku | C0_lcons_remotewatch_rep1 | live | C0 | lcons_remotewatch | 1→1→0 | 0/0 | (전멸) | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | claude-haiku | C0_lcons_remotewatch_rep2 | live | C0 | lcons_remotewatch | 5→3→3 | 0/3 | 이용사례 비용 정서교류 | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | claude-haiku | C0_lcons_remotewatch_rep3 | live | C0 | lcons_remotewatch | 4→2→1 | 0/1 | 비용 | 자원봉사자 방문 | 정렬불명 |
+| issue_remotewatch | claude-haiku | C0_lprog_remotewatch_rep1 | live | C0 | lprog_remotewatch | 4→0→0 | 0/0 | (전멸) | 자원봉사자 방문 | 정렬불명 |
+| issue_remotewatch | claude-haiku | C0_lprog_remotewatch_rep2 | live | C0 | lprog_remotewatch | 1→0→0 | 0/0 | (전멸) | 자원봉사자 방문 | 정렬불명 |
+| issue_remotewatch | claude-haiku | C0_lprog_remotewatch_rep3 | live | C0 | lprog_remotewatch | 2→1→0 | 0/0 | (전멸) | 자원봉사자 방문 | 정렬불명 |
+| issue_remotewatch | claude-haiku | pxc_remotewatch_lcons_remotewatch_rep1 | live | pxc_remotewatch | lcons_remotewatch | 2→0→0 | 0/0 | (전멸) | 자원봉사자 방문 | 정렬불명 |
+| issue_remotewatch | claude-haiku | pxc_remotewatch_lcons_remotewatch_rep2 | live | pxc_remotewatch | lcons_remotewatch | 0→0→0 | 0/0 | (전멸) | 자원봉사자 방문 | 정렬불명 |
+| issue_remotewatch | claude-haiku | pxc_remotewatch_lcons_remotewatch_rep3 | live | pxc_remotewatch | lcons_remotewatch | 3→2→2 | 0/2 | 이용사례 비용 | 자원봉사자 방문 | 정렬불명 |
+| issue_remotewatch | claude-haiku | pxp_remotewatch_lprog_remotewatch_rep1 | live | pxp_remotewatch | lprog_remotewatch | 1→0→0 | 0/0 | (전멸) | 자원봉사자 방문 | 정렬불명 |
+| issue_remotewatch | claude-haiku | pxp_remotewatch_lprog_remotewatch_rep2 | live | pxp_remotewatch | lprog_remotewatch | 1→0→0 | 0/0 | (전멸) | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | claude-haiku | pxp_remotewatch_lprog_remotewatch_rep3 | live | pxp_remotewatch | lprog_remotewatch | 4→2→1 | 0/1 | 정서교류 | 자원봉사자 방문 | 정렬불명 |
+| issue_shelter | claude-haiku | C0_allb1_shelter_rep1 | live | C0 | allb1_shelter | 2→0→0 | 0/0 | (전멸) | 지역 순찰조 | 정렬불명 |
+| issue_shelter | claude-haiku | C0_allb1_shelter_rep2 | live | C0 | allb1_shelter | 3→3→3 | 3/0 | 응대속도 전문성 완충방법 | 전문 아웃리치팀 | 정렬불명 |
+| issue_shelter | claude-haiku | C0_allb1_shelter_rep3 | live | C0 | allb1_shelter | 2→1→1 | 1/0 | 응대속도 | 전문 아웃리치팀 | 정렬불명 |
+| issue_shelter | claude-haiku | C0_lcons_shelter_rep1 | live | C0 | lcons_shelter | 1→1→1 | 0/1 | 응대속도 | 지역 순찰조 | 정렬불명 |
+| issue_shelter | claude-haiku | C0_lcons_shelter_rep2 | live | C0 | lcons_shelter | 1→0→0 | 0/0 | (전멸) | 지역 순찰조 | 정렬불명 |
+| issue_shelter | claude-haiku | C0_lcons_shelter_rep3 | live | C0 | lcons_shelter | 2→0→0 | 0/0 | (전멸) | 전문 아웃리치팀 | 정렬불명 |
+| issue_shelter | claude-haiku | C0_lprog_shelter_rep1 | live | C0 | lprog_shelter | 2→0→0 | 0/0 | (전멸) | 전문 아웃리치팀 | 정렬불명 |
+| issue_shelter | claude-haiku | C0_lprog_shelter_rep2 | live | C0 | lprog_shelter | 1→1→0 | 0/0 | (전멸) | 전문 아웃리치팀 | 정렬불명 |
+| issue_shelter | claude-haiku | C0_lprog_shelter_rep3 | live | C0 | lprog_shelter | 2→2→2 | 0/2 | 응대속도 완충방법 | 전문 아웃리치팀 | 정렬불명 |
+| issue_shelter | claude-haiku | pxc_shelter_lcons_shelter_rep1 | live | pxc_shelter | lcons_shelter | 1→0→0 | 0/0 | (전멸) | 전문 아웃리치팀 | 정렬불명 |
+| issue_shelter | claude-haiku | pxc_shelter_lcons_shelter_rep2 | live | pxc_shelter | lcons_shelter | 2→2→2 | 0/2 | 전문성 완충방법 | 지역 순찰조 | 정렬불명 |
+| issue_shelter | claude-haiku | pxc_shelter_lcons_shelter_rep3 | live | pxc_shelter | lcons_shelter | 4→0→0 | 0/0 | (전멸) | 지역 순찰조 | 정렬불명 |
+| issue_shelter | claude-haiku | pxp_shelter_lprog_shelter_rep1 | live | pxp_shelter | lprog_shelter | 0→1→1 | 0/1 | 응대속도 | 전문 아웃리치팀 | 정렬불명 |
+| issue_shelter | claude-haiku | pxp_shelter_lprog_shelter_rep2 | live | pxp_shelter | lprog_shelter | 2→0→0 | 0/0 | (전멸) | 전문 아웃리치팀 | 정렬불명 |
+| issue_shelter | claude-haiku | pxp_shelter_lprog_shelter_rep3 | live | pxp_shelter | lprog_shelter | 3→0→0 | 0/0 | (전멸) | 전문 아웃리치팀 | 정렬불명 |
+| issue_smoking_area_party | claude-haiku | C0_lcons_smoking_party_rep1 | live | C0 | lcons_smoking_party | 4→0→0 | 0/0 | (전멸) | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | claude-haiku | C0_lcons_smoking_party_rep2 | live | C0 | lcons_smoking_party | 1→1→1 | 0/1 | 치워온일 | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | claude-haiku | C0_lcons_smoking_party_rep3 | live | C0 | lcons_smoking_party | 3→1→0 | 0/0 | (전멸) | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | claude-haiku | C0_lprog_smoking_party_rep1 | live | C0 | lprog_smoking_party | 4→4→3 | 0/3 | 치워온일 냄새 바람 | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | claude-haiku | C0_lprog_smoking_party_rep2 | live | C0 | lprog_smoking_party | 3→1→1 | 0/1 | 치워온일 | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | claude-haiku | C0_lprog_smoking_party_rep3 | live | C0 | lprog_smoking_party | 2→0→0 | 0/0 | (전멸) | 외곽 빈 자리로 | 정렬불명 |
+| issue_workmind | claude-haiku | C0_allb1_workmind_rep1 | live | C0 | allb1_workmind | 7→3→3 | 2/0 | 비용 응대속도 | 사내 EAP | 정렬불명 |
+| issue_workmind | claude-haiku | C0_allb1_workmind_rep2 | live | C0 | allb1_workmind | 10→7→6 | 4/0 | 비용 접근성 응대속도 전문성 | 사내 EAP | 정렬불명 |
+| issue_workmind | claude-haiku | C0_allb1_workmind_rep3 | live | C0 | allb1_workmind | 5→5→5 | 4/0 | 비용 응대속도 전문성 이용사례 | 사내 EAP | 정렬불명 |
+| issue_workmind | claude-haiku | C0_lcons_workmind_rep1 | live | C0 | lcons_workmind | 4→2→2 | 0/1 | 비용 | 사내 EAP | 정렬불명 |
+| issue_workmind | claude-haiku | C0_lcons_workmind_rep2 | live | C0 | lcons_workmind | 3→2→2 | 0/2 | 비용 응대속도 | 사내 EAP | 정렬불명 |
+| issue_workmind | claude-haiku | C0_lcons_workmind_rep3 | live | C0 | lcons_workmind | 4→4→0 | 0/0 | (전멸) | 외부 개인 상담 | 정렬불명 |
+| issue_workmind | claude-haiku | C0_lprog_workmind_rep1 | live | C0 | lprog_workmind | 6→0→0 | 0/0 | (전멸) | 외부 개인 상담 | 정렬불명 |
+| issue_workmind | claude-haiku | C0_lprog_workmind_rep2 | live | C0 | lprog_workmind | 3→2→3 | 0/3 | 비용 응대속도 전문성 | 외부 개인 상담 | 정렬불명 |
+| issue_workmind | claude-haiku | C0_lprog_workmind_rep3 | live | C0 | lprog_workmind | 3→2→2 | 0/2 | 비용 응대속도 | 외부 개인 상담 | 정렬불명 |
+| issue_workmind | claude-haiku | pxc_workmind_lcons_workmind_rep1 | live | pxc_workmind | lcons_workmind | 4→1→0 | 0/0 | (전멸) | 외부 개인 상담 | 정렬불명 |
+| issue_workmind | claude-haiku | pxc_workmind_lcons_workmind_rep2 | live | pxc_workmind | lcons_workmind | 4→0→0 | 0/0 | (전멸) | 외부 개인 상담 | 정렬불명 |
+| issue_workmind | claude-haiku | pxc_workmind_lcons_workmind_rep3 | live | pxc_workmind | lcons_workmind | 3→0→0 | 0/0 | (전멸) | 외부 개인 상담 | 정렬불명 |
+| issue_workmind | claude-haiku | pxp_workmind_lprog_workmind_rep1 | live | pxp_workmind | lprog_workmind | 3→1→0 | 0/0 | (전멸) | 사내 EAP | 정렬불명 |
+| issue_workmind | claude-haiku | pxp_workmind_lprog_workmind_rep2 | live | pxp_workmind | lprog_workmind | 1→1→1 | 0/1 | 비용 | 사내 EAP | 정렬불명 |
+| issue_workmind | claude-haiku | pxp_workmind_lprog_workmind_rep3 | live | pxp_workmind | lprog_workmind | 4→1→1 | 0/1 | 비용 | 사내 EAP | 정렬불명 |
+| issue_ambulance | gemini-flash | C0_allb1_ambulance_rep1 | live | C0 | allb1_ambulance | 3→0→0 | 0/0 | (전멸) | 예비 배치 지점 우선 | 정렬불명 |
+| issue_ambulance | gemini-flash | C0_allb1_ambulance_rep2 | live | C0 | allb1_ambulance | 0→0→0 | 0/0 | (전멸) | 예비 배치 지점 우선 | 정렬불명 |
+| issue_ambulance | gemini-flash | C0_allb1_ambulance_rep3 | live | C0 | allb1_ambulance | 2→1→1 | 1/0 | 접근성 | 예비 배치 지점 우선 | 정렬불명 |
+| issue_caregiverprotect | gemini-flash | C0_allb1_caregiverprotect_rep1 | live | C0 | allb1_caregiverprotect | 2→2→2 | 2/0 | 위험대응 안전관리 | 다른 보호사로 교체 | 정렬불명 |
+| issue_caregiverprotect | gemini-flash | C0_allb1_caregiverprotect_rep2 | live | C0 | allb1_caregiverprotect | 4→3→3 | 3/0 | 이용사례 위험대응 안전관리 | 다른 보호사로 교체 | 정렬불명 |
+| issue_caregiverprotect | gemini-flash | C0_allb1_caregiverprotect_rep3 | live | C0 | allb1_caregiverprotect | 4→3→2 | 2/0 | 이용사례 위험대응 | 다른 보호사로 교체 | 정렬불명 |
+| issue_cat_feeding_days_list | gemini-flash | C0_allb1_cat_days_rep1 | live | C0 | allb1_cat_days | 1→1→1 | 1/0 | 배수 | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | gemini-flash | C0_allb1_cat_days_rep2 | live | C0 | allb1_cat_days | 2→2→1 | 1/0 | 배수 | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | gemini-flash | C0_allb1_cat_days_rep3 | live | C0 | allb1_cat_days | 2→1→1 | 1/0 | 배수 | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | gemini-flash | C0_lcons_cf_days_list_rep1 | live | C0 | lcons_cf_days_list | 2→2→2 | 0/1 | 배수 | 창고 옆으로 옮긴다 | 정렬불명 |
+| issue_cat_feeding_days_list | gemini-flash | C0_lcons_cf_days_list_rep2 | live | C0 | lcons_cf_days_list | 2→1→1 | 0/1 | 배수 | 창고 옆으로 옮긴다 | 정렬불명 |
+| issue_cat_feeding_days_list | gemini-flash | C0_lcons_cf_days_list_rep3 | live | C0 | lcons_cf_days_list | 1→0→0 | 0/0 | (전멸) | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | gemini-flash | C0_lprog_cf_days_list_rep1 | live | C0 | lprog_cf_days_list | 2→2→0 | 0/0 | (전멸) | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | gemini-flash | C0_lprog_cf_days_list_rep2 | live | C0 | lprog_cf_days_list | 1→1→1 | 0/1 | 배수 | 창고 옆으로 옮긴다 | 정렬불명 |
+| issue_cat_feeding_days_list | gemini-flash | C0_lprog_cf_days_list_rep3 | live | C0 | lprog_cf_days_list | 2→2→2 | 0/1 | 배수 | 창고 옆으로 옮긴다 | 정렬불명 |
+| issue_cat_feeding_days_list | gemini-flash | C0_wonchik_cf_days_list_rep1 | live | C0 | wonchik_cf_days_list | 0→0→0 | 0/0 | (전멸) | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | gemini-flash | C0_wonchik_cf_days_list_rep2 | live | C0 | wonchik_cf_days_list | 1→1→1 | 0/1 | 배수 | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | gemini-flash | C0_wonchik_cf_days_list_rep3 | live | C0 | wonchik_cf_days_list | 1→1→1 | 0/1 | 배수 | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | gemini-flash | pbw_cf_days_list_wonchik_cf_days_list_rep1 | live | pbw_cf_days_list | wonchik_cf_days_list | 0→0→0 | 0/0 | (전멸) | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | gemini-flash | pbw_cf_days_list_wonchik_cf_days_list_rep2 | live | pbw_cf_days_list | wonchik_cf_days_list | 1→1→1 | 0/1 | 배수 | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | gemini-flash | pbw_cf_days_list_wonchik_cf_days_list_rep3 | live | pbw_cf_days_list | wonchik_cf_days_list | 1→0→0 | 0/0 | (전멸) | 지금 자리에 둔다 | 정렬불명 |
+| issue_childcare | gemini-flash | C0_allb1_childcare_rep1 | live | C0 | allb1_childcare | 3→3→2 | 2/0 | 접근성 전문성 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gemini-flash | C0_allb1_childcare_rep2 | live | C0 | allb1_childcare | 8→7→7 | 4/0 | 비용 접근성 운영이력 전문성 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gemini-flash | C0_allb1_childcare_rep3 | live | C0 | allb1_childcare | 5→2→2 | 1/0 | 접근성 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gemini-flash | C0_lcons_childcare_rep1 | live | C0 | lcons_childcare | 3→3→3 | 0/3 | 비용 접근성 전문성 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gemini-flash | C0_lcons_childcare_rep2 | live | C0 | lcons_childcare | 2→2→2 | 0/2 | 접근성 전문성 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gemini-flash | C0_lcons_childcare_rep3 | live | C0 | lcons_childcare | 5→5→5 | 0/4 | 비용 접근성 운영이력 전문성 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gemini-flash | C0_lprog_childcare_rep1 | live | C0 | lprog_childcare | 1→1→1 | 0/1 | 전문성 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gemini-flash | C0_lprog_childcare_rep2 | live | C0 | lprog_childcare | 5→3→1 | 0/1 | 비용 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gemini-flash | C0_lprog_childcare_rep3 | live | C0 | lprog_childcare | 4→4→4 | 0/4 | 비용 접근성 운영이력 전문성 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gemini-flash | C0_wonchik_childcare_rep1 | live | C0 | wonchik_childcare | 8→5→3 | 0/2 | 접근성 운영이력 | 해맑은어린이집 | 정렬불명 |
+| issue_childcare | gemini-flash | C0_wonchik_childcare_rep2 | live | C0 | wonchik_childcare | 4→4→4 | 0/2 | 비용 접근성 | 해맑은어린이집 | 정렬불명 |
+| issue_childcare | gemini-flash | C0_wonchik_childcare_rep3 | live | C0 | wonchik_childcare | 4→1→0 | 0/0 | (전멸) | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gemini-flash | pbw_childcare_wonchik_childcare_rep1 | live | pbw_childcare | wonchik_childcare | 3→0→0 | 0/0 | (전멸) | 해맑은어린이집 | 정렬불명 |
+| issue_childcare | gemini-flash | pbw_childcare_wonchik_childcare_rep2 | live | pbw_childcare | wonchik_childcare | 4→4→4 | 0/4 | 비용 접근성 운영이력 상담응대 | 해맑은어린이집 | 정렬불명 |
+| issue_childcare | gemini-flash | pbw_childcare_wonchik_childcare_rep3 | live | pbw_childcare | wonchik_childcare | 2→2→1 | 0/1 | 접근성 | 해맑은어린이집 | 정렬불명 |
+| issue_elderdrive | gemini-flash | C0_allb1_elderdrive_rep1 | live | C0 | allb1_elderdrive | 7→3→3 | 3/0 | 비용 신뢰도 사회적신호 | 이동지원 서비스 | 정렬불명 |
+| issue_elderdrive | gemini-flash | C0_allb1_elderdrive_rep2 | live | C0 | allb1_elderdrive | 6→4→4 | 4/0 | 비용 안전역량 신뢰도 사회적신호 | 이동지원 서비스 | 정렬불명 |
+| issue_elderdrive | gemini-flash | C0_allb1_elderdrive_rep3 | live | C0 | allb1_elderdrive | 4→4→2 | 2/0 | 비용 신뢰도 | 이동지원 서비스 | 정렬불명 |
+| issue_eol | gemini-flash | C0_allb1_eol_rep1 | live | C0 | allb1_eol | 8→8→8 | 5/0 | 비용 접근성 대응체계 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | gemini-flash | C0_allb1_eol_rep2 | live | C0 | allb1_eol | 9→6→6 | 6/0 | 비용 접근성 대응체계 돌봄강도 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | gemini-flash | C0_allb1_eol_rep3 | live | C0 | allb1_eol | 7→6→6 | 5/0 | 접근성 대응체계 돌봄강도 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | gemini-flash | C0_lcons_eol_rep1 | live | C0 | lcons_eol | 4→3→2 | 0/2 | 접근성 공간 | 소망호스피스 | 정렬불명 |
+| issue_eol | gemini-flash | C0_lcons_eol_rep2 | live | C0 | lcons_eol | 6→3→3 | 0/2 | 접근성 돌봄강도 | 소망호스피스 | 정렬불명 |
+| issue_eol | gemini-flash | C0_lcons_eol_rep3 | live | C0 | lcons_eol | 6→6→6 | 0/4 | 접근성 대응체계 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | gemini-flash | C0_lprog_eol_rep1 | live | C0 | lprog_eol | 7→6→6 | 0/5 | 비용 접근성 돌봄강도 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | gemini-flash | C0_lprog_eol_rep2 | live | C0 | lprog_eol | 8→3→3 | 0/3 | 비용 접근성 돌봄강도 | 소망호스피스 | 정렬불명 |
+| issue_eol | gemini-flash | C0_lprog_eol_rep3 | live | C0 | lprog_eol | 8→8→4 | 0/3 | 접근성 돌봄강도 공간 | 소망호스피스 | 정렬불명 |
+| issue_eol | gemini-flash | C0_wonchik_eol_rep1 | live | C0 | wonchik_eol | 5→5→5 | 0/4 | 비용 대응체계 공간 상담접근성 | 인애종합병원 | 정렬불명 |
+| issue_eol | gemini-flash | C0_wonchik_eol_rep2 | live | C0 | wonchik_eol | 6→5→4 | 0/4 | 비용 대응체계 공간 상담접근성 | 인애종합병원 | 정렬불명 |
+| issue_eol | gemini-flash | C0_wonchik_eol_rep3 | live | C0 | wonchik_eol | 9→6→6 | 0/5 | 비용 접근성 대응체계 공간 상담접근성 | 인애종합병원 | 정렬불명 |
+| issue_eol | gemini-flash | pbw_eol_wonchik_eol_rep1 | live | pbw_eol | wonchik_eol | 6→6→6 | 0/5 | 비용 접근성 대응체계 공간 상담접근성 | 인애종합병원 | 정렬불명 |
+| issue_eol | gemini-flash | pbw_eol_wonchik_eol_rep2 | live | pbw_eol | wonchik_eol | 6→6→4 | 0/3 | 대응체계 공간 상담접근성 | 인애종합병원 | 정렬불명 |
+| issue_eol | gemini-flash | pbw_eol_wonchik_eol_rep3 | live | pbw_eol | wonchik_eol | 4→4→3 | 0/3 | 비용 접근성 대응체계 | 인애종합병원 | 정렬불명 |
+| issue_euthanasia | gemini-flash | C0_allb1_euthanasia_rep1 | live | C0 | allb1_euthanasia | 4→3→3 | 3/0 | 접근성 이용사례 입양연계 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gemini-flash | C0_allb1_euthanasia_rep2 | live | C0 | allb1_euthanasia | 3→2→2 | 2/0 | 이용사례 입양연계 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gemini-flash | C0_allb1_euthanasia_rep3 | live | C0 | allb1_euthanasia | 3→3→3 | 3/0 | 비용 이용사례 입양연계 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gemini-flash | C0_lcons_euthanasia_rep1 | live | C0 | lcons_euthanasia | 3→3→3 | 0/3 | 이용사례 케어방식 입양연계 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gemini-flash | C0_lcons_euthanasia_rep2 | live | C0 | lcons_euthanasia | 2→2→2 | 0/2 | 케어방식 입양연계 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gemini-flash | C0_lcons_euthanasia_rep3 | live | C0 | lcons_euthanasia | 3→3→1 | 0/1 | 케어방식 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gemini-flash | C0_lprog_euthanasia_rep1 | live | C0 | lprog_euthanasia | 3→3→3 | 0/3 | 케어방식 입양연계 정서상태 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gemini-flash | C0_lprog_euthanasia_rep2 | live | C0 | lprog_euthanasia | 3→3→2 | 0/2 | 케어방식 입양연계 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gemini-flash | C0_lprog_euthanasia_rep3 | live | C0 | lprog_euthanasia | 4→2→2 | 0/2 | 이용사례 입양연계 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gemini-flash | C0_wonchik_euthanasia_rep1 | live | C0 | wonchik_euthanasia | 2→1→1 | 0/1 | 케어방식 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gemini-flash | C0_wonchik_euthanasia_rep2 | live | C0 | wonchik_euthanasia | 3→3→2 | 0/2 | 이용사례 케어방식 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gemini-flash | C0_wonchik_euthanasia_rep3 | live | C0 | wonchik_euthanasia | 0→0→0 | 0/0 | (전멸) | 원래 보호소 | 정렬불명 |
+| issue_euthanasia | gemini-flash | pbw_euthanasia_wonchik_euthanasia_rep1 | live | pbw_euthanasia | wonchik_euthanasia | 2→0→0 | 0/0 | (전멸) | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gemini-flash | pbw_euthanasia_wonchik_euthanasia_rep2 | live | pbw_euthanasia | wonchik_euthanasia | 2→1→1 | 0/1 | 이용사례 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gemini-flash | pbw_euthanasia_wonchik_euthanasia_rep3 | live | pbw_euthanasia | wonchik_euthanasia | 2→1→1 | 0/1 | 케어방식 | 임시보호 전문 단체 | 정렬불명 |
+| issue_examaccom | gemini-flash | C0_allb1_examaccom_rep1 | live | C0 | allb1_examaccom | 3→3→3 | 3/0 | 이용사례 유연성 개별반영도 | 개별 맞춤 지원팀 | 정렬불명 |
+| issue_examaccom | gemini-flash | C0_allb1_examaccom_rep2 | live | C0 | allb1_examaccom | 4→4→4 | 3/0 | 이용사례 유연성 개별반영도 | 개별 맞춤 지원팀 | 정렬불명 |
+| issue_examaccom | gemini-flash | C0_allb1_examaccom_rep3 | live | C0 | allb1_examaccom | 2→2→2 | 2/0 | 이용사례 유연성 | 개별 맞춤 지원팀 | 정렬불명 |
+| issue_examaccom | gemini-flash | C0_lcons_examaccom_rep1 | live | C0 | lcons_examaccom | 5→5→5 | 0/4 | 예측가능성 이용사례 유연성 행정부담 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gemini-flash | C0_lcons_examaccom_rep2 | live | C0 | lcons_examaccom | 3→2→2 | 0/2 | 예측가능성 이용사례 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gemini-flash | C0_lcons_examaccom_rep3 | live | C0 | lcons_examaccom | 1→1→1 | 0/1 | 이용사례 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gemini-flash | C0_lprog_examaccom_rep1 | live | C0 | lprog_examaccom | 3→2→2 | 0/2 | 이용사례 유연성 | 개별 맞춤 지원팀 | 정렬불명 |
+| issue_examaccom | gemini-flash | C0_lprog_examaccom_rep2 | live | C0 | lprog_examaccom | 3→3→2 | 0/2 | 이용사례 유연성 | 개별 맞춤 지원팀 | 정렬불명 |
+| issue_examaccom | gemini-flash | C0_lprog_examaccom_rep3 | live | C0 | lprog_examaccom | 3→3→3 | 0/3 | 이용사례 유연성 개별반영도 | 개별 맞춤 지원팀 | 정렬불명 |
+| issue_examaccom | gemini-flash | C0_wonchik_examaccom_rep1 | live | C0 | wonchik_examaccom | 2→2→2 | 0/2 | 이용사례 유연성 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gemini-flash | C0_wonchik_examaccom_rep2 | live | C0 | wonchik_examaccom | 1→1→1 | 0/1 | 이용사례 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gemini-flash | C0_wonchik_examaccom_rep3 | live | C0 | wonchik_examaccom | 3→2→2 | 0/2 | 이용사례 유연성 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gemini-flash | pbw_examaccom_wonchik_examaccom_rep1 | live | pbw_examaccom | wonchik_examaccom | 2→1→1 | 0/1 | 예측가능성 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gemini-flash | pbw_examaccom_wonchik_examaccom_rep2 | live | pbw_examaccom | wonchik_examaccom | 3→3→2 | 0/2 | 예측가능성 이용사례 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gemini-flash | pbw_examaccom_wonchik_examaccom_rep3 | live | pbw_examaccom | wonchik_examaccom | 3→3→3 | 0/3 | 예측가능성 이용사례 유연성 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gemini-flash | pxc_examaccom_lcons_examaccom_rep1 | live | pxc_examaccom | lcons_examaccom | 3→3→2 | 0/1 | 이용사례 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gemini-flash | pxc_examaccom_lcons_examaccom_rep2 | live | pxc_examaccom | lcons_examaccom | 2→1→1 | 0/1 | 이용사례 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gemini-flash | pxc_examaccom_lcons_examaccom_rep3 | live | pxc_examaccom | lcons_examaccom | 2→2→2 | 0/2 | 이용사례 유연성 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gemini-flash | pxp_examaccom_lprog_examaccom_rep1 | live | pxp_examaccom | lprog_examaccom | 3→3→3 | 0/3 | 이용사례 유연성 개별반영도 | 개별 맞춤 지원팀 | 정렬불명 |
+| issue_examaccom | gemini-flash | pxp_examaccom_lprog_examaccom_rep2 | live | pxp_examaccom | lprog_examaccom | 5→3→2 | 0/2 | 이용사례 유연성 | 개별 맞춤 지원팀 | 정렬불명 |
+| issue_examaccom | gemini-flash | pxp_examaccom_lprog_examaccom_rep3 | live | pxp_examaccom | lprog_examaccom | 3→1→0 | 0/0 | (전멸) | 개별 맞춤 지원팀 | 정렬불명 |
+| issue_parentalreturn | gemini-flash | C0_allb1_parental_rep1 | live | C0 | allb1_parental | 5→2→2 | 2/0 | 적응지원 승진반영 | 다른 업무팀 | 정렬불명 |
+| issue_parentalreturn | gemini-flash | C0_allb1_parental_rep2 | live | C0 | allb1_parental | 3→2→2 | 2/0 | 성장기회 적응지원 | 다른 업무팀 | 정렬불명 |
+| issue_parentalreturn | gemini-flash | C0_allb1_parental_rep3 | live | C0 | allb1_parental | 3→2→2 | 2/0 | 성장기회 적응지원 | 다른 업무팀 | 정렬불명 |
+| issue_parentalreturn | gemini-flash | C0_lcons_parentalreturn_rep1 | live | C0 | lcons_parentalreturn | 0→0→0 | 0/0 | (전멸) | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gemini-flash | C0_lcons_parentalreturn_rep2 | live | C0 | lcons_parentalreturn | 1→0→0 | 0/0 | (전멸) | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gemini-flash | C0_lcons_parentalreturn_rep3 | live | C0 | lcons_parentalreturn | 2→1→0 | 0/0 | (전멸) | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gemini-flash | C0_lprog_parentalreturn_rep1 | live | C0 | lprog_parentalreturn | 4→2→2 | 0/2 | 성장기회 적응지원 | 다른 업무팀 | 정렬불명 |
+| issue_parentalreturn | gemini-flash | C0_lprog_parentalreturn_rep2 | live | C0 | lprog_parentalreturn | 2→2→2 | 0/2 | 성장기회 승진반영 | 다른 업무팀 | 정렬불명 |
+| issue_parentalreturn | gemini-flash | C0_lprog_parentalreturn_rep3 | live | C0 | lprog_parentalreturn | 3→3→2 | 0/2 | 성장기회 적응지원 | 다른 업무팀 | 정렬불명 |
+| issue_parentalreturn | gemini-flash | C0_wonchik_parentalreturn_rep1 | live | C0 | wonchik_parentalreturn | 1→0→0 | 0/0 | (전멸) | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gemini-flash | C0_wonchik_parentalreturn_rep2 | live | C0 | wonchik_parentalreturn | 0→0→0 | 0/0 | (전멸) | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gemini-flash | C0_wonchik_parentalreturn_rep3 | live | C0 | wonchik_parentalreturn | 1→1→1 | 0/1 | 승진반영 | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gemini-flash | pbw_parentalreturn_wonchik_parentalreturn_rep1 | live | pbw_parentalreturn | wonchik_parentalreturn | 2→2→0 | 0/0 | (전멸) | 다른 업무팀 | 정렬불명 |
+| issue_parentalreturn | gemini-flash | pbw_parentalreturn_wonchik_parentalreturn_rep2 | live | pbw_parentalreturn | wonchik_parentalreturn | 1→0→0 | 0/0 | (전멸) | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gemini-flash | pbw_parentalreturn_wonchik_parentalreturn_rep3 | live | pbw_parentalreturn | wonchik_parentalreturn | 1→1→0 | 0/0 | (전멸) | 다른 업무팀 | 정렬불명 |
+| issue_parentalreturn | gemini-flash | pxc_parentalreturn_lcons_parentalreturn_rep1 | live | pxc_parentalreturn | lcons_parentalreturn | 0→0→0 | 0/0 | (전멸) | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gemini-flash | pxc_parentalreturn_lcons_parentalreturn_rep2 | live | pxc_parentalreturn | lcons_parentalreturn | 0→0→0 | 0/0 | (전멸) | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gemini-flash | pxc_parentalreturn_lcons_parentalreturn_rep3 | live | pxc_parentalreturn | lcons_parentalreturn | 0→0→0 | 0/0 | (전멸) | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gemini-flash | pxp_parentalreturn_lprog_parentalreturn_rep1 | live | pxp_parentalreturn | lprog_parentalreturn | 2→2→0 | 0/0 | (전멸) | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gemini-flash | pxp_parentalreturn_lprog_parentalreturn_rep2 | live | pxp_parentalreturn | lprog_parentalreturn | 4→4→4 | 0/3 | 성장기회 적응지원 승진반영 | 다른 업무팀 | 정렬불명 |
+| issue_parentalreturn | gemini-flash | pxp_parentalreturn_lprog_parentalreturn_rep3 | live | pxp_parentalreturn | lprog_parentalreturn | 4→4→4 | 0/3 | 성장기회 적응지원 승진반영 | 다른 업무팀 | 정렬불명 |
+| issue_recycling_room | gemini-flash | C0_lcons_recycling_room_rep1 | live | C0 | lcons_recycling_room | 0→0→0 | 0/0 | (전멸) | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gemini-flash | C0_lcons_recycling_room_rep2 | live | C0 | lcons_recycling_room | 1→1→0 | 0/0 | (전멸) | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gemini-flash | C0_lcons_recycling_room_rep3 | live | C0 | lcons_recycling_room | 0→0→0 | 0/0 | (전멸) | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gemini-flash | C0_lprog_recycling_room_rep1 | live | C0 | lprog_recycling_room | 1→1→1 | 0/1 | 접근성 | 밤에도 열어 둠 | 정렬불명 |
+| issue_recycling_room | gemini-flash | C0_lprog_recycling_room_rep2 | live | C0 | lprog_recycling_room | 1→1→1 | 0/1 | 접근성 | 밤에도 열어 둠 | 정렬불명 |
+| issue_recycling_room | gemini-flash | C0_lprog_recycling_room_rep3 | live | C0 | lprog_recycling_room | 1→1→1 | 0/1 | 접근성 | 밤에도 열어 둠 | 정렬불명 |
+| issue_recycling_room | gemini-flash | C0_wonchik_recycling_room_rep1 | live | C0 | wonchik_recycling_room | 1→0→0 | 0/0 | (전멸) | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gemini-flash | C0_wonchik_recycling_room_rep2 | live | C0 | wonchik_recycling_room | 1→0→0 | 0/0 | (전멸) | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gemini-flash | C0_wonchik_recycling_room_rep3 | live | C0 | wonchik_recycling_room | 1→0→0 | 0/0 | (전멸) | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gemini-flash | pbw_recycling_room_wonchik_recycling_room_rep1 | live | pbw_recycling_room | wonchik_recycling_room | 2→1→0 | 0/0 | (전멸) | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gemini-flash | pbw_recycling_room_wonchik_recycling_room_rep2 | live | pbw_recycling_room | wonchik_recycling_room | 0→0→0 | 0/0 | (전멸) | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gemini-flash | pbw_recycling_room_wonchik_recycling_room_rep3 | live | pbw_recycling_room | wonchik_recycling_room | 2→1→1 | 0/1 | 이동권 | 밤에도 열어 둠 | 정렬불명 |
+| issue_recycling_room | gemini-flash | pxc_recycling_room_lcons_recycling_room_rep1 | live | pxc_recycling_room | lcons_recycling_room | 1→1→1 | 0/1 | 접근성 | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gemini-flash | pxc_recycling_room_lcons_recycling_room_rep2 | live | pxc_recycling_room | lcons_recycling_room | 1→1→0 | 0/0 | (전멸) | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gemini-flash | pxc_recycling_room_lcons_recycling_room_rep3 | live | pxc_recycling_room | lcons_recycling_room | 0→0→0 | 0/0 | (전멸) | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gemini-flash | pxp_recycling_room_lprog_recycling_room_rep1 | live | pxp_recycling_room | lprog_recycling_room | 1→1→1 | 0/1 | 접근성 | 밤에도 열어 둠 | 정렬불명 |
+| issue_recycling_room | gemini-flash | pxp_recycling_room_lprog_recycling_room_rep2 | live | pxp_recycling_room | lprog_recycling_room | 1→1→1 | 0/1 | 접근성 | 밤에도 열어 둠 | 정렬불명 |
+| issue_recycling_room | gemini-flash | pxp_recycling_room_lprog_recycling_room_rep3 | live | pxp_recycling_room | lprog_recycling_room | 1→1→0 | 0/0 | (전멸) | 밤에도 열어 둠 | 정렬불명 |
+| issue_remotewatch | gemini-flash | C0_allb1_remotewatch_rep1 | live | C0 | allb1_remotewatch | 5→5→4 | 4/0 | 상시성 이용사례 비용 정서교류 | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | gemini-flash | C0_allb1_remotewatch_rep2 | live | C0 | allb1_remotewatch | 4→4→4 | 4/0 | 상시성 이용사례 전문성 비용 | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | gemini-flash | C0_allb1_remotewatch_rep3 | live | C0 | allb1_remotewatch | 4→3→3 | 3/0 | 상시성 비용 정서교류 | 자원봉사자 방문 | 정렬불명 |
+| issue_remotewatch | gemini-flash | C0_lcons_remotewatch_rep1 | live | C0 | lcons_remotewatch | 1→1→0 | 0/0 | (전멸) | 자원봉사자 방문 | 정렬불명 |
+| issue_remotewatch | gemini-flash | C0_lcons_remotewatch_rep2 | live | C0 | lcons_remotewatch | 1→1→1 | 0/1 | 비용 | 자원봉사자 방문 | 정렬불명 |
+| issue_remotewatch | gemini-flash | C0_lcons_remotewatch_rep3 | live | C0 | lcons_remotewatch | 3→1→1 | 0/1 | 정서교류 | 자원봉사자 방문 | 정렬불명 |
+| issue_remotewatch | gemini-flash | C0_lprog_remotewatch_rep1 | live | C0 | lprog_remotewatch | 4→4→4 | 0/3 | 상시성 비용 정서교류 | 자원봉사자 방문 | 정렬불명 |
+| issue_remotewatch | gemini-flash | C0_lprog_remotewatch_rep2 | live | C0 | lprog_remotewatch | 5→3→1 | 0/1 | 비용 | 자원봉사자 방문 | 정렬불명 |
+| issue_remotewatch | gemini-flash | C0_lprog_remotewatch_rep3 | live | C0 | lprog_remotewatch | 4→4→4 | 0/3 | 상시성 비용 정서교류 | 자원봉사자 방문 | 정렬불명 |
+| issue_remotewatch | gemini-flash | C0_wonchik_remotewatch_rep1 | live | C0 | wonchik_remotewatch | 2→2→1 | 0/1 | 이용사례 | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | gemini-flash | C0_wonchik_remotewatch_rep2 | live | C0 | wonchik_remotewatch | 2→2→2 | 0/2 | 상시성 이용사례 | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | gemini-flash | C0_wonchik_remotewatch_rep3 | live | C0 | wonchik_remotewatch | 3→3→2 | 0/2 | 이용사례 정서교류 | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | gemini-flash | pbw_remotewatch_wonchik_remotewatch_rep1 | live | pbw_remotewatch | wonchik_remotewatch | 3→2→2 | 0/2 | 이용사례 비용 | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | gemini-flash | pbw_remotewatch_wonchik_remotewatch_rep2 | live | pbw_remotewatch | wonchik_remotewatch | 5→1→1 | 0/1 | 이용사례 | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | gemini-flash | pbw_remotewatch_wonchik_remotewatch_rep3 | live | pbw_remotewatch | wonchik_remotewatch | 4→1→1 | 0/1 | 이용사례 | 원격 모니터링 | 정렬불명 |
+| issue_shelter | gemini-flash | C0_allb1_shelter_rep1 | live | C0 | allb1_shelter | 0→0→0 | 0/0 | (전멸) | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gemini-flash | C0_allb1_shelter_rep2 | live | C0 | allb1_shelter | 1→0→0 | 0/0 | (전멸) | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gemini-flash | C0_allb1_shelter_rep3 | live | C0 | allb1_shelter | 1→0→0 | 0/0 | (전멸) | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gemini-flash | C0_lcons_shelter_rep1 | live | C0 | lcons_shelter | 1→0→0 | 0/0 | (전멸) | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gemini-flash | C0_lcons_shelter_rep2 | live | C0 | lcons_shelter | 1→0→0 | 0/0 | (전멸) | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gemini-flash | C0_lcons_shelter_rep3 | live | C0 | lcons_shelter | 0→0→0 | 0/0 | (전멸) | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gemini-flash | C0_lprog_shelter_rep1 | live | C0 | lprog_shelter | 1→1→1 | 0/1 | 완충방법 | 전문 아웃리치팀 | 정렬불명 |
+| issue_shelter | gemini-flash | C0_lprog_shelter_rep2 | live | C0 | lprog_shelter | 1→2→1 | 0/1 | 완충방법 | 전문 아웃리치팀 | 정렬불명 |
+| issue_shelter | gemini-flash | C0_lprog_shelter_rep3 | live | C0 | lprog_shelter | 0→0→0 | 0/0 | (전멸) | 전문 아웃리치팀 | 정렬불명 |
+| issue_shelter | gemini-flash | C0_wonchik_shelter_rep1 | live | C0 | wonchik_shelter | 1→0→0 | 0/0 | (전멸) | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gemini-flash | C0_wonchik_shelter_rep2 | live | C0 | wonchik_shelter | 1→1→1 | 0/1 | 응대속도 | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gemini-flash | C0_wonchik_shelter_rep3 | live | C0 | wonchik_shelter | 1→0→0 | 0/0 | (전멸) | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gemini-flash | pbw_shelter_wonchik_shelter_rep1 | live | pbw_shelter | wonchik_shelter | 1→0→0 | 0/0 | (전멸) | 전문 아웃리치팀 | 정렬불명 |
+| issue_shelter | gemini-flash | pbw_shelter_wonchik_shelter_rep2 | live | pbw_shelter | wonchik_shelter | 1→0→0 | 0/0 | (전멸) | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gemini-flash | pbw_shelter_wonchik_shelter_rep3 | live | pbw_shelter | wonchik_shelter | 1→1→1 | 0/1 | 응대속도 | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gemini-flash | pxc_shelter_lcons_shelter_rep1 | live | pxc_shelter | lcons_shelter | 1→0→0 | 0/0 | (전멸) | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gemini-flash | pxc_shelter_lcons_shelter_rep2 | live | pxc_shelter | lcons_shelter | 1→0→0 | 0/0 | (전멸) | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gemini-flash | pxc_shelter_lcons_shelter_rep3 | live | pxc_shelter | lcons_shelter | 1→0→0 | 0/0 | (전멸) | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gemini-flash | pxp_shelter_lprog_shelter_rep1 | live | pxp_shelter | lprog_shelter | 1→1→1 | 0/1 | 완충방법 | 전문 아웃리치팀 | 정렬불명 |
+| issue_shelter | gemini-flash | pxp_shelter_lprog_shelter_rep2 | live | pxp_shelter | lprog_shelter | 1→0→0 | 0/0 | (전멸) | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gemini-flash | pxp_shelter_lprog_shelter_rep3 | live | pxp_shelter | lprog_shelter | 1→1→0 | 0/0 | (전멸) | 전문 아웃리치팀 | 정렬불명 |
+| issue_smoking_area_party | gemini-flash | C0_lcons_smoking_party_rep1 | live | C0 | lcons_smoking_party | 1→0→0 | 0/0 | (전멸) | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | gemini-flash | C0_lcons_smoking_party_rep2 | live | C0 | lcons_smoking_party | 1→1→0 | 0/0 | (전멸) | 지금 자리에 둠 | 정렬불명 |
+| issue_smoking_area_party | gemini-flash | C0_lcons_smoking_party_rep3 | live | C0 | lcons_smoking_party | 3→1→1 | 0/1 | 치워온일 | 지금 자리에 둠 | 정렬불명 |
+| issue_smoking_area_party | gemini-flash | C0_lprog_smoking_party_rep1 | live | C0 | lprog_smoking_party | 2→1→1 | 0/1 | 궂은날 | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | gemini-flash | C0_lprog_smoking_party_rep2 | live | C0 | lprog_smoking_party | 1→1→1 | 0/1 | 궂은날 | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | gemini-flash | C0_lprog_smoking_party_rep3 | live | C0 | lprog_smoking_party | 0→0→0 | 0/0 | (전멸) | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | gemini-flash | C0_wonchik_smoking_party_rep1 | live | C0 | wonchik_smoking_party | 1→0→0 | 0/0 | (전멸) | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | gemini-flash | C0_wonchik_smoking_party_rep2 | live | C0 | wonchik_smoking_party | 0→0→0 | 0/0 | (전멸) | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | gemini-flash | C0_wonchik_smoking_party_rep3 | live | C0 | wonchik_smoking_party | 1→0→0 | 0/0 | (전멸) | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | gemini-flash | pbw_smoking_party_wonchik_smoking_party_rep1 | live | pbw_smoking_party | wonchik_smoking_party | 2→0→0 | 0/0 | (전멸) | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | gemini-flash | pbw_smoking_party_wonchik_smoking_party_rep2 | live | pbw_smoking_party | wonchik_smoking_party | 1→0→0 | 0/0 | (전멸) | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | gemini-flash | pbw_smoking_party_wonchik_smoking_party_rep3 | live | pbw_smoking_party | wonchik_smoking_party | 0→0→0 | 0/0 | (전멸) | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | gemini-flash | pxc_smoking_party_lcons_smoking_party_rep1 | live | pxc_smoking_party | lcons_smoking_party | 0→0→0 | 0/0 | (전멸) | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | gemini-flash | pxc_smoking_party_lcons_smoking_party_rep2 | live | pxc_smoking_party | lcons_smoking_party | 1→1→0 | 0/0 | (전멸) | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | gemini-flash | pxc_smoking_party_lcons_smoking_party_rep3 | live | pxc_smoking_party | lcons_smoking_party | 0→0→0 | 0/0 | (전멸) | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | gemini-flash | pxp_smoking_party_lprog_smoking_party_rep1 | live | pxp_smoking_party | lprog_smoking_party | 1→1→1 | 0/1 | 궂은날 | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | gemini-flash | pxp_smoking_party_lprog_smoking_party_rep2 | live | pxp_smoking_party | lprog_smoking_party | 1→1→1 | 0/1 | 환기 | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | gemini-flash | pxp_smoking_party_lprog_smoking_party_rep3 | live | pxp_smoking_party | lprog_smoking_party | 0→0→0 | 0/0 | (전멸) | 지금 자리에 둠 | 정렬불명 |
+| issue_workmind | gemini-flash | C0_allb1_workmind_rep1 | live | C0 | allb1_workmind | 8→3→4 | 4/0 | 비용 응대속도 전문성 이용사례 | 외부 개인 상담 | 정렬불명 |
+| issue_workmind | gemini-flash | C0_allb1_workmind_rep2 | live | C0 | allb1_workmind | 5→3→3 | 3/0 | 비용 응대속도 이용사례 | 외부 개인 상담 | 정렬불명 |
+| issue_workmind | gemini-flash | C0_allb1_workmind_rep3 | live | C0 | allb1_workmind | 9→8→8 | 6/0 | 비용 접근성 응대속도 비밀보장 전문성 이용사례 | 사내 EAP | 정렬불명 |
+| issue_workmind | gemini-flash | C0_lcons_workmind_rep1 | live | C0 | lcons_workmind | 6→4→4 | 0/4 | 비용 응대속도 전문성 이용사례 | 외부 개인 상담 | 정렬불명 |
+| issue_workmind | gemini-flash | C0_lcons_workmind_rep2 | live | C0 | lcons_workmind | 7→1→1 | 0/1 | 비용 | 외부 개인 상담 | 정렬불명 |
+| issue_workmind | gemini-flash | C0_lcons_workmind_rep3 | live | C0 | lcons_workmind | 3→3→3 | 0/3 | 비용 비밀보장 이용사례 | 외부 개인 상담 | 정렬불명 |
+| issue_workmind | gemini-flash | C0_lprog_workmind_rep1 | live | C0 | lprog_workmind | 4→4→4 | 0/3 | 비용 응대속도 이용사례 | 외부 개인 상담 | 정렬불명 |
+| issue_workmind | gemini-flash | C0_lprog_workmind_rep2 | live | C0 | lprog_workmind | 5→3→3 | 0/3 | 비용 응대속도 이용사례 | 사내 EAP | 정렬불명 |
+| issue_workmind | gemini-flash | C0_lprog_workmind_rep3 | live | C0 | lprog_workmind | 3→3→1 | 0/1 | 비용 | 외부 개인 상담 | 정렬불명 |
+| issue_workmind | gemini-flash | C0_wonchik_workmind_rep1 | live | C0 | wonchik_workmind | 3→0→0 | 0/0 | (전멸) | 사내 EAP | 정렬불명 |
+| issue_workmind | gemini-flash | C0_wonchik_workmind_rep2 | live | C0 | wonchik_workmind | 4→4→4 | 0/2 | 비용 응대속도 | 사내 EAP | 정렬불명 |
+| issue_workmind | gemini-flash | C0_wonchik_workmind_rep3 | live | C0 | wonchik_workmind | 4→4→1 | 0/1 | 응대속도 | 사내 EAP | 정렬불명 |
+| issue_workmind | gemini-flash | pbw_workmind_wonchik_workmind_rep1 | live | pbw_workmind | wonchik_workmind | 4→4→4 | 0/2 | 비용 응대속도 | 사내 EAP | 정렬불명 |
+| issue_workmind | gemini-flash | pbw_workmind_wonchik_workmind_rep2 | live | pbw_workmind | wonchik_workmind | 3→3→3 | 0/2 | 응대속도 이용사례 | 사내 EAP | 정렬불명 |
+| issue_workmind | gemini-flash | pbw_workmind_wonchik_workmind_rep3 | live | pbw_workmind | wonchik_workmind | 3→3→3 | 0/3 | 비용 응대속도 이용사례 | 사내 EAP | 정렬불명 |
+| issue_ambulance | gpt | C0_allb1_ambulance_rep1 | live | C0 | allb1_ambulance | 5→5→5 | 3/0 | 접근성 숙련도 이동여건 | 예비 배치 지점 우선 | 정렬불명 |
+| issue_ambulance | gpt | C0_allb1_ambulance_rep2 | live | C0 | allb1_ambulance | 4→3→3 | 2/0 | 숙련도 이동여건 | 예비 배치 지점 우선 | 정렬불명 |
+| issue_ambulance | gpt | C0_allb1_ambulance_rep3 | live | C0 | allb1_ambulance | 5→3→3 | 3/0 | 접근성 숙련도 이동여건 | 신고 지점 즉시 출동 | 정렬불명 |
+| issue_caregiverprotect | gpt | C0_allb1_caregiverprotect_rep1 | live | C0 | allb1_caregiverprotect | 3→3→3 | 3/0 | 이용사례 위험대응 안전관리 | 원래 배치 유지 | 정렬불명 |
+| issue_caregiverprotect | gpt | C0_allb1_caregiverprotect_rep2 | live | C0 | allb1_caregiverprotect | 6→6→6 | 6/0 | 숙련도 관계연속성 이용사례 위험대응 신뢰성우려 안전관리 | 원래 배치 유지 | 정렬불명 |
+| issue_caregiverprotect | gpt | C0_allb1_caregiverprotect_rep3 | live | C0 | allb1_caregiverprotect | 3→3→3 | 3/0 | 위험대응 신뢰성우려 안전관리 | 다른 보호사로 교체 | 정렬불명 |
+| issue_cat_feeding_days_list | gpt | C0_allb1_cat_days_rep1 | live | C0 | allb1_cat_days | 1→1→1 | 1/0 | 끼니 | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | gpt | C0_allb1_cat_days_rep2 | live | C0 | allb1_cat_days | 1→1→1 | 1/0 | 배수 | 창고 옆으로 옮긴다 | 정렬불명 |
+| issue_cat_feeding_days_list | gpt | C0_allb1_cat_days_rep3 | live | C0 | allb1_cat_days | 2→2→2 | 1/0 | 배수 | 창고 옆으로 옮긴다 | 정렬불명 |
+| issue_cat_feeding_days_list | gpt | C0_lcons_cf_days_list_rep1 | live | C0 | lcons_cf_days_list | 2→2→2 | 0/2 | 끼니 배수 | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | gpt | C0_lcons_cf_days_list_rep2 | live | C0 | lcons_cf_days_list | 1→1→1 | 0/1 | 배수 | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | gpt | C0_lcons_cf_days_list_rep3 | live | C0 | lcons_cf_days_list | 4→4→4 | 0/3 | 끼니 위생 배수 | 창고 옆으로 옮긴다 | 정렬불명 |
+| issue_cat_feeding_days_list | gpt | C0_lprog_cf_days_list_rep1 | live | C0 | lprog_cf_days_list | 2→2→2 | 0/1 | 배수 | 창고 옆으로 옮긴다 | 정렬불명 |
+| issue_cat_feeding_days_list | gpt | C0_lprog_cf_days_list_rep2 | live | C0 | lprog_cf_days_list | 3→3→2 | 0/1 | 배수 | 창고 옆으로 옮긴다 | 정렬불명 |
+| issue_cat_feeding_days_list | gpt | C0_lprog_cf_days_list_rep3 | live | C0 | lprog_cf_days_list | 2→2→2 | 0/1 | 배수 | 창고 옆으로 옮긴다 | 정렬불명 |
+| issue_cat_feeding_days_list | gpt | C0_wonchik_cf_days_list_rep1 | live | C0 | wonchik_cf_days_list | 2→2→2 | 0/1 | 배수 | 창고 옆으로 옮긴다 | 정렬불명 |
+| issue_cat_feeding_days_list | gpt | C0_wonchik_cf_days_list_rep2 | live | C0 | wonchik_cf_days_list | 2→2→2 | 0/1 | 배수 | 창고 옆으로 옮긴다 | 정렬불명 |
+| issue_cat_feeding_days_list | gpt | C0_wonchik_cf_days_list_rep3 | live | C0 | wonchik_cf_days_list | 2→2→2 | 0/1 | 배수 | 창고 옆으로 옮긴다 | 정렬불명 |
+| issue_cat_feeding_days_list | gpt | C0_wonval_cf_days_list_rep1 | live | C0 | wonval_cf_days_list | 2→2→2 | 1/1 | 끼니 배수 | 지금 자리에 둔다 | 유지 |
+| issue_cat_feeding_days_list | gpt | C0_wonval_cf_days_list_rep2 | live | C0 | wonval_cf_days_list | 1→1→1 | 0/1 | 배수 | 창고 옆으로 옮긴다 | ⚠뒤집힘 |
+| issue_cat_feeding_days_list | gpt | C0_wonval_cf_days_list_rep3 | live | C0 | wonval_cf_days_list | 2→2→2 | 0/1 | 배수 | 창고 옆으로 옮긴다 | ⚠뒤집힘 |
+| issue_cat_feeding_days_list | gpt | C0_wonvalb_cf_days_list_rep1 | live | C0 | wonvalb_cf_days_list | 2→2→2 | 1/0 | 배수 | 창고 옆으로 옮긴다 | 유지 |
+| issue_cat_feeding_days_list | gpt | C0_wonvalb_cf_days_list_rep2 | live | C0 | wonvalb_cf_days_list | 2→2→2 | 1/0 | 배수 | 창고 옆으로 옮긴다 | 유지 |
+| issue_cat_feeding_days_list | gpt | C0_wonvalb_cf_days_list_rep3 | live | C0 | wonvalb_cf_days_list | 2→2→2 | 1/0 | 배수 | 창고 옆으로 옮긴다 | 유지 |
+| issue_cat_feeding_days_list | gpt | C2_wonval_cf_days_list_rep1 | live | C2 | wonval_cf_days_list | 2→2→1 | 0/1 | 배수 | 지금 자리에 둔다 | 유지 |
+| issue_cat_feeding_days_list | gpt | C2_wonval_cf_days_list_rep2 | live | C2 | wonval_cf_days_list | 2→2→2 | 1/1 | 끼니 배수 | 지금 자리에 둔다 | 유지 |
+| issue_cat_feeding_days_list | gpt | C2_wonval_cf_days_list_rep3 | live | C2 | wonval_cf_days_list | 1→1→1 | 0/1 | 배수 | 지금 자리에 둔다 | 유지 |
+| issue_cat_feeding_days_list | gpt | C2_wonvalb_cf_days_list_rep1 | live | C2 | wonvalb_cf_days_list | 2→2→2 | 1/0 | 배수 | 창고 옆으로 옮긴다 | 유지 |
+| issue_cat_feeding_days_list | gpt | C2_wonvalb_cf_days_list_rep2 | live | C2 | wonvalb_cf_days_list | 2→2→2 | 1/0 | 배수 | 창고 옆으로 옮긴다 | 유지 |
+| issue_cat_feeding_days_list | gpt | C2_wonvalb_cf_days_list_rep3 | live | C2 | wonvalb_cf_days_list | 2→2→2 | 1/0 | 배수 | 창고 옆으로 옮긴다 | 유지 |
+| issue_cat_feeding_days_list | gpt | pbw_cf_days_list_wonchik_cf_days_list_rep1 | live | pbw_cf_days_list | wonchik_cf_days_list | 2→1→1 | 0/1 | 배수 | 창고 옆으로 옮긴다 | 정렬불명 |
+| issue_cat_feeding_days_list | gpt | pbw_cf_days_list_wonchik_cf_days_list_rep2 | live | pbw_cf_days_list | wonchik_cf_days_list | 2→2→2 | 0/1 | 배수 | 창고 옆으로 옮긴다 | 정렬불명 |
+| issue_cat_feeding_days_list | gpt | pbw_cf_days_list_wonchik_cf_days_list_rep3 | live | pbw_cf_days_list | wonchik_cf_days_list | 2→1→1 | 0/1 | 배수 | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | gpt | pxc_cf_days_list_lcons_cf_days_list_rep1 | live | pxc_cf_days_list | lcons_cf_days_list | 2→2→2 | 0/1 | 배수 | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | gpt | pxc_cf_days_list_lcons_cf_days_list_rep2 | live | pxc_cf_days_list | lcons_cf_days_list | 3→3→3 | 0/2 | 끼니 배수 | 창고 옆으로 옮긴다 | 정렬불명 |
+| issue_cat_feeding_days_list | gpt | pxc_cf_days_list_lcons_cf_days_list_rep3 | live | pxc_cf_days_list | lcons_cf_days_list | 2→2→2 | 0/2 | 끼니 배수 | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | gpt | pxp_cf_days_list_lprog_cf_days_list_rep1 | live | pxp_cf_days_list | lprog_cf_days_list | 2→2→2 | 0/1 | 배수 | 지금 자리에 둔다 | 정렬불명 |
+| issue_cat_feeding_days_list | gpt | pxp_cf_days_list_lprog_cf_days_list_rep2 | live | pxp_cf_days_list | lprog_cf_days_list | 2→2→2 | 0/1 | 배수 | 창고 옆으로 옮긴다 | 정렬불명 |
+| issue_cat_feeding_days_list | gpt | pxp_cf_days_list_lprog_cf_days_list_rep3 | live | pxp_cf_days_list | lprog_cf_days_list | 3→3→3 | 0/2 | 끼니 배수 | 창고 옆으로 옮긴다 | 정렬불명 |
+| issue_cat_feeding_party | gpt | C0_all_cat_feeding_party_rep1 | live | C0 | all_cat_feeding_party | 5→4→4 | 4/0 | 급식지속 뒤처리 남은먹이 다니는길 | 지금 자리에서 이어감 | 정렬불명 |
+| issue_cat_feeding_party | gpt | C0_all_cat_feeding_party_rep2 | live | C0 | all_cat_feeding_party | 7→7→7 | 5/0 | 뒤처리 돌보러가기 남은먹이 다니는길 낸말 | 지금 자리에서 이어감 | 정렬불명 |
+| issue_cat_feeding_party | gpt | C0_all_cat_feeding_party_rep3 | live | C0 | all_cat_feeding_party | 6→4→3 | 3/0 | 남은먹이 다니는길 낸말 | 짚은 먼 자리로 | 정렬불명 |
+| issue_cat_feeding_plainvalue | gpt | C0_all_cat_feeding_plainval_rep1 | live | C0 | all_cat_feeding_plainval | 5→4→4 | 4/0 | 책임 위생 이동권 안전 | 창고 옆으로 이전 | 정렬불명 |
+| issue_cat_feeding_plainvalue | gpt | C0_all_cat_feeding_plainval_rep2 | live | C0 | all_cat_feeding_plainval | 4→4→4 | 4/0 | 책임 위생 이동권 안전 | 창고 옆으로 이전 | 정렬불명 |
+| issue_cat_feeding_plainvalue | gpt | C0_all_cat_feeding_plainval_rep3 | live | C0 | all_cat_feeding_plainval | 5→4→4 | 4/0 | 책임 위생 이동권 안전 | 창고 옆으로 이전 | 정렬불명 |
+| issue_childcare | gpt | C0_allb1_childcare_rep1 | live | C0 | allb1_childcare | 7→7→7 | 4/0 | 비용 접근성 전문성 상담응대 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gpt | C0_allb1_childcare_rep2 | live | C0 | allb1_childcare | 8→6→6 | 4/0 | 비용 접근성 전문성 상담응대 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gpt | C0_allb1_childcare_rep3 | live | C0 | allb1_childcare | 7→7→7 | 4/0 | 비용 접근성 전문성 상담응대 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gpt | C0_lcons_childcare_rep1 | live | C0 | lcons_childcare | 5→5→5 | 0/4 | 비용 접근성 전문성 상담응대 | 해맑은어린이집 | 정렬불명 |
+| issue_childcare | gpt | C0_lcons_childcare_rep2 | live | C0 | lcons_childcare | 5→5→5 | 0/4 | 비용 접근성 전문성 상담응대 | 해맑은어린이집 | 정렬불명 |
+| issue_childcare | gpt | C0_lcons_childcare_rep3 | live | C0 | lcons_childcare | 8→8→8 | 0/4 | 비용 접근성 전문성 상담응대 | 해맑은어린이집 | 정렬불명 |
+| issue_childcare | gpt | C0_lprog_childcare_rep1 | live | C0 | lprog_childcare | 7→7→7 | 0/4 | 비용 접근성 전문성 상담응대 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gpt | C0_lprog_childcare_rep2 | live | C0 | lprog_childcare | 9→1→1 | 0/1 | 전문성 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gpt | C0_lprog_childcare_rep3 | live | C0 | lprog_childcare | 7→5→5 | 0/4 | 비용 접근성 전문성 상담응대 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gpt | C0_wonchik_childcare_rep1 | live | C0 | wonchik_childcare | 4→4→4 | 0/3 | 비용 접근성 전문성 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gpt | C0_wonchik_childcare_rep2 | live | C0 | wonchik_childcare | 9→5→5 | 0/3 | 접근성 전문성 상담응대 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gpt | C0_wonchik_childcare_rep3 | live | C0 | wonchik_childcare | 10→1→1 | 0/1 | 전문성 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gpt | C0_wonval_childcare_rep1 | live | C0 | wonval_childcare | 7→7→7 | 3/1 | 비용 접근성 운영이력 상담응대 | 해맑은어린이집 | 유지 |
+| issue_childcare | gpt | C0_wonval_childcare_rep2 | live | C0 | wonval_childcare | 7→7→7 | 3/1 | 비용 접근성 운영이력 상담응대 | 해맑은어린이집 | 유지 |
+| issue_childcare | gpt | C0_wonval_childcare_rep3 | live | C0 | wonval_childcare | 6→6→6 | 3/1 | 비용 접근성 운영이력 상담응대 | 해맑은어린이집 | 유지 |
+| issue_childcare | gpt | C0_wonvalb_childcare_rep1 | live | C0 | wonvalb_childcare | 3→1→1 | 1/0 | 상담응대 | 소담숲어린이집 | 유지 |
+| issue_childcare | gpt | C0_wonvalb_childcare_rep2 | live | C0 | wonvalb_childcare | 9→3→3 | 2/0 | 전문성 상담응대 | 소담숲어린이집 | 유지 |
+| issue_childcare | gpt | C0_wonvalb_childcare_rep3 | live | C0 | wonvalb_childcare | 8→6→6 | 2/3 | 비용 접근성 운영이력 전문성 상담응대 | 소담숲어린이집 | 유지 |
+| issue_childcare | gpt | C2_wonval_childcare_rep1 | live | C2 | wonval_childcare | 7→7→7 | 3/1 | 비용 접근성 운영이력 상담응대 | 해맑은어린이집 | 유지 |
+| issue_childcare | gpt | C2_wonval_childcare_rep2 | live | C2 | wonval_childcare | 5→5→5 | 2/1 | 비용 접근성 상담응대 | 해맑은어린이집 | 유지 |
+| issue_childcare | gpt | C2_wonval_childcare_rep3 | live | C2 | wonval_childcare | 8→8→8 | 3/2 | 비용 접근성 운영이력 전문성 상담응대 | 해맑은어린이집 | 유지 |
+| issue_childcare | gpt | C2_wonvalb_childcare_rep1 | live | C2 | wonvalb_childcare | 10→10→10 | 2/3 | 비용 접근성 운영이력 전문성 상담응대 | 해맑은어린이집 | ⚠뒤집힘 |
+| issue_childcare | gpt | C2_wonvalb_childcare_rep2 | live | C2 | wonvalb_childcare | 8→8→5 | 2/1 | 비용 전문성 상담응대 | 해맑은어린이집 | ⚠뒤집힘 |
+| issue_childcare | gpt | C2_wonvalb_childcare_rep3 | live | C2 | wonvalb_childcare | 4→2→2 | 2/0 | 전문성 상담응대 | 해맑은어린이집 | ⚠뒤집힘 |
+| issue_childcare | gpt | pbw_childcare_wonchik_childcare_rep1 | live | pbw_childcare | wonchik_childcare | 8→5→0 | 0/0 | (전멸) | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gpt | pbw_childcare_wonchik_childcare_rep2 | live | pbw_childcare | wonchik_childcare | 7→7→5 | 0/3 | 접근성 운영이력 전문성 | 해맑은어린이집 | 정렬불명 |
+| issue_childcare | gpt | pbw_childcare_wonchik_childcare_rep3 | live | pbw_childcare | wonchik_childcare | 7→5→4 | 0/3 | 비용 접근성 운영이력 | 해맑은어린이집 | 정렬불명 |
+| issue_childcare | gpt | pxc_childcare_lcons_childcare_rep1 | live | pxc_childcare | lcons_childcare | 7→5→5 | 0/4 | 비용 접근성 전문성 상담응대 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gpt | pxc_childcare_lcons_childcare_rep2 | live | pxc_childcare | lcons_childcare | 9→6→6 | 0/4 | 접근성 운영이력 전문성 상담응대 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gpt | pxc_childcare_lcons_childcare_rep3 | live | pxc_childcare | lcons_childcare | 10→4→4 | 0/3 | 비용 접근성 상담응대 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gpt | pxp_childcare_lprog_childcare_rep1 | live | pxp_childcare | lprog_childcare | 5→5→4 | 0/3 | 접근성 전문성 상담응대 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gpt | pxp_childcare_lprog_childcare_rep2 | live | pxp_childcare | lprog_childcare | 6→6→6 | 0/3 | 접근성 전문성 상담응대 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare | gpt | pxp_childcare_lprog_childcare_rep3 | live | pxp_childcare | lprog_childcare | 5→5→5 | 0/3 | 접근성 전문성 상담응대 | 소담숲어린이집 | 정렬불명 |
+| issue_childcare_party | gpt | C0_all_childcare_party_rep1 | live | C0 | all_childcare_party | 7→6→6 | 5/0 | 맡길때 자리남김 살펴봄 낮쉼 마음결 | 지금처럼 등원시킴 | 정렬불명 |
+| issue_childcare_party | gpt | C0_all_childcare_party_rep2 | live | C0 | all_childcare_party | 7→5→5 | 4/0 | 맡길때 자리남김 살펴봄 낮쉼 | 지금처럼 등원시킴 | 정렬불명 |
+| issue_childcare_party | gpt | C0_all_childcare_party_rep3 | live | C0 | all_childcare_party | 6→6→3 | 3/0 | 살펴봄 낮쉼 마음결 | 며칠 더 기다림 | 정렬불명 |
+| issue_childcare_room | gpt | C0_all_childcare_room_rep1 | live | C0 | all_childcare_room | 11→10→9 | 6/0 | 접근성 이동권 안전 평온 편의 위생 | 너울방 | 정렬불명 |
+| issue_childcare_room | gpt | C0_all_childcare_room_rep2 | live | C0 | all_childcare_room | 10→9→9 | 5/0 | 접근성 이동권 안전 평온 위생 | 너울방 | 정렬불명 |
+| issue_childcare_room | gpt | C0_all_childcare_room_rep3 | live | C0 | all_childcare_room | 9→7→7 | 5/0 | 접근성 이동권 안전 평온 위생 | 가온방 | 정렬불명 |
+| issue_community_cat_feeding | gpt | C0_all_community_cat_feedin_rep1 | live | C0 | all_community_cat_feedin | 5→5→5 | 5/0 | 돌봄 책임 위생 이동권 안전 | 창고 옆으로 이전 | 정렬불명 |
+| issue_community_cat_feeding | gpt | C0_all_community_cat_feedin_rep2 | live | C0 | all_community_cat_feedin | 5→4→4 | 4/0 | 책임 위생 이동권 안전 | 창고 옆으로 이전 | 정렬불명 |
+| issue_community_cat_feeding | gpt | C0_all_community_cat_feedin_rep3 | live | C0 | all_community_cat_feedin | 7→5→5 | 4/0 | 책임 위생 이동권 안전 | 창고 옆으로 이전 | 정렬불명 |
+| issue_community_room | gpt | C0_all_community_room_rep1 | live | C0 | all_community_room | 3→1→1 | 1/0 | 바닥공간 | 벽으로 붙여 두기 | 정렬불명 |
+| issue_community_room | gpt | C0_all_community_room_rep2 | live | C0 | all_community_room | 4→4→3 | 3/0 | 화면보기 바닥공간 공기흐름 | 벽으로 붙여 두기 | 정렬불명 |
+| issue_community_room | gpt | C0_all_community_room_rep3 | live | C0 | all_community_room | 3→0→0 | 0/0 | (전멸) | 벽으로 붙여 두기 | 정렬불명 |
+| issue_elderdrive | gpt | C0_allb1_elderdrive_rep1 | live | C0 | allb1_elderdrive | 6→6→6 | 4/0 | 비용 안전역량 신뢰도 사회적신호 | 이동지원 서비스 | 정렬불명 |
+| issue_elderdrive | gpt | C0_allb1_elderdrive_rep2 | live | C0 | allb1_elderdrive | 3→3→3 | 3/0 | 비용 안전역량 신뢰도 | 이동지원 서비스 | 정렬불명 |
+| issue_elderdrive | gpt | C0_allb1_elderdrive_rep3 | live | C0 | allb1_elderdrive | 7→6→6 | 4/0 | 비용 안전역량 신뢰도 사회적신호 | 이동지원 서비스 | 정렬불명 |
+| issue_eol | gpt | C0_allb1_eol_rep1 | live | C0 | allb1_eol | 10→10→10 | 6/0 | 비용 접근성 대응체계 돌봄강도 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | gpt | C0_allb1_eol_rep2 | live | C0 | allb1_eol | 11→11→11 | 6/0 | 비용 접근성 대응체계 돌봄강도 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | gpt | C0_allb1_eol_rep3 | live | C0 | allb1_eol | 10→10→10 | 6/0 | 비용 접근성 대응체계 돌봄강도 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | gpt | C0_lcons_eol_rep1 | live | C0 | lcons_eol | 6→6→6 | 0/5 | 비용 접근성 대응체계 공간 상담접근성 | 인애종합병원 | 정렬불명 |
+| issue_eol | gpt | C0_lcons_eol_rep2 | live | C0 | lcons_eol | 9→8→8 | 0/5 | 비용 대응체계 돌봄강도 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | gpt | C0_lcons_eol_rep3 | live | C0 | lcons_eol | 10→10→10 | 0/6 | 비용 접근성 대응체계 돌봄강도 공간 상담접근성 | 인애종합병원 | 정렬불명 |
+| issue_eol | gpt | C0_lprog_eol_rep1 | live | C0 | lprog_eol | 6→6→6 | 0/5 | 비용 접근성 대응체계 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | gpt | C0_lprog_eol_rep2 | live | C0 | lprog_eol | 10→10→10 | 0/6 | 비용 접근성 대응체계 돌봄강도 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | gpt | C0_lprog_eol_rep3 | live | C0 | lprog_eol | 10→10→10 | 0/6 | 비용 접근성 대응체계 돌봄강도 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | gpt | C0_wonchik_eol_rep1 | live | C0 | wonchik_eol | 8→8→6 | 0/4 | 대응체계 돌봄강도 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | gpt | C0_wonchik_eol_rep2 | live | C0 | wonchik_eol | 10→10→10 | 0/6 | 비용 접근성 대응체계 돌봄강도 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | gpt | C0_wonchik_eol_rep3 | live | C0 | wonchik_eol | 12→12→9 | 0/6 | 비용 접근성 대응체계 돌봄강도 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | gpt | C0_wonval_eol_rep1 | live | C0 | wonval_eol | 5→5→5 | 3/1 | 비용 접근성 대응체계 공간 | 인애종합병원 | 유지 |
+| issue_eol | gpt | C0_wonval_eol_rep2 | live | C0 | wonval_eol | 10→8→8 | 3/2 | 비용 접근성 대응체계 공간 상담접근성 | 인애종합병원 | 유지 |
+| issue_eol | gpt | C0_wonval_eol_rep3 | live | C0 | wonval_eol | 5→5→4 | 3/0 | 비용 접근성 대응체계 | 인애종합병원 | 유지 |
+| issue_eol | gpt | C0_wonvalb_eol_rep1 | live | C0 | wonvalb_eol | 8→7→7 | 2/3 | 비용 접근성 대응체계 공간 상담접근성 | 소망호스피스 | 유지 |
+| issue_eol | gpt | C0_wonvalb_eol_rep2 | live | C0 | wonvalb_eol | 9→9→9 | 3/3 | 비용 접근성 대응체계 돌봄강도 공간 상담접근성 | 소망호스피스 | 유지 |
+| issue_eol | gpt | C0_wonvalb_eol_rep3 | live | C0 | wonvalb_eol | 10→6→4 | 2/1 | 대응체계 공간 상담접근성 | 소망호스피스 | 유지 |
+| issue_eol | gpt | C2_wonval_eol_rep1 | live | C2 | wonval_eol | 5→5→4 | 3/0 | 비용 접근성 대응체계 | 인애종합병원 | 유지 |
+| issue_eol | gpt | C2_wonval_eol_rep2 | live | C2 | wonval_eol | 6→6→4 | 3/0 | 비용 접근성 대응체계 | 인애종합병원 | 유지 |
+| issue_eol | gpt | C2_wonval_eol_rep3 | live | C2 | wonval_eol | 9→9→9 | 3/3 | 비용 접근성 대응체계 돌봄강도 공간 상담접근성 | 소망호스피스 | ⚠뒤집힘 |
+| issue_eol | gpt | C2_wonvalb_eol_rep1 | live | C2 | wonvalb_eol | 9→9→9 | 3/3 | 비용 접근성 대응체계 돌봄강도 공간 상담접근성 | 소망호스피스 | 유지 |
+| issue_eol | gpt | C2_wonvalb_eol_rep2 | live | C2 | wonvalb_eol | 12→11→11 | 3/3 | 비용 접근성 대응체계 돌봄강도 공간 상담접근성 | 소망호스피스 | 유지 |
+| issue_eol | gpt | C2_wonvalb_eol_rep3 | live | C2 | wonvalb_eol | 8→6→6 | 2/2 | 비용 대응체계 공간 상담접근성 | 소망호스피스 | 유지 |
+| issue_eol | gpt | pbw_eol_wonchik_eol_rep1 | live | pbw_eol | wonchik_eol | 7→7→6 | 0/4 | 비용 대응체계 돌봄강도 공간 | 소망호스피스 | 정렬불명 |
+| issue_eol | gpt | pbw_eol_wonchik_eol_rep2 | live | pbw_eol | wonchik_eol | 11→11→9 | 0/6 | 비용 접근성 대응체계 돌봄강도 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | gpt | pbw_eol_wonchik_eol_rep3 | live | pbw_eol | wonchik_eol | 7→5→5 | 0/4 | 비용 대응체계 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | gpt | pxc_eol_lcons_eol_rep1 | live | pxc_eol | lcons_eol | 6→6→6 | 0/4 | 비용 접근성 대응체계 상담접근성 | 인애종합병원 | 정렬불명 |
+| issue_eol | gpt | pxc_eol_lcons_eol_rep2 | live | pxc_eol | lcons_eol | 9→9→9 | 0/6 | 비용 접근성 대응체계 돌봄강도 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | gpt | pxc_eol_lcons_eol_rep3 | live | pxc_eol | lcons_eol | 10→10→8 | 0/5 | 비용 접근성 대응체계 공간 상담접근성 | 인애종합병원 | 정렬불명 |
+| issue_eol | gpt | pxp_eol_lprog_eol_rep1 | live | pxp_eol | lprog_eol | 11→10→10 | 0/6 | 비용 접근성 대응체계 돌봄강도 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | gpt | pxp_eol_lprog_eol_rep2 | live | pxp_eol | lprog_eol | 8→8→8 | 0/5 | 비용 접근성 대응체계 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_eol | gpt | pxp_eol_lprog_eol_rep3 | live | pxp_eol | lprog_eol | 6→6→7 | 0/6 | 비용 접근성 대응체계 돌봄강도 공간 상담접근성 | 소망호스피스 | 정렬불명 |
+| issue_euthanasia | gpt | C0_allb1_euthanasia_rep1 | live | C0 | allb1_euthanasia | 2→1→1 | 1/0 | 비용 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gpt | C0_allb1_euthanasia_rep2 | live | C0 | allb1_euthanasia | 2→1→1 | 1/0 | 비용 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gpt | C0_allb1_euthanasia_rep3 | live | C0 | allb1_euthanasia | 3→1→0 | 0/0 | (전멸) | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gpt | C0_lcons_euthanasia_rep1 | live | C0 | lcons_euthanasia | 2→2→2 | 0/2 | 비용 케어방식 | 원래 보호소 | 정렬불명 |
+| issue_euthanasia | gpt | C0_lcons_euthanasia_rep2 | live | C0 | lcons_euthanasia | 3→3→3 | 0/2 | 비용 케어방식 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gpt | C0_lcons_euthanasia_rep3 | live | C0 | lcons_euthanasia | 2→2→2 | 0/2 | 비용 케어방식 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gpt | C0_lprog_euthanasia_rep1 | live | C0 | lprog_euthanasia | 2→2→2 | 0/2 | 비용 케어방식 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gpt | C0_lprog_euthanasia_rep2 | live | C0 | lprog_euthanasia | 1→1→1 | 0/1 | 케어방식 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gpt | C0_lprog_euthanasia_rep3 | live | C0 | lprog_euthanasia | 4→4→4 | 0/3 | 비용 접근성 케어방식 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gpt | C0_wonchik_euthanasia_rep1 | live | C0 | wonchik_euthanasia | 3→2→1 | 0/1 | 케어방식 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gpt | C0_wonchik_euthanasia_rep2 | live | C0 | wonchik_euthanasia | 2→1→1 | 0/1 | 케어방식 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gpt | C0_wonchik_euthanasia_rep3 | live | C0 | wonchik_euthanasia | 3→3→3 | 0/3 | 비용 이용사례 케어방식 | 원래 보호소 | 정렬불명 |
+| issue_euthanasia | gpt | C0_wonval_euthanasia_rep1 | live | C0 | wonval_euthanasia | 5→4→4 | 2/1 | 비용 이용사례 케어방식 | 원래 보호소 | 유지 |
+| issue_euthanasia | gpt | C0_wonval_euthanasia_rep2 | live | C0 | wonval_euthanasia | 1→2→2 | 1/1 | 이용사례 케어방식 | 원래 보호소 | 유지 |
+| issue_euthanasia | gpt | C0_wonval_euthanasia_rep3 | live | C0 | wonval_euthanasia | 3→3→3 | 2/1 | 비용 이용사례 케어방식 | 원래 보호소 | 유지 |
+| issue_euthanasia | gpt | C0_wonvalb_euthanasia_rep1 | live | C0 | wonvalb_euthanasia | 3→2→2 | 1/1 | 접근성 입양연계 | 임시보호 전문 단체 | 유지 |
+| issue_euthanasia | gpt | C0_wonvalb_euthanasia_rep2 | live | C0 | wonvalb_euthanasia | 4→3→3 | 2/1 | 비용 케어방식 입양연계 | 임시보호 전문 단체 | 유지 |
+| issue_euthanasia | gpt | C0_wonvalb_euthanasia_rep3 | live | C0 | wonvalb_euthanasia | 3→2→0 | 0/0 | (전멸) | 임시보호 전문 단체 | 유지 |
+| issue_euthanasia | gpt | C2_wonval_euthanasia_rep1 | live | C2 | wonval_euthanasia | 1→1→0 | 0/0 | (전멸) | 원래 보호소 | 유지 |
+| issue_euthanasia | gpt | C2_wonval_euthanasia_rep2 | live | C2 | wonval_euthanasia | 3→2→2 | 1/1 | 비용 케어방식 | 원래 보호소 | 유지 |
+| issue_euthanasia | gpt | C2_wonval_euthanasia_rep3 | live | C2 | wonval_euthanasia | 3→3→3 | 2/1 | 비용 접근성 케어방식 | 원래 보호소 | 유지 |
+| issue_euthanasia | gpt | C2_wonvalb_euthanasia_rep1 | live | C2 | wonvalb_euthanasia | 2→1→1 | 1/0 | 케어방식 | 임시보호 전문 단체 | 유지 |
+| issue_euthanasia | gpt | C2_wonvalb_euthanasia_rep2 | live | C2 | wonvalb_euthanasia | 3→3→3 | 1/2 | 비용 이용사례 케어방식 | 임시보호 전문 단체 | 유지 |
+| issue_euthanasia | gpt | C2_wonvalb_euthanasia_rep3 | live | C2 | wonvalb_euthanasia | 4→3→3 | 2/1 | 이용사례 케어방식 입양연계 | 임시보호 전문 단체 | 유지 |
+| issue_euthanasia | gpt | pbw_euthanasia_wonchik_euthanasia_rep1 | live | pbw_euthanasia | wonchik_euthanasia | 2→1→1 | 0/1 | 케어방식 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gpt | pbw_euthanasia_wonchik_euthanasia_rep2 | live | pbw_euthanasia | wonchik_euthanasia | 3→2→2 | 0/2 | 비용 케어방식 | 임시보호 전문 단체 | 정렬불명 |
+| issue_euthanasia | gpt | pbw_euthanasia_wonchik_euthanasia_rep3 | live | pbw_euthanasia | wonchik_euthanasia | 3→3→3 | 0/3 | 비용 이용사례 케어방식 | 임시보호 전문 단체 | 정렬불명 |
+| issue_examaccom | gpt | C0_allb1_examaccom_rep1 | live | C0 | allb1_examaccom | 4→4→4 | 3/0 | 예측가능성 이용사례 유연성 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gpt | C0_allb1_examaccom_rep2 | live | C0 | allb1_examaccom | 4→4→4 | 3/0 | 이용사례 개별반영도 행정부담 | 개별 맞춤 지원팀 | 정렬불명 |
+| issue_examaccom | gpt | C0_allb1_examaccom_rep3 | live | C0 | allb1_examaccom | 5→5→5 | 3/0 | 예측가능성 이용사례 행정부담 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gpt | C0_lcons_examaccom_rep1 | live | C0 | lcons_examaccom | 3→2→2 | 0/2 | 예측가능성 이용사례 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gpt | C0_lcons_examaccom_rep2 | live | C0 | lcons_examaccom | 3→3→2 | 0/2 | 예측가능성 이용사례 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gpt | C0_lcons_examaccom_rep3 | live | C0 | lcons_examaccom | 3→3→3 | 0/3 | 예측가능성 이용사례 개별반영도 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gpt | C0_lprog_examaccom_rep1 | live | C0 | lprog_examaccom | 6→6→4 | 0/4 | 예측가능성 이용사례 유연성 개별반영도 | 개별 맞춤 지원팀 | 정렬불명 |
+| issue_examaccom | gpt | C0_lprog_examaccom_rep2 | live | C0 | lprog_examaccom | 5→4→4 | 0/3 | 예측가능성 이용사례 유연성 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gpt | C0_lprog_examaccom_rep3 | live | C0 | lprog_examaccom | 2→2→1 | 0/1 | 이용사례 | 개별 맞춤 지원팀 | 정렬불명 |
+| issue_examaccom | gpt | C0_wonchik_examaccom_rep1 | live | C0 | wonchik_examaccom | 4→2→2 | 0/2 | 예측가능성 이용사례 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gpt | C0_wonchik_examaccom_rep2 | live | C0 | wonchik_examaccom | 3→2→1 | 0/1 | 예측가능성 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gpt | C0_wonchik_examaccom_rep3 | live | C0 | wonchik_examaccom | 3→2→2 | 0/2 | 예측가능성 이용사례 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gpt | C0_wonval_examaccom_rep1 | live | C0 | wonval_examaccom | 3→3→3 | 2/1 | 예측가능성 이용사례 개별반영도 | 표준 학사지원팀 | 유지 |
+| issue_examaccom | gpt | C0_wonval_examaccom_rep2 | live | C0 | wonval_examaccom | 4→4→4 | 2/1 | 예측가능성 이용사례 개별반영도 | 표준 학사지원팀 | 유지 |
+| issue_examaccom | gpt | C0_wonval_examaccom_rep3 | live | C0 | wonval_examaccom | 3→3→3 | 2/0 | 예측가능성 이용사례 | 표준 학사지원팀 | 유지 |
+| issue_examaccom | gpt | C0_wonvalb_examaccom_rep1 | live | C0 | wonvalb_examaccom | 2→1→1 | 1/0 | 유연성 | 표준 학사지원팀 | ⚠뒤집힘 |
+| issue_examaccom | gpt | C0_wonvalb_examaccom_rep2 | live | C0 | wonvalb_examaccom | 4→4→4 | 2/2 | 예측가능성 이용사례 유연성 개별반영도 | 개별 맞춤 지원팀 | 유지 |
+| issue_examaccom | gpt | C0_wonvalb_examaccom_rep3 | live | C0 | wonvalb_examaccom | 5→2→1 | 1/0 | 유연성 | 표준 학사지원팀 | ⚠뒤집힘 |
+| issue_examaccom | gpt | C2_wonval_examaccom_rep1 | live | C2 | wonval_examaccom | 4→4→4 | 2/2 | 예측가능성 이용사례 개별반영도 행정부담 | 표준 학사지원팀 | 유지 |
+| issue_examaccom | gpt | C2_wonval_examaccom_rep2 | live | C2 | wonval_examaccom | 3→2→2 | 2/0 | 예측가능성 이용사례 | 표준 학사지원팀 | 유지 |
+| issue_examaccom | gpt | C2_wonval_examaccom_rep3 | live | C2 | wonval_examaccom | 4→3→2 | 1/0 | 이용사례 | 표준 학사지원팀 | 유지 |
+| issue_examaccom | gpt | C2_wonvalb_examaccom_rep1 | live | C2 | wonvalb_examaccom | 4→2→2 | 1/1 | 이용사례 유연성 | 표준 학사지원팀 | ⚠뒤집힘 |
+| issue_examaccom | gpt | C2_wonvalb_examaccom_rep2 | live | C2 | wonvalb_examaccom | 4→2→2 | 1/1 | 이용사례 유연성 | 표준 학사지원팀 | ⚠뒤집힘 |
+| issue_examaccom | gpt | C2_wonvalb_examaccom_rep3 | live | C2 | wonvalb_examaccom | 5→5→5 | 1/2 | 예측가능성 이용사례 유연성 | 개별 맞춤 지원팀 | 유지 |
+| issue_examaccom | gpt | pbw_examaccom_wonchik_examaccom_rep1 | live | pbw_examaccom | wonchik_examaccom | 3→2→1 | 0/1 | 예측가능성 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gpt | pbw_examaccom_wonchik_examaccom_rep2 | live | pbw_examaccom | wonchik_examaccom | 6→5→4 | 0/3 | 예측가능성 이용사례 행정부담 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gpt | pbw_examaccom_wonchik_examaccom_rep3 | live | pbw_examaccom | wonchik_examaccom | 2→2→1 | 0/1 | 이용사례 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gpt | pxc_examaccom_lcons_examaccom_rep1 | live | pxc_examaccom | lcons_examaccom | 4→4→4 | 0/4 | 예측가능성 이용사례 유연성 개별반영도 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gpt | pxc_examaccom_lcons_examaccom_rep2 | live | pxc_examaccom | lcons_examaccom | 3→3→3 | 0/3 | 예측가능성 이용사례 유연성 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gpt | pxc_examaccom_lcons_examaccom_rep3 | live | pxc_examaccom | lcons_examaccom | 3→3→3 | 0/3 | 예측가능성 이용사례 개별반영도 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gpt | pxp_examaccom_lprog_examaccom_rep1 | live | pxp_examaccom | lprog_examaccom | 6→6→6 | 0/4 | 예측가능성 이용사례 유연성 개별반영도 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gpt | pxp_examaccom_lprog_examaccom_rep2 | live | pxp_examaccom | lprog_examaccom | 4→4→4 | 0/4 | 예측가능성 이용사례 유연성 개별반영도 | 표준 학사지원팀 | 정렬불명 |
+| issue_examaccom | gpt | pxp_examaccom_lprog_examaccom_rep3 | live | pxp_examaccom | lprog_examaccom | 3→1→1 | 0/1 | 개별반영도 | 개별 맞춤 지원팀 | 정렬불명 |
+| issue_floor_noise | gpt | C0_all_floor_noise_rep1 | live | C0 | all_floor_noise | 6→4→4 | 4/0 | 귀가생활 아동활동 취침준비 저녁수면 | 지금처럼 밤부터 정숙 | 정렬불명 |
+| issue_floor_noise | gpt | C0_all_floor_noise_rep2 | live | C0 | all_floor_noise | 5→4→4 | 3/0 | 취침준비 알람청취 근무연속 | 지금처럼 밤부터 정숙 | 정렬불명 |
+| issue_floor_noise | gpt | C0_all_floor_noise_rep3 | live | C0 | all_floor_noise | 6→6→6 | 6/0 | 귀가생활 아동활동 취침준비 저녁수면 알람청취 근무연속 | 지금처럼 밤부터 정숙 | 정렬불명 |
+| issue_garden_plot | gpt | C0_all_garden_plot_rep1 | live | C0 | all_garden_plot | 7→7→4 | 4/0 | 물대기 맡아온일 돌봄약속 일나눔 | 옆 구획 사용자에게 | 정렬불명 |
+| issue_garden_plot | gpt | C0_all_garden_plot_rep2 | live | C0 | all_garden_plot | 6→5→5 | 3/0 | 물대기 맡아온일 다니는품 | 옆 구획 사용자에게 | 정렬불명 |
+| issue_garden_plot | gpt | C0_all_garden_plot_rep3 | live | C0 | all_garden_plot | 4→4→4 | 3/0 | 물대기 맡아온일 일나눔 | 옆 구획 사용자에게 | 정렬불명 |
+| issue_parentalreturn | gpt | C0_allb1_parental_rep1 | live | C0 | allb1_parental | 4→3→3 | 3/0 | 응대속도 성장기회 적응지원 | 다른 업무팀 | 정렬불명 |
+| issue_parentalreturn | gpt | C0_allb1_parental_rep2 | live | C0 | allb1_parental | 6→4→4 | 4/0 | 숙련도 응대속도 성장기회 적응지원 | 다른 업무팀 | 정렬불명 |
+| issue_parentalreturn | gpt | C0_allb1_parental_rep3 | live | C0 | allb1_parental | 5→3→3 | 3/0 | 숙련도 성장기회 적응지원 | 다른 업무팀 | 정렬불명 |
+| issue_parentalreturn | gpt | C0_lcons_parentalreturn_rep1 | live | C0 | lcons_parentalreturn | 3→2→1 | 0/1 | 적응지원 | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gpt | C0_lcons_parentalreturn_rep2 | live | C0 | lcons_parentalreturn | 3→2→2 | 0/2 | 숙련도 적응지원 | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gpt | C0_lcons_parentalreturn_rep3 | live | C0 | lcons_parentalreturn | 3→3→3 | 0/3 | 숙련도 응대속도 적응지원 | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gpt | C0_lprog_parentalreturn_rep1 | live | C0 | lprog_parentalreturn | 3→2→2 | 0/2 | 성장기회 적응지원 | 다른 업무팀 | 정렬불명 |
+| issue_parentalreturn | gpt | C0_lprog_parentalreturn_rep2 | live | C0 | lprog_parentalreturn | 4→3→3 | 0/3 | 성장기회 적응지원 승진반영 | 다른 업무팀 | 정렬불명 |
+| issue_parentalreturn | gpt | C0_lprog_parentalreturn_rep3 | live | C0 | lprog_parentalreturn | 3→3→3 | 0/3 | 성장기회 적응지원 승진반영 | 다른 업무팀 | 정렬불명 |
+| issue_parentalreturn | gpt | C0_wonchik_parentalreturn_rep1 | live | C0 | wonchik_parentalreturn | 1→0→0 | 0/0 | (전멸) | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gpt | C0_wonchik_parentalreturn_rep2 | live | C0 | wonchik_parentalreturn | 2→1→0 | 0/0 | (전멸) | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gpt | C0_wonchik_parentalreturn_rep3 | live | C0 | wonchik_parentalreturn | 3→2→0 | 0/0 | (전멸) | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gpt | C0_wonval_parentalreturn_rep1 | live | C0 | wonval_parentalreturn | 1→0→0 | 0/0 | (전멸) | 원래 업무팀 | 유지 |
+| issue_parentalreturn | gpt | C0_wonval_parentalreturn_rep2 | live | C0 | wonval_parentalreturn | 2→1→0 | 0/0 | (전멸) | 원래 업무팀 | 유지 |
+| issue_parentalreturn | gpt | C0_wonval_parentalreturn_rep3 | live | C0 | wonval_parentalreturn | 3→1→0 | 0/0 | (전멸) | 원래 업무팀 | 유지 |
+| issue_parentalreturn | gpt | C0_wonvalb_parentalreturn_rep1 | live | C0 | wonvalb_parentalreturn | 5→4→4 | 3/0 | 성장기회 적응지원 승진반영 | 다른 업무팀 | 유지 |
+| issue_parentalreturn | gpt | C0_wonvalb_parentalreturn_rep2 | live | C0 | wonvalb_parentalreturn | 4→3→3 | 2/1 | 응대속도 성장기회 적응지원 | 다른 업무팀 | 유지 |
+| issue_parentalreturn | gpt | C0_wonvalb_parentalreturn_rep3 | live | C0 | wonvalb_parentalreturn | 4→2→2 | 2/0 | 성장기회 적응지원 | 다른 업무팀 | 유지 |
+| issue_parentalreturn | gpt | C2_wonval_parentalreturn_rep1 | live | C2 | wonval_parentalreturn | 3→3→1 | 1/0 | 응대속도 | 원래 업무팀 | 유지 |
+| issue_parentalreturn | gpt | C2_wonval_parentalreturn_rep2 | live | C2 | wonval_parentalreturn | 2→2→2 | 2/0 | 숙련도 응대속도 | 원래 업무팀 | 유지 |
+| issue_parentalreturn | gpt | C2_wonval_parentalreturn_rep3 | live | C2 | wonval_parentalreturn | 3→1→0 | 0/0 | (전멸) | 원래 업무팀 | 유지 |
+| issue_parentalreturn | gpt | C2_wonvalb_parentalreturn_rep1 | live | C2 | wonvalb_parentalreturn | 4→0→0 | 0/0 | (전멸) | 원래 업무팀 | ⚠뒤집힘 |
+| issue_parentalreturn | gpt | C2_wonvalb_parentalreturn_rep2 | live | C2 | wonvalb_parentalreturn | 4→3→2 | 2/0 | 성장기회 적응지원 | 다른 업무팀 | 유지 |
+| issue_parentalreturn | gpt | C2_wonvalb_parentalreturn_rep3 | live | C2 | wonvalb_parentalreturn | 4→2→2 | 2/0 | 성장기회 적응지원 | 다른 업무팀 | 유지 |
+| issue_parentalreturn | gpt | pbw_parentalreturn_wonchik_parentalreturn_rep1 | live | pbw_parentalreturn | wonchik_parentalreturn | 5→1→1 | 0/1 | 적응지원 | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gpt | pbw_parentalreturn_wonchik_parentalreturn_rep2 | live | pbw_parentalreturn | wonchik_parentalreturn | 2→2→1 | 0/1 | 적응지원 | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gpt | pbw_parentalreturn_wonchik_parentalreturn_rep3 | live | pbw_parentalreturn | wonchik_parentalreturn | 2→1→1 | 0/1 | 숙련도 | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gpt | pxc_parentalreturn_lcons_parentalreturn_rep1 | live | pxc_parentalreturn | lcons_parentalreturn | 3→2→1 | 0/1 | 응대속도 | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gpt | pxc_parentalreturn_lcons_parentalreturn_rep2 | live | pxc_parentalreturn | lcons_parentalreturn | 2→2→2 | 0/2 | 성장기회 적응지원 | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gpt | pxc_parentalreturn_lcons_parentalreturn_rep3 | live | pxc_parentalreturn | lcons_parentalreturn | 2→1→1 | 0/1 | 응대속도 | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gpt | pxp_parentalreturn_lprog_parentalreturn_rep1 | live | pxp_parentalreturn | lprog_parentalreturn | 6→0→0 | 0/0 | (전멸) | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gpt | pxp_parentalreturn_lprog_parentalreturn_rep2 | live | pxp_parentalreturn | lprog_parentalreturn | 3→3→0 | 0/0 | (전멸) | 원래 업무팀 | 정렬불명 |
+| issue_parentalreturn | gpt | pxp_parentalreturn_lprog_parentalreturn_rep3 | live | pxp_parentalreturn | lprog_parentalreturn | 4→4→3 | 0/3 | 성장기회 적응지원 승진반영 | 다른 업무팀 | 정렬불명 |
+| issue_recycling_room | gpt | C0_all_recycling_room_rep1 | live | C0 | all_recycling_room | 5→5→4 | 4/0 | 접근성 이동권 안전 위생 | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gpt | C0_all_recycling_room_rep2 | live | C0 | all_recycling_room | 5→5→4 | 4/0 | 접근성 이동권 평온 위생 | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gpt | C0_all_recycling_room_rep3 | live | C0 | all_recycling_room | 4→4→4 | 4/0 | 접근성 평온 안전 위생 | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gpt | C0_lcons_recycling_room_rep1 | live | C0 | lcons_recycling_room | 3→3→3 | 0/3 | 평온 안전 위생 | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gpt | C0_lcons_recycling_room_rep2 | live | C0 | lcons_recycling_room | 4→3→3 | 0/3 | 평온 안전 위생 | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gpt | C0_lcons_recycling_room_rep3 | live | C0 | lcons_recycling_room | 5→3→3 | 0/3 | 평온 안전 위생 | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gpt | C0_lprog_recycling_room_rep1 | live | C0 | lprog_recycling_room | 5→5→4 | 0/4 | 접근성 이동권 평온 위생 | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gpt | C0_lprog_recycling_room_rep2 | live | C0 | lprog_recycling_room | 6→2→1 | 0/1 | 접근성 | 밤에도 열어 둠 | 정렬불명 |
+| issue_recycling_room | gpt | C0_lprog_recycling_room_rep3 | live | C0 | lprog_recycling_room | 5→3→3 | 0/3 | 접근성 평온 안전 | 밤에도 열어 둠 | 정렬불명 |
+| issue_recycling_room | gpt | C0_wonchik_recycling_room_rep1 | live | C0 | wonchik_recycling_room | 3→0→0 | 0/0 | (전멸) | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gpt | C0_wonchik_recycling_room_rep2 | live | C0 | wonchik_recycling_room | 2→2→2 | 0/2 | 평온 위생 | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gpt | C0_wonchik_recycling_room_rep3 | live | C0 | wonchik_recycling_room | 4→2→1 | 0/1 | 안전 | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gpt | C0_wonval_recycling_room_rep1 | live | C0 | wonval_recycling_room | 7→6→4 | 1/3 | 접근성 평온 안전 위생 | 밤 열 시 마감 | ⚠뒤집힘 |
+| issue_recycling_room | gpt | C0_wonval_recycling_room_rep2 | live | C0 | wonval_recycling_room | 6→4→3 | 2/1 | 접근성 이동권 평온 | 밤 열 시 마감 | ⚠뒤집힘 |
+| issue_recycling_room | gpt | C0_wonval_recycling_room_rep3 | live | C0 | wonval_recycling_room | 5→4→1 | 0/1 | 위생 | 밤 열 시 마감 | ⚠뒤집힘 |
+| issue_recycling_room | gpt | C0_wonvalb_recycling_room_rep1 | live | C0 | wonvalb_recycling_room | 5→5→4 | 3/1 | 이동권 평온 안전 위생 | 밤 열 시 마감 | 유지 |
+| issue_recycling_room | gpt | C0_wonvalb_recycling_room_rep2 | live | C0 | wonvalb_recycling_room | 5→3→3 | 2/1 | 접근성 평온 위생 | 밤 열 시 마감 | 유지 |
+| issue_recycling_room | gpt | C0_wonvalb_recycling_room_rep3 | live | C0 | wonvalb_recycling_room | 3→1→1 | 1/0 | 평온 | 밤 열 시 마감 | 유지 |
+| issue_recycling_room | gpt | C2_wonval_recycling_room_rep1 | live | C2 | wonval_recycling_room | 2→2→2 | 2/0 | 접근성 편의 | 밤에도 열어 둠 | 유지 |
+| issue_recycling_room | gpt | C2_wonval_recycling_room_rep2 | live | C2 | wonval_recycling_room | 5→3→1 | 0/1 | 위생 | 밤 열 시 마감 | ⚠뒤집힘 |
+| issue_recycling_room | gpt | C2_wonval_recycling_room_rep3 | live | C2 | wonval_recycling_room | 3→2→2 | 0/2 | 평온 위생 | 밤 열 시 마감 | ⚠뒤집힘 |
+| issue_recycling_room | gpt | C2_wonvalb_recycling_room_rep1 | live | C2 | wonvalb_recycling_room | 7→2→2 | 0/2 | 접근성 이동권 | 밤에도 열어 둠 | ⚠뒤집힘 |
+| issue_recycling_room | gpt | C2_wonvalb_recycling_room_rep2 | live | C2 | wonvalb_recycling_room | 5→5→5 | 2/2 | 접근성 이동권 평온 안전 | 밤 열 시 마감 | 유지 |
+| issue_recycling_room | gpt | C2_wonvalb_recycling_room_rep3 | live | C2 | wonvalb_recycling_room | 4→2→1 | 1/0 | 평온 | 밤 열 시 마감 | 유지 |
+| issue_recycling_room | gpt | pbw_recycling_room_wonchik_recycling_room_rep1 | live | pbw_recycling_room | wonchik_recycling_room | 3→3→0 | 0/0 | (전멸) | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gpt | pbw_recycling_room_wonchik_recycling_room_rep2 | live | pbw_recycling_room | wonchik_recycling_room | 5→0→0 | 0/0 | (전멸) | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gpt | pbw_recycling_room_wonchik_recycling_room_rep3 | live | pbw_recycling_room | wonchik_recycling_room | 6→0→0 | 0/0 | (전멸) | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gpt | pxc_recycling_room_lcons_recycling_room_rep1 | live | pxc_recycling_room | lcons_recycling_room | 5→5→4 | 0/4 | 접근성 평온 안전 위생 | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gpt | pxc_recycling_room_lcons_recycling_room_rep2 | live | pxc_recycling_room | lcons_recycling_room | 6→6→6 | 0/4 | 이동권 평온 안전 위생 | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gpt | pxc_recycling_room_lcons_recycling_room_rep3 | live | pxc_recycling_room | lcons_recycling_room | 4→4→4 | 0/4 | 접근성 평온 안전 위생 | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gpt | pxp_recycling_room_lprog_recycling_room_rep1 | live | pxp_recycling_room | lprog_recycling_room | 4→4→4 | 0/4 | 접근성 이동권 평온 안전 | 밤에도 열어 둠 | 정렬불명 |
+| issue_recycling_room | gpt | pxp_recycling_room_lprog_recycling_room_rep2 | live | pxp_recycling_room | lprog_recycling_room | 3→3→3 | 0/3 | 접근성 안전 위생 | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room | gpt | pxp_recycling_room_lprog_recycling_room_rep3 | live | pxp_recycling_room | lprog_recycling_room | 3→2→2 | 0/2 | 접근성 평온 | 밤 열 시 마감 | 정렬불명 |
+| issue_recycling_room_party | gpt | C0_all_recycling_room_party_rep1 | live | C0 | all_recycling_room_party | 4→2→2 | 2/0 | 지나는데 해본일 | 밤에도 열어 둠 | 정렬불명 |
+| issue_recycling_room_party | gpt | C0_all_recycling_room_party_rep2 | live | C0 | all_recycling_room_party | 3→3→3 | 3/0 | 밤소리 지나는데 해본일 | 밤에도 열어 둠 | 정렬불명 |
+| issue_recycling_room_party | gpt | C0_all_recycling_room_party_rep3 | live | C0 | all_recycling_room_party | 8→3→3 | 3/0 | 밤소리 지나는데 해본일 | 지금 시간 그대로 | 정렬불명 |
+| issue_remotewatch | gpt | C0_allb1_remotewatch_rep1 | live | C0 | allb1_remotewatch | 4→4→3 | 3/0 | 이용사례 비용 정서교류 | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | gpt | C0_allb1_remotewatch_rep2 | live | C0 | allb1_remotewatch | 3→3→3 | 2/0 | 비용 정서교류 | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | gpt | C0_allb1_remotewatch_rep3 | live | C0 | allb1_remotewatch | 3→3→2 | 2/0 | 비용 정서교류 | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | gpt | C0_lcons_remotewatch_rep1 | live | C0 | lcons_remotewatch | 5→5→3 | 0/3 | 상시성 이용사례 비용 | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | gpt | C0_lcons_remotewatch_rep2 | live | C0 | lcons_remotewatch | 4→4→4 | 0/3 | 상시성 비용 정서교류 | 자원봉사자 방문 | 정렬불명 |
+| issue_remotewatch | gpt | C0_lcons_remotewatch_rep3 | live | C0 | lcons_remotewatch | 5→4→4 | 0/4 | 상시성 이용사례 전문성 비용 | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | gpt | C0_lprog_remotewatch_rep1 | live | C0 | lprog_remotewatch | 6→5→4 | 0/4 | 상시성 이용사례 비용 정서교류 | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | gpt | C0_lprog_remotewatch_rep2 | live | C0 | lprog_remotewatch | 4→4→3 | 0/3 | 상시성 이용사례 비용 | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | gpt | C0_lprog_remotewatch_rep3 | live | C0 | lprog_remotewatch | 5→4→4 | 0/4 | 상시성 이용사례 비용 정서교류 | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | gpt | C0_wonchik_remotewatch_rep1 | live | C0 | wonchik_remotewatch | 6→6→6 | 0/5 | 상시성 이용사례 비용 정서교류 타당성 | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | gpt | C0_wonchik_remotewatch_rep2 | live | C0 | wonchik_remotewatch | 4→4→2 | 0/2 | 비용 정서교류 | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | gpt | C0_wonchik_remotewatch_rep3 | live | C0 | wonchik_remotewatch | 5→3→1 | 0/1 | 상시성 | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | gpt | C0_wonval_remotewatch_rep1 | live | C0 | wonval_remotewatch | 7→6→6 | 3/2 | 상시성 이용사례 전문성 비용 정서교류 | 원격 모니터링 | 유지 |
+| issue_remotewatch | gpt | C0_wonval_remotewatch_rep2 | live | C0 | wonval_remotewatch | 5→4→4 | 2/2 | 상시성 이용사례 비용 정서교류 | 원격 모니터링 | 유지 |
+| issue_remotewatch | gpt | C0_wonval_remotewatch_rep3 | live | C0 | wonval_remotewatch | 4→4→1 | 1/0 | 상시성 | 원격 모니터링 | 유지 |
+| issue_remotewatch | gpt | C0_wonvalb_remotewatch_rep1 | live | C0 | wonvalb_remotewatch | 4→4→3 | 2/1 | 상시성 비용 정서교류 | 자원봉사자 방문 | 유지 |
+| issue_remotewatch | gpt | C0_wonvalb_remotewatch_rep2 | live | C0 | wonvalb_remotewatch | 5→3→2 | 1/1 | 상시성 비용 | 원격 모니터링 | ⚠뒤집힘 |
+| issue_remotewatch | gpt | C0_wonvalb_remotewatch_rep3 | live | C0 | wonvalb_remotewatch | 6→5→4 | 2/1 | 상시성 비용 정서교류 | 자원봉사자 방문 | 유지 |
+| issue_remotewatch | gpt | C2_wonval_remotewatch_rep1 | live | C2 | wonval_remotewatch | 6→4→3 | 2/1 | 상시성 이용사례 비용 | 원격 모니터링 | 유지 |
+| issue_remotewatch | gpt | C2_wonval_remotewatch_rep2 | live | C2 | wonval_remotewatch | 6→4→3 | 2/1 | 상시성 이용사례 비용 | 원격 모니터링 | 유지 |
+| issue_remotewatch | gpt | C2_wonval_remotewatch_rep3 | live | C2 | wonval_remotewatch | 3→2→2 | 2/0 | 상시성 이용사례 | 원격 모니터링 | 유지 |
+| issue_remotewatch | gpt | C2_wonvalb_remotewatch_rep1 | live | C2 | wonvalb_remotewatch | 4→4→4 | 2/1 | 상시성 비용 정서교류 | 자원봉사자 방문 | 유지 |
+| issue_remotewatch | gpt | C2_wonvalb_remotewatch_rep2 | live | C2 | wonvalb_remotewatch | 5→3→3 | 1/2 | 상시성 이용사례 비용 | 원격 모니터링 | ⚠뒤집힘 |
+| issue_remotewatch | gpt | C2_wonvalb_remotewatch_rep3 | live | C2 | wonvalb_remotewatch | 5→2→2 | 2/0 | 비용 정서교류 | 자원봉사자 방문 | 유지 |
+| issue_remotewatch | gpt | pbw_remotewatch_wonchik_remotewatch_rep1 | live | pbw_remotewatch | wonchik_remotewatch | 4→3→2 | 0/2 | 상시성 이용사례 | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | gpt | pbw_remotewatch_wonchik_remotewatch_rep2 | live | pbw_remotewatch | wonchik_remotewatch | 3→1→1 | 0/1 | 상시성 | 원격 모니터링 | 정렬불명 |
+| issue_remotewatch | gpt | pbw_remotewatch_wonchik_remotewatch_rep3 | live | pbw_remotewatch | wonchik_remotewatch | 6→6→6 | 0/5 | 상시성 이용사례 비용 정서교류 타당성 | 원격 모니터링 | 정렬불명 |
+| issue_restaurant_anniversary | gpt | C0_all_r_anniversary_rep1 | live | C0 | all_r_anniversary | 10→10→10 | 6/0 | 코스구성 전문서비스 발렛편의 가격 소요시간 디저트옵션 | 스페셜나잇 | 정렬불명 |
+| issue_restaurant_anniversary | gpt | C0_all_r_anniversary_rep2 | live | C0 | all_r_anniversary | 9→8→8 | 5/0 | 전문서비스 발렛편의 가격 소요시간 디저트옵션 | 스페셜나잇 | 정렬불명 |
+| issue_restaurant_anniversary | gpt | C0_all_r_anniversary_rep3 | live | C0 | all_r_anniversary | 10→10→10 | 6/0 | 코스구성 전문서비스 발렛편의 가격 소요시간 디저트옵션 | 스페셜나잇 | 정렬불명 |
+| issue_restaurant_biz_meeting | gpt | C0_all_r_biz_meeting_rep1 | live | C0 | all_r_biz_meeting | 12→12→12 | 6/0 | 신속함 가격 업무환경 조용함 자리보장 접근성 | 비즈런치 | 정렬불명 |
+| issue_restaurant_biz_meeting | gpt | C0_all_r_biz_meeting_rep2 | live | C0 | all_r_biz_meeting | 12→12→11 | 6/0 | 신속함 가격 업무환경 조용함 자리보장 접근성 | 비즈런치 | 정렬불명 |
+| issue_restaurant_biz_meeting | gpt | C0_all_r_biz_meeting_rep3 | live | C0 | all_r_biz_meeting | 11→11→11 | 6/0 | 신속함 가격 업무환경 조용함 자리보장 접근성 | 비즈런치 | 정렬불명 |
+| issue_restaurant_brunch | gpt | C0_all_r_brunch_rep1 | live | C0 | all_r_brunch | 9→9→9 | 6/0 | 메뉴다양성 인테리어 커피디저트 가격 접근성 이용시간자유 | 모닝테이블 | 정렬불명 |
+| issue_restaurant_brunch | gpt | C0_all_r_brunch_rep2 | live | C0 | all_r_brunch | 7→7→7 | 6/0 | 메뉴다양성 인테리어 커피디저트 가격 접근성 이용시간자유 | 모닝테이블 | 정렬불명 |
+| issue_restaurant_brunch | gpt | C0_all_r_brunch_rep3 | live | C0 | all_r_brunch | 10→8→7 | 5/0 | 인테리어 커피디저트 가격 접근성 이용시간자유 | 모닝테이블 | 정렬불명 |
+| issue_restaurant_date | gpt | C0_all_r_date_rep1 | live | C0 | all_r_date | 9→5→5 | 5/0 | 분위기 그날차림 프라이버시 가격 접근성 | 온식당 | 정렬불명 |
+| issue_restaurant_date | gpt | C0_all_r_date_rep2 | live | C0 | all_r_date | 9→8→8 | 5/0 | 분위기 그날차림 프라이버시 가격 접근성 | 온식당 | 정렬불명 |
+| issue_restaurant_date | gpt | C0_all_r_date_rep3 | live | C0 | all_r_date | 9→9→8 | 5/0 | 분위기 그날차림 프라이버시 가격 접근성 | 온식당 | 정렬불명 |
+| issue_restaurant_elders | gpt | C0_all_r_elders_rep1 | live | C0 | all_r_elders | 10→10→10 | 6/0 | 이동편의 차림읽기 신속함 가격 상차림 룸조용함 | 담채 | 정렬불명 |
+| issue_restaurant_elders | gpt | C0_all_r_elders_rep2 | live | C0 | all_r_elders | 7→7→7 | 5/0 | 이동편의 신속함 가격 상차림 룸조용함 | 약초식당 | 정렬불명 |
+| issue_restaurant_elders | gpt | C0_all_r_elders_rep3 | live | C0 | all_r_elders | 9→9→9 | 6/0 | 이동편의 차림읽기 신속함 가격 상차림 룸조용함 | 약초식당 | 정렬불명 |
+| issue_restaurant_kids | gpt | C0_all_r_kids_rep1 | live | C0 | all_r_kids | 11→11→11 | 6/0 | 가격 간 앉을자리 놀거리 치우기 신속함 | 소반 | 정렬불명 |
+| issue_restaurant_kids | gpt | C0_all_r_kids_rep2 | live | C0 | all_r_kids | 10→10→10 | 6/0 | 가격 간 앉을자리 놀거리 치우기 신속함 | 초록마루 | 정렬불명 |
+| issue_restaurant_kids | gpt | C0_all_r_kids_rep3 | live | C0 | all_r_kids | 9→9→9 | 6/0 | 가격 간 앉을자리 놀거리 치우기 신속함 | 소반 | 정렬불명 |
+| issue_restaurant_office_lunch | gpt | C0_all_r_office_lunch_rep1 | live | C0 | all_r_office_lunch | 9→9→9 | 6/0 | 가격 신속함 접근성 단체수용 메뉴다양성 셈나누기 | 밀밭 | 정렬불명 |
+| issue_restaurant_office_lunch | gpt | C0_all_r_office_lunch_rep2 | live | C0 | all_r_office_lunch | 9→10→9 | 5/0 | 가격 신속함 접근성 단체수용 셈나누기 | 밀밭 | 정렬불명 |
+| issue_restaurant_office_lunch | gpt | C0_all_r_office_lunch_rep3 | live | C0 | all_r_office_lunch | 7→7→5 | 3/0 | 가격 접근성 셈나누기 | 밀밭 | 정렬불명 |
+| issue_restaurant_sanggyeollye | gpt | C0_all_r_sanggyeollye_rep1 | live | C0 | all_r_sanggyeollye | 7→7→7 | 6/0 | 격식 프라이버시 서비스품질 가격 접근성 앉을자리 | 송림원 | 정렬불명 |
+| issue_restaurant_sanggyeollye | gpt | C0_all_r_sanggyeollye_rep2 | live | C0 | all_r_sanggyeollye | 10→10→10 | 6/0 | 격식 프라이버시 서비스품질 가격 접근성 앉을자리 | 송림원 | 정렬불명 |
+| issue_restaurant_sanggyeollye | gpt | C0_all_r_sanggyeollye_rep3 | live | C0 | all_r_sanggyeollye | 8→8→8 | 6/0 | 격식 프라이버시 서비스품질 가격 접근성 앉을자리 | 송림원 | 정렬불명 |
+| issue_restaurant_sogaeting | gpt | C0_all_r_sogaeting_rep1 | live | C0 | all_r_sogaeting | 11→11→11 | 6/0 | 가격 접근성 마주앉기 프라이버시 메뉴다양성 영업시간 | 우드테이블 | 정렬불명 |
+| issue_restaurant_sogaeting | gpt | C0_all_r_sogaeting_rep2 | live | C0 | all_r_sogaeting | 12→9→9 | 6/0 | 가격 접근성 마주앉기 프라이버시 메뉴다양성 영업시간 | 우드테이블 | 정렬불명 |
+| issue_restaurant_sogaeting | gpt | C0_all_r_sogaeting_rep3 | live | C0 | all_r_sogaeting | 5→5→5 | 5/0 | 가격 접근성 마주앉기 프라이버시 영업시간 | 우드테이블 | 정렬불명 |
+| issue_restaurant_solo | gpt | C0_all_r_solo_rep1 | live | C0 | all_r_solo | 6→6→4 | 2/0 | 배부름 영업시간 | 순대국밥집 | 정렬불명 |
+| issue_restaurant_solo | gpt | C0_all_r_solo_rep2 | live | C0 | all_r_solo | 7→6→5 | 4/0 | 배부름 영업시간 메뉴다양성 신속함 | 순대국밥집 | 정렬불명 |
+| issue_restaurant_solo | gpt | C0_all_r_solo_rep3 | live | C0 | all_r_solo | 9→7→6 | 4/0 | 배부름 영업시간 메뉴다양성 신속함 | 순대국밥집 | 정렬불명 |
+| issue_shelter | gpt | C0_allb1_shelter_rep1 | live | C0 | allb1_shelter | 2→2→2 | 2/0 | 접근성 완충방법 | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gpt | C0_allb1_shelter_rep2 | live | C0 | allb1_shelter | 6→4→4 | 4/0 | 접근성 관계형성 전문성 완충방법 | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gpt | C0_allb1_shelter_rep3 | live | C0 | allb1_shelter | 2→2→2 | 2/0 | 관계형성 완충방법 | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gpt | C0_lcons_shelter_rep1 | live | C0 | lcons_shelter | 4→4→4 | 0/4 | 접근성 관계형성 응대속도 전문성 | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gpt | C0_lcons_shelter_rep2 | live | C0 | lcons_shelter | 3→1→2 | 0/2 | 접근성 응대속도 | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gpt | C0_lcons_shelter_rep3 | live | C0 | lcons_shelter | 3→2→0 | 0/0 | (전멸) | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gpt | C0_lprog_shelter_rep1 | live | C0 | lprog_shelter | 4→3→3 | 0/3 | 접근성 관계형성 완충방법 | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gpt | C0_lprog_shelter_rep2 | live | C0 | lprog_shelter | 6→3→1 | 0/1 | 완충방법 | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gpt | C0_lprog_shelter_rep3 | live | C0 | lprog_shelter | 4→3→3 | 0/3 | 접근성 응대속도 완충방법 | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gpt | C0_wonchik_shelter_rep1 | live | C0 | wonchik_shelter | 2→1→1 | 0/1 | 응대속도 | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gpt | C0_wonchik_shelter_rep2 | live | C0 | wonchik_shelter | 5→3→3 | 0/3 | 접근성 관계형성 응대속도 | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gpt | C0_wonchik_shelter_rep3 | live | C0 | wonchik_shelter | 4→4→3 | 0/2 | 접근성 응대속도 | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gpt | C0_wonval_shelter_rep1 | live | C0 | wonval_shelter | 3→3→3 | 2/1 | 접근성 관계형성 완충방법 | 지역 순찰조 | 유지 |
+| issue_shelter | gpt | C0_wonval_shelter_rep2 | live | C0 | wonval_shelter | 4→3→3 | 2/1 | 접근성 관계형성 완충방법 | 지역 순찰조 | 유지 |
+| issue_shelter | gpt | C0_wonval_shelter_rep3 | live | C0 | wonval_shelter | 2→2→2 | 2/0 | 접근성 관계형성 | 지역 순찰조 | 유지 |
+| issue_shelter | gpt | C0_wonvalb_shelter_rep1 | live | C0 | wonvalb_shelter | 4→4→4 | 1/2 | 접근성 응대속도 완충방법 | 지역 순찰조 | ⚠뒤집힘 |
+| issue_shelter | gpt | C0_wonvalb_shelter_rep2 | live | C0 | wonvalb_shelter | 4→3→2 | 2/0 | 전문성 완충방법 | 지역 순찰조 | ⚠뒤집힘 |
+| issue_shelter | gpt | C0_wonvalb_shelter_rep3 | live | C0 | wonvalb_shelter | 5→5→4 | 0/3 | 접근성 관계형성 응대속도 | 지역 순찰조 | ⚠뒤집힘 |
+| issue_shelter | gpt | C2_wonval_shelter_rep1 | live | C2 | wonval_shelter | 5→3→1 | 1/0 | 접근성 | 지역 순찰조 | 유지 |
+| issue_shelter | gpt | C2_wonval_shelter_rep2 | live | C2 | wonval_shelter | 5→3→3 | 2/0 | 접근성 응대속도 | 지역 순찰조 | 유지 |
+| issue_shelter | gpt | C2_wonval_shelter_rep3 | live | C2 | wonval_shelter | 5→4→1 | 0/1 | 완충방법 | 지역 순찰조 | 유지 |
+| issue_shelter | gpt | C2_wonvalb_shelter_rep1 | live | C2 | wonvalb_shelter | 5→2→1 | 0/1 | 접근성 | 지역 순찰조 | ⚠뒤집힘 |
+| issue_shelter | gpt | C2_wonvalb_shelter_rep2 | live | C2 | wonvalb_shelter | 4→4→4 | 2/2 | 접근성 응대속도 전문성 완충방법 | 지역 순찰조 | ⚠뒤집힘 |
+| issue_shelter | gpt | C2_wonvalb_shelter_rep3 | live | C2 | wonvalb_shelter | 3→3→3 | 2/1 | 응대속도 전문성 완충방법 | 전문 아웃리치팀 | 유지 |
+| issue_shelter | gpt | pbw_shelter_wonchik_shelter_rep1 | live | pbw_shelter | wonchik_shelter | 5→3→3 | 0/3 | 접근성 관계형성 완충방법 | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gpt | pbw_shelter_wonchik_shelter_rep2 | live | pbw_shelter | wonchik_shelter | 5→4→4 | 0/3 | 접근성 응대속도 완충방법 | 지역 순찰조 | 정렬불명 |
+| issue_shelter | gpt | pbw_shelter_wonchik_shelter_rep3 | live | pbw_shelter | wonchik_shelter | 4→3→3 | 0/3 | 접근성 응대속도 완충방법 | 지역 순찰조 | 정렬불명 |
+| issue_smoking_area | gpt | C0_all_smoking_area_rep1 | live | C0 | all_smoking_area | 6→6→6 | 4/0 | 접근성 편의 안전 평온 | 현 위치 유지 | 정렬불명 |
+| issue_smoking_area | gpt | C0_all_smoking_area_rep2 | live | C0 | all_smoking_area | 8→7→7 | 5/0 | 접근성 편의 안전 평온 이동권 | 현 위치 유지 | 정렬불명 |
+| issue_smoking_area | gpt | C0_all_smoking_area_rep3 | live | C0 | all_smoking_area | 6→4→4 | 3/0 | 접근성 평온 이동권 | 주차장 뒤편으로 이전 | 정렬불명 |
+| issue_smoking_area_party | gpt | C0_all_smoking_area_party_rep1 | live | C0 | all_smoking_area_party | 7→7→7 | 5/0 | 궂은날 오가는길 치워온일 냄새 바람 | 지금 자리에 둠 | 정렬불명 |
+| issue_smoking_area_party | gpt | C0_all_smoking_area_party_rep2 | live | C0 | all_smoking_area_party | 8→5→5 | 4/0 | 궂은날 오가는길 치워온일 환기 | 지금 자리에 둠 | 정렬불명 |
+| issue_smoking_area_party | gpt | C0_all_smoking_area_party_rep3 | live | C0 | all_smoking_area_party | 7→6→6 | 4/0 | 궂은날 오가는길 치워온일 바람 | 지금 자리에 둠 | 정렬불명 |
+| issue_smoking_area_party | gpt | C0_lcons_smoking_party_rep1 | live | C0 | lcons_smoking_party | 6→6→5 | 0/3 | 치워온일 환기 바람 | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | gpt | C0_lcons_smoking_party_rep2 | live | C0 | lcons_smoking_party | 5→3→3 | 0/2 | 치워온일 환기 | 지금 자리에 둠 | 정렬불명 |
+| issue_smoking_area_party | gpt | C0_lcons_smoking_party_rep3 | live | C0 | lcons_smoking_party | 5→5→5 | 0/3 | 치워온일 냄새 바람 | 지금 자리에 둠 | 정렬불명 |
+| issue_smoking_area_party | gpt | C0_lprog_smoking_party_rep1 | live | C0 | lprog_smoking_party | 5→5→4 | 0/3 | 치워온일 냄새 바람 | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | gpt | C0_lprog_smoking_party_rep2 | live | C0 | lprog_smoking_party | 7→6→6 | 0/5 | 궂은날 오가는길 치워온일 환기 바람 | 지금 자리에 둠 | 정렬불명 |
+| issue_smoking_area_party | gpt | C0_lprog_smoking_party_rep3 | live | C0 | lprog_smoking_party | 5→5→5 | 0/3 | 치워온일 냄새 바람 | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | gpt | C0_wonchik_smoking_party_rep1 | live | C0 | wonchik_smoking_party | 5→5→4 | 0/3 | 오가는길 치워온일 환기 | 지금 자리에 둠 | 정렬불명 |
+| issue_smoking_area_party | gpt | C0_wonchik_smoking_party_rep2 | live | C0 | wonchik_smoking_party | 5→5→5 | 0/3 | 치워온일 환기 바람 | 지금 자리에 둠 | 정렬불명 |
+| issue_smoking_area_party | gpt | C0_wonchik_smoking_party_rep3 | live | C0 | wonchik_smoking_party | 4→4→4 | 0/2 | 치워온일 바람 | 지금 자리에 둠 | 정렬불명 |
+| issue_smoking_area_party | gpt | C0_wonval_smoking_party_rep1 | live | C0 | wonval_smoking_party | 5→5→5 | 3/1 | 궂은날 오가는길 치워온일 바람 | 지금 자리에 둠 | 유지 |
+| issue_smoking_area_party | gpt | C0_wonval_smoking_party_rep2 | live | C0 | wonval_smoking_party | 4→4→4 | 2/1 | 오가는길 치워온일 바람 | 지금 자리에 둠 | 유지 |
+| issue_smoking_area_party | gpt | C0_wonval_smoking_party_rep3 | live | C0 | wonval_smoking_party | 5→5→5 | 3/1 | 궂은날 오가는길 치워온일 바람 | 지금 자리에 둠 | 유지 |
+| issue_smoking_area_party | gpt | C0_wonvalb_smoking_party_rep1 | live | C0 | wonvalb_smoking_party | 4→4→3 | 1/2 | 오가는길 치워온일 바람 | 지금 자리에 둠 | ⚠뒤집힘 |
+| issue_smoking_area_party | gpt | C0_wonvalb_smoking_party_rep2 | live | C0 | wonvalb_smoking_party | 6→5→5 | 2/2 | 오가는길 치워온일 환기 바람 | 지금 자리에 둠 | ⚠뒤집힘 |
+| issue_smoking_area_party | gpt | C0_wonvalb_smoking_party_rep3 | live | C0 | wonvalb_smoking_party | 7→6→6 | 3/2 | 오가는길 치워온일 환기 냄새 바람 | 지금 자리에 둠 | ⚠뒤집힘 |
+| issue_smoking_area_party | gpt | C2_wonval_smoking_party_rep1 | live | C2 | wonval_smoking_party | 6→6→6 | 3/1 | 궂은날 오가는길 치워온일 바람 | 지금 자리에 둠 | 유지 |
+| issue_smoking_area_party | gpt | C2_wonval_smoking_party_rep2 | live | C2 | wonval_smoking_party | 7→6→6 | 2/3 | 궂은날 치워온일 환기 냄새 바람 | 지금 자리에 둠 | 유지 |
+| issue_smoking_area_party | gpt | C2_wonval_smoking_party_rep3 | live | C2 | wonval_smoking_party | 7→6→6 | 2/1 | 오가는길 치워온일 환기 | 지금 자리에 둠 | 유지 |
+| issue_smoking_area_party | gpt | C2_wonvalb_smoking_party_rep1 | live | C2 | wonvalb_smoking_party | 7→6→5 | 2/2 | 궂은날 치워온일 환기 바람 | 지금 자리에 둠 | ⚠뒤집힘 |
+| issue_smoking_area_party | gpt | C2_wonvalb_smoking_party_rep2 | live | C2 | wonvalb_smoking_party | 4→4→4 | 1/2 | 궂은날 치워온일 환기 | 지금 자리에 둠 | ⚠뒤집힘 |
+| issue_smoking_area_party | gpt | C2_wonvalb_smoking_party_rep3 | live | C2 | wonvalb_smoking_party | 8→7→5 | 1/3 | 궂은날 오가는길 치워온일 냄새 | 지금 자리에 둠 | ⚠뒤집힘 |
+| issue_smoking_area_party | gpt | pbw_smoking_party_wonchik_smoking_party_rep1 | live | pbw_smoking_party | wonchik_smoking_party | 7→4→4 | 0/3 | 오가는길 치워온일 바람 | 지금 자리에 둠 | 정렬불명 |
+| issue_smoking_area_party | gpt | pbw_smoking_party_wonchik_smoking_party_rep2 | live | pbw_smoking_party | wonchik_smoking_party | 4→4→3 | 0/2 | 치워온일 바람 | 지금 자리에 둠 | 정렬불명 |
+| issue_smoking_area_party | gpt | pbw_smoking_party_wonchik_smoking_party_rep3 | live | pbw_smoking_party | wonchik_smoking_party | 6→4→3 | 0/3 | 오가는길 치워온일 환기 | 지금 자리에 둠 | 정렬불명 |
+| issue_smoking_area_party | gpt | pxc_smoking_party_lcons_smoking_party_rep1 | live | pxc_smoking_party | lcons_smoking_party | 7→7→7 | 0/5 | 궂은날 오가는길 치워온일 환기 바람 | 지금 자리에 둠 | 정렬불명 |
+| issue_smoking_area_party | gpt | pxc_smoking_party_lcons_smoking_party_rep2 | live | pxc_smoking_party | lcons_smoking_party | 4→4→3 | 0/2 | 치워온일 바람 | 지금 자리에 둠 | 정렬불명 |
+| issue_smoking_area_party | gpt | pxc_smoking_party_lcons_smoking_party_rep3 | live | pxc_smoking_party | lcons_smoking_party | 7→6→5 | 0/4 | 궂은날 오가는길 치워온일 냄새 | 지금 자리에 둠 | 정렬불명 |
+| issue_smoking_area_party | gpt | pxp_smoking_party_lprog_smoking_party_rep1 | live | pxp_smoking_party | lprog_smoking_party | 4→4→4 | 0/3 | 치워온일 냄새 바람 | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | gpt | pxp_smoking_party_lprog_smoking_party_rep2 | live | pxp_smoking_party | lprog_smoking_party | 5→4→4 | 0/4 | 궂은날 환기 냄새 바람 | 외곽 빈 자리로 | 정렬불명 |
+| issue_smoking_area_party | gpt | pxp_smoking_party_lprog_smoking_party_rep3 | live | pxp_smoking_party | lprog_smoking_party | 5→4→4 | 0/3 | 환기 냄새 바람 | 외곽 빈 자리로 | 정렬불명 |
+| issue_workmind | gpt | C0_allb1_workmind_rep1 | live | C0 | allb1_workmind | 10→10→9 | 5/0 | 비용 응대속도 비밀보장 전문성 이용사례 | 사내 EAP | 정렬불명 |
+| issue_workmind | gpt | C0_allb1_workmind_rep2 | live | C0 | allb1_workmind | 12→8→8 | 6/0 | 비용 접근성 응대속도 비밀보장 전문성 이용사례 | 외부 개인 상담 | 정렬불명 |
+| issue_workmind | gpt | C0_allb1_workmind_rep3 | live | C0 | allb1_workmind | 9→9→9 | 5/0 | 비용 응대속도 비밀보장 전문성 이용사례 | 외부 개인 상담 | 정렬불명 |
+| issue_workmind | gpt | C0_lcons_workmind_rep1 | live | C0 | lcons_workmind | 8→8→8 | 0/5 | 비용 접근성 응대속도 비밀보장 전문성 | 사내 EAP | 정렬불명 |
+| issue_workmind | gpt | C0_lcons_workmind_rep2 | live | C0 | lcons_workmind | 7→6→6 | 0/4 | 비용 접근성 응대속도 비밀보장 | 사내 EAP | 정렬불명 |
+| issue_workmind | gpt | C0_lcons_workmind_rep3 | live | C0 | lcons_workmind | 8→8→8 | 0/5 | 비용 접근성 응대속도 비밀보장 전문성 | 사내 EAP | 정렬불명 |
+| issue_workmind | gpt | C0_lprog_workmind_rep1 | live | C0 | lprog_workmind | 8→8→5 | 0/3 | 비용 응대속도 비밀보장 | 외부 개인 상담 | 정렬불명 |
+| issue_workmind | gpt | C0_lprog_workmind_rep2 | live | C0 | lprog_workmind | 7→7→7 | 0/5 | 비용 접근성 응대속도 비밀보장 전문성 | 외부 개인 상담 | 정렬불명 |
+| issue_workmind | gpt | C0_lprog_workmind_rep3 | live | C0 | lprog_workmind | 7→7→7 | 0/5 | 비용 접근성 응대속도 비밀보장 전문성 | 사내 EAP | 정렬불명 |
+| issue_workmind | gpt | C0_wonchik_workmind_rep1 | live | C0 | wonchik_workmind | 8→6→6 | 0/4 | 비용 접근성 응대속도 비밀보장 | 사내 EAP | 정렬불명 |
+| issue_workmind | gpt | C0_wonchik_workmind_rep2 | live | C0 | wonchik_workmind | 6→5→5 | 0/3 | 비용 응대속도 비밀보장 | 사내 EAP | 정렬불명 |
+| issue_workmind | gpt | C0_wonchik_workmind_rep3 | live | C0 | wonchik_workmind | 9→9→9 | 0/5 | 비용 응대속도 비밀보장 전문성 이용사례 | 사내 EAP | 정렬불명 |
+| issue_workmind | gpt | C0_wonval_workmind_rep1 | live | C0 | wonval_workmind | 6→6→6 | 3/1 | 비용 접근성 응대속도 비밀보장 | 사내 EAP | 유지 |
+| issue_workmind | gpt | C0_wonval_workmind_rep2 | live | C0 | wonval_workmind | 7→4→4 | 2/0 | 비용 응대속도 | 사내 EAP | 유지 |
+| issue_workmind | gpt | C0_wonval_workmind_rep3 | live | C0 | wonval_workmind | 9→8→8 | 3/3 | 비용 접근성 응대속도 비밀보장 전문성 이용사례 | 사내 EAP | 유지 |
+| issue_workmind | gpt | C0_wonvalb_workmind_rep1 | live | C0 | wonvalb_workmind | 7→6→6 | 3/1 | 비용 비밀보장 전문성 이용사례 | 외부 개인 상담 | 유지 |
+| issue_workmind | gpt | C0_wonvalb_workmind_rep2 | live | C0 | wonvalb_workmind | 7→6→6 | 3/1 | 비용 비밀보장 전문성 이용사례 | 외부 개인 상담 | 유지 |
+| issue_workmind | gpt | C0_wonvalb_workmind_rep3 | live | C0 | wonvalb_workmind | 6→6→6 | 3/2 | 비용 응대속도 비밀보장 전문성 이용사례 | 외부 개인 상담 | 유지 |
+| issue_workmind | gpt | C2_wonval_workmind_rep1 | live | C2 | wonval_workmind | 5→5→5 | 3/0 | 비용 접근성 응대속도 | 사내 EAP | 유지 |
+| issue_workmind | gpt | C2_wonval_workmind_rep2 | live | C2 | wonval_workmind | 7→7→6 | 3/0 | 비용 접근성 응대속도 | 사내 EAP | 유지 |
+| issue_workmind | gpt | C2_wonval_workmind_rep3 | live | C2 | wonval_workmind | 6→3→2 | 1/1 | 비용 비밀보장 | 사내 EAP | 유지 |
+| issue_workmind | gpt | C2_wonvalb_workmind_rep1 | live | C2 | wonvalb_workmind | 6→6→6 | 2/2 | 비용 응대속도 전문성 이용사례 | 외부 개인 상담 | 유지 |
+| issue_workmind | gpt | C2_wonvalb_workmind_rep2 | live | C2 | wonvalb_workmind | 9→9→5 | 3/2 | 비용 응대속도 비밀보장 전문성 이용사례 | 외부 개인 상담 | 유지 |
+| issue_workmind | gpt | C2_wonvalb_workmind_rep3 | live | C2 | wonvalb_workmind | 7→6→6 | 3/2 | 비용 응대속도 비밀보장 전문성 이용사례 | 외부 개인 상담 | 유지 |
+| issue_workmind | gpt | pbw_workmind_wonchik_workmind_rep1 | live | pbw_workmind | wonchik_workmind | 4→4→4 | 0/3 | 비용 응대속도 비밀보장 | 사내 EAP | 정렬불명 |
+| issue_workmind | gpt | pbw_workmind_wonchik_workmind_rep2 | live | pbw_workmind | wonchik_workmind | 8→6→6 | 0/3 | 비용 접근성 응대속도 | 사내 EAP | 정렬불명 |
+| issue_workmind | gpt | pbw_workmind_wonchik_workmind_rep3 | live | pbw_workmind | wonchik_workmind | 9→4→3 | 0/2 | 비용 응대속도 | 사내 EAP | 정렬불명 |
+| issue_workmind | gpt | pxc_workmind_lcons_workmind_rep1 | live | pxc_workmind | lcons_workmind | 5→5→5 | 0/4 | 비용 응대속도 비밀보장 전문성 | 외부 개인 상담 | 정렬불명 |
+| issue_workmind | gpt | pxc_workmind_lcons_workmind_rep2 | live | pxc_workmind | lcons_workmind | 4→4→4 | 0/3 | 비용 응대속도 비밀보장 | 외부 개인 상담 | 정렬불명 |
+| issue_workmind | gpt | pxc_workmind_lcons_workmind_rep3 | live | pxc_workmind | lcons_workmind | 5→5→5 | 0/4 | 비용 응대속도 전문성 이용사례 | 외부 개인 상담 | 정렬불명 |
+| issue_workmind | gpt | pxp_workmind_lprog_workmind_rep1 | live | pxp_workmind | lprog_workmind | 4→4→1 | 0/1 | 비용 | 외부 개인 상담 | 정렬불명 |
+| issue_workmind | gpt | pxp_workmind_lprog_workmind_rep2 | live | pxp_workmind | lprog_workmind | 7→7→7 | 0/5 | 비용 응대속도 비밀보장 전문성 이용사례 | 외부 개인 상담 | 정렬불명 |
+| issue_workmind | gpt | pxp_workmind_lprog_workmind_rep3 | live | pxp_workmind | lprog_workmind | 6→6→6 | 0/4 | 비용 응대속도 비밀보장 전문성 | 외부 개인 상담 | 정렬불명 |

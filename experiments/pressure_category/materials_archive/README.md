@@ -24,3 +24,26 @@ C·S층 25벌은 요한이 만든 파일이다. 옮긴 사람은 민옥(SilenceB
 
 ## 마지막 실험 세트
 마지막 실험(라벨 또는 신념)의 재료는 폴더가 아니라 목록으로 정한다 — `sets/FINAL_SET_11_2026-09-03.json`. 이유: 러너는 파일 안 issue_id로 등록하므로 목록이 폴더보다 안전하고, 옛 판 집계가 안 깨진다.
+
+---
+
+## 정정 1 (2026-09-04, 요한+클로드) — `D_unrun` 세 벌은 안 돈 게 아니었다
+
+`community_room_party.json` · `floor_noise_party.json` · `garden_plot_party.json` 을
+**`materials/` 로 되돌렸다.** 파일 내용은 안 건드렸고 이동만 했다.
+
+**왜.** 이 셋은 「판 0」이 아니라 **각각 63판씩, 합 189판이 돌아 있다.**
+파일 안 `issue_id` 가 `issue_community_room` · `issue_floor_noise` · `issue_garden_plot` 이고,
+그 id 로 돈 판이 적어 둔 `materials_hash` 가 **이 파일들의 지문과 정확히 같다**
+(`b9a22d30ebc5` · `953e800c0ca1` · `c018b6d7605e`, 63/63 일치). 다른 재료가 아니라
+**바로 이 재료로 돈 판**이다.
+
+파일 이름이 `*_party` 라 「안 돈 파티 변형」으로 보였을 것이다. 위 §「왜 옮겼나」가
+이 셋을 「재료 파일이 이전에 이름이 바뀌어 `materials/` 에 없다 … 이 정리와 무관」이라
+적었는데, 실은 **여기 D_unrun 에 있었다.**
+
+**무엇이 달라지나.** 되돌리기 전에 `scan_pressure.py` 를 돌리면 새 판 759 가 들어오면서
+**414 판이 조용히 빠졌다**(스캐너는 `materials/` 한 층만 읽는다). 되돌린 뒤에는
+**들어옴 768 · 빠짐 234** 이고, 빠지는 234 는 `C_gemini_only` 13벌로 **의도한 정리 그대로**다.
+
+`D_unrun` 에는 진짜 판 0 인 `restaurant_family` · `restaurant_team_dinner` 만 남겼다.
