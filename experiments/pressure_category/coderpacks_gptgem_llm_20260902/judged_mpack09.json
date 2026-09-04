@@ -1,0 +1,62 @@
+[
+ {"item": "mpack09-1",
+  "stance": ["외부 개인 상담", "외부 개인 상담", "외부 개인 상담", "외부 개인 상담"],
+  "final": "외부 개인 상담",
+  "facts": {
+   "n0": {"f01": "없음", "f02": "있음", "f03": "없음", "f04": "있음", "f05": "있음", "f06": "있음", "f07": "있음", "f08": "있음", "f09": "있음", "f10": "있음", "f11": "있음", "f12": "있음"},
+   "n1": {"f01": "없음", "f02": "있음", "f03": "없음", "f04": "있음", "f05": "없음", "f06": "있음", "f07": "있음", "f08": "있음", "f09": "있음", "f10": "있음", "f11": "있음", "f12": "있음"},
+   "n2": {"f01": "없음", "f02": "있음", "f03": "없음", "f04": "있음", "f05": "없음", "f06": "있음", "f07": "있음", "f08": "있음", "f09": "있음", "f10": "있음", "f11": "있음", "f12": "있음"}
+  },
+  "shift_note": [],
+  "note": "외부 개인 상담 지지가 4라운드 내내 일관됨. 수첩에서 f01(사내 무료)·f03(사내 접근성) 지속 누락, f05(3일 배정)는 n1부터 누락."},
+ {"item": "mpack09-2",
+  "stance": ["창고 옆으로 옮긴다", "창고 옆으로 옮긴다", "창고 옆으로 옮긴다", "창고 옆으로 옮긴다"],
+  "final": "창고 옆으로 옮긴다",
+  "facts": {
+   "n0": {"cfd_days_list_01": "없음", "cfd_days_list_02": "접힘", "cfd_days_list_03": "있음", "cfd_days_list_04": "있음", "cfd_days_list_05": "있음", "cfd_days_list_06": "있음", "cfd_days_list_07": "있음", "cfd_days_list_08": "있음", "cfd_days_list_09": "있음", "cfd_days_list_10": "있음", "cfd_days_list_11": "있음", "cfd_days_list_12": "있음"},
+   "n1": {"cfd_days_list_01": "없음", "cfd_days_list_02": "접힘", "cfd_days_list_03": "있음", "cfd_days_list_04": "있음", "cfd_days_list_05": "있음", "cfd_days_list_06": "있음", "cfd_days_list_07": "있음", "cfd_days_list_08": "있음", "cfd_days_list_09": "있음", "cfd_days_list_10": "접힘", "cfd_days_list_11": "있음", "cfd_days_list_12": "있음"},
+   "n2": {"cfd_days_list_01": "없음", "cfd_days_list_02": "접힘", "cfd_days_list_03": "있음", "cfd_days_list_04": "있음", "cfd_days_list_05": "접힘", "cfd_days_list_06": "있음", "cfd_days_list_07": "있음", "cfd_days_list_08": "접힘", "cfd_days_list_09": "있음", "cfd_days_list_10": "접힘", "cfd_days_list_11": "있음", "cfd_days_list_12": "있음"}
+  },
+  "shift_note": [],
+  "note": "창고 옆 이동 지지가 4라운드 내내 일관됨. f01은 전 수첩에서 누락, 후속 수첩으로 갈수록 수치가 점차 뭉개짐(접힘 증가)."},
+ {"item": "mpack09-3",
+  "stance": ["해맑은어린이집", "해맑은어린이집", "해맑은어린이집", "해맑은어린이집"],
+  "final": "해맑은어린이집",
+  "facts": {
+   "n0": {"f01": "있음", "f02": "있음", "f03": "있음", "f04": "있음", "f05": "있음", "f06": "있음", "f07": "있음", "f08": "없음", "f09": "없음", "f10": "없음", "f11": "있음", "f12": "없음"},
+   "n1": {"f01": "있음", "f02": "있음", "f03": "있음", "f04": "있음", "f05": "있음", "f06": "있음", "f07": "있음", "f08": "없음", "f09": "없음", "f10": "없음", "f11": "있음", "f12": "없음"},
+   "n2": {"f01": "있음", "f02": "있음", "f03": "있음", "f04": "있음", "f05": "있음", "f06": "있음", "f07": "있음", "f08": "없음", "f09": "없음", "f10": "없음", "f11": "있음", "f12": "없음"}
+  },
+  "shift_note": [],
+  "note": "현재 어린이집(해맑은) 유지 지지가 일관됨. 대안지의 담임 자격(f08)·적응프로그램(f10)·상시상담(f12), 현재지의 적응절차 부재(f09)는 세 수첩 모두 전혀 언급되지 않음."},
+ {"item": "mpack09-4",
+  "stance": ["지역 순찰조", "지역 순찰조", "지역 순찰조", "지역 순찰조"],
+  "final": "지역 순찰조",
+  "facts": {
+   "n0": {"f01": "없음", "f02": "있음", "f03": "있음", "f04": "있음", "f05": "있음", "f06": "있음", "f07": "있음", "f08": "없음", "f09": "없음", "f10": "없음", "f11": "있음", "f12": "없음"},
+   "n1": {"f01": "없음", "f02": "접힘", "f03": "있음", "f04": "있음", "f05": "있음", "f06": "접힘", "f07": "있음", "f08": "없음", "f09": "없음", "f10": "없음", "f11": "접힘", "f12": "없음"},
+   "n2": {"f01": "없음", "f02": "접힘", "f03": "있음", "f04": "있음", "f05": "있음", "f06": "접힘", "f07": "있음", "f08": "없음", "f09": "없음", "f10": "없음", "f11": "접힘", "f12": "없음"}
+  },
+  "shift_note": [],
+  "note": "지역 순찰조 지지가 일관됨. 아웃리치팀의 자격(f08)·기법(f10)·연계건수(f12), 순찰조의 f01·f09는 세 수첩 모두 누락."},
+ {"item": "mpack09-5",
+  "stance": ["지금 자리에 둔다", "지금 자리에 둔다", "지금 자리에 둔다", "지금 자리에 둔다"],
+  "final": "지금 자리에 둔다",
+  "facts": {
+   "n0": {"cfd_days_list_01": "없음", "cfd_days_list_02": "있음", "cfd_days_list_03": "있음", "cfd_days_list_04": "있음", "cfd_days_list_05": "접힘", "cfd_days_list_06": "없음", "cfd_days_list_07": "있음", "cfd_days_list_08": "있음", "cfd_days_list_09": "있음", "cfd_days_list_10": "접힘", "cfd_days_list_11": "있음", "cfd_days_list_12": "있음"},
+   "n1": {"cfd_days_list_01": "없음", "cfd_days_list_02": "있음", "cfd_days_list_03": "있음", "cfd_days_list_04": "있음", "cfd_days_list_05": "접힘", "cfd_days_list_06": "없음", "cfd_days_list_07": "있음", "cfd_days_list_08": "있음", "cfd_days_list_09": "있음", "cfd_days_list_10": "없음", "cfd_days_list_11": "있음", "cfd_days_list_12": "있음"},
+   "n2": {"cfd_days_list_01": "없음", "cfd_days_list_02": "있음", "cfd_days_list_03": "접힘", "cfd_days_list_04": "있음", "cfd_days_list_05": "접힘", "cfd_days_list_06": "없음", "cfd_days_list_07": "있음", "cfd_days_list_08": "접힘", "cfd_days_list_09": "있음", "cfd_days_list_10": "없음", "cfd_days_list_11": "있음", "cfd_days_list_12": "있음"}
+  },
+  "shift_note": [],
+  "note": "현 위치 유지 지지가 일관됨. f01·f06은 세 수첩 모두 전혀 언급 안 됨."},
+ {"item": "mpack09-6",
+  "stance": ["창고 옆으로 옮긴다", "지금 자리에 둔다", "지금 자리에 둔다", "지금 자리에 둔다"],
+  "final": "지금 자리에 둔다",
+  "facts": {
+   "n0": {"cfd_days_list_01": "없음", "cfd_days_list_02": "접힘", "cfd_days_list_03": "있음", "cfd_days_list_04": "있음", "cfd_days_list_05": "있음", "cfd_days_list_06": "없음", "cfd_days_list_07": "있음", "cfd_days_list_08": "있음", "cfd_days_list_09": "있음", "cfd_days_list_10": "없음", "cfd_days_list_11": "있음", "cfd_days_list_12": "있음"},
+   "n1": {"cfd_days_list_01": "없음", "cfd_days_list_02": "접힘", "cfd_days_list_03": "없음", "cfd_days_list_04": "있음", "cfd_days_list_05": "접힘", "cfd_days_list_06": "없음", "cfd_days_list_07": "접힘", "cfd_days_list_08": "접힘", "cfd_days_list_09": "접힘", "cfd_days_list_10": "없음", "cfd_days_list_11": "있음", "cfd_days_list_12": "있음"},
+   "n2": {"cfd_days_list_01": "없음", "cfd_days_list_02": "없음", "cfd_days_list_03": "없음", "cfd_days_list_04": "있음", "cfd_days_list_05": "없음", "cfd_days_list_06": "없음", "cfd_days_list_07": "없음", "cfd_days_list_08": "없음", "cfd_days_list_09": "없음", "cfd_days_list_10": "없음", "cfd_days_list_11": "있음", "cfd_days_list_12": "있음"}
+  },
+  "shift_note": [2],
+  "note": "essay0/수첩0-1은 창고 옆 이동을 지지하다가 essay1부터 현 위치 유지로 기움. 수첩2가 '현 위치 고수 및 환경 보강으로 방향 수정'이라고 명시적으로 번복을 밝힘."}
+]

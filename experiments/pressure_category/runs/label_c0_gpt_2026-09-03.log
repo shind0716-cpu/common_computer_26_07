@@ -1,0 +1,615 @@
+=== label c0 gpt 시작 2026-09-03T03:26:02+00:00 ===
+=== label c0 gpt 시작 2026-09-03T03:26:02+00:00 ===
+--- issue_cat_feeding_days_list ---
+=== label c0 gpt 시작 2026-09-03T03:26:02+00:00 ===
+--- issue_childcare ---
+--- issue_eol ---
+[check_materials] 대상: issue_eol.json (issue_id=issue_eol)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: cat_feeding_days_list.json (issue_id=issue_cat_feeding_days_list)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] gpt/C0_lcons_childcare_rep1 — 결과 존재
+[done] gpt/C0_lcons_childcare_rep2 · 호출 8
+[done] gpt/C0_lcons_childcare_rep3 · 호출 8
+[done] gpt/C0_lprog_childcare_rep1 · 호출 8
+[done] gpt/C0_lprog_childcare_rep2 · 호출 8
+[done] gpt/C0_lprog_childcare_rep3 · 호출 8
+--- issue_euthanasia ---
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_eol · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 85e7bf87b57e
+[done] gpt/C0_lcons_eol_rep1 · 호출 8
+[done] gpt/C0_lcons_eol_rep2 · 호출 8
+[done] gpt/C0_lcons_eol_rep3 · 호출 8
+[done] gpt/C0_lprog_eol_rep1 · 호출 8
+[done] gpt/C0_lprog_eol_rep2 · 호출 8
+[done] gpt/C0_lprog_eol_rep3 · 호출 8
+--- issue_remotewatch ---
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_cat_feeding_days_list · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 945f4957b5ae
+[done] gpt/C0_lcons_cf_days_list_rep1 · 호출 9
+[done] gpt/C0_lcons_cf_days_list_rep2 · 호출 9
+[done] gpt/C0_lcons_cf_days_list_rep3 · 호출 9
+[done] gpt/C0_lprog_cf_days_list_rep1 · 호출 9
+[done] gpt/C0_lprog_cf_days_list_rep2 · 호출 9
+[done] gpt/C0_lprog_cf_days_list_rep3 · 호출 9
+--- issue_recycling_room ---
+[check_materials] 대상: recycling_room.json (issue_id=issue_recycling_room)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_remotewatch · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[done] gpt/C0_lcons_remotewatch_rep1 · 호출 8
+[done] gpt/C0_lcons_remotewatch_rep2 · 호출 8
+[done] gpt/C0_lcons_remotewatch_rep3 · 호출 8
+[done] gpt/C0_lprog_remotewatch_rep1 · 호출 8
+Traceback (most recent call last):
+[plan] issue_euthanasia · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[done] gpt/C0_lcons_euthanasia_rep1 · 호출 8
+[done] gpt/C0_lcons_euthanasia_rep2 · 호출 8
+[done] gpt/C0_lcons_euthanasia_rep3 · 호출 8
+[done] gpt/C0_lprog_euthanasia_rep1 · 호출 8
+Traceback (most recent call last):
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 518, in <module>
+[plan] issue_recycling_room · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 f3c6140ae683
+[done] gpt/C0_lcons_recycling_room_rep1 · 호출 8
+[done] gpt/C0_lcons_recycling_room_rep2 · 호출 8
+Traceback (most recent call last):
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 518, in <module>
+    main()
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 518, in <module>
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 513, in main
+    main()
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 513, in main
+    main()
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 513, in main
+    run_one(mat, script_reg, vset_reg, args.model, s, v, r, args.max_calls, args.dry,
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 399, in run_one
+    run_one(mat, script_reg, vset_reg, args.model, s, v, r, args.max_calls, args.dry,
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 399, in run_one
+    run_one(mat, script_reg, vset_reg, args.model, s, v, r, args.max_calls, args.dry,
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 399, in run_one
+    essays.append(gate.call(f"essay_r{r}", p))
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 342, in call
+    essays.append(gate.call(f"essay_r{r}", p))
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 342, in call
+    essays.append(gate.call(f"essay_r{r}", p))
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 342, in call
+    text = f"[DRY {tag}]" if self.dry else self.obtain(prompt)
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 386, in obtain
+    text = f"[DRY {tag}]" if self.dry else self.obtain(prompt)
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 386, in obtain
+    text = f"[DRY {tag}]" if self.dry else self.obtain(prompt)
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 386, in obtain
+    return llm.obtain_response(p, model=model_key, temperature=GEN_TEMPERATURE,
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/modules/llm.py", line 542, in obtain_response
+    return llm.obtain_response(p, model=model_key, temperature=GEN_TEMPERATURE,
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/modules/llm.py", line 542, in obtain_response
+    return llm.obtain_response(p, model=model_key, temperature=GEN_TEMPERATURE,
+    text = fn(model_id, inputs, temperature, reasoning)
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/modules/llm.py", line 390, in _call_openai
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/modules/llm.py", line 542, in obtain_response
+    text = fn(model_id, inputs, temperature, reasoning)
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/modules/llm.py", line 390, in _call_openai
+    text = fn(model_id, inputs, temperature, reasoning)
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/modules/llm.py", line 390, in _call_openai
+    r = requests.post(url, headers={"Authorization": f"Bearer {key}"},
+  File "/usr/local/lib/python3.10/dist-packages/requests/api.py", line 134, in post
+    r = requests.post(url, headers={"Authorization": f"Bearer {key}"},
+  File "/usr/local/lib/python3.10/dist-packages/requests/api.py", line 134, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/sessions.py", line 651, in request
+    return request("post", url, data=data, json=json, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/api.py", line 71, in request
+    r = requests.post(url, headers={"Authorization": f"Bearer {key}"},
+  File "/usr/local/lib/python3.10/dist-packages/requests/api.py", line 134, in post
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/sessions.py", line 651, in request
+    return request("post", url, data=data, json=json, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/adapters.py", line 696, in send
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/sessions.py", line 784, in send
+    resp = conn.urlopen(
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 788, in urlopen
+  File "/usr/local/lib/python3.10/dist-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 788, in urlopen
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/adapters.py", line 696, in send
+    response = self._make_request(
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+    response = self._make_request(
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 464, in _make_request
+    resp = conn.urlopen(
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 788, in urlopen
+  File "/usr/lib/python3.10/http/client.py", line 1404, in getresponse
+    response.begin()
+  File "/usr/lib/python3.10/http/client.py", line 323, in begin
+    version, status, reason = self._read_status()
+    self._validate_conn(conn)
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 1106, in _validate_conn
+    response = self._make_request(
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 534, in _make_request
+  File "/usr/lib/python3.10/http/client.py", line 284, in _read_status
+    conn.connect()
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connection.py", line 796, in connect
+    response = conn.getresponse()
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connection.py", line 571, in getresponse
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.10/ssl.py", line 1303, in recv_into
+    ssl_sock = ssl_wrap_socket(
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/util/ssl_.py", line 433, in ssl_wrap_socket
+    httplib_response = super().getresponse()
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.10/ssl.py", line 1159, in read
+    return self._sslobj.read(len, buffer)
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/util/ssl_.py", line 477, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "/usr/lib/python3.10/http/client.py", line 1404, in getresponse
+    response.begin()
+  File "/usr/lib/python3.10/http/client.py", line 323, in begin
+    version, status, reason = self._read_status()
+KeyboardInterrupt
+  File "/usr/lib/python3.10/ssl.py", line 513, in wrap_socket
+  File "/usr/lib/python3.10/http/client.py", line 284, in _read_status
+    return self.sslsocket_class._create(
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.10/ssl.py", line 1100, in _create
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    self.do_handshake()
+  File "/usr/lib/python3.10/ssl.py", line 1371, in do_handshake
+    return self._sock.recv_into(b)
+    self._sslobj.do_handshake()
+  File "/usr/lib/python3.10/ssl.py", line 1303, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.10/ssl.py", line 1159, in read
+KeyboardInterrupt
+    return self._sslobj.read(len, buffer)
+KeyboardInterrupt
+=== label c0 gpt 시작 2026-09-03T03:28:49+00:00 ===
+--- issue_childcare ---
+=== label c0 gpt 시작 2026-09-03T03:28:49+00:00 ===
+=== label c0 gpt 시작 2026-09-03T03:28:49+00:00 ===
+--- issue_cat_feeding_days_list ---
+--- issue_eol ---
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: cat_feeding_days_list.json (issue_id=issue_cat_feeding_days_list)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: issue_eol.json (issue_id=issue_eol)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] gpt/C0_lcons_childcare_rep1 — 결과 존재
+[skip] gpt/C0_lcons_childcare_rep2 — 결과 존재
+[skip] gpt/C0_lcons_childcare_rep3 — 결과 존재
+[skip] gpt/C0_lprog_childcare_rep1 — 결과 존재
+[skip] gpt/C0_lprog_childcare_rep2 — 결과 존재
+[skip] gpt/C0_lprog_childcare_rep3 — 결과 존재
+--- issue_euthanasia ---
+[plan] issue_eol · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 85e7bf87b57e
+[skip] gpt/C0_lcons_eol_rep1 — 결과 존재
+[skip] gpt/C0_lcons_eol_rep2 — 결과 존재
+[skip] gpt/C0_lcons_eol_rep3 — 결과 존재
+[skip] gpt/C0_lprog_eol_rep1 — 결과 존재
+[skip] gpt/C0_lprog_eol_rep2 — 결과 존재
+[skip] gpt/C0_lprog_eol_rep3 — 결과 존재
+[plan] issue_cat_feeding_days_list · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 945f4957b5ae
+[skip] gpt/C0_lcons_cf_days_list_rep1 — 결과 존재
+[skip] gpt/C0_lcons_cf_days_list_rep2 — 결과 존재
+[skip] gpt/C0_lcons_cf_days_list_rep3 — 결과 존재
+[skip] gpt/C0_lprog_cf_days_list_rep1 — 결과 존재
+[skip] gpt/C0_lprog_cf_days_list_rep2 — 결과 존재
+[skip] gpt/C0_lprog_cf_days_list_rep3 — 결과 존재
+--- issue_recycling_room ---
+--- issue_remotewatch ---
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: recycling_room.json (issue_id=issue_recycling_room)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] gpt/C0_lcons_euthanasia_rep1 — 결과 존재
+[skip] gpt/C0_lcons_euthanasia_rep2 — 결과 존재
+[skip] gpt/C0_lcons_euthanasia_rep3 — 결과 존재
+[skip] gpt/C0_lprog_euthanasia_rep1 — 결과 존재
+[done] gpt/C0_lprog_euthanasia_rep2 · 호출 2
+[done] gpt/C0_lprog_euthanasia_rep3 · 호출 8
+--- issue_examaccom ---
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_remotewatch · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[skip] gpt/C0_lcons_remotewatch_rep1 — 결과 존재
+[skip] gpt/C0_lcons_remotewatch_rep2 — 결과 존재
+[skip] gpt/C0_lcons_remotewatch_rep3 — 결과 존재
+[skip] gpt/C0_lprog_remotewatch_rep1 — 결과 존재
+[done] gpt/C0_lprog_remotewatch_rep2 · 호출 6
+[done] gpt/C0_lprog_remotewatch_rep3 · 호출 8
+--- issue_shelter ---
+[check_materials] 대상: issue_shelter.json (issue_id=issue_shelter)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_recycling_room · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 f3c6140ae683
+[skip] gpt/C0_lcons_recycling_room_rep1 — 결과 존재
+[skip] gpt/C0_lcons_recycling_room_rep2 — 결과 존재
+[done] gpt/C0_lcons_recycling_room_rep3 · 호출 2
+[done] gpt/C0_lprog_recycling_room_rep1 · 호출 8
+[done] gpt/C0_lprog_recycling_room_rep2 · 호출 8
+[done] gpt/C0_lprog_recycling_room_rep3 · 호출 8
+--- issue_smoking_area_party ---
+[check_materials] 대상: smoking_area_party.json (issue_id=issue_smoking_area_party)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[done] gpt/C0_lcons_examaccom_rep1 · 호출 8
+[done] gpt/C0_lcons_examaccom_rep2 · 호출 8
+[done] gpt/C0_lcons_examaccom_rep3 · 호출 8
+[done] gpt/C0_lprog_examaccom_rep1 · 호출 8
+[done] gpt/C0_lprog_examaccom_rep2 · 호출 8
+[done] gpt/C0_lprog_examaccom_rep3 · 호출 8
+--- issue_parentalreturn ---
+[check_materials] 대상: issue_parentalreturn.json (issue_id=issue_parentalreturn)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_shelter · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 aa3eef04c672
+[done] gpt/C0_lcons_shelter_rep1 · 호출 8
+[done] gpt/C0_lcons_shelter_rep2 · 호출 8
+[done] gpt/C0_lcons_shelter_rep3 · 호출 8
+[done] gpt/C0_lprog_shelter_rep1 · 호출 8
+[done] gpt/C0_lprog_shelter_rep2 · 호출 8
+[done] gpt/C0_lprog_shelter_rep3 · 호출 8
+--- issue_workmind ---
+[check_materials] 대상: issue_workmind.json (issue_id=issue_workmind)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_smoking_area_party · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 72c4b7e16e70
+[done] gpt/C0_lcons_smoking_party_rep1 · 호출 8
+[done] gpt/C0_lcons_smoking_party_rep2 · 호출 8
+[done] gpt/C0_lcons_smoking_party_rep3 · 호출 8
+[done] gpt/C0_lprog_smoking_party_rep1 · 호출 8
+[done] gpt/C0_lprog_smoking_party_rep2 · 호출 8
+[done] gpt/C0_lprog_smoking_party_rep3 · 호출 8
+=== label c0 gpt 끝 2026-09-03T03:31:18+00:00 ===
+[plan] issue_parentalreturn · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 2cb32fba6dc5
+[done] gpt/C0_lcons_parentalreturn_rep1 · 호출 8
+[done] gpt/C0_lcons_parentalreturn_rep2 · 호출 8
+[plan] issue_workmind · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 661cb97a56ee
+[done] gpt/C0_lcons_workmind_rep1 · 호출 8
+[done] gpt/C0_lcons_workmind_rep2 · 호출 8
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 518, in <module>
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 518, in <module>
+    main()
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 513, in main
+    main()
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 513, in main
+    run_one(mat, script_reg, vset_reg, args.model, s, v, r, args.max_calls, args.dry,
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 399, in run_one
+    run_one(mat, script_reg, vset_reg, args.model, s, v, r, args.max_calls, args.dry,
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 399, in run_one
+    essays.append(gate.call(f"essay_r{r}", p))
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 342, in call
+    essays.append(gate.call(f"essay_r{r}", p))
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 342, in call
+    text = f"[DRY {tag}]" if self.dry else self.obtain(prompt)
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 386, in obtain
+    text = f"[DRY {tag}]" if self.dry else self.obtain(prompt)
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 386, in obtain
+    return llm.obtain_response(p, model=model_key, temperature=GEN_TEMPERATURE,
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/modules/llm.py", line 542, in obtain_response
+    return llm.obtain_response(p, model=model_key, temperature=GEN_TEMPERATURE,
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/modules/llm.py", line 542, in obtain_response
+    text = fn(model_id, inputs, temperature, reasoning)
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/modules/llm.py", line 390, in _call_openai
+    text = fn(model_id, inputs, temperature, reasoning)
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/modules/llm.py", line 390, in _call_openai
+    r = requests.post(url, headers={"Authorization": f"Bearer {key}"},
+  File "/usr/local/lib/python3.10/dist-packages/requests/api.py", line 134, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/api.py", line 71, in request
+    r = requests.post(url, headers={"Authorization": f"Bearer {key}"},
+  File "/usr/local/lib/python3.10/dist-packages/requests/api.py", line 134, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/adapters.py", line 696, in send
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+    resp = conn.urlopen(
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connection.py", line 571, in getresponse
+  File "/usr/local/lib/python3.10/dist-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 788, in urlopen
+    httplib_response = super().getresponse()
+  File "/usr/lib/python3.10/http/client.py", line 1404, in getresponse
+    response = self._make_request(
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+    response.begin()
+  File "/usr/lib/python3.10/http/client.py", line 323, in begin
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "/usr/lib/python3.10/http/client.py", line 1404, in getresponse
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.10/http/client.py", line 284, in _read_status
+    response.begin()
+  File "/usr/lib/python3.10/http/client.py", line 323, in begin
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    version, status, reason = self._read_status()
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.10/ssl.py", line 1303, in recv_into
+  File "/usr/lib/python3.10/http/client.py", line 284, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.10/ssl.py", line 1159, in read
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+    return self._sslobj.read(len, buffer)
+KeyboardInterrupt
+  File "/usr/lib/python3.10/ssl.py", line 1303, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.10/ssl.py", line 1159, in read
+    return self._sslobj.read(len, buffer)
+KeyboardInterrupt
+=== label c0 gpt 시작 2026-09-03T03:31:36+00:00 ===
+--- issue_childcare ---
+=== label c0 gpt 시작 2026-09-03T03:31:36+00:00 ===
+=== label c0 gpt 시작 2026-09-03T03:31:36+00:00 ===
+--- issue_cat_feeding_days_list ---
+--- issue_eol ---
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: issue_eol.json (issue_id=issue_eol)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: cat_feeding_days_list.json (issue_id=issue_cat_feeding_days_list)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] gpt/C0_lcons_childcare_rep1 — 결과 존재
+[skip] gpt/C0_lcons_childcare_rep2 — 결과 존재
+[skip] gpt/C0_lcons_childcare_rep3 — 결과 존재
+[skip] gpt/C0_lprog_childcare_rep1 — 결과 존재
+[skip] gpt/C0_lprog_childcare_rep2 — 결과 존재
+[skip] gpt/C0_lprog_childcare_rep3 — 결과 존재
+--- issue_euthanasia ---
+[plan] issue_cat_feeding_days_list · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 945f4957b5ae
+[skip] gpt/C0_lcons_cf_days_list_rep1 — 결과 존재
+[skip] gpt/C0_lcons_cf_days_list_rep2 — 결과 존재
+[skip] gpt/C0_lcons_cf_days_list_rep3 — 결과 존재
+[skip] gpt/C0_lprog_cf_days_list_rep1 — 결과 존재
+[skip] gpt/C0_lprog_cf_days_list_rep2 — 결과 존재
+[skip] gpt/C0_lprog_cf_days_list_rep3 — 결과 존재
+--- issue_recycling_room ---
+[plan] issue_eol · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 85e7bf87b57e
+[skip] gpt/C0_lcons_eol_rep1 — 결과 존재
+[skip] gpt/C0_lcons_eol_rep2 — 결과 존재
+[skip] gpt/C0_lcons_eol_rep3 — 결과 존재
+[skip] gpt/C0_lprog_eol_rep1 — 결과 존재
+[skip] gpt/C0_lprog_eol_rep2 — 결과 존재
+[skip] gpt/C0_lprog_eol_rep3 — 결과 존재
+--- issue_remotewatch ---
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: recycling_room.json (issue_id=issue_recycling_room)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] gpt/C0_lcons_euthanasia_rep1 — 결과 존재
+[skip] gpt/C0_lcons_euthanasia_rep2 — 결과 존재
+[skip] gpt/C0_lcons_euthanasia_rep3 — 결과 존재
+[skip] gpt/C0_lprog_euthanasia_rep1 — 결과 존재
+[skip] gpt/C0_lprog_euthanasia_rep2 — 결과 존재
+[skip] gpt/C0_lprog_euthanasia_rep3 — 결과 존재
+--- issue_examaccom ---
+[plan] issue_recycling_room · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 f3c6140ae683
+[skip] gpt/C0_lcons_recycling_room_rep1 — 결과 존재
+[skip] gpt/C0_lcons_recycling_room_rep2 — 결과 존재
+[skip] gpt/C0_lcons_recycling_room_rep3 — 결과 존재
+[skip] gpt/C0_lprog_recycling_room_rep1 — 결과 존재
+[skip] gpt/C0_lprog_recycling_room_rep2 — 결과 존재
+[skip] gpt/C0_lprog_recycling_room_rep3 — 결과 존재
+--- issue_smoking_area_party ---
+[plan] issue_remotewatch · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[skip] gpt/C0_lcons_remotewatch_rep1 — 결과 존재
+[skip] gpt/C0_lcons_remotewatch_rep2 — 결과 존재
+[skip] gpt/C0_lcons_remotewatch_rep3 — 결과 존재
+[skip] gpt/C0_lprog_remotewatch_rep1 — 결과 존재
+[skip] gpt/C0_lprog_remotewatch_rep2 — 결과 존재
+[skip] gpt/C0_lprog_remotewatch_rep3 — 결과 존재
+--- issue_shelter ---
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: issue_shelter.json (issue_id=issue_shelter)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: smoking_area_party.json (issue_id=issue_smoking_area_party)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[skip] gpt/C0_lcons_examaccom_rep1 — 결과 존재
+[skip] gpt/C0_lcons_examaccom_rep2 — 결과 존재
+[skip] gpt/C0_lcons_examaccom_rep3 — 결과 존재
+[skip] gpt/C0_lprog_examaccom_rep1 — 결과 존재
+[skip] gpt/C0_lprog_examaccom_rep2 — 결과 존재
+[skip] gpt/C0_lprog_examaccom_rep3 — 결과 존재
+--- issue_parentalreturn ---
+[plan] issue_shelter · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 aa3eef04c672
+[skip] gpt/C0_lcons_shelter_rep1 — 결과 존재
+[skip] gpt/C0_lcons_shelter_rep2 — 결과 존재
+[skip] gpt/C0_lcons_shelter_rep3 — 결과 존재
+[skip] gpt/C0_lprog_shelter_rep1 — 결과 존재
+[skip] gpt/C0_lprog_shelter_rep2 — 결과 존재
+[skip] gpt/C0_lprog_shelter_rep3 — 결과 존재
+[plan] issue_smoking_area_party · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 72c4b7e16e70
+[skip] gpt/C0_lcons_smoking_party_rep1 — 결과 존재
+[skip] gpt/C0_lcons_smoking_party_rep2 — 결과 존재
+[skip] gpt/C0_lcons_smoking_party_rep3 — 결과 존재
+[skip] gpt/C0_lprog_smoking_party_rep1 — 결과 존재
+[skip] gpt/C0_lprog_smoking_party_rep2 — 결과 존재
+[skip] gpt/C0_lprog_smoking_party_rep3 — 결과 존재
+--- issue_workmind ---
+=== label c0 gpt 끝 2026-09-03T03:31:49+00:00 ===
+[check_materials] 대상: issue_parentalreturn.json (issue_id=issue_parentalreturn)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: issue_workmind.json (issue_id=issue_workmind)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_parentalreturn · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 2cb32fba6dc5
+[skip] gpt/C0_lcons_parentalreturn_rep1 — 결과 존재
+[skip] gpt/C0_lcons_parentalreturn_rep2 — 결과 존재
+[done] gpt/C0_lcons_parentalreturn_rep3 · 호출 2
+[done] gpt/C0_lprog_parentalreturn_rep1 · 호출 8
+[done] gpt/C0_lprog_parentalreturn_rep2 · 호출 8
+[done] gpt/C0_lprog_parentalreturn_rep3 · 호출 8
+=== label c0 gpt 끝 2026-09-03T03:32:40+00:00 ===
+[plan] issue_workmind · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 661cb97a56ee
+[skip] gpt/C0_lcons_workmind_rep1 — 결과 존재
+[skip] gpt/C0_lcons_workmind_rep2 — 결과 존재
+[done] gpt/C0_lcons_workmind_rep3 · 호출 4
+[done] gpt/C0_lprog_workmind_rep1 · 호출 8
+[done] gpt/C0_lprog_workmind_rep2 · 호출 8
+[done] gpt/C0_lprog_workmind_rep3 · 호출 8
+=== label c0 gpt 끝 2026-09-03T03:32:42+00:00 ===
+=== label c0 gpt 시작 2026-09-03T03:34:22+00:00 ===
+=== label c0 gpt 시작 2026-09-03T03:34:22+00:00 ===
+=== label c0 gpt 시작 2026-09-03T03:34:22+00:00 ===
+--- issue_eol ---
+--- issue_childcare ---
+--- issue_cat_feeding_days_list ---
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: issue_eol.json (issue_id=issue_eol)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: cat_feeding_days_list.json (issue_id=issue_cat_feeding_days_list)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] gpt/C0_lcons_childcare_rep1 — 결과 존재
+[skip] gpt/C0_lcons_childcare_rep2 — 결과 존재
+[skip] gpt/C0_lcons_childcare_rep3 — 결과 존재
+[skip] gpt/C0_lprog_childcare_rep1 — 결과 존재
+[skip] gpt/C0_lprog_childcare_rep2 — 결과 존재
+[skip] gpt/C0_lprog_childcare_rep3 — 결과 존재
+--- issue_euthanasia ---
+[plan] issue_eol · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 85e7bf87b57e
+[skip] gpt/C0_lcons_eol_rep1 — 결과 존재
+[skip] gpt/C0_lcons_eol_rep2 — 결과 존재
+[skip] gpt/C0_lcons_eol_rep3 — 결과 존재
+[skip] gpt/C0_lprog_eol_rep1 — 결과 존재
+[skip] gpt/C0_lprog_eol_rep2 — 결과 존재
+[skip] gpt/C0_lprog_eol_rep3 — 결과 존재
+[plan] issue_cat_feeding_days_list · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 945f4957b5ae
+[skip] gpt/C0_lcons_cf_days_list_rep1 — 결과 존재
+[skip] gpt/C0_lcons_cf_days_list_rep2 — 결과 존재
+[skip] gpt/C0_lcons_cf_days_list_rep3 — 결과 존재
+[skip] gpt/C0_lprog_cf_days_list_rep1 — 결과 존재
+[skip] gpt/C0_lprog_cf_days_list_rep2 — 결과 존재
+[skip] gpt/C0_lprog_cf_days_list_rep3 — 결과 존재
+--- issue_remotewatch ---
+--- issue_recycling_room ---
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: recycling_room.json (issue_id=issue_recycling_room)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] gpt/C0_lcons_euthanasia_rep1 — 결과 존재
+[skip] gpt/C0_lcons_euthanasia_rep2 — 결과 존재
+[skip] gpt/C0_lcons_euthanasia_rep3 — 결과 존재
+[skip] gpt/C0_lprog_euthanasia_rep1 — 결과 존재
+[skip] gpt/C0_lprog_euthanasia_rep2 — 결과 존재
+[skip] gpt/C0_lprog_euthanasia_rep3 — 결과 존재
+--- issue_examaccom ---
+[plan] issue_remotewatch · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[skip] gpt/C0_lcons_remotewatch_rep1 — 결과 존재
+[skip] gpt/C0_lcons_remotewatch_rep2 — 결과 존재
+[skip] gpt/C0_lcons_remotewatch_rep3 — 결과 존재
+[skip] gpt/C0_lprog_remotewatch_rep1 — 결과 존재
+[skip] gpt/C0_lprog_remotewatch_rep2 — 결과 존재
+[skip] gpt/C0_lprog_remotewatch_rep3 — 결과 존재
+[plan] issue_recycling_room · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 f3c6140ae683
+[skip] gpt/C0_lcons_recycling_room_rep1 — 결과 존재
+[skip] gpt/C0_lcons_recycling_room_rep2 — 결과 존재
+[skip] gpt/C0_lcons_recycling_room_rep3 — 결과 존재
+[skip] gpt/C0_lprog_recycling_room_rep1 — 결과 존재
+[skip] gpt/C0_lprog_recycling_room_rep2 — 결과 존재
+[skip] gpt/C0_lprog_recycling_room_rep3 — 결과 존재
+--- issue_shelter ---
+--- issue_smoking_area_party ---
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: smoking_area_party.json (issue_id=issue_smoking_area_party)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: issue_shelter.json (issue_id=issue_shelter)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_shelter · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 aa3eef04c672
+[skip] gpt/C0_lcons_shelter_rep1 — 결과 존재
+[skip] gpt/C0_lcons_shelter_rep2 — 결과 존재
+[skip] gpt/C0_lcons_shelter_rep3 — 결과 존재
+[skip] gpt/C0_lprog_shelter_rep1 — 결과 존재
+[skip] gpt/C0_lprog_shelter_rep2 — 결과 존재
+[skip] gpt/C0_lprog_shelter_rep3 — 결과 존재
+[plan] issue_smoking_area_party · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 72c4b7e16e70
+[skip] gpt/C0_lcons_smoking_party_rep1 — 결과 존재
+[skip] gpt/C0_lcons_smoking_party_rep2 — 결과 존재
+[skip] gpt/C0_lcons_smoking_party_rep3 — 결과 존재
+[skip] gpt/C0_lprog_smoking_party_rep1 — 결과 존재
+[skip] gpt/C0_lprog_smoking_party_rep2 — 결과 존재
+[skip] gpt/C0_lprog_smoking_party_rep3 — 결과 존재
+[plan] issue_examaccom · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[skip] gpt/C0_lcons_examaccom_rep1 — 결과 존재
+[skip] gpt/C0_lcons_examaccom_rep2 — 결과 존재
+[skip] gpt/C0_lcons_examaccom_rep3 — 결과 존재
+[skip] gpt/C0_lprog_examaccom_rep1 — 결과 존재
+[skip] gpt/C0_lprog_examaccom_rep2 — 결과 존재
+[skip] gpt/C0_lprog_examaccom_rep3 — 결과 존재
+--- issue_workmind ---
+=== label c0 gpt 끝 2026-09-03T03:34:32+00:00 ===
+--- issue_parentalreturn ---
+[check_materials] 대상: issue_parentalreturn.json (issue_id=issue_parentalreturn)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: issue_workmind.json (issue_id=issue_workmind)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_parentalreturn · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 2cb32fba6dc5
+[skip] gpt/C0_lcons_parentalreturn_rep1 — 결과 존재
+[skip] gpt/C0_lcons_parentalreturn_rep2 — 결과 존재
+[skip] gpt/C0_lcons_parentalreturn_rep3 — 결과 존재
+[skip] gpt/C0_lprog_parentalreturn_rep1 — 결과 존재
+[skip] gpt/C0_lprog_parentalreturn_rep2 — 결과 존재
+[skip] gpt/C0_lprog_parentalreturn_rep3 — 결과 존재
+=== label c0 gpt 끝 2026-09-03T03:34:35+00:00 ===
+[plan] issue_workmind · gpt — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 661cb97a56ee
+[skip] gpt/C0_lcons_workmind_rep1 — 결과 존재
+[skip] gpt/C0_lcons_workmind_rep2 — 결과 존재
+[skip] gpt/C0_lcons_workmind_rep3 — 결과 존재
+[skip] gpt/C0_lprog_workmind_rep1 — 결과 존재
+[skip] gpt/C0_lprog_workmind_rep2 — 결과 존재
+[skip] gpt/C0_lprog_workmind_rep3 — 결과 존재
+=== label c0 gpt 끝 2026-09-03T03:34:35+00:00 ===

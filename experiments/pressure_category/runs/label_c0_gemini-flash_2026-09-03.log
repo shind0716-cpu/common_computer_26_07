@@ -1,0 +1,666 @@
+=== label c0 gemini-flash 시작 2026-09-03T03:26:02+00:00 ===
+=== label c0 gemini-flash 시작 2026-09-03T03:26:02+00:00 ===
+--- issue_eol ---
+=== label c0 gemini-flash 시작 2026-09-03T03:26:02+00:00 ===
+--- issue_cat_feeding_days_list ---
+--- issue_childcare ---
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: cat_feeding_days_list.json (issue_id=issue_cat_feeding_days_list)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: issue_eol.json (issue_id=issue_eol)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] gemini-flash/C0_lcons_childcare_rep1 — 결과 존재
+[done] gemini-flash/C0_lcons_childcare_rep2 · 호출 8
+[done] gemini-flash/C0_lcons_childcare_rep3 · 호출 9
+[done] gemini-flash/C0_lprog_childcare_rep1 · 호출 8
+[done] gemini-flash/C0_lprog_childcare_rep2 · 호출 8
+[done] gemini-flash/C0_lprog_childcare_rep3 · 호출 9
+--- issue_euthanasia ---
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_eol · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 85e7bf87b57e
+[done] gemini-flash/C0_lcons_eol_rep1 · 호출 8
+[done] gemini-flash/C0_lcons_eol_rep2 · 호출 8
+[done] gemini-flash/C0_lcons_eol_rep3 · 호출 8
+[done] gemini-flash/C0_lprog_eol_rep1 · 호출 8
+[done] gemini-flash/C0_lprog_eol_rep2 · 호출 8
+[done] gemini-flash/C0_lprog_eol_rep3 · 호출 8
+--- issue_remotewatch ---
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_cat_feeding_days_list · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 945f4957b5ae
+[done] gemini-flash/C0_lcons_cf_days_list_rep1 · 호출 9
+[done] gemini-flash/C0_lcons_cf_days_list_rep2 · 호출 9
+[done] gemini-flash/C0_lcons_cf_days_list_rep3 · 호출 9
+[done] gemini-flash/C0_lprog_cf_days_list_rep1 · 호출 9
+[done] gemini-flash/C0_lprog_cf_days_list_rep2 · 호출 9
+[done] gemini-flash/C0_lprog_cf_days_list_rep3 · 호출 9
+--- issue_recycling_room ---
+[check_materials] 대상: recycling_room.json (issue_id=issue_recycling_room)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[done] gemini-flash/C0_lcons_euthanasia_rep1 · 호출 8
+[done] gemini-flash/C0_lcons_euthanasia_rep2 · 호출 8
+[plan] issue_recycling_room · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 f3c6140ae683
+[done] gemini-flash/C0_lcons_recycling_room_rep1 · 호출 8
+Traceback (most recent call last):
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 518, in <module>
+[plan] issue_remotewatch · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[done] gemini-flash/C0_lcons_remotewatch_rep1 · 호출 8
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 518, in <module>
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 518, in <module>
+    main()
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 513, in main
+    main()
+    main()
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 513, in main
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 513, in main
+    run_one(mat, script_reg, vset_reg, args.model, s, v, r, args.max_calls, args.dry,
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 399, in run_one
+    run_one(mat, script_reg, vset_reg, args.model, s, v, r, args.max_calls, args.dry,
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 401, in run_one
+    run_one(mat, script_reg, vset_reg, args.model, s, v, r, args.max_calls, args.dry,
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 399, in run_one
+    essays.append(gate.call(f"essay_r{r}", p))
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 342, in call
+    note = gate.call(f"note_r{r}",
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 342, in call
+    essays.append(gate.call(f"essay_r{r}", p))
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 342, in call
+    text = f"[DRY {tag}]" if self.dry else self.obtain(prompt)
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 386, in obtain
+    text = f"[DRY {tag}]" if self.dry else self.obtain(prompt)
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 386, in obtain
+    text = f"[DRY {tag}]" if self.dry else self.obtain(prompt)
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 386, in obtain
+    return llm.obtain_response(p, model=model_key, temperature=GEN_TEMPERATURE,
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/modules/llm.py", line 542, in obtain_response
+    return llm.obtain_response(p, model=model_key, temperature=GEN_TEMPERATURE,
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/modules/llm.py", line 542, in obtain_response
+    return llm.obtain_response(p, model=model_key, temperature=GEN_TEMPERATURE,
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/modules/llm.py", line 542, in obtain_response
+    text = fn(model_id, inputs, temperature, reasoning)
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/modules/llm.py", line 449, in _call_gemini
+    text = fn(model_id, inputs, temperature, reasoning)
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/modules/llm.py", line 449, in _call_gemini
+    text = fn(model_id, inputs, temperature, reasoning)
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/modules/llm.py", line 449, in _call_gemini
+    r = requests.post(url, headers={"x-goog-api-key": key}, json=payload, timeout=180)
+  File "/usr/local/lib/python3.10/dist-packages/requests/api.py", line 134, in post
+    r = requests.post(url, headers={"x-goog-api-key": key}, json=payload, timeout=180)
+  File "/usr/local/lib/python3.10/dist-packages/requests/api.py", line 134, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/sessions.py", line 651, in request
+    r = requests.post(url, headers={"x-goog-api-key": key}, json=payload, timeout=180)
+  File "/usr/local/lib/python3.10/dist-packages/requests/api.py", line 134, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/sessions.py", line 784, in send
+    return request("post", url, data=data, json=json, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/sessions.py", line 651, in request
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 788, in urlopen
+  File "/usr/local/lib/python3.10/dist-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+    resp = self.send(prep, **send_kwargs)
+    response = self._make_request(
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connection.py", line 571, in getresponse
+  File "/usr/local/lib/python3.10/dist-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 788, in urlopen
+    httplib_response = super().getresponse()
+  File "/usr/lib/python3.10/http/client.py", line 1404, in getresponse
+  File "/usr/local/lib/python3.10/dist-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+    response = self._make_request(
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connection.py", line 571, in getresponse
+    response.begin()
+  File "/usr/lib/python3.10/http/client.py", line 323, in begin
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 534, in _make_request
+    httplib_response = super().getresponse()
+  File "/usr/lib/python3.10/http/client.py", line 1404, in getresponse
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.10/http/client.py", line 284, in _read_status
+    response = conn.getresponse()
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connection.py", line 571, in getresponse
+    response.begin()
+  File "/usr/lib/python3.10/http/client.py", line 323, in begin
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    httplib_response = super().getresponse()
+  File "/usr/lib/python3.10/http/client.py", line 1404, in getresponse
+    response.begin()
+  File "/usr/lib/python3.10/http/client.py", line 323, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.10/http/client.py", line 284, in _read_status
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.10/ssl.py", line 1303, in recv_into
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.10/http/client.py", line 284, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.10/ssl.py", line 1159, in read
+  File "/usr/lib/python3.10/ssl.py", line 1303, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib/python3.10/ssl.py", line 1159, in read
+  File "/usr/lib/python3.10/ssl.py", line 1303, in recv_into
+    return self.read(nbytes, buffer)
+KeyboardInterrupt
+    return self._sslobj.read(len, buffer)
+KeyboardInterrupt
+  File "/usr/lib/python3.10/ssl.py", line 1159, in read
+    return self._sslobj.read(len, buffer)
+KeyboardInterrupt
+=== label c0 gemini-flash 시작 2026-09-03T03:28:49+00:00 ===
+=== label c0 gemini-flash 시작 2026-09-03T03:28:49+00:00 ===
+=== label c0 gemini-flash 시작 2026-09-03T03:28:49+00:00 ===
+--- issue_childcare ---
+--- issue_cat_feeding_days_list ---
+--- issue_eol ---
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: issue_eol.json (issue_id=issue_eol)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: cat_feeding_days_list.json (issue_id=issue_cat_feeding_days_list)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_childcare · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] gemini-flash/C0_lcons_childcare_rep1 — 결과 존재
+[skip] gemini-flash/C0_lcons_childcare_rep2 — 결과 존재
+[skip] gemini-flash/C0_lcons_childcare_rep3 — 결과 존재
+[skip] gemini-flash/C0_lprog_childcare_rep1 — 결과 존재
+[skip] gemini-flash/C0_lprog_childcare_rep2 — 결과 존재
+[skip] gemini-flash/C0_lprog_childcare_rep3 — 결과 존재
+[plan] issue_eol · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 85e7bf87b57e
+[skip] gemini-flash/C0_lcons_eol_rep1 — 결과 존재
+[skip] gemini-flash/C0_lcons_eol_rep2 — 결과 존재
+[skip] gemini-flash/C0_lcons_eol_rep3 — 결과 존재
+[skip] gemini-flash/C0_lprog_eol_rep1 — 결과 존재
+[skip] gemini-flash/C0_lprog_eol_rep2 — 결과 존재
+[skip] gemini-flash/C0_lprog_eol_rep3 — 결과 존재
+--- issue_euthanasia ---
+--- issue_remotewatch ---
+[plan] issue_cat_feeding_days_list · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 945f4957b5ae
+[skip] gemini-flash/C0_lcons_cf_days_list_rep1 — 결과 존재
+[skip] gemini-flash/C0_lcons_cf_days_list_rep2 — 결과 존재
+[skip] gemini-flash/C0_lcons_cf_days_list_rep3 — 결과 존재
+[skip] gemini-flash/C0_lprog_cf_days_list_rep1 — 결과 존재
+[skip] gemini-flash/C0_lprog_cf_days_list_rep2 — 결과 존재
+[skip] gemini-flash/C0_lprog_cf_days_list_rep3 — 결과 존재
+--- issue_recycling_room ---
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: recycling_room.json (issue_id=issue_recycling_room)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_euthanasia · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] gemini-flash/C0_lcons_euthanasia_rep1 — 결과 존재
+[skip] gemini-flash/C0_lcons_euthanasia_rep2 — 결과 존재
+[done] gemini-flash/C0_lcons_euthanasia_rep3 · 호출 4
+[done] gemini-flash/C0_lprog_euthanasia_rep1 · 호출 8
+[done] gemini-flash/C0_lprog_euthanasia_rep2 · 호출 8
+[done] gemini-flash/C0_lprog_euthanasia_rep3 · 호출 8
+--- issue_examaccom ---
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_remotewatch · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[skip] gemini-flash/C0_lcons_remotewatch_rep1 — 결과 존재
+[done] gemini-flash/C0_lcons_remotewatch_rep2 · 호출 3
+[done] gemini-flash/C0_lcons_remotewatch_rep3 · 호출 8
+[done] gemini-flash/C0_lprog_remotewatch_rep1 · 호출 8
+[done] gemini-flash/C0_lprog_remotewatch_rep2 · 호출 8
+[done] gemini-flash/C0_lprog_remotewatch_rep3 · 호출 8
+--- issue_shelter ---
+[check_materials] 대상: issue_shelter.json (issue_id=issue_shelter)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_recycling_room · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 f3c6140ae683
+[skip] gemini-flash/C0_lcons_recycling_room_rep1 — 결과 존재
+[done] gemini-flash/C0_lcons_recycling_room_rep2 · 호출 6
+[done] gemini-flash/C0_lcons_recycling_room_rep3 · 호출 8
+[done] gemini-flash/C0_lprog_recycling_room_rep1 · 호출 8
+[done] gemini-flash/C0_lprog_recycling_room_rep2 · 호출 8
+[done] gemini-flash/C0_lprog_recycling_room_rep3 · 호출 8
+--- issue_smoking_area_party ---
+[check_materials] 대상: smoking_area_party.json (issue_id=issue_smoking_area_party)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_shelter · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 aa3eef04c672
+[done] gemini-flash/C0_lcons_shelter_rep1 · 호출 8
+[done] gemini-flash/C0_lcons_shelter_rep2 · 호출 8
+[done] gemini-flash/C0_lcons_shelter_rep3 · 호출 8
+Traceback (most recent call last):
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 518, in <module>
+[plan] issue_examaccom · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[done] gemini-flash/C0_lcons_examaccom_rep1 · 호출 8
+[done] gemini-flash/C0_lcons_examaccom_rep2 · 호출 8
+[done] gemini-flash/C0_lcons_examaccom_rep3 · 호출 8
+[done] gemini-flash/C0_lprog_examaccom_rep1 · 호출 8
+Traceback (most recent call last):
+[plan] issue_smoking_area_party · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 72c4b7e16e70
+[done] gemini-flash/C0_lcons_smoking_party_rep1 · 호출 8
+[done] gemini-flash/C0_lcons_smoking_party_rep2 · 호출 8
+Traceback (most recent call last):
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 518, in <module>
+    main()
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 518, in <module>
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 513, in main
+    main()
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 513, in main
+    main()
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 513, in main
+    run_one(mat, script_reg, vset_reg, args.model, s, v, r, args.max_calls, args.dry,
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 399, in run_one
+    run_one(mat, script_reg, vset_reg, args.model, s, v, r, args.max_calls, args.dry,
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 399, in run_one
+    run_one(mat, script_reg, vset_reg, args.model, s, v, r, args.max_calls, args.dry,
+    essays.append(gate.call(f"essay_r{r}", p))
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 342, in call
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 399, in run_one
+    essays.append(gate.call(f"essay_r{r}", p))
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 342, in call
+    text = f"[DRY {tag}]" if self.dry else self.obtain(prompt)
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 386, in obtain
+    essays.append(gate.call(f"essay_r{r}", p))
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 342, in call
+    text = f"[DRY {tag}]" if self.dry else self.obtain(prompt)
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 386, in obtain
+    return llm.obtain_response(p, model=model_key, temperature=GEN_TEMPERATURE,
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/modules/llm.py", line 542, in obtain_response
+    text = f"[DRY {tag}]" if self.dry else self.obtain(prompt)
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 386, in obtain
+    return llm.obtain_response(p, model=model_key, temperature=GEN_TEMPERATURE,
+    text = fn(model_id, inputs, temperature, reasoning)
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/modules/llm.py", line 449, in _call_gemini
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/modules/llm.py", line 542, in obtain_response
+    return llm.obtain_response(p, model=model_key, temperature=GEN_TEMPERATURE,
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/modules/llm.py", line 542, in obtain_response
+    r = requests.post(url, headers={"x-goog-api-key": key}, json=payload, timeout=180)
+  File "/usr/local/lib/python3.10/dist-packages/requests/api.py", line 134, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/sessions.py", line 651, in request
+    text = fn(model_id, inputs, temperature, reasoning)
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/modules/llm.py", line 449, in _call_gemini
+    text = fn(model_id, inputs, temperature, reasoning)
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/modules/llm.py", line 449, in _call_gemini
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+    r = requests.post(url, headers={"x-goog-api-key": key}, json=payload, timeout=180)
+  File "/usr/local/lib/python3.10/dist-packages/requests/api.py", line 134, in post
+    return request("post", url, data=data, json=json, **kwargs)
+    r = requests.post(url, headers={"x-goog-api-key": key}, json=payload, timeout=180)
+  File "/usr/local/lib/python3.10/dist-packages/requests/api.py", line 134, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "/usr/local/lib/python3.10/dist-packages/requests/api.py", line 71, in request
+  File "/usr/local/lib/python3.10/dist-packages/requests/api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/sessions.py", line 651, in request
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "/usr/local/lib/python3.10/dist-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/sessions.py", line 784, in send
+  File "/usr/lib/python3.10/http/client.py", line 1404, in getresponse
+  File "/usr/local/lib/python3.10/dist-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/adapters.py", line 696, in send
+    response.begin()
+  File "/usr/lib/python3.10/http/client.py", line 323, in begin
+  File "/usr/local/lib/python3.10/dist-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+    resp = conn.urlopen(
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 788, in urlopen
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.10/http/client.py", line 284, in _read_status
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+    response = self._make_request(
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 464, in _make_request
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    self._validate_conn(conn)
+  File "/usr/lib/python3.10/ssl.py", line 1303, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.10/ssl.py", line 1159, in read
+    return self._sslobj.read(len, buffer)
+KeyboardInterrupt
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 1106, in _validate_conn
+    conn.connect()
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connection.py", line 796, in connect
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 1106, in _validate_conn
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+    conn.connect()
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/util/ssl_.py", line 433, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/util/ssl_.py", line 477, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "/usr/lib/python3.10/ssl.py", line 513, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connection.py", line 204, in _new_conn
+  File "/usr/lib/python3.10/ssl.py", line 1100, in _create
+    sock = connection.create_connection(
+    self.do_handshake()
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/util/connection.py", line 73, in create_connection
+  File "/usr/lib/python3.10/ssl.py", line 1371, in do_handshake
+    self._sslobj.do_handshake()
+    sock.connect(sa)
+KeyboardInterrupt
+KeyboardInterrupt
+=== label c0 gemini-flash 시작 2026-09-03T03:31:36+00:00 ===
+--- issue_childcare ---
+=== label c0 gemini-flash 시작 2026-09-03T03:31:36+00:00 ===
+=== label c0 gemini-flash 시작 2026-09-03T03:31:36+00:00 ===
+--- issue_cat_feeding_days_list ---
+--- issue_eol ---
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: cat_feeding_days_list.json (issue_id=issue_cat_feeding_days_list)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: issue_eol.json (issue_id=issue_eol)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_cat_feeding_days_list · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 945f4957b5ae
+[skip] gemini-flash/C0_lcons_cf_days_list_rep1 — 결과 존재
+[skip] gemini-flash/C0_lcons_cf_days_list_rep2 — 결과 존재
+[skip] gemini-flash/C0_lcons_cf_days_list_rep3 — 결과 존재
+[skip] gemini-flash/C0_lprog_cf_days_list_rep1 — 결과 존재
+[skip] gemini-flash/C0_lprog_cf_days_list_rep2 — 결과 존재
+[skip] gemini-flash/C0_lprog_cf_days_list_rep3 — 결과 존재
+--- issue_recycling_room ---
+[plan] issue_childcare · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] gemini-flash/C0_lcons_childcare_rep1 — 결과 존재
+[skip] gemini-flash/C0_lcons_childcare_rep2 — 결과 존재
+[skip] gemini-flash/C0_lcons_childcare_rep3 — 결과 존재
+[skip] gemini-flash/C0_lprog_childcare_rep1 — 결과 존재
+[skip] gemini-flash/C0_lprog_childcare_rep2 — 결과 존재
+[skip] gemini-flash/C0_lprog_childcare_rep3 — 결과 존재
+--- issue_euthanasia ---
+[plan] issue_eol · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 85e7bf87b57e
+[skip] gemini-flash/C0_lcons_eol_rep1 — 결과 존재
+[skip] gemini-flash/C0_lcons_eol_rep2 — 결과 존재
+[skip] gemini-flash/C0_lcons_eol_rep3 — 결과 존재
+[skip] gemini-flash/C0_lprog_eol_rep1 — 결과 존재
+[skip] gemini-flash/C0_lprog_eol_rep2 — 결과 존재
+[skip] gemini-flash/C0_lprog_eol_rep3 — 결과 존재
+--- issue_remotewatch ---
+[check_materials] 대상: recycling_room.json (issue_id=issue_recycling_room)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_recycling_room · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 f3c6140ae683
+[skip] gemini-flash/C0_lcons_recycling_room_rep1 — 결과 존재
+[skip] gemini-flash/C0_lcons_recycling_room_rep2 — 결과 존재
+[skip] gemini-flash/C0_lcons_recycling_room_rep3 — 결과 존재
+[skip] gemini-flash/C0_lprog_recycling_room_rep1 — 결과 존재
+[skip] gemini-flash/C0_lprog_recycling_room_rep2 — 결과 존재
+[skip] gemini-flash/C0_lprog_recycling_room_rep3 — 결과 존재
+--- issue_smoking_area_party ---
+[plan] issue_remotewatch · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[skip] gemini-flash/C0_lcons_remotewatch_rep1 — 결과 존재
+[skip] gemini-flash/C0_lcons_remotewatch_rep2 — 결과 존재
+[skip] gemini-flash/C0_lcons_remotewatch_rep3 — 결과 존재
+[skip] gemini-flash/C0_lprog_remotewatch_rep1 — 결과 존재
+[skip] gemini-flash/C0_lprog_remotewatch_rep2 — 결과 존재
+[skip] gemini-flash/C0_lprog_remotewatch_rep3 — 결과 존재
+--- issue_shelter ---
+[plan] issue_euthanasia · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] gemini-flash/C0_lcons_euthanasia_rep1 — 결과 존재
+[skip] gemini-flash/C0_lcons_euthanasia_rep2 — 결과 존재
+[skip] gemini-flash/C0_lcons_euthanasia_rep3 — 결과 존재
+[skip] gemini-flash/C0_lprog_euthanasia_rep1 — 결과 존재
+[skip] gemini-flash/C0_lprog_euthanasia_rep2 — 결과 존재
+[skip] gemini-flash/C0_lprog_euthanasia_rep3 — 결과 존재
+--- issue_examaccom ---
+[check_materials] 대상: smoking_area_party.json (issue_id=issue_smoking_area_party)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: issue_shelter.json (issue_id=issue_shelter)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_examaccom · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[skip] gemini-flash/C0_lcons_examaccom_rep1 — 결과 존재
+[skip] gemini-flash/C0_lcons_examaccom_rep2 — 결과 존재
+[skip] gemini-flash/C0_lcons_examaccom_rep3 — 결과 존재
+[skip] gemini-flash/C0_lprog_examaccom_rep1 — 결과 존재
+[done] gemini-flash/C0_lprog_examaccom_rep2 · 호출 4
+[done] gemini-flash/C0_lprog_examaccom_rep3 · 호출 8
+--- issue_parentalreturn ---
+[check_materials] 대상: issue_parentalreturn.json (issue_id=issue_parentalreturn)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_shelter · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 aa3eef04c672
+[skip] gemini-flash/C0_lcons_shelter_rep1 — 결과 존재
+[skip] gemini-flash/C0_lcons_shelter_rep2 — 결과 존재
+[skip] gemini-flash/C0_lcons_shelter_rep3 — 결과 존재
+[done] gemini-flash/C0_lprog_shelter_rep1 · 호출 6
+[done] gemini-flash/C0_lprog_shelter_rep2 · 호출 8
+[done] gemini-flash/C0_lprog_shelter_rep3 · 호출 8
+--- issue_workmind ---
+[check_materials] 대상: issue_workmind.json (issue_id=issue_workmind)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_smoking_area_party · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 72c4b7e16e70
+[skip] gemini-flash/C0_lcons_smoking_party_rep1 — 결과 존재
+[skip] gemini-flash/C0_lcons_smoking_party_rep2 — 결과 존재
+[done] gemini-flash/C0_lcons_smoking_party_rep3 · 호출 2
+[done] gemini-flash/C0_lprog_smoking_party_rep1 · 호출 8
+[done] gemini-flash/C0_lprog_smoking_party_rep2 · 호출 8
+[done] gemini-flash/C0_lprog_smoking_party_rep3 · 호출 8
+=== label c0 gemini-flash 끝 2026-09-03T03:32:51+00:00 ===
+[plan] issue_parentalreturn · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 2cb32fba6dc5
+[done] gemini-flash/C0_lcons_parentalreturn_rep1 · 호출 8
+[done] gemini-flash/C0_lcons_parentalreturn_rep2 · 호출 8
+[done] gemini-flash/C0_lcons_parentalreturn_rep3 · 호출 8
+[done] gemini-flash/C0_lprog_parentalreturn_rep1 · 호출 8
+[done] gemini-flash/C0_lprog_parentalreturn_rep2 · 호출 8
+[done] gemini-flash/C0_lprog_parentalreturn_rep3 · 호출 9
+=== label c0 gemini-flash 끝 2026-09-03T03:34:10+00:00 ===
+[plan] issue_workmind · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 661cb97a56ee
+[done] gemini-flash/C0_lcons_workmind_rep1 · 호출 8
+[done] gemini-flash/C0_lcons_workmind_rep2 · 호출 9
+[done] gemini-flash/C0_lcons_workmind_rep3 · 호출 8
+[done] gemini-flash/C0_lprog_workmind_rep1 · 호출 9
+Traceback (most recent call last):
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 518, in <module>
+    main()
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 513, in main
+    run_one(mat, script_reg, vset_reg, args.model, s, v, r, args.max_calls, args.dry,
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 401, in run_one
+    note = gate.call(f"note_r{r}",
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 342, in call
+    text = f"[DRY {tag}]" if self.dry else self.obtain(prompt)
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/experiments/pressure_category/run_pressure.py", line 386, in obtain
+    return llm.obtain_response(p, model=model_key, temperature=GEN_TEMPERATURE,
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/modules/llm.py", line 542, in obtain_response
+    text = fn(model_id, inputs, temperature, reasoning)
+  File "/sessions/rcw-01236ypvj4mmkcre2ajmbv3c/mnt/common_computer_26_071/modules/llm.py", line 449, in _call_gemini
+    r = requests.post(url, headers={"x-goog-api-key": key}, json=payload, timeout=180)
+  File "/usr/local/lib/python3.10/dist-packages/requests/api.py", line 134, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "/usr/local/lib/python3.10/dist-packages/urllib3/connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "/usr/lib/python3.10/http/client.py", line 1404, in getresponse
+    response.begin()
+  File "/usr/lib/python3.10/http/client.py", line 323, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.10/http/client.py", line 284, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.10/ssl.py", line 1303, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.10/ssl.py", line 1159, in read
+    return self._sslobj.read(len, buffer)
+KeyboardInterrupt
+=== label c0 gemini-flash 시작 2026-09-03T03:34:22+00:00 ===
+--- issue_childcare ---
+=== label c0 gemini-flash 시작 2026-09-03T03:34:22+00:00 ===
+=== label c0 gemini-flash 시작 2026-09-03T03:34:22+00:00 ===
+--- issue_eol ---
+--- issue_cat_feeding_days_list ---
+[check_materials] 대상: issue_eol.json (issue_id=issue_eol)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: issue_childcare.json (issue_id=issue_childcare)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: cat_feeding_days_list.json (issue_id=issue_cat_feeding_days_list)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_eol · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 85e7bf87b57e
+[skip] gemini-flash/C0_lcons_eol_rep1 — 결과 존재
+[skip] gemini-flash/C0_lcons_eol_rep2 — 결과 존재
+[skip] gemini-flash/C0_lcons_eol_rep3 — 결과 존재
+[skip] gemini-flash/C0_lprog_eol_rep1 — 결과 존재
+[skip] gemini-flash/C0_lprog_eol_rep2 — 결과 존재
+[skip] gemini-flash/C0_lprog_eol_rep3 — 결과 존재
+--- issue_remotewatch ---
+[plan] issue_cat_feeding_days_list · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 945f4957b5ae
+[skip] gemini-flash/C0_lcons_cf_days_list_rep1 — 결과 존재
+[skip] gemini-flash/C0_lcons_cf_days_list_rep2 — 결과 존재
+[skip] gemini-flash/C0_lcons_cf_days_list_rep3 — 결과 존재
+[skip] gemini-flash/C0_lprog_cf_days_list_rep1 — 결과 존재
+[skip] gemini-flash/C0_lprog_cf_days_list_rep2 — 결과 존재
+[skip] gemini-flash/C0_lprog_cf_days_list_rep3 — 결과 존재
+--- issue_recycling_room ---
+[plan] issue_childcare · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bfce840c767a
+[skip] gemini-flash/C0_lcons_childcare_rep1 — 결과 존재
+[skip] gemini-flash/C0_lcons_childcare_rep2 — 결과 존재
+[skip] gemini-flash/C0_lcons_childcare_rep3 — 결과 존재
+[skip] gemini-flash/C0_lprog_childcare_rep1 — 결과 존재
+[skip] gemini-flash/C0_lprog_childcare_rep2 — 결과 존재
+[skip] gemini-flash/C0_lprog_childcare_rep3 — 결과 존재
+--- issue_euthanasia ---
+[check_materials] 대상: issue_remotewatch.json (issue_id=issue_remotewatch)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: recycling_room.json (issue_id=issue_recycling_room)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: issue_euthanasia.json (issue_id=issue_euthanasia)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_remotewatch · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 6cab37beb5f6
+[skip] gemini-flash/C0_lcons_remotewatch_rep1 — 결과 존재
+[skip] gemini-flash/C0_lcons_remotewatch_rep2 — 결과 존재
+[skip] gemini-flash/C0_lcons_remotewatch_rep3 — 결과 존재
+[skip] gemini-flash/C0_lprog_remotewatch_rep1 — 결과 존재
+[skip] gemini-flash/C0_lprog_remotewatch_rep2 — 결과 존재
+[skip] gemini-flash/C0_lprog_remotewatch_rep3 — 결과 존재
+--- issue_shelter ---
+[plan] issue_recycling_room · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 f3c6140ae683
+[skip] gemini-flash/C0_lcons_recycling_room_rep1 — 결과 존재
+[skip] gemini-flash/C0_lcons_recycling_room_rep2 — 결과 존재
+[skip] gemini-flash/C0_lcons_recycling_room_rep3 — 결과 존재
+[skip] gemini-flash/C0_lprog_recycling_room_rep1 — 결과 존재
+[skip] gemini-flash/C0_lprog_recycling_room_rep2 — 결과 존재
+[skip] gemini-flash/C0_lprog_recycling_room_rep3 — 결과 존재
+--- issue_smoking_area_party ---
+[plan] issue_euthanasia · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 84fbacbedd4e
+[skip] gemini-flash/C0_lcons_euthanasia_rep1 — 결과 존재
+[skip] gemini-flash/C0_lcons_euthanasia_rep2 — 결과 존재
+[skip] gemini-flash/C0_lcons_euthanasia_rep3 — 결과 존재
+[skip] gemini-flash/C0_lprog_euthanasia_rep1 — 결과 존재
+[skip] gemini-flash/C0_lprog_euthanasia_rep2 — 결과 존재
+[skip] gemini-flash/C0_lprog_euthanasia_rep3 — 결과 존재
+--- issue_examaccom ---
+[check_materials] 대상: issue_shelter.json (issue_id=issue_shelter)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: smoking_area_party.json (issue_id=issue_smoking_area_party)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: issue_examaccom.json (issue_id=issue_examaccom)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_shelter · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 aa3eef04c672
+[skip] gemini-flash/C0_lcons_shelter_rep1 — 결과 존재
+[skip] gemini-flash/C0_lcons_shelter_rep2 — 결과 존재
+[skip] gemini-flash/C0_lcons_shelter_rep3 — 결과 존재
+[skip] gemini-flash/C0_lprog_shelter_rep1 — 결과 존재
+[skip] gemini-flash/C0_lprog_shelter_rep2 — 결과 존재
+[skip] gemini-flash/C0_lprog_shelter_rep3 — 결과 존재
+--- issue_workmind ---
+[plan] issue_smoking_area_party · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 72c4b7e16e70
+[skip] gemini-flash/C0_lcons_smoking_party_rep1 — 결과 존재
+[skip] gemini-flash/C0_lcons_smoking_party_rep2 — 결과 존재
+[skip] gemini-flash/C0_lcons_smoking_party_rep3 — 결과 존재
+[skip] gemini-flash/C0_lprog_smoking_party_rep1 — 결과 존재
+[skip] gemini-flash/C0_lprog_smoking_party_rep2 — 결과 존재
+[skip] gemini-flash/C0_lprog_smoking_party_rep3 — 결과 존재
+=== label c0 gemini-flash 끝 2026-09-03T03:34:32+00:00 ===
+[plan] issue_examaccom · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 bedab586e8b7
+[skip] gemini-flash/C0_lcons_examaccom_rep1 — 결과 존재
+[skip] gemini-flash/C0_lcons_examaccom_rep2 — 결과 존재
+[skip] gemini-flash/C0_lcons_examaccom_rep3 — 결과 존재
+[skip] gemini-flash/C0_lprog_examaccom_rep1 — 결과 존재
+[skip] gemini-flash/C0_lprog_examaccom_rep2 — 결과 존재
+[skip] gemini-flash/C0_lprog_examaccom_rep3 — 결과 존재
+--- issue_parentalreturn ---
+[check_materials] 대상: issue_workmind.json (issue_id=issue_workmind)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[check_materials] 대상: issue_parentalreturn.json (issue_id=issue_parentalreturn)
+[check_materials] 통과(규칙 v1) — 표식 12개 고유·구조 대칭·누출 0
+[plan] issue_parentalreturn · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 2cb32fba6dc5
+[skip] gemini-flash/C0_lcons_parentalreturn_rep1 — 결과 존재
+[skip] gemini-flash/C0_lcons_parentalreturn_rep2 — 결과 존재
+[skip] gemini-flash/C0_lcons_parentalreturn_rep3 — 결과 존재
+[skip] gemini-flash/C0_lprog_parentalreturn_rep1 — 결과 존재
+[skip] gemini-flash/C0_lprog_parentalreturn_rep2 — 결과 존재
+[skip] gemini-flash/C0_lprog_parentalreturn_rep3 — 결과 존재
+=== label c0 gemini-flash 끝 2026-09-03T03:34:34+00:00 ===
+[plan] issue_workmind · gemini-flash — 6판 (판당 8콜 + 반려 최대 3) · dry=False · 재료 661cb97a56ee
+[skip] gemini-flash/C0_lcons_workmind_rep1 — 결과 존재
+[skip] gemini-flash/C0_lcons_workmind_rep2 — 결과 존재
+[skip] gemini-flash/C0_lcons_workmind_rep3 — 결과 존재
+[skip] gemini-flash/C0_lprog_workmind_rep1 — 결과 존재
+[done] gemini-flash/C0_lprog_workmind_rep2 · 호출 3
+[done] gemini-flash/C0_lprog_workmind_rep3 · 호출 9
+=== label c0 gemini-flash 끝 2026-09-03T03:35:04+00:00 ===

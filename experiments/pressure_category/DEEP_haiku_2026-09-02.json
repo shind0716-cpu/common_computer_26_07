@@ -1,0 +1,3821 @@
+{
+ "date": "2026-09-02",
+ "n_runs": 720,
+ "n_stale": 0,
+ "by_script": {
+  "C0": 240,
+  "C1": 240,
+  "C2": 240
+ },
+ "stale_issues": {},
+ "n_current": 720,
+ "A": {
+  "strict": {
+   "C0|pro|0": [
+    707,
+    1440
+   ],
+   "C0|con|0": [
+    443,
+    1440
+   ],
+   "C0|pro|1": [
+    572,
+    1440
+   ],
+   "C0|con|1": [
+    327,
+    1440
+   ],
+   "C0|pro|2": [
+    508,
+    1440
+   ],
+   "C0|con|2": [
+    281,
+    1440
+   ],
+   "C1|pro|0": [
+    696,
+    1440
+   ],
+   "C1|con|0": [
+    417,
+    1440
+   ],
+   "C1|pro|1": [
+    555,
+    1440
+   ],
+   "C1|con|1": [
+    250,
+    1440
+   ],
+   "C1|pro|2": [
+    505,
+    1440
+   ],
+   "C1|con|2": [
+    204,
+    1440
+   ],
+   "C2|con|0": [
+    380,
+    1434
+   ],
+   "C2|pro|0": [
+    738,
+    1434
+   ],
+   "C2|con|1": [
+    240,
+    1428
+   ],
+   "C2|pro|1": [
+    279,
+    1428
+   ],
+   "C2|con|2": [
+    169,
+    1416
+   ],
+   "C2|pro|2": [
+    209,
+    1416
+   ]
+  },
+  "strict_flip": {
+   "before|new|0": [
+    119,
+    444
+   ],
+   "before|old|0": [
+    223,
+    444
+   ],
+   "after|new|1": [
+    52,
+    390
+   ],
+   "after|old|1": [
+    73,
+    390
+   ],
+   "after|new|2": [
+    43,
+    444
+   ],
+   "after|old|2": [
+    57,
+    444
+   ],
+   "before|new|1": [
+    8,
+    54
+   ],
+   "before|old|1": [
+    20,
+    54
+   ]
+  },
+  "loose": {
+   "C0|pro|0": [
+    795,
+    1440
+   ],
+   "C0|con|0": [
+    516,
+    1440
+   ],
+   "C0|pro|1": [
+    661,
+    1440
+   ],
+   "C0|con|1": [
+    386,
+    1440
+   ],
+   "C0|pro|2": [
+    595,
+    1440
+   ],
+   "C0|con|2": [
+    337,
+    1440
+   ],
+   "C1|pro|0": [
+    799,
+    1440
+   ],
+   "C1|con|0": [
+    488,
+    1440
+   ],
+   "C1|pro|1": [
+    626,
+    1440
+   ],
+   "C1|con|1": [
+    308,
+    1440
+   ],
+   "C1|pro|2": [
+    570,
+    1440
+   ],
+   "C1|con|2": [
+    254,
+    1440
+   ],
+   "C2|con|0": [
+    455,
+    1434
+   ],
+   "C2|pro|0": [
+    832,
+    1434
+   ],
+   "C2|con|1": [
+    292,
+    1428
+   ],
+   "C2|pro|1": [
+    333,
+    1428
+   ],
+   "C2|con|2": [
+    207,
+    1416
+   ],
+   "C2|pro|2": [
+    261,
+    1416
+   ]
+  },
+  "loose_flip": {
+   "before|new|0": [
+    134,
+    444
+   ],
+   "before|old|0": [
+    238,
+    444
+   ],
+   "after|new|1": [
+    60,
+    390
+   ],
+   "after|old|1": [
+    82,
+    390
+   ],
+   "after|new|2": [
+    49,
+    444
+   ],
+   "after|old|2": [
+    67,
+    444
+   ],
+   "before|new|1": [
+    9,
+    54
+   ],
+   "before|old|1": [
+    20,
+    54
+   ]
+  }
+ },
+ "B": {
+  "final_agree": {
+   "C0|3/3": 64,
+   "C0|2/3": 16,
+   "C1|3/3": 66,
+   "C1|2/3": 14,
+   "C2|2/3": 37,
+   "C2|3/3": 43
+  },
+  "jaccard": {
+   "C0": {
+    "mean": 0.54,
+    "n_cells": 80,
+    "share_lt_0.34": 0.188
+   },
+   "C1": {
+    "mean": 0.511,
+    "n_cells": 80,
+    "share_lt_0.34": 0.3
+   },
+   "C2": {
+    "mean": 0.353,
+    "n_cells": 80,
+    "share_lt_0.34": 0.662
+   }
+  },
+  "cells": {
+   "issue_ambulance|C0|A": {
+    "final": [
+     "신고 지점 즉시 출동",
+     "신고 지점 즉시 출동",
+     "신고 지점 즉시 출동"
+    ],
+    "jaccard": 0.0,
+    "sizes": [
+     0,
+     1,
+     1
+    ]
+   },
+   "issue_ambulance|C0|B": {
+    "final": [
+     "신고 지점 즉시 출동",
+     "신고 지점 즉시 출동",
+     "예비 배치 지점 우선"
+    ],
+    "jaccard": 0.0,
+    "sizes": [
+     2,
+     2,
+     0
+    ]
+   },
+   "issue_ambulance|C1|A": {
+    "final": [
+     "신고 지점 즉시 출동",
+     "신고 지점 즉시 출동",
+     "신고 지점 즉시 출동"
+    ],
+    "jaccard": 1.0,
+    "sizes": [
+     0,
+     0,
+     0
+    ]
+   },
+   "issue_ambulance|C1|B": {
+    "final": [
+     "예비 배치 지점 우선",
+     "신고 지점 즉시 출동",
+     "예비 배치 지점 우선"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     0,
+     1,
+     1
+    ]
+   },
+   "issue_ambulance|C2|A": {
+    "final": [
+     "신고 지점 즉시 출동",
+     "신고 지점 즉시 출동",
+     "예비 배치 지점 우선"
+    ],
+    "jaccard": 1.0,
+    "sizes": [
+     0,
+     0,
+     0
+    ]
+   },
+   "issue_ambulance|C2|B": {
+    "final": [
+     "신고 지점 즉시 출동",
+     "신고 지점 즉시 출동",
+     "신고 지점 즉시 출동"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     0,
+     1,
+     0
+    ]
+   },
+   "issue_carebalance|C0|A": {
+    "final": [
+     "방문요양 서비스",
+     "방문요양 서비스",
+     "형제 직접 돌봄"
+    ],
+    "jaccard": 0.389,
+    "sizes": [
+     3,
+     3,
+     1
+    ]
+   },
+   "issue_carebalance|C0|B": {
+    "final": [
+     "방문요양 서비스",
+     "방문요양 서비스",
+     "방문요양 서비스"
+    ],
+    "jaccard": 1.0,
+    "sizes": [
+     4,
+     4,
+     4
+    ]
+   },
+   "issue_carebalance|C1|A": {
+    "final": [
+     "형제 직접 돌봄",
+     "형제 직접 돌봄",
+     "형제 직접 돌봄"
+    ],
+    "jaccard": 0.5,
+    "sizes": [
+     2,
+     1,
+     3
+    ]
+   },
+   "issue_carebalance|C1|B": {
+    "final": [
+     "방문요양 서비스",
+     "방문요양 서비스",
+     "방문요양 서비스"
+    ],
+    "jaccard": 0.867,
+    "sizes": [
+     5,
+     4,
+     5
+    ]
+   },
+   "issue_carebalance|C2|A": {
+    "final": [
+     "형제 직접 돌봄",
+     "형제 직접 돌봄",
+     "형제 직접 돌봄"
+    ],
+    "jaccard": 0.167,
+    "sizes": [
+     1,
+     2,
+     0
+    ]
+   },
+   "issue_carebalance|C2|B": {
+    "final": [
+     "방문요양 서비스",
+     "방문요양 서비스",
+     "방문요양 서비스"
+    ],
+    "jaccard": 0.867,
+    "sizes": [
+     4,
+     5,
+     5
+    ]
+   },
+   "issue_caregiverprotect|C0|A": {
+    "final": [
+     "원래 배치 유지",
+     "다른 보호사로 교체",
+     "다른 보호사로 교체"
+    ],
+    "jaccard": 0.357,
+    "sizes": [
+     2,
+     5,
+     6
+    ]
+   },
+   "issue_caregiverprotect|C0|B": {
+    "final": [
+     "다른 보호사로 교체",
+     "다른 보호사로 교체",
+     "다른 보호사로 교체"
+    ],
+    "jaccard": 0.422,
+    "sizes": [
+     4,
+     4,
+     4
+    ]
+   },
+   "issue_caregiverprotect|C1|A": {
+    "final": [
+     "다른 보호사로 교체",
+     "다른 보호사로 교체",
+     "다른 보호사로 교체"
+    ],
+    "jaccard": 0.095,
+    "sizes": [
+     4,
+     1,
+     5
+    ]
+   },
+   "issue_caregiverprotect|C1|B": {
+    "final": [
+     "다른 보호사로 교체",
+     "다른 보호사로 교체",
+     "다른 보호사로 교체"
+    ],
+    "jaccard": 0.361,
+    "sizes": [
+     1,
+     4,
+     6
+    ]
+   },
+   "issue_caregiverprotect|C2|A": {
+    "final": [
+     "다른 보호사로 교체",
+     "다른 보호사로 교체",
+     "다른 보호사로 교체"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     0,
+     2,
+     2
+    ]
+   },
+   "issue_caregiverprotect|C2|B": {
+    "final": [
+     "다른 보호사로 교체",
+     "다른 보호사로 교체",
+     "다른 보호사로 교체"
+    ],
+    "jaccard": 0.417,
+    "sizes": [
+     1,
+     4,
+     5
+    ]
+   },
+   "issue_cat_feeding_days_list|C0|A": {
+    "final": [
+     "지금 자리에 둔다",
+     "지금 자리에 둔다",
+     "지금 자리에 둔다"
+    ],
+    "jaccard": 1.0,
+    "sizes": [
+     1,
+     1,
+     1
+    ]
+   },
+   "issue_cat_feeding_days_list|C0|B": {
+    "final": [
+     "창고 옆으로 옮긴다",
+     "창고 옆으로 옮긴다",
+     "창고 옆으로 옮긴다"
+    ],
+    "jaccard": 0.667,
+    "sizes": [
+     1,
+     2,
+     2
+    ]
+   },
+   "issue_cat_feeding_days_list|C1|A": {
+    "final": [
+     "지금 자리에 둔다",
+     "지금 자리에 둔다",
+     "지금 자리에 둔다"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     0,
+     0,
+     1
+    ]
+   },
+   "issue_cat_feeding_days_list|C1|B": {
+    "final": [
+     "창고 옆으로 옮긴다",
+     "창고 옆으로 옮긴다",
+     "창고 옆으로 옮긴다"
+    ],
+    "jaccard": 1.0,
+    "sizes": [
+     2,
+     2,
+     2
+    ]
+   },
+   "issue_cat_feeding_days_list|C2|A": {
+    "final": [
+     "창고 옆으로 옮긴다",
+     "창고 옆으로 옮긴다",
+     "창고 옆으로 옮긴다"
+    ],
+    "jaccard": 1.0,
+    "sizes": [
+     1,
+     1,
+     1
+    ]
+   },
+   "issue_cat_feeding_days_list|C2|B": {
+    "final": [
+     "지금 자리에 둔다",
+     "지금 자리에 둔다",
+     "지금 자리에 둔다"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     1,
+     1,
+     0
+    ]
+   },
+   "issue_cat_feeding_entry_list|C0|A": {
+    "final": [
+     "동 현관 안에 둔다",
+     "동 현관 안에 둔다",
+     "동 현관 안에 둔다"
+    ],
+    "jaccard": 1.0,
+    "sizes": [
+     0,
+     0,
+     0
+    ]
+   },
+   "issue_cat_feeding_entry_list|C0|B": {
+    "final": [
+     "창고 옆에 둔다",
+     "창고 옆에 둔다",
+     "창고 옆에 둔다"
+    ],
+    "jaccard": 1.0,
+    "sizes": [
+     0,
+     0,
+     0
+    ]
+   },
+   "issue_cat_feeding_entry_list|C1|A": {
+    "final": [
+     "동 현관 안에 둔다",
+     "동 현관 안에 둔다",
+     "동 현관 안에 둔다"
+    ],
+    "jaccard": 1.0,
+    "sizes": [
+     0,
+     0,
+     0
+    ]
+   },
+   "issue_cat_feeding_entry_list|C1|B": {
+    "final": [
+     "창고 옆에 둔다",
+     "창고 옆에 둔다",
+     "창고 옆에 둔다"
+    ],
+    "jaccard": 1.0,
+    "sizes": [
+     0,
+     0,
+     0
+    ]
+   },
+   "issue_cat_feeding_entry_list|C2|A": {
+    "final": [
+     "창고 옆에 둔다",
+     "창고 옆에 둔다",
+     "창고 옆에 둔다"
+    ],
+    "jaccard": 1.0,
+    "sizes": [
+     0,
+     0,
+     0
+    ]
+   },
+   "issue_cat_feeding_entry_list|C2|B": {
+    "final": [
+     "창고 옆에 둔다",
+     "창고 옆에 둔다",
+     "창고 옆에 둔다"
+    ],
+    "jaccard": 1.0,
+    "sizes": [
+     0,
+     0,
+     0
+    ]
+   },
+   "issue_cat_feeding_evenweight|C0|A": {
+    "final": [
+     "창고 옆으로 이전",
+     "창고 옆으로 이전",
+     "창고 옆으로 이전"
+    ],
+    "jaccard": 0.556,
+    "sizes": [
+     2,
+     2,
+     3
+    ]
+   },
+   "issue_cat_feeding_evenweight|C0|B": {
+    "final": [
+     "창고 옆으로 이전",
+     "창고 옆으로 이전",
+     "창고 옆으로 이전"
+    ],
+    "jaccard": 0.706,
+    "sizes": [
+     5,
+     6,
+     6
+    ]
+   },
+   "issue_cat_feeding_evenweight|C1|A": {
+    "final": [
+     "현 위치 유지",
+     "현 위치 유지",
+     "현 위치 유지"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     0,
+     2,
+     0
+    ]
+   },
+   "issue_cat_feeding_evenweight|C1|B": {
+    "final": [
+     "창고 옆으로 이전",
+     "창고 옆으로 이전",
+     "창고 옆으로 이전"
+    ],
+    "jaccard": 0.679,
+    "sizes": [
+     4,
+     5,
+     6
+    ]
+   },
+   "issue_cat_feeding_evenweight|C2|A": {
+    "final": [
+     "창고 옆으로 이전",
+     "창고 옆으로 이전",
+     "창고 옆으로 이전"
+    ],
+    "jaccard": 0.5,
+    "sizes": [
+     2,
+     3,
+     1
+    ]
+   },
+   "issue_cat_feeding_evenweight|C2|B": {
+    "final": [
+     "현 위치 유지",
+     "현 위치 유지",
+     "현 위치 유지"
+    ],
+    "jaccard": 0.0,
+    "sizes": [
+     0,
+     2,
+     2
+    ]
+   },
+   "issue_cat_feeding_harm|C0|A": {
+    "final": [
+     "현 위치 유지",
+     "창고 옆으로 이전",
+     "현 위치 유지"
+    ],
+    "jaccard": 0.411,
+    "sizes": [
+     2,
+     5,
+     5
+    ]
+   },
+   "issue_cat_feeding_harm|C0|B": {
+    "final": [
+     "창고 옆으로 이전",
+     "창고 옆으로 이전",
+     "창고 옆으로 이전"
+    ],
+    "jaccard": 0.567,
+    "sizes": [
+     2,
+     5,
+     4
+    ]
+   },
+   "issue_cat_feeding_harm|C1|A": {
+    "final": [
+     "창고 옆으로 이전",
+     "현 위치 유지",
+     "창고 옆으로 이전"
+    ],
+    "jaccard": 0.167,
+    "sizes": [
+     1,
+     2,
+     0
+    ]
+   },
+   "issue_cat_feeding_harm|C1|B": {
+    "final": [
+     "창고 옆으로 이전",
+     "창고 옆으로 이전",
+     "창고 옆으로 이전"
+    ],
+    "jaccard": 0.617,
+    "sizes": [
+     3,
+     5,
+     4
+    ]
+   },
+   "issue_cat_feeding_harm|C2|A": {
+    "final": [
+     "창고 옆으로 이전",
+     "현 위치 유지",
+     "창고 옆으로 이전"
+    ],
+    "jaccard": 0.667,
+    "sizes": [
+     6,
+     4,
+     5
+    ]
+   },
+   "issue_cat_feeding_harm|C2|B": {
+    "final": [
+     "현 위치 유지",
+     "현 위치 유지",
+     "현 위치 유지"
+    ],
+    "jaccard": 0.111,
+    "sizes": [
+     1,
+     1,
+     3
+    ]
+   },
+   "issue_cat_feeding_party|C0|A": {
+    "final": [
+     "지금 자리에서 이어감",
+     "지금 자리에서 이어감",
+     "지금 자리에서 이어감"
+    ],
+    "jaccard": 0.667,
+    "sizes": [
+     2,
+     1,
+     2
+    ]
+   },
+   "issue_cat_feeding_party|C0|B": {
+    "final": [
+     "짚은 먼 자리로",
+     "지금 자리에서 이어감",
+     "짚은 먼 자리로"
+    ],
+    "jaccard": 0.55,
+    "sizes": [
+     3,
+     3,
+     4
+    ]
+   },
+   "issue_cat_feeding_party|C1|A": {
+    "final": [
+     "지금 자리에서 이어감",
+     "지금 자리에서 이어감",
+     "지금 자리에서 이어감"
+    ],
+    "jaccard": 0.5,
+    "sizes": [
+     2,
+     1,
+     3
+    ]
+   },
+   "issue_cat_feeding_party|C1|B": {
+    "final": [
+     "짚은 먼 자리로",
+     "짚은 먼 자리로",
+     "짚은 먼 자리로"
+    ],
+    "jaccard": 0.3,
+    "sizes": [
+     2,
+     5,
+     2
+    ]
+   },
+   "issue_cat_feeding_party|C2|A": {
+    "final": [
+     "짚은 먼 자리로",
+     "지금 자리에서 이어감",
+     "지금 자리에서 이어감"
+    ],
+    "jaccard": 0.361,
+    "sizes": [
+     2,
+     3,
+     1
+    ]
+   },
+   "issue_cat_feeding_party|C2|B": {
+    "final": [
+     "지금 자리에서 이어감",
+     "지금 자리에서 이어감",
+     "지금 자리에서 이어감"
+    ],
+    "jaccard": 0.083,
+    "sizes": [
+     2,
+     1,
+     3
+    ]
+   },
+   "issue_cat_feeding_plainvalue|C0|A": {
+    "final": [
+     "현 위치 유지",
+     "현 위치 유지",
+     "현 위치 유지"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     2,
+     2,
+     2
+    ]
+   },
+   "issue_cat_feeding_plainvalue|C0|B": {
+    "final": [
+     "창고 옆으로 이전",
+     "창고 옆으로 이전",
+     "창고 옆으로 이전"
+    ],
+    "jaccard": 0.603,
+    "sizes": [
+     6,
+     5,
+     5
+    ]
+   },
+   "issue_cat_feeding_plainvalue|C1|A": {
+    "final": [
+     "현 위치 유지",
+     "현 위치 유지",
+     "현 위치 유지"
+    ],
+    "jaccard": 0.2,
+    "sizes": [
+     0,
+     4,
+     4
+    ]
+   },
+   "issue_cat_feeding_plainvalue|C1|B": {
+    "final": [
+     "창고 옆으로 이전",
+     "창고 옆으로 이전",
+     "창고 옆으로 이전"
+    ],
+    "jaccard": 0.889,
+    "sizes": [
+     5,
+     6,
+     5
+    ]
+   },
+   "issue_cat_feeding_plainvalue|C2|A": {
+    "final": [
+     "창고 옆으로 이전",
+     "창고 옆으로 이전",
+     "현 위치 유지"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     2,
+     1,
+     1
+    ]
+   },
+   "issue_cat_feeding_plainvalue|C2|B": {
+    "final": [
+     "창고 옆으로 이전",
+     "창고 옆으로 이전",
+     "현 위치 유지"
+    ],
+    "jaccard": 0.5,
+    "sizes": [
+     2,
+     3,
+     6
+    ]
+   },
+   "issue_cat_feeding_shared|C0|A": {
+    "final": [
+     "현 위치 유지",
+     "창고 옆으로 이전",
+     "현 위치 유지"
+    ],
+    "jaccard": 0.5,
+    "sizes": [
+     5,
+     3,
+     4
+    ]
+   },
+   "issue_cat_feeding_shared|C0|B": {
+    "final": [
+     "창고 옆으로 이전",
+     "창고 옆으로 이전",
+     "창고 옆으로 이전"
+    ],
+    "jaccard": 0.579,
+    "sizes": [
+     4,
+     6,
+     5
+    ]
+   },
+   "issue_cat_feeding_shared|C1|A": {
+    "final": [
+     "현 위치 유지",
+     "창고 옆으로 이전",
+     "창고 옆으로 이전"
+    ],
+    "jaccard": 0.111,
+    "sizes": [
+     0,
+     1,
+     3
+    ]
+   },
+   "issue_cat_feeding_shared|C1|B": {
+    "final": [
+     "창고 옆으로 이전",
+     "창고 옆으로 이전",
+     "창고 옆으로 이전"
+    ],
+    "jaccard": 0.595,
+    "sizes": [
+     4,
+     7,
+     5
+    ]
+   },
+   "issue_cat_feeding_shared|C2|A": {
+    "final": [
+     "현 위치 유지",
+     "창고 옆으로 이전",
+     "창고 옆으로 이전"
+    ],
+    "jaccard": 0.556,
+    "sizes": [
+     5,
+     5,
+     4
+    ]
+   },
+   "issue_cat_feeding_shared|C2|B": {
+    "final": [
+     "현 위치 유지",
+     "현 위치 유지",
+     "현 위치 유지"
+    ],
+    "jaccard": 0.167,
+    "sizes": [
+     1,
+     2,
+     0
+    ]
+   },
+   "issue_childcare|C0|A": {
+    "final": [
+     "해맑은어린이집",
+     "해맑은어린이집",
+     "소담숲어린이집"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     2,
+     0,
+     0
+    ]
+   },
+   "issue_childcare|C0|B": {
+    "final": [
+     "해맑은어린이집",
+     "소담숲어린이집",
+     "소담숲어린이집"
+    ],
+    "jaccard": 0.389,
+    "sizes": [
+     2,
+     3,
+     5
+    ]
+   },
+   "issue_childcare|C1|A": {
+    "final": [
+     "해맑은어린이집",
+     "해맑은어린이집",
+     "해맑은어린이집"
+    ],
+    "jaccard": 0.6,
+    "sizes": [
+     6,
+     4,
+     5
+    ]
+   },
+   "issue_childcare|C1|B": {
+    "final": [
+     "소담숲어린이집",
+     "소담숲어린이집",
+     "해맑은어린이집"
+    ],
+    "jaccard": 0.422,
+    "sizes": [
+     4,
+     4,
+     4
+    ]
+   },
+   "issue_childcare|C2|A": {
+    "final": [
+     "해맑은어린이집",
+     "해맑은어린이집",
+     "해맑은어린이집"
+    ],
+    "jaccard": 0.278,
+    "sizes": [
+     3,
+     2,
+     2
+    ]
+   },
+   "issue_childcare|C2|B": {
+    "final": [
+     "소담숲어린이집",
+     "소담숲어린이집",
+     "해맑은어린이집"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     2,
+     0,
+     0
+    ]
+   },
+   "issue_childcare_party|C0|A": {
+    "final": [
+     "며칠 더 기다림",
+     "지금처럼 등원시킴",
+     "며칠 더 기다림"
+    ],
+    "jaccard": 0.489,
+    "sizes": [
+     5,
+     5,
+     2
+    ]
+   },
+   "issue_childcare_party|C0|B": {
+    "final": [
+     "며칠 더 기다림",
+     "며칠 더 기다림",
+     "며칠 더 기다림"
+    ],
+    "jaccard": 0.867,
+    "sizes": [
+     5,
+     4,
+     4
+    ]
+   },
+   "issue_childcare_party|C1|A": {
+    "final": [
+     "지금처럼 등원시킴",
+     "지금처럼 등원시킴",
+     "지금처럼 등원시킴"
+    ],
+    "jaccard": 0.733,
+    "sizes": [
+     4,
+     4,
+     4
+    ]
+   },
+   "issue_childcare_party|C1|B": {
+    "final": [
+     "며칠 더 기다림",
+     "며칠 더 기다림",
+     "며칠 더 기다림"
+    ],
+    "jaccard": 0.867,
+    "sizes": [
+     5,
+     4,
+     4
+    ]
+   },
+   "issue_childcare_party|C2|A": {
+    "final": [
+     "며칠 더 기다림",
+     "며칠 더 기다림",
+     "며칠 더 기다림"
+    ],
+    "jaccard": 0.6,
+    "sizes": [
+     4,
+     3,
+     4
+    ]
+   },
+   "issue_childcare_party|C2|B": {
+    "final": [
+     "며칠 더 기다림",
+     "며칠 더 기다림",
+     "지금처럼 등원시킴"
+    ],
+    "jaccard": 0.639,
+    "sizes": [
+     4,
+     2,
+     3
+    ]
+   },
+   "issue_childcare_room|C0|A": {
+    "final": [
+     "가온방",
+     "가온방",
+     "가온방"
+    ],
+    "jaccard": 0.69,
+    "sizes": [
+     6,
+     9,
+     7
+    ]
+   },
+   "issue_childcare_room|C0|B": {
+    "final": [
+     "가온방",
+     "가온방",
+     "가온방"
+    ],
+    "jaccard": 0.519,
+    "sizes": [
+     5,
+     7,
+     7
+    ]
+   },
+   "issue_childcare_room|C1|A": {
+    "final": [
+     "가온방",
+     "가온방",
+     "가온방"
+    ],
+    "jaccard": 0.81,
+    "sizes": [
+     6,
+     7,
+     6
+    ]
+   },
+   "issue_childcare_room|C1|B": {
+    "final": [
+     "가온방",
+     "너울방",
+     "가온방"
+    ],
+    "jaccard": 0.225,
+    "sizes": [
+     3,
+     5,
+     3
+    ]
+   },
+   "issue_childcare_room|C2|A": {
+    "final": [
+     "가온방",
+     "너울방",
+     "가온방"
+    ],
+    "jaccard": 0.133,
+    "sizes": [
+     0,
+     5,
+     2
+    ]
+   },
+   "issue_childcare_room|C2|B": {
+    "final": [
+     "가온방",
+     "가온방",
+     "너울방"
+    ],
+    "jaccard": 0.208,
+    "sizes": [
+     6,
+     7,
+     0
+    ]
+   },
+   "issue_community_cat_feeding|C0|A": {
+    "final": [
+     "창고 옆으로 이전",
+     "창고 옆으로 이전",
+     "창고 옆으로 이전"
+    ],
+    "jaccard": 0.444,
+    "sizes": [
+     4,
+     2,
+     2
+    ]
+   },
+   "issue_community_cat_feeding|C0|B": {
+    "final": [
+     "창고 옆으로 이전",
+     "창고 옆으로 이전",
+     "창고 옆으로 이전"
+    ],
+    "jaccard": 0.69,
+    "sizes": [
+     5,
+     6,
+     5
+    ]
+   },
+   "issue_community_cat_feeding|C1|A": {
+    "final": [
+     "현 위치 유지",
+     "창고 옆으로 이전",
+     "현 위치 유지"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     0,
+     1,
+     0
+    ]
+   },
+   "issue_community_cat_feeding|C1|B": {
+    "final": [
+     "창고 옆으로 이전",
+     "창고 옆으로 이전",
+     "창고 옆으로 이전"
+    ],
+    "jaccard": 0.587,
+    "sizes": [
+     5,
+     5,
+     5
+    ]
+   },
+   "issue_community_cat_feeding|C2|A": {
+    "final": [
+     "창고 옆으로 이전",
+     "창고 옆으로 이전",
+     "현 위치 유지"
+    ],
+    "jaccard": 0.778,
+    "sizes": [
+     3,
+     2,
+     3
+    ]
+   },
+   "issue_community_cat_feeding|C2|B": {
+    "final": [
+     "현 위치 유지",
+     "현 위치 유지",
+     "현 위치 유지"
+    ],
+    "jaccard": 0.222,
+    "sizes": [
+     3,
+     2,
+     0
+    ]
+   },
+   "issue_community_room|C0|A": {
+    "final": [
+     "가운데 놓아두기",
+     "가운데 놓아두기",
+     "가운데 놓아두기"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     1,
+     1,
+     1
+    ]
+   },
+   "issue_community_room|C0|B": {
+    "final": [
+     "벽으로 붙여 두기",
+     "벽으로 붙여 두기",
+     "벽으로 붙여 두기"
+    ],
+    "jaccard": 0.444,
+    "sizes": [
+     1,
+     2,
+     2
+    ]
+   },
+   "issue_community_room|C1|A": {
+    "final": [
+     "가운데 놓아두기",
+     "벽으로 붙여 두기",
+     "벽으로 붙여 두기"
+    ],
+    "jaccard": 0.0,
+    "sizes": [
+     1,
+     1,
+     0
+    ]
+   },
+   "issue_community_room|C1|B": {
+    "final": [
+     "벽으로 붙여 두기",
+     "벽으로 붙여 두기",
+     "가운데 놓아두기"
+    ],
+    "jaccard": 0.0,
+    "sizes": [
+     1,
+     1,
+     0
+    ]
+   },
+   "issue_community_room|C2|A": {
+    "final": [
+     "가운데 놓아두기",
+     "가운데 놓아두기",
+     "벽으로 붙여 두기"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     1,
+     0,
+     1
+    ]
+   },
+   "issue_community_room|C2|B": {
+    "final": [
+     "가운데 놓아두기",
+     "벽으로 붙여 두기",
+     "가운데 놓아두기"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     0,
+     0,
+     1
+    ]
+   },
+   "issue_drift|C0|A": {
+    "final": [
+     "잔류",
+     "잔류",
+     "잔류"
+    ],
+    "jaccard": 0.699,
+    "sizes": [
+     8,
+     7,
+     7
+    ]
+   },
+   "issue_drift|C0|B": {
+    "final": [
+     "잔류",
+     "잔류",
+     "잔류"
+    ],
+    "jaccard": 0.769,
+    "sizes": [
+     8,
+     6,
+     9
+    ]
+   },
+   "issue_drift|C1|A": {
+    "final": [
+     "잔류",
+     "잔류",
+     "잔류"
+    ],
+    "jaccard": 0.405,
+    "sizes": [
+     5,
+     7,
+     4
+    ]
+   },
+   "issue_drift|C1|B": {
+    "final": [
+     "잔류",
+     "잔류",
+     "잔류"
+    ],
+    "jaccard": 0.681,
+    "sizes": [
+     6,
+     8,
+     7
+    ]
+   },
+   "issue_drift|C2|A": {
+    "final": [
+     "잔류",
+     "잔류",
+     "잔류"
+    ],
+    "jaccard": 0.649,
+    "sizes": [
+     6,
+     8,
+     5
+    ]
+   },
+   "issue_drift|C2|B": {
+    "final": [
+     "잔류",
+     "잔류",
+     "잔류"
+    ],
+    "jaccard": 0.519,
+    "sizes": [
+     5,
+     8,
+     6
+    ]
+   },
+   "issue_elderdrive|C0|A": {
+    "final": [
+     "이동지원 서비스",
+     "이동지원 서비스",
+     "이동지원 서비스"
+    ],
+    "jaccard": 0.639,
+    "sizes": [
+     3,
+     4,
+     6
+    ]
+   },
+   "issue_elderdrive|C0|B": {
+    "final": [
+     "이동지원 서비스",
+     "이동지원 서비스",
+     "이동지원 서비스"
+    ],
+    "jaccard": 0.717,
+    "sizes": [
+     3,
+     4,
+     5
+    ]
+   },
+   "issue_elderdrive|C1|A": {
+    "final": [
+     "직접 운전",
+     "직접 운전",
+     "이동지원 서비스"
+    ],
+    "jaccard": 0.417,
+    "sizes": [
+     3,
+     2,
+     2
+    ]
+   },
+   "issue_elderdrive|C1|B": {
+    "final": [
+     "이동지원 서비스",
+     "이동지원 서비스",
+     "이동지원 서비스"
+    ],
+    "jaccard": 0.478,
+    "sizes": [
+     3,
+     5,
+     3
+    ]
+   },
+   "issue_elderdrive|C2|A": {
+    "final": [
+     "이동지원 서비스",
+     "이동지원 서비스",
+     "이동지원 서비스"
+    ],
+    "jaccard": 0.421,
+    "sizes": [
+     2,
+     6,
+     4
+    ]
+   },
+   "issue_elderdrive|C2|B": {
+    "final": [
+     "이동지원 서비스",
+     "이동지원 서비스",
+     "직접 운전"
+    ],
+    "jaccard": 0.067,
+    "sizes": [
+     5,
+     1,
+     0
+    ]
+   },
+   "issue_eol|C0|A": {
+    "final": [
+     "인애종합병원",
+     "인애종합병원",
+     "소망호스피스"
+    ],
+    "jaccard": 0.361,
+    "sizes": [
+     6,
+     2,
+     3
+    ]
+   },
+   "issue_eol|C0|B": {
+    "final": [
+     "소망호스피스",
+     "소망호스피스",
+     "소망호스피스"
+    ],
+    "jaccard": 0.496,
+    "sizes": [
+     8,
+     8,
+     5
+    ]
+   },
+   "issue_eol|C1|A": {
+    "final": [
+     "인애종합병원",
+     "인애종합병원",
+     "인애종합병원"
+    ],
+    "jaccard": 0.256,
+    "sizes": [
+     1,
+     8,
+     5
+    ]
+   },
+   "issue_eol|C1|B": {
+    "final": [
+     "소망호스피스",
+     "소망호스피스",
+     "소망호스피스"
+    ],
+    "jaccard": 0.361,
+    "sizes": [
+     5,
+     5,
+     7
+    ]
+   },
+   "issue_eol|C2|A": {
+    "final": [
+     "인애종합병원",
+     "인애종합병원",
+     "인애종합병원"
+    ],
+    "jaccard": 0.0,
+    "sizes": [
+     1,
+     0,
+     3
+    ]
+   },
+   "issue_eol|C2|B": {
+    "final": [
+     "소망호스피스",
+     "소망호스피스",
+     "소망호스피스"
+    ],
+    "jaccard": 0.283,
+    "sizes": [
+     2,
+     3,
+     4
+    ]
+   },
+   "issue_euthanasia|C0|A": {
+    "final": [
+     "원래 보호소",
+     "원래 보호소",
+     "원래 보호소"
+    ],
+    "jaccard": 0.405,
+    "sizes": [
+     8,
+     3,
+     6
+    ]
+   },
+   "issue_euthanasia|C0|B": {
+    "final": [
+     "임시보호 전문 단체",
+     "임시보호 전문 단체",
+     "임시보호 전문 단체"
+    ],
+    "jaccard": 0.554,
+    "sizes": [
+     6,
+     6,
+     5
+    ]
+   },
+   "issue_euthanasia|C1|A": {
+    "final": [
+     "원래 보호소",
+     "원래 보호소",
+     "원래 보호소"
+    ],
+    "jaccard": 0.667,
+    "sizes": [
+     1,
+     2,
+     2
+    ]
+   },
+   "issue_euthanasia|C1|B": {
+    "final": [
+     "임시보호 전문 단체",
+     "임시보호 전문 단체",
+     "임시보호 전문 단체"
+    ],
+    "jaccard": 0.579,
+    "sizes": [
+     7,
+     4,
+     8
+    ]
+   },
+   "issue_euthanasia|C2|A": {
+    "final": [
+     "원래 보호소",
+     "임시보호 전문 단체",
+     "원래 보호소"
+    ],
+    "jaccard": 0.511,
+    "sizes": [
+     4,
+     3,
+     5
+    ]
+   },
+   "issue_euthanasia|C2|B": {
+    "final": [
+     "임시보호 전문 단체",
+     "임시보호 전문 단체",
+     "임시보호 전문 단체"
+    ],
+    "jaccard": 0.067,
+    "sizes": [
+     3,
+     3,
+     0
+    ]
+   },
+   "issue_examaccom|C0|A": {
+    "final": [
+     "표준 학사지원팀",
+     "표준 학사지원팀",
+     "표준 학사지원팀"
+    ],
+    "jaccard": 0.778,
+    "sizes": [
+     3,
+     2,
+     2
+    ]
+   },
+   "issue_examaccom|C0|B": {
+    "final": [
+     "개별 맞춤 지원팀",
+     "개별 맞춤 지원팀",
+     "개별 맞춤 지원팀"
+    ],
+    "jaccard": 0.111,
+    "sizes": [
+     3,
+     1,
+     1
+    ]
+   },
+   "issue_examaccom|C1|A": {
+    "final": [
+     "표준 학사지원팀",
+     "표준 학사지원팀",
+     "표준 학사지원팀"
+    ],
+    "jaccard": 0.833,
+    "sizes": [
+     4,
+     3,
+     4
+    ]
+   },
+   "issue_examaccom|C1|B": {
+    "final": [
+     "개별 맞춤 지원팀",
+     "개별 맞춤 지원팀",
+     "개별 맞춤 지원팀"
+    ],
+    "jaccard": 0.178,
+    "sizes": [
+     1,
+     3,
+     3
+    ]
+   },
+   "issue_examaccom|C2|A": {
+    "final": [
+     "표준 학사지원팀",
+     "표준 학사지원팀",
+     "표준 학사지원팀"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     2,
+     0,
+     2
+    ]
+   },
+   "issue_examaccom|C2|B": {
+    "final": [
+     "표준 학사지원팀",
+     "개별 맞춤 지원팀",
+     "개별 맞춤 지원팀"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     1,
+     0,
+     1
+    ]
+   },
+   "issue_floor_noise|C0|A": {
+    "final": [
+     "지금처럼 밤부터 정숙",
+     "지금처럼 밤부터 정숙",
+     "지금처럼 밤부터 정숙"
+    ],
+    "jaccard": 0.111,
+    "sizes": [
+     1,
+     1,
+     3
+    ]
+   },
+   "issue_floor_noise|C0|B": {
+    "final": [
+     "화·수·목 저녁도 정숙",
+     "지금처럼 밤부터 정숙",
+     "화·수·목 저녁도 정숙"
+    ],
+    "jaccard": 0.167,
+    "sizes": [
+     1,
+     2,
+     4
+    ]
+   },
+   "issue_floor_noise|C1|A": {
+    "final": [
+     "지금처럼 밤부터 정숙",
+     "지금처럼 밤부터 정숙",
+     "지금처럼 밤부터 정숙"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     0,
+     1,
+     0
+    ]
+   },
+   "issue_floor_noise|C1|B": {
+    "final": [
+     "지금처럼 밤부터 정숙",
+     "화·수·목 저녁도 정숙",
+     "지금처럼 밤부터 정숙"
+    ],
+    "jaccard": 0.167,
+    "sizes": [
+     0,
+     1,
+     2
+    ]
+   },
+   "issue_floor_noise|C2|A": {
+    "final": [
+     "지금처럼 밤부터 정숙",
+     "지금처럼 밤부터 정숙",
+     "지금처럼 밤부터 정숙"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     1,
+     0,
+     0
+    ]
+   },
+   "issue_floor_noise|C2|B": {
+    "final": [
+     "지금처럼 밤부터 정숙",
+     "지금처럼 밤부터 정숙",
+     "지금처럼 밤부터 정숙"
+    ],
+    "jaccard": 0.167,
+    "sizes": [
+     0,
+     1,
+     2
+    ]
+   },
+   "issue_garden_plot|C0|A": {
+    "final": [
+     "처음 신청자에게",
+     "옆 구획 사용자에게",
+     "처음 신청자에게"
+    ],
+    "jaccard": 0.245,
+    "sizes": [
+     4,
+     5,
+     1
+    ]
+   },
+   "issue_garden_plot|C0|B": {
+    "final": [
+     "처음 신청자에게",
+     "처음 신청자에게",
+     "처음 신청자에게"
+    ],
+    "jaccard": 0.522,
+    "sizes": [
+     4,
+     3,
+     2
+    ]
+   },
+   "issue_garden_plot|C1|A": {
+    "final": [
+     "옆 구획 사용자에게",
+     "처음 신청자에게",
+     "옆 구획 사용자에게"
+    ],
+    "jaccard": 0.111,
+    "sizes": [
+     1,
+     3,
+     0
+    ]
+   },
+   "issue_garden_plot|C1|B": {
+    "final": [
+     "처음 신청자에게",
+     "처음 신청자에게",
+     "처음 신청자에게"
+    ],
+    "jaccard": 0.417,
+    "sizes": [
+     3,
+     2,
+     2
+    ]
+   },
+   "issue_garden_plot|C2|A": {
+    "final": [
+     "처음 신청자에게",
+     "옆 구획 사용자에게",
+     "옆 구획 사용자에게"
+    ],
+    "jaccard": 0.0,
+    "sizes": [
+     1,
+     1,
+     1
+    ]
+   },
+   "issue_garden_plot|C2|B": {
+    "final": [
+     "처음 신청자에게",
+     "처음 신청자에게",
+     "처음 신청자에게"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     0,
+     0,
+     1
+    ]
+   },
+   "issue_parentalreturn|C0|A": {
+    "final": [
+     "원래 업무팀",
+     "원래 업무팀",
+     "원래 업무팀"
+    ],
+    "jaccard": 0.639,
+    "sizes": [
+     3,
+     4,
+     6
+    ]
+   },
+   "issue_parentalreturn|C0|B": {
+    "final": [
+     "다른 업무팀",
+     "다른 업무팀",
+     "다른 업무팀"
+    ],
+    "jaccard": 0.167,
+    "sizes": [
+     5,
+     4,
+     0
+    ]
+   },
+   "issue_parentalreturn|C1|A": {
+    "final": [
+     "원래 업무팀",
+     "원래 업무팀",
+     "원래 업무팀"
+    ],
+    "jaccard": 0.417,
+    "sizes": [
+     3,
+     2,
+     2
+    ]
+   },
+   "issue_parentalreturn|C1|B": {
+    "final": [
+     "다른 업무팀",
+     "다른 업무팀",
+     "다른 업무팀"
+    ],
+    "jaccard": 0.372,
+    "sizes": [
+     4,
+     3,
+     3
+    ]
+   },
+   "issue_parentalreturn|C2|A": {
+    "final": [
+     "원래 업무팀",
+     "원래 업무팀",
+     "원래 업무팀"
+    ],
+    "jaccard": 0.556,
+    "sizes": [
+     1,
+     1,
+     3
+    ]
+   },
+   "issue_parentalreturn|C2|B": {
+    "final": [
+     "원래 업무팀",
+     "다른 업무팀",
+     "원래 업무팀"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     3,
+     2,
+     1
+    ]
+   },
+   "issue_recycling_room|C0|A": {
+    "final": [
+     "밤에도 열어 둠",
+     "밤에도 열어 둠",
+     "밤에도 열어 둠"
+    ],
+    "jaccard": 0.667,
+    "sizes": [
+     2,
+     2,
+     1
+    ]
+   },
+   "issue_recycling_room|C0|B": {
+    "final": [
+     "밤 열 시 마감",
+     "밤 열 시 마감",
+     "밤 열 시 마감"
+    ],
+    "jaccard": 0.444,
+    "sizes": [
+     1,
+     2,
+     2
+    ]
+   },
+   "issue_recycling_room|C1|A": {
+    "final": [
+     "밤에도 열어 둠",
+     "밤에도 열어 둠",
+     "밤 열 시 마감"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     1,
+     1,
+     1
+    ]
+   },
+   "issue_recycling_room|C1|B": {
+    "final": [
+     "밤 열 시 마감",
+     "밤 열 시 마감",
+     "밤 열 시 마감"
+    ],
+    "jaccard": 0.278,
+    "sizes": [
+     1,
+     3,
+     3
+    ]
+   },
+   "issue_recycling_room|C2|A": {
+    "final": [
+     "밤에도 열어 둠",
+     "밤 열 시 마감",
+     "밤에도 열어 둠"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     0,
+     0,
+     1
+    ]
+   },
+   "issue_recycling_room|C2|B": {
+    "final": [
+     "밤에도 열어 둠",
+     "밤에도 열어 둠",
+     "밤에도 열어 둠"
+    ],
+    "jaccard": 0.111,
+    "sizes": [
+     2,
+     0,
+     2
+    ]
+   },
+   "issue_recycling_room_party|C0|A": {
+    "final": [
+     "밤에도 열어 둠",
+     "밤에도 열어 둠",
+     "밤에도 열어 둠"
+    ],
+    "jaccard": 0.289,
+    "sizes": [
+     5,
+     3,
+     1
+    ]
+   },
+   "issue_recycling_room_party|C0|B": {
+    "final": [
+     "밤에도 열어 둠",
+     "밤에도 열어 둠",
+     "밤에도 열어 둠"
+    ],
+    "jaccard": 0.733,
+    "sizes": [
+     4,
+     4,
+     5
+    ]
+   },
+   "issue_recycling_room_party|C1|A": {
+    "final": [
+     "밤에도 열어 둠",
+     "밤에도 열어 둠",
+     "밤에도 열어 둠"
+    ],
+    "jaccard": 0.556,
+    "sizes": [
+     2,
+     3,
+     5
+    ]
+   },
+   "issue_recycling_room_party|C1|B": {
+    "final": [
+     "지금 시간 그대로",
+     "지금 시간 그대로",
+     "지금 시간 그대로"
+    ],
+    "jaccard": 0.5,
+    "sizes": [
+     3,
+     4,
+     2
+    ]
+   },
+   "issue_recycling_room_party|C2|A": {
+    "final": [
+     "지금 시간 그대로",
+     "밤에도 열어 둠",
+     "지금 시간 그대로"
+    ],
+    "jaccard": 0.667,
+    "sizes": [
+     1,
+     1,
+     2
+    ]
+   },
+   "issue_recycling_room_party|C2|B": {
+    "final": [
+     "밤에도 열어 둠",
+     "지금 시간 그대로",
+     "밤에도 열어 둠"
+    ],
+    "jaccard": 1.0,
+    "sizes": [
+     2,
+     2,
+     2
+    ]
+   },
+   "issue_remotewatch|C0|A": {
+    "final": [
+     "원격 모니터링",
+     "원격 모니터링",
+     "원격 모니터링"
+    ],
+    "jaccard": 0.667,
+    "sizes": [
+     5,
+     5,
+     5
+    ]
+   },
+   "issue_remotewatch|C0|B": {
+    "final": [
+     "자원봉사자 방문",
+     "자원봉사자 방문",
+     "자원봉사자 방문"
+    ],
+    "jaccard": 0.639,
+    "sizes": [
+     3,
+     6,
+     4
+    ]
+   },
+   "issue_remotewatch|C1|A": {
+    "final": [
+     "원격 모니터링",
+     "원격 모니터링",
+     "원격 모니터링"
+    ],
+    "jaccard": 0.468,
+    "sizes": [
+     5,
+     3,
+     6
+    ]
+   },
+   "issue_remotewatch|C1|B": {
+    "final": [
+     "자원봉사자 방문",
+     "자원봉사자 방문",
+     "자원봉사자 방문"
+    ],
+    "jaccard": 0.328,
+    "sizes": [
+     3,
+     5,
+     2
+    ]
+   },
+   "issue_remotewatch|C2|A": {
+    "final": [
+     "원격 모니터링",
+     "원격 모니터링",
+     "원격 모니터링"
+    ],
+    "jaccard": 0.167,
+    "sizes": [
+     2,
+     1,
+     0
+    ]
+   },
+   "issue_remotewatch|C2|B": {
+    "final": [
+     "자원봉사자 방문",
+     "자원봉사자 방문",
+     "원격 모니터링"
+    ],
+    "jaccard": 0.556,
+    "sizes": [
+     2,
+     2,
+     2
+    ]
+   },
+   "issue_restaurant_anniversary|C0|A": {
+    "final": [
+     "스페셜나잇",
+     "스페셜나잇",
+     "스페셜나잇"
+    ],
+    "jaccard": 0.56,
+    "sizes": [
+     8,
+     7,
+     6
+    ]
+   },
+   "issue_restaurant_anniversary|C0|B": {
+    "final": [
+     "프라이빗다이닝",
+     "프라이빗다이닝",
+     "프라이빗다이닝"
+    ],
+    "jaccard": 0.653,
+    "sizes": [
+     6,
+     7,
+     5
+    ]
+   },
+   "issue_restaurant_anniversary|C1|A": {
+    "final": [
+     "스페셜나잇",
+     "스페셜나잇",
+     "스페셜나잇"
+    ],
+    "jaccard": 0.491,
+    "sizes": [
+     7,
+     7,
+     9
+    ]
+   },
+   "issue_restaurant_anniversary|C1|B": {
+    "final": [
+     "프라이빗다이닝",
+     "프라이빗다이닝",
+     "프라이빗다이닝"
+    ],
+    "jaccard": 0.365,
+    "sizes": [
+     6,
+     4,
+     7
+    ]
+   },
+   "issue_restaurant_anniversary|C2|A": {
+    "final": [
+     "스페셜나잇",
+     "스페셜나잇",
+     "스페셜나잇"
+    ],
+    "jaccard": 0.067,
+    "sizes": [
+     0,
+     3,
+     3
+    ]
+   },
+   "issue_restaurant_anniversary|C2|B": {
+    "final": [
+     "스페셜나잇",
+     "프라이빗다이닝",
+     "프라이빗다이닝"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     3,
+     2,
+     3
+    ]
+   },
+   "issue_restaurant_biz_meeting|C0|A": {
+    "final": [
+     "비즈런치",
+     "반상회",
+     "반상회"
+    ],
+    "jaccard": 0.302,
+    "sizes": [
+     7,
+     1,
+     3
+    ]
+   },
+   "issue_restaurant_biz_meeting|C0|B": {
+    "final": [
+     "비즈런치",
+     "비즈런치",
+     "비즈런치"
+    ],
+    "jaccard": 0.39,
+    "sizes": [
+     3,
+     5,
+     5
+    ]
+   },
+   "issue_restaurant_biz_meeting|C1|A": {
+    "final": [
+     "반상회",
+     "반상회",
+     "비즈런치"
+    ],
+    "jaccard": 0.067,
+    "sizes": [
+     3,
+     3,
+     2
+    ]
+   },
+   "issue_restaurant_biz_meeting|C1|B": {
+    "final": [
+     "비즈런치",
+     "비즈런치",
+     "비즈런치"
+    ],
+    "jaccard": 0.448,
+    "sizes": [
+     5,
+     5,
+     5
+    ]
+   },
+   "issue_restaurant_biz_meeting|C2|A": {
+    "final": [
+     "반상회",
+     "비즈런치",
+     "반상회"
+    ],
+    "jaccard": 0.44,
+    "sizes": [
+     4,
+     5,
+     6
+    ]
+   },
+   "issue_restaurant_biz_meeting|C2|B": {
+    "final": [
+     "비즈런치",
+     "비즈런치",
+     "비즈런치"
+    ],
+    "jaccard": 0.0,
+    "sizes": [
+     0,
+     3,
+     5
+    ]
+   },
+   "issue_restaurant_brunch|C0|A": {
+    "final": [
+     "선데이브런치",
+     "선데이브런치",
+     "선데이브런치"
+    ],
+    "jaccard": 0.75,
+    "sizes": [
+     7,
+     6,
+     8
+    ]
+   },
+   "issue_restaurant_brunch|C0|B": {
+    "final": [
+     "모닝테이블",
+     "모닝테이블",
+     "모닝테이블"
+    ],
+    "jaccard": 0.524,
+    "sizes": [
+     7,
+     7,
+     2
+    ]
+   },
+   "issue_restaurant_brunch|C1|A": {
+    "final": [
+     "선데이브런치",
+     "선데이브런치",
+     "선데이브런치"
+    ],
+    "jaccard": 0.719,
+    "sizes": [
+     10,
+     6,
+     7
+    ]
+   },
+   "issue_restaurant_brunch|C1|B": {
+    "final": [
+     "모닝테이블",
+     "모닝테이블",
+     "모닝테이블"
+    ],
+    "jaccard": 0.767,
+    "sizes": [
+     5,
+     6,
+     4
+    ]
+   },
+   "issue_restaurant_brunch|C2|A": {
+    "final": [
+     "모닝테이블",
+     "선데이브런치",
+     "선데이브런치"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     0,
+     0,
+     1
+    ]
+   },
+   "issue_restaurant_brunch|C2|B": {
+    "final": [
+     "모닝테이블",
+     "선데이브런치",
+     "모닝테이블"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     1,
+     0,
+     0
+    ]
+   },
+   "issue_restaurant_date|C0|A": {
+    "final": [
+     "라온",
+     "라온",
+     "라온"
+    ],
+    "jaccard": 0.603,
+    "sizes": [
+     6,
+     4,
+     6
+    ]
+   },
+   "issue_restaurant_date|C0|B": {
+    "final": [
+     "온식당",
+     "온식당",
+     "온식당"
+    ],
+    "jaccard": 1.0,
+    "sizes": [
+     4,
+     4,
+     4
+    ]
+   },
+   "issue_restaurant_date|C1|A": {
+    "final": [
+     "라온",
+     "라온",
+     "라온"
+    ],
+    "jaccard": 0.706,
+    "sizes": [
+     6,
+     6,
+     5
+    ]
+   },
+   "issue_restaurant_date|C1|B": {
+    "final": [
+     "온식당",
+     "온식당",
+     "온식당"
+    ],
+    "jaccard": 0.583,
+    "sizes": [
+     3,
+     4,
+     7
+    ]
+   },
+   "issue_restaurant_date|C2|A": {
+    "final": [
+     "라온",
+     "온식당",
+     "라온"
+    ],
+    "jaccard": 0.369,
+    "sizes": [
+     2,
+     5,
+     6
+    ]
+   },
+   "issue_restaurant_date|C2|B": {
+    "final": [
+     "라온",
+     "라온",
+     "라온"
+    ],
+    "jaccard": 0.111,
+    "sizes": [
+     2,
+     2,
+     0
+    ]
+   },
+   "issue_restaurant_elders|C0|A": {
+    "final": [
+     "약초식당",
+     "약초식당",
+     "약초식당"
+    ],
+    "jaccard": 0.617,
+    "sizes": [
+     5,
+     3,
+     4
+    ]
+   },
+   "issue_restaurant_elders|C0|B": {
+    "final": [
+     "담채",
+     "담채",
+     "담채"
+    ],
+    "jaccard": 0.767,
+    "sizes": [
+     4,
+     5,
+     6
+    ]
+   },
+   "issue_restaurant_elders|C1|A": {
+    "final": [
+     "약초식당",
+     "약초식당",
+     "약초식당"
+    ],
+    "jaccard": 0.778,
+    "sizes": [
+     4,
+     6,
+     4
+    ]
+   },
+   "issue_restaurant_elders|C1|B": {
+    "final": [
+     "담채",
+     "담채",
+     "담채"
+    ],
+    "jaccard": 0.889,
+    "sizes": [
+     5,
+     6,
+     6
+    ]
+   },
+   "issue_restaurant_elders|C2|A": {
+    "final": [
+     "약초식당",
+     "약초식당",
+     "약초식당"
+    ],
+    "jaccard": 0.278,
+    "sizes": [
+     2,
+     1,
+     2
+    ]
+   },
+   "issue_restaurant_elders|C2|B": {
+    "final": [
+     "담채",
+     "약초식당",
+     "약초식당"
+    ],
+    "jaccard": 0.317,
+    "sizes": [
+     2,
+     1,
+     4
+    ]
+   },
+   "issue_restaurant_kids|C0|A": {
+    "final": [
+     "소반",
+     "소반",
+     "소반"
+    ],
+    "jaccard": 0.621,
+    "sizes": [
+     6,
+     4,
+     7
+    ]
+   },
+   "issue_restaurant_kids|C0|B": {
+    "final": [
+     "초록마루",
+     "초록마루",
+     "초록마루"
+    ],
+    "jaccard": 0.733,
+    "sizes": [
+     4,
+     4,
+     4
+    ]
+   },
+   "issue_restaurant_kids|C1|A": {
+    "final": [
+     "소반",
+     "소반",
+     "소반"
+    ],
+    "jaccard": 0.667,
+    "sizes": [
+     4,
+     4,
+     2
+    ]
+   },
+   "issue_restaurant_kids|C1|B": {
+    "final": [
+     "초록마루",
+     "초록마루",
+     "초록마루"
+    ],
+    "jaccard": 0.778,
+    "sizes": [
+     3,
+     3,
+     2
+    ]
+   },
+   "issue_restaurant_kids|C2|A": {
+    "final": [
+     "소반",
+     "소반",
+     "초록마루"
+    ],
+    "jaccard": 0.25,
+    "sizes": [
+     2,
+     1,
+     4
+    ]
+   },
+   "issue_restaurant_kids|C2|B": {
+    "final": [
+     "초록마루",
+     "소반",
+     "소반"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     1,
+     1,
+     1
+    ]
+   },
+   "issue_restaurant_office_lunch|C0|A": {
+    "final": [
+     "밀밭",
+     "밀밭",
+     "밀밭"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     0,
+     2,
+     0
+    ]
+   },
+   "issue_restaurant_office_lunch|C0|B": {
+    "final": [
+     "느티정",
+     "느티정",
+     "느티정"
+    ],
+    "jaccard": 0.395,
+    "sizes": [
+     5,
+     4,
+     2
+    ]
+   },
+   "issue_restaurant_office_lunch|C1|A": {
+    "final": [
+     "밀밭",
+     "밀밭",
+     "밀밭"
+    ],
+    "jaccard": 0.278,
+    "sizes": [
+     6,
+     5,
+     0
+    ]
+   },
+   "issue_restaurant_office_lunch|C1|B": {
+    "final": [
+     "느티정",
+     "느티정",
+     "느티정"
+    ],
+    "jaccard": 0.667,
+    "sizes": [
+     2,
+     4,
+     4
+    ]
+   },
+   "issue_restaurant_office_lunch|C2|A": {
+    "final": [
+     "밀밭",
+     "밀밭",
+     "느티정"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     1,
+     0,
+     1
+    ]
+   },
+   "issue_restaurant_office_lunch|C2|B": {
+    "final": [
+     "밀밭",
+     "느티정",
+     "밀밭"
+    ],
+    "jaccard": 0.0,
+    "sizes": [
+     0,
+     2,
+     1
+    ]
+   },
+   "issue_restaurant_sanggyeollye|C0|A": {
+    "final": [
+     "송림원",
+     "송림원",
+     "세종가든"
+    ],
+    "jaccard": 0.397,
+    "sizes": [
+     6,
+     6,
+     4
+    ]
+   },
+   "issue_restaurant_sanggyeollye|C0|B": {
+    "final": [
+     "세종가든",
+     "세종가든",
+     "세종가든"
+    ],
+    "jaccard": 0.564,
+    "sizes": [
+     7,
+     9,
+     9
+    ]
+   },
+   "issue_restaurant_sanggyeollye|C1|A": {
+    "final": [
+     "송림원",
+     "송림원",
+     "송림원"
+    ],
+    "jaccard": 0.411,
+    "sizes": [
+     7,
+     5,
+     7
+    ]
+   },
+   "issue_restaurant_sanggyeollye|C1|B": {
+    "final": [
+     "세종가든",
+     "세종가든",
+     "세종가든"
+    ],
+    "jaccard": 0.598,
+    "sizes": [
+     6,
+     9,
+     5
+    ]
+   },
+   "issue_restaurant_sanggyeollye|C2|A": {
+    "final": [
+     "세종가든",
+     "송림원",
+     "세종가든"
+    ],
+    "jaccard": 0.125,
+    "sizes": [
+     5,
+     1,
+     6
+    ]
+   },
+   "issue_restaurant_sanggyeollye|C2|B": {
+    "final": [
+     "송림원",
+     "송림원",
+     "송림원"
+    ],
+    "jaccard": 0.048,
+    "sizes": [
+     2,
+     0,
+     6
+    ]
+   },
+   "issue_restaurant_sogaeting|C0|A": {
+    "final": [
+     "우드테이블",
+     "우드테이블",
+     "우드테이블"
+    ],
+    "jaccard": 0.722,
+    "sizes": [
+     8,
+     12,
+     11
+    ]
+   },
+   "issue_restaurant_sogaeting|C0|B": {
+    "final": [
+     "비스트로 해",
+     "비스트로 해",
+     "비스트로 해"
+    ],
+    "jaccard": 0.616,
+    "sizes": [
+     7,
+     8,
+     6
+    ]
+   },
+   "issue_restaurant_sogaeting|C1|A": {
+    "final": [
+     "우드테이블",
+     "우드테이블",
+     "우드테이블"
+    ],
+    "jaccard": 0.593,
+    "sizes": [
+     9,
+     5,
+     5
+    ]
+   },
+   "issue_restaurant_sogaeting|C1|B": {
+    "final": [
+     "비스트로 해",
+     "비스트로 해",
+     "비스트로 해"
+    ],
+    "jaccard": 0.758,
+    "sizes": [
+     6,
+     7,
+     8
+    ]
+   },
+   "issue_restaurant_sogaeting|C2|A": {
+    "final": [
+     "우드테이블",
+     "우드테이블",
+     "우드테이블"
+    ],
+    "jaccard": 0.0,
+    "sizes": [
+     1,
+     4,
+     0
+    ]
+   },
+   "issue_restaurant_sogaeting|C2|B": {
+    "final": [
+     "우드테이블",
+     "우드테이블",
+     "우드테이블"
+    ],
+    "jaccard": 0.083,
+    "sizes": [
+     2,
+     3,
+     3
+    ]
+   },
+   "issue_restaurant_solo|C0|A": {
+    "final": [
+     "순대국밥집",
+     "순대국밥집",
+     "순대국밥집"
+    ],
+    "jaccard": 1.0,
+    "sizes": [
+     3,
+     3,
+     3
+    ]
+   },
+   "issue_restaurant_solo|C0|B": {
+    "final": [
+     "데일리보울",
+     "데일리보울",
+     "데일리보울"
+    ],
+    "jaccard": 0.194,
+    "sizes": [
+     3,
+     1,
+     2
+    ]
+   },
+   "issue_restaurant_solo|C1|A": {
+    "final": [
+     "순대국밥집",
+     "순대국밥집",
+     "순대국밥집"
+    ],
+    "jaccard": 0.611,
+    "sizes": [
+     2,
+     3,
+     3
+    ]
+   },
+   "issue_restaurant_solo|C1|B": {
+    "final": [
+     "데일리보울",
+     "데일리보울",
+     "데일리보울"
+    ],
+    "jaccard": 0.222,
+    "sizes": [
+     3,
+     2,
+     0
+    ]
+   },
+   "issue_restaurant_solo|C2|A": {
+    "final": [
+     "순대국밥집",
+     "순대국밥집",
+     "순대국밥집"
+    ],
+    "jaccard": 0.167,
+    "sizes": [
+     2,
+     1,
+     0
+    ]
+   },
+   "issue_restaurant_solo|C2|B": {
+    "final": [
+     "데일리보울",
+     "순대국밥집",
+     "데일리보울"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     0,
+     0,
+     1
+    ]
+   },
+   "issue_shelter|C0|A": {
+    "final": [
+     "지역 순찰조",
+     "지역 순찰조",
+     "지역 순찰조"
+    ],
+    "jaccard": 0.417,
+    "sizes": [
+     3,
+     2,
+     2
+    ]
+   },
+   "issue_shelter|C0|B": {
+    "final": [
+     "전문 아웃리치팀",
+     "전문 아웃리치팀",
+     "전문 아웃리치팀"
+    ],
+    "jaccard": 0.633,
+    "sizes": [
+     4,
+     5,
+     4
+    ]
+   },
+   "issue_shelter|C1|A": {
+    "final": [
+     "지역 순찰조",
+     "지역 순찰조",
+     "지역 순찰조"
+    ],
+    "jaccard": 0.417,
+    "sizes": [
+     3,
+     2,
+     2
+    ]
+   },
+   "issue_shelter|C1|B": {
+    "final": [
+     "전문 아웃리치팀",
+     "전문 아웃리치팀",
+     "전문 아웃리치팀"
+    ],
+    "jaccard": 1.0,
+    "sizes": [
+     4,
+     4,
+     4
+    ]
+   },
+   "issue_shelter|C2|A": {
+    "final": [
+     "전문 아웃리치팀",
+     "지역 순찰조",
+     "전문 아웃리치팀"
+    ],
+    "jaccard": 0.0,
+    "sizes": [
+     1,
+     0,
+     1
+    ]
+   },
+   "issue_shelter|C2|B": {
+    "final": [
+     "지역 순찰조",
+     "전문 아웃리치팀",
+     "전문 아웃리치팀"
+    ],
+    "jaccard": 0.433,
+    "sizes": [
+     3,
+     4,
+     3
+    ]
+   },
+   "issue_smoking_area|C0|A": {
+    "final": [
+     "현 위치 유지",
+     "주차장 뒤편으로 이전",
+     "주차장 뒤편으로 이전"
+    ],
+    "jaccard": 0.317,
+    "sizes": [
+     1,
+     5,
+     4
+    ]
+   },
+   "issue_smoking_area|C0|B": {
+    "final": [
+     "주차장 뒤편으로 이전",
+     "주차장 뒤편으로 이전",
+     "주차장 뒤편으로 이전"
+    ],
+    "jaccard": 0.467,
+    "sizes": [
+     4,
+     4,
+     3
+    ]
+   },
+   "issue_smoking_area|C1|A": {
+    "final": [
+     "주차장 뒤편으로 이전",
+     "현 위치 유지",
+     "현 위치 유지"
+    ],
+    "jaccard": 0.667,
+    "sizes": [
+     1,
+     1,
+     2
+    ]
+   },
+   "issue_smoking_area|C1|B": {
+    "final": [
+     "주차장 뒤편으로 이전",
+     "주차장 뒤편으로 이전",
+     "주차장 뒤편으로 이전"
+    ],
+    "jaccard": 0.6,
+    "sizes": [
+     4,
+     4,
+     3
+    ]
+   },
+   "issue_smoking_area|C2|A": {
+    "final": [
+     "주차장 뒤편으로 이전",
+     "주차장 뒤편으로 이전",
+     "주차장 뒤편으로 이전"
+    ],
+    "jaccard": 0.317,
+    "sizes": [
+     1,
+     5,
+     4
+    ]
+   },
+   "issue_smoking_area|C2|B": {
+    "final": [
+     "현 위치 유지",
+     "주차장 뒤편으로 이전",
+     "현 위치 유지"
+    ],
+    "jaccard": 0.333,
+    "sizes": [
+     0,
+     0,
+     1
+    ]
+   },
+   "issue_smoking_area_party|C0|A": {
+    "final": [
+     "지금 자리에 둠",
+     "지금 자리에 둠",
+     "지금 자리에 둠"
+    ],
+    "jaccard": 0.556,
+    "sizes": [
+     2,
+     2,
+     3
+    ]
+   },
+   "issue_smoking_area_party|C0|B": {
+    "final": [
+     "외곽 빈 자리로",
+     "지금 자리에 둠",
+     "외곽 빈 자리로"
+    ],
+    "jaccard": 0.556,
+    "sizes": [
+     3,
+     1,
+     1
+    ]
+   },
+   "issue_smoking_area_party|C1|A": {
+    "final": [
+     "지금 자리에 둠",
+     "지금 자리에 둠",
+     "지금 자리에 둠"
+    ],
+    "jaccard": 0.667,
+    "sizes": [
+     2,
+     1,
+     2
+    ]
+   },
+   "issue_smoking_area_party|C1|B": {
+    "final": [
+     "외곽 빈 자리로",
+     "외곽 빈 자리로",
+     "외곽 빈 자리로"
+    ],
+    "jaccard": 0.667,
+    "sizes": [
+     1,
+     1,
+     2
+    ]
+   },
+   "issue_smoking_area_party|C2|A": {
+    "final": [
+     "지금 자리에 둠",
+     "지금 자리에 둠",
+     "지금 자리에 둠"
+    ],
+    "jaccard": 1.0,
+    "sizes": [
+     0,
+     0,
+     0
+    ]
+   },
+   "issue_smoking_area_party|C2|B": {
+    "final": [
+     "지금 자리에 둠",
+     "지금 자리에 둠",
+     "지금 자리에 둠"
+    ],
+    "jaccard": 0.0,
+    "sizes": [
+     0,
+     1,
+     2
+    ]
+   },
+   "issue_workmind|C0|A": {
+    "final": [
+     "사내 EAP",
+     "사내 EAP",
+     "사내 EAP"
+    ],
+    "jaccard": 0.6,
+    "sizes": [
+     3,
+     4,
+     5
+    ]
+   },
+   "issue_workmind|C0|B": {
+    "final": [
+     "외부 개인 상담",
+     "외부 개인 상담",
+     "외부 개인 상담"
+    ],
+    "jaccard": 0.59,
+    "sizes": [
+     10,
+     6,
+     6
+    ]
+   },
+   "issue_workmind|C1|A": {
+    "final": [
+     "사내 EAP",
+     "사내 EAP",
+     "사내 EAP"
+    ],
+    "jaccard": 0.267,
+    "sizes": [
+     1,
+     4,
+     5
+    ]
+   },
+   "issue_workmind|C1|B": {
+    "final": [
+     "외부 개인 상담",
+     "외부 개인 상담",
+     "외부 개인 상담"
+    ],
+    "jaccard": 0.616,
+    "sizes": [
+     8,
+     6,
+     7
+    ]
+   },
+   "issue_workmind|C2|A": {
+    "final": [
+     "사내 EAP",
+     "사내 EAP",
+     "사내 EAP"
+    ],
+    "jaccard": 0.472,
+    "sizes": [
+     3,
+     3,
+     2
+    ]
+   },
+   "issue_workmind|C2|B": {
+    "final": [
+     "외부 개인 상담",
+     "외부 개인 상담",
+     "외부 개인 상담"
+    ],
+    "jaccard": 0.143,
+    "sizes": [
+     2,
+     7,
+     1
+    ]
+   }
+  }
+ },
+ "C": {
+  "strict": {
+   "C0": {
+    "000": 1718,
+    "110": 107,
+    "111": 781,
+    "100": 261,
+    "010": 5,
+    "011": 6,
+    "101": 1,
+    "001": 1
+   },
+   "C1": {
+    "000": 1755,
+    "100": 316,
+    "110": 95,
+    "111": 701,
+    "011": 4,
+    "001": 3,
+    "101": 1,
+    "010": 5
+   },
+   "C2": {
+    "000": 1757,
+    "100": 595,
+    "110": 145,
+    "111": 377,
+    "001": 2,
+    "011": 1,
+    "010": 1,
+    "101": 2
+   }
+  },
+  "strict_resurrect": {
+   "n": 32,
+   "in_stub": 0,
+   "in_script": 0,
+   "neither": 32,
+   "examples": [
+    {
+     "issue": "issue_ambulance",
+     "run": "C0_B_rep2",
+     "fact": "f10",
+     "bits": "010",
+     "in_stub": false,
+     "in_script": false
+    },
+    {
+     "issue": "issue_caregiverprotect",
+     "run": "C0_A_rep3",
+     "fact": "f01",
+     "bits": "011",
+     "in_stub": false,
+     "in_script": false
+    },
+    {
+     "issue": "issue_cat_feeding_harm",
+     "run": "C1_B_rep2",
+     "fact": "f07",
+     "bits": "011",
+     "in_stub": false,
+     "in_script": false
+    },
+    {
+     "issue": "issue_childcare",
+     "run": "C1_A_rep1",
+     "fact": "f10",
+     "bits": "001",
+     "in_stub": false,
+     "in_script": false
+    },
+    {
+     "issue": "issue_childcare_party",
+     "run": "C0_B_rep1",
+     "fact": "f10",
+     "bits": "011",
+     "in_stub": false,
+     "in_script": false
+    },
+    {
+     "issue": "issue_childcare_party",
+     "run": "C1_A_rep3",
+     "fact": "f04",
+     "bits": "101",
+     "in_stub": false,
+     "in_script": false
+    },
+    {
+     "issue": "issue_elderdrive",
+     "run": "C2_A_rep3",
+     "fact": "f05",
+     "bits": "001",
+     "in_stub": false,
+     "in_script": false
+    },
+    {
+     "issue": "issue_eol",
+     "run": "C0_B_rep3",
+     "fact": "f07",
+     "bits": "010",
+     "in_stub": false,
+     "in_script": false
+    },
+    {
+     "issue": "issue_eol",
+     "run": "C1_B_rep1",
+     "fact": "f08",
+     "bits": "001",
+     "in_stub": false,
+     "in_script": false
+    },
+    {
+     "issue": "issue_euthanasia",
+     "run": "C0_B_rep2",
+     "fact": "f08",
+     "bits": "101",
+     "in_stub": false,
+     "in_script": false
+    },
+    {
+     "issue": "issue_euthanasia",
+     "run": "C0_B_rep3",
+     "fact": "f04",
+     "bits": "010",
+     "in_stub": false,
+     "in_script": false
+    },
+    {
+     "issue": "issue_examaccom",
+     "run": "C1_B_rep3",
+     "fact": "f01",
+     "bits": "001",
+     "in_stub": false,
+     "in_script": false
+    }
+   ]
+  },
+  "loose": {
+   "C0": {
+    "000": 1558,
+    "110": 117,
+    "100": 271,
+    "111": 922,
+    "011": 6,
+    "010": 2,
+    "001": 3,
+    "101": 1
+   },
+   "C1": {
+    "100": 360,
+    "000": 1582,
+    "110": 111,
+    "111": 815,
+    "001": 3,
+    "011": 5,
+    "101": 1,
+    "010": 3
+   },
+   "C2": {
+    "000": 1586,
+    "100": 656,
+    "110": 160,
+    "111": 470,
+    "010": 2,
+    "101": 4,
+    "011": 1,
+    "001": 1
+   }
+  },
+  "loose_resurrect": {
+   "n": 32,
+   "in_stub": 0,
+   "in_script": 0,
+   "neither": 32,
+   "examples": [
+    {
+     "issue": "issue_ambulance",
+     "run": "C0_B_rep2",
+     "fact": "f10",
+     "bits": "011",
+     "in_stub": false,
+     "in_script": false
+    },
+    {
+     "issue": "issue_carebalance",
+     "run": "C2_B_rep2",
+     "fact": "f11",
+     "bits": "010",
+     "in_stub": false,
+     "in_script": false
+    },
+    {
+     "issue": "issue_caregiverprotect",
+     "run": "C0_A_rep3",
+     "fact": "f01",
+     "bits": "011",
+     "in_stub": false,
+     "in_script": false
+    },
+    {
+     "issue": "issue_caregiverprotect",
+     "run": "C1_A_rep2",
+     "fact": "f03",
+     "bits": "001",
+     "in_stub": false,
+     "in_script": false
+    },
+    {
+     "issue": "issue_cat_feeding_harm",
+     "run": "C1_B_rep2",
+     "fact": "f07",
+     "bits": "011",
+     "in_stub": false,
+     "in_script": false
+    },
+    {
+     "issue": "issue_childcare_party",
+     "run": "C1_A_rep3",
+     "fact": "f04",
+     "bits": "101",
+     "in_stub": false,
+     "in_script": false
+    },
+    {
+     "issue": "issue_childcare_party",
+     "run": "C1_B_rep3",
+     "fact": "f08",
+     "bits": "011",
+     "in_stub": false,
+     "in_script": false
+    },
+    {
+     "issue": "issue_elderdrive",
+     "run": "C2_A_rep3",
+     "fact": "f05",
+     "bits": "101",
+     "in_stub": false,
+     "in_script": false
+    },
+    {
+     "issue": "issue_eol",
+     "run": "C0_B_rep3",
+     "fact": "f07",
+     "bits": "010",
+     "in_stub": false,
+     "in_script": false
+    },
+    {
+     "issue": "issue_eol",
+     "run": "C1_B_rep1",
+     "fact": "f08",
+     "bits": "001",
+     "in_stub": false,
+     "in_script": false
+    },
+    {
+     "issue": "issue_euthanasia",
+     "run": "C0_B_rep2",
+     "fact": "f01",
+     "bits": "011",
+     "in_stub": false,
+     "in_script": false
+    },
+    {
+     "issue": "issue_examaccom",
+     "run": "C0_B_rep1",
+     "fact": "f07",
+     "bits": "001",
+     "in_stub": false,
+     "in_script": false
+    }
+   ]
+  }
+ },
+ "D": {
+  "essay_anchors_mean": {
+   "C0|0": 5.01,
+   "C0|1": 3.44,
+   "C0|2": 3.03,
+   "C0|3": 2.71,
+   "C1|0": 4.9,
+   "C1|1": 3.2,
+   "C1|2": 2.7,
+   "C1|3": 2.53,
+   "C2|0": 5.01,
+   "C2|1": 2.28,
+   "C2|2": 1.68,
+   "C2|3": 1.44
+  },
+  "essay_anchor_not_in_prev_note": {
+   "C0|1": [
+    52,
+    825
+   ],
+   "C0|2": [
+    34,
+    728
+   ],
+   "C0|3": [
+    33,
+    651
+   ],
+   "C1|1": [
+    53,
+    769
+   ],
+   "C1|2": [
+    41,
+    648
+   ],
+   "C1|3": [
+    32,
+    607
+   ],
+   "C2|1": [
+    30,
+    548
+   ],
+   "C2|2": [
+    16,
+    404
+   ],
+   "C2|3": [
+    22,
+    345
+   ]
+  },
+  "note_anchors_mean_loose": {
+   "C0|0": 5.46,
+   "C0|1": 4.36,
+   "C0|2": 3.88,
+   "C1|0": 5.36,
+   "C1|1": 3.89,
+   "C1|2": 3.43,
+   "C2|0": 5.38,
+   "C2|1": 2.64,
+   "C2|2": 1.98
+  }
+ },
+ "E": {
+  "numeric|True": [
+   433,
+   1152
+  ],
+  "pos|0": [
+   673,
+   2880
+  ],
+  "favors_aligned|True": [
+   1388,
+   4320
+  ],
+  "in_valueset|True": [
+   1388,
+   4320
+  ],
+  "about_aligned|True": [
+   1156,
+   3996
+  ],
+  "anchor_len|2": [
+   408,
+   1854
+  ],
+  "about_aligned|False": [
+   1076,
+   4644
+  ],
+  "anchor_len|1": [
+   1074,
+   4482
+  ],
+  "pos|1": [
+   720,
+   2880
+  ],
+  "numeric|False": [
+   1799,
+   7488
+  ],
+  "favors_aligned|False": [
+   844,
+   4320
+  ],
+  "in_valueset|False": [
+   844,
+   4320
+  ],
+  "pos|2": [
+   839,
+   2880
+  ],
+  "anchor_len|3": [
+   12,
+   288
+  ],
+  "anchor_len|4": [
+   0,
+   54
+  ],
+  "anchor_len|0": [
+   738,
+   1962
+  ]
+ },
+ "F": {
+  "len_mean": {
+   "C0|0": 372,
+   "C0|1": 384,
+   "C0|2": 393,
+   "C1|0": 371,
+   "C1|1": 392,
+   "C1|2": 395,
+   "C2|0": 365,
+   "C2|1": 404,
+   "C2|2": 403
+  },
+  "len_quartiles": [
+   354.0,
+   389.0,
+   421.0
+  ],
+  "over_budget": 0,
+  "truncated_flag": {
+   "false": 720
+  },
+  "corr_len_anchors": -0.17,
+  "anchors_by_len_bin": {
+   "200-": [
+    5.13,
+    105
+   ],
+   "300-": [
+    4.29,
+    1144
+   ],
+   "400-": [
+    3.6,
+    911
+   ]
+  }
+ }
+}

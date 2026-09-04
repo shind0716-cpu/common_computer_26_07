@@ -1,0 +1,1694 @@
+{
+ "issue_childcare": {
+  "options": [
+   "해맑은어린이집",
+   "소담숲어린이집"
+  ],
+  "categories": [
+   "비용",
+   "접근성",
+   "운영이력",
+   "전문성",
+   "적응지원",
+   "상담응대"
+  ],
+  "facts": [
+   {
+    "id": "f01",
+    "category": "비용",
+    "about_option": "해맑은어린이집",
+    "text": "월 이용료가 35만원이다.",
+    "anchor": "35만원",
+    "favors": "해맑은어린이집",
+    "source_ref": "care_scenarios_12_final.md:issue_childcare:해맑은어린이집",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f02",
+    "category": "비용",
+    "about_option": "소담숲어린이집",
+    "text": "월 이용료가 48만원으로 기준을 넘는다.",
+    "anchor": "48만원",
+    "favors": "해맑은어린이집",
+    "source_ref": "care_scenarios_12_final.md:issue_childcare:소담숲어린이집",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f03",
+    "category": "접근성",
+    "about_option": "해맑은어린이집",
+    "text": "집에서 도보 8분 거리다.",
+    "anchor": "도보 8분",
+    "favors": "해맑은어린이집",
+    "source_ref": "care_scenarios_12_final.md:issue_childcare:해맑은어린이집",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f04",
+    "category": "접근성",
+    "about_option": "소담숲어린이집",
+    "text": "대중교통으로 25분 거리다.",
+    "anchor": "25분",
+    "favors": "해맑은어린이집",
+    "source_ref": "care_scenarios_12_final.md:issue_childcare:소담숲어린이집",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f05",
+    "category": "운영이력",
+    "about_option": "해맑은어린이집",
+    "text": "개원 8년째로 후기가 200건 넘는다.",
+    "anchor": "200건",
+    "favors": "해맑은어린이집",
+    "source_ref": "care_scenarios_12_final.md:issue_childcare:해맑은어린이집",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f06",
+    "category": "운영이력",
+    "about_option": "소담숲어린이집",
+    "text": "개원 3년째로 후기가 90건이다.",
+    "anchor": "90건",
+    "favors": "해맑은어린이집",
+    "source_ref": "care_scenarios_12_final.md:issue_childcare:소담숲어린이집",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f07",
+    "category": "전문성",
+    "about_option": "해맑은어린이집",
+    "text": "담임 교사가 보육교사 2급, 경력 6년이다.",
+    "anchor": "2급",
+    "favors": "소담숲어린이집",
+    "source_ref": "care_scenarios_12_final.md:issue_childcare:해맑은어린이집",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f08",
+    "category": "전문성",
+    "about_option": "소담숲어린이집",
+    "text": "담임 교사가 보육교사 1급, 경력 9년에 아동심리 상담 이수자다.",
+    "anchor": "심리 상담",
+    "favors": "소담숲어린이집",
+    "source_ref": "care_scenarios_12_final.md:issue_childcare:소담숲어린이집",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f09",
+    "category": "적응지원",
+    "about_option": "해맑은어린이집",
+    "text": "적응 기간을 유연하게 두는 절차가 없다.",
+    "anchor": "절차가 없다",
+    "favors": "소담숲어린이집",
+    "source_ref": "care_scenarios_12_final.md:issue_childcare:해맑은어린이집",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f10",
+    "category": "적응지원",
+    "about_option": "소담숲어린이집",
+    "text": "단계적으로 적응 시간을 늘리는 프로그램이 있다.",
+    "anchor": "단계적으로",
+    "favors": "소담숲어린이집",
+    "source_ref": "care_scenarios_12_final.md:issue_childcare:소담숲어린이집",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f11",
+    "category": "상담응대",
+    "about_option": "해맑은어린이집",
+    "text": "등원 문제 상담은 다음 주에나 가능하다.",
+    "anchor": "다음 주",
+    "favors": "소담숲어린이집",
+    "source_ref": "care_scenarios_12_final.md:issue_childcare:해맑은어린이집",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f12",
+    "category": "상담응대",
+    "about_option": "소담숲어린이집",
+    "text": "등원 거부 상담을 예약 없이 상시 받는다.",
+    "anchor": "예약 없이",
+    "favors": "소담숲어린이집",
+    "source_ref": "care_scenarios_12_final.md:issue_childcare:소담숲어린이집",
+    "provenance_type": "source_verbatim"
+   }
+  ],
+  "value_sets": {
+   "A": {
+    "categories": [
+     "비용",
+     "접근성",
+     "운영이력"
+    ],
+    "aligned": "해맑은어린이집",
+    "statement": "너에게는 다음 세 가지가 중요하다: 부담 없는 비용, 가까운 거리, 오래 쌓인 운영 이력."
+   },
+   "B": {
+    "categories": [
+     "전문성",
+     "적응지원",
+     "상담응대"
+    ],
+    "aligned": "소담숲어린이집",
+    "statement": "너에게는 다음 세 가지가 중요하다: 전문적인 케어, 아이 속도에 맞춘 적응 지원, 문제가 생겼을 때 바로 상담받을 수 있는 것."
+   }
+  }
+ },
+ "issue_euthanasia": {
+  "options": [
+   "원래 보호소",
+   "임시보호 전문 단체"
+  ],
+  "categories": [
+   "비용",
+   "접근성",
+   "이용사례",
+   "케어방식",
+   "입양연계",
+   "정서상태"
+  ],
+  "facts": [
+   {
+    "id": "f01",
+    "category": "비용",
+    "about_option": "원래 보호소",
+    "text": "추가 비용 없음(기존 위탁 예산 내).",
+    "anchor": "추가 비용 없음",
+    "favors": "원래 보호소",
+    "source_ref": "care_scenarios_12_final.md:issue_euthanasia:원래 보호소",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f02",
+    "category": "비용",
+    "about_option": "임시보호 전문 단체",
+    "text": "월 비용이 15만원(단체 자체 후원으로 일부 충당)이다.",
+    "anchor": "15만원",
+    "favors": "원래 보호소",
+    "source_ref": "care_scenarios_12_final.md:issue_euthanasia:임시보호 전문 단체",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f03",
+    "category": "접근성",
+    "about_option": "원래 보호소",
+    "text": "지금 위치라 이동 스트레스가 없다.",
+    "anchor": "이동 스트레스가 없다",
+    "favors": "원래 보호소",
+    "source_ref": "care_scenarios_12_final.md:issue_euthanasia:원래 보호소",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f04",
+    "category": "접근성",
+    "about_option": "임시보호 전문 단체",
+    "text": "이송까지 대중교통 45분 거리다.",
+    "anchor": "45분 거리",
+    "favors": "원래 보호소",
+    "source_ref": "care_scenarios_12_final.md:issue_euthanasia:임시보호 전문 단체",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f05",
+    "category": "이용사례",
+    "about_option": "원래 보호소",
+    "text": "연간 처리 사례가 300건 이상이다.",
+    "anchor": "300건 이상",
+    "favors": "원래 보호소",
+    "source_ref": "care_scenarios_12_final.md:issue_euthanasia:원래 보호소",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f06",
+    "category": "이용사례",
+    "about_option": "임시보호 전문 단체",
+    "text": "임시보호 연계 사례가 45건이다.",
+    "anchor": "45건이다",
+    "favors": "원래 보호소",
+    "source_ref": "care_scenarios_12_final.md:issue_euthanasia:임시보호 전문 단체",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f07",
+    "category": "케어방식",
+    "about_option": "원래 보호소",
+    "text": "수용 공간이 한계에 가까운 상태다.",
+    "anchor": "한계에 가까운",
+    "favors": "임시보호 전문 단체",
+    "source_ref": "care_scenarios_12_final.md:issue_euthanasia:원래 보호소",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f08",
+    "category": "케어방식",
+    "about_option": "임시보호 전문 단체",
+    "text": "1:1 케어라 스트레스 관리가 더 용이하다는 평가다.",
+    "anchor": "1:1 케어",
+    "favors": "임시보호 전문 단체",
+    "source_ref": "care_scenarios_12_final.md:issue_euthanasia:임시보호 전문 단체",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f09",
+    "category": "입양연계",
+    "about_option": "원래 보호소",
+    "text": "최근 입양 문의가 한 건 있었으나 미확정이다.",
+    "anchor": "미확정이다",
+    "favors": "임시보호 전문 단체",
+    "source_ref": "care_scenarios_12_final.md:issue_euthanasia:원래 보호소",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f10",
+    "category": "입양연계",
+    "about_option": "임시보호 전문 단체",
+    "text": "SNS 홍보를 통한 입양 연계 실적이 있다.",
+    "anchor": "SNS 홍보",
+    "favors": "임시보호 전문 단체",
+    "source_ref": "care_scenarios_12_final.md:issue_euthanasia:임시보호 전문 단체",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f11",
+    "category": "정서상태",
+    "about_option": "원래 보호소",
+    "text": "여러 동물과 함께 있어 이 동물이 위축된 모습을 보인다는 관찰이 있다.",
+    "anchor": "위축된 모습",
+    "favors": "임시보호 전문 단체",
+    "source_ref": "신규 작성(안현수, 2026-08-28) — 원문에 없는 축 보강용",
+    "provenance_type": "author_written"
+   },
+   {
+    "id": "f12",
+    "category": "정서상태",
+    "about_option": "임시보호 전문 단체",
+    "text": "보호자 가정에서 지내며 활발해졌다는 관찰 기록이 있다.",
+    "anchor": "활발해졌다는",
+    "favors": "임시보호 전문 단체",
+    "source_ref": "신규 작성(안현수, 2026-08-28) — 원문에 없는 축 보강용",
+    "provenance_type": "author_written"
+   }
+  ],
+  "value_sets": {
+   "A": {
+    "categories": [
+     "비용",
+     "접근성",
+     "이용사례"
+    ],
+    "aligned": "원래 보호소",
+    "statement": "너에게는 다음 세 가지가 중요하다: 추가 부담이 없는 것, 이동 스트레스가 없는 것, 이미 검증된 방식대로 처리하는 것."
+   },
+   "B": {
+    "categories": [
+     "케어방식",
+     "입양연계",
+     "정서상태"
+    ],
+    "aligned": "임시보호 전문 단체",
+    "statement": "너에게는 다음 세 가지가 중요하다: 세심한 개별 케어, 입양으로 이어질 가능성을 높이는 것, 정서적으로 안정되는 것."
+   }
+  }
+ },
+ "issue_examaccom": {
+  "options": [
+   "표준 학사지원팀",
+   "개별 맞춤 지원팀"
+  ],
+  "categories": [
+   "예측가능성",
+   "이용사례",
+   "응대속도",
+   "유연성",
+   "개별반영도",
+   "행정부담"
+  ],
+  "facts": [
+   {
+    "id": "f01",
+    "category": "예측가능성",
+    "about_option": "표준 학사지원팀",
+    "text": "정해진 서식과 절차를 따라야 한다.",
+    "anchor": "정해진 서식",
+    "favors": "표준 학사지원팀",
+    "source_ref": "care_scenarios_12_final.md:issue_examaccom:표준 학사지원팀",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f02",
+    "category": "예측가능성",
+    "about_option": "개별 맞춤 지원팀",
+    "text": "처리 기준이 사안마다 달라 예측이 어렵다는 의견도 있다.",
+    "anchor": "사안마다 달라",
+    "favors": "표준 학사지원팀",
+    "source_ref": "care_scenarios_12_final.md:issue_examaccom:개별 맞춤 지원팀",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f03",
+    "category": "이용사례",
+    "about_option": "표준 학사지원팀",
+    "text": "연간 처리 사례가 80건 이상이다.",
+    "anchor": "80건 이상",
+    "favors": "표준 학사지원팀",
+    "source_ref": "care_scenarios_12_final.md:issue_examaccom:표준 학사지원팀",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f04",
+    "category": "이용사례",
+    "about_option": "개별 맞춤 지원팀",
+    "text": "사례 수가 30건으로 상대적으로 적다.",
+    "anchor": "30건",
+    "favors": "표준 학사지원팀",
+    "source_ref": "care_scenarios_12_final.md:issue_examaccom:개별 맞춤 지원팀",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f05",
+    "category": "응대속도",
+    "about_option": "표준 학사지원팀",
+    "text": "신청 후 처리까지 통상 2일 걸린다.",
+    "anchor": "2일 걸린다",
+    "favors": "표준 학사지원팀",
+    "source_ref": "care_scenarios_12_final.md:issue_examaccom:표준 학사지원팀",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f06",
+    "category": "응대속도",
+    "about_option": "개별 맞춤 지원팀",
+    "text": "상담까지 4일 걸려 기준을 살짝 넘는다.",
+    "anchor": "4일 걸려",
+    "favors": "표준 학사지원팀",
+    "source_ref": "care_scenarios_12_final.md:issue_examaccom:개별 맞춤 지원팀",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f07",
+    "category": "유연성",
+    "about_option": "표준 학사지원팀",
+    "text": "서류 미비 시 반려되어 재제출이 필요하다.",
+    "anchor": "반려되어",
+    "favors": "개별 맞춤 지원팀",
+    "source_ref": "care_scenarios_12_final.md:issue_examaccom:표준 학사지원팀",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f08",
+    "category": "유연성",
+    "about_option": "개별 맞춤 지원팀",
+    "text": "서류가 조금 늦어도 위원회 재량으로 인정된 전례가 있다.",
+    "anchor": "위원회 재량",
+    "favors": "개별 맞춤 지원팀",
+    "source_ref": "care_scenarios_12_final.md:issue_examaccom:개별 맞춤 지원팀",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f09",
+    "category": "개별반영도",
+    "about_option": "표준 학사지원팀",
+    "text": "개별 사정을 반영하는 재량 여지가 적다.",
+    "anchor": "재량 여지가 적다",
+    "favors": "개별 맞춤 지원팀",
+    "source_ref": "care_scenarios_12_final.md:issue_examaccom:표준 학사지원팀",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f10",
+    "category": "개별반영도",
+    "about_option": "개별 맞춤 지원팀",
+    "text": "학생 개별 사정을 폭넓게 반영한다.",
+    "anchor": "폭넓게 반영",
+    "favors": "개별 맞춤 지원팀",
+    "source_ref": "care_scenarios_12_final.md:issue_examaccom:개별 맞춤 지원팀",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f11",
+    "category": "행정부담",
+    "about_option": "표준 학사지원팀",
+    "text": "표준 서식은 학생이 스스로 준비해 제출해야 한다.",
+    "anchor": "스스로 준비",
+    "favors": "개별 맞춤 지원팀",
+    "source_ref": "신규 작성(안현수, 2026-08-28) — 원문에 없는 축 보강용",
+    "provenance_type": "author_written"
+   },
+   {
+    "id": "f12",
+    "category": "행정부담",
+    "about_option": "개별 맞춤 지원팀",
+    "text": "지원팀이 서류 준비 과정을 함께 도와준다.",
+    "anchor": "함께 도와준다",
+    "favors": "개별 맞춤 지원팀",
+    "source_ref": "신규 작성(안현수, 2026-08-28) — 원문에 없는 축 보강용",
+    "provenance_type": "author_written"
+   }
+  ],
+  "value_sets": {
+   "A": {
+    "categories": [
+     "예측가능성",
+     "이용사례",
+     "응대속도"
+    ],
+    "aligned": "표준 학사지원팀",
+    "statement": "너에게는 다음 세 가지가 중요하다: 절차가 명확한 것, 전례가 충분히 쌓여 있는 것, 처리가 빠른 것."
+   },
+   "B": {
+    "categories": [
+     "유연성",
+     "개별반영도",
+     "행정부담"
+    ],
+    "aligned": "개별 맞춤 지원팀",
+    "statement": "너에게는 다음 세 가지가 중요하다: 형식적 결격에 유연한 것, 개별 사정이 반영되는 것, 준비 과정에서 도움받을 수 있는 것."
+   }
+  }
+ },
+ "issue_remotewatch": {
+  "options": [
+   "원격 모니터링",
+   "자원봉사자 방문"
+  ],
+  "categories": [
+   "상시성",
+   "이용사례",
+   "전문성",
+   "비용",
+   "정서교류",
+   "타당성"
+  ],
+  "facts": [
+   {
+    "id": "f01",
+    "category": "상시성",
+    "about_option": "원격 모니터링",
+    "text": "설치 후 별도 이동 없이 상시 확인 가능하다.",
+    "anchor": "상시 확인",
+    "favors": "원격 모니터링",
+    "source_ref": "care_scenarios_12_final.md:issue_remotewatch:원격 모니터링",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f02",
+    "category": "상시성",
+    "about_option": "자원봉사자 방문",
+    "text": "방문 시간 외에는 확인이 안 된다.",
+    "anchor": "확인이 안 된다",
+    "favors": "원격 모니터링",
+    "source_ref": "care_scenarios_12_final.md:issue_remotewatch:자원봉사자 방문",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f03",
+    "category": "이용사례",
+    "about_option": "원격 모니터링",
+    "text": "지역 내 설치 사례가 500건 이상이다.",
+    "anchor": "500건 이상",
+    "favors": "원격 모니터링",
+    "source_ref": "care_scenarios_12_final.md:issue_remotewatch:원격 모니터링",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f04",
+    "category": "이용사례",
+    "about_option": "자원봉사자 방문",
+    "text": "이 지역 방문 사례가 60건이다.",
+    "anchor": "60건이다",
+    "favors": "원격 모니터링",
+    "source_ref": "care_scenarios_12_final.md:issue_remotewatch:자원봉사자 방문",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f05",
+    "category": "전문성",
+    "about_option": "원격 모니터링",
+    "text": "설치·관리 업체가 관련 자격을 갖춘 기술 인력이다.",
+    "anchor": "자격을 갖춘",
+    "favors": "원격 모니터링",
+    "source_ref": "care_scenarios_12_final.md:issue_remotewatch:원격 모니터링",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f06",
+    "category": "전문성",
+    "about_option": "자원봉사자 방문",
+    "text": "봉사자는 지자체 기초 교육만 이수했다(전문 자격은 아님).",
+    "anchor": "기초 교육만",
+    "favors": "원격 모니터링",
+    "source_ref": "care_scenarios_12_final.md:issue_remotewatch:자원봉사자 방문",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f07",
+    "category": "비용",
+    "about_option": "원격 모니터링",
+    "text": "설치·이용료가 월 3만원(지원사업 적용)이다.",
+    "anchor": "3만원",
+    "favors": "자원봉사자 방문",
+    "source_ref": "care_scenarios_12_final.md:issue_remotewatch:원격 모니터링",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f08",
+    "category": "비용",
+    "about_option": "자원봉사자 방문",
+    "text": "비용 없음(자원봉사 기반).",
+    "anchor": "비용 없음",
+    "favors": "자원봉사자 방문",
+    "source_ref": "care_scenarios_12_final.md:issue_remotewatch:자원봉사자 방문",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f09",
+    "category": "정서교류",
+    "about_option": "원격 모니터링",
+    "text": "감시받는 느낌 때문에 불편을 호소한 이용자도 있다.",
+    "anchor": "감시받는 느낌",
+    "favors": "자원봉사자 방문",
+    "source_ref": "care_scenarios_12_final.md:issue_remotewatch:원격 모니터링",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f10",
+    "category": "정서교류",
+    "about_option": "자원봉사자 방문",
+    "text": "사람 간 정서적 교류가 가능하다는 장점이 있다.",
+    "anchor": "정서적 교류",
+    "favors": "자원봉사자 방문",
+    "source_ref": "care_scenarios_12_final.md:issue_remotewatch:자원봉사자 방문",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f11",
+    "category": "타당성",
+    "about_option": "원격 모니터링",
+    "text": "정기적으로 이웃과 왕래하고 있어 필요성 의문이 제기됐다.",
+    "anchor": "필요성 의문",
+    "favors": "자원봉사자 방문",
+    "source_ref": "care_scenarios_12_final.md:issue_remotewatch:원격 모니터링",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f12",
+    "category": "타당성",
+    "about_option": "자원봉사자 방문",
+    "text": "최근 유사 사례에서 만족도가 높았다는 조사 결과가 있다.",
+    "anchor": "조사 결과",
+    "favors": "자원봉사자 방문",
+    "source_ref": "care_scenarios_12_final.md:issue_remotewatch:자원봉사자 방문",
+    "provenance_type": "source_verbatim"
+   }
+  ],
+  "value_sets": {
+   "A": {
+    "categories": [
+     "상시성",
+     "이용사례",
+     "전문성"
+    ],
+    "aligned": "원격 모니터링",
+    "statement": "너에게는 다음 세 가지가 중요하다: 언제든 확인 가능한 것, 검증된 방식을 쓰는 것, 전문적인 관리를 받는 것."
+   },
+   "B": {
+    "categories": [
+     "비용",
+     "정서교류",
+     "타당성"
+    ],
+    "aligned": "자원봉사자 방문",
+    "statement": "너에게는 다음 세 가지가 중요하다: 부담 없는 비용, 사람 사이의 교류가 있는 것, 실제로 필요한지 따져보는 것."
+   }
+  }
+ },
+ "issue_workmind": {
+  "options": [
+   "사내 EAP",
+   "외부 개인 상담"
+  ],
+  "categories": [
+   "비용",
+   "접근성",
+   "응대속도",
+   "비밀보장",
+   "전문성",
+   "이용사례"
+  ],
+  "facts": [
+   {
+    "id": "f01",
+    "category": "비용",
+    "about_option": "사내 EAP",
+    "text": "비용이 무료(회사 부담)다.",
+    "anchor": "무료",
+    "favors": "사내 EAP",
+    "source_ref": "care_scenarios_12_final.md:issue_workmind:사내 EAP",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f02",
+    "category": "비용",
+    "about_option": "외부 개인 상담",
+    "text": "회당 비용이 8만원으로 별도 지원이 없으면 부담된다.",
+    "anchor": "8만원",
+    "favors": "사내 EAP",
+    "source_ref": "care_scenarios_12_final.md:issue_workmind:외부 개인 상담",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f03",
+    "category": "접근성",
+    "about_option": "사내 EAP",
+    "text": "사내 상담실이라 접근성이 가장 좋다.",
+    "anchor": "사내 상담실",
+    "favors": "사내 EAP",
+    "source_ref": "care_scenarios_12_final.md:issue_workmind:사내 EAP",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f04",
+    "category": "접근성",
+    "about_option": "외부 개인 상담",
+    "text": "사무실에서 대중교통 25분 거리다.",
+    "anchor": "25분 거리",
+    "favors": "사내 EAP",
+    "source_ref": "care_scenarios_12_final.md:issue_workmind:외부 개인 상담",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f05",
+    "category": "응대속도",
+    "about_option": "사내 EAP",
+    "text": "신청 후 3일 내 상담 배정된다.",
+    "anchor": "3일 내",
+    "favors": "사내 EAP",
+    "source_ref": "care_scenarios_12_final.md:issue_workmind:사내 EAP",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f06",
+    "category": "응대속도",
+    "about_option": "외부 개인 상담",
+    "text": "예약 후 상담까지 통상 7일 걸린다(기준 초과).",
+    "anchor": "7일",
+    "favors": "사내 EAP",
+    "source_ref": "care_scenarios_12_final.md:issue_workmind:외부 개인 상담",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f07",
+    "category": "비밀보장",
+    "about_option": "사내 EAP",
+    "text": "상담 내용이 인사팀에 요약 보고될 수 있다는 규정이 있다.",
+    "anchor": "인사팀에 요약",
+    "favors": "외부 개인 상담",
+    "source_ref": "care_scenarios_12_final.md:issue_workmind:사내 EAP",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f08",
+    "category": "비밀보장",
+    "about_option": "외부 개인 상담",
+    "text": "회사와 무관해 비밀이 철저히 보장된다.",
+    "anchor": "철저히 보장",
+    "favors": "외부 개인 상담",
+    "source_ref": "care_scenarios_12_final.md:issue_workmind:외부 개인 상담",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f09",
+    "category": "전문성",
+    "about_option": "사내 EAP",
+    "text": "상담사가 임상심리사 2급, 경력 4년이다.",
+    "anchor": "임상심리사 2급",
+    "favors": "외부 개인 상담",
+    "source_ref": "care_scenarios_12_final.md:issue_workmind:사내 EAP",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f10",
+    "category": "전문성",
+    "about_option": "외부 개인 상담",
+    "text": "상담사가 정신건강의학과 전문의, 경력 12년이다.",
+    "anchor": "정신건강의학과",
+    "favors": "외부 개인 상담",
+    "source_ref": "care_scenarios_12_final.md:issue_workmind:외부 개인 상담",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f11",
+    "category": "이용사례",
+    "about_option": "사내 EAP",
+    "text": "사내 이용 후기가 55건이다.",
+    "anchor": "55건",
+    "favors": "외부 개인 상담",
+    "source_ref": "care_scenarios_12_final.md:issue_workmind:사내 EAP",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f12",
+    "category": "이용사례",
+    "about_option": "외부 개인 상담",
+    "text": "후기가 400건 이상이다.",
+    "anchor": "400건",
+    "favors": "외부 개인 상담",
+    "source_ref": "care_scenarios_12_final.md:issue_workmind:외부 개인 상담",
+    "provenance_type": "source_verbatim"
+   }
+  ],
+  "value_sets": {
+   "A": {
+    "categories": [
+     "비용",
+     "접근성",
+     "응대속도"
+    ],
+    "aligned": "사내 EAP",
+    "statement": "너에게는 다음 세 가지가 중요하다: 비용 부담이 없는 것, 접근이 쉬운 것, 빠르게 연결되는 것."
+   },
+   "B": {
+    "categories": [
+     "비밀보장",
+     "전문성",
+     "이용사례"
+    ],
+    "aligned": "외부 개인 상담",
+    "statement": "너에게는 다음 세 가지가 중요하다: 비밀이 철저히 지켜지는 것, 전문성이 높은 것, 검증된 사례가 많은 것."
+   }
+  }
+ },
+ "issue_recycling_room": {
+  "options": [
+   "밤 열 시 마감",
+   "밤에도 열어 둠"
+  ],
+  "categories": [
+   "접근성",
+   "편의",
+   "이동권",
+   "평온",
+   "안전",
+   "위생"
+  ],
+  "facts": [
+   {
+    "id": "f01",
+    "category": "접근성",
+    "about_option": "밤 열 시 마감",
+    "text": "늦게 돌아오는 주민은 잠긴 문 앞에서 그대로 돌아선다.",
+    "anchor": "잠긴 문",
+    "favors": "밤에도 열어 둠",
+    "source_ref": "RC_F02",
+    "provenance_type": "source_rewrite"
+   },
+   {
+    "id": "f02",
+    "category": "접근성",
+    "about_option": "밤에도 열어 둠",
+    "text": "밤에도 열려 있으면 귀가 시간에 맞춰 곧장 들를 수 있다.",
+    "anchor": "귀가",
+    "favors": "밤에도 열어 둠",
+    "source_ref": "RC_F02",
+    "provenance_type": "source_implication"
+   },
+   {
+    "id": "f03",
+    "category": "편의",
+    "about_option": "밤 열 시 마감",
+    "text": "부피 큰 상자는 현관 안에 두기 어려워 다음 날까지 집 안에 쌓인다.",
+    "anchor": "부피",
+    "favors": "밤에도 열어 둠",
+    "source_ref": "RC_F05",
+    "provenance_type": "source_rewrite"
+   },
+   {
+    "id": "f04",
+    "category": "편의",
+    "about_option": "밤에도 열어 둠",
+    "text": "밤에 들일 수 있으면 받은 날 바로 내놓게 된다.",
+    "anchor": "받은 날",
+    "favors": "밤에도 열어 둠",
+    "source_ref": "pressure_adaptation_authored",
+    "provenance_type": "pressure_adaptation_authored"
+   },
+   {
+    "id": "f05",
+    "category": "이동권",
+    "about_option": "밤 열 시 마감",
+    "text": "문이 닫힌 밤에는 봉투가 통로 바닥에 놓여 지나는 길을 좁힌다.",
+    "anchor": "바닥",
+    "favors": "밤에도 열어 둠",
+    "source_ref": "RC_F03",
+    "provenance_type": "source_rewrite"
+   },
+   {
+    "id": "f06",
+    "category": "이동권",
+    "about_option": "밤에도 열어 둠",
+    "text": "밤에도 안으로 들일 수 있으면 봉투가 문 밖에 남지 않는다.",
+    "anchor": "문 밖",
+    "favors": "밤에도 열어 둠",
+    "source_ref": "RC_F03",
+    "provenance_type": "source_implication"
+   },
+   {
+    "id": "f07",
+    "category": "평온",
+    "about_option": "밤 열 시 마감",
+    "text": "문을 닫는 시각이 지나면 그 뒤로는 병 굴러가는 소리가 나지 않는다.",
+    "anchor": "병 굴러가는 소리",
+    "favors": "밤 열 시 마감",
+    "source_ref": "RC_F06",
+    "provenance_type": "source_rewrite"
+   },
+   {
+    "id": "f08",
+    "category": "평온",
+    "about_option": "밤에도 열어 둠",
+    "text": "밤늦게 병과 캔을 넣는 소리가 아래층 침실까지 닿는다.",
+    "anchor": "아래층",
+    "favors": "밤 열 시 마감",
+    "source_ref": "RC_F03",
+    "provenance_type": "source_implication"
+   },
+   {
+    "id": "f09",
+    "category": "안전",
+    "about_option": "밤 열 시 마감",
+    "text": "문을 닫아 두면 밤사이 보관실에 낯선 사람이 들지 않는다.",
+    "anchor": "밤사이",
+    "favors": "밤 열 시 마감",
+    "source_ref": "pressure_adaptation_authored",
+    "provenance_type": "pressure_adaptation_authored"
+   },
+   {
+    "id": "f10",
+    "category": "안전",
+    "about_option": "밤에도 열어 둠",
+    "text": "밤에 문이 열려 있는 동안 보관실은 바깥 통로에서 안이 보이지 않는 구석이 된다.",
+    "anchor": "구석",
+    "favors": "밤 열 시 마감",
+    "source_ref": "pressure_adaptation_authored",
+    "provenance_type": "pressure_adaptation_authored"
+   },
+   {
+    "id": "f11",
+    "category": "위생",
+    "about_option": "밤 열 시 마감",
+    "text": "낮에 내놓는 것은 분류 표지가 보이는 시간이라 품목이 제자리에 들어간다.",
+    "anchor": "제자리",
+    "favors": "밤 열 시 마감",
+    "source_ref": "RC_F04",
+    "provenance_type": "source_implication"
+   },
+   {
+    "id": "f12",
+    "category": "위생",
+    "about_option": "밤에도 열어 둠",
+    "text": "밤에 들어간 봉투는 아침에 보면 품목이 섞여 있다.",
+    "anchor": "아침",
+    "favors": "밤 열 시 마감",
+    "source_ref": "RC_F04",
+    "provenance_type": "source_rewrite"
+   }
+  ],
+  "value_sets": {
+   "A": {
+    "categories": [
+     "접근성",
+     "편의",
+     "이동권"
+    ],
+    "statement": "너에게는 접근성, 편의, 이동권이 중요하다.",
+    "aligned": "밤에도 열어 둠"
+   },
+   "B": {
+    "categories": [
+     "평온",
+     "안전",
+     "위생"
+    ],
+    "statement": "너에게는 평온, 안전, 위생이 중요하다.",
+    "aligned": "밤 열 시 마감"
+   }
+  }
+ },
+ "issue_smoking_area_party": {
+  "options": [
+   "지금 자리에 둠",
+   "외곽 빈 자리로"
+  ],
+  "categories": [
+   "궂은날",
+   "오가는길",
+   "치워온일",
+   "환기",
+   "냄새",
+   "바람"
+  ],
+  "facts": [
+   {
+    "id": "f01",
+    "category": "궂은날",
+    "party": "흡연 주민",
+    "about_option": "지금 자리에 둠",
+    "text": "지금 구역에는 지붕이 있어 비나 눈이 와도 쓴다.",
+    "anchor": "비나 눈",
+    "favors": "지금 자리에 둠",
+    "source_ref": "SM_F02",
+    "provenance_type": "source_rewrite"
+   },
+   {
+    "id": "f02",
+    "category": "궂은날",
+    "party": "흡연 주민",
+    "about_option": "외곽 빈 자리로",
+    "text": "외곽 자리는 오가는 동안 가림이 없다.",
+    "anchor": "가림",
+    "favors": "지금 자리에 둠",
+    "source_ref": "SM_F08",
+    "provenance_type": "source_implication"
+   },
+   {
+    "id": "f03",
+    "category": "오가는길",
+    "party": "흡연 주민",
+    "about_option": "지금 자리에 둠",
+    "text": "지금 구역은 출입구에서 몇 걸음이면 닿는다.",
+    "anchor": "몇 걸음",
+    "favors": "지금 자리에 둠",
+    "source_ref": "SM_F08",
+    "provenance_type": "source_implication"
+   },
+   {
+    "id": "f04",
+    "category": "오가는길",
+    "party": "흡연 주민",
+    "about_option": "외곽 빈 자리로",
+    "text": "외곽 자리까지는 단지를 가로질러 가야 한다.",
+    "anchor": "가로질러",
+    "favors": "지금 자리에 둠",
+    "source_ref": "SM_F08",
+    "provenance_type": "source_rewrite"
+   },
+   {
+    "id": "f05",
+    "category": "치워온일",
+    "party": "흡연 주민",
+    "about_option": "지금 자리에 둠",
+    "text": "흡연 주민들은 재떨이 뚜껑과 정리표를 쓰기 시작했다.",
+    "anchor": "재떨이 뚜껑",
+    "favors": "지금 자리에 둠",
+    "source_ref": "SM_F05",
+    "provenance_type": "source_rewrite"
+   },
+   {
+    "id": "f06",
+    "category": "치워온일",
+    "party": "흡연 주민",
+    "about_option": "외곽 빈 자리로",
+    "text": "그렇게 한 뒤로 꽁초가 그대로 남는 일이 크게 줄었다고 적었다.",
+    "anchor": "꽁초",
+    "favors": "지금 자리에 둠",
+    "source_ref": "SM_F05",
+    "provenance_type": "source_rewrite"
+   },
+   {
+    "id": "f07",
+    "category": "환기",
+    "party": "복도 주민",
+    "about_option": "지금 자리에 둠",
+    "text": "인접 동 주민들은 복도 환기를 위해 저녁에 창문을 연다.",
+    "anchor": "복도 환기",
+    "favors": "외곽 빈 자리로",
+    "source_ref": "SM_F03",
+    "provenance_type": "source_rewrite"
+   },
+   {
+    "id": "f08",
+    "category": "환기",
+    "party": "복도 주민",
+    "about_option": "외곽 빈 자리로",
+    "text": "반대편만 열어 보았지만 복도 끝의 공기 흐름이 약해졌다고 적었다.",
+    "anchor": "공기 흐름",
+    "favors": "외곽 빈 자리로",
+    "source_ref": "SM_F06",
+    "provenance_type": "source_rewrite"
+   },
+   {
+    "id": "f09",
+    "category": "냄새",
+    "party": "복도 주민",
+    "about_option": "지금 자리에 둠",
+    "text": "그 시간에 연기 냄새가 들어온 날이 여러 날 있었다.",
+    "anchor": "연기 냄새",
+    "favors": "외곽 빈 자리로",
+    "source_ref": "SM_F03",
+    "provenance_type": "source_rewrite"
+   },
+   {
+    "id": "f10",
+    "category": "냄새",
+    "party": "복도 주민",
+    "about_option": "외곽 빈 자리로",
+    "text": "외곽 자리는 창문에서 멀찍이 떨어져 있다.",
+    "anchor": "멀찍이",
+    "favors": "외곽 빈 자리로",
+    "source_ref": "SM_F08",
+    "provenance_type": "source_rewrite"
+   },
+   {
+    "id": "f11",
+    "category": "바람",
+    "party": "복도 주민",
+    "about_option": "지금 자리에 둠",
+    "text": "최근 바람이 건물 쪽으로 분 날이 여러 날이었다.",
+    "anchor": "건물 쪽으로",
+    "favors": "외곽 빈 자리로",
+    "source_ref": "SM_F04",
+    "provenance_type": "source_rewrite"
+   },
+   {
+    "id": "f12",
+    "category": "바람",
+    "party": "복도 주민",
+    "about_option": "외곽 빈 자리로",
+    "text": "외곽 자리와 창문 사이에는 건물 한 채가 놓여 있다.",
+    "anchor": "건물 한 채",
+    "favors": "외곽 빈 자리로",
+    "source_ref": "SM_F08",
+    "provenance_type": "source_implication"
+   }
+  ],
+  "value_sets": {
+   "A": {
+    "categories": [
+     "궂은날",
+     "오가는길",
+     "치워온일"
+    ],
+    "statement": "너에게는 다음 세 가지가 중요하다: 궂은 날에도 쓸 수 있는 것, 오가는 길이 멀지 않은 것, 쓴 자리를 치워 온 것이 헤아려지는 것.",
+    "aligned": "지금 자리에 둠"
+   },
+   "B": {
+    "categories": [
+     "환기",
+     "냄새",
+     "바람"
+    ],
+    "statement": "너에게는 다음 세 가지가 중요하다: 집 안 공기를 바꿀 수 있는 것, 창으로 냄새가 들지 않는 것, 바람 부는 대로 견디지 않아도 되는 것.",
+    "aligned": "외곽 빈 자리로"
+   }
+  }
+ },
+ "issue_cat_feeding_days_list": {
+  "options": [
+   "지금 자리에 둔다",
+   "창고 옆으로 옮긴다"
+  ],
+  "categories": [
+   "끼니",
+   "연속",
+   "익숙함",
+   "위생",
+   "통행",
+   "배수"
+  ],
+  "facts": [
+   {
+    "id": "cfd_days_list_01",
+    "category": "끼니",
+    "text": "주민 모임은 매일 저녁 사료와 물을 지금 자리에 놓아 왔다.",
+    "anchor": "매일 저녁 사료와 물",
+    "favors": "지금 자리에 둔다"
+   },
+   {
+    "id": "cfd_days_list_02",
+    "category": "끼니",
+    "text": "주민 모임은 정해진 급식이 없던 기간에 고양이들이 쓰레기 보관 구역을 뒤진 기록이 늘었다고 말한다.",
+    "anchor": "쓰레기 보관 구역",
+    "favors": "지금 자리에 둔다"
+   },
+   {
+    "id": "cfd_days_list_03",
+    "category": "연속",
+    "text": "창고 옆 자리는 화요일과 목요일과 토요일에만 자재가 치워져 쓸 수 있다.",
+    "anchor": "목요일과 토요일",
+    "favors": "지금 자리에 둔다"
+   },
+   {
+    "id": "cfd_days_list_04",
+    "category": "연속",
+    "text": "창고 옆 통로는 쌓아 둔 공사 자재로 이레 가운데 나흘은 막힌다.",
+    "anchor": "이레 가운데 나흘",
+    "favors": "지금 자리에 둔다"
+   },
+   {
+    "id": "cfd_days_list_05",
+    "category": "익숙함",
+    "text": "주민 모임은 겨울에 그릇을 다른 자리로 옮겨 두었을 때 고양이들이 며칠 동안 오지 않았다고 말한다.",
+    "anchor": "며칠 동안 오지 않았다",
+    "favors": "지금 자리에 둔다"
+   },
+   {
+    "id": "cfd_days_list_06",
+    "category": "익숙함",
+    "text": "지금 자리에 놓은 사료는 최근 넉 주 가운데 열여드레는 삼십 분 안에 비었다.",
+    "anchor": "열여드레",
+    "favors": "지금 자리에 둔다"
+   },
+   {
+    "id": "cfd_days_list_07",
+    "category": "위생",
+    "text": "인근 동 주민들은 먹이가 남는 날 새와 벌레가 모이는 일을 걱정한다.",
+    "anchor": "새와 벌레",
+    "favors": "창고 옆으로 옮긴다"
+   },
+   {
+    "id": "cfd_days_list_08",
+    "category": "위생",
+    "text": "지금 자리에 놓은 사료는 최근 넉 주 가운데 열흘은 두 시간 넘게 남아 있었다.",
+    "anchor": "두 시간 넘게",
+    "favors": "창고 옆으로 옮긴다"
+   },
+   {
+    "id": "cfd_days_list_09",
+    "category": "통행",
+    "text": "지금 그릇은 동 출입 보행로에서 네 걸음 거리에 있다.",
+    "anchor": "네 걸음 거리",
+    "favors": "창고 옆으로 옮긴다"
+   },
+   {
+    "id": "cfd_days_list_10",
+    "category": "통행",
+    "text": "그릇 둘레에 고양이가 모이면 지나는 사람이 돌아서 간다.",
+    "anchor": "돌아서 간다",
+    "favors": "창고 옆으로 옮긴다"
+   },
+   {
+    "id": "cfd_days_list_11",
+    "category": "배수",
+    "text": "지금 자리는 화단 흙과 맞닿아 있어 비 온 날 그릇 둘레가 진창이 된다.",
+    "anchor": "진창",
+    "favors": "창고 옆으로 옮긴다"
+   },
+   {
+    "id": "cfd_days_list_12",
+    "category": "배수",
+    "text": "창고 옆 자리는 시멘트 바닥이라 비가 와도 물이 고이지 않는다.",
+    "anchor": "시멘트 바닥",
+    "favors": "창고 옆으로 옮긴다"
+   }
+  ],
+  "value_sets": {
+   "A": {
+    "categories": [
+     "끼니",
+     "연속",
+     "익숙함"
+    ],
+    "statement": "너에게는 끼니, 연속, 익숙함이 중요하다.",
+    "aligned": "지금 자리에 둔다"
+   },
+   "B": {
+    "categories": [
+     "위생",
+     "통행",
+     "배수"
+    ],
+    "statement": "너에게는 위생, 통행, 배수가 중요하다.",
+    "aligned": "창고 옆으로 옮긴다"
+   }
+  }
+ },
+ "issue_eol": {
+  "options": [
+   "인애종합병원",
+   "소망호스피스"
+  ],
+  "categories": [
+   "비용",
+   "접근성",
+   "대응체계",
+   "돌봄강도",
+   "공간",
+   "상담접근성"
+  ],
+  "facts": [
+   {
+    "id": "f01",
+    "category": "비용",
+    "about_option": "인애종합병원",
+    "text": "병실 비용이 월 38만원이다(건강보험 적용 후).",
+    "anchor": "38만원",
+    "favors": "인애종합병원",
+    "source_ref": "care_scenarios_12_final.md:issue_eol:인애종합병원",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f02",
+    "category": "비용",
+    "about_option": "소망호스피스",
+    "text": "비용이 월 42만원으로 기준을 살짝 넘는다.",
+    "anchor": "42만원",
+    "favors": "인애종합병원",
+    "source_ref": "care_scenarios_12_final.md:issue_eol:소망호스피스",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f03",
+    "category": "접근성",
+    "about_option": "인애종합병원",
+    "text": "집에서 대중교통 20분 거리다.",
+    "anchor": "20분",
+    "favors": "인애종합병원",
+    "source_ref": "care_scenarios_12_final.md:issue_eol:인애종합병원",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f04",
+    "category": "접근성",
+    "about_option": "소망호스피스",
+    "text": "대중교통 40분 거리로 다소 멀다.",
+    "anchor": "40분",
+    "favors": "인애종합병원",
+    "source_ref": "care_scenarios_12_final.md:issue_eol:소망호스피스",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f05",
+    "category": "대응체계",
+    "about_option": "인애종합병원",
+    "text": "24시간 응급 대응 체계가 있다.",
+    "anchor": "24시간",
+    "favors": "인애종합병원",
+    "source_ref": "care_scenarios_12_final.md:issue_eol:인애종합병원",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f06",
+    "category": "대응체계",
+    "about_option": "소망호스피스",
+    "text": "응급 상황 시 인근 종합병원 이송 협약이 되어 있다.",
+    "anchor": "이송 협약",
+    "favors": "인애종합병원",
+    "source_ref": "care_scenarios_12_final.md:issue_eol:소망호스피스",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f07",
+    "category": "돌봄강도",
+    "about_option": "인애종합병원",
+    "text": "통증 관리 프로토콜이 일반 병동 기준이다.",
+    "anchor": "일반 병동",
+    "favors": "소망호스피스",
+    "source_ref": "care_scenarios_12_final.md:issue_eol:인애종합병원",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f08",
+    "category": "돌봄강도",
+    "about_option": "소망호스피스",
+    "text": "통증·증상 완화에 특화된 프로토콜이 있다.",
+    "anchor": "특화된",
+    "favors": "소망호스피스",
+    "source_ref": "care_scenarios_12_final.md:issue_eol:소망호스피스",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f09",
+    "category": "공간",
+    "about_option": "인애종합병원",
+    "text": "병실이 4인실이라 가족이 함께 있을 시간이 제한적이다.",
+    "anchor": "4인실",
+    "favors": "소망호스피스",
+    "source_ref": "care_scenarios_12_final.md:issue_eol:인애종합병원",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f10",
+    "category": "공간",
+    "about_option": "소망호스피스",
+    "text": "가족 동반 1인실 위주로 운영된다.",
+    "anchor": "1인실",
+    "favors": "소망호스피스",
+    "source_ref": "care_scenarios_12_final.md:issue_eol:소망호스피스",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f11",
+    "category": "상담접근성",
+    "about_option": "인애종합병원",
+    "text": "연명치료 관련 상담은 담당의 회진 시간에만 가능하다.",
+    "anchor": "회진 시간",
+    "favors": "소망호스피스",
+    "source_ref": "care_scenarios_12_final.md:issue_eol:인애종합병원",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f12",
+    "category": "상담접근성",
+    "about_option": "소망호스피스",
+    "text": "상담사가 상주해 언제든 가족 상담이 가능하다.",
+    "anchor": "상주",
+    "favors": "소망호스피스",
+    "source_ref": "care_scenarios_12_final.md:issue_eol:소망호스피스",
+    "provenance_type": "source_verbatim"
+   }
+  ],
+  "value_sets": {
+   "A": {
+    "categories": [
+     "비용",
+     "접근성",
+     "대응체계"
+    ],
+    "aligned": "인애종합병원",
+    "statement": "너에게는 다음 세 가지가 중요하다: 부담 없는 비용, 자주 오갈 수 있는 거리, 응급 상황에 바로 대응 가능한 것."
+   },
+   "B": {
+    "categories": [
+     "돌봄강도",
+     "공간",
+     "상담접근성"
+    ],
+    "aligned": "소망호스피스",
+    "statement": "너에게는 다음 세 가지가 중요하다: 증상을 세심하게 돌보는 것, 가족과 온전히 함께할 공간, 필요할 때 언제든 상담받을 수 있는 것."
+   }
+  }
+ },
+ "issue_shelter": {
+  "options": [
+   "지역 순찰조",
+   "전문 아웃리치팀"
+  ],
+  "categories": [
+   "접근성",
+   "관계형성",
+   "응대속도",
+   "전문성",
+   "완충방법",
+   "이용사례"
+  ],
+  "facts": [
+   {
+    "id": "f01",
+    "category": "접근성",
+    "about_option": "지역 순찰조",
+    "text": "매일 도는 구역이라 접근성이 가장 좋다.",
+    "anchor": "매일 도는",
+    "favors": "지역 순찰조",
+    "source_ref": "care_scenarios_12_final.md:issue_shelter:지역 순찰조",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f02",
+    "category": "접근성",
+    "about_option": "전문 아웃리치팀",
+    "text": "요청 후 도착까지 40분 거리다.",
+    "anchor": "40분 거리",
+    "favors": "지역 순찰조",
+    "source_ref": "care_scenarios_12_final.md:issue_shelter:전문 아웃리치팀",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f03",
+    "category": "관계형성",
+    "about_option": "지역 순찰조",
+    "text": "이 사람과는 이미 몇 차례 접촉한 이력이 있다.",
+    "anchor": "몇 차례 접촉",
+    "favors": "지역 순찰조",
+    "source_ref": "care_scenarios_12_final.md:issue_shelter:지역 순찰조",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f04",
+    "category": "관계형성",
+    "about_option": "전문 아웃리치팀",
+    "text": "처음 보는 인력이라 관계 형성부터 다시 시작해야 한다.",
+    "anchor": "관계 형성부터",
+    "favors": "지역 순찰조",
+    "source_ref": "care_scenarios_12_final.md:issue_shelter:전문 아웃리치팀",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f05",
+    "category": "응대속도",
+    "about_option": "지역 순찰조",
+    "text": "즉시 대응 가능하다(상시 순찰 중).",
+    "anchor": "즉시 대응",
+    "favors": "지역 순찰조",
+    "source_ref": "care_scenarios_12_final.md:issue_shelter:지역 순찰조",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f06",
+    "category": "응대속도",
+    "about_option": "전문 아웃리치팀",
+    "text": "요청 후 배정까지 2일 걸린다.",
+    "anchor": "2일 걸린다",
+    "favors": "지역 순찰조",
+    "source_ref": "care_scenarios_12_final.md:issue_shelter:전문 아웃리치팀",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f07",
+    "category": "전문성",
+    "about_option": "지역 순찰조",
+    "text": "순찰 인력은 사회복지 전담 자격은 아니다.",
+    "anchor": "전담 자격은 아니다",
+    "favors": "전문 아웃리치팀",
+    "source_ref": "care_scenarios_12_final.md:issue_shelter:지역 순찰조",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f08",
+    "category": "전문성",
+    "about_option": "전문 아웃리치팀",
+    "text": "사회복지사 자격에 노숙인 전담 경력 6년이다.",
+    "anchor": "노숙인 전담",
+    "favors": "전문 아웃리치팀",
+    "source_ref": "care_scenarios_12_final.md:issue_shelter:전문 아웃리치팀",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f09",
+    "category": "완충방법",
+    "about_option": "지역 순찰조",
+    "text": "전문적인 설득 기법 교육은 받지 않았다.",
+    "anchor": "교육은 받지 않았다",
+    "favors": "전문 아웃리치팀",
+    "source_ref": "care_scenarios_12_final.md:issue_shelter:지역 순찰조",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f10",
+    "category": "완충방법",
+    "about_option": "전문 아웃리치팀",
+    "text": "단계적 접촉(물품 지원 후 대화) 전문 기법을 쓴다.",
+    "anchor": "단계적 접촉",
+    "favors": "전문 아웃리치팀",
+    "source_ref": "care_scenarios_12_final.md:issue_shelter:전문 아웃리치팀",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f11",
+    "category": "이용사례",
+    "about_option": "지역 순찰조",
+    "text": "이 구역 순찰 사례가 수백 건이다.",
+    "anchor": "수백 건이다",
+    "favors": "전문 아웃리치팀",
+    "source_ref": "care_scenarios_12_final.md:issue_shelter:지역 순찰조",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f12",
+    "category": "이용사례",
+    "about_option": "전문 아웃리치팀",
+    "text": "연계 사례가 70건이다.",
+    "anchor": "70건이다",
+    "favors": "전문 아웃리치팀",
+    "source_ref": "care_scenarios_12_final.md:issue_shelter:전문 아웃리치팀",
+    "provenance_type": "source_verbatim"
+   }
+  ],
+  "value_sets": {
+   "A": {
+    "categories": [
+     "접근성",
+     "관계형성",
+     "응대속도"
+    ],
+    "aligned": "지역 순찰조",
+    "statement": "너에게는 다음 세 가지가 중요하다: 즉시 접근 가능한 것, 이미 쌓인 신뢰를 활용하는 것, 지체 없이 대응하는 것."
+   },
+   "B": {
+    "categories": [
+     "전문성",
+     "완충방법",
+     "이용사례"
+    ],
+    "aligned": "전문 아웃리치팀",
+    "statement": "너에게는 다음 세 가지가 중요하다: 전문적인 훈련을 받은 것, 무리하지 않는 접근 방식, 검증된 연계 실적."
+   }
+  }
+ },
+ "issue_parentalreturn": {
+  "options": [
+   "원래 업무팀",
+   "다른 업무팀"
+  ],
+  "categories": [
+   "안정성",
+   "숙련도",
+   "응대속도",
+   "성장기회",
+   "적응지원",
+   "승진반영"
+  ],
+  "facts": [
+   {
+    "id": "f01",
+    "category": "안정성",
+    "about_option": "원래 업무팀",
+    "text": "원래 업무는 현재 다른 팀원이 임시로 맡아 안정적이다.",
+    "anchor": "임시로 맡아",
+    "favors": "원래 업무팀",
+    "source_ref": "care_scenarios_12_final.md:issue_parentalreturn:원래 업무팀",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f02",
+    "category": "안정성",
+    "about_option": "다른 업무팀",
+    "text": "원래 팀과의 네트워크가 끊길 수 있다.",
+    "anchor": "네트워크가 끊길",
+    "favors": "원래 업무팀",
+    "source_ref": "care_scenarios_12_final.md:issue_parentalreturn:다른 업무팀",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f03",
+    "category": "숙련도",
+    "about_option": "원래 업무팀",
+    "text": "휴직 전 담당 업무에서 높은 평가를 받았다.",
+    "anchor": "높은 평가",
+    "favors": "원래 업무팀",
+    "source_ref": "care_scenarios_12_final.md:issue_parentalreturn:원래 업무팀",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f04",
+    "category": "숙련도",
+    "about_option": "다른 업무팀",
+    "text": "새 업무팀 경력은 없으나 관련 교육 이수 예정이다.",
+    "anchor": "경력은 없으나",
+    "favors": "원래 업무팀",
+    "source_ref": "care_scenarios_12_final.md:issue_parentalreturn:다른 업무팀",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f05",
+    "category": "응대속도",
+    "about_option": "원래 업무팀",
+    "text": "복귀 절차는 인사팀 승인 후 즉시 가능하다.",
+    "anchor": "즉시 가능",
+    "favors": "원래 업무팀",
+    "source_ref": "care_scenarios_12_final.md:issue_parentalreturn:원래 업무팀",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f06",
+    "category": "응대속도",
+    "about_option": "다른 업무팀",
+    "text": "배치 확정까지 협의 절차로 5일 걸린다.",
+    "anchor": "5일 걸린다",
+    "favors": "원래 업무팀",
+    "source_ref": "care_scenarios_12_final.md:issue_parentalreturn:다른 업무팀",
+    "provenance_type": "source_verbatim"
+   },
+   {
+    "id": "f07",
+    "category": "성장기회",
+    "about_option": "원래 업무팀",
+    "text": "기존 업무에만 머물면 새 기술 습득 기회가 줄어든다는 인사팀 의견이 있다.",
+    "anchor": "기술 습득 기회",
+    "favors": "다른 업무팀",
+    "source_ref": "신규 작성(안현수, 2026-08-28) — 원문에 없는 축 보강용",
+    "provenance_type": "author_written"
+   },
+   {
+    "id": "f08",
+    "category": "성장기회",
+    "about_option": "다른 업무팀",
+    "text": "재배치자는 분기별 신규 프로젝트에 우선 배정된다.",
+    "anchor": "우선 배정",
+    "favors": "다른 업무팀",
+    "source_ref": "신규 작성(안현수, 2026-08-28) — 원문에 없는 축 보강용",
+    "provenance_type": "author_written"
+   },
+   {
+    "id": "f09",
+    "category": "적응지원",
+    "about_option": "원래 업무팀",
+    "text": "기존 팀 동료들도 새로운 시스템에 아직 적응 중이라 지원이 어렵다.",
+    "anchor": "적응 중이라",
+    "favors": "다른 업무팀",
+    "source_ref": "신규 작성(안현수, 2026-08-28) — 원문에 없는 축 보강용",
+    "provenance_type": "author_written"
+   },
+   {
+    "id": "f10",
+    "category": "적응지원",
+    "about_option": "다른 업무팀",
+    "text": "새 팀은 재배치자를 위한 온보딩 담당자를 지정해 둔다.",
+    "anchor": "온보딩 담당자",
+    "favors": "다른 업무팀",
+    "source_ref": "신규 작성(안현수, 2026-08-28) — 원문에 없는 축 보강용",
+    "provenance_type": "author_written"
+   },
+   {
+    "id": "f11",
+    "category": "승진반영",
+    "about_option": "원래 업무팀",
+    "text": "같은 업무를 오래 맡으면 승진 심사에서 다양성 점수가 낮게 매겨진다는 규정이 있다.",
+    "anchor": "다양성 점수",
+    "favors": "다른 업무팀",
+    "source_ref": "신규 작성(안현수, 2026-08-28) — 원문에 없는 축 보강용",
+    "provenance_type": "author_written"
+   },
+   {
+    "id": "f12",
+    "category": "승진반영",
+    "about_option": "다른 업무팀",
+    "text": "다른 업무 경험은 승진 심사에서 가산 요소로 인정된다.",
+    "anchor": "가산 요소",
+    "favors": "다른 업무팀",
+    "source_ref": "신규 작성(안현수, 2026-08-28) — 원문에 없는 축 보강용",
+    "provenance_type": "author_written"
+   }
+  ],
+  "value_sets": {
+   "A": {
+    "categories": [
+     "안정성",
+     "숙련도",
+     "응대속도"
+    ],
+    "aligned": "원래 업무팀",
+    "statement": "너에게는 다음 세 가지가 중요하다: 업무 공백이 없는 것, 쌓아온 경력을 살리는 것, 빠르게 정리되는 것."
+   },
+   "B": {
+    "categories": [
+     "성장기회",
+     "적응지원",
+     "승진반영"
+    ],
+    "aligned": "다른 업무팀",
+    "statement": "너에게는 다음 세 가지가 중요하다: 새로운 기회를 여는 것, 적응 과정에서 도움받을 수 있는 것, 장기적인 평가에 유리한 것."
+   }
+  }
+ }
+}

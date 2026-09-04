@@ -2201,3 +2201,17 @@ def api_pressure_catscan(dry: bool = False):
                     "final_choice": r.get("final_choice"), "flipped": r.get("flipped"),
                 })
     return {"dry": dry, "rows": rows}
+
+
+# ═══ 발표 모드 (experiments/pressure_category/CONSOLE_present_*.html) — 2026-09-02 추가 ═══
+# 추가만 한다. 발표 모드는 서버 없이 열리는 자족 HTML 한 장인데(make_present_console.py 가
+# 소넷 정독 채점 원자료에서 생성), 브라우저는 http 화면에서 file:// 링크를 막으므로
+# 콘솔 상단의 "발표 모드" 버튼이 이 경로로 연다. 가장 최신 파일을 그대로 돌려준다.
+@app.get("/present", response_class=HTMLResponse)
+def present():
+    files = sorted(PRESSURE_DIR.glob("CONSOLE_present_*.html"))
+    if not files:
+        raise HTTPException(404, "CONSOLE_present_*.html 없음 — experiments/pressure_category 에서 "
+                                 "python make_present_console.py 를 먼저 실행")
+    return HTMLResponse(files[-1].read_text(encoding="utf-8"),
+                        headers={"Cache-Control": "no-store, must-revalidate"})

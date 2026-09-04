@@ -1,0 +1,4 @@
+[(load)] http: 400 http://127.0.0.1:8021/api/solo/estimate
+[(load)] console: Failed to load resource: the server responded with a status of 400 (Bad Request)
+[(load)] http: 400 http://127.0.0.1:8021/api/pressure/estimate
+[(load)] console: Failed to load resource: the server responded with a status of 400 (Bad Request)
