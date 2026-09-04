@@ -1,0 +1,1322 @@
+[
+ {
+  "item": "kpack01-1",
+  "model": "gemini-flash",
+  "issue_id": "issue_workmind",
+  "run_id": "pbw_workmind_wonchik_workmind_rep3",
+  "value_set": "wonchik_workmind",
+  "script": "pbw_workmind",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_workmind/run_pbw_workmind_wonchik_workmind_rep3.json"
+ },
+ {
+  "item": "kpack01-2",
+  "model": "gpt",
+  "issue_id": "issue_shelter",
+  "run_id": "pbw_shelter_wonchik_shelter_rep3",
+  "value_set": "wonchik_shelter",
+  "script": "pbw_shelter",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_shelter/run_pbw_shelter_wonchik_shelter_rep3.json"
+ },
+ {
+  "item": "kpack01-3",
+  "model": "gemini-flash",
+  "issue_id": "issue_euthanasia",
+  "run_id": "C0_wonchik_euthanasia_rep2",
+  "value_set": "wonchik_euthanasia",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_euthanasia/run_C0_wonchik_euthanasia_rep2.json"
+ },
+ {
+  "item": "kpack01-4",
+  "model": "gemini-flash",
+  "issue_id": "issue_shelter",
+  "run_id": "pbw_shelter_wonchik_shelter_rep3",
+  "value_set": "wonchik_shelter",
+  "script": "pbw_shelter",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_shelter/run_pbw_shelter_wonchik_shelter_rep3.json"
+ },
+ {
+  "item": "kpack01-5",
+  "model": "gpt",
+  "issue_id": "issue_smoking_area_party",
+  "run_id": "pbw_smoking_party_wonchik_smoking_party_rep3",
+  "value_set": "wonchik_smoking_party",
+  "script": "pbw_smoking_party",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_smoking_area_party/run_pbw_smoking_party_wonchik_smoking_party_rep3.json"
+ },
+ {
+  "item": "kpack01-6",
+  "model": "gpt",
+  "issue_id": "issue_euthanasia",
+  "run_id": "C0_wonchik_euthanasia_rep1",
+  "value_set": "wonchik_euthanasia",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_euthanasia/run_C0_wonchik_euthanasia_rep1.json"
+ },
+ {
+  "item": "kpack02-1",
+  "model": "gpt",
+  "issue_id": "issue_cat_feeding_days_list",
+  "run_id": "C0_wonchik_cf_days_list_rep2",
+  "value_set": "wonchik_cf_days_list",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_cat_feeding_days_list/run_C0_wonchik_cf_days_list_rep2.json"
+ },
+ {
+  "item": "kpack02-2",
+  "model": "gpt",
+  "issue_id": "issue_eol",
+  "run_id": "C0_wonchik_eol_rep2",
+  "value_set": "wonchik_eol",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_eol/run_C0_wonchik_eol_rep2.json"
+ },
+ {
+  "item": "kpack02-3",
+  "model": "gemini-flash",
+  "issue_id": "issue_cat_feeding_days_list",
+  "run_id": "C0_wonchik_cf_days_list_rep1",
+  "value_set": "wonchik_cf_days_list",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_cat_feeding_days_list/run_C0_wonchik_cf_days_list_rep1.json"
+ },
+ {
+  "item": "kpack02-4",
+  "model": "gpt",
+  "issue_id": "issue_recycling_room",
+  "run_id": "C0_wonchik_recycling_room_rep1",
+  "value_set": "wonchik_recycling_room",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_recycling_room/run_C0_wonchik_recycling_room_rep1.json"
+ },
+ {
+  "item": "kpack02-5",
+  "model": "gemini-flash",
+  "issue_id": "issue_shelter",
+  "run_id": "C0_wonchik_shelter_rep1",
+  "value_set": "wonchik_shelter",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_shelter/run_C0_wonchik_shelter_rep1.json"
+ },
+ {
+  "item": "kpack02-6",
+  "model": "gemini-flash",
+  "issue_id": "issue_cat_feeding_days_list",
+  "run_id": "C0_wonchik_cf_days_list_rep3",
+  "value_set": "wonchik_cf_days_list",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_cat_feeding_days_list/run_C0_wonchik_cf_days_list_rep3.json"
+ },
+ {
+  "item": "kpack03-1",
+  "model": "gpt",
+  "issue_id": "issue_workmind",
+  "run_id": "pbw_workmind_wonchik_workmind_rep2",
+  "value_set": "wonchik_workmind",
+  "script": "pbw_workmind",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_workmind/run_pbw_workmind_wonchik_workmind_rep2.json"
+ },
+ {
+  "item": "kpack03-2",
+  "model": "gpt",
+  "issue_id": "issue_workmind",
+  "run_id": "C0_wonchik_workmind_rep2",
+  "value_set": "wonchik_workmind",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_workmind/run_C0_wonchik_workmind_rep2.json"
+ },
+ {
+  "item": "kpack03-3",
+  "model": "gemini-flash",
+  "issue_id": "issue_euthanasia",
+  "run_id": "pbw_euthanasia_wonchik_euthanasia_rep3",
+  "value_set": "wonchik_euthanasia",
+  "script": "pbw_euthanasia",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_euthanasia/run_pbw_euthanasia_wonchik_euthanasia_rep3.json"
+ },
+ {
+  "item": "kpack03-4",
+  "model": "gpt",
+  "issue_id": "issue_parentalreturn",
+  "run_id": "C0_wonchik_parentalreturn_rep2",
+  "value_set": "wonchik_parentalreturn",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_parentalreturn/run_C0_wonchik_parentalreturn_rep2.json"
+ },
+ {
+  "item": "kpack03-5",
+  "model": "gemini-flash",
+  "issue_id": "issue_childcare",
+  "run_id": "pbw_childcare_wonchik_childcare_rep2",
+  "value_set": "wonchik_childcare",
+  "script": "pbw_childcare",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_childcare/run_pbw_childcare_wonchik_childcare_rep2.json"
+ },
+ {
+  "item": "kpack03-6",
+  "model": "gemini-flash",
+  "issue_id": "issue_remotewatch",
+  "run_id": "C0_wonchik_remotewatch_rep1",
+  "value_set": "wonchik_remotewatch",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_remotewatch/run_C0_wonchik_remotewatch_rep1.json"
+ },
+ {
+  "item": "kpack04-1",
+  "model": "gpt",
+  "issue_id": "issue_eol",
+  "run_id": "pbw_eol_wonchik_eol_rep3",
+  "value_set": "wonchik_eol",
+  "script": "pbw_eol",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_eol/run_pbw_eol_wonchik_eol_rep3.json"
+ },
+ {
+  "item": "kpack04-2",
+  "model": "gpt",
+  "issue_id": "issue_recycling_room",
+  "run_id": "pbw_recycling_room_wonchik_recycling_room_rep2",
+  "value_set": "wonchik_recycling_room",
+  "script": "pbw_recycling_room",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_recycling_room/run_pbw_recycling_room_wonchik_recycling_room_rep2.json"
+ },
+ {
+  "item": "kpack04-3",
+  "model": "gpt",
+  "issue_id": "issue_workmind",
+  "run_id": "pbw_workmind_wonchik_workmind_rep3",
+  "value_set": "wonchik_workmind",
+  "script": "pbw_workmind",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_workmind/run_pbw_workmind_wonchik_workmind_rep3.json"
+ },
+ {
+  "item": "kpack04-4",
+  "model": "gemini-flash",
+  "issue_id": "issue_childcare",
+  "run_id": "pbw_childcare_wonchik_childcare_rep1",
+  "value_set": "wonchik_childcare",
+  "script": "pbw_childcare",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_childcare/run_pbw_childcare_wonchik_childcare_rep1.json"
+ },
+ {
+  "item": "kpack04-5",
+  "model": "gpt",
+  "issue_id": "issue_euthanasia",
+  "run_id": "C0_wonchik_euthanasia_rep2",
+  "value_set": "wonchik_euthanasia",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_euthanasia/run_C0_wonchik_euthanasia_rep2.json"
+ },
+ {
+  "item": "kpack04-6",
+  "model": "gemini-flash",
+  "issue_id": "issue_recycling_room",
+  "run_id": "C0_wonchik_recycling_room_rep1",
+  "value_set": "wonchik_recycling_room",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_recycling_room/run_C0_wonchik_recycling_room_rep1.json"
+ },
+ {
+  "item": "kpack05-1",
+  "model": "gemini-flash",
+  "issue_id": "issue_smoking_area_party",
+  "run_id": "pbw_smoking_party_wonchik_smoking_party_rep1",
+  "value_set": "wonchik_smoking_party",
+  "script": "pbw_smoking_party",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_smoking_area_party/run_pbw_smoking_party_wonchik_smoking_party_rep1.json"
+ },
+ {
+  "item": "kpack05-2",
+  "model": "gemini-flash",
+  "issue_id": "issue_eol",
+  "run_id": "C0_wonchik_eol_rep3",
+  "value_set": "wonchik_eol",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_eol/run_C0_wonchik_eol_rep3.json"
+ },
+ {
+  "item": "kpack05-3",
+  "model": "gemini-flash",
+  "issue_id": "issue_remotewatch",
+  "run_id": "pbw_remotewatch_wonchik_remotewatch_rep1",
+  "value_set": "wonchik_remotewatch",
+  "script": "pbw_remotewatch",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_remotewatch/run_pbw_remotewatch_wonchik_remotewatch_rep1.json"
+ },
+ {
+  "item": "kpack05-4",
+  "model": "gemini-flash",
+  "issue_id": "issue_examaccom",
+  "run_id": "C0_wonchik_examaccom_rep3",
+  "value_set": "wonchik_examaccom",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_examaccom/run_C0_wonchik_examaccom_rep3.json"
+ },
+ {
+  "item": "kpack05-5",
+  "model": "gemini-flash",
+  "issue_id": "issue_recycling_room",
+  "run_id": "pbw_recycling_room_wonchik_recycling_room_rep3",
+  "value_set": "wonchik_recycling_room",
+  "script": "pbw_recycling_room",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_recycling_room/run_pbw_recycling_room_wonchik_recycling_room_rep3.json"
+ },
+ {
+  "item": "kpack05-6",
+  "model": "gemini-flash",
+  "issue_id": "issue_cat_feeding_days_list",
+  "run_id": "pbw_cf_days_list_wonchik_cf_days_list_rep3",
+  "value_set": "wonchik_cf_days_list",
+  "script": "pbw_cf_days_list",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_cat_feeding_days_list/run_pbw_cf_days_list_wonchik_cf_days_list_rep3.json"
+ },
+ {
+  "item": "kpack06-1",
+  "model": "gemini-flash",
+  "issue_id": "issue_smoking_area_party",
+  "run_id": "C0_wonchik_smoking_party_rep1",
+  "value_set": "wonchik_smoking_party",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_smoking_area_party/run_C0_wonchik_smoking_party_rep1.json"
+ },
+ {
+  "item": "kpack06-2",
+  "model": "gemini-flash",
+  "issue_id": "issue_parentalreturn",
+  "run_id": "pbw_parentalreturn_wonchik_parentalreturn_rep1",
+  "value_set": "wonchik_parentalreturn",
+  "script": "pbw_parentalreturn",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_parentalreturn/run_pbw_parentalreturn_wonchik_parentalreturn_rep1.json"
+ },
+ {
+  "item": "kpack06-3",
+  "model": "gemini-flash",
+  "issue_id": "issue_recycling_room",
+  "run_id": "pbw_recycling_room_wonchik_recycling_room_rep2",
+  "value_set": "wonchik_recycling_room",
+  "script": "pbw_recycling_room",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_recycling_room/run_pbw_recycling_room_wonchik_recycling_room_rep2.json"
+ },
+ {
+  "item": "kpack06-4",
+  "model": "gpt",
+  "issue_id": "issue_euthanasia",
+  "run_id": "pbw_euthanasia_wonchik_euthanasia_rep3",
+  "value_set": "wonchik_euthanasia",
+  "script": "pbw_euthanasia",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_euthanasia/run_pbw_euthanasia_wonchik_euthanasia_rep3.json"
+ },
+ {
+  "item": "kpack06-5",
+  "model": "gemini-flash",
+  "issue_id": "issue_smoking_area_party",
+  "run_id": "pbw_smoking_party_wonchik_smoking_party_rep3",
+  "value_set": "wonchik_smoking_party",
+  "script": "pbw_smoking_party",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_smoking_area_party/run_pbw_smoking_party_wonchik_smoking_party_rep3.json"
+ },
+ {
+  "item": "kpack06-6",
+  "model": "gpt",
+  "issue_id": "issue_childcare",
+  "run_id": "C0_wonchik_childcare_rep1",
+  "value_set": "wonchik_childcare",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_childcare/run_C0_wonchik_childcare_rep1.json"
+ },
+ {
+  "item": "kpack07-1",
+  "model": "gpt",
+  "issue_id": "issue_examaccom",
+  "run_id": "C0_wonchik_examaccom_rep3",
+  "value_set": "wonchik_examaccom",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_examaccom/run_C0_wonchik_examaccom_rep3.json"
+ },
+ {
+  "item": "kpack07-2",
+  "model": "gemini-flash",
+  "issue_id": "issue_workmind",
+  "run_id": "C0_wonchik_workmind_rep2",
+  "value_set": "wonchik_workmind",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_workmind/run_C0_wonchik_workmind_rep2.json"
+ },
+ {
+  "item": "kpack07-3",
+  "model": "gemini-flash",
+  "issue_id": "issue_examaccom",
+  "run_id": "C0_wonchik_examaccom_rep1",
+  "value_set": "wonchik_examaccom",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_examaccom/run_C0_wonchik_examaccom_rep1.json"
+ },
+ {
+  "item": "kpack07-4",
+  "model": "gpt",
+  "issue_id": "issue_eol",
+  "run_id": "pbw_eol_wonchik_eol_rep1",
+  "value_set": "wonchik_eol",
+  "script": "pbw_eol",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_eol/run_pbw_eol_wonchik_eol_rep1.json"
+ },
+ {
+  "item": "kpack07-5",
+  "model": "gemini-flash",
+  "issue_id": "issue_childcare",
+  "run_id": "C0_wonchik_childcare_rep3",
+  "value_set": "wonchik_childcare",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_childcare/run_C0_wonchik_childcare_rep3.json"
+ },
+ {
+  "item": "kpack07-6",
+  "model": "gemini-flash",
+  "issue_id": "issue_cat_feeding_days_list",
+  "run_id": "pbw_cf_days_list_wonchik_cf_days_list_rep2",
+  "value_set": "wonchik_cf_days_list",
+  "script": "pbw_cf_days_list",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_cat_feeding_days_list/run_pbw_cf_days_list_wonchik_cf_days_list_rep2.json"
+ },
+ {
+  "item": "kpack08-1",
+  "model": "gemini-flash",
+  "issue_id": "issue_recycling_room",
+  "run_id": "C0_wonchik_recycling_room_rep2",
+  "value_set": "wonchik_recycling_room",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_recycling_room/run_C0_wonchik_recycling_room_rep2.json"
+ },
+ {
+  "item": "kpack08-2",
+  "model": "gpt",
+  "issue_id": "issue_workmind",
+  "run_id": "C0_wonchik_workmind_rep1",
+  "value_set": "wonchik_workmind",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_workmind/run_C0_wonchik_workmind_rep1.json"
+ },
+ {
+  "item": "kpack08-3",
+  "model": "gpt",
+  "issue_id": "issue_smoking_area_party",
+  "run_id": "pbw_smoking_party_wonchik_smoking_party_rep2",
+  "value_set": "wonchik_smoking_party",
+  "script": "pbw_smoking_party",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_smoking_area_party/run_pbw_smoking_party_wonchik_smoking_party_rep2.json"
+ },
+ {
+  "item": "kpack08-4",
+  "model": "gpt",
+  "issue_id": "issue_shelter",
+  "run_id": "pbw_shelter_wonchik_shelter_rep1",
+  "value_set": "wonchik_shelter",
+  "script": "pbw_shelter",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_shelter/run_pbw_shelter_wonchik_shelter_rep1.json"
+ },
+ {
+  "item": "kpack08-5",
+  "model": "gpt",
+  "issue_id": "issue_childcare",
+  "run_id": "pbw_childcare_wonchik_childcare_rep2",
+  "value_set": "wonchik_childcare",
+  "script": "pbw_childcare",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_childcare/run_pbw_childcare_wonchik_childcare_rep2.json"
+ },
+ {
+  "item": "kpack08-6",
+  "model": "gemini-flash",
+  "issue_id": "issue_euthanasia",
+  "run_id": "C0_wonchik_euthanasia_rep1",
+  "value_set": "wonchik_euthanasia",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_euthanasia/run_C0_wonchik_euthanasia_rep1.json"
+ },
+ {
+  "item": "kpack09-1",
+  "model": "gpt",
+  "issue_id": "issue_childcare",
+  "run_id": "pbw_childcare_wonchik_childcare_rep1",
+  "value_set": "wonchik_childcare",
+  "script": "pbw_childcare",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_childcare/run_pbw_childcare_wonchik_childcare_rep1.json"
+ },
+ {
+  "item": "kpack09-2",
+  "model": "gemini-flash",
+  "issue_id": "issue_recycling_room",
+  "run_id": "C0_wonchik_recycling_room_rep3",
+  "value_set": "wonchik_recycling_room",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_recycling_room/run_C0_wonchik_recycling_room_rep3.json"
+ },
+ {
+  "item": "kpack09-3",
+  "model": "gpt",
+  "issue_id": "issue_examaccom",
+  "run_id": "C0_wonchik_examaccom_rep1",
+  "value_set": "wonchik_examaccom",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_examaccom/run_C0_wonchik_examaccom_rep1.json"
+ },
+ {
+  "item": "kpack09-4",
+  "model": "gpt",
+  "issue_id": "issue_remotewatch",
+  "run_id": "pbw_remotewatch_wonchik_remotewatch_rep1",
+  "value_set": "wonchik_remotewatch",
+  "script": "pbw_remotewatch",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_remotewatch/run_pbw_remotewatch_wonchik_remotewatch_rep1.json"
+ },
+ {
+  "item": "kpack09-5",
+  "model": "gemini-flash",
+  "issue_id": "issue_remotewatch",
+  "run_id": "C0_wonchik_remotewatch_rep3",
+  "value_set": "wonchik_remotewatch",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_remotewatch/run_C0_wonchik_remotewatch_rep3.json"
+ },
+ {
+  "item": "kpack09-6",
+  "model": "gpt",
+  "issue_id": "issue_recycling_room",
+  "run_id": "C0_wonchik_recycling_room_rep3",
+  "value_set": "wonchik_recycling_room",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_recycling_room/run_C0_wonchik_recycling_room_rep3.json"
+ },
+ {
+  "item": "kpack10-1",
+  "model": "gemini-flash",
+  "issue_id": "issue_examaccom",
+  "run_id": "pbw_examaccom_wonchik_examaccom_rep1",
+  "value_set": "wonchik_examaccom",
+  "script": "pbw_examaccom",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_examaccom/run_pbw_examaccom_wonchik_examaccom_rep1.json"
+ },
+ {
+  "item": "kpack10-2",
+  "model": "gemini-flash",
+  "issue_id": "issue_eol",
+  "run_id": "C0_wonchik_eol_rep2",
+  "value_set": "wonchik_eol",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_eol/run_C0_wonchik_eol_rep2.json"
+ },
+ {
+  "item": "kpack10-3",
+  "model": "gpt",
+  "issue_id": "issue_workmind",
+  "run_id": "pbw_workmind_wonchik_workmind_rep1",
+  "value_set": "wonchik_workmind",
+  "script": "pbw_workmind",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_workmind/run_pbw_workmind_wonchik_workmind_rep1.json"
+ },
+ {
+  "item": "kpack10-4",
+  "model": "gemini-flash",
+  "issue_id": "issue_euthanasia",
+  "run_id": "pbw_euthanasia_wonchik_euthanasia_rep1",
+  "value_set": "wonchik_euthanasia",
+  "script": "pbw_euthanasia",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_euthanasia/run_pbw_euthanasia_wonchik_euthanasia_rep1.json"
+ },
+ {
+  "item": "kpack10-5",
+  "model": "gpt",
+  "issue_id": "issue_cat_feeding_days_list",
+  "run_id": "pbw_cf_days_list_wonchik_cf_days_list_rep1",
+  "value_set": "wonchik_cf_days_list",
+  "script": "pbw_cf_days_list",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_cat_feeding_days_list/run_pbw_cf_days_list_wonchik_cf_days_list_rep1.json"
+ },
+ {
+  "item": "kpack10-6",
+  "model": "gpt",
+  "issue_id": "issue_cat_feeding_days_list",
+  "run_id": "pbw_cf_days_list_wonchik_cf_days_list_rep2",
+  "value_set": "wonchik_cf_days_list",
+  "script": "pbw_cf_days_list",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_cat_feeding_days_list/run_pbw_cf_days_list_wonchik_cf_days_list_rep2.json"
+ },
+ {
+  "item": "kpack11-1",
+  "model": "gpt",
+  "issue_id": "issue_smoking_area_party",
+  "run_id": "C0_wonchik_smoking_party_rep1",
+  "value_set": "wonchik_smoking_party",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_smoking_area_party/run_C0_wonchik_smoking_party_rep1.json"
+ },
+ {
+  "item": "kpack11-2",
+  "model": "gemini-flash",
+  "issue_id": "issue_examaccom",
+  "run_id": "pbw_examaccom_wonchik_examaccom_rep3",
+  "value_set": "wonchik_examaccom",
+  "script": "pbw_examaccom",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_examaccom/run_pbw_examaccom_wonchik_examaccom_rep3.json"
+ },
+ {
+  "item": "kpack11-3",
+  "model": "gemini-flash",
+  "issue_id": "issue_euthanasia",
+  "run_id": "C0_wonchik_euthanasia_rep3",
+  "value_set": "wonchik_euthanasia",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_euthanasia/run_C0_wonchik_euthanasia_rep3.json"
+ },
+ {
+  "item": "kpack11-4",
+  "model": "gemini-flash",
+  "issue_id": "issue_remotewatch",
+  "run_id": "C0_wonchik_remotewatch_rep2",
+  "value_set": "wonchik_remotewatch",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_remotewatch/run_C0_wonchik_remotewatch_rep2.json"
+ },
+ {
+  "item": "kpack11-5",
+  "model": "gpt",
+  "issue_id": "issue_childcare",
+  "run_id": "pbw_childcare_wonchik_childcare_rep3",
+  "value_set": "wonchik_childcare",
+  "script": "pbw_childcare",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_childcare/run_pbw_childcare_wonchik_childcare_rep3.json"
+ },
+ {
+  "item": "kpack11-6",
+  "model": "gemini-flash",
+  "issue_id": "issue_smoking_area_party",
+  "run_id": "pbw_smoking_party_wonchik_smoking_party_rep2",
+  "value_set": "wonchik_smoking_party",
+  "script": "pbw_smoking_party",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_smoking_area_party/run_pbw_smoking_party_wonchik_smoking_party_rep2.json"
+ },
+ {
+  "item": "kpack12-1",
+  "model": "gemini-flash",
+  "issue_id": "issue_eol",
+  "run_id": "C0_wonchik_eol_rep1",
+  "value_set": "wonchik_eol",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_eol/run_C0_wonchik_eol_rep1.json"
+ },
+ {
+  "item": "kpack12-2",
+  "model": "gpt",
+  "issue_id": "issue_examaccom",
+  "run_id": "pbw_examaccom_wonchik_examaccom_rep1",
+  "value_set": "wonchik_examaccom",
+  "script": "pbw_examaccom",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_examaccom/run_pbw_examaccom_wonchik_examaccom_rep1.json"
+ },
+ {
+  "item": "kpack12-3",
+  "model": "gpt",
+  "issue_id": "issue_remotewatch",
+  "run_id": "C0_wonchik_remotewatch_rep2",
+  "value_set": "wonchik_remotewatch",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_remotewatch/run_C0_wonchik_remotewatch_rep2.json"
+ },
+ {
+  "item": "kpack12-4",
+  "model": "gpt",
+  "issue_id": "issue_shelter",
+  "run_id": "C0_wonchik_shelter_rep2",
+  "value_set": "wonchik_shelter",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_shelter/run_C0_wonchik_shelter_rep2.json"
+ },
+ {
+  "item": "kpack12-5",
+  "model": "gpt",
+  "issue_id": "issue_examaccom",
+  "run_id": "C0_wonchik_examaccom_rep2",
+  "value_set": "wonchik_examaccom",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_examaccom/run_C0_wonchik_examaccom_rep2.json"
+ },
+ {
+  "item": "kpack12-6",
+  "model": "gemini-flash",
+  "issue_id": "issue_shelter",
+  "run_id": "pbw_shelter_wonchik_shelter_rep1",
+  "value_set": "wonchik_shelter",
+  "script": "pbw_shelter",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_shelter/run_pbw_shelter_wonchik_shelter_rep1.json"
+ },
+ {
+  "item": "kpack13-1",
+  "model": "gpt",
+  "issue_id": "issue_eol",
+  "run_id": "C0_wonchik_eol_rep1",
+  "value_set": "wonchik_eol",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_eol/run_C0_wonchik_eol_rep1.json"
+ },
+ {
+  "item": "kpack13-2",
+  "model": "gpt",
+  "issue_id": "issue_smoking_area_party",
+  "run_id": "C0_wonchik_smoking_party_rep3",
+  "value_set": "wonchik_smoking_party",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_smoking_area_party/run_C0_wonchik_smoking_party_rep3.json"
+ },
+ {
+  "item": "kpack13-3",
+  "model": "gpt",
+  "issue_id": "issue_examaccom",
+  "run_id": "pbw_examaccom_wonchik_examaccom_rep2",
+  "value_set": "wonchik_examaccom",
+  "script": "pbw_examaccom",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_examaccom/run_pbw_examaccom_wonchik_examaccom_rep2.json"
+ },
+ {
+  "item": "kpack13-4",
+  "model": "gpt",
+  "issue_id": "issue_remotewatch",
+  "run_id": "pbw_remotewatch_wonchik_remotewatch_rep3",
+  "value_set": "wonchik_remotewatch",
+  "script": "pbw_remotewatch",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_remotewatch/run_pbw_remotewatch_wonchik_remotewatch_rep3.json"
+ },
+ {
+  "item": "kpack13-5",
+  "model": "gemini-flash",
+  "issue_id": "issue_workmind",
+  "run_id": "pbw_workmind_wonchik_workmind_rep2",
+  "value_set": "wonchik_workmind",
+  "script": "pbw_workmind",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_workmind/run_pbw_workmind_wonchik_workmind_rep2.json"
+ },
+ {
+  "item": "kpack13-6",
+  "model": "gpt",
+  "issue_id": "issue_remotewatch",
+  "run_id": "C0_wonchik_remotewatch_rep3",
+  "value_set": "wonchik_remotewatch",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_remotewatch/run_C0_wonchik_remotewatch_rep3.json"
+ },
+ {
+  "item": "kpack14-1",
+  "model": "gemini-flash",
+  "issue_id": "issue_smoking_area_party",
+  "run_id": "C0_wonchik_smoking_party_rep2",
+  "value_set": "wonchik_smoking_party",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_smoking_area_party/run_C0_wonchik_smoking_party_rep2.json"
+ },
+ {
+  "item": "kpack14-2",
+  "model": "gpt",
+  "issue_id": "issue_parentalreturn",
+  "run_id": "pbw_parentalreturn_wonchik_parentalreturn_rep2",
+  "value_set": "wonchik_parentalreturn",
+  "script": "pbw_parentalreturn",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_parentalreturn/run_pbw_parentalreturn_wonchik_parentalreturn_rep2.json"
+ },
+ {
+  "item": "kpack14-3",
+  "model": "gemini-flash",
+  "issue_id": "issue_remotewatch",
+  "run_id": "pbw_remotewatch_wonchik_remotewatch_rep3",
+  "value_set": "wonchik_remotewatch",
+  "script": "pbw_remotewatch",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_remotewatch/run_pbw_remotewatch_wonchik_remotewatch_rep3.json"
+ },
+ {
+  "item": "kpack14-4",
+  "model": "gpt",
+  "issue_id": "issue_eol",
+  "run_id": "C0_wonchik_eol_rep3",
+  "value_set": "wonchik_eol",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_eol/run_C0_wonchik_eol_rep3.json"
+ },
+ {
+  "item": "kpack14-5",
+  "model": "gpt",
+  "issue_id": "issue_smoking_area_party",
+  "run_id": "C0_wonchik_smoking_party_rep2",
+  "value_set": "wonchik_smoking_party",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_smoking_area_party/run_C0_wonchik_smoking_party_rep2.json"
+ },
+ {
+  "item": "kpack14-6",
+  "model": "gemini-flash",
+  "issue_id": "issue_smoking_area_party",
+  "run_id": "C0_wonchik_smoking_party_rep3",
+  "value_set": "wonchik_smoking_party",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_smoking_area_party/run_C0_wonchik_smoking_party_rep3.json"
+ },
+ {
+  "item": "kpack15-1",
+  "model": "gpt",
+  "issue_id": "issue_workmind",
+  "run_id": "C0_wonchik_workmind_rep3",
+  "value_set": "wonchik_workmind",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_workmind/run_C0_wonchik_workmind_rep3.json"
+ },
+ {
+  "item": "kpack15-2",
+  "model": "gemini-flash",
+  "issue_id": "issue_shelter",
+  "run_id": "C0_wonchik_shelter_rep2",
+  "value_set": "wonchik_shelter",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_shelter/run_C0_wonchik_shelter_rep2.json"
+ },
+ {
+  "item": "kpack15-3",
+  "model": "gemini-flash",
+  "issue_id": "issue_eol",
+  "run_id": "pbw_eol_wonchik_eol_rep1",
+  "value_set": "wonchik_eol",
+  "script": "pbw_eol",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_eol/run_pbw_eol_wonchik_eol_rep1.json"
+ },
+ {
+  "item": "kpack15-4",
+  "model": "gpt",
+  "issue_id": "issue_recycling_room",
+  "run_id": "pbw_recycling_room_wonchik_recycling_room_rep1",
+  "value_set": "wonchik_recycling_room",
+  "script": "pbw_recycling_room",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_recycling_room/run_pbw_recycling_room_wonchik_recycling_room_rep1.json"
+ },
+ {
+  "item": "kpack15-5",
+  "model": "gpt",
+  "issue_id": "issue_parentalreturn",
+  "run_id": "C0_wonchik_parentalreturn_rep1",
+  "value_set": "wonchik_parentalreturn",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_parentalreturn/run_C0_wonchik_parentalreturn_rep1.json"
+ },
+ {
+  "item": "kpack15-6",
+  "model": "gpt",
+  "issue_id": "issue_shelter",
+  "run_id": "C0_wonchik_shelter_rep1",
+  "value_set": "wonchik_shelter",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_shelter/run_C0_wonchik_shelter_rep1.json"
+ },
+ {
+  "item": "kpack16-1",
+  "model": "gpt",
+  "issue_id": "issue_childcare",
+  "run_id": "C0_wonchik_childcare_rep3",
+  "value_set": "wonchik_childcare",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_childcare/run_C0_wonchik_childcare_rep3.json"
+ },
+ {
+  "item": "kpack16-2",
+  "model": "gemini-flash",
+  "issue_id": "issue_parentalreturn",
+  "run_id": "C0_wonchik_parentalreturn_rep3",
+  "value_set": "wonchik_parentalreturn",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_parentalreturn/run_C0_wonchik_parentalreturn_rep3.json"
+ },
+ {
+  "item": "kpack16-3",
+  "model": "gpt",
+  "issue_id": "issue_eol",
+  "run_id": "pbw_eol_wonchik_eol_rep2",
+  "value_set": "wonchik_eol",
+  "script": "pbw_eol",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_eol/run_pbw_eol_wonchik_eol_rep2.json"
+ },
+ {
+  "item": "kpack16-4",
+  "model": "gpt",
+  "issue_id": "issue_childcare",
+  "run_id": "C0_wonchik_childcare_rep2",
+  "value_set": "wonchik_childcare",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_childcare/run_C0_wonchik_childcare_rep2.json"
+ },
+ {
+  "item": "kpack16-5",
+  "model": "gemini-flash",
+  "issue_id": "issue_euthanasia",
+  "run_id": "pbw_euthanasia_wonchik_euthanasia_rep2",
+  "value_set": "wonchik_euthanasia",
+  "script": "pbw_euthanasia",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_euthanasia/run_pbw_euthanasia_wonchik_euthanasia_rep2.json"
+ },
+ {
+  "item": "kpack16-6",
+  "model": "gemini-flash",
+  "issue_id": "issue_cat_feeding_days_list",
+  "run_id": "pbw_cf_days_list_wonchik_cf_days_list_rep1",
+  "value_set": "wonchik_cf_days_list",
+  "script": "pbw_cf_days_list",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_cat_feeding_days_list/run_pbw_cf_days_list_wonchik_cf_days_list_rep1.json"
+ },
+ {
+  "item": "kpack17-1",
+  "model": "gpt",
+  "issue_id": "issue_remotewatch",
+  "run_id": "pbw_remotewatch_wonchik_remotewatch_rep2",
+  "value_set": "wonchik_remotewatch",
+  "script": "pbw_remotewatch",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_remotewatch/run_pbw_remotewatch_wonchik_remotewatch_rep2.json"
+ },
+ {
+  "item": "kpack17-2",
+  "model": "gemini-flash",
+  "issue_id": "issue_shelter",
+  "run_id": "pbw_shelter_wonchik_shelter_rep2",
+  "value_set": "wonchik_shelter",
+  "script": "pbw_shelter",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_shelter/run_pbw_shelter_wonchik_shelter_rep2.json"
+ },
+ {
+  "item": "kpack17-3",
+  "model": "gpt",
+  "issue_id": "issue_euthanasia",
+  "run_id": "pbw_euthanasia_wonchik_euthanasia_rep2",
+  "value_set": "wonchik_euthanasia",
+  "script": "pbw_euthanasia",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_euthanasia/run_pbw_euthanasia_wonchik_euthanasia_rep2.json"
+ },
+ {
+  "item": "kpack17-4",
+  "model": "gemini-flash",
+  "issue_id": "issue_examaccom",
+  "run_id": "C0_wonchik_examaccom_rep2",
+  "value_set": "wonchik_examaccom",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_examaccom/run_C0_wonchik_examaccom_rep2.json"
+ },
+ {
+  "item": "kpack17-5",
+  "model": "gemini-flash",
+  "issue_id": "issue_childcare",
+  "run_id": "C0_wonchik_childcare_rep1",
+  "value_set": "wonchik_childcare",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_childcare/run_C0_wonchik_childcare_rep1.json"
+ },
+ {
+  "item": "kpack17-6",
+  "model": "gpt",
+  "issue_id": "issue_recycling_room",
+  "run_id": "pbw_recycling_room_wonchik_recycling_room_rep3",
+  "value_set": "wonchik_recycling_room",
+  "script": "pbw_recycling_room",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_recycling_room/run_pbw_recycling_room_wonchik_recycling_room_rep3.json"
+ },
+ {
+  "item": "kpack18-1",
+  "model": "gpt",
+  "issue_id": "issue_smoking_area_party",
+  "run_id": "pbw_smoking_party_wonchik_smoking_party_rep1",
+  "value_set": "wonchik_smoking_party",
+  "script": "pbw_smoking_party",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_smoking_area_party/run_pbw_smoking_party_wonchik_smoking_party_rep1.json"
+ },
+ {
+  "item": "kpack18-2",
+  "model": "gemini-flash",
+  "issue_id": "issue_recycling_room",
+  "run_id": "pbw_recycling_room_wonchik_recycling_room_rep1",
+  "value_set": "wonchik_recycling_room",
+  "script": "pbw_recycling_room",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_recycling_room/run_pbw_recycling_room_wonchik_recycling_room_rep1.json"
+ },
+ {
+  "item": "kpack18-3",
+  "model": "gpt",
+  "issue_id": "issue_shelter",
+  "run_id": "C0_wonchik_shelter_rep3",
+  "value_set": "wonchik_shelter",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_shelter/run_C0_wonchik_shelter_rep3.json"
+ },
+ {
+  "item": "kpack18-4",
+  "model": "gemini-flash",
+  "issue_id": "issue_childcare",
+  "run_id": "pbw_childcare_wonchik_childcare_rep3",
+  "value_set": "wonchik_childcare",
+  "script": "pbw_childcare",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_childcare/run_pbw_childcare_wonchik_childcare_rep3.json"
+ },
+ {
+  "item": "kpack18-5",
+  "model": "gemini-flash",
+  "issue_id": "issue_eol",
+  "run_id": "pbw_eol_wonchik_eol_rep3",
+  "value_set": "wonchik_eol",
+  "script": "pbw_eol",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_eol/run_pbw_eol_wonchik_eol_rep3.json"
+ },
+ {
+  "item": "kpack18-6",
+  "model": "gpt",
+  "issue_id": "issue_euthanasia",
+  "run_id": "pbw_euthanasia_wonchik_euthanasia_rep1",
+  "value_set": "wonchik_euthanasia",
+  "script": "pbw_euthanasia",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_euthanasia/run_pbw_euthanasia_wonchik_euthanasia_rep1.json"
+ },
+ {
+  "item": "kpack19-1",
+  "model": "gemini-flash",
+  "issue_id": "issue_childcare",
+  "run_id": "C0_wonchik_childcare_rep2",
+  "value_set": "wonchik_childcare",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_childcare/run_C0_wonchik_childcare_rep2.json"
+ },
+ {
+  "item": "kpack19-2",
+  "model": "gemini-flash",
+  "issue_id": "issue_parentalreturn",
+  "run_id": "pbw_parentalreturn_wonchik_parentalreturn_rep3",
+  "value_set": "wonchik_parentalreturn",
+  "script": "pbw_parentalreturn",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_parentalreturn/run_pbw_parentalreturn_wonchik_parentalreturn_rep3.json"
+ },
+ {
+  "item": "kpack19-3",
+  "model": "gpt",
+  "issue_id": "issue_cat_feeding_days_list",
+  "run_id": "C0_wonchik_cf_days_list_rep3",
+  "value_set": "wonchik_cf_days_list",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_cat_feeding_days_list/run_C0_wonchik_cf_days_list_rep3.json"
+ },
+ {
+  "item": "kpack19-4",
+  "model": "gemini-flash",
+  "issue_id": "issue_examaccom",
+  "run_id": "pbw_examaccom_wonchik_examaccom_rep2",
+  "value_set": "wonchik_examaccom",
+  "script": "pbw_examaccom",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_examaccom/run_pbw_examaccom_wonchik_examaccom_rep2.json"
+ },
+ {
+  "item": "kpack19-5",
+  "model": "gpt",
+  "issue_id": "issue_shelter",
+  "run_id": "pbw_shelter_wonchik_shelter_rep2",
+  "value_set": "wonchik_shelter",
+  "script": "pbw_shelter",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_shelter/run_pbw_shelter_wonchik_shelter_rep2.json"
+ },
+ {
+  "item": "kpack19-6",
+  "model": "gpt",
+  "issue_id": "issue_cat_feeding_days_list",
+  "run_id": "C0_wonchik_cf_days_list_rep1",
+  "value_set": "wonchik_cf_days_list",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_cat_feeding_days_list/run_C0_wonchik_cf_days_list_rep1.json"
+ },
+ {
+  "item": "kpack20-1",
+  "model": "gemini-flash",
+  "issue_id": "issue_workmind",
+  "run_id": "C0_wonchik_workmind_rep1",
+  "value_set": "wonchik_workmind",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_workmind/run_C0_wonchik_workmind_rep1.json"
+ },
+ {
+  "item": "kpack20-2",
+  "model": "gpt",
+  "issue_id": "issue_examaccom",
+  "run_id": "pbw_examaccom_wonchik_examaccom_rep3",
+  "value_set": "wonchik_examaccom",
+  "script": "pbw_examaccom",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_examaccom/run_pbw_examaccom_wonchik_examaccom_rep3.json"
+ },
+ {
+  "item": "kpack20-3",
+  "model": "gemini-flash",
+  "issue_id": "issue_remotewatch",
+  "run_id": "pbw_remotewatch_wonchik_remotewatch_rep2",
+  "value_set": "wonchik_remotewatch",
+  "script": "pbw_remotewatch",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_remotewatch/run_pbw_remotewatch_wonchik_remotewatch_rep2.json"
+ },
+ {
+  "item": "kpack20-4",
+  "model": "gpt",
+  "issue_id": "issue_euthanasia",
+  "run_id": "C0_wonchik_euthanasia_rep3",
+  "value_set": "wonchik_euthanasia",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_euthanasia/run_C0_wonchik_euthanasia_rep3.json"
+ },
+ {
+  "item": "kpack20-5",
+  "model": "gemini-flash",
+  "issue_id": "issue_parentalreturn",
+  "run_id": "pbw_parentalreturn_wonchik_parentalreturn_rep2",
+  "value_set": "wonchik_parentalreturn",
+  "script": "pbw_parentalreturn",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_parentalreturn/run_pbw_parentalreturn_wonchik_parentalreturn_rep2.json"
+ },
+ {
+  "item": "kpack20-6",
+  "model": "gpt",
+  "issue_id": "issue_recycling_room",
+  "run_id": "C0_wonchik_recycling_room_rep2",
+  "value_set": "wonchik_recycling_room",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_recycling_room/run_C0_wonchik_recycling_room_rep2.json"
+ },
+ {
+  "item": "kpack21-1",
+  "model": "gpt",
+  "issue_id": "issue_parentalreturn",
+  "run_id": "C0_wonchik_parentalreturn_rep3",
+  "value_set": "wonchik_parentalreturn",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_parentalreturn/run_C0_wonchik_parentalreturn_rep3.json"
+ },
+ {
+  "item": "kpack21-2",
+  "model": "gemini-flash",
+  "issue_id": "issue_cat_feeding_days_list",
+  "run_id": "C0_wonchik_cf_days_list_rep2",
+  "value_set": "wonchik_cf_days_list",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_cat_feeding_days_list/run_C0_wonchik_cf_days_list_rep2.json"
+ },
+ {
+  "item": "kpack21-3",
+  "model": "gemini-flash",
+  "issue_id": "issue_eol",
+  "run_id": "pbw_eol_wonchik_eol_rep2",
+  "value_set": "wonchik_eol",
+  "script": "pbw_eol",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_eol/run_pbw_eol_wonchik_eol_rep2.json"
+ },
+ {
+  "item": "kpack21-4",
+  "model": "gemini-flash",
+  "issue_id": "issue_workmind",
+  "run_id": "C0_wonchik_workmind_rep3",
+  "value_set": "wonchik_workmind",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_workmind/run_C0_wonchik_workmind_rep3.json"
+ },
+ {
+  "item": "kpack21-5",
+  "model": "gpt",
+  "issue_id": "issue_parentalreturn",
+  "run_id": "pbw_parentalreturn_wonchik_parentalreturn_rep1",
+  "value_set": "wonchik_parentalreturn",
+  "script": "pbw_parentalreturn",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_parentalreturn/run_pbw_parentalreturn_wonchik_parentalreturn_rep1.json"
+ },
+ {
+  "item": "kpack21-6",
+  "model": "gemini-flash",
+  "issue_id": "issue_parentalreturn",
+  "run_id": "C0_wonchik_parentalreturn_rep2",
+  "value_set": "wonchik_parentalreturn",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_parentalreturn/run_C0_wonchik_parentalreturn_rep2.json"
+ },
+ {
+  "item": "kpack22-1",
+  "model": "gpt",
+  "issue_id": "issue_remotewatch",
+  "run_id": "C0_wonchik_remotewatch_rep1",
+  "value_set": "wonchik_remotewatch",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gpt/issue_remotewatch/run_C0_wonchik_remotewatch_rep1.json"
+ },
+ {
+  "item": "kpack22-2",
+  "model": "gemini-flash",
+  "issue_id": "issue_workmind",
+  "run_id": "pbw_workmind_wonchik_workmind_rep1",
+  "value_set": "wonchik_workmind",
+  "script": "pbw_workmind",
+  "압박": "압박",
+  "경로": "runs/gemini-flash/issue_workmind/run_pbw_workmind_wonchik_workmind_rep1.json"
+ },
+ {
+  "item": "kpack22-3",
+  "model": "gpt",
+  "issue_id": "issue_cat_feeding_days_list",
+  "run_id": "pbw_cf_days_list_wonchik_cf_days_list_rep3",
+  "value_set": "wonchik_cf_days_list",
+  "script": "pbw_cf_days_list",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_cat_feeding_days_list/run_pbw_cf_days_list_wonchik_cf_days_list_rep3.json"
+ },
+ {
+  "item": "kpack22-4",
+  "model": "gpt",
+  "issue_id": "issue_parentalreturn",
+  "run_id": "pbw_parentalreturn_wonchik_parentalreturn_rep3",
+  "value_set": "wonchik_parentalreturn",
+  "script": "pbw_parentalreturn",
+  "압박": "압박",
+  "경로": "runs/gpt/issue_parentalreturn/run_pbw_parentalreturn_wonchik_parentalreturn_rep3.json"
+ },
+ {
+  "item": "kpack22-5",
+  "model": "gemini-flash",
+  "issue_id": "issue_shelter",
+  "run_id": "C0_wonchik_shelter_rep3",
+  "value_set": "wonchik_shelter",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_shelter/run_C0_wonchik_shelter_rep3.json"
+ },
+ {
+  "item": "kpack22-6",
+  "model": "gemini-flash",
+  "issue_id": "issue_parentalreturn",
+  "run_id": "C0_wonchik_parentalreturn_rep1",
+  "value_set": "wonchik_parentalreturn",
+  "script": "C0",
+  "압박": "C0",
+  "경로": "runs/gemini-flash/issue_parentalreturn/run_C0_wonchik_parentalreturn_rep1.json"
+ }
+]
